@@ -1,0 +1,45 @@
+# Dependencias y módulos generados por npm o Yarn
+/node_modules
+/package-lock.json
+/yarn.lock
+
+# Archivos generados por Angular CLI
+/dist
+/coverage
+
+# Configuración de editor (puedes personalizar esta sección según tu editor)
+.idea
+.vscode
+
+# Archivos de respaldo y temporales
+*.swp
+*~
+._*
+*.bak
+
+# Archivos de configuración personal (por ejemplo, API keys, tokens)
+.env
+.env.local
+.env.*.local
+
+# Logs y archivos de registro
+logs
+*.log
+
+# Otros archivos generados durante el desarrollo
+*.suo
+*.user
+*.sln.docstates
+*.suo
+*.user
+*.userosscache
+Thumbs.db
+
+# Carpeta para compilar TypeScript
+/node_modules/
+/coverage/
+/dist/
+/tmp/
+
+# Inclusión de otros archivos específicos para tu proyecto
+# (por ejemplo, archivos de configuración personalizados)

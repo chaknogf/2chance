@@ -1,0 +1,39 @@
+<header class="fs-4">
+  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand fs-3" [routerLink]="['/']">Home</a>
+      <button
+      class="navbar-toggler"
+      #navbarButton
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-label="Toggle navigation"
+      (click)="toggle()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav" [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav ml-auto">
+
+          <!-- Repite para otras opciones del menú -->
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/pacientes']" (click)="hideMenu()">Pacientes</a>
+          </li>
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/citas']" (click)="hideMenu()">Citas</a>
+          </li>
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/unisau']" (click)="hideMenu()">Emergencias</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

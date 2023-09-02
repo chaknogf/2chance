@@ -1,0 +1,55 @@
+
+ <button type="button" class="d-flex flex-r btn btn-primary" [routerLink]="['/pacientes']">Regresar</button><div class="card mb-3" *ngIf="detalleVisible">
+  <h3 class="card-header">Expediente: {{patient?.expediente}} {{patient?.nombre}} {{patient?.apellido}} </h3> {{patient?.id}}
+  <div class="card-body">
+
+  <div class="card-body">
+    <p class="card-text">
+      <strong>DPI: </strong> {{patient?.dpi |anyToText}}
+      <strong>   Pasaporte: </strong> {{patient?.pasaporte}} <br>
+      <strong>Sexo: </strong> {{patient?.sexo | anyToText |genero}}
+      <strong>Fecha de Nacimiento: </strong> de Nacimiento: {{patient?.nacimiento | anyToText | formatoFecha}} <br>
+      Nacionalidad: {{patient?.nacionalidad| anyToNumber |enumNacion}}  <br>
+      Lugar de nacimiento: {{patient?.lugar_nacimiento | anyToNumber | enumMunicipio}} <br>
+      Estado Civil: {{patient?.ecivil}} <br>
+      Educación: {{patient?.educacion}} <br>
+      Pueblo: {{patient?.pueblo}}
+      Idioma: {{patient?.idioma}}
+      Ocupación: {{patient?.ocupacion}}
+
+
+
+
+      Telefono: {{patient?.telefono}} <br>
+      Direccion: {{patient?.direccion}} <br>
+      email: {{patient?.email}}
+      padre: {{patient?.padre}}
+      madre: {{patient?.madre}}
+      responsable: {{patient?.responsable}}
+      parentesto: {{patient?.parentesco}}
+      DPI del Respondsable: {{patient?.dpi_responsable}}
+      Telefono del Responsable: {{patient?.telefono_responsable}}
+      Estado del Paciente: {{patient?.estado}}
+      expediente de la madre: {{patient?.exp_madre}}
+      Fecha de Defunción: {{patient?.fechaDefuncion}}
+      Usuario: {{patient?.user}}
+    </p>
+  </div>
+
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Card title</h4>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>

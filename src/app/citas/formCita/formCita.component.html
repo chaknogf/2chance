@@ -1,0 +1,94 @@
+<div class="d-flex bg-primary w-100 py-3 px-2">
+  <h2 class="text-light">Agendar Cita</h2>
+  <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
+    <button class="btn btn-dark" [routerLink]="['/citas']">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+<div class="">
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-6">
+
+      <form>
+        <div class="form-group">
+          <label for="fecha">Fecha:</label>
+          <input type="date" class="form-control" id="fecha" name="fecha"
+             (focus)="selectAllText($event)"[(ngModel)]="c.fecha" >
+        </div>
+
+        <div class="form-group">
+          <p>Día de la semana:</p>
+          <p class="form-control">{{selectedDate | diaDeSemana}}</p>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="expediente">Expediente:</label>
+          <input type="text" class="form-control" id="expediente" name="expediente" [(ngModel)]="c.expediente">
+        </div>
+
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <p class="form-control">{{c.nombre}}</p>
+        </div>
+
+        <div class="form-group">
+          <label for="especialidad">Especialidad:</label>
+          <select id="especialidad" class="form-control" [(ngModel)]="c.especialidad">
+            <option *ngFor="let option of e.servicio" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="num_cita">Número de Cita:</label>
+          <input type="text" class="form-control" id="num_cita" name="num_cita" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="nota">Nota:</label>
+          <textarea class="form-control" id="nota" name="nota" rows="4" [(ngModel)]="c.nota" ></textarea>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" (click)="crearCita()">Guardar</button>
+        </div>
+
+      </form>
+  </div>
+  <div class="col-md-6">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>Especialidad</th>
+          <th>Día del Mes</th>
+          <th>Cantidad de Citas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
+        <tr *ngFor="let cita of citas">
+          <td>{{ cita.especialidad }}</td>
+          <td>{{ cita.fecha }}</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+        </table>
+    </div>
+    </div>
+
+</div>
+
+
+
+
+
+
