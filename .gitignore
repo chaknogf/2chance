@@ -43,3 +43,7 @@ Thumbs.db
 
 # Inclusión de otros archivos específicos para tu proyecto
 # (por ejemplo, archivos de configuración personalizados)
+
+.angular
+.pack
+.pack.old
