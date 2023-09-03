@@ -22,6 +22,14 @@ import { BuscarComponent } from './pacientes/buscar/buscar.component';
 import { IngresoComponent } from './pacientes/ingreso/ingreso.component';
 import { CitasComponent } from './citas/citas/citas.component';
 import { FormCitaComponent } from './citas/formCita/formCita.component'
+import { TextToDatePipe } from './pipe/textToDate.pipe';
+import { ExpedienteToNombrePipe } from './pipe/expToNombre.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+
+
+
+
 
 
 
@@ -64,9 +72,14 @@ const routes: Routes = [
     EnumNacionalidadPipe,
     AnyToNumberPipe,
     EnumMunicipioPipe,
+    TextToDatePipe,
+    ExpedienteToNombrePipe,
+
+
   ],
   imports: [
     BrowserModule,
+
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -83,7 +96,9 @@ const routes: Routes = [
 
 
 
-    ])
+    ]),
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

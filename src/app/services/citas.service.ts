@@ -26,6 +26,10 @@ export class CitasService {
     return this.http.post(this.urlapi + "/cita/", cita);
    }
 
+  getCitasFecha(date: Date): Observable<any> {
+    const queryParams = `?value=${date}`;
+    return this.http.get(`${this.urlapi}/cita/fecha/${queryParams}`);
+  }
 
 
 }

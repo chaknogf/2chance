@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'diaDeSemana'
 })
 export class DiaDeSemana implements PipeTransform {
-  transform(date: Date): string {
+  transform(date: any): string {
     if (!date) return '';
 
     const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];

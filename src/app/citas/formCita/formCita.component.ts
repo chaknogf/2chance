@@ -15,9 +15,10 @@ export class FormCitaComponent implements OnInit {
 
   public cita: Icitas[] = [];
   @HostBinding('class') clases = 'row';
-  selectedDate: Date = new Date();
+  selectedDate: Date | null = null; // Declaración de la propiedad selectedDate
   bsConfig = { dateInputFormat: 'DD-MM-YYYY' };
   edit: boolean = false;
+  selectExpediente: any;
 
   c: Icitas = {
     id: 0,
@@ -89,6 +90,23 @@ export class FormCitaComponent implements OnInit {
   selectAllText(event: any) {
     event.target.select(); // Selecciona todo el texto en el input
   }
+
+ // Método para manejar el cambio en la fecha seleccionada
+ onDateChange(event: Event) {
+  const inputElement = event.target as HTMLInputElement;
+  const inputValue = inputElement.value;
+
+  if (inputValue) {
+    this.selectedDate = new Date(inputValue); // Convierte la cadena en un objeto Date
+  } else {
+    this.selectedDate = null; // Establece selectedDate en null si no hay valor
+  }
+ }
+
+
+
+
+
 
 
 

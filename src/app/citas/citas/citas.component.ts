@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CitasService } from 'src/app/services/citas.service';
+import { Icitas } from 'src/app/models/Icitas';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-citas', // Asegúrate de usar el selector correcto aquí
@@ -7,20 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CitasComponent implements OnInit {
   today: Date = new Date();
-  whatsDate: Date = new Date();
+  selectDate: Date = new Date();
+  public citas: Icitas[] = [];
+  public filterCitas: Icitas[] = [];
 
 
-  getDayOfWeek(date: Date): string {
-    const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    const dayIndex = date.getDay();
-    return daysOfWeek[dayIndex];
-  }
+
+
+
+  constructor(private CitasService: CitasService, private router: Router, private activateRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-    this.getDayOfWeek(this.whatsDate)
+      this.mostrarCitas(this.selectDate)
    }
+
+  mostrarCitas(value: Date) {
+    this.CitasService.getCitasFecha(value).subscribe(data => {
+      this.citas = data;
+      this.filterCitas = data;
+    })
+  }
+
+
+
 
 }
 
-
-//select expediente from citas where especialidad = trauma;

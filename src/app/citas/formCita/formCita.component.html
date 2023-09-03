@@ -21,29 +21,28 @@
         <div class="form-group">
           <label for="fecha">Fecha:</label>
           <input type="date" class="form-control" id="fecha" name="fecha"
-             (focus)="selectAllText($event)"[(ngModel)]="c.fecha" >
+            (change)="onDateChange($event)" [(ngModel)]="c.fecha">
         </div>
 
         <div class="form-group">
           <p>Día de la semana:</p>
-          <p class="form-control">{{selectedDate | diaDeSemana}}</p>
+          <p class="form-control">{{ selectedDate | diaDeSemana }}</p>
         </div>
-
 
 
         <div class="form-group">
           <label for="expediente">Expediente:</label>
-          <input type="text" class="form-control" id="expediente" name="expediente" [(ngModel)]="c.expediente">
+          <input type="text" class="form-control" id="expediente" name="expediente"  [(ngModel)]='c.expediente' >
         </div>
 
         <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <p class="form-control">{{c.nombre}}</p>
+          <p>Nombre de Paciente</p>
+          <p class="form-control">{{c.expediente | expeToNombre | async}}</p>
         </div>
 
         <div class="form-group">
           <label for="especialidad">Especialidad:</label>
-          <select id="especialidad" class="form-control" [(ngModel)]="c.especialidad">
+          <select id="especialidad" class="form-control" [(ngModel)]="c.especialidad" name="especialidad">
             <option *ngFor="let option of e.servicio" [value]="option.value">{{option.label}}</option>
           </select>
         </div>

@@ -14,11 +14,12 @@
   </div>
 
   <!--       <form [formGroup]="searchForm" > -->
-    <div class="d-flex">
+    <!-- <div class="d-flex">
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formularioModal">
         busqueda Avanzada
       </button>
-    </div>
+    </div> -->
+
 
     <div class="d-flex justify-content-end mb-3">
     <a routerLink="/crear-paciente" [routerLink]="['/agendar']" class="btn btn-primary">
@@ -29,11 +30,16 @@
     </a>
   </div>
 
+
   <div class="d-flex">
+    <div>
+      <input type="text" id="dp1" class="datepicker" placeholder="Pick Date" name="date" readonly><span class="fa fa-calendar"></span>
+    </div>
+
     <div class="col flex-fill">
       <h3>Traumatología</h3>
       <div class="table-responsive">
-        <table class="table table-hover table-auto">
+        <table class="table table-hover table-auto " *ngIf="citas.length > 0">
           <!-- Encabezados de columna -->
           <thead>
             <tr>
@@ -44,10 +50,10 @@
           </thead>
           <!-- Datos de la tabla -->
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Prueba</td>
-              <td>Prueba</td>
+            <tr *ngFor="let cita of filterCitas">
+              <td></td>
+              <td>{{cita.expediente}}</td>
+              <td>{{cita.nombre}}</td>
             </tr>
           </tbody>
         </table>
@@ -60,7 +66,7 @@
         <table class="table table-hover table-sm">
           <!-- Encabezados de columna -->
           <thead>
-            <tr>
+            <tr *ngFor="let cita of filterCitas">
               <th class="table bg-primary text-light" scope="col">#</th>
               <th class="table bg-primary text-light" scope="col">Expediente</th>
               <th class="table bg-primary text-light" scope="col">Nombre</th>
