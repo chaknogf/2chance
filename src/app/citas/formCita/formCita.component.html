@@ -19,9 +19,22 @@
 
       <form>
         <div class="form-group">
+          <label for="num_cita">Número de Cita:</label>
+          <input type="text" class="form-control" id="num_cita" name="num_cita" [(ngModel)]="c.id" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="especialidad">Especialidad:</label>
+          <select id="especialidad" class="form-control" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)="verResumen($event)">
+            <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
           <label for="fecha">Fecha:</label>
           <input type="date" class="form-control" id="fecha" name="fecha"
-            (change)="onDateChange($event)" [(ngModel)]="c.fecha">
+            (change)="onDateChange($event)" [(ngModel)]="c.fecha" placeholder="hoy">
         </div>
 
         <div class="form-group">
@@ -41,15 +54,15 @@
         </div>
 
         <div class="form-group">
-          <label for="especialidad">Especialidad:</label>
-          <select id="especialidad" class="form-control" [(ngModel)]="c.especialidad" name="especialidad">
-            <option *ngFor="let option of e.servicio" [value]="option.value">{{option.label}}</option>
-          </select>
+          <label for="fecha">Cirugia Programada:</label>
+          <input type="date" class="form-control" id="cirugia_programada" name="cirugia_programada"
+            (change)="onDateChange($event)" [(ngModel)]="c.cirugia_programada" placeholder="cirugia programada">
         </div>
 
         <div class="form-group">
-          <label for="num_cita">Número de Cita:</label>
-          <input type="text" class="form-control" id="num_cita" name="num_cita" disabled>
+          <label for="fecha">Estado de la Cita</label>
+          <input type="checkbox" class="form-control" id="cirugia_programada" name="cirugia_programada"
+             [(ngModel)]="c.cirugia_programada" placeholder="cirugia programada">
         </div>
 
         <div class="form-group">
@@ -61,23 +74,28 @@
           <button type="submit" class="btn btn-primary" (click)="crearCita()">Guardar</button>
         </div>
 
-      </form>
+        </form>
+        <div>
+          <button class="btn btn-warning">Borrar</button>
+        </div>
   </div>
   <div class="col-md-6">
     <table class="table ">
       <thead>
         <tr>
           <th>Especialidad</th>
-          <th>Día del Mes</th>
+          <th>Fecha</th>
+          <th>Día</th>
           <th>Cantidad de Citas</th>
         </tr>
       </thead>
       <tbody>
         <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
-        <tr *ngFor="let cita of citas">
-          <td>{{ cita.especialidad }}</td>
-          <td>{{ cita.fecha }}</td>
-          <td>1</td>
+        <tr *ngFor="let cita of resumen">
+          <td>{{ cita.especialidad | enumEspecialidad}}</td>
+          <td>{{ cita.dia | formatoFecha }}</td>
+          <td>{{cita.dia | weekday  }}</td>
+          <td class="text-center">{{cita.total_citas}}</td>
         </tr>
       </tbody>
         </table>

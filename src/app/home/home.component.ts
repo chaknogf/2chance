@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { particlesConfig } from './particles-config';
+
 
 @Component({
   selector: 'app-home',
@@ -8,4 +9,10 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class HomeComponent {
 
+
+  public particlesConfig = particlesConfig;
+  ngOnInit() {
+    // Utiliza la configuración de partículas
+    particlesConfig;
+  }
 }

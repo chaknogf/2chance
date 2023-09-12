@@ -2,7 +2,7 @@ import { CitasService } from './../../services/citas.service';
 import { servicio } from './../../enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { Icitas } from 'src/app/models/Icitas';
+import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
 import { IenumEspecialidad } from 'src/app/models/Ienum';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -14,20 +14,23 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class FormCitaComponent implements OnInit {
 
   public cita: Icitas[] = [];
+  public resumen: IVistaCitas[] = [];
   @HostBinding('class') clases = 'row';
   selectedDate: Date | null = null; // Declaración de la propiedad selectedDate
   bsConfig = { dateInputFormat: 'DD-MM-YYYY' };
   edit: boolean = false;
   selectExpediente: any;
+  hoy: string = new Date().getDate().toString()
 
   c: Icitas = {
     id: 0,
     expediente: 0,
     fecha: new Date,
     especialidad: 0,
+    cirugia_programada: null,
     nota: '',
     estado: false,
-    nombre: ''
+    name: ''
   }
   e: IenumEspecialidad = {
     servicio: servicio
@@ -40,50 +43,47 @@ export class FormCitaComponent implements OnInit {
   ngOnInit() {
     // const params = this.activateRoute.snapshot.params;
 
-    // // Verificar si se proporcionó un ID de paciente
-    // if (params['id']) {
-    //   this.CitasService.getCitas(params['id'])
-    //     .subscribe(
-    //       data => {
-    //         this.c = data;
-    //         this.edit = true;
-    //       },
-    //       error => console.log(error)
-    //     )
-    // }
+    // Obtener los parámetros de la ruta
+    const params = this.activateRoute.snapshot.params;
 
+    // Verificar si se proporcionó un ID de paciente
+    if (params['id']) {
+      this.CitasService.getCita(params['id'])
+        .subscribe(
+          data => {
+            this.c = data;
+            this.edit = true;
+          },
+          error => console.log(error)
+        )
+    }
+    this.resumen;
 
   }
 
   crearCita(): void {
     this.CitasService.agendar(this.c).subscribe(data => {
       this.c = data;
+      console.log(this.c)
       this.router.navigate(['/citas']);
+    })
+  }
+
+  editar() {
+    this.CitasService.editarCita(this.c.id, this.c)
+      .subscribe(data => {
+        this.c = data;
+        this.router.navigate(['/citas'])
     })
   }
 
 
 
-  // Declaración del array de citas
-  citas = [
-    {
-      id: 1,
-      fecha: '2023-08-10',
-      expediente: 'EXP001',
-      especialidad: 'Traumatología',
-      nota: 'Primera consulta',
-      estado: 'Programada'
-    },
-    {
-      id: 2,
-      fecha: '2023-08-12',
-      expediente: 'EXP002',
-      especialidad: 'Cardiología',
-      nota: 'Seguimiento',
-      estado: 'Programada'
-    },
-    // Agrega más citas según sea necesario
-  ];
+  verResumen(especiliadad: number) {
+    this.CitasService.getResumenCitas(especiliadad).subscribe(data => {
+      this.resumen = data;
+    })
+  }
 
 
 
@@ -102,6 +102,7 @@ export class FormCitaComponent implements OnInit {
     this.selectedDate = null; // Establece selectedDate en null si no hay valor
   }
  }
+
 
 
 

@@ -7,6 +7,13 @@ export interface Icitas{
   especialidad: number;
   nota: string;
   estado: boolean;
-  nombre: string;
+  name: string;
+  cirugia_programada: null| Date;
 }
 
+export interface IVistaCitas{
+  id: number;
+  especialidad: number;
+  dia: string;
+  total_citas: number;
+}

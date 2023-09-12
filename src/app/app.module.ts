@@ -1,3 +1,4 @@
+import { ResumenCitasPipe } from './pipe/resumenCitas.pipe';
 import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,6 +11,7 @@ import { EdadPipe } from './pipe/Edad.pipe';
 import { FortmatPhone } from './pipe/telefono.pipe';
 import { AppComponent } from './app.component';
 import { DiaDeSemana } from './pipe/diaDeSemana.pipe';
+import { WeekdayPipe } from './pipe/weekDay.pipe';
 import { FormatoFechaPipe } from './pipe/formatoFecha.pipe'
 import { GeneroPipe } from './pipe/genero.pipe'
 import { EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe } from './pipe/enum.pipe'
@@ -50,6 +52,7 @@ const routes: Routes = [
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +77,8 @@ const routes: Routes = [
     EnumMunicipioPipe,
     TextToDatePipe,
     ExpedienteToNombrePipe,
+    ResumenCitasPipe,
+    WeekdayPipe
 
 
   ],
