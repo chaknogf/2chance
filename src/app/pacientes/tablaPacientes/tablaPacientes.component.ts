@@ -57,7 +57,7 @@ export class TablaPacientesComponent{
 
 
 
-  sortTable(colu: string) {
+  sortTable(colu: any) {
     if (this.order === 'asc') {
       this.pacientes.sort((a, b) => a[colu] > b[colu] ? 1 : -1);
       this.order = 'desc';

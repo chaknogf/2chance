@@ -3,235 +3,241 @@
   <div>
   </div>
 
-  <div class="d-flex justify-content-left mb-3">
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="day">Día</label>
-        <input type="text" class="form-control" id="day" name="day" [(ngModel)]="day" placeholder="Día" (ngModelChange)="updateDate()">
+  <div class="container">
+    <form class="form-inline d-flex justify-content-center">
+      <div class="form-group flex-grow-1">
+        <h6 class="text-center" for="day">Día</h6>
+        <input type="text" class="form-control text-center" id="day" name="day" [(ngModel)]="day" placeholder="Día" (ngModelChange)="updateDate()">
       </div>
 
-      <div class="form-group mx-2">
-        <label for="month">Mes</label>
-        <input type="text" class="form-control" id="month" name="month" [(ngModel)]="month" placeholder="Mes" (ngModelChange)="updateDate()">
+      <div class="form-group mx-2 flex-grow-1">
+        <h6 class=" text-center" for="month">Mes</h6>
+        <input type="text" class="form-control text-center" id="month" name="month" [(ngModel)]="month" placeholder="Mes" (ngModelChange)="updateDate()">
       </div>
 
-      <div class="form-group">
-        <label for="year">Año</label>
-        <input type="text" class="form-control" id="year" name="year" [(ngModel)]="year" placeholder="Año" (ngModelChange)="updateDate()">
+      <div class="form-group flex-grow-1">
+        <h6 class="text-center" for="year">Año</h6>
+        <input type="text" class="form-control text-center" id="year" name="year" [(ngModel)]="year" placeholder="Año" (ngModelChange)="updateDate()">
       </div>
-
     </form>
-</div>
-
-
-
-
-
-
   </div>
 
-
-
+  <div class="conteiner d-flex justify-content-center">
     <div class="d-flex justify-content-end mb-3">
-    <a routerLink="/crear-paciente" [routerLink]="['/agendar']" class="btn btn-primary">
-      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
-        <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z"/>
-        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-      </svg> Cita Nueva
-    </a>
+      <a routerLink="/crear-paciente" [routerLink]="['/agendar']" class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
+          <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z"/>
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+        </svg> Cita Nueva
+      </a>
+    </div>
   </div>
 
-
-  <div class="d-flex">
-
-
-    <div class="col flex-fill">
-      <h3>{{2 | enumEspecialidad}}</h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-auto " *ngIf="citasPedia.length > 0">
-          <!-- Encabezados de columna -->
-          <thead>
-            <tr>
-              <th class=" bg-primary text-light">#</th>
-              <th class=" bg-primary text-light" scope="col">Expediente</th>
-              <th class="table bg-primary text-light" scope="col">Nombre</th>
-            </tr>
-          </thead>
-          <!-- Datos de la tabla -->
-          <tbody>
-            <tr *ngFor="let cita of citasPedia">
-              <td></td>
-              <td>{{cita.expediente}}</td>
-              <td>{{cita.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-<div class="">
-</div>
-    <div class="col flex-fill">
-      <h3>{{1 | enumEspecialidad}}</h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-sm"*ngIf="citasMedi" >
-          <!-- Encabezados de columna -->
-          <thead>
-            <tr >
-              <th class=" bg-primary text-light" scope="col">#</th>
-              <th class=" bg-primary text-light" scope="col">Expediente</th>
-              <th class="table bg-primary text-light" scope="col">Nombre</th>
-            </tr>
-          </thead>
-          <!-- Datos de la tabla -->
-          <tbody>
-            <tr *ngFor="let cita of citasMedi">
-              <td></td>
-              <td>{{cita.expediente}}</td>
-              <td>{{cita.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>
-  <div class="d-flex">
-
-
-    <div class="col flex-fill">
-      <h3>{{3 | enumEspecialidad}}</h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-auto " *ngIf="citasGine.length > 0">
-          <!-- Encabezados de columna -->
-          <thead>
-            <tr>
-              <th class=" bg-primary text-light">#</th>
-              <th class=" bg-primary text-light" scope="col">Expediente</th>
-              <th class="table bg-primary text-light" scope="col">Nombre</th>
-            </tr>
-          </thead>
-          <!-- Datos de la tabla -->
-          <tbody>
-            <tr *ngFor="let cita of citasGine">
-              <td></td>
-              <td>{{cita.expediente}}</td>
-              <td>{{cita.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-<div class="">
-</div>
-    <div class="col flex-fill">
-      <h3>{{4 | enumEspecialidad}}</h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-sm"*ngIf="citasCiru" >
-          <!-- Encabezados de columna -->
-          <thead>
-            <tr >
-              <th class=" bg-primary text-light" scope="col">#</th>
-              <th class=" bg-primary text-light" scope="col">Expediente</th>
-              <th class="table bg-primary text-light" scope="col">Nombre</th>
-            </tr>
-          </thead>
-          <!-- Datos de la tabla -->
-          <tbody>
-            <tr *ngFor="let cita of citasCiru">
-              <td></td>
-              <td>{{cita.expediente}}</td>
-              <td>{{cita.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>
-  <div class="d-flex">
-
-
-    <div class="col flex-fill">
-      <h3>{{5 | enumEspecialidad}}</h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-auto " *ngIf="citasTrauma.length > 0">
-          <!-- Encabezados de columna -->
-          <thead>
-            <tr>
-              <th class=" bg-primary text-light">#</th>
-              <th class=" bg-primary text-light" scope="col">Expediente</th>
-              <th class="table bg-primary text-light" scope="col">Nombre</th>
-            </tr>
-          </thead>
-          <!-- Datos de la tabla -->
-          <tbody>
-            <tr *ngFor="let cita of citasTrauma">
-              <td></td>
-              <td>{{cita.expediente}}</td>
-              <td>{{cita.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-<div class="">
-</div>
-    <div class="col flex-fill">
-      <h3>{{6 | enumEspecialidad}}</h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-sm"*ngIf="citasPsico" >
-          <!-- Encabezados de columna -->
-          <thead>
-            <tr >
-              <th class=" bg-primary text-light" scope="col">#</th>
-              <th class=" bg-primary text-light" scope="col">Expediente</th>
-              <th class="table bg-primary text-light" scope="col">Nombre</th>
-            </tr>
-          </thead>
-          <!-- Datos de la tabla -->
-          <tbody>
-            <tr *ngFor="let cita of citasPsico">
-              <td></td>
-              <td>{{cita.expediente}}</td>
-              <td>{{cita.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="d-flex">
-
-
-    <div class="col flex-fill">
-      <h3>{{7 | enumEspecialidad}}</h3>
-      <div class="table-responsive">
-        <table class="table table-hover table-auto " *ngIf="citasNutri.length > 0">
-          <!-- Encabezados de columna -->
-          <thead>
-            <tr>
-              <th class=" bg-primary text-light">#</th>
-              <th class=" bg-primary text-light" scope="col">Expediente</th>
-              <th class="table bg-primary text-light" scope="col">Nombre</th>
-            </tr>
-          </thead>
-          <!-- Datos de la tabla -->
-          <tbody>
-            <tr *ngFor="let cita of citas">
-              <td></td>
-              <td>{{cita.expediente}}</td>
-              <td>{{cita.name}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-<div class="">
 </div>
 
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between">
+        <!-- Primer contenedor Medicina -->
+        <div class="container-fluid">
+          <h3>{{ 1 | enumEspecialidad }}</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-auto" *ngIf="citasMedi.length > 0">
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
+                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr *ngFor="let cita of citasMedi; let i = index">
+                  <td class="btn btn-info " [routerLink]="['/agenda/edit', cita.id]">{{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name }}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-  </div>
+        <!-- Segundo contenedor Pediatría -->
+        <div class="container-fluid">
+          <h3>{{ 2 | enumEspecialidad }}</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-sm" *ngIf="citasPedia">
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
+                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr *ngFor="let cita of citasPedia; let i = index">
+                  <td class="btn btn-info text-center" [routerLink]="['/agenda/edit', cita.id]">{{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name }}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
+         <!-- Tercer contenedor Ginecología -->
+         <div class="container-fluid">
+          <h3>{{ 3 | enumEspecialidad }}</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-auto" *ngIf="citasGine.length > 0">
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
+                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr *ngFor="let cita of citasGine; let i = index">
+                  <td class="btn btn-info" [routerLink]="['/agenda/edit', cita.id]">{{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name }}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between">
+
+        <!-- Primer contenedor Cirugía -->
+        <div class="container">
+          <h3>{{ 4 | enumEspecialidad }}</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-sm" *ngIf="citasCiru">
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
+                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr *ngFor="let cita of citasCiru; let i = index">
+                  <td class="btn btn-info text-center" [routerLink]="['/agenda/edit', cita.id]">{{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name }}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Segundo contenedor Trauma -->
+        <div class="container">
+          <h3>{{ 5 | enumEspecialidad }}</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-auto" *ngIf="citasTrauma.length > 0">
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
+                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr *ngFor="let cita of citasTrauma; let i = index">
+                  <td class="btn btn-info" [routerLink]="['/agenda/edit', cita.id]">{{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name }}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tercer contenedor Psicologia -->
+        <div class="container">
+          <h3>{{ 6 | enumEspecialidad }}</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-auto" *ngIf="citasPsico.length > 0">
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
+                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr *ngFor="let cita of citasPsico; let i = index">
+                  <td class="btn btn-info" [routerLink]="['/agenda/edit', cita.id]">{{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name }}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between">
+
+        <!-- Primer contenedor Nutricion -->
+        <div class="container">
+          <h3>{{ 7 | enumEspecialidad }}</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-sm" *ngIf="citasNutri">
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
+                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr *ngFor="let cita of citasNutri; let i = index">
+                  <td class="btn btn-info justify-content-center" [routerLink]="['/agenda/edit', cita.id]">{{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name }}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+         <!-- contenedor vacio -->
+        <div class="container">
+
+        </div>
+
+         <!-- contenedor vacio -->
+        <div class="container">
+
+        </div>
+
+      </div>
+    </div>
 

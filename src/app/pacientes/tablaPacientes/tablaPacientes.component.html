@@ -38,7 +38,7 @@
           <th class="text-center bg-info text-light"></th>
           <th class="text-center bg-info text-light"></th>
           <th class="text-center bg-info text-light"></th>
-          <th class="text-center bg-info text-light" (click)="sortTable('expediente')">Exp</th>
+          <th class="text-center bg-warning text-light" (click)="sortTable('expediente')">Exp</th>
           <th class="text-center bg-info text-light" (click)="sortTable('nombre')">Nombre</th>
           <th class="text-center bg-info text-light" (click)="sortTable('dpi')">DPI</th>
           <th class="text-center bg-info text-light" (click)="sortTable('sexo')">Sexo</th>
@@ -100,10 +100,10 @@
       </div>
       <div class="modal-body">
         <form class="d-flex justify-content-center align-items-center">
-          <input type="sumit" class="form-control bg-primary text-light text-capitalize" placeholder="nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-          <input type="text" class="form-control bg-primary text-light text-capitalize" placeholder="apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-          <input type="text" class="form-control bg-primary text-light" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-          <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="buscarPacientes()">buscar</button>
+          <input type="sumit" class="form-control btn btn-outline-primary  text-capitalize" placeholder="nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+          <input type="text" class="form-control btn btn-outline-primary  text-capitalize" placeholder="apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+          <input type="text" class="form-control btn btn-outline-warning " placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+          <button type="submit" class="btn btn-outline-primary " data-bs-dismiss="modal" (click)="buscarPacientes()">buscar</button>
         </form>
         <form>
           <!-- <input type="text" class="form-control" placeholder="dpi" name="dpiBuscar" [(ngModel)]="dpiBuscar"> -->

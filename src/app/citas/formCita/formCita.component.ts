@@ -77,6 +77,15 @@ export class FormCitaComponent implements OnInit {
     })
   }
 
+  borrar() {
+    this.CitasService.borrarCita(this.c.id)
+      .subscribe(data => {
+        this.c = data;
+        this.router.navigate(['/citas'])
+    })
+  }
+
+
 
 
   verResumen(especiliadad: number) {

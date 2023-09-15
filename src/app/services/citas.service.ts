@@ -27,7 +27,7 @@ export class CitasService {
   }
 
   getCita(id: number): Observable<any> {
-    return this.http.get(this.urlapi + "/citas/id/")
+    return this.http.get(this.urlapi + "/cita/id/?value=" + id)
   }
 
   agendar(cita: Icitas): Observable<any>{
@@ -77,7 +77,11 @@ export class CitasService {
 
   editarCita(id: number, actualizarCita: Icitas): Observable<any>{
     return this.http.put(this.urlapi + "/citas/" + id, actualizarCita)
-
   }
+
+  borrarCita(id: number): Observable<any>{
+    return this.http.delete(this.urlapi + "/borrar/" + id);
+  }
+
 
 }

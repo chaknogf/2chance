@@ -23,6 +23,7 @@ export class CitasComponent implements OnInit {
   public citasMedi: Icitas[] = [];
   public x: string = this.today;
   public y: number = 0;
+  public contador: number = 0;
   // const currentDate = new Date().getDate();
   day: string = new Date().getDate().toString().padStart(2, '0');
   month: string = (new Date().getMonth()+1).toString().padStart(2, '0');
@@ -40,7 +41,8 @@ export class CitasComponent implements OnInit {
 
   }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
+      this.citas;
       this.citasMedi;
       this.citasPedia;
       this.citasTrauma;
@@ -97,41 +99,51 @@ export class CitasComponent implements OnInit {
   citasmedicina(fecha:string) {
     this.CitasService.getCitaMedi(fecha).subscribe(data => {
       this.citasMedi = data;
+      this.citas = data;
     })
   }
   citaspedia(fecha:string) {
     this.CitasService.getCitaPedia(fecha).subscribe(data => {
       this.citasPedia = data;
+      this.citas = data;
     })
   }
 
   citastrauma(fecha:string) {
     this.CitasService.getCitaTrauma(fecha).subscribe(data => {
       this.citasTrauma = data;
+      this.citas = data;
     })
   }
   citaciru(fecha:string) {
     this.CitasService.getCitaCiru(fecha).subscribe(data => {
       this.citasCiru = data;
+      this.citas = data;
     })
   }
 
   citagine(fecha:string) {
     this.CitasService.getCitaGine(fecha).subscribe(data => {
       this.citasGine = data;
+      this.citas = data;
     })
   }
 
   citapsico(fecha:string) {
     this.CitasService.getCitaPsico(fecha).subscribe(data => {
       this.citasPsico = data;
+      this.citas = data;
     })
   }
 
   citanutri(fecha:string) {
     this.CitasService.getCitaNutri(fecha).subscribe(data => {
       this.citasNutri = data;
+      this.citas = data;
     })
   }
+
+
+
 }
 
