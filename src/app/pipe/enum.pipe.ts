@@ -1,9 +1,7 @@
 
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
-import {
-  Especialidad, servicio, Nacionalidad, nacionalidades,
-  Municipio, municipio, Etnias, etnias, Ecivil, ecivil, Academic,
-  academic, Parents, parents, Lenguage, lenguaje
+import {servicio, nacionalidades, municipio, etnias, ecivil,
+  academic,  parents, lenguaje
 } from '../enums/enums';
 
 @Pipe({
@@ -16,7 +14,7 @@ export class EnumEspecialidadPipe implements PipeTransform {
     if (servicioEncontrado) {
       return servicioEncontrado.label;
     } else {
-      return 'Servicio No encontrado'
+      return ''
     }
     }
   }
@@ -32,7 +30,7 @@ export class EnumNacionalidadPipe implements PipeTransform {
       return nacionalidadEncontrada.label;
     } else {
       // Manejar el caso en el que no se encuentre la nacionalidad.
-      return 'Nacionalidad Desconocida';
+      return '';
     }
   }
 }
@@ -46,7 +44,77 @@ export class EnumMunicipioPipe implements PipeTransform {
     if (municipioEncontrado) {
       return municipioEncontrado.label;
     } else {
-      return 'Municipio no encontrado'
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumEducacion'
+})
+export class EnumEducacionPipe implements PipeTransform {
+  transform(value: any): string {
+    const educacionEncontrada = academic.find(educacion => educacion.value === value);
+    if (educacionEncontrada) {
+      return educacionEncontrada.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumCivil'
+})
+export class EnumCivilPipe implements PipeTransform {
+  transform(value: any): string {
+    const estadoCivilEncontrado = ecivil.find(civil => civil.value === value);
+    if (estadoCivilEncontrado) {
+      return estadoCivilEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumIdioma'
+})
+export class EnumIdiomaPipe implements PipeTransform {
+  transform(value: any): string {
+    const idiomaEncontrado = lenguaje.find(idioma => idioma.value === value);
+    if (idiomaEncontrado) {
+      return idiomaEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumParentesco'
+})
+export class EnumParentescoPipe implements PipeTransform {
+  transform(value: any): string {
+    const parentescoEncontrado = parents.find(parentesco => parentesco.value === value);
+    if (parentescoEncontrado) {
+      return parentescoEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumEtnia'
+})
+export class EnumEtniaPipe implements PipeTransform {
+  transform(value: any): string {
+    const etniaEncontrado = etnias.find(pueblo => pueblo.value === value);
+    if (etniaEncontrado) {
+      return etniaEncontrado.label;
+    } else {
+      return ''
     }
   }
 }

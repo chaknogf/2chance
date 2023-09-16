@@ -1,55 +1,82 @@
 
- <button type="button" class="d-flex flex-r btn btn-primary" [routerLink]="['/pacientes']">Regresar</button><div class="card mb-3" *ngIf="detalleVisible">
-  <h3 class="card-header">Expediente: {{patient?.expediente}} {{patient?.nombre}} {{patient?.apellido}} </h3> {{patient?.id}}
-  <div class="card-body">
-
-  <div class="card-body">
-    <p class="card-text">
-      <strong>DPI: </strong> {{patient?.dpi |anyToText}}
-      <strong>   Pasaporte: </strong> {{patient?.pasaporte}} <br>
-      <strong>Sexo: </strong> {{patient?.sexo | anyToText |genero}}
-      <strong>Fecha de Nacimiento: </strong> de Nacimiento: {{patient?.nacimiento | anyToText | formatoFecha}} <br>
-      Nacionalidad: {{patient?.nacionalidad| anyToNumber |enumNacion}}  <br>
-      Lugar de nacimiento: {{patient?.lugar_nacimiento | anyToNumber | enumMunicipio}} <br>
-      Estado Civil: {{patient?.ecivil}} <br>
-      Educación: {{patient?.educacion}} <br>
-      Pueblo: {{patient?.pueblo}}
-      Idioma: {{patient?.idioma}}
-      Ocupación: {{patient?.ocupacion}}
-
-
-
-
-      Telefono: {{patient?.telefono}} <br>
-      Direccion: {{patient?.direccion}} <br>
-      email: {{patient?.email}}
-      padre: {{patient?.padre}}
-      madre: {{patient?.madre}}
-      responsable: {{patient?.responsable}}
-      parentesto: {{patient?.parentesco}}
-      DPI del Respondsable: {{patient?.dpi_responsable}}
-      Telefono del Responsable: {{patient?.telefono_responsable}}
-      Estado del Paciente: {{patient?.estado}}
-      expediente de la madre: {{patient?.exp_madre}}
-      Fecha de Defunción: {{patient?.fechaDefuncion}}
-      Usuario: {{patient?.user}}
-    </p>
-  </div>
-
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
+<div class="mb-3">
+  <button type="button" class="d-flex flex-r btn btn-primary" [routerLink]="['/pacientes']">
+  Regresar
+  </button>
 </div>
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title">Card title</h4>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+<div class="card mb-3" *ngIf="detalleVisible">
+  <p class="card-header text-center">Expediente: <span class="display-6">{{patient?.expediente}} </span> <br>
+     <span class="h4">{{patient?.nombre | anyToText | capitalizeName}} {{patient?.apellido | anyToText | capitalizeName}} </span> <br>
+     <span class="d-flex justify-content-end text-warning">Estado: {{patient?.estado === 'v' ? 'Vivo' : 'Fallecido'}} <br>
+      {{patient?.fechaDefuncion}}</span>
+    </p>
+    {{patient?.id}}
+
+  <div class=" mt-3 card-body">
+
+    <div class=" container d-flex">
+      <div class="container-fluid col-8">
+        <div class="card-body border-info bg-dark rounded">
+          <div class="card">
+          <p class="card-text mx-3">
+            <span class=" f-resaltado">DPI: </span> {{patient?.dpi |anyToText}} <br>
+            <span class=" f-resaltado">Pasaporte: </span> {{patient?.pasaporte}} <br>
+
+            <span class=" f-resaltado">Sexo: </span> {{patient?.sexo | anyToText |genero}} <br>
+            <span class=" f-resaltado">Fecha de Nacimiento: </span>  {{patient?.nacimiento | anyToText | formatoFecha}} <br>
+            <span class=" f-resaltado">Nacionalidad: </span> {{patient?.nacionalidad| anyToNumber |enumNacion}}  <br>
+            <span class=" f-resaltado">Lugar de nacimiento: </span>  {{patient?.lugar_nacimiento | anyToNumber | enumMunicipio}} <br>
+            <span class=" f-resaltado">Idioma: </span> {{patient?.idioma | enumIdioma}} <br>
+          </p>
+          </div>
+          <div class="card mt-2">
+            <p class="card-text mx-3">
+              <span class=" f-resaltado">Estado Civil: </span> {{patient?.ecivil | enumCivil}} <br>
+              <span class=" f-resaltado">Educación: </span> {{patient?.educacion | enumEducacion}} <br>
+              <span class=" f-resaltado">Ocupación: </span>{{patient?.ocupacion | anyToText | capitalizeName}}
+            </p>
+          </div>
+
+          <div class="card mt-2">
+            <p class="card-text mx-3">
+              <span class=" f-resaltado">Teléfono: </span> {{patient?.telefono}} <br>
+              <span class=" f-resaltado">Dirección: </span> {{patient?.direccion | anyToText | capitalizeName}} <br>
+              <span class=" f-resaltado">Email: </span>{{patient?.email}}
+            </p>
+          </div>
+
+          <div class="card mt-2">
+            <p class="card-text mx-3">
+              <span class=" f-resaltado">Padre: </span>{{patient?.padre | anyToText | capitalizeName}} <br>
+              <span class=" f-resaltado">Madre: </span> {{patient?.madre | anyToText | capitalizeName}} <br><br>
+              <span class=" f-resaltado">Responsable: </span> {{patient?.responsable | anyToText | capitalizeName }}<br>
+              <span class=" f-resaltado">Parentesco: </span> {{patient?.parentesco | enumParentesco}}<br>
+              <span class=" f-resaltado">Responsable: </span> {{patient?.dpi_responsable}}<br>
+              <span class=" f-resaltado">Teléfono del Responsable: </span> {{patient?.telefono_responsable}}
+            </p>
+          </div>
+
+
+          <div class="card mt-2">
+            <p class="card-text mx-3">
+              <span class=" f-resaltado">expediente de la madre: </span> {{patient?.exp_madre}} <br>
+              <span class=" f-resaltado">Usuario: </span> {{patient?.user}}
+            </p>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+      <div class="container-fluid col-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+          <rect width="100%" height="100%" fill="#868e96"></rect>
+          <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+        </svg>
+      </div>
+    </div>
+
   </div>
 </div>

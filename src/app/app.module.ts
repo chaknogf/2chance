@@ -17,7 +17,11 @@ import { FormatoFechaPipe } from './pipe/formatoFecha.pipe';
 import { ColorizePipe } from './pipe/colorize.pipe';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { GeneroPipe } from './pipe/genero.pipe';
-import { EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe } from './pipe/enum.pipe'
+import {
+  EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
+  EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe,
+  EnumParentescoPipe, EnumEtniaPipe,
+} from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -78,8 +82,13 @@ const routes: Routes = [
     GeneroPipe,
     EnumEspecialidadPipe,
     EnumNacionalidadPipe,
+    EnumParentescoPipe,
+    EnumEtniaPipe,
     AnyToNumberPipe,
     EnumMunicipioPipe,
+    EnumEducacionPipe,
+    EnumCivilPipe,
+    EnumIdiomaPipe,
     TextToDatePipe,
     ExpedienteToNombrePipe,
     ResumenCitasPipe,
