@@ -9,11 +9,14 @@ import { FormatoDPIPipe } from './pipe/formatoDPI.pipe';
 import { AnyToTextPipe } from './pipe/anyToText.pipe';
 import { EdadPipe } from './pipe/Edad.pipe';
 import { FortmatPhone } from './pipe/telefono.pipe';
+import { CapitalizeNamePipe } from './pipe/sentenceCase.pipe';
 import { AppComponent } from './app.component';
 import { DiaDeSemana } from './pipe/diaDeSemana.pipe';
 import { WeekdayPipe } from './pipe/weekDay.pipe';
-import { FormatoFechaPipe } from './pipe/formatoFecha.pipe'
-import { GeneroPipe } from './pipe/genero.pipe'
+import { FormatoFechaPipe } from './pipe/formatoFecha.pipe';
+import { ColorizePipe } from './pipe/colorize.pipe';
+import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
+import { GeneroPipe } from './pipe/genero.pipe';
 import { EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -27,7 +30,9 @@ import { FormCitaComponent } from './citas/formCita/formCita.component'
 import { TextToDatePipe } from './pipe/textToDate.pipe';
 import { ExpedienteToNombrePipe } from './pipe/expToNombre.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HighlightWordsDirective } from './Directive/highlight-words.directive';
+import { HighlightDirective } from './Directive/highlight.directive';
 
 
 
@@ -78,7 +83,13 @@ const routes: Routes = [
     TextToDatePipe,
     ExpedienteToNombrePipe,
     ResumenCitasPipe,
-    WeekdayPipe
+    WeekdayPipe,
+    CapitalizeNamePipe,
+    ColorizePipe,
+    SafeHtmlPipe,
+    HighlightWordsDirective,
+    HighlightDirective,
+
 
 
   ],

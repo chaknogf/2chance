@@ -14,6 +14,7 @@ interface nuevoExpResponse{
 export class PacientesService {
 
   private urlapi = "http://localhost:8000";
+  //private urlapi = "https://pb2r222j-8000.use2.devtunnels.ms/";
   constructor(private http: HttpClient) { }
 
   getPacientes(): Observable<any> {
