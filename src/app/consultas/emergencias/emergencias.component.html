@@ -1,0 +1,154 @@
+<div class="d-flex bg-primary w-100 py-3 px-2">
+  <h2 class="text-light">Registro de Hoja de Emergencia</h2>
+  <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
+    <button class="btn btn-dark mx-3" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-journal-medical" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v.634l.549-.317a.5.5 0 1 1 .5.866L9 6l.549.317a.5.5 0 1 1-.5.866L8.5 6.866V7.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L7 6l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V4.5A.5.5 0 0 1 8 4zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+<div class="">
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-6">
+
+      <form class="p-1">
+
+        <div class="form-group">
+          <label for="hoja_emergencia">Hoja de Emeregncia:</label>
+          <input type="text" class="form-control" id="hoja_emergencia" name="hoja_emergencia">
+        </div>
+
+        <div class="form-group d-flex mt-3">
+          <label for="fecha">Fecha:</label>
+          <input type="date" class="form-control w-50 mx-2" id="fecha" name="fecha"
+             placeholder="dd-mm-yyyy">
+             <label for="hora">Hora:</label>
+          <input type="time" class="form-control w-25" id="hora" name="hora"
+             placeholder="hh:mm">
+        </div>
+
+        <div class="form-group d-flex">
+
+        </div>
+
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="apellidos" >
+        </div>
+
+        <div class="form-group">
+          <label for="nombres">Nombres:</label>
+          <input type="text" class="form-control" id="nombres" name="nombres" placeholder="nombres" >
+        </div>
+
+        <div class="form-group">
+          <label for="nacimiento">Fecha de nacimiento:</label>
+          <input type="date" class="form-control" id="nacimiento" name="nacimiento" placeholder="nacimiento" >
+          <span></span>
+        </div>
+
+        <div class="form-group d-flex mt-3 justify-content-center">
+          <label for="edad">Edad:</label>
+          <input type="number" class="form-control w-25 mx-1" id="años" name="años" placeholder="años" >
+          <input type="number" class="form-control w-25 mx-1" id="meses" name="meses" placeholder="meses" >
+          <input type="number" class="form-control w-25 mx-1" id="dias" name="dias" placeholder="dias" >
+        </div>
+
+        <div class="form-group">
+          <label for="sexo">Sexo:</label>
+          <input type="text" class="form-control" id="sexo" name="sexo" placeholder="sexo" >
+          <span></span>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="telefono" >
+          <span></span>
+        </div>
+
+        <div class="form-group">
+          <label for="DPI/CUI de paciente">Sexo:</label>
+          <input type="text" class="form-control" id="dpi" name="dpi" placeholder="DPI/CUI" >
+          <span></span>
+        </div>
+
+        <div class="form-group">
+          <label for="direccion">Dirección:</label>
+          <input type="text" class="form-control" id="direccion" name="direccion" placeholder="direccion" >
+          <span></span>
+        </div>
+
+        <div class="form-group">
+          <label for="acompañante">Acompañante:</label>
+          <input type="text" class="form-control" id="acompañante" name="acompañante" placeholder="acompañante" >
+          <span></span>
+        </div>
+
+        <div class="form-group">
+          <label for="aprentesco">Parentesco:</label>
+          <input type="text" class="form-control" id="parentesco" name="parentesco" placeholder="parentesco" >
+          <span></span>
+        </div>
+
+        <div class="form-group">
+          <label for="nota">Nota:</label>
+          <input type="text" class="form-control" id="nota" name="nota" placeholder="nota" >
+          <span></span>
+        </div>
+
+        </form>
+        <div class="d-flex flex-wrap justify-content-between align-items-center w-100 py-3 px-2">
+            <div >
+              <button type="submit" class="btn btn-primary" >Guardar</button>
+            </div>
+
+            <div >
+              <button class="btn btn-danger" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                </svg>
+              </button>
+            </div>
+       </div>
+
+
+  </div>
+  <div class="col-md-6">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>No. de Hoja</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
+        <tr >
+          <td class="w-25"></td>
+          <td class="w-25"></td>
+          <td class="w-25"></td>
+          <td></td>
+        </tr>
+      </tbody>
+        </table>
+    </div>
+    </div>
+
+</div>
+
+
+
+
+
+

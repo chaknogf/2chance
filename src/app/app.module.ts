@@ -30,13 +30,17 @@ import { FormularioPacienteComponent } from './pacientes/formulario-paciente/for
 import { BuscarComponent } from './pacientes/buscar/buscar.component';
 import { IngresoComponent } from './pacientes/ingreso/ingreso.component';
 import { CitasComponent } from './citas/citas/citas.component';
-import { FormCitaComponent } from './citas/formCita/formCita.component'
+import { FormCitaComponent } from './citas/formCita/formCita.component';
 import { TextToDatePipe } from './pipe/textToDate.pipe';
 import { ExpedienteToNombrePipe } from './pipe/expToNombre.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightWordsDirective } from './Directive/highlight-words.directive';
 import { HighlightDirective } from './Directive/highlight.directive';
+import { EmergenciasComponent } from './consultas/emergencias/emergencias.component';
+import { CoexComponent } from './consultas/coex/coex.component';
+
+
 
 
 
@@ -54,6 +58,10 @@ const routes: Routes = [
   { path: 'citas', component: CitasComponent },
   { path: 'agendar', component: FormCitaComponent },
   { path: 'agenda/edit/:id', component: FormCitaComponent },
+  { path: 'emergencias', component: EmergenciasComponent },
+  { path: 'emergencias/edit/:id', component: EmergenciasComponent },
+  { path: 'coex', component: CoexComponent },
+  { path: 'coex/edit/:id', component: CoexComponent },
 
 
 
@@ -98,6 +106,8 @@ const routes: Routes = [
     SafeHtmlPipe,
     HighlightWordsDirective,
     HighlightDirective,
+    EmergenciasComponent,
+    CoexComponent,
 
 
 
@@ -118,6 +128,9 @@ const routes: Routes = [
       { path: 'citas', component: CitasComponent },
       { path: 'agendar', component: FormCitaComponent },
       { path: 'agenda/edit/:id', component: FormCitaComponent },
+      { path: 'emergencias', component: EmergenciasComponent },
+      { path: 'coex', component: CoexComponent },
+      { path: 'coex/edit/:id', component: CoexComponent },
 
 
 
