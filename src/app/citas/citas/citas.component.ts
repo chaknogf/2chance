@@ -58,7 +58,8 @@ export class CitasComponent implements OnInit {
       this.citagine(this.x);
 
 
-      console.log(this.x)
+    console.log(this.x)
+
     }
 
     updateDate() {
@@ -88,8 +89,16 @@ export class CitasComponent implements OnInit {
         this.citapsico(this.x);
         this.citastrauma(this.x);
         this.citagine(this.x);
+        console.log(this.citas)
       } else {
         // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
+        this.citasMedi = [{"especialidad": 1, "nota": "", "expediente": 61035, "id": 7, "fecha": new Date(), "cirugia_programada": null, "estado": true, "name": "PEDRO LOPEZ SEY"} ];
+        this.citasPedia = [];
+        this.citasTrauma = [];
+        this.citasCiru = [];
+        this.citasGine = [];
+        this.citasPsico = [];
+        this.citasNutri = [];
       }
     }
 

@@ -39,6 +39,8 @@ import { HighlightWordsDirective } from './Directive/highlight-words.directive';
 import { HighlightDirective } from './Directive/highlight.directive';
 import { EmergenciasComponent } from './consultas/emergencias/emergencias.component';
 import { CoexComponent } from './consultas/coex/coex.component';
+import { TablaComponent } from './pacientes/tabla/tabla.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -62,6 +64,7 @@ const routes: Routes = [
   { path: 'emergencias/edit/:id', component: EmergenciasComponent },
   { path: 'coex', component: CoexComponent },
   { path: 'coex/edit/:id', component: CoexComponent },
+  { path: 'tablaP', component: TablaComponent}
 
 
 
@@ -108,13 +111,14 @@ const routes: Routes = [
     HighlightDirective,
     EmergenciasComponent,
     CoexComponent,
+    TablaComponent,
 
 
 
   ],
   imports: [
     BrowserModule,
-
+    ModalModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -131,6 +135,7 @@ const routes: Routes = [
       { path: 'emergencias', component: EmergenciasComponent },
       { path: 'coex', component: CoexComponent },
       { path: 'coex/edit/:id', component: CoexComponent },
+      { path: 'tablaP', component: TablaComponent}
 
 
 

@@ -49,7 +49,7 @@ export class PacientesService {
   }
 
   deletePaciente(id: number): Observable<any>{
-    return this.http.delete(this.urlapi + "/borrar/" + id);
+    return this.http.delete(this.urlapi + "/borrarpaciente/" + id);
   }
 
   Expediente(): Observable<any> {

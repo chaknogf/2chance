@@ -12,6 +12,7 @@ import { ecivil } from 'src/app/enums/enums';
 import { academic } from 'src/app/enums/enums';
 import { parents } from 'src/app/enums/enums';
 import { lenguaje } from 'src/app/enums/enums';
+
 //import { FortmatPhone } from 'src/app/pipe/telefono.pipe';
 
 @Component({
@@ -108,7 +109,7 @@ export class FormularioPacienteComponent implements OnInit {
     // Crear un nuevo paciente
     this.PacientesService.crearPaciente(this.p).subscribe(data => {
         this.p = data;
-        this.router.navigate(['/pacientes']);
+        // this.router.navigate(['/pacientes']);
       })
   }
 

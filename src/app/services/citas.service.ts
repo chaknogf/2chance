@@ -46,6 +46,8 @@ export class CitasService {
 
   getCitaMedi(fecha: string): Observable<any> {
     return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=1");
+
+    console.log()
   }
 
   getCitaPedia(fecha: string): Observable<any> {

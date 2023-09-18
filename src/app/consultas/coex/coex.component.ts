@@ -1,6 +1,9 @@
+import { ConsultasService } from './../../services/consultas.service';
 import { Component, OnInit } from '@angular/core';
 import { IenumEspecialidad } from 'src/app/models/Ienum';
 import { servicio } from './../../enums/enums';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PacientesService } from 'src/app/services/pacientes.service';
 
 @Component({
   selector: 'coex',
@@ -14,6 +17,7 @@ export class CoexComponent implements OnInit {
   year: string = new Date().getFullYear().toString();
   today: string = "";
   public x: string = this.today;
+  public pacientes: [] = [];
   public citas: [] = [];
   public citasPedia: [] = [];
   public citasTrauma: [] = [];
@@ -24,11 +28,16 @@ export class CoexComponent implements OnInit {
   public citasHoy: [] = [];
   public citasMedi: [] = [];
   public contador: number = 0;
+  public expedienteBuscar: any = '';
+  public nombreBuscar: string = '';
+  public apellidoBuscar: string = '';
+  public dpiBuscar: any = '';
+
 
   e: IenumEspecialidad = {
     servicio: servicio
   }
-  constructor() { }
+  constructor(private pacientesService: PacientesService, ConsultasService: ConsultasService, private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -65,5 +74,25 @@ export class CoexComponent implements OnInit {
 
     }
   }
+
+  buscarPacientes() {
+    // if (this.expedienteBuscar !== 0) {
+    //   this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
+    //     if (data) {
+    //       this.pacientes = [data]; // Establece el arreglo de pacientes para mostrar solo el resultado de la búsqueda
+    //       this.paginarPacientes(); // Pagina los resultados
+    //     } else {
+    //       // No se encontró ningún paciente con el número de expediente proporcionado
+    //       this.pacientes = [];
+    //       this.filteredPacientes = [];
+    //       this.totalRegistros = 0;
+    //     }
+    //   });
+    // } else {
+    //   // ExpedienteBuscar es 0 o un valor inválido, muestra todos los pacientes
+    //   this.getPacientes();
+    // }
+  }
+
 
 }
