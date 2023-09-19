@@ -41,6 +41,8 @@ import { EmergenciasComponent } from './consultas/emergencias/emergencias.compon
 import { CoexComponent } from './consultas/coex/coex.component';
 import { TablaComponent } from './pacientes/tabla/tabla.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CrearModalComponent } from './pacientes/crearModal/crearModal.component';
+import { NuevaConsultaComponent } from './consultas/nuevaConsulta/nuevaConsulta.component';
 
 
 
@@ -64,7 +66,9 @@ const routes: Routes = [
   { path: 'emergencias/edit/:id', component: EmergenciasComponent },
   { path: 'coex', component: CoexComponent },
   { path: 'coex/edit/:id', component: CoexComponent },
-  { path: 'tablaP', component: TablaComponent}
+  { path: 'tablaP', component: TablaComponent },
+  { path: 'nuevaConsulta/new/:id', component: NuevaConsultaComponent}
+
 
 
 
@@ -112,6 +116,9 @@ const routes: Routes = [
     EmergenciasComponent,
     CoexComponent,
     TablaComponent,
+    CrearModalComponent,
+    NuevaConsultaComponent,
+
 
 
 
@@ -135,7 +142,8 @@ const routes: Routes = [
       { path: 'emergencias', component: EmergenciasComponent },
       { path: 'coex', component: CoexComponent },
       { path: 'coex/edit/:id', component: CoexComponent },
-      { path: 'tablaP', component: TablaComponent}
+      { path: 'tablaP', component: TablaComponent },
+      { path: 'nuevaConsulta/new/:id', component: NuevaConsultaComponent}
 
 
 

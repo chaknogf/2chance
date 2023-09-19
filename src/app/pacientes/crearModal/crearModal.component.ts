@@ -12,15 +12,13 @@ import { academic } from 'src/app/enums/enums';
 import { parents } from 'src/app/enums/enums';
 import { lenguaje } from 'src/app/enums/enums';
 
-//import { FortmatPhone } from 'src/app/pipe/telefono.pipe';
 
 @Component({
-  selector: 'formulario-paciente',
-  templateUrl: './formulario-paciente.component.html',
-  styleUrls: ['./formulario-paciente.component.css']
+  selector: 'crearModal',
+  templateUrl: './crearModal.component.html',
+  styleUrls: ['./crearModal.component.css']
 })
-export class FormularioPacienteComponent implements OnInit {
-
+export class CrearModalComponent implements OnInit {
   public pacientes: Ipaciente[] = [];
   @HostBinding('class') clases = 'row';
 

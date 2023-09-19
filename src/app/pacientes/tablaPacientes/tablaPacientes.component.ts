@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -22,6 +21,7 @@ export class TablaPacientesComponent{
   public dpiBuscar: any = '';
 
 
+
   constructor(private pacientesService: PacientesService,
     private router: Router,
     private activateRoute: ActivatedRoute,
@@ -32,16 +32,10 @@ export class TablaPacientesComponent{
   ngOnInit() {
     this.getPacientes();
     this.paginarPacientes();
+
   }
 
-  abrirModalDeEdicion(pacienteId: number) {
-    // Aquí puedes agregar la lógica para abrir el modal
-    // Puedes usar this.modalService para abrir el modal según tu configuración
-    // Ejemplo: this.bsModalRef = this.modalService.show(...);
 
-    // Luego, puedes redirigir a la página de edición de paciente utilizando Router
-    this.router.navigate(['/paciente/edit', pacienteId]);
-  }
 
 
 

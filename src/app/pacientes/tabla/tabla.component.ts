@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,6 +20,8 @@ export class TablaComponent implements OnInit {
   public dpiBuscar: any = '';
 
 
+  @Output() idPaciente = new EventEmitter<number>();
+
   constructor(private pacientesService: PacientesService, private router: Router, private activateRoute: ActivatedRoute) { }
   reset: boolean = false;
   busqueda: string = '';
@@ -27,6 +29,10 @@ export class TablaComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  copiarId(id: number) {
+    this.idPaciente.emit(id);
   }
 
   getPacientes() {

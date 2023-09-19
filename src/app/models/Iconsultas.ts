@@ -2,27 +2,27 @@ import { Time } from "@angular/common";
 
 export interface Iconcultas {
   id: number;
-  hoja_emergencia: string;
-  expediente: string;
-  fecha_consulta: string;
-  hora: string;
-  nombre: string;
-  apellidos: string;
-  nacimiento: Date;
-  edad: string;
-  sexo: string;
-  dpi: string;
-  direccion: string;
-  acompa: string;
-  telefono: string;
-  especialidad: number;
-  recepcion: boolean;
-  fecha_recepcion: string;
-  fecha_egreso: Date;
-  tipo_consulta: number;
-  nota: string;
-  name: string;
-  lastname: string;
+  hoja_emergencia: string | null;
+  expediente: string | null;
+  fecha_consulta: string | null;
+  hora: string | null;
+  nombre: string | null;
+  apellidos: string |null;
+  nacimiento: string | null;
+  edad: string | null;
+  sexo: string | null;
+  dpi: string| null;
+  direccion: string| null;
+  acompa: string| null;
+  telefono: string| null;
+  especialidad: number| null;
+  recepcion: boolean| null;
+  fecha_recepcion: string| null;
+  fecha_egreso: string| null;
+  tipo_consulta: number| null;
+  nota: string| null;
+  name: string| null;
+  lastname: string| null;
 }
 
 
