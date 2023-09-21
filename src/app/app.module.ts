@@ -43,6 +43,7 @@ import { TablaComponent } from './pacientes/tabla/tabla.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CrearModalComponent } from './pacientes/crearModal/crearModal.component';
 import { NuevaConsultaComponent } from './consultas/nuevaConsulta/nuevaConsulta.component';
+import { ShowModalDirective } from './Directive/show-modal.directive';
 
 
 
@@ -67,7 +68,8 @@ const routes: Routes = [
   { path: 'coex', component: CoexComponent },
   { path: 'coex/edit/:id', component: CoexComponent },
   { path: 'tablaP', component: TablaComponent },
-  { path: 'nuevaConsulta/new/:id', component: NuevaConsultaComponent}
+  { path: 'nuevaConsulta', component: NuevaConsultaComponent }
+
 
 
 
@@ -118,6 +120,7 @@ const routes: Routes = [
     TablaComponent,
     CrearModalComponent,
     NuevaConsultaComponent,
+    ShowModalDirective,
 
 
 
@@ -143,8 +146,7 @@ const routes: Routes = [
       { path: 'coex', component: CoexComponent },
       { path: 'coex/edit/:id', component: CoexComponent },
       { path: 'tablaP', component: TablaComponent },
-      { path: 'nuevaConsulta/new/:id', component: NuevaConsultaComponent}
-
+      { path: 'nuevaConsulta', component: NuevaConsultaComponent }
 
 
     ]),

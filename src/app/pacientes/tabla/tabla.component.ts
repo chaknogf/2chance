@@ -1,7 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IenumEspecialidad } from 'src/app/models/Ienum';
+import { servicio } from 'src/app/enums/enums';
+import { FechaService } from 'src/app/services/fecha.service';
+import { ConsultasService } from 'src/app/services/consultas.service';
+import { Iconcultas } from 'src/app/models/Iconsultas';
+import { FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'tabla',
@@ -18,22 +25,104 @@ export class TablaComponent implements OnInit {
   public nombreBuscar: string = '';
   public apellidoBuscar: string = '';
   public dpiBuscar: any = '';
+  public resumen: Iconcultas[] = [];
+  public paciente: Ipaciente | undefined;
+  edit: boolean = false;
+  new: boolean = false;
+  fechaActual: string = "";
+  horaActual: string = "";
+  idCopiado: number = 0;
+  mostrarModal = false;
 
+
+
+  e: IenumEspecialidad = {
+    servicio: servicio
+  }
+  coex: Iconcultas = {
+    id: 0,
+    hoja_emergencia: null,
+    expediente: null,
+    fecha_consulta: this.fechaActual,
+    hora: this.horaActual,
+    nombres: "",
+    apellidos: "",
+    nacimiento: "",
+    edad: "",
+    sexo: "",
+    dpi: "",
+    direccion: "",
+    acompa: "",
+    telefono: "",
+    especialidad: 0,
+    recepcion: false,
+    fecha_recepcion: "",
+    fecha_egreso: "",
+    tipo_consulta: 1,
+    nota: "",
+    name: "",
+    lastname: "",
+
+   }
 
   @Output() idPaciente = new EventEmitter<number>();
+  @Output() nombrePaciente = new EventEmitter<string>();
+  @Output() apellidoPaciente = new EventEmitter<string>();
+  @Output() edadPaciente = new EventEmitter<string>();
+  @ViewChild('edadCell') edadCell: ElementRef|undefined;
 
-  constructor(private pacientesService: PacientesService, private router: Router, private activateRoute: ActivatedRoute) { }
+  constructor(private pacientesService: PacientesService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private ConsultasService: ConsultasService,
+    private formBuilder: FormBuilder,
+    private fechaService: FechaService
+  ) { }
   reset: boolean = false;
   busqueda: string = '';
   order: string = 'asc';
 
   ngOnInit() {
 
+
+    this.fechaActual = this.fechaService.FechaActual();
+    this.horaActual= this.fechaService.HoraActual();
+
+    // Obtener los parámetros de la ruta
+    const params = this.activateRoute.snapshot.params;
+
+    // Verificar si se proporcionó un ID de paciente
+    if (params['id']) {
+      this.ConsultasService.Consulta(params['id'])
+        .subscribe(
+          data => {
+            this.coex = data;
+            this.new = true;
+          },
+          error => console.log(error)
+        )
+    }
+    this.resumen;
   }
 
-  copiarId(id: number) {
-    this.idPaciente.emit(id);
+  copiarId(exp: number, nombre: string, apellido: string) {
+    this.idPaciente.emit(exp,);
+    this.nombrePaciente.emit(nombre);
+    this.apellidoPaciente.emit(apellido);
+    const valorCelda = this.edadCell.nativeElement.textContent;
+    console.log('Valor copiado:', valorCelda);
+    //this.edadPaciente.emit(edad);
+    this.coex.expediente = exp;
+    this.coex.nombres = nombre;
+    this.coex.apellidos = apellido;
+    this.coex.fecha_consulta = this.fechaActual;
+    this.coex.hora = this.horaActual;
+    this.coex.edad = valorCelda;
+
+    // console.log(exp)
   }
+
+
 
   getPacientes() {
     this.pacientesService.getPacientes().subscribe(data => {

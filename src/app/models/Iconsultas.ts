@@ -3,10 +3,10 @@ import { Time } from "@angular/common";
 export interface Iconcultas {
   id: number;
   hoja_emergencia: string | null;
-  expediente: string | null;
+  expediente: number | null;
   fecha_consulta: string | null;
   hora: string | null;
-  nombre: string | null;
+  nombres: string | null;
   apellidos: string |null;
   nacimiento: string | null;
   edad: string | null;
