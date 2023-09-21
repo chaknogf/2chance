@@ -29,4 +29,12 @@ export class ConsultasService {
     return this.http.get(this.urlapi + "/consulta/servicio/?fecha=" + fecha + "&tipo=" + tipo);
   }
 
+  editarConsulta(id: number, actualizarConsulta: Iconcultas): Observable<any> {
+    return this.http.put(this.urlapi + '/consultado/' + id, actualizarConsulta);
+  }
+
+  eliminar(id: number): Observable<any> {
+    return this.http.delete(this.urlapi + '/consulta/' + id);
+  }
+
 }

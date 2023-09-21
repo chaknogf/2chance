@@ -7,7 +7,7 @@
       <input type="text" class="form-control rounded mx-1" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
       <button type="submit" class="btn btn-outline-light "  (click)="filtro()">buscar</button>
       <button type="submit" class="btn btn-outline-light " (click)="limpiarInput()">x</button>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
+      <button class="btn btn-primary mx-1 w-2" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
     </form>
   </div>
 
@@ -36,7 +36,7 @@
               <!-- <button class="btn btn-outline-dark" [routerLink]="['/detalleP/view', paciente.expediente]">ver</button> -->
             </td>
             <td>
-              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido)" data-bs-toggle="modal" data-bs-target="#formularioCrear" >
+              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento)" data-bs-toggle="modal" data-bs-target="#formularioCrear" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
                   <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0
                   0-.5-.5.5.5 0 0 1-.5-.5Z"/>
@@ -124,14 +124,12 @@
                 <p>{{coex.nombres}} {{coex.apellidos}}</p>
               </div>
 
-              <div class="form-group">
-                <input type="text" class="form-control" id="nombre" name="nombre"  [(ngModel)]='coex.nombres' placeholder="nombres" >
-                <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="coex.apellidos" placeholder="apellidos">
-                <input type="date" class="form-control" id="fecha_consulta" name="fecha_consulta" [(ngModel)]="coex.fecha_consulta" placeholder="fecha de consulta">
-                <input type="time" class="form-control" id="hora" name="hora" [(ngModel)]="coex.hora" placeholder="hora">
-                <input type="text" class="form.control" id="edad" name="edad" [(ngModel)]="coex.edad" placeholder="edad" value="paciente.nacimiento">
-
+              <div class="alert alert-dismissible alert-primary d-none" id="exito">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-dismiss="modal"></button>
+                <strong>Exito!!!</strong> Se ha registrado
               </div>
+
+
 
 
 
@@ -139,7 +137,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" (click)="registrarCoex()"  >Save changes</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
@@ -150,13 +148,20 @@
   <div class="modal" id="formulario2">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="form-group">
-          <input type="text" class="form-control" id="nombre" name="nombre"  [(ngModel)]='coex.nombres' placeholder="nombres" >
-          <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="coex.apellidos" placeholder="apellidos">
-          <input type="date" class="form-control" id="fecha_consulta" name="fecha_consulta" name="fecha_consulta" [(ngModel)]="coex.fecha_consulta" placeholder="fecha de consulta">
-        </div>
+       <!--  -->
+       <div class="form-group">
+        <input type="text" class="form-control" id="nombre" name="nombre"  [(ngModel)]='coex.nombres' placeholder="nombres" disabled="">
+        <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="coex.apellidos" placeholder="apellidos" disabled="">
+        <input type="date" class="form-control" id="fecha_consulta" name="fecha_consulta" [(ngModel)]="coex.fecha_consulta" placeholder="fecha de consulta" disabled="">
+        <input type="time" class="form-control" id="hora" name="hora" [(ngModel)]="coex.hora" placeholder="hora" disabled="">
+        <input type="text" class="form.control" id="edad" name="edad" [(ngModel)]="coex.edad" placeholder="edad" value="paciente.nacimiento" disabled="">
+        <input type="text" class="form-control" id="nacimiento" name="nacimiento" [(ngModel)]="coex.nacimiento" placeholder="fecha de nacimiento" disabled="">
+      </div>
 
 
       </div>
     </div>
   </div>
+
+
+

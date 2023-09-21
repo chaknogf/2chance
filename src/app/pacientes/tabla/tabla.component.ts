@@ -47,21 +47,21 @@ export class TablaComponent implements OnInit {
     hora: this.horaActual,
     nombres: "",
     apellidos: "",
-    nacimiento: "",
+    nacimiento: new Date(),
     edad: "",
     sexo: "",
-    dpi: "",
+    dpi: null,
     direccion: "",
-    acompa: "",
-    telefono: "",
+    acompa: null,
+    telefono: null,
     especialidad: 0,
     recepcion: false,
-    fecha_recepcion: "",
-    fecha_egreso: "",
+    fecha_recepcion: null,
+    fecha_egreso: null,
     tipo_consulta: 1,
     nota: "",
-    name: "",
-    lastname: "",
+    name: null,
+    lastname: null,
 
    }
 
@@ -69,7 +69,8 @@ export class TablaComponent implements OnInit {
   @Output() nombrePaciente = new EventEmitter<string>();
   @Output() apellidoPaciente = new EventEmitter<string>();
   @Output() edadPaciente = new EventEmitter<string>();
-  // @ViewChild('edadCell') edadCell: ElementRef|undefined;
+  @Output() nacimientoPaciente = new EventEmitter<Date>();
+  @ViewChild('edadCell', { static: false }) edadCell: ElementRef = new ElementRef(null);
 
   constructor(private pacientesService: PacientesService,
     private router: Router,
@@ -105,19 +106,21 @@ export class TablaComponent implements OnInit {
     this.resumen;
   }
 
-  copiarId(exp: number, nombre: string, apellido: string) {
+  copiarId(exp: number, nombre: string, apellido: string, nacimiento: Date) {
     this.idPaciente.emit(exp,);
     this.nombrePaciente.emit(nombre);
     this.apellidoPaciente.emit(apellido);
-    // const valorCelda = this.edadCell.nativeElement.textContent;
-    // console.log('Valor copiado:', valorCelda);
+    this.nacimientoPaciente.emit(nacimiento);
+    const valorCelda = this.edadCell.nativeElement.textContent;
+    console.log('Valor copiado:', valorCelda);
     //this.edadPaciente.emit(edad);
     this.coex.expediente = exp;
     this.coex.nombres = nombre;
     this.coex.apellidos = apellido;
+    this.coex.nacimiento = nacimiento;
     this.coex.fecha_consulta = this.fechaActual;
     this.coex.hora = this.horaActual;
-    // this.coex.edad = valorCelda;
+    this.coex.edad = valorCelda;
 
     // console.log(exp)
   }
@@ -227,6 +230,25 @@ export class TablaComponent implements OnInit {
       //this.filteredPacientes = [];
       this.totalRegistros = 0;
     }
+  }
+
+  registrarCoex(): void {
+    this.ConsultasService.registrar(this.coex).subscribe(data => {
+      this.coex = data;
+      console.log(this.coex)
+      this.alerta();
+      // this.router.navigate(['/coex'])
+
+    })
+  }
+
+  alerta() {
+    const alert = document.getElementById('exito');
+    if (alert) {
+      //elimina la clase 'd-none' para mostrar la alerta
+      alert.classList.remove('d-none');
+    }
+
   }
 
 

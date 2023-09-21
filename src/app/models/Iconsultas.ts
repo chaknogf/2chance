@@ -8,7 +8,7 @@ export interface Iconcultas {
   hora: string | null;
   nombres: string | null;
   apellidos: string |null;
-  nacimiento: string | null;
+  nacimiento: string | Date | null;
   edad: string | null;
   sexo: string | null;
   dpi: string| null;
@@ -33,7 +33,7 @@ export interface IVistaEmergencia {
   fecha_consulta: string;
   nombre: string;
   apellidos: string;
-  nacimiento: Date;
+  nacimiento: Date | string;
   tipo_consulta: number;
   recepcion: boolean;
 }
@@ -44,7 +44,7 @@ export interface IVistaCoex {
   fecha_consulta: string;
   nombre: string;
   apellidos: string;
-  nacimiento: Date;
+  nacimiento: Date | string;
   tipo_consulta: number;
   especialidad: number;
   recepcion: boolean;
@@ -56,7 +56,7 @@ export interface IVistaIngreso {
   fecha_consulta: string;
   nombre: string;
   apellidos: string;
-  nacimiento: Date;
+  nacimiento: Date |string;
   tipo_consulta: number;
   especialidad: number;
   fecha_egreso: Date;

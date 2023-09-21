@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
 import { IenumEspecialidad } from 'src/app/models/Ienum';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { FechaService } from 'src/app/services/fecha.service';
 
 @Component({
   selector: 'app-form-cita',
@@ -20,12 +21,13 @@ export class FormCitaComponent implements OnInit {
   bsConfig = { dateInputFormat: 'DD-MM-YYYY' };
   edit: boolean = false;
   selectExpediente: any;
-  hoy: string = new Date().getDate().toString()
+
+  fechaActual: string = "";
 
   c: Icitas = {
     id: 0,
     expediente: 0,
-    fecha: new Date,
+    fecha: "",
     especialidad: 0,
     cirugia_programada: null,
     nota: '',
@@ -36,11 +38,17 @@ export class FormCitaComponent implements OnInit {
     servicio: servicio
   }
 
-  constructor (public CitasService: CitasService,  private router: Router,
-    private activateRoute: ActivatedRoute, private formBuilder: FormBuilder ){}
+  constructor(public CitasService: CitasService,
+    private router: Router,
+    private fechaService: FechaService,
+    private activateRoute: ActivatedRoute,
+    private formBuilder: FormBuilder) { }
 
 
   ngOnInit() {
+
+
+    this.fechaActual = this.fechaService.FechaActual();
     // const params = this.activateRoute.snapshot.params;
 
     // Obtener los parámetros de la ruta
