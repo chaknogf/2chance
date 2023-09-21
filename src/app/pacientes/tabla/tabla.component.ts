@@ -69,7 +69,7 @@ export class TablaComponent implements OnInit {
   @Output() nombrePaciente = new EventEmitter<string>();
   @Output() apellidoPaciente = new EventEmitter<string>();
   @Output() edadPaciente = new EventEmitter<string>();
-  @ViewChild('edadCell') edadCell: ElementRef|undefined;
+  // @ViewChild('edadCell') edadCell: ElementRef|undefined;
 
   constructor(private pacientesService: PacientesService,
     private router: Router,
@@ -109,15 +109,15 @@ export class TablaComponent implements OnInit {
     this.idPaciente.emit(exp,);
     this.nombrePaciente.emit(nombre);
     this.apellidoPaciente.emit(apellido);
-    const valorCelda = this.edadCell.nativeElement.textContent;
-    console.log('Valor copiado:', valorCelda);
+    // const valorCelda = this.edadCell.nativeElement.textContent;
+    // console.log('Valor copiado:', valorCelda);
     //this.edadPaciente.emit(edad);
     this.coex.expediente = exp;
     this.coex.nombres = nombre;
     this.coex.apellidos = apellido;
     this.coex.fecha_consulta = this.fechaActual;
     this.coex.hora = this.horaActual;
-    this.coex.edad = valorCelda;
+    // this.coex.edad = valorCelda;
 
     // console.log(exp)
   }
