@@ -32,14 +32,11 @@ export class CitasComponent implements OnInit {
   slectMonth: string = '';
   slectYear: string = '';
 
-
-
-
-
-  constructor(private CitasService: CitasService, private router: Router, private activateRoute: ActivatedRoute) {
-
-
-  }
+  constructor(
+    private CitasService: CitasService,
+    private router: Router,
+    private activateRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
       this.citas;

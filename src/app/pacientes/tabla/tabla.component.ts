@@ -1,3 +1,4 @@
+import { PageReloadService } from './../../services/PageReload.service';
 import { Component, EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
@@ -8,7 +9,6 @@ import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { FormBuilder } from '@angular/forms';
-
 
 @Component({
   selector: 'tabla',
@@ -63,6 +63,7 @@ export class TablaComponent implements OnInit {
     name: null,
     lastname: null,
 
+
    }
 
   @Output() idPaciente = new EventEmitter<number>();
@@ -77,7 +78,8 @@ export class TablaComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private ConsultasService: ConsultasService,
     private formBuilder: FormBuilder,
-    private fechaService: FechaService
+    private fechaService: FechaService,
+    private PageReloadService: PageReloadService
   ) { }
   reset: boolean = false;
   busqueda: string = '';
@@ -107,7 +109,7 @@ export class TablaComponent implements OnInit {
   }
 
   copiarId(exp: number, nombre: string, apellido: string, nacimiento: Date) {
-    this.idPaciente.emit(exp,);
+    this.idPaciente.emit(exp);
     this.nombrePaciente.emit(nombre);
     this.apellidoPaciente.emit(apellido);
     this.nacimientoPaciente.emit(nacimiento);
@@ -237,9 +239,8 @@ export class TablaComponent implements OnInit {
       this.coex = data;
       console.log(this.coex)
       this.alerta();
-      // this.router.navigate(['/coex'])
-
     })
+    this.reloadPage();
   }
 
   alerta() {
@@ -247,10 +248,15 @@ export class TablaComponent implements OnInit {
     if (alert) {
       //elimina la clase 'd-none' para mostrar la alerta
       alert.classList.remove('d-none');
+
     }
 
   }
 
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
+  }
 
 }
 

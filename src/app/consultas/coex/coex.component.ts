@@ -1,9 +1,13 @@
+import { PageReloadService } from './../../services/PageReload.service';
+import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from './../../services/consultas.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IenumEspecialidad } from 'src/app/models/Ienum';
 import { servicio } from './../../enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
+import { Iconcultas } from 'src/app/models/Iconsultas';
+
 
 @Component({
   selector: 'coex',
@@ -18,28 +22,75 @@ export class CoexComponent implements OnInit {
   today: string = "";
   public x: string = this.today;
   public pacientes: [] = [];
-  public citas: [] = [];
-  public citasPedia: [] = [];
-  public citasTrauma: [] = [];
-  public citasCiru: [] = [];
-  public citasGine: [] = [];
-  public citasPsico: [] = [];
-  public citasNutri: [] = [];
-  public citasHoy: [] = [];
-  public citasMedi: [] = [];
+  public consultas: Iconcultas[] = [];
+  public consultasPedia: Iconcultas[] = [];
+  public consultasTrauma: Iconcultas[] = [];
+  public consultasCiru: Iconcultas[] = [];
+  public consultasGine: Iconcultas[] = [];
+  public consultasPsico: Iconcultas[] = [];
+  public consultasNutri: Iconcultas[] = [];
+  public consultasHoy: Iconcultas[] = [];
+  public consultasMedi: Iconcultas[] = [];
   public contador: number = 0;
   public expedienteBuscar: any = '';
   public nombreBuscar: string = '';
   public apellidoBuscar: string = '';
   public dpiBuscar: any = '';
+  public fechaActual: string = this.FechaService.FechaActual();
+  public horaActual: string = this.FechaService.HoraActual();
+  public idCopiado: number = 0;
 
+  coex: Iconcultas = {
+    id: 0,
+    hoja_emergencia: null,
+    expediente: null,
+    fecha_consulta: this.fechaActual,
+    hora: this.horaActual,
+    nombres: "",
+    apellidos: "",
+    nacimiento: new Date(),
+    edad: "",
+    sexo: "",
+    dpi: null,
+    direccion: "",
+    acompa: null,
+    telefono: null,
+    especialidad: 0,
+    recepcion: false,
+    fecha_recepcion: null,
+    fecha_egreso: null,
+    tipo_consulta: 1,
+    nota: "",
+    name: null,
+    lastname: null,
+
+
+   }
 
   e: IenumEspecialidad = {
     servicio: servicio
   }
-  constructor(private pacientesService: PacientesService, ConsultasService: ConsultasService, private router: Router, private activateRoute: ActivatedRoute) { }
+
+  @Output() idConsulta = new EventEmitter<number>();
+  constructor(
+    private pacientesService: PacientesService,
+    private ConsultasService: ConsultasService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private FechaService: FechaService,
+    private PageReloadService: PageReloadService
+  ) { }
 
   ngOnInit() {
+
+    this.today = `${this.year}-${this.month}-${this.day}`;
+    this.consultasmedicina(this.today);
+    this.consultaspedia(this.today);
+    this.consultasgine(this.today);
+    this.consultasciru(this.today);
+    this.consultastrauma(this.today);
+    this.consultaspsico(this.today);
+    this.consultasnutri(this.today);
   }
 
   updateDate() {
@@ -54,13 +105,13 @@ export class CoexComponent implements OnInit {
       this.x = `${this.year}-${this.month}-${this.day}`;
 
       //vaciar los arrays
-      this.citasMedi = [];
-      this.citasPedia = [];
-      this.citasTrauma = [];
-      this.citasCiru = [];
-      this.citasGine = [];
-      this.citasPsico = [];
-      this.citasNutri = [];
+      this.consultasMedi = [];
+      this.consultasPedia = [];
+      this.consultasTrauma = [];
+      this.consultasCiru = [];
+      this.consultasGine = [];
+      this.consultasPsico = [];
+      this.consultasNutri = [];
 
       // Llama a las funciones para actualizar los datos de las citas
       // this.citasmedicina(this.x);
@@ -75,24 +126,79 @@ export class CoexComponent implements OnInit {
     }
   }
 
-  buscarPacientes() {
-    // if (this.expedienteBuscar !== 0) {
-    //   this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-    //     if (data) {
-    //       this.pacientes = [data]; // Establece el arreglo de pacientes para mostrar solo el resultado de la búsqueda
-    //       this.paginarPacientes(); // Pagina los resultados
-    //     } else {
-    //       // No se encontró ningún paciente con el número de expediente proporcionado
-    //       this.pacientes = [];
-    //       this.filteredPacientes = [];
-    //       this.totalRegistros = 0;
-    //     }
-    //   });
-    // } else {
-    //   // ExpedienteBuscar es 0 o un valor inválido, muestra todos los pacientes
-    //   this.getPacientes();
-    // }
+  consultasmedicina(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 1).subscribe(data => {
+      this.consultasMedi = data;
+       })
   }
+
+  consultaspedia(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 2).subscribe(data => {
+      this.consultasPedia = data;
+       })
+  }
+  consultasgine(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 3).subscribe(data => {
+      this.consultasGine = data;
+       })
+  }
+  consultasciru(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 4).subscribe(data => {
+      this.consultasCiru = data;
+       })
+  }
+  consultastrauma(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 5).subscribe(data => {
+      this.consultasTrauma = data;
+       })
+  }
+  consultaspsico(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 6).subscribe(data => {
+      this.consultasPsico = data;
+       })
+  }
+  consultasnutri(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 7).subscribe(data => {
+      this.consultasNutri = data;
+       })
+  }
+
+  recepcion(id: number, recepcion: boolean) {
+
+    const registro = this.FechaService.registroTiempo()
+    this.ConsultasService.recepcion(id,recepcion, registro).subscribe(data => {
+      this.consultasMedi = data;
+      console.log(this.consultasMedi)
+    })
+  }
+
+  eliminar(id: number) {
+    this.ConsultasService.eliminar(id)
+      .subscribe(data => {
+        this.coex = data;
+        this.reloadPage();
+
+      })
+  }
+
+
+  copiarId(id: number) {
+    this.idConsulta.emit(id);
+    this.idCopiado = id;
+
+    console.log(id, this.idCopiado)
+  }
+
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
+  }
+
+
+
+
+
+
 
 
 }

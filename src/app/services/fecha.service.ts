@@ -22,4 +22,11 @@ export class FechaService {
     const seconds = String(hoy.getSeconds()).padStart(2, '0');
     return `${hours}:${minutes}:${seconds}`;
   }
+
+  registroTiempo(): string{
+    const fecha = this.FechaActual();
+    const hora = this.HoraActual();
+
+    return fecha + hora;
+  }
 }
