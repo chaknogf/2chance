@@ -166,7 +166,7 @@ export class CoexComponent implements OnInit {
   recepcion(id: number, recepcion: boolean) {
 
     const registro = this.FechaService.registroTiempo()
-    this.ConsultasService.recepcion(id,recepcion, registro).subscribe(data => {
+    this.ConsultasService.recepcion(id,true, registro).subscribe(data => {
       this.consultasMedi = data;
       console.log(this.consultasMedi)
     })

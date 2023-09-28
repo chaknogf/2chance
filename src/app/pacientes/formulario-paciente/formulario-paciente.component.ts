@@ -79,8 +79,10 @@ export class FormularioPacienteComponent implements OnInit {
   edit: boolean = false;
   isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
 
-  constructor(public PacientesService: PacientesService, private router: Router,
-    private activateRoute: ActivatedRoute, private formBuilder: FormBuilder,
+  constructor(public PacientesService: PacientesService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
     ) { }
 
   ngOnInit() {

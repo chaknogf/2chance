@@ -1,5 +1,5 @@
 import { PageReloadService } from './../../services/PageReload.service';
-import { Component, EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -79,7 +79,9 @@ export class TablaComponent implements OnInit {
     private ConsultasService: ConsultasService,
     private formBuilder: FormBuilder,
     private fechaService: FechaService,
-    private PageReloadService: PageReloadService
+    private PageReloadService: PageReloadService,
+    private renderer: Renderer2,
+    private el: ElementRef
   ) { }
   reset: boolean = false;
   busqueda: string = '';
@@ -126,8 +128,6 @@ export class TablaComponent implements OnInit {
 
     // console.log(exp)
   }
-
-
 
   getPacientes() {
     this.pacientesService.getPacientes().subscribe(data => {
@@ -235,21 +235,40 @@ export class TablaComponent implements OnInit {
   }
 
   registrarCoex(): void {
-    this.ConsultasService.registrar(this.coex).subscribe(data => {
-      this.coex = data;
-      console.log(this.coex)
-      this.alerta();
-    })
-    this.reloadPage();
-  }
+    this.ConsultasService.registrar(this.coex).subscribe(
+      (response) => {
+        // Manejar la respuesta exitosa aquí, si es necesario
+        console.log('Consulta creada con éxito', response);
 
-  alerta() {
-    const alert = document.getElementById('exito');
-    if (alert) {
-      //elimina la clase 'd-none' para mostrar la alerta
-      alert.classList.remove('d-none');
+        // Mostrar una alerta de éxito con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
+        alertDiv.textContent = 'Consulta creada con éxito';
+        document.body.appendChild(alertDiv);
 
-    }
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+      },
+      (error) => {
+        // Manejar errores aquí
+        console.error('Error al crear consulta', error);
+
+        // Mostrar una alerta de error con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
+        alertDiv.textContent = 'Error al crear consulta';
+        document.body.appendChild(alertDiv);
+
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+
+
+      }
+    );
 
   }
 
@@ -257,6 +276,7 @@ export class TablaComponent implements OnInit {
     // Llama al servicio para recargar la página
     this.PageReloadService.reloadPage();
   }
+
 
 }
 
