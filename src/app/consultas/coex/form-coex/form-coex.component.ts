@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import { IenumEspecialidad } from 'src/app/models/Ienum';
@@ -14,19 +14,24 @@ import { servicio } from '../../../enums/enums'
 })
 export class FormCoexComponent implements OnInit {
 
+
   constructor(
     private ConsultasService: ConsultasService,
     private FechaService: FechaService,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+
   ) { }
 
   public consultas: Iconcultas[] = [];
+  public resumen: Iconcultas[] = [];
   public fechaActual: string = this.FechaService.FechaActual();
   public horaActual: string = this.FechaService.HoraActual();
   public fechaRecepcion: string = this.FechaService.registroTiempo();
   edit: boolean = false;
+
+
 
   @HostBinding('class') clases = 'row';
 
@@ -38,7 +43,7 @@ export class FormCoexComponent implements OnInit {
     hora: "",
     nombres: "",
     apellidos: "",
-    nacimiento: new Date(),
+    nacimiento: "",
     edad: "",
     sexo: "",
     dpi: null,
@@ -72,20 +77,35 @@ export class FormCoexComponent implements OnInit {
           data => {
             this.coex = data;
             this.edit = true;
+
+
           },
           error => console.log(error)
         )
     }
+    this.resumen;
 
 
   }
 
-  editar() {
+  onSubmit() {
+
     this.ConsultasService.editarConsulta(this.coex.id, this.coex)
       .subscribe(data => {
         this.coex = data;
         this.router.navigate(['/coex']);
-    })
+      })
+
+  }
+
+  changeRecepcion() {
+    if (this.coex.recepcion !== true) {
+      this.coex.fecha_recepcion = this.fechaRecepcion
+    }
+    else {
+      this.coex.fecha_recepcion = null
+    }
+
   }
 
 }

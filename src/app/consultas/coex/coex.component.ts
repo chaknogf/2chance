@@ -39,6 +39,8 @@ export class CoexComponent implements OnInit {
   public fechaActual: string = this.FechaService.FechaActual();
   public horaActual: string = this.FechaService.HoraActual();
   public idCopiado: number = 0;
+  public fechaRecepcion: string = this.FechaService.registroTiempo();
+
 
   coex: Iconcultas = {
     id: 0,
@@ -48,7 +50,7 @@ export class CoexComponent implements OnInit {
     hora: this.horaActual,
     nombres: "",
     apellidos: "",
-    nacimiento: new Date(),
+    nacimiento: "",
     edad: "",
     sexo: "",
     dpi: null,
@@ -163,14 +165,33 @@ export class CoexComponent implements OnInit {
        })
   }
 
-  recepcion(id: number, recepcion: boolean) {
+  changeRecepcion(id: number) {
+    let estado: string;
+    let registro: string;
 
-    const registro = this.FechaService.registroTiempo()
-    this.ConsultasService.recepcion(id,true, registro).subscribe(data => {
-      this.consultasMedi = data;
-      console.log(this.consultasMedi)
-    })
+    if (this.coex.recepcion === false) {
+      estado = 'true';
+      registro = this.fechaRecepcion;
+      this.showAlert("Recepción activada");
+    } else {
+      estado = 'false';
+      registro = '';
+      this.showAlert("Recepción desactivada");
+    }
+
+    this.ConsultasService.recepcion(id, estado, registro).subscribe(data => {
+      this.consultas = data;
+    });
   }
+
+  showAlert(message: string) {
+    alert(message);
+  }
+
+
+
+
+
 
   eliminar(id: number) {
     this.ConsultasService.eliminar(id)

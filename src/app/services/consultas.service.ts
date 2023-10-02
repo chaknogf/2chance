@@ -42,16 +42,15 @@ export class ConsultasService {
     return this.http.get(this.urlapi + '/consultando/?fecha=' + fecha + '&tipo=' + tipo + '&especialidad=' + esp);
   }
 
-  recepcion(id: number, recepcion: boolean, fecha: string): Observable<any> {
+  recepcion(id: number, estado: string, registro: string): Observable<any> {
 
-    const data = {
-      recepcion: recepcion,
-      fecha: fecha
-    };
-    return this.http.patch(this.urlapi + '/recepcion/' + id, data)
+    const body = { id: id, recepcion: estado, fecha_recepcion: registro}
+
+    return this.http.patch(this.urlapi + '/recepcion/'+id+'?fecha_recep='+registro+'&recep='+estado, body );
   }
 
 
 }
 
 
+// /recepcion/3?fecha_recep=2023-10-01T18%3A43%3A00&recep=true

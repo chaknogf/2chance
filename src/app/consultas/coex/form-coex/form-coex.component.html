@@ -1,3 +1,55 @@
-<p>
-  form-coex works!
-</p>
+<div class="d-flex bg-primary w-100 py-3 px-2">
+  <h2 class="text-light">Aditar consulta</h2>
+  <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
+    <button class="btn btn-dark" [routerLink]="['/coex']">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="">
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-6">
+      <form>
+        <div class="mb-3">
+          <span class="badge bg-secondary">ID: {{ coex.id }}</span>
+        </div>
+
+        <div class="mb-3">
+          <span class="badge bg-secondary">Paciente: {{ coex.nombres }} {{ coex.apellidos }}</span>
+        </div>
+
+        <div class="mb-3">
+          <label for="especialidad" class="form-label">Especialidad</label>
+          <select id="especialidad" class="form-select" [(ngModel)]="coex.especialidad" name="especialidad" disabled>
+            <option *ngFor="let opcion of e.servicio" [value]="opcion.value">{{ opcion.label }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion()">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Regreso al archivo</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
+          <input class="form-control" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" [disabled]="!coex.recepcion">
+        </div>
+
+
+
+        <div class="mb-3">
+          <button class="btn btn-primary" (click)="onSubmit()">Guardar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

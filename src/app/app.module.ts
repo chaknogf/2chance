@@ -44,6 +44,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CrearModalComponent } from './pacientes/crearModal/crearModal.component';
 import { NuevaConsultaComponent } from './consultas/nuevaConsulta/nuevaConsulta.component';
 import { ShowModalDirective } from './Directive/show-modal.directive';
+import { FormCoexComponent } from './consultas/coex/form-coex/form-coex.component';
 
 
 
@@ -68,7 +69,8 @@ const routes: Routes = [
   { path: 'coex', component: CoexComponent },
   { path: 'coex/edit/:id', component: CoexComponent },
   { path: 'tablaP', component: TablaComponent },
-  { path: 'nuevaConsulta', component: NuevaConsultaComponent }
+  { path: 'nuevaConsulta', component: NuevaConsultaComponent },
+  { path: 'edit/coex/:id', component: FormCoexComponent},
 
 
 
@@ -121,6 +123,7 @@ const routes: Routes = [
     CrearModalComponent,
     NuevaConsultaComponent,
     ShowModalDirective,
+    FormCoexComponent,
 
 
 
@@ -146,7 +149,8 @@ const routes: Routes = [
       { path: 'coex', component: CoexComponent },
       { path: 'coex/edit/:id', component: CoexComponent },
       { path: 'tablaP', component: TablaComponent },
-      { path: 'nuevaConsulta', component: NuevaConsultaComponent }
+      { path: 'nuevaConsulta', component: NuevaConsultaComponent },
+      { path: 'edit/coex/:id', component: FormCoexComponent},
 
 
     ]),

@@ -3,9 +3,9 @@
 
   <div class="container-fluid justify-content-center text-center">
     <form class="form-inline d-flex w-25 mx-auto">
-      <div class="form-group flex-grow-1">
+      <div class="form-group flex-grow-1 ">
         <h6 for="day">Día</h6>
-        <input type="text" class="form-control text-center" id="day" name="day" [(ngModel)]="day" placeholder="Día" (ngModelChange)="updateDate()" disabled="">
+        <input type="text text-size-sm-6" class="form-control text-center" id="day" name="day" [(ngModel)]="day" placeholder="Día" (ngModelChange)="updateDate()" disabled="">
       </div>
 
       <div class="form-group mx-2 flex-grow-1">
@@ -30,7 +30,7 @@
 
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6 border btn">
         <!-- Contenido de la columna derecha -->
 
         <!-- Primer contenedor Medicina -->
@@ -69,11 +69,11 @@
                     <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
                     <td class="text-center"> {{ coex.hora}} </td>
                     <td class="text-center form-switch">
-                      <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="flexSwitchCheckDefault"
-                      (change)="recepcion(coex.id,true)"></td>
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion(coex.id)">
+                    </td>
+
+
+
 
                   </tr>
                 </tbody>
@@ -116,7 +116,7 @@
                   <td class="text-center ">{{coex.expediente}} </td>
                   <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
                   <td class="text-center"> {{ coex.hora}} </td>
-                  <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
+                  <td class="text-center form-switch"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" (click)="changeRecepcion(coex.id)"></td>
 
                 </tr>
               </tbody>
@@ -344,7 +344,7 @@
     <div class="modal-content">
 
       <button class="btn btn-danger" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button>
-      <button class="btn btn-info" data-bs-dismiss="modal" >Editar Consulta</button>
+      <button class="btn btn-info" data-bs-dismiss="modal" [routerLink]="['/edit/coex', idCopiado]" >Editar Consulta</button>
 
       <button class="btn btn-black" data-bs-dismiss="modal">Cerrar</button>
 

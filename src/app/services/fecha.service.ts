@@ -27,6 +27,6 @@ export class FechaService {
     const fecha = this.FechaActual();
     const hora = this.HoraActual();
 
-    return fecha + hora;
+    return fecha +'T'+ hora;
   }
 }
