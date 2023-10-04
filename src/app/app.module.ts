@@ -17,6 +17,8 @@ import { FormatoFechaPipe } from './pipe/formatoFecha.pipe';
 import { ColorizePipe } from './pipe/colorize.pipe';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { GeneroPipe } from './pipe/genero.pipe';
+import { DpiDirective } from './Directive/dpi.directive';
+import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe,
@@ -45,7 +47,7 @@ import { CrearModalComponent } from './pacientes/crearModal/crearModal.component
 import { NuevaConsultaComponent } from './consultas/nuevaConsulta/nuevaConsulta.component';
 import { ShowModalDirective } from './Directive/show-modal.directive';
 import { FormCoexComponent } from './consultas/coex/form-coex/form-coex.component';
-
+import { TablaEmergenciaComponent } from './consultas/emergencias/tablaEmergencia/tablaEmergencia.component';
 
 
 
@@ -70,7 +72,8 @@ const routes: Routes = [
   { path: 'coex/edit/:id', component: CoexComponent },
   { path: 'tablaP', component: TablaComponent },
   { path: 'nuevaConsulta', component: NuevaConsultaComponent },
-  { path: 'edit/coex/:id', component: FormCoexComponent},
+  { path: 'edit/coex/:id', component: FormCoexComponent },
+  { path: 'tablaEmergencia', component: TablaEmergenciaComponent},
 
 
 
@@ -124,6 +127,11 @@ const routes: Routes = [
     NuevaConsultaComponent,
     ShowModalDirective,
     FormCoexComponent,
+    EspacioNumerosDirective,
+    DpiDirective,
+    TablaEmergenciaComponent,
+
+
 
 
 
@@ -150,7 +158,8 @@ const routes: Routes = [
       { path: 'coex/edit/:id', component: CoexComponent },
       { path: 'tablaP', component: TablaComponent },
       { path: 'nuevaConsulta', component: NuevaConsultaComponent },
-      { path: 'edit/coex/:id', component: FormCoexComponent},
+      { path: 'edit/coex/:id', component: FormCoexComponent },
+      { path: 'tablaEmergencia', component: TablaEmergenciaComponent},
 
 
     ]),

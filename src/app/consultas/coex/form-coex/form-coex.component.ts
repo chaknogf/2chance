@@ -49,6 +49,7 @@ export class FormCoexComponent implements OnInit {
     dpi: null,
     direccion: "",
     acompa: null,
+    parente: null,
     telefono: null,
     especialidad: 0,
     recepcion: false,

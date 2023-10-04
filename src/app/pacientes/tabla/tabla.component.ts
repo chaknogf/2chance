@@ -53,6 +53,7 @@ export class TablaComponent implements OnInit {
     dpi: null,
     direccion: "",
     acompa: null,
+    parente: null,
     telefono: null,
     especialidad: 0,
     recepcion: false,
@@ -235,7 +236,7 @@ export class TablaComponent implements OnInit {
   }
 
   registrarCoex(): void {
-    this.ConsultasService.registrar(this.coex).subscribe(
+    this.ConsultasService.crear(this.coex).subscribe(
       (response) => {
         // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta creada con éxito', response);

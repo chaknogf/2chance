@@ -22,8 +22,12 @@ export class ConsultasService {
     return this.http.get(this.urlapi + "/consulta/?id=" + id)
   }
 
-  registrar(consulta: Iconcultas): Observable<any> {
+  crear(consulta: Iconcultas): Observable<any> {
     return  this.http.post(this.urlapi + "/consultas/", consulta);
+  }
+
+  registrar(consulta: Iconcultas): Observable<any> {
+    return  this.http.post(this.urlapi + "/consulta/", consulta);
   }
 
   tipoConsulta(fecha: string, tipo: number): Observable<any> {
@@ -48,6 +52,12 @@ export class ConsultasService {
 
     return this.http.patch(this.urlapi + '/recepcion/'+id+'?fecha_recep='+registro+'&recep='+estado, body );
   }
+
+  consulTipo(tipo: number): Observable<any> {
+    return this.http.get(this.urlapi + '/consult/?tipo=' + tipo)
+  }
+
+
 
 
 }

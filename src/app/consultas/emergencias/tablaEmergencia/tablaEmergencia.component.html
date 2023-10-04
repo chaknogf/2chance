@@ -1,0 +1,27 @@
+<div class="">
+  <table class="table " >
+    <thead>
+      <tr>
+        <th>No. de Hoja</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Exp</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
+      <tr *ngFor="let emer of consultas">
+        <td class="w-25"> {{emer.hoja_emergencia}} </td>
+        <td class="w-25"> {{emer.fecha_consulta}} </td>
+        <td class="w-25"> {{emer.hora}} </td>
+        <td class="w-25"> {{emer.nombres}} {{emer.apellidos}} </td>
+        <td class="w-25"> {{emer.edad}} </td>
+        <td class="w-25"> {{emer.expediente}} </td>
+        <td></td>
+      </tr>
+    </tbody>
+      </table>
+  </div>

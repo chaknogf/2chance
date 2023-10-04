@@ -13,7 +13,8 @@ export interface Iconcultas {
   sexo: string | null;
   dpi: string| null;
   direccion: string| null;
-  acompa: string| null;
+  acompa: string | null;
+  parente: number | null
   telefono: string| null;
   especialidad: number| null;
   recepcion: boolean| null;
