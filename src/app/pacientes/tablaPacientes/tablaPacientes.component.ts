@@ -19,6 +19,7 @@ export class TablaPacientesComponent{
   public nombreBuscar: string = '';
   public apellidoBuscar: string = '';
   public dpiBuscar: any = '';
+  public paciente: Ipaciente | undefined;
 
 
 
@@ -172,6 +173,46 @@ export class TablaPacientesComponent{
     }
   }
 
+
+  filtro() {
+    if (this.expedienteBuscar !== "") {
+      this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
+        if (data) {
+          this.actualizarPacientes([data]);
+          this.filteredPacientes = [data];
+
+        } else {
+          this.actualizarPacientes([]);
+          this.filteredPacientes = [];
+        }
+      });
+    } else if (this.nombreBuscar || this.apellidoBuscar) {
+      this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
+        if (data && data.length > 0) {
+          this.actualizarPacientes(data);
+          this.filteredPacientes = data;
+        } else {
+          this.actualizarPacientes([]);
+          this.filteredPacientes = [];
+        }
+      });
+    } else if (this.dpiBuscar !="" ) {
+      this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
+        if (data) {
+          this.actualizarPacientes([data]);
+          this.filteredPacientes = data;
+          console.log(this.filteredPacientes)
+        } else {
+          this.actualizarPacientes([]);
+          this.filteredPacientes = [];
+        }
+      });
+    } else {
+      // Limpiar resultados si no se proporciona ningún criterio de búsqueda
+      this.actualizarPacientes([]);
+      this.filteredPacientes = [];
+    }
+  }
 
 }
 

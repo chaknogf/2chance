@@ -57,10 +57,35 @@ export class ConsultasService {
     return this.http.get(this.urlapi + '/consult/?tipo=' + tipo)
   }
 
+  expediente(exp: number): Observable<any> {
+    return this.http.get(this.urlapi + '/exp/' + exp)
+  }
+
+  nombre(nombre: string, apellido: string): Observable<any> {
+    return this.http.get(this.urlapi + '/nombre/?nombre=' + nombre + '&apellido='+ apellido)
+  }
+
+  dpi(dpi: string): Observable<any> {
+    return this.http.get(this.urlapi + '/cui/' + dpi)
+  }
+
+  egresos(inicio: string, final: string): Observable<any> {
+    return this.http.get(this.urlapi + '/egresos/?fecha_inicio=' + inicio + '&fecha_final=' + final)
+  }
+
+  recepciones(estado: string, fecha: string): Observable<any> {
+    return this.http.get( this.urlapi + '/recepcion/?recepcion=' + estado + 'fecha=' + fecha)
+  }
+
+  hoja(hoja: string): Observable<any> {
+    return this.http.get(this.urlapi + '/hoja/' +  hoja)
+  }
+
+
+
 
 
 
 }
 
 
-// /recepcion/3?fecha_recep=2023-10-01T18%3A43%3A00&recep=true
