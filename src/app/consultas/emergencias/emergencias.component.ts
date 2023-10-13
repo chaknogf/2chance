@@ -40,6 +40,8 @@ export class EmergenciasComponent implements OnInit {
   public edadA: number = 0;
   public edadMeses: number = 0;
   public edadDias: number = 0;
+  public selectdate: string = '';
+  public maxdate: string = '';
 
   emergencia: Iconcultas = {
     id: 0,
