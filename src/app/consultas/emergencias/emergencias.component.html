@@ -28,7 +28,7 @@
 
         <div class="form-group d-flex mt-3">
           <label for="fecha">Fecha:</label>
-          <input type="date" class="form-control w-50 mx-2" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta">
+          <input type="date" class="form-control w-50 mx-2" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
           <label for="hora">Hora:</label>
           <input type="time" class="form-control w-25" id="hora" name="hora"
              placeholder="hh:mm" [(ngModel)]="emergencia.hora">
@@ -51,7 +51,7 @@
 
         <div class="form-group">
           <label for="nacimiento">Fecha de nacimiento:</label>
-          <input type="date" class="form-control w-50" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" >
+          <input type="date" class="form-control w-50" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
           <button class="btn btn-success" (click)="calcularedad()">Calcular edad</button>
           <span></span>
         </div>

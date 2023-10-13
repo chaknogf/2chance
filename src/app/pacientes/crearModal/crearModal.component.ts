@@ -20,6 +20,8 @@ import { lenguaje } from 'src/app/enums/enums';
 })
 export class CrearModalComponent implements OnInit {
   public pacientes: Ipaciente[] = [];
+  public selectdate: string = '';
+  public maxdate: string = '';
   @HostBinding('class') clases = 'row';
 
   // Objeto del paciente
@@ -82,6 +84,10 @@ export class CrearModalComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+     // Obtiene la fecha actual en el formato YYYY-MM-DD
+     const currentDate = new Date().toISOString().split('T')[0];
+     this.maxdate = currentDate;
+
     // Obtener el expediente del paciente
     //this.NuevoExp()
 

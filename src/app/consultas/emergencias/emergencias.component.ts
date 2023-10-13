@@ -25,7 +25,10 @@ export class EmergenciasComponent implements OnInit {
     private PageReloadService: PageReloadService
 
 
-  ) { }
+  ) {
+
+
+  }
 
 
   public emergencias: Iconcultas[] = [];
@@ -87,7 +90,9 @@ export class EmergenciasComponent implements OnInit {
 
 
   ngOnInit() {
-
+// Obtiene la fecha actual en el formato YYYY-MM-DD
+const currentDate = new Date().toISOString().split('T')[0];
+this.maxdate = currentDate;
 
 
   }

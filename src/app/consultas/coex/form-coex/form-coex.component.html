@@ -40,7 +40,7 @@
 
         <div class="mb-3">
           <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
-          <input class="form-control" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" [disabled]="!coex.recepcion">
+          <input class="form-control" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" [disabled]="!coex.recepcion" [max]="maxdate">
         </div>
 
 

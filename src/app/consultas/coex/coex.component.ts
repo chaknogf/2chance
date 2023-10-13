@@ -40,6 +40,8 @@ export class CoexComponent implements OnInit {
   public horaActual: string = this.FechaService.HoraActual();
   public idCopiado: number = 0;
   public fechaRecepcion: string = this.FechaService.registroTiempo();
+  public selectdate: string = '';
+  public maxdate: string = '';
 
 
   coex: Iconcultas = {
@@ -85,6 +87,9 @@ export class CoexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Obtiene la fecha actual en el formato YYYY-MM-DD
+    const currentDate = new Date().toISOString().split('T')[0];
+    this.maxdate = currentDate;
 
     this.today = `${this.year}-${this.month}-${this.day}`;
     this.consultasmedicina(this.today);

@@ -30,6 +30,8 @@ export class FormCoexComponent implements OnInit {
   public horaActual: string = this.FechaService.HoraActual();
   public fechaRecepcion: string = this.FechaService.registroTiempo();
   edit: boolean = false;
+  public selectdate: string = '';
+  public maxdate: string = '';
 
 
 
@@ -68,6 +70,10 @@ export class FormCoexComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // Obtiene la fecha actual en el formato YYYY-MM-DD
+    const currentDate = new Date().toISOString().split('T')[0];
+    this.maxdate = currentDate;
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 

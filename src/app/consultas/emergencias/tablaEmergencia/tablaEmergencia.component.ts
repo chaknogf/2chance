@@ -28,10 +28,15 @@ export class TablaEmergenciaComponent implements OnInit {
   public dpiBuscar: any = '';
   public hojaBuscar: any = '';
   public fechaBuscar: any = '';
+  public selectdate: string = '';
+  public maxdate: string = '';
 
 
   ngOnInit() {
     this.emergencias()
+    // Obtiene la fecha actual en el formato YYYY-MM-DD
+const currentDate = new Date().toISOString().split('T')[0];
+this.maxdate = currentDate;
   }
 
 
