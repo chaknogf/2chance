@@ -48,6 +48,7 @@ import { NuevaConsultaComponent } from './consultas/nuevaConsulta/nuevaConsulta.
 import { ShowModalDirective } from './Directive/show-modal.directive';
 import { FormCoexComponent } from './consultas/coex/form-coex/form-coex.component';
 import { TablaEmergenciaComponent } from './consultas/emergencias/tablaEmergencia/tablaEmergencia.component';
+import { HClinicaComponent } from './consultas/coex/hClinica/hClinica.component';
 
 
 
@@ -73,8 +74,8 @@ const routes: Routes = [
   { path: 'tablaP', component: TablaComponent },
   { path: 'nuevaConsulta', component: NuevaConsultaComponent },
   { path: 'edit/coex/:id', component: FormCoexComponent },
-  { path: 'tablaEmergencia', component: TablaEmergenciaComponent},
-
+  { path: 'tablaEmergencia', component: TablaEmergenciaComponent },
+  { path: 'hClinica/view/:id', component: HClinicaComponent},
 
 
 
@@ -130,6 +131,7 @@ const routes: Routes = [
     EspacioNumerosDirective,
     DpiDirective,
     TablaEmergenciaComponent,
+    HClinicaComponent,
 
 
 
@@ -159,7 +161,8 @@ const routes: Routes = [
       { path: 'tablaP', component: TablaComponent },
       { path: 'nuevaConsulta', component: NuevaConsultaComponent },
       { path: 'edit/coex/:id', component: FormCoexComponent },
-      { path: 'tablaEmergencia', component: TablaEmergenciaComponent},
+      { path: 'tablaEmergencia', component: TablaEmergenciaComponent },
+      { path: 'hClinica/view/:id', component: HClinicaComponent},
 
 
     ]),
