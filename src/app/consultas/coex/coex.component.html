@@ -1,45 +1,94 @@
-<div class="mt-3">
+<div class="mt-3 ">
   <h2 class="text-center">Registro de Consulta Externa</h2>
 
-  <div class="container-fluid justify-content-center text-center">
-    <form class="form-inline d-flex w-25 mx-auto">
-      <div class="form-group flex-grow-1 ">
-        <h6 for="day">Día</h6>
-        <input type="text text-size-sm-6" class="form-control text-center" id="day" name="day" [(ngModel)]="day" placeholder="Día" (ngModelChange)="updateDate()" disabled="">
-      </div>
+  <div class="  ">
+    <div class="container-fluid justify-content-center text-center  ">
+      <form class="form-inline d-flex w-25 mx-auto">
+        <div class="form-group flex-grow-1 ">
+          <h6 for="day">Día</h6>
+          <input type="text text-size-sm-6" class="form-control text-center" id="day" name="day" [(ngModel)]="day" placeholder="Día" (ngModelChange)="updateDate()" disabled="">
+        </div>
 
-      <div class="form-group mx-2 flex-grow-1">
-        <h6 for="month">Mes</h6>
-        <input type="text" class="form-control text-center" id="month" name="month" [(ngModel)]="month" placeholder="Mes" (ngModelChange)="updateDate()" disabled="">
-      </div>
+        <div class="form-group mx-2 flex-grow-1">
+          <h6 for="month">Mes</h6>
+          <input type="text" class="form-control text-center" id="month" name="month" [(ngModel)]="month" placeholder="Mes" (ngModelChange)="updateDate()" disabled="">
+        </div>
 
-      <div class="form-group flex-grow-1">
-        <h6 for="year">Año</h6>
-        <input type="text" class="form-control text-center" id="year" name="year" [(ngModel)]="year" placeholder="Año" (ngModelChange)="updateDate()" disabled="">
-      </div>
-    </form>
-  </div>
+        <div class="form-group flex-grow-1">
+          <h6 for="year">Año</h6>
+          <input type="text" class="form-control text-center" id="year" name="year" [(ngModel)]="year" placeholder="Año" (ngModelChange)="updateDate()" disabled="">
+        </div>
+      </form>
+    </div>
 
-  <div class="mt-4">
-    <div class="row d-flex justify-content-between">
-      <div class="col-md-6">
-        <!-- Contenido de la columna izquierda  tabla de pacientes-->
-        <!-- <nuevaConsulta></nuevaConsulta> -->
-        <nuevaConsulta></nuevaConsulta>
+    <div class="mt-4">
+      <div class="row d-flex justify-content-between">
+        <div class="col-md-6">
+          <!-- Contenido de la columna izquierda  tabla de pacientes-->
+          <!-- <nuevaConsulta></nuevaConsulta> -->
+          <nuevaConsulta></nuevaConsulta>
 
 
-      </div>
+        </div>
 
-      <div class="col-md-6 border btn">
-        <!-- Contenido de la columna derecha -->
+        <div class="col-md-6 border btn">
+          <!-- Contenido de la columna derecha -->
 
-        <!-- Primer contenedor Medicina -->
-        <div class="container-fluid">
-          <h4 class="text-center">{{ 1 | enumEspecialidad }}</h4>
-          <div class="table-responsive">
-            <!-- Tabla de Medicina -->
+          <!-- Primer contenedor Medicina -->
+          <div class="container-fluid console-table">
+            <h4 class="text-center">{{ 1 | enumEspecialidad }}</h4>
             <div class="table-responsive">
-              <table class="table table-hover table-auto" *ngIf="consultasMedi.length > 0">
+              <!-- Tabla de Medicina -->
+              <div class="table-responsive">
+                <table class="table table-hover table-auto console-table" *ngIf="consultasMedi.length > 0">
+                  <!-- Encabezados de columna -->
+                  <thead>
+                    <tr>
+                      <th class="bg-light text-center" scope="col"></th>
+                      <th class="bg-light text-center" scope="col">No.</th>
+                      <th class="bg-light text-center" scope="col">Expediente</th>
+                      <th class="bg-light text-center" scope="col">Nombre</th>
+                      <th class="bg-light text-center" scope="col" >Hora</th>
+                      <th class="bg-light text-center" scope="col" >Recepción</th>
+
+                    </tr>
+                  </thead>
+                  <!-- Datos de la tabla -->
+                  <tbody>
+                    <tr *ngFor="let coex of consultasMedi; let i = index">
+                      <td class="text-center"  (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor"
+                          class="bi bi-grip-vertical" viewBox="0 0 16 16">
+                        <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
+                        0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
+                        3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
+                        1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                      </svg></td>
+                      <td class="text-center">{{ contador + i + 1 }}</td>
+                      <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
+                      <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+                      <td class="text-center"> {{ coex.hora}} </td>
+                      <td class="text-center form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion(coex.id)">
+                      </td>
+
+
+
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Segundo contenedor Pediatría -->
+          <div class="container-fluid console-table">
+            <h4 class="text-center">{{ 2 | enumEspecialidad }}</h4>
+            <div class="table-responsive">
+              <!-- Tabla de Pediatría -->
+              <table class="table table-hover table-auto console-table" *ngIf="consultasPedia.length > 0">
                 <!-- Encabezados de columna -->
                 <thead>
                   <tr>
@@ -54,10 +103,52 @@
                 </thead>
                 <!-- Datos de la tabla -->
                 <tbody>
-                  <tr *ngFor="let coex of consultasMedi; let i = index">
-                    <td class="text-center"  (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+                  <tr *ngFor="let coex of consultasPedia; let i = index">
+                    <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
                       <svg xmlns="http://www.w3.org/2000/svg"
-                       width="16" height="16" fill="currentColor"
+                      width="16" height="16" fill="currentColor"
+                        class="bi bi-grip-vertical" viewBox="0 0 16 16">
+                      <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
+                      0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
+                      3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
+                      1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg></td>
+                    <td class="text-center">{{ contador + i + 1 }}</td>
+                    <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}}  </td>
+                    <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+                    <td class="text-center"> {{ coex.hora}} </td>
+                    <td class="text-center form-switch"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" (click)="changeRecepcion(coex.id)"></td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tercer contenedor Ginecología -->
+          <div class="container-fluid console-table">
+            <h4 class="text-center">{{ 3 | enumEspecialidad }}</h4>
+            <div class="table-responsive">
+              <!-- Tabla de Ginecología -->
+              <table class="table table-hover table-auto console-table" *ngIf="consultasGine.length > 0">
+                <!-- Encabezados de columna -->
+                <thead>
+                  <tr>
+                    <th class="bg-light text-center" scope="col"></th>
+                    <th class="bg-light text-center" scope="col">No.</th>
+                    <th class="bg-light text-center" scope="col">Expediente</th>
+                    <th class="bg-light text-center" scope="col">Nombre</th>
+                    <th class="bg-light text-center" scope="col" >Hora</th>
+                    <th class="bg-light text-center" scope="col" >Recepción</th>
+
+                  </tr>
+                </thead>
+                <!-- Datos de la tabla -->
+                <tbody>
+                  <tr *ngFor="let coex of consultasGine; let i = index">
+                    <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor"
                         class="bi bi-grip-vertical" viewBox="0 0 16 16">
                       <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
                       0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
@@ -68,12 +159,176 @@
                     <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
                     <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
                     <td class="text-center"> {{ coex.hora}} </td>
-                    <td class="text-center form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion(coex.id)">
-                    </td>
+                    <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
 
+                  </tr>
+                </tbody>
+              </table>
 
+            </div>
+          </div>
 
+          <!-- Cuarto contenedor Cirugía -->
+          <div class="container-fluid console-table">
+            <h4 class="text-center">{{ 4 | enumEspecialidad }}</h4>
+            <div class="table-responsive">
+              <!-- Tabla de Cirugía -->
+              <table class="table table-hover table-auto console-table" *ngIf="consultasCiru.length > 0">
+                <!-- Encabezados de columna -->
+                <thead>
+                  <tr>
+                    <th class="bg-light text-center" scope="col"></th>
+                    <th class="bg-light text-center" scope="col">No.</th>
+                    <th class="bg-light text-center" scope="col">Expediente</th>
+                    <th class="bg-light text-center" scope="col">Nombre</th>
+                    <th class="bg-light text-center" scope="col" >Hora</th>
+                    <th class="bg-light text-center" scope="col" >Recepción</th>
+
+                  </tr>
+                </thead>
+                <!-- Datos de la tabla -->
+                <tbody>
+                  <tr *ngFor="let coex of consultasCiru; let i = index">
+                    <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor"
+                        class="bi bi-grip-vertical" viewBox="0 0 16 16">
+                      <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
+                      0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
+                      3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
+                      1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg></td>
+                    <td class="text-center">{{ contador + i + 1 }}</td>
+                    <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
+                    <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+                    <td class="text-center"> {{ coex.hora}} </td>
+                    <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Quinto contenedor Trauma -->
+          <div class="container-fluid console-table">
+            <h4 class="text-center">{{ 5 | enumEspecialidad }}</h4>
+            <div class="table-responsive">
+              <!-- Tabla de Trauma -->
+              <table class="table table-hover table-auto console-table" *ngIf="consultasTrauma.length > 0">
+                <!-- Encabezados de columna -->
+                <thead>
+                  <tr>
+                    <th class="bg-light text-center" scope="col"></th>
+                    <th class="bg-light text-center" scope="col">No.</th>
+                    <th class="bg-light text-center" scope="col">Expediente</th>
+                    <th class="bg-light text-center" scope="col">Nombre</th>
+                    <th class="bg-light text-center" scope="col" >Hora</th>
+                    <th class="bg-light text-center" scope="col" >Recepción</th>
+
+                  </tr>
+                </thead>
+                <!-- Datos de la tabla -->
+                <tbody>
+                  <tr *ngFor="let coex of consultasTrauma; let i = index">
+                    <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor"
+                        class="bi bi-grip-vertical" viewBox="0 0 16 16">
+                      <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
+                      0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
+                      3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
+                      1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg></td>
+                    <td class="text-center">{{ contador + i + 1 }}</td>
+                    <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
+                    <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+                    <td class="text-center"> {{ coex.hora}} </td>
+                    <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Sexto contenedor Psicologia -->
+          <div class="container-fluid console-table">
+            <h4 class="text-center">{{ 6 | enumEspecialidad }}</h4>
+            <div class="table-responsive">
+              <!-- Tabla de Psicología -->
+              <table class="table table-hover table-auto console-table" *ngIf="consultasPsico.length > 0">
+                <!-- Encabezados de columna -->
+                <thead>
+                  <tr>
+                    <th class="bg-light text-center" scope="col"></th>
+                    <th class="bg-light text-center" scope="col">No.</th>
+                    <th class="bg-light text-center" scope="col">Expediente</th>
+                    <th class="bg-light text-center" scope="col">Nombre</th>
+                    <th class="bg-light text-center" scope="col" >Hora</th>
+                    <th class="bg-light text-center" scope="col" >Recepción</th>
+
+                  </tr>
+                </thead>
+                <!-- Datos de la tabla -->
+                <tbody>
+                  <tr *ngFor="let coex of consultasPsico; let i = index">
+                    <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor"
+                        class="bi bi-grip-vertical" viewBox="0 0 16 16">
+                      <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
+                      0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
+                      3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
+                      1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg></td>
+                    <td class="text-center">{{ contador + i + 1 }}</td>
+                    <td class="text-center" [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
+                    <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+                    <td class="text-center"> {{ coex.hora}} </td>
+                    <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Septimo contenedor Nutricion -->
+          <div class="container-fluid console-table">
+            <h4 class="text-center">{{ 7 | enumEspecialidad }}</h4>
+            <div class="table-responsive">
+              <!-- Tabla de Nutrición -->
+              <table class="table table-hover table-auto console-table" *ngIf="consultasNutri.length > 0">
+                <!-- Encabezados de columna -->
+                <thead>
+                  <tr>
+                    <th class="bg-light text-center" scope="col"></th>
+                    <th class="bg-light text-center" scope="col">No.</th>
+                    <th class="bg-light text-center" scope="col">Expediente</th>
+                    <th class="bg-light text-center" scope="col">Nombre</th>
+                    <th class="bg-light text-center" scope="col" >Hora</th>
+                    <th class="bg-light text-center" scope="col" >Recepción</th>
+
+                  </tr>
+                </thead>
+                <!-- Datos de la tabla -->
+                <tbody>
+                  <tr *ngFor="let coex of consultasNutri; let i = index">
+                    <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                      width="16" height="16" fill="currentColor"
+                        class="bi bi-grip-vertical" viewBox="0 0 16 16">
+                      <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
+                      0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
+                      3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
+                      1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg></td>
+                    <td class="text-center">{{ contador + i + 1 }}</td>
+                    <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
+                    <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+                    <td class="text-center"> {{ coex.hora}} </td>
+                    <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
 
                   </tr>
                 </tbody>
@@ -81,263 +336,11 @@
             </div>
           </div>
         </div>
-
-        <!-- Segundo contenedor Pediatría -->
-        <div class="container-fluid">
-          <h4 class="text-center">{{ 2 | enumEspecialidad }}</h4>
-          <div class="table-responsive">
-            <!-- Tabla de Pediatría -->
-            <table class="table table-hover table-auto" *ngIf="consultasPedia.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-light text-center" scope="col"></th>
-                  <th class="bg-light text-center" scope="col">No.</th>
-                  <th class="bg-light text-center" scope="col">Expediente</th>
-                  <th class="bg-light text-center" scope="col">Nombre</th>
-                  <th class="bg-light text-center" scope="col" >Hora</th>
-                  <th class="bg-light text-center" scope="col" >Recepción</th>
-
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let coex of consultasPedia; let i = index">
-                  <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16" fill="currentColor"
-                      class="bi bi-grip-vertical" viewBox="0 0 16 16">
-                    <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-                    0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-                    3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-                    1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg></td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                  <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}}  </td>
-                  <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-                  <td class="text-center"> {{ coex.hora}} </td>
-                  <td class="text-center form-switch"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" (click)="changeRecepcion(coex.id)"></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Tercer contenedor Ginecología -->
-        <div class="container-fluid">
-          <h4 class="text-center">{{ 3 | enumEspecialidad }}</h4>
-          <div class="table-responsive">
-            <!-- Tabla de Ginecología -->
-            <table class="table table-hover table-auto" *ngIf="consultasGine.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-light text-center" scope="col"></th>
-                  <th class="bg-light text-center" scope="col">No.</th>
-                  <th class="bg-light text-center" scope="col">Expediente</th>
-                  <th class="bg-light text-center" scope="col">Nombre</th>
-                  <th class="bg-light text-center" scope="col" >Hora</th>
-                  <th class="bg-light text-center" scope="col" >Recepción</th>
-
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let coex of consultasGine; let i = index">
-                  <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16" fill="currentColor"
-                      class="bi bi-grip-vertical" viewBox="0 0 16 16">
-                    <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-                    0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-                    3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-                    1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg></td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                  <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
-                  <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-                  <td class="text-center"> {{ coex.hora}} </td>
-                  <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
-
-                </tr>
-              </tbody>
-            </table>
-
-          </div>
-        </div>
-
-        <!-- Cuarto contenedor Cirugía -->
-        <div class="container-fluid">
-          <h4 class="text-center">{{ 4 | enumEspecialidad }}</h4>
-          <div class="table-responsive">
-            <!-- Tabla de Cirugía -->
-            <table class="table table-hover table-auto" *ngIf="consultasCiru.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-light text-center" scope="col"></th>
-                  <th class="bg-light text-center" scope="col">No.</th>
-                  <th class="bg-light text-center" scope="col">Expediente</th>
-                  <th class="bg-light text-center" scope="col">Nombre</th>
-                  <th class="bg-light text-center" scope="col" >Hora</th>
-                  <th class="bg-light text-center" scope="col" >Recepción</th>
-
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let coex of consultasCiru; let i = index">
-                  <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16" fill="currentColor"
-                      class="bi bi-grip-vertical" viewBox="0 0 16 16">
-                    <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-                    0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-                    3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-                    1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg></td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                  <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
-                  <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-                  <td class="text-center"> {{ coex.hora}} </td>
-                  <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Quinto contenedor Trauma -->
-        <div class="container-fluid">
-          <h4 class="text-center">{{ 5 | enumEspecialidad }}</h4>
-          <div class="table-responsive">
-            <!-- Tabla de Trauma -->
-            <table class="table table-hover table-auto" *ngIf="consultasTrauma.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-light text-center" scope="col"></th>
-                  <th class="bg-light text-center" scope="col">No.</th>
-                  <th class="bg-light text-center" scope="col">Expediente</th>
-                  <th class="bg-light text-center" scope="col">Nombre</th>
-                  <th class="bg-light text-center" scope="col" >Hora</th>
-                  <th class="bg-light text-center" scope="col" >Recepción</th>
-
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let coex of consultasTrauma; let i = index">
-                  <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16" fill="currentColor"
-                      class="bi bi-grip-vertical" viewBox="0 0 16 16">
-                    <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-                    0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-                    3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-                    1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg></td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                  <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
-                  <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-                  <td class="text-center"> {{ coex.hora}} </td>
-                  <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Sexto contenedor Psicologia -->
-        <div class="container-fluid">
-          <h4 class="text-center">{{ 6 | enumEspecialidad }}</h4>
-          <div class="table-responsive">
-            <!-- Tabla de Psicología -->
-            <table class="table table-hover table-auto" *ngIf="consultasPsico.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-light text-center" scope="col"></th>
-                  <th class="bg-light text-center" scope="col">No.</th>
-                  <th class="bg-light text-center" scope="col">Expediente</th>
-                  <th class="bg-light text-center" scope="col">Nombre</th>
-                  <th class="bg-light text-center" scope="col" >Hora</th>
-                  <th class="bg-light text-center" scope="col" >Recepción</th>
-
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let coex of consultasPsico; let i = index">
-                  <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16" fill="currentColor"
-                      class="bi bi-grip-vertical" viewBox="0 0 16 16">
-                    <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-                    0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-                    3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-                    1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg></td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                  <td class="text-center" [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
-                  <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-                  <td class="text-center"> {{ coex.hora}} </td>
-                  <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Septimo contenedor Nutricion -->
-        <div class="container-fluid">
-          <h4 class="text-center">{{ 7 | enumEspecialidad }}</h4>
-          <div class="table-responsive">
-            <!-- Tabla de Nutrición -->
-            <table class="table table-hover table-auto" *ngIf="consultasNutri.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-light text-center" scope="col"></th>
-                  <th class="bg-light text-center" scope="col">No.</th>
-                  <th class="bg-light text-center" scope="col">Expediente</th>
-                  <th class="bg-light text-center" scope="col">Nombre</th>
-                  <th class="bg-light text-center" scope="col" >Hora</th>
-                  <th class="bg-light text-center" scope="col" >Recepción</th>
-
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let coex of consultasNutri; let i = index">
-                  <td class="text-center" (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16" fill="currentColor"
-                      class="bi bi-grip-vertical" viewBox="0 0 16 16">
-                    <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-                    0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-                    3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-                    1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg></td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                  <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}} </td>
-                  <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-                  <td class="text-center"> {{ coex.hora}} </td>
-                  <td class="text-center form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="modal" id="opciones">
   <div class="modal-dialog modal-lg" role="document">

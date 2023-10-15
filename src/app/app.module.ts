@@ -17,7 +17,6 @@ import { FormatoFechaPipe } from './pipe/formatoFecha.pipe';
 import { ColorizePipe } from './pipe/colorize.pipe';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { GenderPipe } from './pipe/genero.pipe';
-
 import { DpiDirective } from './Directive/dpi.directive';
 import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
@@ -50,9 +49,11 @@ import { ShowModalDirective } from './Directive/show-modal.directive';
 import { FormCoexComponent } from './consultas/coex/form-coex/form-coex.component';
 import { TablaEmergenciaComponent } from './consultas/emergencias/tablaEmergencia/tablaEmergencia.component';
 import { HClinicaComponent } from './consultas/coex/hClinica/hClinica.component';
-
-
-
+import { FormIngresoComponent } from './consultas/ingresos/formIngreso/formIngreso.component';
+import { IngresosComponent } from './consultas/ingresos/ingresos/ingresos.component';
+import { IngresoTablaComponent } from './consultas/ingresos/ingresoTabla/ingresoTabla.component';
+import { NuevoIngresoComponent } from './consultas/ingresos/nuevoIngreso/nuevoIngreso.component';
+import { TabPacienteComponent } from './consultas/ingresos/tabPaciente/tabPaciente.component';
 
 
 
@@ -76,7 +77,12 @@ const routes: Routes = [
   { path: 'nuevaConsulta', component: NuevaConsultaComponent },
   { path: 'edit/coex/:id', component: FormCoexComponent },
   { path: 'tablaEmergencia', component: TablaEmergenciaComponent },
-  { path: 'hClinica/view/:id', component: HClinicaComponent},
+  { path: 'hClinica/view/:id', component: HClinicaComponent },
+  { path: 'ingresos', component: IngresosComponent },
+  { path: 'ingreso', component: FormIngresoComponent },
+  { path: 'ingreso/edit/:id', component: FormIngresoComponent },
+  { path: 'ingresoTabla', component: IngresoTablaComponent},
+
 
 
 
@@ -133,6 +139,11 @@ const routes: Routes = [
     TablaEmergenciaComponent,
     HClinicaComponent,
     GenderPipe,
+    IngresosComponent,
+    FormIngresoComponent,
+    IngresoTablaComponent,
+    NuevoIngresoComponent,
+    TabPacienteComponent,
 
 
 
@@ -164,7 +175,13 @@ const routes: Routes = [
       { path: 'nuevaConsulta', component: NuevaConsultaComponent },
       { path: 'edit/coex/:id', component: FormCoexComponent },
       { path: 'tablaEmergencia', component: TablaEmergenciaComponent },
-      { path: 'hClinica/view/:id', component: HClinicaComponent},
+      { path: 'hClinica/view/:id', component: HClinicaComponent },
+      { path: 'ingresos', component: IngresosComponent },
+      { path: 'ingreso', component: FormIngresoComponent },
+      { path: 'ingreso/edit/:id', component: FormIngresoComponent },
+      { path: 'ingresoTabla', component: IngresoTablaComponent},
+
+
 
 
     ]),

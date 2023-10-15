@@ -1,16 +1,8 @@
-
-
-
-
-
-
-
-
 /* Estilo de la tabla */
 .console-table {
-  background-color:rgb(253, 253, 255);
+  background-color:rgb(247, 248, 251);
   color: #110606;
-  border: 2px solid rgb(253, 255, 251);
+  border: 2px solid rgb(253, 251, 251);
   border-radius: 12px;
   padding: 5px;
   border-collapse: collapse;
@@ -66,4 +58,3 @@
  font: bolder;
 
 }
-

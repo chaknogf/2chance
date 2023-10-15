@@ -16,7 +16,8 @@ export interface Iconcultas {
   acompa: string | null;
   parente: number | null
   telefono: string| null;
-  especialidad: number| null;
+  especialidad: number | null;
+  servicio: number | null;
   recepcion: boolean| null;
   fecha_recepcion: string| null;
   fecha_egreso: string| null;

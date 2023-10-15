@@ -61,6 +61,7 @@ export class CoexComponent implements OnInit {
     parente: null,
     telefono: null,
     especialidad: 0,
+    servicio: null,
     recepcion: false,
     fecha_recepcion: null,
     fecha_egreso: null,

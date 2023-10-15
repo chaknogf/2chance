@@ -1,3 +1,4 @@
+
 export interface Especialidad {
   value: number;
   label: string;
@@ -14,6 +15,31 @@ export const servicio: Especialidad[] = [
 
 ]
 
+export interface Servicios {
+  value: number;
+  label: string;
+}
+export const servicios: Servicios[] = [
+  { value: 1, label: 'SOP' },
+  { value: 2, label: 'Maternidad' },
+  { value: 3, label: 'Ginecologia' },
+  { value: 4, label: 'Cirugia' },
+  { value: 5, label: 'Cirugia pedia' },
+  { value: 6, label: 'Trauma' },
+  { value: 7, label: 'Trauma pedia' },
+  { value: 8, label: 'CRN' },
+  { value: 9, label: 'Pediatria' },
+  { value: 10, label: 'RN' },
+  { value: 11, label: 'Neonatos' },
+  { value: 12, label: 'Medicina hombres' },
+  { value: 13, label: 'Medicina mujeres' },
+  { value: 14, label: 'vsvs' },
+  { value: 15, label: 'Covid' },
+
+
+
+
+]
 
 
 

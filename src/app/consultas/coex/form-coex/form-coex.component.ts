@@ -54,6 +54,7 @@ export class FormCoexComponent implements OnInit {
     parente: null,
     telefono: null,
     especialidad: 0,
+    servicio: null,
     recepcion: false,
     fecha_recepcion: this.fechaRecepcion,
     fecha_egreso: null,

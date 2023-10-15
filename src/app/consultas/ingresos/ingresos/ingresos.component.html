@@ -1,0 +1,37 @@
+<div class="mt-3 ">
+  <h2 class="text-center">Registro de Ingresos Hospitalarios</h2>
+
+
+
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-md-6">
+          <nuevoIngreso></nuevoIngreso>
+        </div>
+        <div class="col-md-6">
+          <!-- Tabla de emergencias -->
+          <ingresoTabla></ingresoTabla>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+<div class="modal" id="opciones">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+
+      <button class="btn btn-info" data-bs-dismiss="modal" [routerLink]="['/ingreso/edit', idCopiado]" >Editar Consulta</button>
+
+      <button class="btn btn-black" data-bs-dismiss="modal">Cerrar</button>
+
+
+    </div>
+  </div>
+</div>

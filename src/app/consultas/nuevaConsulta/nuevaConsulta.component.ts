@@ -45,7 +45,8 @@ export class NuevaConsultaComponent implements OnInit {
    acompa: null,
    parente: null,
    telefono: "",
-   especialidad: 0,
+    especialidad: 0,
+   servicio: null,
    recepcion: false,
    fecha_recepcion: "",
    fecha_egreso: "",
@@ -59,8 +60,14 @@ export class NuevaConsultaComponent implements OnInit {
     servicio: servicio
   }
 
-  constructor(private modalService: NgbModal,private ConsultasService: ConsultasService, private PacientesService: PacientesService, private router: Router,
-    private activateRoute: ActivatedRoute, private formBuilder: FormBuilder,private fechaService: FechaService ) { }
+  constructor(
+    private modalService: NgbModal,
+    private ConsultasService: ConsultasService,
+    private PacientesService: PacientesService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private fechaService: FechaService) { }
 
   ngOnInit() {
 

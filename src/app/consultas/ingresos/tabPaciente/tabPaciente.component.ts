@@ -1,21 +1,26 @@
-import { PageReloadService } from './../../services/PageReload.service';
+import { servicios } from './../../../enums/enums';
+import { PageReloadService } from '../../../services/PageReload.service';
 import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IenumEspecialidad } from 'src/app/models/Ienum';
+import { IenumEspecialidad, IenumServicios } from 'src/app/models/Ienum';
+
 import { servicio } from 'src/app/enums/enums';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { FormBuilder } from '@angular/forms';
 
+
 @Component({
-  selector: 'tabla',
-  templateUrl: './tabla.component.html',
-  styleUrls: ['./tabla.component.css']
+  selector: 'tabPaciente',
+  templateUrl: './tabPaciente.component.html',
+  styleUrls: ['./tabPaciente.component.css']
 })
-export class TablaComponent implements OnInit {
+export class TabPacienteComponent implements OnInit {
+
+
   public pacientes: Ipaciente[] = []; // Registros a mostrar en la página actual
   public filteredPacientes: Ipaciente[] = [];
   public searchText: string = '';
@@ -34,12 +39,15 @@ export class TablaComponent implements OnInit {
   idCopiado: number = 0;
   mostrarModal = false;
 
-
-
   e: IenumEspecialidad = {
-    servicio: servicio
+    servicio: servicio,
+
   }
-  coex: Iconcultas = {
+  s: IenumServicios = {
+    servicios: servicios,
+  }
+
+  ingreso: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
     expediente: null,
@@ -60,7 +68,7 @@ export class TablaComponent implements OnInit {
     recepcion: false,
     fecha_recepcion: null,
     fecha_egreso: null,
-    tipo_consulta: 1,
+    tipo_consulta: 2,
     nota: "",
     name: null,
     lastname: null,
@@ -103,7 +111,7 @@ export class TablaComponent implements OnInit {
       this.ConsultasService.Consulta(params['id'])
         .subscribe(
           data => {
-            this.coex = data;
+            this.ingreso = data;
             this.new = true;
           },
           error => console.log(error)
@@ -120,13 +128,13 @@ export class TablaComponent implements OnInit {
     const valorCelda = this.edadCell.nativeElement.textContent;
     console.log('Valor copiado:', valorCelda);
     //this.edadPaciente.emit(edad);
-    this.coex.expediente = exp;
-    this.coex.nombres = nombre;
-    this.coex.apellidos = apellido;
-    this.coex.nacimiento = nacimiento;
-    this.coex.fecha_consulta = this.fechaActual;
-    this.coex.hora = this.horaActual;
-    this.coex.edad = valorCelda;
+    this.ingreso.expediente = exp;
+    this.ingreso.nombres = nombre;
+    this.ingreso.apellidos = apellido;
+    this.ingreso.nacimiento = nacimiento;
+    this.ingreso.fecha_consulta = this.fechaActual;
+    this.ingreso.hora = this.horaActual;
+    this.ingreso.edad = valorCelda;
 
     // console.log(exp)
   }
@@ -236,8 +244,8 @@ export class TablaComponent implements OnInit {
     }
   }
 
-  registrarCoex(): void {
-    this.ConsultasService.crear(this.coex).subscribe(
+  registrarIngreso(): void {
+    this.ConsultasService.crear(this.ingreso).subscribe(
       (response) => {
         // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta creada con éxito', response);
@@ -281,4 +289,3 @@ export class TablaComponent implements OnInit {
 
 
 }
-

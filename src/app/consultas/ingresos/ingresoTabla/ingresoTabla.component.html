@@ -1,0 +1,55 @@
+
+<div class="justify-content-center console-table">
+  <div class="justify-content-between">
+    <form class="d-flex justify-content-between align-items-center" autocomplete="off">
+      <input type="text" class="form-control bg-opacity-75 w-20 text-center" name="hojaBuscar" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+      <input type="text" class="form-control bg-opacity-75 w-20 text-center" name="expedienteBuscar" placeholder="exp" [(ngModel)]="expedienteBuscar" />
+      <input type="date" class="form-control bg-opacity-75 w-20 text-center" name="fechaBuscar" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+      <input type="text" class="form-control rounded w-20 text-capitalize mx-1" placeholder="nombreBuscar" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control rounded w-20 text-capitalize mx-1" placeholder="apellidoBuscar" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="form-control rounded w-20 mx-1" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+      <button type="submit" class="btn btn-outline" (click)="filtro()" >buscar</button>
+      <button type="button" class="btn btn-outline" (click)="limpiarInput()">x</button>
+    </form>
+
+  </div>
+
+
+<div class="d-5">
+  <table class="table console-table" >
+    <thead>
+      <tr>
+        <th class="text-center">Exp</th>
+        <th class="text-center">Fecha</th>
+        <th class="text-center">Hora</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Fecha Egreso</th>
+        <th class="text-center">id</th>
+
+      </tr>
+    </thead>
+    <tbody class="">
+      <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
+      <tr *ngFor="let ingreso of resumen">
+        <td class="text-center font-weight-bold text-primary h5" [routerLink]="['/ingreso/edit', ingreso.id]"> {{ingreso.expediente}} </td>
+        <td class="text-center"> {{ingreso.fecha_consulta}} </td>
+        <td class="text-center"> {{ingreso.hora}} </td>
+        <td class="text-center"> {{ingreso.nombres}} {{ingreso.apellidos}} </td>
+        <td class="text-center"> {{ingreso.fecha_egreso}} </td>
+        <td class="text-center">{{ingreso.id}}</td>
+      </tr>
+    </tbody>
+      </table>
+  </div>
+
+
+ <!-- Paginación -->
+    <div class="d-flex justify-content-center pagination mt-3">
+      <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
+      </div>
+    </div>
+
