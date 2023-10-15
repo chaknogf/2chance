@@ -1,9 +1,9 @@
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PacientesService } from 'src/app/services/pacientes.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
-import { FechaService } from 'src/app/services/fecha.service';
+
+
 
 
 @Component({
@@ -15,6 +15,9 @@ export class TablaEmergenciaComponent implements OnInit {
 
   constructor(
     private ConsultasService: ConsultasService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+
   ) { }
 
   public consultas: Iconcultas[] = [];
@@ -32,11 +35,13 @@ export class TablaEmergenciaComponent implements OnInit {
   public maxdate: string = '';
 
 
+
   ngOnInit() {
     this.emergencias()
     // Obtiene la fecha actual en el formato YYYY-MM-DD
-const currentDate = new Date().toISOString().split('T')[0];
-this.maxdate = currentDate;
+    const currentDate = new Date().toISOString().split('T')[0];
+    this.maxdate = currentDate;
+
   }
 
 

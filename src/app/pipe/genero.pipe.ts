@@ -1,16 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'genero'
+  name: 'sexo'
 })
-export class GeneroPipe implements PipeTransform {
-  transform(valor: string): string {
-    if (valor === 'F') {
+export class GenderPipe implements PipeTransform {
+  transform(value: string): string {
+    if (value === 'F') {
       return 'Femenino';
-    } else if (valor === 'M') {
+    } else if (value === 'M') {
       return 'Masculino';
-    } else {
-      return valor; // Devuelve el valor original si no es 'F' ni 'M'
     }
+    return value; // Devolver el valor original si no es 'F' ni 'M'
   }
 }

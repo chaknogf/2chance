@@ -1,14 +1,27 @@
-<div class="container">
+<button class="btn btn-info no-imprimir" (click)="imprimir()">Imprimir</button>
+
+
+<div id="pdf-content" class="container h-5 imprimir-esto text-dark">
   <div class="d-flex justify-content-center align-items-start">
     <div class="btn btn-primary">HISTORIA CLINICA</div>
   </div>
 
-  <div class="container">
-    <div class="d-flex w-100 justify-content-center">
-        <div class="border border-primary rounded p-2">Fecha de la Consulta: <span class="h5 text-dark">{{ fechaActual | formatoFecha }}</span></div>
-        <div class="border border-primary rounded p-2">Expediente: {{ patient?.expediente }}</div>
+
+  <div class="border border-primary rounded">
+    <div class="d-flex">
+
+      <div class="d-flex border border-primary rounded p-2 w-50 ">Fecha de Consulta:
+        <p class="ms-auto mb-0 mx-5 h5">{{fechaActual | anyToText | formatoFecha}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50 ">Expediente:
+        <p class="ms-auto mb-0 mx-1 h3">{{patient?.expediente}}</p>
+      </div>
     </div>
-</div>
+  </div>
+
+
+
+
 
 
 
@@ -16,9 +29,146 @@
     <div class="btn btn-primary">DATOS DEL PACIENTE</div>
   </div>
 
+  <div class="border border-primary rounded">
+    <div class="d-flex ">
 
-  <div class="container d-flex">
-    <div class="d-flex ">Nombre y Apellido: {{patient?.nombre | anyToText | capitalizeName}} {{patient?.apellido | anyToText | capitalizeName}} </div>
+      <div class="d-flex border border-primary rounded p-2 w-50 ">Nombre y Apellido:
+        <p class="ms-auto mb-0 mx-5 h5">{{patient?.nombre | anyToText | capitalizeName}} {{patient?.apellido | anyToText | capitalizeName}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-15">Sexo:
+        <p class="ms-auto mb-0 mx-1 h5">{{patient?.sexo | anyToText | sexo}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-40">Edad:
+        <p class="ms-auto mb-0 mx-5 h5">{{patient?.nacimiento | anyToNumber | edad}}</p>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="d-flex border border-primary rounded p-2 w-50">Fecha de nacimiento:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.nacimiento | anyToText| formatoFecha}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50">DPI:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.dpi| anyToText | formatoDPI}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50">Tel:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.telefono}}</p>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="d-flex border border-primary rounded p-2 w-50">Dirección:
+        <p class="ms-auto mb-0 mx-2 ">{{patient?.direccion}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-25">Ocupación:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.ocupacion}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-25">Educación:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.educacion}}</p>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="d-flex border border-primary rounded p-2 w-50">Responsable:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.responsable}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50">Parentesco:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.parents}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-start">
+    <div class="btn btn-primary">SIGNOS VITALES</div>
+  </div>
+
+  <div class="d-flex border border-primary rounded">
+    <div class="d-flex border border-primary rounded p-2 w-100 justify-content-between">
+      <p>P/A:</p>
+      <p>FC:</p>
+      <p>FR:</p>
+      <p>T:</p>
+      <p>P:</p>
+      <p>TALLA:</p>
+      <p>SO2:</p>
+      <p></p>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-start">
+    <div class="btn btn-primary">DATOS DE LA CONSULTA</div>
+  </div>
+
+  <div class=" border border-primary rounded ">
+    <div class="d-flex border border-primary rounded p-2 w-100 justify-content-start">
+      <p>Motivo de la consulta:</p>
+    </div>
+    <div class="border border-primary rounded p-2 w-100 justify-content-start">
+      <p class="">Historia Clínica:</p>
+      <p class="p-2"></p>
+    </div>
+
+    <div class="border border-primary rounded p-2 w-100 justify-content-start">
+      <p class=" mb-0">Antecedentes:</p>
+      <div class="d-flex">
+        <div class="mb-0 w-50 p-2 mx-0">
+          <p class="mb-0">Mx:</p>
+          <p class="mb-0">Qx:</p>
+          <p class="mb-0">Tx:</p>
+          <p class="mb-0">Alx:</p>
+        </div>
+        <div class=" mx-3 w-50 d-flex ">Obstetricos - ->
+
+          <p class="mx-3">G:</p>
+          <p class="mx-3">P:</p>
+          <p class="mx-3">Ab:</p>
+          <p class="mx-3">Hv:</p>
+          <p class="mx-3">Hm:</p>
+          <p class="mx-3">Fur:</p>
+          <p class="mx-3">Menarquia:</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start">
+      <p class="mb-5 ">Examén físico:</p>
+      <p class="p-3"></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start">
+      <p class="mb-5">Diagnósticos:</p>
+      <p class="p-1"></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start">
+      <p class="mb-5">Tratamiento:</p>
+      <p class="p-1"></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start">
+      <p class="mb-5">Estudios Complementarios:</p>
+      <p class="p-2"></p>
+    </div>
+
+
+
+
+  </div>
+
+  <div class="d-flex justify-content-center align-items-start">
+    <div class="btn btn-primary">SEGUIMIENTO DE CASO</div>
+  </div>
+
+  <div class="border border-primary rounded">
+    <div class="border border-primary rounded p-1 w-100 justify-content-start"> fecha:
+      <p class="mb-5 mt-2">Datos subjetivos:</p>
+      <p class="p-2"></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start">
+      <p class="mb-5">Datos Objetivos:</p>
+      <p class="p-2"></p>
+    </div>
   </div>
 
 

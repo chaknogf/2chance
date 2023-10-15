@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="container-fluid">
+<div class="container-fluid contenedor">
   <div class="row">
     <div class="col-md-6">
       <!-- Contenido del formulario -->
@@ -26,7 +26,7 @@
           <input type="text" class="form-control" id="hoja_emergencia" name="hoja_emergencia" [(ngModel)]="emergencia.hoja_emergencia">
         </div>
 
-        <div class="form-group d-flex mt-3">
+        <div class="form-group d-flex mt-3 align-items-center">
           <label for="fecha">Fecha:</label>
           <input type="date" class="form-control w-50 mx-2" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
           <label for="hora">Hora:</label>
@@ -39,33 +39,35 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="apellidos">Apellidos:</label>
           <input type="text" class="form-control text-uppercase" id="apellidos" name="apellidos" placeholder="apellidos" [(ngModel)]="emergencia.apellidos">
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="nombres">Nombres:</label>
           <input type="text" class="form-control text-uppercase" id="nombres" name="nombres" placeholder="nombres" [(ngModel)]="emergencia.nombres">
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="nacimiento">Fecha de nacimiento:</label>
-          <input type="date" class="form-control w-50" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
-          <button class="btn btn-success" (click)="calcularedad()">Calcular edad</button>
-          <span></span>
+          <div class="d-flex">
+            <input type="date" class="form-control w-50" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
+            <button class="btn btn-success mx-2" (click)="calcularedad()">Calcular edad</button>
+            <span></span>
+          </div>
         </div>
 
-        <div class="form-group d-flex mt-3 justify-content-center">
+        <div class="form-group d-flex mt-3 justify-content-center align-items-center">
           <label for="edad">Edad:</label>
-          <input type="text" class="form-control w-25 mx-1" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
-          <input type="text" class="form-control w-25 mx-1" id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
-          <input type="text" class="form-control w-25 mx-1" id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
+          <input type="text" class="form-control w-15 mx-1" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
+          <input type="text" class="form-control w-15 mx-1" id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
+          <input type="text" class="form-control w-15 mx-1" id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
 
-          <button class="btn btn-success" (click)="calcularnacimiento()">Calcular Nacimiento</button>
+          <button class="btn btn-success w-40" (click)="calcularNacimiento()">Calcular Nacimiento</button>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="sexo">Sexo:</label>
           <select id="sexo" class="form-control bg-light bg-opacity-25" [(ngModel)]="emergencia.sexo" name="sexo" autofocus>
             <option value=""></option>
@@ -74,44 +76,44 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="telefono">Teléfono:</label>
           <input type="text" id="telefono" name="telefono" class="form-control bg-light bg-opacity-25" [ngModel]="emergencia.telefono"  placeholder="telefono" autofocus espaciosNumeros>
           <span></span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="DPI/CUI de paciente">DPI/CUI:</label>
           <input type="text" class="form-control" id="dpi" name="dpi" placeholder="DPI/CUI" [(ngModel)]="emergencia.dpi" appDpi >
           <span></span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="direccion">Dirección:</label>
-          <input type="text" class="form-control" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="emergencia.direccion" >
+          <input type="text" class="form-control text-uppercase" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="emergencia.direccion" >
           <span></span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="acompañante">Acompañante:</label>
-          <input type="text" class="form-control" id="acompañante" name="acompañante" placeholder="acompañante" [(ngModel)]="emergencia.acompa" >
+          <input type="text" class="form-control text-uppercase" id="acompañante" name="acompañante" placeholder="acompañante"  [(ngModel)]="emergencia.acompa" >
           <span></span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="aprentesco">Parentesco:</label>
           <select id="parentesco" class="form-control bg-light bg-opacity-25" [(ngModel)]="emergencia.parente" name="parente" autofocus>
             <option  *ngFor="let option of enum.parents" [value]="option.value">{{option.label}}</option>
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="nota">Nota:</label>
-          <input type="text" class="form-control" id="nota" name="nota" placeholder="nota" [(ngModel)]="emergencia.nota" >
+          <input type="text" class="form-control " id="nota" name="nota" placeholder="nota" [(ngModel)]="emergencia.nota" >
           <span></span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="nota">Expediente:</label>
           <input type="text" class="form-control" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="emergencia.expediente" >
           <span></span>
@@ -128,15 +130,19 @@
   </div>
 
   <!-- Botones de guardar y eliminar -->
-  <div class="d-flex justify-content-between align-items-center py-3 px-2">
+  <div class="d-flex justify-content-start mx-3 ml-3 align-items-center py-3 px-2">
     <div>
-      <button type="submit" class="btn btn-primary" (click)="registrarEmergencia()">Guardar</button>
+      <button type="submit" class="btn btn-primary" (click)="edit ? editar() :registrarEmergencia()">Guardar</button>
     </div>
-    <div>
+    <div class="mx-3">
       <button class="btn btn-danger">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-          <!-- Icono de eliminación -->
-        </svg>
+          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58
+          0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59
+          0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0
+          0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1
+          .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+          </svg>
       </button>
     </div>
   </div>
@@ -145,10 +151,10 @@
 
 
 <div class="modal">
-  <input type="text" class="form-control w-25 mx-1" id="edad" name="edad" placeholder="dias" [(ngModel)]="emergencia.edad" disabled="">
-  <input type="sumit" class="form-control rounded text-capitalize mx-1 " placeholder="nombre" name="nombreBuscar"  [(ngModel)]="emergencia.nombres" disabled="">
-  <input type="text" class="form-control  rounded text-capitalize mx-1" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="emergencia.apellidos" disabled="">
-  <input type="text" class="form-control rounded mx-1" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="emergencia.dpi"disabled="">
+  <input type="text" class="form-control w-20 mx-1" id="edad" name="edad" placeholder="dias" [(ngModel)]="emergencia.edad" disabled="">
+  <input type="sumit" class="form-control w-20 rounded text-capitalize mx-1 " placeholder="nombre" name="nombreBuscar"  [(ngModel)]="emergencia.nombres" disabled="">
+  <input type="text" class="form-control w-20 rounded text-capitalize mx-1" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="emergencia.apellidos" disabled="">
+  <input type="text" class="form-control w-20 rounded mx-1" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="emergencia.dpi"disabled="">
 
 
 </div>

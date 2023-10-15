@@ -27,7 +27,10 @@ export class EmergenciasComponent implements OnInit {
 
   ) {
 
-
+     // Calcula la fecha máxima (puedes ajustar esto según tus necesidades)
+    const fechaActual = new Date();
+    fechaActual.setFullYear(fechaActual.getFullYear() - 1); // Restar un año
+    this.maxdate = fechaActual.toISOString().split('T')[0];
   }
 
 
@@ -45,6 +48,7 @@ export class EmergenciasComponent implements OnInit {
   public edadDias: number = 0;
   public selectdate: string = '';
   public maxdate: string = '';
+  edit: boolean = false;
 
   emergencia: Iconcultas = {
     id: 0,
@@ -91,8 +95,23 @@ export class EmergenciasComponent implements OnInit {
 
   ngOnInit() {
 // Obtiene la fecha actual en el formato YYYY-MM-DD
-const currentDate = new Date().toISOString().split('T')[0];
-this.maxdate = currentDate;
+    const currentDate = new Date().toISOString().split('T')[0];
+    this.maxdate = currentDate;
+
+     // Obtener los parámetros de la ruta
+     const params = this.activateRoute.snapshot.params;
+
+     // Verificar si se proporcionó un ID de paciente
+     if (params['id']) {
+       this.ConsultasService.hoja(params['id'])
+         .subscribe(
+           data => {
+             this.emergencia = data;
+             this.edit = true;
+           },
+           error => console.log(error)
+         )
+     }
 
 
   }
@@ -104,25 +123,19 @@ this.maxdate = currentDate;
     this.emergencia.edad = `${this.edadA} años ${this.edadMeses} meses ${this.edadDias} dias`;
   }
 
-  calcularnacimiento() {
-    // Verificar que tengamos valores válidos en años, meses y días
+  calcularNacimiento() {
     if (this.edadA >= 0 && this.edadMeses >= 0 && this.edadDias >= 0) {
-      const hoy = new Date(); // Fecha actual
+      const hoy = new Date();
       const fechaNacimiento = new Date(hoy);
-
-      // Restar años, meses y días a la fecha actual
       fechaNacimiento.setFullYear(hoy.getFullYear() - this.edadA);
       fechaNacimiento.setMonth(hoy.getMonth() - this.edadMeses);
       fechaNacimiento.setDate(hoy.getDate() - this.edadDias);
 
-      // Asignar 'fechaNacimiento' a 'this.emergencia.nacimiento'
-      this.emergencia.nacimiento = fechaNacimiento.toISOString(); // Esto asigna la fecha como una cadena ISO (ejemplo: '2023-10-23T00:00:00.000Z')
+      this.emergencia.nacimiento = fechaNacimiento.toISOString().split('T')[0];
     } else {
-      // Manejar un error o mostrar un mensaje de advertencia si los valores no son válidos
       console.error("Valores de edad no válidos");
     }
   }
-
 
 
   registrarEmergencia(): void {
@@ -178,6 +191,16 @@ this.maxdate = currentDate;
     const numericAndSpaceValue = inputValue.replace(/[^\d\s]/g, '');
     const formattedValue = numericAndSpaceValue.replace(/(\d{4})(?=\d)/g, '$1 ');
     this.emergencia.telefono = formattedValue;
+
+  }
+
+  editar() {
+    // Editar el paciente existente
+    this.ConsultasService.editarConsulta(this.emergencia.id, this.emergencia)
+      .subscribe(data => {
+        this.emergencia = data;
+        this.router.navigate(['/emergencias']);
+      })
   }
 
 

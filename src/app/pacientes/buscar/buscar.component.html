@@ -22,7 +22,7 @@
             <span class=" f-resaltado">DPI: </span> {{patient?.dpi |anyToText}} <br>
             <span class=" f-resaltado">Pasaporte: </span> {{patient?.pasaporte}} <br>
 
-            <span class=" f-resaltado">Sexo: </span> {{patient?.sexo | anyToText |genero}} <br>
+            <span class=" f-resaltado">Sexo: </span> {{patient?.sexo | anyToText |sexo}} <br>
             <span class=" f-resaltado">Fecha de Nacimiento: </span>  {{patient?.nacimiento | anyToText | formatoFecha}} <br>
             <span class=" f-resaltado">Nacionalidad: </span> {{patient?.nacionalidad| anyToNumber |enumNacion}}  <br>
             <span class=" f-resaltado">Lugar de nacimiento: </span>  {{patient?.lugar_nacimiento | anyToNumber | enumMunicipio}} <br>

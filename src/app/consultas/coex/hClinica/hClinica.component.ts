@@ -4,6 +4,8 @@ import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { FechaService } from 'src/app/services/fecha.service';
 
+
+
 @Component({
   selector: 'hClinica',
   templateUrl: './hClinica.component.html',
@@ -30,13 +32,22 @@ export class HClinicaComponent implements OnInit {
       const idParam = params.get('id');
       if (idParam !== null) {
         const id = +idParam;
-        this.pacientesService.getIdPaciente(id).subscribe(data => {
+        this.pacientesService.getPaciente(id).subscribe(data => {
           this.patient = data;
           this.detalleVisible = true;
         });
       }
     });
+
+    this.imprimir()
   }
+
+  imprimir() {
+    window.print();
+  }
+
+
+
 
 
 }

@@ -16,7 +16,8 @@ import { WeekdayPipe } from './pipe/weekDay.pipe';
 import { FormatoFechaPipe } from './pipe/formatoFecha.pipe';
 import { ColorizePipe } from './pipe/colorize.pipe';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
-import { GeneroPipe } from './pipe/genero.pipe';
+import { GenderPipe } from './pipe/genero.pipe';
+
 import { DpiDirective } from './Directive/dpi.directive';
 import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
@@ -102,7 +103,6 @@ const routes: Routes = [
     FormCitaComponent,
     DiaDeSemana,
     FormatoFechaPipe,
-    GeneroPipe,
     EnumEspecialidadPipe,
     EnumNacionalidadPipe,
     EnumParentescoPipe,
@@ -132,6 +132,7 @@ const routes: Routes = [
     DpiDirective,
     TablaEmergenciaComponent,
     HClinicaComponent,
+    GenderPipe,
 
 
 
@@ -156,6 +157,7 @@ const routes: Routes = [
       { path: 'agendar', component: FormCitaComponent },
       { path: 'agenda/edit/:id', component: FormCitaComponent },
       { path: 'emergencias', component: EmergenciasComponent },
+      { path: 'emergencias/edit/:id', component: EmergenciasComponent },
       { path: 'coex', component: CoexComponent },
       { path: 'coex/edit/:id', component: CoexComponent },
       { path: 'tablaP', component: TablaComponent },
