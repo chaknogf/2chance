@@ -1,7 +1,11 @@
 import { ConsultasService } from 'src/app/services/consultas.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
+import { PageReloadService } from '../../../services/PageReload.service';
+import { FechaService } from 'src/app/services/fecha.service';
+import {  Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 
 @Component({
   selector: 'ingresoTabla',
@@ -14,9 +18,12 @@ export class IngresoTablaComponent implements OnInit {
     private ConsultasService: ConsultasService,
     private router: Router,
     private activateRoute: ActivatedRoute,
+    private FechaService: FechaService,
+    private PageReloadService: PageReloadService
 
   ) { }
 
+  @Output() idConsulta = new EventEmitter<number>();
   public consultas: Iconcultas[] = [];
   public resumen: Iconcultas[] = [];
   public searchText: string = '';
@@ -30,8 +37,49 @@ export class IngresoTablaComponent implements OnInit {
   public fechaBuscar: any = '';
   public selectdate: string = '';
   public maxdate: string = '';
+  public idCopiado: number = 0;
 
 
+  ingreso: Iconcultas = {
+    id: 0,
+    hoja_emergencia: null,
+    expediente: null,
+    fecha_consulta: '',
+    hora: '',
+    nombres: "",
+    apellidos: "",
+    nacimiento: "",
+    edad: "",
+    sexo: "",
+    dpi: null,
+    direccion: "",
+    acompa: null,
+    parente: null,
+    telefono: null,
+    especialidad: 0,
+    servicio: null,
+    recepcion: false,
+    fecha_recepcion: null,
+    fecha_egreso: null,
+    tipo_consulta: 1,
+    nota: "",
+    name: null,
+    lastname: null,
+
+
+   }
+
+   e: Ienum = {
+    municipio: municipio,
+    nation: nacionalidades,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
+    servicios: servicios,
+    servicio: servicio
+  }
 
   ngOnInit() {
     this.ingresos()
@@ -197,5 +245,29 @@ export class IngresoTablaComponent implements OnInit {
       this.totalRegistros = 0;
     }
   }
+
+  eliminar(id: number) {
+    this.ConsultasService.eliminar(id)
+      .subscribe(data => {
+        this.ingreso = data;
+        this.reloadPage();
+
+      })
+  }
+
+
+  copiarId(id: number) {
+    this.idConsulta.emit(id);
+    this.idCopiado = id;
+
+    console.log(id, this.idCopiado)
+  }
+
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
+  }
+
+
 
 }

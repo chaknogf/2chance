@@ -1,12 +1,10 @@
-import { servicios } from './../../../enums/enums';
 import { PageReloadService } from '../../../services/PageReload.service';
 import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IenumEspecialidad, IenumServicios } from 'src/app/models/Ienum';
-
-import { servicio } from 'src/app/enums/enums';
+import {  Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
@@ -18,9 +16,7 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './tabPaciente.component.html',
   styleUrls: ['./tabPaciente.component.css']
 })
-export class TabPacienteComponent implements OnInit {
-
-
+export class TabPacienteComponent implements OnInit  {
   public pacientes: Ipaciente[] = []; // Registros a mostrar en la página actual
   public filteredPacientes: Ipaciente[] = [];
   public searchText: string = '';
@@ -39,14 +35,19 @@ export class TabPacienteComponent implements OnInit {
   idCopiado: number = 0;
   mostrarModal = false;
 
-  e: IenumEspecialidad = {
-    servicio: servicio,
 
-  }
-  s: IenumServicios = {
+
+  e: Ienum = {
+    municipio: municipio,
+    nation: nacionalidades,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
     servicios: servicios,
+    servicio: servicio
   }
-
   ingreso: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
@@ -223,6 +224,9 @@ export class TabPacienteComponent implements OnInit {
     this.apellidoBuscar = '';
     this.dpiBuscar = '';
     this.filteredPacientes = [];
+    this.ingreso.servicio = null;
+    this.ingreso.especialidad = null;
+
      // Obtén todos los pacientes nuevamente
   }
 
@@ -289,3 +293,4 @@ export class TabPacienteComponent implements OnInit {
 
 
 }
+

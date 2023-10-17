@@ -1,8 +1,10 @@
+import { PageReloadService } from './../../../services/PageReload.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { FechaService } from 'src/app/services/fecha.service';
+
 
 
 
@@ -21,6 +23,7 @@ export class HClinicaComponent implements OnInit {
     private pacientesService: PacientesService,
     private route: ActivatedRoute,
     private fechaService: FechaService,
+    private PageReloadService:PageReloadService,
 
   ) { }
 
@@ -39,10 +42,15 @@ export class HClinicaComponent implements OnInit {
       }
     });
 
-    this.imprimir()
+
+  }
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
   }
 
   imprimir() {
+
     window.print();
   }
 

@@ -3,8 +3,8 @@ import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRe
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IenumEspecialidad } from 'src/app/models/Ienum';
-import { servicio } from 'src/app/enums/enums';
+import {  Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
@@ -36,7 +36,15 @@ export class TablaComponent implements OnInit {
 
 
 
-  e: IenumEspecialidad = {
+  e: Ienum = {
+    municipio: municipio,
+    nation: nacionalidades,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
+    servicios: servicios,
     servicio: servicio
   }
   coex: Iconcultas = {

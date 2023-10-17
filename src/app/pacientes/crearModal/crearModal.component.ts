@@ -1,16 +1,10 @@
-import { Ienum } from 'src/app/models/Ienum';
+import {  Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { PacientesService } from './../../services/pacientes.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { nacionalidades } from 'src/app/enums/enums';
-import { municipio } from 'src/app/enums/enums';
-import { etnias } from 'src/app/enums/enums';
-import { ecivil } from 'src/app/enums/enums';
-import { academic } from 'src/app/enums/enums';
-import { parents } from 'src/app/enums/enums';
-import { lenguaje } from 'src/app/enums/enums';
 
 
 @Component({
@@ -71,6 +65,8 @@ export class CrearModalComponent implements OnInit {
     academic: academic,
     parents: parents,
     lenguage: lenguaje,
+    servicio: servicio,
+    servicios: servicios,
 
 
   }

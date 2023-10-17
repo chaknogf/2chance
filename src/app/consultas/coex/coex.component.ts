@@ -2,8 +2,8 @@ import { PageReloadService } from './../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from './../../services/consultas.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { IenumEspecialidad } from 'src/app/models/Ienum';
-import { servicio } from './../../enums/enums';
+import {  Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
@@ -73,9 +73,18 @@ export class CoexComponent implements OnInit {
 
    }
 
-  e: IenumEspecialidad = {
+   e: Ienum = {
+    municipio: municipio,
+    nation: nacionalidades,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
+    servicios: servicios,
     servicio: servicio
   }
+
 
   @Output() idConsulta = new EventEmitter<number>();
   constructor(

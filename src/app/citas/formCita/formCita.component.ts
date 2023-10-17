@@ -1,9 +1,10 @@
 import { CitasService } from './../../services/citas.service';
-import { servicio } from './../../enums/enums';
+import { Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
-import { IenumEspecialidad } from 'src/app/models/Ienum';
+
 import { FormBuilder } from '@angular/forms';
 import { FechaService } from 'src/app/services/fecha.service';
 
@@ -34,9 +35,17 @@ export class FormCitaComponent implements OnInit {
     estado: false,
     name: ''
   }
-  e: IenumEspecialidad = {
+  e: Ienum = {
+    municipio: municipio,
+    nation: nacionalidades,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
+    servicios: servicios,
     servicio: servicio
-  }
+    }
 
   constructor(public CitasService: CitasService,
     private router: Router,

@@ -4,9 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import { IenumEspecialidad } from 'src/app/models/Ienum';
-import { servicio } from '../../../enums/enums'
-
+import {  Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 @Component({
   selector: 'form-coex',
   templateUrl: './form-coex.component.html',
@@ -66,9 +65,18 @@ export class FormCoexComponent implements OnInit {
 
    }
 
-  e: IenumEspecialidad = {
+   e: Ienum = {
+    municipio: municipio,
+    nation: nacionalidades,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
+    servicios: servicios,
     servicio: servicio
   }
+
 
   ngOnInit() {
 

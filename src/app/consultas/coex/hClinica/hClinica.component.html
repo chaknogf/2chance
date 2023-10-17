@@ -1,7 +1,10 @@
 <button class="btn btn-info no-imprimir" (click)="imprimir()">Imprimir</button>
 
-
-<div id="pdf-content" class="container h-5 imprimir-esto text-dark">
+<body >
+<div class="container">
+  <p class="p-3">{{fechaActual}}</p>
+</div>
+<div id="pdf-content" class="container h-5 imprimir-esto text-dark blanco">
   <div class="d-flex justify-content-center align-items-start">
     <div class="btn btn-primary">HISTORIA CLINICA</div>
   </div>
@@ -160,16 +163,23 @@
   </div>
 
   <div class="border border-primary rounded">
-    <div class="border border-primary rounded p-1 w-100 justify-content-start"> fecha:
-      <p class="mb-5 mt-2">Datos subjetivos:</p>
-      <p class="p-2"></p>
+    <div class="border border-primary rounded p-0w-100 justify-content-start"> fecha:
+      <p class=" mt-2">Datos subjetivos:</p>
+      <p class=""></p>
     </div>
 
     <div class="border border-primary rounded p-1 w-100 justify-content-start">
       <p class="mb-5">Datos Objetivos:</p>
-      <p class="p-2"></p>
+      <p class="p-4"></p>
     </div>
   </div>
 
+  <div class="container p-2 text-center">
+    <h4 class="text-center"> Ministerio de Salud Píblica y Asistencia Social</h4>
+    <h4 class="text-center"> Hospital General Tipo I de Tecpán Guatemala</h4>
+
+    </div>
+
 
 </div>
+</body>

@@ -19,24 +19,34 @@
   <table class="table console-table" >
     <thead>
       <tr>
-        <th class="text-center">Exp</th>
+        <th></th>
+        <th class="text-center">ID</th>
         <th class="text-center">Fecha</th>
         <th class="text-center">Hora</th>
         <th class="text-center">Nombre</th>
         <th class="text-center">Fecha Egreso</th>
-        <th class="text-center">id</th>
+        <th class="text-center">Exp</th>
 
       </tr>
     </thead>
     <tbody class="">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let ingreso of resumen">
-        <td class="text-center font-weight-bold text-primary h5" [routerLink]="['/ingreso/edit', ingreso.id]"> {{ingreso.expediente}} </td>
+        <td class="text-center"  (click)="copiarId(ingreso.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+          <svg xmlns="http://www.w3.org/2000/svg"
+          width="16" height="16" fill="currentColor"
+            class="bi bi-grip-vertical" viewBox="0 0 16 16">
+          <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
+          0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
+          3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
+          1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg></td>
+        <td class="text-center font-weight-bold text-primary h5" [routerLink]="['/ingreso/edit', ingreso.id]"> {{ingreso.id}} </td>
         <td class="text-center"> {{ingreso.fecha_consulta}} </td>
         <td class="text-center"> {{ingreso.hora}} </td>
         <td class="text-center"> {{ingreso.nombres}} {{ingreso.apellidos}} </td>
         <td class="text-center"> {{ingreso.fecha_egreso}} </td>
-        <td class="text-center">{{ingreso.id}}</td>
+        <td class="text-center">{{ingreso.expediente}}</td>
       </tr>
     </tbody>
       </table>
@@ -53,3 +63,16 @@
       </div>
     </div>
 
+    <div class="modal" id="opciones">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+          <button class="btn btn-danger" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button>
+          <button class="btn btn-info" data-bs-dismiss="modal" [routerLink]="['/edit/coex', idCopiado]" >Editar Consulta</button>
+
+          <button class="btn btn-black" data-bs-dismiss="modal">Cerrar</button>
+
+
+        </div>
+      </div>
+    </div>

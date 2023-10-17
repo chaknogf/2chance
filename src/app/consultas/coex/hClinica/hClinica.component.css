@@ -146,3 +146,15 @@ p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+
+
+/* estilo-de-tu-vista.css o estilo-de-tu-vista.scss */
+
+body {
+  background-color: white;
+}
+
+.blanco{
+
+  background-color: white;
+}

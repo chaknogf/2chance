@@ -4,13 +4,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { nacionalidades } from 'src/app/enums/enums';
-import { municipio } from 'src/app/enums/enums';
-import { etnias } from 'src/app/enums/enums';
-import { ecivil } from 'src/app/enums/enums';
-import { academic } from 'src/app/enums/enums';
-import { parents } from 'src/app/enums/enums';
-import { lenguaje } from 'src/app/enums/enums';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+
 
 //import { FortmatPhone } from 'src/app/pipe/telefono.pipe';
 
@@ -74,15 +69,16 @@ export class FormularioPacienteComponent implements OnInit {
     academic: academic,
     parents: parents,
     lenguage: lenguaje,
-
-
+    servicios: servicios,
+    servicio: servicio
   }
 
 
   edit: boolean = false;
   isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
 
-  constructor(public PacientesService: PacientesService,
+  constructor(
+    public PacientesService: PacientesService,
     private router: Router,
     private activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,

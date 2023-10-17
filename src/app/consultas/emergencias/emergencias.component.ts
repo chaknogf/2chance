@@ -2,8 +2,8 @@ import { PageReloadService } from './../../services/PageReload.service';
 import { Component, OnInit } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ConsultasService } from 'src/app/services/consultas.service';
-import { IenumEspecialidad, Ienum } from 'src/app/models/Ienum';
-import { servicio, parents, municipio, nacionalidades, etnias, ecivil, academic, lenguaje,  } from 'src/app/enums/enums';
+import { Ienum } from 'src/app/models/Ienum';
+import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { FechaService } from 'src/app/services/fecha.service';
@@ -77,12 +77,7 @@ export class EmergenciasComponent implements OnInit {
     lastname: null,
 
   }
-  e: IenumEspecialidad = {
-    servicio: servicio
-
-  }
-
-  enum: Ienum = {
+  e: Ienum = {
     municipio: municipio,
     nation: nacionalidades,
     people: etnias,
@@ -90,6 +85,8 @@ export class EmergenciasComponent implements OnInit {
     academic: academic,
     parents: parents,
     lenguage: lenguaje,
+    servicios: servicios,
+    servicio: servicio
   }
 
 
