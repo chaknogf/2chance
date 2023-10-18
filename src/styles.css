@@ -12456,9 +12456,12 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 
 
 body {
-  background: #63e2ff;
-  background: -moz-linear-gradient(to right, #63e2ff 0%, #b066fe 100%);
-  background: -webkit-linear-gradient(to right, #63e2ff 0%, #b066fe 100%);
-  background: linear-gradient(to right, #63e2ff 0%, #b066fe 100%);
-  background-blend-mode: screen; /* Puedes ajustar el modo de fusión según tus necesidades */
+  background: #c6edff url('assets/7.jpg');
+  background: -moz-linear-gradient(to bottom, #c6edff 0%, #a3c6ff 100%) url('assets/7.jpg');
+  background: -webkit-linear-gradient(to bottom, #c6edff 0%, #a3c6ff 100%) url('assets/7.jpg');
+  background: linear-gradient(to bottom, #c6edff 0%, #a3c6ff 100%) url('assets/7.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: darken; /* Puedes ajustar el modo de fusión según tus necesidades */
 }
+
