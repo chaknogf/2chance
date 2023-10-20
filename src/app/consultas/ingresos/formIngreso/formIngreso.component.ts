@@ -1,5 +1,5 @@
 import { PageReloadService } from '../../../services/PageReload.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import {  Ienum } from 'src/app/models/Ienum';
@@ -53,6 +53,7 @@ export class FormIngresoComponent implements OnInit {
   edit: boolean = false;
   isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
 
+
   ingreso: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
@@ -61,7 +62,7 @@ export class FormIngresoComponent implements OnInit {
     hora: "",
     nombres: "",
     apellidos: "",
-    nacimiento: new Date(),
+    nacimiento: "",
     edad: `${this.edadA} años ${this.edadMeses} meses ${this.edadDias} dias`,
     sexo: null,
     dpi: null,
@@ -151,11 +152,12 @@ export class FormIngresoComponent implements OnInit {
            data => {
              this.ingreso = data;
              this.edit = true;
-             console.log(data, this.ingreso.expediente)
-             if (data) {
-               this.getpaciente(this.ingreso.expediente)
-               console.log(this.ingreso.expediente)
-             }
+             this.PacientesService.getPaciente(this.ingreso.expediente)
+               .subscribe(
+                 data => {
+                   this.p = data;
+               }
+             )
            },
            error => console.log(error)
          )
@@ -174,18 +176,7 @@ export class FormIngresoComponent implements OnInit {
     }
   }
 
-  getpaciente(exp: number) {
-    this.PacientesService.getIdPaciente(exp)
-        .subscribe(
-          data => {
-            this.p = data;
-            console.log(data)
-            console.log(exp)
 
-          },
-          error => console.log(error)
-        )
-  }
 
 
 
@@ -240,14 +231,14 @@ export class FormIngresoComponent implements OnInit {
     this.ConsultasService.editarConsulta(this.ingreso.id, this.ingreso)
       .subscribe(data => {
         this.ingreso = data;
-        this.router.navigate(['/emergencias']);
+        this.router.navigate(['/ingresos']);
       })
 
     // Editar el paciente existente
     this.PacientesService.editPaciente(this.p.expediente, this.p)
       .subscribe(data => {
         this.p = data;
-        this.router.navigate(['/pacientes']);
+        this.router.navigate(['/ingresos']);
       })
   }
 
