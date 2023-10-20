@@ -12455,13 +12455,15 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 }
 
 
+
+
 body {
-  background: #c6edff url('assets/7.jpg');
-  background: -moz-linear-gradient(to bottom, #c6edff 0%, #a3c6ff 100%) url('assets/7.jpg');
-  background: -webkit-linear-gradient(to bottom, #c6edff 0%, #a3c6ff 100%) url('assets/7.jpg');
-  background: linear-gradient(to bottom, #c6edff 0%, #a3c6ff 100%) url('assets/7.jpg');
-  background-size: cover;
+  background: #6d94ca url('assets/7.jpg');
+  background: -moz-linear-gradient(to bottom, #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
+  background: -webkit-linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
+  background: linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
+  background-size: unset;
   background-position: center;
-  background-blend-mode: darken; /* Puedes ajustar el modo de fusión según tus necesidades */
+  background-blend-mode: soft-light; /* Puedes ajustar el modo de fusión según tus necesidades */
 }
 
