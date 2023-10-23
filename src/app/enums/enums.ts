@@ -284,7 +284,7 @@ export const municipio: Municipio[] = [
   { value: 1403, label: "Chinique" },
   { value: 1404, label: "Zacualpa" },
   { value: 1405, label: "Chajul" },
-  { value: 1406, label: "Santo Tomás Chichicastenango" },
+  { value: 1406, label: "Chichicastenango, Quiché" },
   { value: 1407, label: "Patzité" },
   { value: 1408, label: "San Antonio Ilotenango" },
   { value: 1409, label: "San Pedro Jocopilas" },
