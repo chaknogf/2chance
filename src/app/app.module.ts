@@ -22,7 +22,7 @@ import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe,
-  EnumParentescoPipe, EnumEtniaPipe,
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -30,7 +30,6 @@ import { HomeComponent } from './home/home.component';
 import { TablaPacientesComponent } from './pacientes/tablaPacientes/tablaPacientes.component';
 import { FormularioPacienteComponent } from './pacientes/formulario-paciente/formulario-paciente.component';
 import { BuscarComponent } from './pacientes/buscar/buscar.component';
-import { IngresoComponent } from './pacientes/ingreso/ingreso.component';
 import { CitasComponent } from './citas/citas/citas.component';
 import { FormCitaComponent } from './citas/formCita/formCita.component';
 import { TextToDatePipe } from './pipe/textToDate.pipe';
@@ -54,6 +53,7 @@ import { IngresosComponent } from './consultas/ingresos/ingresos/ingresos.compon
 import { IngresoTablaComponent } from './consultas/ingresos/ingresoTabla/ingresoTabla.component';
 import { NuevoIngresoComponent } from './consultas/ingresos/nuevoIngreso/nuevoIngreso.component';
 import { TabPacienteComponent } from './consultas/ingresos/tabPaciente/tabPaciente.component';
+import { IngresoHComponent } from './consultas/ingresos/ingresoH/ingresoH.component';
 
 
 
@@ -65,7 +65,6 @@ const routes: Routes = [
   { path: 'crear', component: FormularioPacienteComponent },
   { path: 'paciente/edit/:id', component: FormularioPacienteComponent },
   { path: 'buscar/view/:id', component: BuscarComponent},
-  { path: 'ingreso/view/:id', component: IngresoComponent },
   { path: 'citas', component: CitasComponent },
   { path: 'agendar', component: FormCitaComponent },
   { path: 'agenda/edit/:id', component: FormCitaComponent },
@@ -81,7 +80,8 @@ const routes: Routes = [
   { path: 'ingresos', component: IngresosComponent },
   { path: 'ingreso', component: FormIngresoComponent },
   { path: 'ingreso/edit/:id', component: FormIngresoComponent },
-  { path: 'ingresoTabla', component: IngresoTablaComponent},
+  { path: 'ingresoTabla', component: IngresoTablaComponent },
+  { path: 'ingresohoja/view/:id', component: IngresoHComponent},
 
 
 
@@ -105,7 +105,7 @@ const routes: Routes = [
     EdadPipe,
     FortmatPhone,
     FormularioPacienteComponent,
-    IngresoComponent,
+    IngresoHComponent,
     FormCitaComponent,
     DiaDeSemana,
     FormatoFechaPipe,
@@ -118,6 +118,7 @@ const routes: Routes = [
     EnumEducacionPipe,
     EnumCivilPipe,
     EnumIdiomaPipe,
+    EnumServiciosPipe,
     TextToDatePipe,
     ExpedienteToNombrePipe,
     ResumenCitasPipe,
@@ -163,7 +164,6 @@ const routes: Routes = [
       { path: 'crear', component: FormularioPacienteComponent },
       { path: 'paciente/edit/:id', component: FormularioPacienteComponent },
       { path: 'buscar/view/:id', component: BuscarComponent},
-      { path: 'ingreso/view/:id', component: IngresoComponent },
       { path: 'citas', component: CitasComponent },
       { path: 'agendar', component: FormCitaComponent },
       { path: 'agenda/edit/:id', component: FormCitaComponent },
@@ -179,7 +179,8 @@ const routes: Routes = [
       { path: 'ingresos', component: IngresosComponent },
       { path: 'ingreso', component: FormIngresoComponent },
       { path: 'ingreso/edit/:id', component: FormIngresoComponent },
-      { path: 'ingresoTabla', component: IngresoTablaComponent},
+      { path: 'ingresoTabla', component: IngresoTablaComponent },
+      { path: 'ingresohoja/view/:id', component: IngresoHComponent},
 
 
 
