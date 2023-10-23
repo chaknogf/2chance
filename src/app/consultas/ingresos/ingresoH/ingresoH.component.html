@@ -1,0 +1,27 @@
+<button class="btn btn-info no-imprimir mx-0" (click)="imprimir()">Imprimir</button>
+
+<div class="background-container mx-auto">
+  <!-- Otros elementos que se superpondrán a la imagen de fondo -->
+  <div class="container-fluid text-sm">
+    <!-- Contenido superpuesto -->
+
+    <div class="d-flex justify-content-center">
+      <p class=" h3 tm-8-5 ml-3-5 text-center w-20">{{ingreso?.servicio | anyToNumber|enumServicios}}</p>
+
+    </div>
+
+    <div class="d-flex justify-content-start">
+      <p class="h3 tm-3-25 ml-7-25 w-31 p-0 text-between"> {{patient?.apellido}} </p>
+      <p class="h3 tm-3-25  w-35 p-0 text-between"> {{patient?.nombre}}</p>
+      <p class="h3 tm-3-25 w-20 text-between">34560</p>
+    </div>
+
+    <div class="d-flex justify-content-start ">
+      <p class="h4 mt-4-7 ms-10 text-center">1era calle </p>
+
+    </div>
+
+
+
+  </div>
+</div>

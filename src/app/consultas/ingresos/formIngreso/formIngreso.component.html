@@ -13,7 +13,7 @@
               <div class="d-flex justify-content-end">
                 <button class="btn btn-dark w-20" [routerLink]="['/ingresos']">regresar</button>
                 <button class="btn btn-success w-20 mx-3" (click)="editar()">Guardar</button>
-                <button class="btn btn-info w-20 mx-2 " >Imprimir</button>
+                <button class="btn btn-info w-20 mx-2 " [routerLink]="['/ingresohoja/view/', ingreso.id]">Imprimir</button>
               </div>
 
               <p class="text-center mt-2">consulta nO. {{ingreso.id}} - {{p.expediente}}</p>
