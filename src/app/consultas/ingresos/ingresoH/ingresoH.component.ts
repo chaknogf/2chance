@@ -47,6 +47,7 @@ export class IngresoHComponent implements OnInit {
       }
     });
 
+    this.imprimir()
 
   }
 

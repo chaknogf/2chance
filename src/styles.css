@@ -202,6 +202,7 @@
 }
 
 body {
+  transition: transform 0.2s;/* Agrega una transición suave para el efecto de zoom */
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -12498,6 +12499,7 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 
 
 body {
+  transition: transform 0.2s; /* Agrega una transición suave para el efecto de zoom */
   background: #6d94ca url('assets/7.jpg');
   background: -moz-linear-gradient(to bottom, #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
   background: -webkit-linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
@@ -12507,3 +12509,24 @@ body {
   background-blend-mode: soft-light; /* Puedes ajustar el modo de fusión según tus necesidades */
 }
 
+/* Define una clase de CSS para el contenido que deseas zoomear */
+.zoomable-content {
+  /* Define un punto de transformación en el centro del contenido */
+  transform-origin: center;
+  transform: scale(1); /* Tamaño original (sin zoom) */
+  width: 100%; /* Ocupa el 100% del ancho del contenedor padre */
+  height: auto; /* Ajusta la altura automáticamente */
+}
+
+/* Cambia la escala y el tamaño según el tamaño de la ventana */
+@media screen and (max-width: 768px) {
+  .zoomable-content {
+    transform: scale(0.8); /* Reduce la escala al 80% cuando la ventana sea menor a 768px */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .zoomable-content {
+    transform: scale(1.2); /* Aumenta la escala al 120% cuando la ventana sea mayor o igual a 1200px */
+  }
+}
