@@ -47,7 +47,7 @@ export interface Nacionalidad {
   value: number;
   label: string;
 }
-export const nacionalidades: Nacionalidad[] = [
+export const nation: Nacionalidad[] = [
 
     { value: 1, label: 'Guatemalteca' },
     { value: 2, label: 'Beliceña' },

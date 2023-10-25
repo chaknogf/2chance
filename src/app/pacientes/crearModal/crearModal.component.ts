@@ -1,5 +1,5 @@
 import {  Ienum } from 'src/app/models/Ienum';
-import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { PacientesService } from './../../services/pacientes.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
@@ -59,7 +59,7 @@ export class CrearModalComponent implements OnInit {
   };
   e: Ienum = {
     municipio: municipio,
-    nation: nacionalidades,
+    nation: nation,
     people: etnias,
     ecivil: ecivil,
     academic: academic,

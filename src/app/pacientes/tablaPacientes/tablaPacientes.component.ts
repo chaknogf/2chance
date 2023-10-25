@@ -66,15 +66,16 @@ export class TablaPacientesComponent{
 
 
 
-  sortTable(colu: any) {
+  sortTable(colu: keyof Ipaciente) {
     if (this.order === 'asc') {
-      this.pacientes.sort((a, b) => a[colu] > b[colu] ? 1 : -1);
+      this.pacientes.sort((a, b) => (a[colu] > b[colu] ? 1 : -1));
       this.order = 'desc';
     } else {
-      this.pacientes.sort((a, b) => a[colu] < b[colu] ? 1 : -1);
+      this.pacientes.sort((a, b) => (a[colu] < b[colu] ? 1 : -1));
       this.order = 'asc';
     }
   }
+
 
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;

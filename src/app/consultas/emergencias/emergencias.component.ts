@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Ienum } from 'src/app/models/Ienum';
-import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { FechaService } from 'src/app/services/fecha.service';
@@ -79,7 +79,7 @@ export class EmergenciasComponent implements OnInit {
   }
   e: Ienum = {
     municipio: municipio,
-    nation: nacionalidades,
+    nation: nation,
     people: etnias,
     ecivil: ecivil,
     academic: academic,

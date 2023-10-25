@@ -12500,7 +12500,7 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 
 body {
   transition: transform 0.2s; /* Agrega una transición suave para el efecto de zoom */
-  background: #6d94ca url('assets/7.jpg');
+  background: #6d94ca url('assets/3.jpg');
   background: -moz-linear-gradient(to bottom, #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
   background: -webkit-linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
   background: linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');

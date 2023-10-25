@@ -1,10 +1,11 @@
+
 import { Ienum } from 'src/app/models/Ienum';
 import { PacientesService } from './../../services/pacientes.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import {  municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
 
 
 //import { FortmatPhone } from 'src/app/pipe/telefono.pipe';
@@ -63,7 +64,7 @@ export class FormularioPacienteComponent implements OnInit {
   };
   e: Ienum = {
     municipio: municipio,
-    nation: nacionalidades,
+    nation: nation,
     people: etnias,
     ecivil: ecivil,
     academic: academic,

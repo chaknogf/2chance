@@ -2,7 +2,7 @@
 .console-table {
   background-color:black;
   color: #fff;
-  border: 2px solid red;
+  border: 2px solid rgb(84, 78, 78);
   border-radius: 12px;
   padding: 5px;
   border-collapse: collapse;

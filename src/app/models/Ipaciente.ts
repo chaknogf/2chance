@@ -1,15 +1,15 @@
 import { Municipio } from './../enums/enums';
-import { Nacionalidad } from "../enums/enums";
+import { Nacionalidad, nation } from "../enums/enums";
 
 
 
 
 
 export interface Ipaciente {
-  [key: string]: string | number | boolean | Date | Nacionalidad[]| Municipio[]  ;
+  // [key: string]: string | number | boolean | Date | Nacionalidad[]| Municipio[]  ;
   id: number;
   expediente: number;
-  nombre: string;
+  nombre: string ;
   apellido: string;
   dpi: number;
   pasaporte: string;

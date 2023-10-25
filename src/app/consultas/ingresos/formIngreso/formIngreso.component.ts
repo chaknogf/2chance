@@ -1,9 +1,11 @@
+
+
 import { PageReloadService } from '../../../services/PageReload.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import {  Ienum } from 'src/app/models/Ienum';
-import { servicio, parents, municipio, nacionalidades, etnias, ecivil, academic, lenguaje, servicios } from 'src/app/enums/enums';
+import { servicio, parents, municipio, nation, etnias, ecivil, academic, lenguaje, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { FechaService } from 'src/app/services/fecha.service';
@@ -84,7 +86,18 @@ export class FormIngresoComponent implements OnInit {
 
   e: Ienum = {
     municipio: municipio,
-    nation: nacionalidades,
+    nation: nation,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
+    servicios: servicios,
+    servicio: servicio
+  }
+  ep: Ienum = {
+    municipio: municipio,
+    nation: nation,
     people: etnias,
     ecivil: ecivil,
     academic: academic,

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum } from 'src/app/models/Ienum';
-import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 @Component({
   selector: 'form-coex',
   templateUrl: './form-coex.component.html',
@@ -67,7 +67,7 @@ export class FormCoexComponent implements OnInit {
 
    e: Ienum = {
     municipio: municipio,
-    nation: nacionalidades,
+    nation: nation,
     people: etnias,
     ecivil: ecivil,
     academic: academic,

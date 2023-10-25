@@ -4,7 +4,7 @@ import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import {  Ienum } from 'src/app/models/Ienum';
-import { nacionalidades, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { Ipaciente } from 'src/app/models/Ipaciente';
@@ -58,7 +58,7 @@ export class NuevaConsultaComponent implements OnInit {
   }
   e: Ienum = {
     municipio: municipio,
-    nation: nacionalidades,
+    nation: nation,
     people: etnias,
     ecivil: ecivil,
     academic: academic,
