@@ -8952,6 +8952,10 @@ textarea.form-control-lg {
   --bs-bg-opacity: 0.1;
 }
 
+.bg-opacity-15 {
+--bs-bg-opacity: 0.15;
+}
+
 .bg-opacity-25 {
   --bs-bg-opacity: 0.25;
 }
@@ -12500,13 +12504,13 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 
 body {
   transition: transform 0.2s; /* Agrega una transición suave para el efecto de zoom */
-  background: #6d94ca url('assets/3.jpg');
-  background: -moz-linear-gradient(to bottom, #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
-  background: -webkit-linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
-  background: linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/7.jpg');
-  background-size: cover;
+  background-image: linear-gradient(to left bottom, #1b1b1b, #202026, #232631, #232d3d, #203449);;
+  background: -moz-linear-gradient(to bottom, #6d94ca 0%,#a8c1ef 100%) url('assets/2.jpg');
+  background: -webkit-linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/2.jpg');
+  background: linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/2.jpg');
+  background-size: auto;
   background-position: center;
-  background-blend-mode: soft-light; /* Puedes ajustar el modo de fusión según tus necesidades */
+  /* background-blend-mode: soft-light Puedes ajustar el modo de fusión según tus necesidades */
 }
 
 /* Define una clase de CSS para el contenido que deseas zoomear */

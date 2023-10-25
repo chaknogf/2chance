@@ -1,21 +1,21 @@
 <div class="mt-3 ">
-  <h2 class="text-center">Registro de Consulta Externa</h2>
+  <h2 class="text-center text-light">Registro de Consulta Externa</h2>
 
   <div class="  ">
     <div class="container-fluid justify-content-center text-center  ">
       <form class="form-inline d-flex w-25 mx-auto">
         <div class="form-group flex-grow-1 ">
-          <h6 for="day">Día</h6>
+          <h6 class="text-warning" for="day">Día</h6>
           <input type="text text-size-sm-6" class="form-control text-center" id="day" name="day" [(ngModel)]="day" placeholder="Día" (ngModelChange)="updateDate()" disabled="">
         </div>
 
         <div class="form-group mx-2 flex-grow-1">
-          <h6 for="month">Mes</h6>
+          <h6 class="text-warning" for="month">Mes</h6>
           <input type="text" class="form-control text-center" id="month" name="month" [(ngModel)]="month" placeholder="Mes" (ngModelChange)="updateDate()" disabled="">
         </div>
 
         <div class="form-group flex-grow-1">
-          <h6 for="year">Año</h6>
+          <h6 class="text-warning" for="year">Año</h6>
           <input type="text" class="form-control text-center" id="year" name="year" [(ngModel)]="year" placeholder="Año" (ngModelChange)="updateDate()" disabled="">
         </div>
       </form>

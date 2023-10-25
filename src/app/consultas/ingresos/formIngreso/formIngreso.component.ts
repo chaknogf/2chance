@@ -9,7 +9,7 @@ import { servicio, parents, municipio, nation, etnias, ecivil, academic, lenguaj
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import { Ipaciente } from 'src/app/models/Ipaciente';
+import { Ipaciente, Iv_paciente } from 'src/app/models/Ipaciente';
 
 @Component({
   selector: 'formIngreso',
@@ -95,20 +95,20 @@ export class FormIngresoComponent implements OnInit {
     servicios: servicios,
     servicio: servicio
   }
-  ep: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio
+
+  vpa: Iv_paciente = {
+    nombre: "",
+    expediente: 0,
+    sexo: "",
+    apellido: "",
+    nacimiento: "",
+    id: 0,
+    dpi: 0,
+    estado: ""
+
   }
 
-
-  // Objeto del paciente
+   // Objeto del paciente
   p: Ipaciente = {
     id: 0,
     expediente: 0,
@@ -147,7 +147,17 @@ export class FormIngresoComponent implements OnInit {
     lenguage: ""
 
   };
-
+  ep: Ienum = {
+    municipio: municipio,
+    nation: nation,
+    people: etnias,
+    ecivil: ecivil,
+    academic: academic,
+    parents: parents,
+    lenguage: lenguaje,
+    servicios: servicios,
+    servicio: servicio
+  }
 
 
   ngOnInit() {
@@ -165,16 +175,31 @@ export class FormIngresoComponent implements OnInit {
            data => {
              this.ingreso = data;
              this.edit = true;
-             this.PacientesService.getPaciente(this.ingreso.expediente)
+             let expediente = this.ingreso.expediente;
+             console.log(expediente)
+             this.PacientesService.getPaciente(expediente)
                .subscribe(
-                 data => {
-                   this.p = data;
+                 datap => {
+                   this.vpa = datap;
+                   console.log(this.ingreso.expediente, datap)
+                   let idPaciente = this.vpa.id;
+                   console.log(idPaciente)
+                   this.PacientesService.getIdPaciente(idPaciente)
+                    .subscribe(
+                    datas => {
+                    this.p = datas;
+                    console.log(datas)
+
+                    }
+                  )
                }
              )
            },
            error => console.log(error)
          )
-     }
+    }
+
+
 
 
 

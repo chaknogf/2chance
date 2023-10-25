@@ -8,9 +8,9 @@
 
 /* Estilo de la tabla */
 .console-table {
-  background-color:rgb(253, 253, 255);
-  color: #110606;
-  border: 2px solid rgb(253, 255, 251);
+  background-color:#1b1b1b;
+  color: #eeeaea;
+  border: 2px solid rgb(66, 66, 65);
   border-radius: 12px;
   padding: 5px;
   border-collapse: collapse;
@@ -19,7 +19,7 @@
 
 /* Estilo de las celdas de encabezado */
 .console-table th {
-  background-color: rgb(255, 255, 255);
+  background-color: #302f2f;
   padding: 8px;
   text-align: left;
   /* border: 1px dashed #fff; */
@@ -28,14 +28,15 @@
 
 /* Estilo de las celdas de datos */
 .console-table td {
-  background-color: var(--bs-btn-disabled-border-color);
+  background-color: #302f2f;
   padding: 8px;
   border: 1px  #fff;
 }
 
 /* Estilo de las filas impares */
 .console-table tr:nth-child(odd) {
-  background-color: #f6f1f1;
+  background-color:#302f2f;
+  color: #fff;;
 
 }
 

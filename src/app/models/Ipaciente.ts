@@ -46,3 +46,14 @@ export interface Ipaciente {
 
 }
 
+export interface Iv_paciente {
+  nombre: string,
+  expediente: number,
+  sexo: string,
+  apellido: string,
+  nacimiento: string,
+  id: number,
+  dpi: number,
+  estado: string
+}
+

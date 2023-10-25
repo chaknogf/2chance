@@ -46,7 +46,7 @@
               </button>
 
             </td>
-            <td class="h3 text-center text-success" [routerLink]="['/ingreso/edit', ingreso.expediente]">{{ paciente.expediente }}</td>
+            <td class="h3 text-center text-success" [routerLink]="['/buscar/view/', paciente.id]">{{ paciente.expediente }}</td>
             <td class="text-text text-justify" appHighlightWords >
               <span class="font-fam">Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
               <span class="font-fam">Apellido:</span> {{ paciente.apellido | capitalizeName }}

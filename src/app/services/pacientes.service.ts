@@ -25,6 +25,11 @@ export class PacientesService {
     return this.http.get(this.urlapi + "/paciente/" + exp);
   }
 
+  getExpe(exp: number): Observable<any> {
+    return this.http.get(this.urlapi + "/paciente/" + exp);
+  }
+
+
   getNombre(nombre: string, apellido: string): Observable<any> {
     const queryParams = `?nombre=${nombre}&apellido=${apellido}`;
     return this.http.get(`${this.urlapi}/pacientefind/${queryParams}`);
