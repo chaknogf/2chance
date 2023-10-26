@@ -20,6 +20,7 @@ export class TablaPacientesComponent{
   public apellidoBuscar: string = '';
   public dpiBuscar: any = '';
   public paciente: Ipaciente | undefined;
+  public porcentajeDeProgreso: number = 0; // Variable para el progreso
 
 
 
@@ -42,10 +43,17 @@ export class TablaPacientesComponent{
 
 
   getPacientes() {
+    this.porcentajeDeProgreso = 0.5;
     this.pacientesService.getPacientes().subscribe(data => {
       this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }): number => b.expediente - a.expediente);
+      this.porcentajeDeProgreso = 75;
       this.filteredPacientes = data;
       this.paginarPacientes();//Llama a la función aquí para paginar automáticamente
+      this.porcentajeDeProgreso = 100;
+      setTimeout(() => {
+        this.porcentajeDeProgreso = -1; // Puedes establecerlo en -1 o cualquier otro valor para ocultar la barra
+      }, 1000);
+
     });
   }
 

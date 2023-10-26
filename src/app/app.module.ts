@@ -156,6 +156,7 @@ const routes: Routes = [
     BrowserModule,
     ModalModule,
     FormsModule,
+
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([

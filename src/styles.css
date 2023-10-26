@@ -12505,11 +12505,8 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 body {
   transition: transform 0.2s; /* Agrega una transición suave para el efecto de zoom */
   background-image: linear-gradient(to left bottom, #1b1b1b, #202026, #232631, #232d3d, #203449);;
-  background: -moz-linear-gradient(to bottom, #6d94ca 0%,#a8c1ef 100%) url('assets/2.jpg');
-  background: -webkit-linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/2.jpg');
-  background: linear-gradient(to bottom,  #6d94ca 0%,#a8c1ef 100%) url('assets/2.jpg');
-  background-size: auto;
-  background-position: center;
+  background-size: contain;
+  background-position: auto;
   /* background-blend-mode: soft-light Puedes ajustar el modo de fusión según tus necesidades */
 }
 
@@ -12533,4 +12530,22 @@ body {
   .zoomable-content {
     transform: scale(1.2); /* Aumenta la escala al 120% cuando la ventana sea mayor o igual a 1200px */
   }
+}
+
+.celesce {
+  /* color: #c2ecfe;  */
+  background-color: #c2ecfe;
+  border-radius: 8%;
+  color: #203449;
+  font-weight: bold;
+  padding: 1%;
+}
+
+.rosado {
+  /* color: #f6a5ca ;  */
+  background-color: #f6a5ca ;
+  border-radius: 8%;
+  color: #203449;
+  font-weight: bold;
+  padding: 1%;
 }
