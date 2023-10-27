@@ -17,10 +17,22 @@
   <div class="row d-flex justify-content-between">
     <div class="col-md-6">
 
-      <form>
-        <div class="form-group mt-3">
+      <form class="bg-light p-3 rounded bg-opacity-15">
+        <p class="text-light text-center">No. de cita: </p>
+        <p class="text-light text-center h4">{{c.id}}</p>
+        <!-- <div class="form-group mt-3">
           <label class="text-light" for="num_cita">Número de Cita:</label>
-          <input type="text" class="form-control" id="num_cita" name="num_cita" [(ngModel)]="c.id" disabled>
+          <input type="text" class="form-control bg-black text-light" id="num_cita" name="num_cita" [(ngModel)]="c.id" disabled>
+        </div> -->
+
+        <div class="form-group mt-2">
+          <label class="text-light" for="expediente">Expediente:</label>
+          <input type="text" class="form-control" id="expediente" name="expediente"  [(ngModel)]='c.expediente' >
+        </div>
+
+        <div class="form-group mt-2">
+          <p class="text-light mb-0">Nombre de Paciente</p>
+          <p class="form-control">{{c.expediente | expeToNombre | async}}</p>
         </div>
 
         <div class="form-group mt-2">
@@ -43,15 +55,7 @@
         </div>
 
 
-        <div class="form-group mt-2">
-          <label class="text-light" for="expediente">Expediente:</label>
-          <input type="text" class="form-control" id="expediente" name="expediente"  [(ngModel)]='c.expediente' >
-        </div>
 
-        <div class="form-group mt-2">
-          <p class="text-light mb-0">Nombre de Paciente</p>
-          <p class="form-control">{{c.expediente | expeToNombre | async}}</p>
-        </div>
 
         <div class="form-group mt-2">
           <label class="text-light" for="fecha">Cirugia Programada:</label>

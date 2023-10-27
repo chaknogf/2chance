@@ -49,20 +49,20 @@
     <div class="container-fluid">
       <div class="d-flex justify-content-between">
         <!-- Primer contenedor Medicina -->
-        <div class="container-fluid">
-          <h3 class="text-light">{{ 1 | enumEspecialidad }}</h3>
+        <div class="container-fluid console-table p-0 bg-info mx-2">
+          <h3 class="text-light mx-3 border-text">{{ 1 | enumEspecialidad }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasMedi.length > 0">
               <!-- Encabezados de columna -->
               <thead>
-                <tr>
-                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
-                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                <tr class="">
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
                 </tr>
               </thead>
               <!-- Datos de la tabla -->
-              <tbody>
+              <tbody class="">
                 <tr *ngFor="let cita of citasMedi; let i = index">
                   <td class="text-center " [routerLink]="['/agenda/edit', cita.id]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -78,16 +78,16 @@
         </div>
 
         <!-- Segundo contenedor Pediatría -->
-        <div class="container-fluid">
-          <h3 class="text-light">{{ 2 | enumEspecialidad }}</h3>
+        <div class="container-fluid console-table p-0 bg-info mx-2">
+          <h3 class="text-light mx-3 border-text">{{ 2 | enumEspecialidad }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-sm" *ngIf="citasPedia">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
-                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
-                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
 
                 </tr>
               </thead>
@@ -108,16 +108,16 @@
         </div>
 
          <!-- Tercer contenedor Ginecología -->
-         <div class="container-fluid">
-          <h3 class="text-light">{{ 3 | enumEspecialidad }}</h3>
+         <div class="container-fluid console-table p-0 bg-info">
+          <h3 class="text-light mx-3 border-text">{{ 3 | enumEspecialidad }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasGine.length > 0">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
-                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
-                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
                 </tr>
               </thead>
               <!-- Datos de la tabla -->
@@ -143,16 +143,16 @@
       <div class="d-flex justify-content-between">
 
         <!-- Primer contenedor Cirugía -->
-        <div class="container  ">
-          <h3 class="text-light">{{ 4 | enumEspecialidad }}</h3>
+        <div class="container-fluid console-table p-0 bg-info mx-2">
+          <h3 class="text-light mx-3 border-text">{{ 4 | enumEspecialidad }}</h3>
           <div class="table-responsive ">
             <table class="table table-hover table-sm " *ngIf="citasCiru">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
-                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
-                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
 
                 </tr>
               </thead>
@@ -173,16 +173,16 @@
         </div>
 
         <!-- Segundo contenedor Trauma -->
-        <div class="container">
-          <h3 class="text-light">{{ 5 | enumEspecialidad }}</h3>
+        <div class="container-fluid console-table p-0 bg-info mx-2">
+          <h3 class="text-light mx-3 border-text">{{ 5 | enumEspecialidad }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasTrauma.length > 0">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
-                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
-                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
                 </tr>
               </thead>
               <!-- Datos de la tabla -->
@@ -202,16 +202,16 @@
         </div>
 
         <!-- Tercer contenedor Psicologia -->
-        <div class="container">
-          <h3 class="text-light">{{ 6 | enumEspecialidad }}</h3>
+        <div class="container-fluid console-table p-0 bg-info">
+          <h3 class="text-light mx-3 border-text">{{ 6 | enumEspecialidad }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasPsico.length > 0">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
-                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
-                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-primary text-light text-center" scope="col">No.</th>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
                 </tr>
               </thead>
               <!-- Datos de la tabla -->
@@ -234,21 +234,21 @@
     </div>
 
 
-    <div class="container-fluid">
-      <div class="d-flex justify-content-between">
+    <div class="my-2">
+      <div class="d-flex justify-content-center">
 
         <!-- Primer contenedor Nutricion -->
-        <div class="container">
-          <h3 class="text-light">{{ 7 | enumEspecialidad }}</h3>
+        <div class="container-fluid console-table p-0 bg-info  w-35">
+          <h3 class="text-light mx-3 border-text">{{ 7 | enumEspecialidad }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-sm" *ngIf="citasNutri">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
-                  <th class="bg-primary text-light text-center" scope="col">Expediente</th>
-                  <th class="table bg-primary text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-primary text-light text-center" scope="col">No.</th>
-                  <th></th>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
+
                 </tr>
               </thead>
               <!-- Datos de la tabla -->
@@ -267,15 +267,6 @@
           </div>
         </div>
 
-         <!-- contenedor vacio -->
-        <div class="container">
-
-        </div>
-
-         <!-- contenedor vacio -->
-        <div class="container">
-
-        </div>
 
       </div>
     </div>
