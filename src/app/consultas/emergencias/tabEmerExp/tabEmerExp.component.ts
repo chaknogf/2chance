@@ -23,9 +23,6 @@ export class TabEmerExpComponent implements OnInit {
   public totalRegistros: number = 12; // Total de registros en la lista
   public paginaActual: number = 1; // Página actual
   public expedienteBuscar: any = '';
-  public nombreBuscar: string = '';
-  public apellidoBuscar: string = '';
-  public dpiBuscar: any = '';
   public resumen: Iconcultas[] = [];
   public paciente: Ipaciente | undefined;
   edit: boolean = false;
@@ -35,9 +32,9 @@ export class TabEmerExpComponent implements OnInit {
   idCopiado: number = 0;
   mostrarModal = false;
 
-  @Input()  datoNombre: any = this.nombreBuscar
-  @Input() datoApellido: any = this.apellidoBuscar
-  @Input() datoDPI: any = this.dpiBuscar
+  @Input() nombreBuscar: any
+  @Input()apellidoBuscar: any
+  @Input() dpiBuscar: any
 
 
   e: Ienum = {
@@ -51,7 +48,7 @@ export class TabEmerExpComponent implements OnInit {
     servicios: servicios,
     servicio: servicio
   }
-  coex: Iconcultas = {
+  emergencia: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
     expediente: null,
@@ -81,11 +78,8 @@ export class TabEmerExpComponent implements OnInit {
    }
 
   @Output() idPaciente = new EventEmitter<number>();
-  @Output() nombrePaciente = new EventEmitter<string>();
-  @Output() apellidoPaciente = new EventEmitter<string>();
-  @Output() edadPaciente = new EventEmitter<string>();
-  @Output() nacimientoPaciente = new EventEmitter<Date>();
-  @ViewChild('edadCell', { static: false }) edadCell: ElementRef = new ElementRef(null);
+
+
 
   constructor(private pacientesService: PacientesService,
     private router: Router,
@@ -115,7 +109,7 @@ export class TabEmerExpComponent implements OnInit {
       this.ConsultasService.Consulta(params['id'])
         .subscribe(
           data => {
-            this.coex = data;
+            this.emergencia = data;
             this.new = true;
           },
           error => console.log(error)
@@ -124,23 +118,10 @@ export class TabEmerExpComponent implements OnInit {
     this.resumen;
   }
 
-  copiarId(exp: number, nombre: string, apellido: string, nacimiento: Date) {
+  copiarId(exp: number) {
     this.idPaciente.emit(exp);
-    this.nombrePaciente.emit(nombre);
-    this.apellidoPaciente.emit(apellido);
-    this.nacimientoPaciente.emit(nacimiento);
-    const valorCelda = this.edadCell.nativeElement.textContent;
-    console.log('Valor copiado:', valorCelda);
-    //this.edadPaciente.emit(edad);
-    this.coex.expediente = exp;
-    this.coex.nombres = nombre;
-    this.coex.apellidos = apellido;
-    this.coex.nacimiento = nacimiento;
-    this.coex.fecha_consulta = this.fechaActual;
-    this.coex.hora = this.horaActual;
-    this.coex.edad = valorCelda;
+    this.emergencia.expediente = exp;
 
-    // console.log(exp)
   }
 
   getPacientes() {
@@ -154,6 +135,7 @@ export class TabEmerExpComponent implements OnInit {
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
     this.paginarPacientes();
+
   }
 
   paginarPacientes() {
@@ -248,43 +230,7 @@ export class TabEmerExpComponent implements OnInit {
     }
   }
 
-  registrarCoex(): void {
-    this.ConsultasService.crear(this.coex).subscribe(
-      (response) => {
-        // Manejar la respuesta exitosa aquí, si es necesario
-        console.log('Consulta creada con éxito', response);
 
-        // Mostrar una alerta de éxito con estilo Bootstrap
-        const alertDiv = document.createElement('div');
-        alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
-        alertDiv.textContent = 'Consulta creada con éxito';
-        document.body.appendChild(alertDiv);
-
-        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
-        setTimeout(() => {
-          this.reloadPage();
-        }, 2000); // 1000 ms = 1 segundo
-      },
-      (error) => {
-        // Manejar errores aquí
-        console.error('Error al crear consulta', error);
-
-        // Mostrar una alerta de error con estilo Bootstrap
-        const alertDiv = document.createElement('div');
-        alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
-        alertDiv.textContent = 'Error al crear consulta';
-        document.body.appendChild(alertDiv);
-
-        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
-        setTimeout(() => {
-          this.reloadPage();
-        }, 2000); // 1000 ms = 1 segundo
-
-
-      }
-    );
-
-  }
 
   reloadPage() {
     // Llama al servicio para recargar la página
