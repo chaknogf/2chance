@@ -1,5 +1,5 @@
 import { PageReloadService } from './../../services/PageReload.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Ienum } from 'src/app/models/Ienum';
@@ -32,6 +32,8 @@ export class EmergenciasComponent implements OnInit {
     fechaActual.setFullYear(fechaActual.getFullYear() - 1); // Restar un año
     this.maxdate = fechaActual.toISOString().split('T')[0];
   }
+
+
 
 
   public emergencias: Iconcultas[] = [];

@@ -54,6 +54,7 @@ import { IngresoTablaComponent } from './consultas/ingresos/ingresoTabla/ingreso
 import { NuevoIngresoComponent } from './consultas/ingresos/nuevoIngreso/nuevoIngreso.component';
 import { TabPacienteComponent } from './consultas/ingresos/tabPaciente/tabPaciente.component';
 import { IngresoHComponent } from './consultas/ingresos/ingresoH/ingresoH.component';
+import { TabEmerExpComponent } from './consultas/emergencias/tabEmerExp/tabEmerExp.component';
 
 
 
@@ -145,6 +146,7 @@ const routes: Routes = [
     IngresoTablaComponent,
     NuevoIngresoComponent,
     TabPacienteComponent,
+    TabEmerExpComponent,
 
 
 
