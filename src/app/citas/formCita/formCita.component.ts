@@ -4,6 +4,7 @@ import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servici
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
+import { PageReloadService } from './../../services/PageReload.service';
 
 import { FormBuilder } from '@angular/forms';
 import { FechaService } from 'src/app/services/fecha.service';
@@ -51,7 +52,9 @@ export class FormCitaComponent implements OnInit {
     private router: Router,
     private fechaService: FechaService,
     private activateRoute: ActivatedRoute,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private PageReloadService: PageReloadService
+  ) { }
 
 
   ngOnInit() {
@@ -79,12 +82,49 @@ export class FormCitaComponent implements OnInit {
   }
 
   crearCita(): void {
-    this.CitasService.agendar(this.c).subscribe(data => {
-      this.c = data;
-      console.log(this.c)
-      this.router.navigate(['/citas']);
-    })
+    this.CitasService.agendar(this.c).subscribe(
+      (response) => {
+        // Manejar la respuesta exitosa aquí, si es necesario
+        console.log('Consulta creada con éxito', response);
+
+        // Mostrar una alerta de éxito con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
+        alertDiv.textContent = 'Cita Agendada con éxito';
+        document.body.appendChild(alertDiv);
+        this.router.navigate(['/citas'])
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+      },
+      (error) => {
+        // Manejar errores aquí
+        console.error('Error!! al cita ya estaba registrada o se ha llegado al limite de citas', error);
+
+        // Mostrar una alerta de error con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
+        alertDiv.textContent = 'Error!! al cita ya estaba registrada o se ha llegado al limite de citas';
+        document.body.appendChild(alertDiv);
+
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+
+
+      }
+    );
+
   }
+
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
+  }
+
+
 
   editar() {
     this.CitasService.editarCita(this.c.id, this.c)
@@ -129,7 +169,9 @@ export class FormCitaComponent implements OnInit {
   }
  }
 
-
+ showAlert(message: string) {
+  alert(message);
+}
 
 
 

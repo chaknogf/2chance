@@ -28,7 +28,7 @@
 
 /* Estilo de las celdas de datos */
 .console-table td {
-  background-color: #463535;
+  /* background-color: #463535; */
   padding: 8px;
   border: 1px  #fff;
 }

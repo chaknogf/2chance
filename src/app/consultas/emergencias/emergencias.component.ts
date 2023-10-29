@@ -52,6 +52,7 @@ export class EmergenciasComponent implements OnInit {
   public maxdate: string = '';
   edit: boolean = false;
 
+
   emergencia: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
@@ -114,6 +115,10 @@ export class EmergenciasComponent implements OnInit {
      }
 
 
+  }
+
+  agregardata(data: any) {
+    this.emergencia.expediente = data;
   }
 
   calcularedad() {

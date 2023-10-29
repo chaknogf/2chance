@@ -33,6 +33,8 @@ export class TablaComponent implements OnInit {
   horaActual: string = "";
   idCopiado: number = 0;
   mostrarModal = false;
+  private sortColumn: string | undefined;
+  private ascendingOrder: boolean = false;
 
 
 
@@ -287,6 +289,24 @@ export class TablaComponent implements OnInit {
     this.PageReloadService.reloadPage();
   }
 
+  sortTable(column: keyof Ipaciente) {
+    if (this.sortColumn === column) {
+      this.ascendingOrder = !this.ascendingOrder;
+    } else {
+      this.sortColumn = column;
+      this.ascendingOrder = true;
+    }
 
+    this.filteredPacientes.sort((a, b) => {
+      const order = this.ascendingOrder ? 1 : -1;
+      if (a[column] < b[column]) {
+        return -order;
+      } else if (a[column] > b[column]) {
+        return order;
+      } else {
+        return 0;
+      }
+    });
+  }
 }
 

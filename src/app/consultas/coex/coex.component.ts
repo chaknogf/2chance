@@ -131,13 +131,7 @@ export class CoexComponent implements OnInit {
       this.consultasPsico = [];
       this.consultasNutri = [];
 
-      // Llama a las funciones para actualizar los datos de las citas
-      // this.citasmedicina(this.x);
-      // this.citaspedia(this.x);
-      // this.citaciru(this.x);
-      // this.citapsico(this.x);
-      // this.citastrauma(this.x);
-      // this.citagine(this.x);
+
     } else {
       // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
 

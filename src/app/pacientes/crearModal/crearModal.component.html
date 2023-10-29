@@ -2,7 +2,7 @@
   <div class="d-flex flex-wrap justify-content-between align-items-center w-100 py-3 px-2">
     <!-- <h2 class="col-md-5 col-12 mb-md-0 mb-3 text-light">Crear Paciente</h2> -->
     <div class="d-flex align-items-center gap-2 col-md-4 col-12 mb-md-0 mb-3">
-      <button type="submit" class="btn btn-success" data-bs-dismiss="modal" (click)="edit ? editar() : crearPaciente()">
+      <button type="submit" class="btn btn-success"  (click)="edit ? editar() : crearPaciente()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
       <path d="M8 0c-.176 0-.35.006-.523.017l.064.998a7.117 7.117 0 0 1 .918 0l.064-.998A8.113 8.113 0 0 0 8
       0zM6.44.152c-.346.069-.684.16-1.012.27l.321.948c.287-.098.582-.177.884-.237L6.44.153zm4.132.271a7.946
@@ -20,7 +20,7 @@
         </svg>Guardar</button>
 
 
-        <!-- <button class="btn btn-danger" data-bs-dismiss="modal" routerLink="['/pacientes']" (click)="delete()" >
+        <button class="btn btn-danger"  routerLink="['/pacientes']" (click)="delete()" >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
           <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58
           0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59
@@ -28,7 +28,7 @@
           0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1
           .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
           </svg>
-        </button> -->
+        </button>
 
       <!-- <div class="d-flex justify-content-end">
         <button class="btn btn-dark" [routerLink]="['/pacientes']"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
@@ -49,9 +49,9 @@
   <div class="row g-3">
 
     <div class="col-md-6">
-      <div class="form-check form-switch">
-        <input class="form-check-input display-6 mx-3" type="checkbox" id="flexSwitchCheckDefault" [checked]="p.estado === 'v'" (change)="cambiarEstado()">
-        <label class="form-check-label fs-3" for="flexSwitchCheckDefault">{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</label>
+      <div class="form-check form-switch ">
+        <input class="form-check-input display-6 mx-3 text-light" type="checkbox" id="flexSwitchCheckDefault" [checked]="p.estado === 'v'" (change)="cambiarEstado()">
+        <label class="form-check-label fs-3 " for="flexSwitchCheckDefault">{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</label>
       </div>
     </div>
 
@@ -73,7 +73,7 @@
 
     <div class="col-md-6">
       <label>DPI</label>
-      <input type="number" id="dpi" name="dpi" class="form-control bg-light bg-opacity-25" [(ngModel)]="p.dpi" placeholder="dpi" autofocus>
+      <input type="number" id="dpi" name="dpi" class="form-control bg-light bg-opacity-25" [(ngModel)]="p.dpi" placeholder="dpi" autofocus appDpi>
     </div>
 
     <div class="col-md-6">
@@ -92,14 +92,13 @@
 
     <div class="col-md-6">
       <label>Fecha de Nacimiento *</label>
-      <input type="date" id="nacimiento" name="nacieminto" class="form-control bg-light bg-opacity-25" [(ngModel)]="p.nacimiento" name="nacimiento" placeholder="nacimiento" autofocus [max]="maxdate">
+      <input type="date" id="nacimiento" name="nacieminto" class="form-control bg-light " [(ngModel)]="p.nacimiento" name="nacimiento" placeholder="nacimiento" autofocus [max]="maxdate">
     </div>
 
     <div class="col-md-6">
       <label>Nacionalidad</label>
       <select id="nacionaldad" class="form-control bg-light bg-opacity-25" [(ngModel)]="p.nacionalidad" name="nacionalidad" autofocus>
         <option *ngFor="let option of e.nation" [value]="option.value">{{option.label}}</option>
-
       </select>
     </div>
 

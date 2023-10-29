@@ -120,7 +120,8 @@ export class TabEmerExpComponent implements OnInit {
 
   copiarId(exp: number) {
     this.idPaciente.emit(exp);
-    this.emergencia.expediente = exp;
+    console.log(exp)
+    // this.emergencia.expediente = exp;
 
   }
 

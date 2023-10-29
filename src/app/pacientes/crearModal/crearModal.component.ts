@@ -1,7 +1,7 @@
 import {  Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { PacientesService } from './../../services/pacientes.service';
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -75,6 +75,8 @@ export class CrearModalComponent implements OnInit {
   edit: boolean = false;
   isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
 
+  @Input() idPaciente: number | undefined
+
   constructor(public PacientesService: PacientesService, private router: Router,
     private activateRoute: ActivatedRoute, private formBuilder: FormBuilder,
     ) { }
@@ -92,8 +94,8 @@ export class CrearModalComponent implements OnInit {
     const params = this.activateRoute.snapshot.params;
 
     // Verificar si se proporcionó un ID de paciente
-    if (params['id']) {
-      this.PacientesService.getIdPaciente(params['id'])
+    if (params['idPaciente']) {
+      this.PacientesService.getIdPaciente(params['idPaciente'])
         .subscribe(
           data => {
             this.p = data;

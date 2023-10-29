@@ -21,6 +21,8 @@ export class TablaPacientesComponent{
   public dpiBuscar: any = '';
   public paciente: Ipaciente | undefined;
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
+  private sortColumn: string | undefined;
+  private ascendingOrder: boolean = false;
 
 
 
@@ -36,7 +38,6 @@ export class TablaPacientesComponent{
     this.paginarPacientes();
 
   }
-
 
 
 
@@ -74,15 +75,29 @@ export class TablaPacientesComponent{
 
 
 
-  sortTable(colu: keyof Ipaciente) {
-    if (this.order === 'asc') {
-      this.pacientes.sort((a, b) => (a[colu] > b[colu] ? 1 : -1));
-      this.order = 'desc';
+  sortTable(column: keyof Ipaciente) {
+    if (this.sortColumn === column) {
+      this.ascendingOrder = !this.ascendingOrder;
     } else {
-      this.pacientes.sort((a, b) => (a[colu] < b[colu] ? 1 : -1));
-      this.order = 'asc';
+      this.sortColumn = column;
+      this.ascendingOrder = true;
     }
+
+    this.filteredPacientes.sort((a, b) => {
+      const order = this.ascendingOrder ? 1 : -1;
+      if (a[column] < b[column]) {
+        return -order;
+      } else if (a[column] > b[column]) {
+        return order;
+      } else {
+        return 0;
+      }
+    });
   }
+
+
+
+
 
 
   onPageChange(pageNumber: number) {

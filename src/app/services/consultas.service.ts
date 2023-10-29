@@ -12,7 +12,8 @@ export class ConsultasService {
 
 
   // private urlapi = "http://localhost:8000";
-  private urlapi = "http://192.88.1.191:8000";
+  // private urlapi = "http://192.88.1.191:8000";
+  private urlapi = "http://192.168.0.4:8000";
   constructor(private http: HttpClient, private FechaService: FechaService) { }
 
   Consultas(): Observable<any> {
