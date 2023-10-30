@@ -128,6 +128,10 @@ export class FormularioPacienteComponent implements OnInit {
       })
   }
 
+  back(): void {
+    this.router.navigate(['/pacientes']);
+  }
+
   delete() {
     const confirmacion = confirm('¿Estás seguro de Eliminar al Paciente?');
     if (confirmacion) {

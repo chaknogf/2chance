@@ -1,9 +1,13 @@
 
 <div class="justify-content-center console-table">
+  <div>
+    <p class="text-center display-6">Consultas de Pacientes</p>
+  </div>
   <div class="justify-content-between">
     <form class="d-flex justify-content-between align-items-center" autocomplete="off">
-      <input type="text" class="form-control bg-opacity-75  text-center" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-      <input type="text" class="form-control text-capitalize mx-1 text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+      <input type="number" class="form-control bg-opacity-75  text-center" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
+      <input type="number" class="form-control bg-opacity-75  text-center" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+      <input type="number" class="form-control text-capitalize mx-1 text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
       <input type="date" class="form-control text-capitalize mx-1" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
       <input type="text" class="form-control  text-capitalize mx-1" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
       <input type="text" class="form-control text-capitalize mx-1" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
@@ -23,22 +27,24 @@
   <table class="table table-dark" >
     <thead>
       <tr>
-        <th>Opciones</th>
+        <th class="text-center">Opciones</th>
         <th class="text-center">ID</th>
         <th class="text-center">Ingreso</th>
         <th class="text-center">Hora</th>
         <th class="text-center">Nombre</th>
         <th class="text-center">Egreso</th>
-        <th class="text-center">Exp</th>
+        <th class="text-center" (click)="sortTable('expediente')">Exp</th>
         <th class="text-center">Servicio</th>
+        <th class="text-center">Especiealidad</th>
+        <th class="text-center">Tipo</th>
 
 
       </tr>
     </thead>
     <tbody class="justify-content-center  opacity-90">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
-      <tr *ngFor="let ingreso of resumen">
-        <td class="text-center"  (click)="copiarId(ingreso.id)" data-bs-toggle="modal" data-bs-target="#opciones">
+      <tr *ngFor="let consulta of resumen">
+        <td class="text-center"  (click)="copiarId(consulta.id)" data-bs-toggle="modal" data-bs-target="#opciones">
           <svg xmlns="http://www.w3.org/2000/svg"
           width="16" height="16" fill="currentColor"
             class="bi bi-grip-vertical" viewBox="0 0 16 16">
@@ -47,13 +53,16 @@
           3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
           1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
         </svg></td>
-        <td class="text-center font-weight-bold text-primary h5" [routerLink]="['/ingreso/edit', ingreso.id]"> {{ingreso.id}} </td>
-        <td class="text-center"> {{ingreso.fecha_consulta | anyToText | formatoFecha}} </td>
-        <td class="text-center"> {{ingreso.hora}} </td>
-        <td class="text-center"> {{ingreso.nombres}} {{ingreso.apellidos}} </td>
-        <td class="text-center"> {{ingreso.fecha_egreso | anyToText | formatoFecha}} </td>
-        <td class="text-center">{{ingreso.expediente}}</td>
-        <td class="text-center">{{ingreso.servicio | anyToNumber| enumServicios}}</td>
+        <td class="text-center font-weight-bold text-light h5" [routerLink]="['/ingreso/edit', consulta.id]"> {{consulta.id}} </td>
+        <td class="text-center"> {{consulta.fecha_consulta | anyToText | formatoFecha}} </td>
+        <td class="text-center"> {{consulta.hora}} </td>
+        <td class="text-center"> {{consulta.nombres | anyToText |capitalizeName }} {{consulta.apellidos |anyToText | capitalizeName}} </td>
+        <td class="text-center"> {{consulta.fecha_egreso | anyToText | formatoFecha}} </td>
+        <td class="text-center" >{{consulta.expediente}}</td>
+        <td class="text-center">{{consulta.servicio | anyToNumber| enumServicios}}</td>
+        <td class="text-center">{{consulta.especialidad | anyToNumber| enumEspecialidad}}</td>
+        <td class="text-center">{{consulta.tipo_consulta | anyToNumber| enumTipo }}</td>
+
       </tr>
     </tbody>
       </table>
@@ -74,7 +83,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-light">
 
-          <button class="btn btn-dark bg-danger my-2" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button>
+          <!-- <button class="btn btn-dark bg-danger my-2" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button> -->
           <button class="btn btn-info bg-black my-2" data-bs-dismiss="modal" [routerLink]="['/ingreso/edit/', idCopiado]" >Editar Consulta</button>
 
           <button class="btn btn-black" data-bs-dismiss="modal">Cerrar</button>

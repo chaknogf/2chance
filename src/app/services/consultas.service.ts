@@ -1,7 +1,7 @@
 import { FechaService } from 'src/app/services/fecha.service';
 import { Injectable } from '@angular/core';
 import { Iconcultas } from '../models/Iconsultas';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
 
 
@@ -83,11 +83,82 @@ export class ConsultasService {
     return this.http.get(this.urlapi + '/hoja/' +  hoja)
   }
 
+  filterConsultas(filtros: any): Observable<any> {
+    // Inicializa una cadena vacía para la URL
+    let url = `${this.urlapi}/filtro/`;
 
+    // Construye la URL de manera dinámica agregando los filtros no vacíos
+    if (filtros.id) {
+      url += `?id=${filtros.id}`;
+    }
 
+    if (filtros.hoja_emergencia) {
+      if (url.includes('?')) {
+        url += `&hoja_emergencia=${filtros.hoja_emergencia}`;
+      } else {
+        url += `?hoja_emergencia=${filtros.hoja_emergencia}`;
+      }
+    }
 
+    if (filtros.expediente) {
+      if (url.includes('?')) {
+        url += `&expediente=${filtros.expediente}`;
+      } else {
+        url += `?expediente=${filtros.expediente}`;
+      }
+    }
 
+    if (filtros.fecha_consulta) {
+      if (url.includes('?')) {
+        url += `&fecha_consulta=${filtros.fecha_consulta}`;
+      } else {
+        url += `?fecha_consulta=${filtros.fecha_consulta}`;
+      }
+    }
+
+    if (filtros.nombres) {
+      if (url.includes('?')) {
+        url += `&nombres=${filtros.nombres}`;
+      } else {
+        url += `?nombres=${filtros.nombres}`;
+      }
+    }
+
+    if (filtros.apellidos) {
+      if (url.includes('?')) {
+        url += `&apellidos=${filtros.apellidos}`;
+      } else {
+        url += `?apellidos=${filtros.apellidos}`;
+      }
+    }
+
+    if (filtros.dpi) {
+      if (url.includes('?')) {
+        url += `&dpi=${filtros.dpi}`;
+      } else {
+        url += `?dpi=${filtros.dpi}`;
+      }
+    }
+
+    if (filtros.fecha_egreso) {
+      if (url.includes('?')) {
+        url += `&fecha_egreso=${filtros.fecha_egreso}`;
+      } else {
+        url += `?fecha_egreso=${filtros.fecha_egreso}`;
+      }
+    }
+
+    console.log(filtros)
+    // Realiza la solicitud GET con la URL construida dinámicamente
+    return this.http.get(url);
+
+  }
 
 }
+
+
+
+
+
 
 

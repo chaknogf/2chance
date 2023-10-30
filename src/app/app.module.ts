@@ -21,8 +21,8 @@ import { DpiDirective } from './Directive/dpi.directive';
 import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
-  EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe,
-  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe
+  EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe, EnumTipoPipe,
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe,
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -55,6 +55,7 @@ import { NuevoIngresoComponent } from './consultas/ingresos/nuevoIngreso/nuevoIn
 import { TabPacienteComponent } from './consultas/ingresos/tabPaciente/tabPaciente.component';
 import { IngresoHComponent } from './consultas/ingresos/ingresoH/ingresoH.component';
 import { TabEmerExpComponent } from './consultas/emergencias/tabEmerExp/tabEmerExp.component';
+import { TodasComponent } from './consultas/todas/todas.component';
 
 
 
@@ -82,7 +83,8 @@ const routes: Routes = [
   { path: 'ingreso', component: FormIngresoComponent },
   { path: 'ingreso/edit/:id', component: FormIngresoComponent },
   { path: 'ingresoTabla', component: IngresoTablaComponent },
-  { path: 'ingresohoja/view/:id', component: IngresoHComponent},
+  { path: 'ingresohoja/view/:id', component: IngresoHComponent },
+  { path: 'consultas', component: TodasComponent },
 
 
 
@@ -147,6 +149,8 @@ const routes: Routes = [
     NuevoIngresoComponent,
     TabPacienteComponent,
     TabEmerExpComponent,
+    TodasComponent,
+    EnumTipoPipe,
 
 
 
@@ -183,7 +187,8 @@ const routes: Routes = [
       { path: 'ingreso', component: FormIngresoComponent },
       { path: 'ingreso/edit/:id', component: FormIngresoComponent },
       { path: 'ingresoTabla', component: IngresoTablaComponent },
-      { path: 'ingresohoja/view/:id', component: IngresoHComponent},
+      { path: 'ingresohoja/view/:id', component: IngresoHComponent },
+      { path: 'consultas', component: TodasComponent },
 
 
 

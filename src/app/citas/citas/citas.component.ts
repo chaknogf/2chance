@@ -53,6 +53,7 @@ export class CitasComponent implements OnInit {
       this.citapsico(this.x);
       this.citastrauma(this.x);
       this.citagine(this.x);
+    this.citanutri(this.x);
 
 
     console.log(this.x)
@@ -86,6 +87,7 @@ export class CitasComponent implements OnInit {
         this.citapsico(this.x);
         this.citastrauma(this.x);
         this.citagine(this.x);
+        this.citanutri(this.x);
         console.log(this.citas)
       } else {
         // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades

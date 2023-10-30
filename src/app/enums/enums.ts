@@ -15,6 +15,18 @@ export const servicio: Especialidad[] = [
 
 ]
 
+export interface Tipos {
+  value: number;
+  label: string;
+}
+
+export const tipo: Tipos[] = [
+  { value: 1, label: 'Coex' },
+  { value: 2, label: 'Hosp' },
+  { value: 3, label: 'Emergencia' },
+
+
+]
 export interface Servicios {
   value: number;
   label: string;

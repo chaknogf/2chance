@@ -1,7 +1,8 @@
 
+
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
 import {servicio, nation, municipio, etnias, ecivil,
-  academic,  parents, lenguaje, servicios
+  academic,  parents, lenguaje, servicios, tipo
 } from '../enums/enums';
 
 @Pipe({
@@ -34,6 +35,20 @@ export class EnumEspecialidadPipe implements PipeTransform {
       }
     }
 
+@Pipe({
+    name: 'enumTipo'
+
+  })
+  export class EnumTipoPipe implements PipeTransform {
+    transform(value: number): string{
+      const tipoEncontrado = tipo.find(tipo => tipo.value === value);
+      if (tipoEncontrado) {
+        return tipoEncontrado.label;
+      } else {
+        return ''
+      }
+      }
+    }
 @Pipe({
   name: 'enumNacion'
 })

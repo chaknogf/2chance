@@ -1,8 +1,8 @@
-<div class="navbar navbar-expand-sm bg-primary">
+<div class="navbar navbar-expand-sm bg-info">
   <div class="d-flex flex-wrap justify-content-between align-items-center w-100 py-3 px-2">
     <!-- <h2 class="col-md-5 col-12 mb-md-0 mb-3 text-light">Crear Paciente</h2> -->
     <div class="d-flex align-items-center gap-2 col-md-4 col-12 mb-md-0 mb-3">
-      <button type="submit" class="btn btn-success"  (click)="edit ? editar() : crearPaciente()">
+      <button type="submit" class="btn btn-success border-black"  (click)="edit ? editar() : crearPaciente()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
       <path d="M8 0c-.176 0-.35.006-.523.017l.064.998a7.117 7.117 0 0 1 .918 0l.064-.998A8.113 8.113 0 0 0 8
       0zM6.44.152c-.346.069-.684.16-1.012.27l.321.948c.287-.098.582-.177.884-.237L6.44.153zm4.132.271a7.946
@@ -20,7 +20,7 @@
         </svg>Guardar</button>
 
 
-        <button class="btn btn-danger"  routerLink="['/pacientes']" (click)="delete()" >
+        <button class="btn btn-danger border-black"  routerLink="['/pacientes']" (click)="delete()" >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
           <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58
           0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59
@@ -29,6 +29,8 @@
           .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
           </svg>
         </button>
+
+        <button class="btn btn-dark border-black " (click)="back()">Regresar</button>
 
       <!-- <div class="d-flex justify-content-end">
         <button class="btn btn-dark" [routerLink]="['/pacientes']"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">

@@ -5,9 +5,9 @@
       <input type="text" class="form-control bg-opacity-75 w-20 text-center mx-1" name="hojaBuscar" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
       <input type="text" class="form-control bg-opacity-75 w-20 text-center mx-1" name="expedienteBuscar" placeholder="exp" [(ngModel)]="expedienteBuscar" />
       <input type="date" class="form-control bg-opacity-75 w-20 text-center mx-1" name="fechaBuscar" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control rounded w-20 text-capitalize mx-1" placeholder="nombreBuscar" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control rounded w-20 text-capitalize mx-1" placeholder="apellidoBuscar" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control rounded w-20 mx-1" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+      <input type="text" class="form-control w-20 text-capitalize mx-1" placeholder="nombreBuscar" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control w-20 text-capitalize mx-1" placeholder="apellidoBuscar" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="form-control w-20 mx-1" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
       <button type="submit" class="btn btn-outline" (click)="filtro()" >buscar</button>
       <button type="button" class="btn btn-outline" (click)="limpiarInput()">x</button>
     </form>

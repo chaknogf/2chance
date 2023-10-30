@@ -1,10 +1,11 @@
-<button class="btn btn-info no-imprimir" (click)="imprimir()">Imprimir</button>
-
-<body class="imprimir-esto text-black"  >
-<div class="container-fluid">
-  <p class="p-3">{{fechaActual}}</p>
+<div class="d-flex justify-content-center bg-white">
+  <button class="btn btn-info no-imprimir mx-2 my-3 w-30" (click)="imprimir()">Imprimir</button>
 </div>
-<div id="pdf-content." class="container-fluid  h-5  text-dark blanco">
+<body id="pdf-content." class="imprimir-esto text-black bg-light p-0 w-100"  >
+<div class="container-fluid bg-light">
+  <p class="p-1">{{fechaActual | anyToText | formatoFecha}} - {{horaActual}}</p>
+</div>
+<div id="pdfs-content." class="container-fluid  h-5 blanco">
   <div class="d-flex justify-content-center align-items-start">
     <div class="btn btn-primary">HISTORIA CLINICA</div>
   </div>
@@ -86,7 +87,7 @@
 
   <div class="d-flex border border-primary rounded text-black">
     <div class="d-flex border border-primary rounded p-2 w-100 justify-content-between">
-      <p>P/A:</p>
+      <p class="mx-3">P/A:</p>
       <p>FC:</p>
       <p>FR:</p>
       <p>T:</p>
@@ -103,17 +104,17 @@
 
   <div class=" border border-primary rounded text-black">
     <div class="d-flex border border-primary rounded p-2 w-100 justify-content-start">
-      <p>Motivo de la consulta:</p>
+      <p class="mx-3">Motivo de la consulta:</p>
     </div>
     <div class="border border-primary rounded p-2 w-100 justify-content-start text-black">
-      <p class="">Historia Clínica:</p>
+      <p class="mx-3">Historia Clínica:</p>
       <p class="p-2"></p>
     </div>
 
     <div class="border border-primary rounded p-2 w-100 justify-content-start text-black">
-      <p class=" mb-0">Antecedentes:</p>
+      <p class=" mb-0 mx-3">Antecedentes:</p>
       <div class="d-flex">
-        <div class="mb-0 w-50 p-2 mx-0">
+        <div class="mb-0 w-50 p-2 mx-3">
           <p class="mb-0">Mx:</p>
           <p class="mb-0">Qx:</p>
           <p class="mb-0">Tx:</p>
@@ -134,22 +135,22 @@
     </div>
 
     <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
-      <p class="mb-5 ">Examén físico:</p>
+      <p class="mb-5 mx-3">Examén físico:</p>
       <p class="p-3"></p>
     </div>
 
     <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
-      <p class="mb-5">Diagnósticos:</p>
+      <p class="mb-5 mx-3">Diagnósticos:</p>
       <p class="p-1"></p>
     </div>
 
     <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
-      <p class="mb-5">Tratamiento:</p>
+      <p class="mb-5 mx-3">Tratamiento:</p>
       <p class="p-1"></p>
     </div>
 
     <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
-      <p class="mb-5">Estudios Complementarios:</p>
+      <p class="mb-5 mx-3">Estudios Complementarios:</p>
       <p class="p-2"></p>
     </div>
 
@@ -163,13 +164,14 @@
   </div>
 
   <div class="border border-primary rounded">
-    <div class="border border-primary rounded p-0w-100 justify-content-start text-black"> fecha:
-      <p class=" mt-2">Datos subjetivos:</p>
+    <div class="border border-primary rounded p-0w-100 justify-content-start text-black">
+      <p class="mx-3">Fecha:</p>
+      <p class=" mt-2 mx-3">Datos subjetivos:</p>
       <p class=""></p>
     </div>
 
     <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
-      <p class="mb-5">Datos Objetivos:</p>
+      <p class="mb-5 mx-3">Datos Objetivos:</p>
       <p class="p-4"></p>
     </div>
   </div>
@@ -183,3 +185,4 @@
 
 </div>
 </body>
+

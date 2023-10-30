@@ -1,15 +1,5 @@
 <div class="d-flex bg-primary w-100 py-3 px-2">
-  <h2 class="text-light">Agendar Cita</h2>
-  <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
-    <button class="btn btn-dark" [routerLink]="['/citas']">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-      </svg>
-    </button>
-  </div>
+
 </div>
 
 
@@ -17,76 +7,91 @@
   <div class="row d-flex justify-content-between">
     <div class="col-md-6">
 
-      <form class="bg-light p-3 rounded bg-opacity-15">
-        <p class="text-light text-center">No. de cita: </p>
-        <p class="text-light text-center h4">{{c.id}}</p>
-        <!-- <div class="form-group mt-3">
-          <label class="text-light" for="num_cita">Número de Cita:</label>
-          <input type="text" class="form-control bg-black text-light" id="num_cita" name="num_cita" [(ngModel)]="c.id" disabled>
-        </div> -->
+      <form class="bg-light p-3  bg-opacity-15 card">
 
-        <div class="form-group mt-2">
-          <label class="text-light" for="expediente">Expediente:</label>
-          <input type="text" class="form-control" id="expediente" name="expediente"  [(ngModel)]='c.expediente' >
+        <div class="card-header text-light text-center h2">Agendar Cita</div>
+        <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
+          <button class="btn btn-warning bg-black" [routerLink]="['/citas']">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+            </svg>
+            Citas
+          </button>
         </div>
 
-        <div class="form-group mt-2">
-          <p class="text-light mb-0">Nombre de Paciente</p>
-          <p class="form-control">{{c.expediente | expeToNombre | async}}</p>
-        </div>
+        <div class="card-body">
 
-        <div class="form-group mt-2">
-          <label class="text-light" for="especialidad">Especialidad:</label>
-          <select id="especialidad" class="form-control" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)="verResumen($event)">
-            <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
-          </select>
-        </div>
+          <p class="text-light text-center">No. de cita: </p>
+          <p class="text-light text-center h4">{{c.id}}</p>
+          <!-- <div class="form-group mt-3">
+            <label class="text-light" for="num_cita">Número de Cita:</label>
+            <input type="text" class="form-control bg-black text-light" id="num_cita" name="num_cita" [(ngModel)]="c.id" disabled>
+          </div> -->
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="expediente">Expediente:</label>
+            <input type="text" class="form-control" id="expediente" name="expediente"  [(ngModel)]='c.expediente' >
+          </div>
+
+          <div class="form-group mt-2">
+            <p class="text-light mb-0">Nombre de Paciente</p>
+            <p class="form-control">{{c.expediente | expeToNombre | async}}</p>
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="especialidad">Especialidad:</label>
+            <select id="especialidad" class="form-control" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)="verResumen($event)">
+              <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
 
 
-        <div class="form-group mt-2">
-          <label class="text-light" for="fecha">Fecha:</label>
-          <input type="date" class="form-control" id="fecha" name="fecha"
-            (change)="onDateChange($event)" [(ngModel)]="c.fecha" placeholder="hoy">
-        </div>
+          <div class="form-group mt-2">
+            <label class="text-light" for="fecha">Fecha:</label>
+            <input type="date" class="form-control" id="fecha" name="fecha"
+              (change)="onDateChange($event)" [(ngModel)]="c.fecha" placeholder="hoy">
+          </div>
 
-        <div class="form-group mt-2">
-          <p class="text-light mb-0">Día de la semana:</p>
-          <p class="form-control">{{ selectedDate | diaDeSemana }}</p>
-        </div>
-
-
+          <div class="form-group mt-2">
+            <p class="text-light mb-0">Día de la semana:</p>
+            <p class="form-control">{{ selectedDate | diaDeSemana }}</p>
+          </div>
 
 
-        <div class="form-group mt-2">
-          <label class="text-light" for="fecha">Cirugia Programada:</label>
-          <input type="date" class="form-control" id="cirugia_programada" name="cirugia_programada"
-            (change)="onDateChange($event)" [(ngModel)]="c.cirugia_programada" placeholder="cirugia programada">
-        </div>
 
-        <div class="form-group mt-2">
-          <label class="text-light" for="fecha">Estado de la Cita</label>
-          <input type="checkbox" class="form-control" id="cirugia_programada" name="cirugia_programada"
-             [(ngModel)]="c.cirugia_programada" placeholder="cirugia programada">
-        </div>
 
-        <div class="form-group mt-2">
-          <label class="text-light" for="nota">Nota:</label>
-          <textarea class="form-control" id="nota" name="nota" rows="4" [(ngModel)]="c.nota" ></textarea>
+          <div class="form-group mt-2">
+            <label class="text-light" for="fecha">Cirugia Programada:</label>
+            <input type="date" class="form-control" id="cirugia_programada" name="cirugia_programada"
+              (change)="onDateChange($event)" [(ngModel)]="c.cirugia_programada" placeholder="cirugia programada">
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="fecha">Estado de la Cita</label>
+            <input type="checkbox" class="form-control" id="cirugia_programada" name="cirugia_programada"
+              [(ngModel)]="c.cirugia_programada" placeholder="cirugia programada">
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="nota">Nota:</label>
+            <textarea class="form-control" id="nota" name="nota" rows="4" [(ngModel)]="c.nota" ></textarea>
+          </div>
         </div>
 
         </form>
-        <div class="d-flex flex-wrap justify-content-between align-items-center w-100 py-3 px-2">
+        <div class="d-flex  justify-content-center align-items-center w-100 py-3 px-2">
             <div >
-              <button type="submit" class="btn btn-primary" (click)="crearCita()">Guardar</button>
+              <button type="submit" class="btn btn-success bg-black mx-5" (click)="crearCita()">Guardar</button>
             </div>
 
-            <div >
-              <button class="btn btn-danger" (click)="borrar()" [routerLink]="['/citas']">
+            <div class="p-0" >
+              <button class="btn btn-danger bg-black mx-5" (click)="borrar()" [routerLink]="['/citas']">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                 </svg>
               </button>
             </div>
+            <div class="mb-4 p-0">_____</div>
        </div>
 
 

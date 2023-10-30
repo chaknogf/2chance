@@ -1,46 +1,56 @@
-<div class="d-flex bg-primary w-100 py-3 px-2">
-  <h2 class="text-light">Editar consulta</h2>
-  <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
-    <button class="btn btn-dark" [routerLink]="['/coex']">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-      </svg>
-      Coex
-    </button>
-  </div>
+<div class="d-flex bg-dark w-100 py-3 px-2">
+  <h2 class="text-light"></h2>
+
 </div>
 
 <div class="container-fluid">
-  <div class="justify-content-center">
-    <div class="row ">
-      <div class="col-md-6 col-lg-4 mx-3">
-        <form class="container mt-3 bg-light bg-opacity-80 rounded p-5 w-40">
+  <div class="d-flex justify-content-center align-items-center " style="min-height: 100vh;">
+    <div class="col-md-6 col-lg-4">
+      <form class="container mt-3 bg-paper bg-opacity-25 card  p-5 text-center display-7 mx-auto box-shadow-sm">
+        <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
+          <button class="d-flex justify-content-end btn btn-dark border-black mx-3" [routerLink]="['/coex']">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+            </svg>
+            Coex
+          </button>
+        </div>
+
+        <div class="card-header">Editar consulta -COEX-</div>
+
+        <div class="card-body">
 
           <div class="d-flex justify-content-center ">
             <span class="rounded    w-20  text-center  ">ID: {{ coex.id }}</span>
           </div>
 
-          <div class="mb-5 d-flex justify-content-center">
-            <span class="rounded p-1  bg-dark text-light border-primary ">Paciente: {{ coex.nombres }} {{ coex.apellidos }}</span>
+          <div class="card text-white bg-dark mb-3">
+            <span class="text-warning mx-3">Paciente: </span>
+            <p class="my-0 mx-0 text-center  ">{{ coex.nombres | anyToText | capitalizeName }} </p>
+            <p class="my-0 mx-0 text-center ">{{ coex.apellidos | anyToText | capitalizeName }}</p>
+            <span class="text-warning mx-3">Sexo: </span>
+            <p class="my-0 mx-0 text-center ">{{ coex.sexo}}</p>
+            <span class="text-warning mx-3">Edad: </span>
+            <p class="my-0 mx-0 text-center ">{{ coex.edad | anyToText | formatoFecha }}</p>
           </div>
 
           <div class="mb-3 ">
             <label for="especialidad" class="form-label ">Especialidad</label>
-            <select id="especialidad" class="form-select border rounded" [(ngModel)]="coex.especialidad" name="especialidad" >
-              <option *ngFor="let opcion of e.servicio" [value]="opcion.value">{{ opcion.label }}</option>
+            <select id="especialidad" class="form-select border  display-7" [(ngModel)]="coex.especialidad" name="especialidad" >
+              <option  *ngFor="let opcion of e.servicio" [value]="opcion.value">{{ opcion.label }}</option>
             </select>
           </div>
 
-          <div class="text-primary">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion()">
-              <label class="form-check-label" for="flexSwitchCheckDefault">Marcar sí, Regreso expediente al archivo</label>
+          <div class="text-primary my">
+            <div class="form-check form-switch d-flex ">
+              <input class="form-check-input mx-2 " type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion()">
+              <label class="form-check-label display-7" for="flexSwitchCheckDefault">Marcar sí, Regreso expediente </label>
             </div>
           </div>
 
-          <div class="mb-3 ">
+          <div class="mb-3 mt-4 ">
             <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
-            <input class="form-control" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" [disabled]="!coex.recepcion" [max]="maxdate">
+            <input class="form-control mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" [disabled]="!coex.recepcion" [max]="maxdate">
           </div>
 
 
@@ -48,9 +58,8 @@
           <div class="mb-3">
             <button class="btn btn-primary" (click)="onSubmit()">Guardar</button>
           </div>
-        </form>
-
+        </div>
+      </form>
       </div>
     </div>
   </div>
-</div>

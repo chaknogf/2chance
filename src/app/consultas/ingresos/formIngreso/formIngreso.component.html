@@ -8,12 +8,12 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
 
-            <form class="p-3 text-light w-100 btn  bg-light bg-opacity-25 ">
+            <form class="p-3 text-light w-100 btn  bg-info bg-opacity-60 card">
 
-              <div class="d-flex justify-content-end">
-                <button class="btn btn-dark w-20" [routerLink]="['/ingresos']">regresar</button>
-                <button class="btn btn-success w-20 mx-3" (click)="editar()">Guardar</button>
-                <button class="btn btn-info w-20 mx-2 " [routerLink]="['/ingresohoja/view/', ingreso.id]">Imprimir</button>
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-warning bg-black w-20" [routerLink]="['/ingresos']">regresar</button>
+                <button class="btn btn-success bg-black w-20 mx-3" (click)="editar()">Guardar</button>
+                <button class="btn btn-info bg-black w-20 mx-2 " [routerLink]="['/ingresohoja/view/', ingreso.id]">Imprimir</button>
               </div>
 
               <p class="text-center mt-2">consulta nO. {{ingreso.id}} - {{p.expediente}}</p>
@@ -28,7 +28,7 @@
                   <label class="">Estado:</label>
                   <div class="form-check form-switch ">
                     <input class="form-check-input bg-success text-uppercase h4 mx-4" type="checkbox" id="flexSwitchCheckDefault" [checked]="p.estado === 'v'" (change)="cambiarEstado()" disabled>
-                    <label class="form-check-label h4">{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</label>
+                    <label class="form-check-label h4 text-warning">{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</label>
                   </div>
                 </div>
 
@@ -187,6 +187,17 @@
                 </div>
               </div>
 
+              <div class="d-flex justify-content-center mt-3">
+                <div class="form-group mb-3 mx-2 w-50">
+                  <label for="egreso" class="form-label">Egreso:</label>
+                  <input type="Date" class="form-control text-center text-uppercase" id="fecha_egreso" name="fecha_egreso" placeholder="Egreso" [(ngModel)]="ingreso.fecha_egreso">
+                </div>
+
+                <div class="form-group mb-3 w-50">
+                  <label for="egreso" class="form-label">Recepcion de expediente:</label>
+                  <input type="datetime-local" class="form-control text-center text-uppercase" id="fecha_recepcion" name="fecha_recepcion" placeholder="Fecha de Recpecion" [(ngModel)]="ingreso.fecha_recepcion">
+                </div>
+              </div>
 
 
               <div class="form-group mb-3">

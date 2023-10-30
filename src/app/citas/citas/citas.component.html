@@ -1,5 +1,5 @@
 <div class=" mt-3">
-  <h1 class="text-center display-2 text-light">Citas Programadas</h1>
+  <p class="text-center display-2 text-light">Citas Programadas</p>
   <div>
   </div>
 
@@ -29,12 +29,12 @@
 
   <div class="conteiner d-flex justify-content-center">
     <div class="d-flex justify-content-end mb-3">
-      <a routerLink="/crear-paciente" [routerLink]="['/agendar']" class="btn btn-primary">
+      <button routerLink="/crear-paciente" [routerLink]="['/agendar']" class="btn bg-black btn-warning">
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
           <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z"/>
           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
         </svg> Cita Nueva
-      </a>
+      </button>
     </div>
   </div>
 
@@ -233,15 +233,15 @@
       </div>
     </div>
 
+    <div class="container-fluid  mt-2">
+      <div class="d-flex justify-content-between">
 
-    <div class="my-2">
-      <div class="d-flex justify-content-center">
-
-        <!-- Primer contenedor Nutricion -->
-        <div class="container-fluid console-table p-0 bg-info  w-35">
+        <!-- Primer contenedor Nutrición
+         -->
+        <div class="container-fluid console-table p-0 bg-info mx-2">
           <h3 class="text-light mx-3 border-text">{{ 7 | enumEspecialidad }}</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-sm" *ngIf="citasNutri">
+          <div class="table-responsive ">
+            <table class="table table-hover table-auto" *ngIf="citasNutri.length > 0">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
@@ -267,7 +267,58 @@
           </div>
         </div>
 
+        <!-- Segundo contenedor Otro -->
+        <div class="container-fluid console-table p-0 bg-info mx-2">
+          <h3 class="text-light mx-3 border-text">Otro</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-auto" >
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr >
+                  <td ></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tercer contenedor Otro -->
+        <div class="container-fluid console-table p-0 bg-info mx-2">
+          <h3 class="text-light mx-3 border-text">Otro</h3>
+          <div class="table-responsive">
+            <table class="table table-hover table-auto" >
+              <!-- Encabezados de columna -->
+              <thead>
+                <tr>
+                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                  <th class="bg-info text-light text-center" scope="col">No.</th>
+                </tr>
+              </thead>
+              <!-- Datos de la tabla -->
+              <tbody>
+                <tr >
+                  <td ></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
       </div>
     </div>
+
+
 
