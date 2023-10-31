@@ -55,7 +55,8 @@ import { NuevoIngresoComponent } from './consultas/ingresos/nuevoIngreso/nuevoIn
 import { TabPacienteComponent } from './consultas/ingresos/tabPaciente/tabPaciente.component';
 import { IngresoHComponent } from './consultas/ingresos/ingresoH/ingresoH.component';
 import { TabEmerExpComponent } from './consultas/emergencias/tabEmerExp/tabEmerExp.component';
-import { TodasComponent } from './consultas/todas/todas.component';
+import { TodasComponent } from './consultas/consultas/todas/todas.component';
+import { ReporteComponent } from './consultas/consultas/reporte/reporte.component';
 
 
 
@@ -85,6 +86,7 @@ const routes: Routes = [
   { path: 'ingresoTabla', component: IngresoTablaComponent },
   { path: 'ingresohoja/view/:id', component: IngresoHComponent },
   { path: 'consultas', component: TodasComponent },
+  { path: 'consulta/view/:id', component: ReporteComponent },
 
 
 
@@ -150,6 +152,7 @@ const routes: Routes = [
     TabPacienteComponent,
     TabEmerExpComponent,
     TodasComponent,
+    ReporteComponent,
     EnumTipoPipe,
 
 
@@ -189,6 +192,7 @@ const routes: Routes = [
       { path: 'ingresoTabla', component: IngresoTablaComponent },
       { path: 'ingresohoja/view/:id', component: IngresoHComponent },
       { path: 'consultas', component: TodasComponent },
+      { path: 'consulta/view/:id', component: ReporteComponent },
 
 
 

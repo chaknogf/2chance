@@ -80,8 +80,7 @@
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-font-sans-serif: Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 700;
@@ -2997,7 +2996,7 @@ textarea.form-control-lg {
 .btn {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
-  --bs-btn-font-family: ;
+  --bs-btn-font-family: Cabin Sketch;
   --bs-btn-font-size: 1rem;
   --bs-btn-font-weight: 400;
   --bs-btn-line-height: 1.5;
@@ -8428,7 +8427,7 @@ textarea.form-control-lg {
 }
 
 .font-monospace {
-  font-family: var(--bs-font-monospace) !important;
+  font-family: var(--bs-font-monospace) ;
 }
 
 .fs-1 {
@@ -12479,7 +12478,7 @@ select.form-control {
 }
 
 pre {
-  border: 2px solid #333;
+  border: 2px solid #17a2b8;
   border-radius: 15px 5px 5px 25px/5px 25px 25px 5px;
 }
 
@@ -12627,4 +12626,18 @@ body {
 
 .bg-paper {
   background-color: #ffff99;
+}
+
+pre {
+  font-family: monospace;
+  color: white;
+  background-color: var(--bs-gray-dark);
+  padding: 10px;
+  border: 2px solid #00537e;
+  border-radius: 5px;
+}
+
+/* Establece el color de los bordes de la tabla */
+pre::before, pre::after, pre code {
+  color: var(--bs-red); /* Color de los bordes */
 }
