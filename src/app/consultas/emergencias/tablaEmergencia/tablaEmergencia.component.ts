@@ -1,3 +1,4 @@
+import { tipo } from './../../../enums/enums';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,6 +34,10 @@ export class TablaEmergenciaComponent implements OnInit {
   public fechaBuscar: any = '';
   public selectdate: string = '';
   public maxdate: string = '';
+  public idBuscar: any = '';
+  public fechaEgreso: any = '';
+  public tipoConsulta: any = 3;
+
 
 
 
@@ -84,50 +89,26 @@ export class TablaEmergenciaComponent implements OnInit {
   }
 
   filtro() {
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      id: this.idBuscar,
+      hoja: this.hojaBuscar,
+      expediente: this.expedienteBuscar,
+      fecha_consulta: this.fechaBuscar,
+      nombres: this.nombreBuscar,
+      apellidos: this.apellidoBuscar,
+      dpi: this.dpiBuscar,
+      fecha_egreso: this.fechaEgreso,
+      tipo_consulta: this.tipoConsulta,
+    };
 
-    if (this.hojaBuscar !="") {
-      this.ConsultasService.hoja(this.hojaBuscar).subscribe(data => {
-        if (data) {
-          this.actualizar([data]);
-          this.resumen.push(data);
-        }
-      });
-    }
+    this.ConsultasService.filterConsultas(filters).subscribe((result) => {
+      this.resumen = result;
+    });
 
-    if (this.expedienteBuscar) {
-      this.ConsultasService.expediente(this.expedienteBuscar).subscribe(data => {
-        if (data) {
-          this.actualizar([data]);
-          this.resumen.push(data);
-        }
-      });
-    }
 
-    if (this.dpiBuscar) {
-      this.ConsultasService.dpi(this.dpiBuscar).subscribe(data => {
-        if (data) {
-          this.actualizar([data]);
-        }
-      });
-    }
 
-    if (this.fechaBuscar) {
-      this.ConsultasService.tipoConsulta(this.fechaBuscar, 3).subscribe(data => {
-        if (data && data.length > 0) {
-          this.actualizar(data);
-        }
-      });
-    }
-
-    if (this.nombreBuscar || this.apellidoBuscar) {
-      this.ConsultasService.nombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-        if (data && data.length > 0) {
-          this.actualizar(data);
-        }
-      });
-    }
   }
-
 
 
 

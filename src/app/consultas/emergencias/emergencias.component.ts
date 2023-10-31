@@ -104,7 +104,7 @@ export class EmergenciasComponent implements OnInit {
 
      // Verificar si se proporcionó un ID de paciente
      if (params['id']) {
-       this.ConsultasService.hoja(params['id'])
+       this.ConsultasService.Consulta(params['id'])
          .subscribe(
            data => {
              this.emergencia = data;

@@ -10,6 +10,7 @@
       <input type="text" class="form-control w-20 mx-1" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
       <button type="submit" class="btn btn-outline" (click)="filtro()" >buscar</button>
       <button type="button" class="btn btn-outline" (click)="limpiarInput()">x</button>
+      <button class="btn btn-info bg-black mx-1 w-2 " [routerLink]="['/emergencias']">Registra Consulta</button>
     </form>
 
   </div>
@@ -22,8 +23,8 @@
         <th class="text-center">No. Hoja</th>
         <th class="text-center">Fecha</th>
         <th class="text-center">Hora</th>
-        <th class="text-center">Nombre</th>
-        <th class="text-center">Exp</th>
+        <th class="text-center">Nombre y Apellido</th>
+        <th class="text-center">Expediente</th>
         <th class="text-center">id</th>
 
       </tr>
@@ -31,7 +32,7 @@
     <tbody class="">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let emer of resumen">
-        <td class="text-center font-weight-bold text-info h5" [routerLink]="['/emergencias/edit', emer.hoja_emergencia]"> {{emer.hoja_emergencia}} </td>
+        <td class="text-center font-weight-bold text-info h5" [routerLink]="['/emergencias/edit', emer.id]"> {{emer.hoja_emergencia}} </td>
         <td class="text-center"> {{emer.fecha_consulta |anyToText | formatoFecha}} </td>
         <td class="text-center"> {{emer.hora}} </td>
         <td class="text-center"> {{emer.nombres}} {{emer.apellidos}} </td>
