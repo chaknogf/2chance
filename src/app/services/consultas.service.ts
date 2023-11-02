@@ -1,8 +1,10 @@
+import { tipo } from './../enums/enums';
 import { FechaService } from 'src/app/services/fecha.service';
 import { Injectable } from '@angular/core';
 import { Iconcultas } from '../models/Iconsultas';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
+import { environment } from 'src/enviroments/enviroment';
 
 
 @Injectable({
@@ -11,9 +13,7 @@ import { Observable, interval } from 'rxjs';
 export class ConsultasService {
 
 
- // private urlapi = "http://localhost:8000";
-  private urlapi = "http://192.88.1.191:8000";
-  // private urlapi = "http://192.168.0.4:8000";
+ private urlapi = environment.apiUrl;
   constructor(private http: HttpClient, private FechaService: FechaService) { }
 
   Consultas(): Observable<any> {
@@ -48,12 +48,7 @@ export class ConsultasService {
     return this.http.get(this.urlapi + '/consultando/?fecha=' + fecha + '&tipo=' + tipo + '&especialidad=' + esp);
   }
 
-  recepcion(id: number, estado: string, registro: string): Observable<any> {
 
-    const body = { id: id, recepcion: estado, fecha_recepcion: registro}
-
-    return this.http.patch(this.urlapi + '/recepcion/'+id+'?fecha_recep='+registro+'&recep='+estado, body );
-  }
 
   consulTipo(tipo: number): Observable<any> {
     return this.http.get(this.urlapi + '/consult/?tipo=' + tipo)
@@ -82,6 +77,8 @@ export class ConsultasService {
   hoja(hoja: string): Observable<any> {
     return this.http.get(this.urlapi + '/hoja/' +  hoja)
   }
+
+
 
   filterConsultas(filtros: any): Observable<any> {
     // Inicializa una cadena vacía para la URL
@@ -147,6 +144,24 @@ export class ConsultasService {
         url += `?fecha_egreso=${filtros.fecha_egreso}`;
       }
     }
+
+    if (filtros.tipo_consulta) {
+      if (url.includes('?')) {
+        url += `&tipo_consulta=${filtros.tipo_consulta}`;
+      } else {
+        url += `?tipo_consulta=${filtros.tipo_consulta}`;
+      }
+    }
+
+    if (filtros.status) {
+      if (url.includes('?')) {
+        url += `&status=${filtros.status}`;
+      } else {
+        url += `?status=${filtros.status}`;
+      }
+    }
+
+
 
     console.log(filtros, url)
     // Realiza la solicitud GET con la URL construida dinámicamente

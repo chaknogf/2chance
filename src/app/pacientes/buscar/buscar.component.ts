@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,} from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
+import { Location } from '@angular/common';
+
+
+
 
 @Component({
   selector: 'buscar',
@@ -11,11 +15,18 @@ import { Ipaciente } from 'src/app/models/Ipaciente';
 export class BuscarComponent implements OnInit {
   public detalleVisible: boolean = false;
   public patient: Ipaciente | undefined;
+  public rutaAnterior: string = '../';
 
   constructor(
     private pacientesService: PacientesService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private _location: Location
+
+  ) { }
+
+  regresar(){
+    this._location.back();
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

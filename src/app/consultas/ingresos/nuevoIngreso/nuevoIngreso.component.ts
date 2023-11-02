@@ -46,7 +46,7 @@ export class NuevoIngresoComponent implements OnInit {
     telefono: "",
     especialidad: 0,
     servicio: null,
-    recepcion: false,
+    status: 1,
     fecha_recepcion: "",
     fecha_egreso: "",
     tipo_consulta: 2,

@@ -2,17 +2,19 @@ import { ConsultasService } from 'src/app/services/consultas.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
-import { PageReloadService } from '../../../services/PageReload.service';
+import { PageReloadService } from './../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { bottom } from '@popperjs/core';
+
 
 @Component({
-  selector: 'todas',
-  templateUrl: './todas.component.html',
-  styleUrls: ['./todas.component.css']
+  selector: 'app-tablaUisau',
+  templateUrl: './tablaUisau.component.html',
+  styleUrls: ['./tablaUisau.component.css']
 })
-export class TodasComponent implements OnInit {
+export class TablaUisauComponent implements OnInit {
 
   constructor(
     private ConsultasService: ConsultasService,
@@ -96,9 +98,19 @@ export class TodasComponent implements OnInit {
   }
 
 
+
   consult() {
+    const filters = {
+
+      tipo_consulta: 2,
+      status: 1
+
+
+
+    };
+
     this.porcentajeDeProgreso = 0.5;
-    this.ConsultasService.Consultas().subscribe(data => {
+    this.ConsultasService.filterConsultas(filters).subscribe(data => {
       this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
       this.porcentajeDeProgreso = 75;
       this.resumen = data;
@@ -172,6 +184,7 @@ export class TodasComponent implements OnInit {
       apellidos: this.apellidoBuscar,
       dpi: this.dpiBuscar,
       fecha_egreso: this.fechaEgreso,
+
     };
 
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {
@@ -181,48 +194,6 @@ export class TodasComponent implements OnInit {
 
 
   }
-
-
-
-
-
-
-  buscarPorExpediente() {
-    this.ConsultasService.expediente(this.expedienteBuscar).subscribe(
-      (data) => this.actualizar(data)
-
-    );
-  }
-
-  buscarPorNombre() {
-    this.ConsultasService.nombre(this.nombreBuscar, this.apellidoBuscar).subscribe(
-      (data) => this.actualizar(data)
-    );
-  }
-
-  buscarPorDPI() {
-    this.ConsultasService.dpi(this.dpiBuscar).subscribe(
-      (data) => this.actualizar(data)
-    );
-  }
-
-  buscarPorHojaEmergencia() {
-    this.ConsultasService.hoja(this.hojaBuscar).subscribe(data => {
-      if (data) {
-        this.actualizar([data]);
-        this.resumen = [data];
-      }
-    })
-
-  }
-
-  buscarPorFecha() {
-    this.ConsultasService.tipoConsulta(this.fechaBuscar, 3).subscribe(
-      (data) => this.actualizar(data)
-    );
-  }
-
-
 
 
   limpiarInput() {

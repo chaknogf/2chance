@@ -21,14 +21,13 @@
               <div class="d-flex justify-content-center mb-2">
                 <div class="form-group w-40">
                   <label for="expediente" class="">Expediente:</label>
-                  <input type="text" class="form-control text-center text-uppercase" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="ingreso.expediente" disabled="">
+                  <input type="text" class="form-control text-center text-uppercase " id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="ingreso.expediente" disabled="">
                 </div>
 
                 <div class="form-group mb-3 mx-3">
                   <label class="">Estado:</label>
-                  <div class="form-check form-switch ">
-                    <input class="form-check-input bg-success text-uppercase h4 mx-4" type="checkbox" id="flexSwitchCheckDefault" [checked]="p.estado === 'v'" (change)="cambiarEstado()" disabled>
-                    <label class="form-check-label h4 text-warning">{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</label>
+                  <div class="btn btn-dark ">
+                    <p class="h3 text-warning">{{ p.estado === 'v' ? 'Vivo' : 'Fallecido' }}</p>
                   </div>
                 </div>
 
@@ -187,18 +186,32 @@
                 </div>
               </div>
 
+              <hr>
+
+
               <div class="d-flex justify-content-center mt-3">
                 <div class="form-group mb-3 mx-2 w-50">
                   <label for="egreso" class="form-label">Egreso:</label>
-                  <input type="Date" class="form-control text-center text-uppercase" id="fecha_egreso" name="fecha_egreso" placeholder="Egreso" [(ngModel)]="ingreso.fecha_egreso">
+                  <input type="Date" class="form-control text-center text-uppercase" id="fecha_egreso" name="fecha_egreso" placeholder="Egreso" [(ngModel)]="ingreso.fecha_egreso" (click)="status()">
+                  <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiaregreso()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+                    <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
+                     2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
+                      11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+                  </svg></button>
                 </div>
 
                 <div class="form-group mb-3 w-50">
                   <label for="egreso" class="form-label">Recepcion de expediente:</label>
-                  <input type="datetime-local" class="form-control text-center text-uppercase" id="fecha_recepcion" name="fecha_recepcion" placeholder="Fecha de Recpecion" [(ngModel)]="ingreso.fecha_recepcion">
+                  <input type="datetime-local" class="form-control text-center text-uppercase" id="fecha_recepcion" name="fecha_recepcion" placeholder="Fecha de Recpecion" [(ngModel)]="ingreso.fecha_recepcion" (click)="recepcion()">
+                  <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarrecepcion()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+                    <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
+                     2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
+                      11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+                  </svg></button>
                 </div>
               </div>
 
+              <hr>
 
               <div class="form-group mb-3">
                 <label for="nota" class="form-label">Nota:</label>

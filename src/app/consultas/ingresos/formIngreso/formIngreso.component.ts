@@ -74,7 +74,7 @@ export class FormIngresoComponent implements OnInit {
     telefono: null,
     especialidad: 0,
     servicio: null,
-    recepcion: false,
+    status: 1,
     fecha_recepcion: null,
     fecha_egreso: null,
     tipo_consulta: 2,
@@ -293,13 +293,36 @@ export class FormIngresoComponent implements OnInit {
     // }
   }
 
+
+
+
+
   formatPhoneNumber(inputValue: string) {
     const numericAndSpaceValue = inputValue.replace(/[^\d\s]/g, '');
     const formattedValue = numericAndSpaceValue.replace(/(\d{8})(?=\d)/g, '$1 ');
     this.p.telefono = formattedValue;
   }
 
+  status() {
+    this.ingreso.fecha_egreso = this.fechaActual;
+    this.ingreso.status = 2;
 
+
+  }
+
+  recepcion() {
+    this.ingreso.fecha_recepcion = this.fechaRecepcion
+  }
+
+  limpiaregreso() {
+    this.ingreso.fecha_egreso = null;
+    this.ingreso.status = 1;
+  }
+
+  limpiarrecepcion() {
+    this.ingreso.fecha_recepcion = null;
+
+  }
 
 
 }

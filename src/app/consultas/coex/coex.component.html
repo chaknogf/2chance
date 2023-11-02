@@ -70,7 +70,7 @@
                       <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
                       <td class="text-center"> {{ coex.hora}} </td>
                       <td class="text-center form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion(coex.id)">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="status" [(ngModel)]="coex.status" >
                       </td>
 
 
@@ -117,7 +117,7 @@
                     <td class="text-center " [routerLink]="['/hClinica/view/',coex.expediente]">{{coex.expediente}}  </td>
                     <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
                     <td class="text-center"> {{ coex.hora}} </td>
-                    <td class="text-center form-switch"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" (click)="changeRecepcion(coex.id)"></td>
+                    <td class="text-center form-switch"><input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="recepcion" ></td>
 
                   </tr>
                 </tbody>

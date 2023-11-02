@@ -22,7 +22,7 @@ import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe, EnumTipoPipe,
-  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe,
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -57,42 +57,14 @@ import { IngresoHComponent } from './consultas/ingresos/ingresoH/ingresoH.compon
 import { TabEmerExpComponent } from './consultas/emergencias/tabEmerExp/tabEmerExp.component';
 import { TodasComponent } from './consultas/consultas/todas/todas.component';
 import { ReporteComponent } from './consultas/consultas/reporte/reporte.component';
+import { TablaUisauComponent } from './uisau/tablaUisau/tablaUisau.component';
+import { FormUisauComponent } from './uisau/formUisau/formUisau.component';
+import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.component';
 
 
 
 
 
-const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'pacientes', component: TablaPacientesComponent },
-  { path: 'crear', component: FormularioPacienteComponent },
-  { path: 'paciente/edit/:id', component: FormularioPacienteComponent },
-  { path: 'buscar/view/:id', component: BuscarComponent},
-  { path: 'citas', component: CitasComponent },
-  { path: 'agendar', component: FormCitaComponent },
-  { path: 'agenda/edit/:id', component: FormCitaComponent },
-  { path: 'emergencias', component: EmergenciasComponent },
-  { path: 'emergencias/edit/:id', component: EmergenciasComponent },
-  { path: 'coex', component: CoexComponent },
-  { path: 'coex/edit/:id', component: CoexComponent },
-  { path: 'tablaP', component: TablaComponent },
-  { path: 'nuevaConsulta', component: NuevaConsultaComponent },
-  { path: 'edit/coex/:id', component: FormCoexComponent },
-  { path: 'tablaEmergencia', component: TablaEmergenciaComponent },
-  { path: 'hClinica/view/:id', component: HClinicaComponent },
-  { path: 'ingresos', component: IngresosComponent },
-  { path: 'ingreso', component: FormIngresoComponent },
-  { path: 'ingreso/edit/:id', component: FormIngresoComponent },
-  { path: 'ingresoTabla', component: IngresoTablaComponent },
-  { path: 'ingresohoja/view/:id', component: IngresoHComponent },
-  { path: 'consultas', component: TodasComponent },
-  { path: 'consulta/view/:id', component: ReporteComponent },
-
-
-
-
-
-]
 
 
 
@@ -125,6 +97,7 @@ const routes: Routes = [
     EnumIdiomaPipe,
     EnumServiciosPipe,
     TextToDatePipe,
+    EnumStatusPipe,
     ExpedienteToNombrePipe,
     ResumenCitasPipe,
     WeekdayPipe,
@@ -154,6 +127,9 @@ const routes: Routes = [
     TodasComponent,
     ReporteComponent,
     EnumTipoPipe,
+    TablaUisauComponent,
+    DetalleUisauComponent,
+    FormUisauComponent,
 
 
 
@@ -193,6 +169,11 @@ const routes: Routes = [
       { path: 'ingresohoja/view/:id', component: IngresoHComponent },
       { path: 'consultas', component: TodasComponent },
       { path: 'consulta/view/:id', component: ReporteComponent },
+      { path: 'uisau', component: TablaUisauComponent },
+      { path: 'formUisau', component: FormUisauComponent },
+      { path: 'formUisau/edit/:id', component: FormUisauComponent },
+      { path: 'detalleUisau/:id', component: DetalleUisauComponent},
+
 
 
 

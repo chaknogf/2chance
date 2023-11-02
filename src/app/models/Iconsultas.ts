@@ -18,7 +18,7 @@ export interface Iconcultas {
   telefono: string| null;
   especialidad: number | null;
   servicio: number | null;
-  recepcion: boolean| null;
+  status: number| null;
   fecha_recepcion: string| null;
   fecha_egreso: string| null;
   tipo_consulta: number| null;
@@ -28,41 +28,10 @@ export interface Iconcultas {
 }
 
 
-export interface IVistaEmergencia {
-  id: number;
-  hoja_emergencia: string;
-  expediente: string;
-  fecha_consulta: string;
-  nombre: string;
-  apellidos: string;
-  nacimiento: Date | string;
-  tipo_consulta: number;
-  recepcion: boolean;
-}
 
-export interface IVistaCoex {
-  id: number;
-  expediente: string;
-  fecha_consulta: string;
-  nombre: string;
-  apellidos: string;
-  nacimiento: Date | string;
-  tipo_consulta: number;
-  especialidad: number;
-  recepcion: boolean;
-}
 
-export interface IVistaIngreso {
-  id: number;
-  expediente: string;
-  fecha_consulta: string;
-  nombre: string;
-  apellidos: string;
-  nacimiento: Date |string;
-  tipo_consulta: number;
-  especialidad: number;
-  fecha_egreso: Date;
-  recepcion: boolean;
-}
+
+
+
 
 

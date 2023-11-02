@@ -6,7 +6,7 @@
 <div class="container-fluid">
   <div class="d-flex justify-content-center align-items-center " style="min-height: 100vh;">
     <div class="col-md-6 col-lg-4">
-      <form class="container mt-3 bg-paper bg-opacity-25 card  p-5 text-center display-7 mx-auto box-shadow-sm">
+      <form class="container mt-3 bg-paper bg-opacity-25 card  p-5 text-center display-8 mx-auto box-shadow-sm">
         <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
           <button class="d-flex justify-content-end btn btn-dark border-black mx-3" [routerLink]="['/coex']">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
@@ -16,7 +16,7 @@
           </button>
         </div>
 
-        <div class="card-header">Editar consulta -COEX-</div>
+        <div class="card-header h3">Editar consulta -COEX-</div>
 
         <div class="card-body">
 
@@ -24,7 +24,7 @@
             <span class="rounded    w-20  text-center  ">ID: {{ coex.id }}</span>
           </div>
 
-          <div class="card text-white bg-dark mb-3">
+          <div class="card text-white bg-black mb-3">
             <span class="text-warning mx-3">Paciente: </span>
             <p class="my-0 mx-0 text-center  ">{{ coex.nombres | anyToText | capitalizeName }} </p>
             <p class="my-0 mx-0 text-center ">{{ coex.apellidos | anyToText | capitalizeName }}</p>
@@ -41,16 +41,16 @@
             </select>
           </div>
 
-          <div class="text-primary my">
-            <div class="form-check form-switch d-flex ">
-              <input class="form-check-input mx-2 " type="checkbox" id="flexSwitchCheckDefault" name="recepcion" [(ngModel)]="coex.recepcion" (click)="changeRecepcion()">
-              <label class="form-check-label display-7" for="flexSwitchCheckDefault">Marcar sí, Regreso expediente </label>
-            </div>
-          </div>
 
-          <div class="mb-3 mt-4 ">
+
+          <div class="d-flex mb-3 mt-4 ">
             <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
-            <input class="form-control mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" [disabled]="!coex.recepcion" [max]="maxdate">
+            <input class="form-control mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" (click)="status()" [max]="maxdate">
+            <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+              <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
+               2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
+                11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+            </svg></button>
           </div>
 
 

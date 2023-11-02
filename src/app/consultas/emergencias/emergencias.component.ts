@@ -5,9 +5,9 @@ import { ConsultasService } from 'src/app/services/consultas.service';
 import { Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PacientesService } from 'src/app/services/pacientes.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import { Ipaciente } from 'src/app/models/Ipaciente';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'emergencias',
@@ -22,7 +22,8 @@ export class EmergenciasComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private FechaService: FechaService,
-    private PageReloadService: PageReloadService
+    private PageReloadService: PageReloadService,
+    private _location: Location
 
 
   ) {
@@ -71,7 +72,7 @@ export class EmergenciasComponent implements OnInit {
     telefono: null,
     especialidad: 0,
     servicio: null,
-    recepcion: false,
+    status: 1,
     fecha_recepcion: null,
     fecha_egreso: null,
     tipo_consulta: 3,
@@ -115,6 +116,10 @@ export class EmergenciasComponent implements OnInit {
      }
 
 
+  }
+
+  regresar(){
+    this._location.back();
   }
 
   agregardata(data: any) {

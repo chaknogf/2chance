@@ -62,7 +62,7 @@ export class CoexComponent implements OnInit {
     telefono: null,
     especialidad: 0,
     servicio: null,
-    recepcion: false,
+    status: 1,
     fecha_recepcion: null,
     fecha_egreso: null,
     tipo_consulta: 1,
@@ -175,28 +175,7 @@ export class CoexComponent implements OnInit {
        })
   }
 
-  changeRecepcion(id: number) {
-    let estado: string;
-    let registro: string;
 
-    if (this.coex.recepcion === false) {
-      estado = 'true';
-      registro = this.fechaRecepcion;
-      this.showAlert("Recepción activada");
-    } else {
-      estado = 'false';
-      registro = '';
-      this.showAlert("Recepción desactivada");
-    }
-
-    this.ConsultasService.recepcion(id, estado, registro).subscribe(data => {
-      this.consultas = data;
-    });
-  }
-
-  showAlert(message: string) {
-    alert(message);
-  }
 
 
 

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { Ipaciente } from '../models/Ipaciente';
+import { environment } from 'src/enviroments/enviroment';
 
 interface nuevoExpResponse{
   nuevo_exp: number;
@@ -13,9 +14,7 @@ interface nuevoExpResponse{
 })
 export class PacientesService {
 
- // private urlapi = "http://localhost:8000";
-  private urlapi = "http://192.88.1.191:8000";
-  // private urlapi = "http://192.168.0.4:8000";
+  private urlapi = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

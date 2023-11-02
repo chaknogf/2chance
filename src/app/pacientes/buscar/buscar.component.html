@@ -1,82 +1,45 @@
 
 <div class="mb-3">
-  <button type="button" class="d-flex flex-r btn btn-primary" [routerLink]="['/pacientes']">
+  <button type="button" class="d-flex flex-r btn btn-primary" (click)="regresar()">
   Regresar
   </button>
-</div>
-<div class="card mb-3" *ngIf="detalleVisible">
-  <p class="card-header text-center">Expediente: <span class="display-6">{{patient?.expediente}} </span> <br>
-     <span class="h4">{{patient?.nombre | anyToText | capitalizeName}} {{patient?.apellido | anyToText | capitalizeName}} </span> <br>
-     <span class="d-flex justify-content-end text-warning">Estado: {{patient?.estado === 'v' ? 'Vivo' : 'Fallecido'}} <br>
-      {{patient?.fechaDefuncion}}</span>
-    </p>
-    {{patient?.id}}
+  <div class="container-fluid mt-5 w-auto">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header h4 text-center">
 
-  <div class=" mt-3 card-body">
+              Detalle del Paciente expediente: <strong>{{patient?.expediente}}</strong>
 
-    <div class=" container d-flex">
-      <div class="container-fluid col-8">
-        <div class="card-body border-info bg-dark rounded">
-          <div class="card">
-          <p class="card-text mx-3">
-            <span class=" f-resaltado">DPI: </span> {{patient?.dpi |anyToText}} <br>
-            <span class=" f-resaltado">Pasaporte: </span> {{patient?.pasaporte}} <br>
-
-            <span class=" f-resaltado">Sexo: </span> {{patient?.sexo | anyToText |sexo}} <br>
-            <span class=" f-resaltado">Fecha de Nacimiento: </span>  {{patient?.nacimiento | anyToText | formatoFecha}} <br>
-            <span class=" f-resaltado">Nacionalidad: </span> {{patient?.nacionalidad| anyToNumber |enumNacion}}  <br>
-            <span class=" f-resaltado">Lugar de nacimiento: </span>  {{patient?.lugar_nacimiento | anyToNumber | enumMunicipio}} <br>
-            <span class=" f-resaltado">Idioma: </span> {{patient?.idioma | enumIdioma}} <br>
-          </p>
+            <br>Id:  {{patient?.id}}
           </div>
-          <div class="card mt-2">
-            <p class="card-text mx-3">
-              <span class=" f-resaltado">Estado Civil: </span> {{patient?.ecivil | enumCivil}} <br>
-              <span class=" f-resaltado">Educación: </span> {{patient?.educacion | enumEducacion}} <br>
-              <span class=" f-resaltado">Ocupación: </span>{{patient?.ocupacion | anyToText | capitalizeName}}
-            </p>
-          </div>
-
-          <div class="card mt-2">
-            <p class="card-text mx-3">
-              <span class=" f-resaltado">Teléfono: </span> {{patient?.telefono}} <br>
-              <span class=" f-resaltado">Dirección: </span> {{patient?.direccion | anyToText | capitalizeName}} <br>
-              <span class=" f-resaltado">Email: </span>{{patient?.email}}
-            </p>
-          </div>
-
-          <div class="card mt-2">
-            <p class="card-text mx-3">
-              <span class=" f-resaltado">Padre: </span>{{patient?.padre | anyToText | capitalizeName}} <br>
-              <span class=" f-resaltado">Madre: </span> {{patient?.madre | anyToText | capitalizeName}} <br><br>
-              <span class=" f-resaltado">Responsable: </span> {{patient?.responsable | anyToText | capitalizeName }}<br>
-              <span class=" f-resaltado">Parentesco: </span> {{patient?.parentesco | enumParentesco}}<br>
-              <span class=" f-resaltado">Responsable: </span> {{patient?.dpi_responsable}}<br>
-              <span class=" f-resaltado">Teléfono del Responsable: </span> {{patient?.telefono_responsable}}
-            </p>
-          </div>
+          <div class="card-body  mx-5 font-monospace text-body-secondary">
+            <hr>
+            <strong class="h5 me-3">Nombres:</strong> {{patient?.nombre | anyToText | capitalizeName}}<br>
+            <strong class="h5 me-3">Apellidos:</strong> {{patient?.apellido | anyToText | capitalizeName}}<br>
+            <strong class="h5 me-3">Nacimiento:</strong> {{patient?.nacimiento | anyToText | formatoFecha}}<br>
+            <strong class="h5 me-3">Edad:</strong> {{patient?.nacimiento | anyToNumber | edad}}<br>
+            <strong class="h5 me-3">Sexo:</strong> {{patient?.sexo | anyToText | sexo}}<br>
+            <strong class="h5 me-3">DPI:</strong> {{patient?.dpi | anyToText | formatoDPI}}<br>
+            <hr>
+            <strong class="h5 me-3">Nacionalidad:</strong> {{patient?.nacionalidad | anyToNumber | enumNacion}}<br>
+            <strong class="h5 me-3">Estado Civil:</strong> {{patient?.estado_civil | anyToNumber | enumCivil}}<br>
+            <strong class="h5 me-3">Ocupación:</strong> {{patient?.ocupacion}}<br>
+            <strong class="h5 me-3">Nivel Academico:</strong> {{patient?.educacion | anyToNumber | enumEducacion}}<br>
+            <hr>
+            <strong class="h5 me-3">Dirección:</strong> {{patient?.direccion | anyToText | capitalizeName}}<br>
+            <strong class="h5 me-3">Teléfono:</strong> {{patient?.telefono}}<br>
+            <strong class="h5">Telefono de Familiar / responsable:</strong> {{patient?.telefono_responsable}}<br>
+            <hr>
+            <strong class="h5 me-3">Responsable:</strong> {{patient?.responsable | anyToText | capitalizeName}}<br>
+            <strong class="h5 me-3">Parentesco:</strong> {{patient?.parentesco}}<br>
+            <strong class="h5 me-3">Dpi del responsable:</strong> {{patient?.dpi_responsable}}<br>
+            <hr>
+            <strong class="h5 me-3">Madre:</strong> {{patient?.madre | anyToText | capitalizeName}}<br>
+            <strong class="h5 me-3">Padre:</strong> {{patient?.padre | anyToText | capitalizeName}}<br>
 
 
-          <div class="card mt-2">
-            <p class="card-text mx-3">
-              <span class=" f-resaltado">expediente de la madre: </span> {{patient?.exp_madre}} <br>
-              <span class=" f-resaltado">Usuario: </span> {{patient?.user}}
-            </p>
-          </div>
         </div>
-
-
-
-
-      </div>
-
-      <div class="container-fluid col-4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-          <rect width="100%" height="100%" fill="#868e96"></rect>
-          <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-        </svg>
       </div>
     </div>
-
   </div>
-</div>

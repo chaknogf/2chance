@@ -26,13 +26,13 @@
   </div>
 
   <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info text-light"
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-black text-light"
          role="progressbar"
          [style.width.%]="porcentajeDeProgreso"
          [attr.aria-valuenow]="porcentajeDeProgreso"
          aria-valuemin="0"
          aria-valuemax="100">
-      {{ porcentajeDeProgreso }}%
+     <strong class="">C o m p l e t a d o</strong>
     </div>
   </div>
 
@@ -71,7 +71,10 @@
               </svg>
             </button>
           </td>
-          <td class="h3 text-center text-exp" [routerLink]="['/buscar/view', paciente.id]">{{ paciente.expediente }}</td>
+          <td class="h3 text-center text-exp" [routerLink]="['/buscar/view', paciente.id]">{{ paciente.expediente }}
+            <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path></svg>
+
+          </td>
           <td class="text-text text-justify " appHighlightWords >
             <span class="font-fam" >Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
             <span class="font-fam">Apellido:</span> {{ paciente.apellido | capitalizeName }}

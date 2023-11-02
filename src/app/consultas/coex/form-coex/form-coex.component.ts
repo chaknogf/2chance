@@ -31,6 +31,7 @@ export class FormCoexComponent implements OnInit {
   edit: boolean = false;
   public selectdate: string = '';
   public maxdate: string = '';
+  private nuevoStatus: number = 0;
 
 
 
@@ -54,7 +55,7 @@ export class FormCoexComponent implements OnInit {
     telefono: null,
     especialidad: 0,
     servicio: null,
-    recepcion: false,
+    status: 1,
     fecha_recepcion: this.fechaRecepcion,
     fecha_egreso: null,
     tipo_consulta: 1,
@@ -112,16 +113,24 @@ export class FormCoexComponent implements OnInit {
         this.router.navigate(['/coex']);
       })
 
+
   }
 
-  changeRecepcion() {
-    if (this.coex.recepcion !== true) {
-      this.coex.fecha_recepcion = this.fechaRecepcion
+  status() {
+    this.coex.fecha_recepcion = this.fechaRecepcion
+    if (this.coex.fecha_recepcion) {
+
+      this.coex.status = 2;
     }
     else {
-      this.coex.fecha_recepcion = null
+      this.coex.status = 1;
     }
-
   }
+
+  limpiarInput() {
+    this.coex.fecha_recepcion = null;
+    this.coex.status = 1;
+  }
+
 
 }

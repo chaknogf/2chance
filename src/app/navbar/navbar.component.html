@@ -1,5 +1,5 @@
 <header class="fs-4">
-  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom box-shadow mb-0">
+  <nav class="navbar navbar-expand-md navbar-black bg-info border-bottom box-shadow mb-0 " data-bs-theme="light" >
     <div class="container">
       <a class="navbar-brand fs-3" [routerLink]="['/']">Home</a>
       <button
@@ -16,32 +16,36 @@
     </button>
 
       <div class="collapse navbar-collapse" id="navbarNav" [ngClass]="{ show: isExpanded }">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto nav-tabs ">
 
           <!-- Repite para otras opciones del menú -->
 
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/pacientes']" (click)="hideMenu()">Pacientes</a>
+            <a class="nav-link text-black" [routerLink]="['/pacientes']" (click)="hideMenu()">Pacientes</a>
           </li>
 
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/citas']" (click)="hideMenu()">Citas</a>
+            <a class="nav-link text-black" [routerLink]="['/citas']" (click)="hideMenu()">Citas</a>
           </li>
 
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/tablaEmergencia']" (click)="hideMenu()">Emergencias</a>
+            <a class="nav-link text-black" [routerLink]="['/tablaEmergencia']" (click)="hideMenu()">Emergencias</a>
           </li>
 
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/coex']" (click)="hideMenu()">Coex</a>
+            <a class="nav-link text-black" [routerLink]="['/coex']" (click)="hideMenu()">Coex</a>
           </li>
 
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/ingresos']" (click)="hideMenu()">Hospitalización</a>
+            <a class="nav-link text-black" [routerLink]="['/ingresos']" (click)="hideMenu()">Hospitalización</a>
           </li>
 
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/consultas']" (click)="hideMenu()">Consultas</a>
+            <a class="nav-link text-black" [routerLink]="['/consultas']" (click)="hideMenu()">Consultas</a>
+          </li>
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-black" [routerLink]="['/uisau']" (click)="hideMenu()">UISAU</a>
           </li>
 
         </ul>
@@ -49,3 +53,4 @@
     </div>
   </nav>
 </header>
+

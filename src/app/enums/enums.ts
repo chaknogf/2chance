@@ -510,3 +510,14 @@ export const lenguaje: Lenguage[] = [
   { value: 25, label: 'Otro' },
 ]
 //     lenguage: ""
+
+export interface Status {
+  value: number;
+  label: string;
+}
+
+export const status: Status[] = [
+  { value: 1, label: 'activo' },
+  { value: 2, label: 'archivado'}
+
+]

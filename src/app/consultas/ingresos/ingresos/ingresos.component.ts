@@ -51,7 +51,7 @@ export class IngresosComponent implements OnInit {
     telefono: null,
     especialidad: 0,
     servicio: null,
-    recepcion: false,
+    status: 1,
     fecha_recepcion: null,
     fecha_egreso: null,
     tipo_consulta: 1,

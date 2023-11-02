@@ -2,9 +2,8 @@ import { Icitas } from './../models/Icitas';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { switchMap } from 'rxjs';
-import { Ipaciente } from '../models/Ipaciente';
-
+import { environment } from 'src/enviroments/enviroment';
+// import { environment } from 'src/enviroments/enviroment.prod';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,9 +13,8 @@ export class CitasService {
 
 
 
-  //private urlapi = "localhost:8000";
-  private urlapi = "http://192.88.1.191:8000";
-  // private urlapi = "http://192.168.0.4:8000";
+
+  private urlapi = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
 
