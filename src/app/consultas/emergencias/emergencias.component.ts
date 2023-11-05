@@ -28,6 +28,7 @@ export class EmergenciasComponent implements OnInit {
 
   ) {
 
+
      // Calcula la fecha máxima (puedes ajustar esto según tus necesidades)
     const fechaActual = new Date();
     fechaActual.setFullYear(fechaActual.getFullYear() - 1); // Restar un año
@@ -52,21 +53,22 @@ export class EmergenciasComponent implements OnInit {
   public selectdate: string = '';
   public maxdate: string = '';
   edit: boolean = false;
+  public tuNumero: any = 0;
 
 
   emergencia: Iconcultas = {
     id: 0,
-    hoja_emergencia: null,
+    hoja_emergencia:null,
     expediente: null,
-    fecha_consulta: "",
-    hora: "",
-    nombres: "",
-    apellidos: "",
+    fecha_consulta: null,
+    hora: null,
+    nombres: null,
+    apellidos: null,
     nacimiento: new Date(),
     edad: `${this.edadA} años ${this.edadMeses} meses ${this.edadDias} dias`,
     sexo: null,
     dpi: null,
-    direccion: "",
+    direccion: null,
     acompa: null,
     parente: null,
     telefono: null,
@@ -79,6 +81,13 @@ export class EmergenciasComponent implements OnInit {
     nota: null,
     name: null,
     lastname: null,
+    prenatal: null,
+    lactancia: null,
+    dx: null,
+    folios: null,
+    archiva: null,
+    created_at: null,
+    update_at: null,
 
   }
   e: Ienum = {
@@ -95,7 +104,12 @@ export class EmergenciasComponent implements OnInit {
 
 
 
+
+
+
   ngOnInit() {
+    this.emergencia.hoja_emergencia = this.tuNumero.toString();
+
 // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;

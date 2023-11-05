@@ -25,11 +25,11 @@ export class ConsultasService {
   }
 
   crear(consulta: Iconcultas): Observable<any> {
-    return  this.http.post(this.urlapi + "/consultas/", consulta);
+    return  this.http.post(this.urlapi + "/coex/", consulta);
   }
 
   registrar(consulta: Iconcultas): Observable<any> {
-    return  this.http.post(this.urlapi + "/consulta/", consulta);
+    return  this.http.post(this.urlapi + "/emergencia/", consulta);
   }
 
   tipoConsulta(fecha: string, tipo: number): Observable<any> {

@@ -53,6 +53,13 @@ export class NuevoIngresoComponent implements OnInit {
     nota: "",
     name: "",
     lastname: "",
+    prenatal: null,
+    lactancia: null,
+    dx: null,
+    folios: null,
+    archiva: null,
+    created_at: '',
+    update_at: '',
 
    }
    e: Ienum = {

@@ -698,6 +698,21 @@ progress {
   }
 }
 
+.text-normal {
+  font-size: calc(0.8rem + 0.2vw);/* Tamaño de fuente más moderado y disminuye con el ancho de la ventana */
+  font-weight: 400; /* Puedes ajustar el peso de la fuente según tus preferencias */
+  line-height: 1.4; /* Puedes ajustar la altura de línea según tus preferencias */
+  letter-spacing: 0.2px;
+  word-spacing: 1px;
+}
+
+@media (min-width: 1200px) {
+  .text-normal {
+    font-size: 1rem; /* Tamaño de fuente normal para pantallas grandes */
+  }
+}
+
+
 .list-unstyled {
   padding-left: 0;
   list-style: none;
@@ -12595,7 +12610,14 @@ body {
   background-image: linear-gradient(to left bottom, #1b1b1b, #202026, #232631, #232d3d, #203449);;
   background-size: contain;
   background-position: auto;
-  /* background-blend-mode: soft-light Puedes ajustar el modo de fusión según tus necesidades */
+
+}
+
+/* Aplicar zoom en pantallas pequeñas */
+@media (max-width: 768px) {
+  body {
+    zoom: 0.8; /* Establece un zoom del 80% en pantallas más pequeñas */
+  }
 }
 
 /* Define una clase de CSS para el contenido que deseas zoomear */

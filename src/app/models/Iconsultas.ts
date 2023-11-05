@@ -24,7 +24,15 @@ export interface Iconcultas {
   tipo_consulta: number| null;
   nota: string| null;
   name: string| null;
-  lastname: string| null;
+  lastname: string | null;
+  prenatal: number | null;
+  lactancia: number | null;
+  dx: string | null;
+  folios: number | null;
+  archiva: number | null;
+  created_at: string | null;
+  update_at: string | null;
+
 }
 
 

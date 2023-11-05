@@ -65,6 +65,13 @@ export class IngresoTablaComponent implements OnInit {
     nota: "",
     name: null,
     lastname: null,
+    prenatal: null,
+    lactancia: null,
+    dx: null,
+    folios: null,
+    archiva: null,
+    created_at: '',
+    update_at: '',
 
 
    }
