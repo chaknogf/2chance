@@ -1,3 +1,4 @@
+import { PageReloadService } from './../../services/PageReload.service';
 import {  Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { PacientesService } from './../../services/pacientes.service';
@@ -77,8 +78,12 @@ export class CrearModalComponent implements OnInit {
 
   @Input() idPaciente: number | undefined
 
-  constructor(public PacientesService: PacientesService, private router: Router,
-    private activateRoute: ActivatedRoute, private formBuilder: FormBuilder,
+  constructor(
+    public PacientesService: PacientesService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private pageReload: PageReloadService
     ) { }
 
   ngOnInit() {
@@ -110,8 +115,9 @@ export class CrearModalComponent implements OnInit {
     // Crear un nuevo paciente
     this.PacientesService.crearPaciente(this.p).subscribe(data => {
       this.p = data;
+      this.pageReload.reloadPage()
 
-        // this.router.navigate(['/pacientes']);
+
       })
   }
 

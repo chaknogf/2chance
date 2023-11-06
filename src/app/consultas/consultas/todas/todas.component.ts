@@ -172,7 +172,7 @@ export class TodasComponent implements OnInit {
     // Recopila los valores de entrada del formulario
     const filters = {
       id: this.idBuscar,
-      hoja: this.hojaBuscar,
+      hoja_emergencia: this.hojaBuscar,
       expediente: this.expedienteBuscar,
       fecha_consulta: this.fechaBuscar,
       nombres: this.nombreBuscar,

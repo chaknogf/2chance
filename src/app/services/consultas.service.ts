@@ -5,6 +5,7 @@ import { Iconcultas } from '../models/Iconsultas';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
 import { environment } from 'src/enviroments/enviroment';
+import { UsersService } from './user.service';
 
 
 @Injectable({
@@ -12,46 +13,48 @@ import { environment } from 'src/enviroments/enviroment';
 })
 export class ConsultasService {
 
-
- private urlapi = environment.apiUrl;
-  constructor(private http: HttpClient, private FechaService: FechaService) { }
+  private token = this.auth.getTokenLocally(); // Obtén el token almacenado
+  private urlapi = environment.apiUrl;
+  constructor(
+    private http: HttpClient,
+    private FechaService: FechaService,
+    private auth: UsersService
+  ) { }
 
   Consultas(): Observable<any> {
-    return this.http.get(this.urlapi + "/consultas/")
+    return this.http.get(this.urlapi + "/consultas/?token=" + this.token)
   }
 
   Consulta(id: number): Observable<any> {
-    return this.http.get(this.urlapi + "/consulta/?id=" + id)
+    return this.http.get(this.urlapi + "/consulta/?id=" + id + '&token=' + this.token)
   }
 
   crear(consulta: Iconcultas): Observable<any> {
-    return  this.http.post(this.urlapi + "/coex/", consulta);
+    return  this.http.post(this.urlapi + "/coex/?token="+ this.token, consulta);
   }
 
   registrar(consulta: Iconcultas): Observable<any> {
-    return  this.http.post(this.urlapi + "/emergencia/", consulta);
+    return  this.http.post(this.urlapi + "/emergencia/?token="+this.token, consulta);
   }
 
   tipoConsulta(fecha: string, tipo: number): Observable<any> {
-    return this.http.get(this.urlapi + "/consulta/servicio/?fecha=" + fecha + "&tipo=" + tipo);
+    return this.http.get(this.urlapi + "/consulta/servicio/?fecha=" + fecha + "&tipo=" + tipo+"&token="+this.token);
   }
 
   editarConsulta(id: number, actualizarConsulta: Iconcultas): Observable<any> {
-    return this.http.put(this.urlapi + '/consultado/' + id, actualizarConsulta);
+    return this.http.put(this.urlapi + '/consultado/' + id+"?token="+ this.token, actualizarConsulta);
   }
 
   eliminar(id: number): Observable<any> {
-    return this.http.delete(this.urlapi + '/consulta/' + id);
+    return this.http.delete(this.urlapi + '/consulta/' + id+"?token="+this.token);
   }
 
   consultando(fecha: string, tipo: number, esp: number): Observable<any> {
     return this.http.get(this.urlapi + '/consultando/?fecha=' + fecha + '&tipo=' + tipo + '&especialidad=' + esp);
   }
 
-
-
   consulTipo(tipo: number): Observable<any> {
-    return this.http.get(this.urlapi + '/consult/?tipo=' + tipo)
+    return this.http.get(this.urlapi + '/consult/?tipo=' + tipo + "&token="+this.token)
   }
 
   expediente(exp: number): Observable<any> {
@@ -59,23 +62,23 @@ export class ConsultasService {
   }
 
   nombre(nombre: string, apellido: string): Observable<any> {
-    return this.http.get(this.urlapi + '/nombre/?nombre=' + nombre + '&apellido='+ apellido)
+    return this.http.get(this.urlapi + '/nombre/?nombre=' + nombre + '&apellido='+ apellido + '&token='+this.token)
   }
 
   dpi(dpi: string): Observable<any> {
-    return this.http.get(this.urlapi + '/cui/' + dpi)
+    return this.http.get(this.urlapi + '/cui/' + dpi+'&token='+this.token)
   }
 
   egresos(inicio: string, final: string): Observable<any> {
-    return this.http.get(this.urlapi + '/egresos/?fecha_inicio=' + inicio + '&fecha_final=' + final)
+    return this.http.get(this.urlapi + '/egresos/?fecha_inicio=' + inicio + '&fecha_final=' + final+'&token='+this.token)
   }
 
   recepciones(estado: string, fecha: string): Observable<any> {
-    return this.http.get( this.urlapi + '/recepcion/?recepcion=' + estado + 'fecha=' + fecha)
+    return this.http.get( this.urlapi + '/recepcion/?recepcion=' + estado + 'fecha=' + fecha + '&token='+ this.token)
   }
 
   hoja(hoja: string): Observable<any> {
-    return this.http.get(this.urlapi + '/hoja/' +  hoja)
+    return this.http.get(this.urlapi + '/hoja/' +  hoja + '?token='+this.token)
   }
 
 
@@ -161,6 +164,13 @@ export class ConsultasService {
       }
     }
 
+    if (filtros) {
+      if (url.includes('?')) {
+        url += `&token=${this.token}`;
+      } else {
+        url += `?token=${this.token}`;
+      }
+    }
 
 
     console.log(filtros, url)

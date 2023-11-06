@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { particlesConfig } from './particles-config';
+import { UsersService } from '../services/user.service';
 
 
 @Component({
@@ -8,11 +8,15 @@ import { particlesConfig } from './particles-config';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  constructor(public userService: UsersService) {}
 
 
-  public particlesConfig = particlesConfig;
+
   ngOnInit() {
-    // Utiliza la configuración de partículas
-    particlesConfig;
+
+
   }
+
+
+
 }

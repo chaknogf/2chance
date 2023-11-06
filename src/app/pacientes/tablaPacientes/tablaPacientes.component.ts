@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from 'src/app/services/user.service';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -29,7 +31,7 @@ export class TablaPacientesComponent{
   constructor(private pacientesService: PacientesService,
     private router: Router,
     private activateRoute: ActivatedRoute,
-
+    private userService: UsersService
     ) { }
   reset: boolean = false;
 
@@ -45,16 +47,24 @@ export class TablaPacientesComponent{
 
   getPacientes() {
     this.porcentajeDeProgreso = 0.5;
+
+    // Obten el token de autenticación guardado en las cookies
+    const token = this.userService.getToken();
+
+    // Configura las cabeceras con el token de autenticación
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+
     this.pacientesService.getPacientes().subscribe(data => {
       this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }): number => b.expediente - a.expediente);
       this.porcentajeDeProgreso = 75;
       this.filteredPacientes = data;
-      this.paginarPacientes();//Llama a la función aquí para paginar automáticamente
+      this.paginarPacientes();
       this.porcentajeDeProgreso = 100;
       setTimeout(() => {
-        this.porcentajeDeProgreso = -1; // Puedes establecerlo en -1 o cualquier otro valor para ocultar la barra
+        this.porcentajeDeProgreso = -1;
       }, 1000);
-
     });
   }
 

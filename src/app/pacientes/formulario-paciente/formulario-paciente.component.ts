@@ -1,10 +1,10 @@
-
 import { Ienum } from 'src/app/models/Ienum';
 import { PacientesService } from './../../services/pacientes.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { FechaService } from 'src/app/services/fecha.service';
 import {  municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
 
 
@@ -83,6 +83,7 @@ export class FormularioPacienteComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private fecha: FechaService,
     ) { }
 
   ngOnInit() {
@@ -138,7 +139,7 @@ export class FormularioPacienteComponent implements OnInit {
       this.PacientesService.deletePaciente(this.p.id)
         .subscribe(data => {
           this.pacientes = data;
-          this.ngOnInit();// Actualizar la vista (si es necesario)
+          this.router.navigateByUrl("pacientes")
         },
           error => {
             console.error('Error al eliminar paciente:', error);

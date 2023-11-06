@@ -2,6 +2,7 @@ import { ResumenCitasPipe } from './pipe/resumenCitas.pipe';
 import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from "ngx-cookie-service";
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
@@ -60,6 +61,8 @@ import { ReporteComponent } from './consultas/consultas/reporte/reporte.componen
 import { TablaUisauComponent } from './uisau/tablaUisau/tablaUisau.component';
 import { FormUisauComponent } from './uisau/formUisau/formUisau.component';
 import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.component';
+import { LoginComponent } from './login/login/login.component';
+
 
 
 
@@ -130,6 +133,7 @@ import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.compone
     TablaUisauComponent,
     DetalleUisauComponent,
     FormUisauComponent,
+    LoginComponent,
 
 
 
@@ -146,6 +150,7 @@ import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.compone
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: "login", component: LoginComponent, pathMatch: 'full'},
       { path: 'pacientes', component: TablaPacientesComponent },
       { path: 'crear', component: FormularioPacienteComponent },
       { path: 'paciente/edit/:id', component: FormularioPacienteComponent },
@@ -182,7 +187,7 @@ import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.compone
     BrowserAnimationsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
