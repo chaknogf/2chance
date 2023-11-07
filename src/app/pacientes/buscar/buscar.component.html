@@ -18,7 +18,7 @@
             <strong class="h5 me-3">Nombres:</strong> {{patient?.nombre | anyToText | capitalizeName}}<br>
             <strong class="h5 me-3">Apellidos:</strong> {{patient?.apellido | anyToText | capitalizeName}}<br>
             <strong class="h5 me-3">Nacimiento:</strong> {{patient?.nacimiento | anyToText | formatoFecha}}<br>
-            <strong class="h5 me-3">Edad:</strong> {{patient?.nacimiento | anyToNumber | edad}}<br>
+            <strong class="h5 me-3">Edad:</strong> {{patient?.nacimiento | edad }}<br>
             <strong class="h5 me-3">Sexo:</strong> {{patient?.sexo | anyToText | sexo}}<br>
             <strong class="h5 me-3">DPI:</strong> {{patient?.dpi | anyToText | formatoDPI}}<br>
             <hr>
@@ -37,7 +37,7 @@
             <hr>
             <strong class="h5 me-3">Madre:</strong> {{patient?.madre | anyToText | capitalizeName}}<br>
             <strong class="h5 me-3">Padre:</strong> {{patient?.padre | anyToText | capitalizeName}}<br>
-
+            <strong class="h5 me-3">Creado por:</strong> {{patient?.created_by | anyToText | capitalizeName}}<br>
 
         </div>
       </div>

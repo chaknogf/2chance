@@ -17,6 +17,7 @@ export class CrearModalComponent implements OnInit {
   public pacientes: Ipaciente[] = [];
   public selectdate: string = '';
   public maxdate: string = '';
+  private userlog: string = 'created_by';
   @HostBinding('class') clases = 'row';
 
   // Objeto del paciente
@@ -47,7 +48,7 @@ export class CrearModalComponent implements OnInit {
     telefono_responsable: 0,
     estado: "v",
     exp_madre: 0,
-    user: "admin",
+    created_by: localStorage.getItem(this.userlog) as string,
     fechaDefuncion: "",  // Variable para la fecha de defunción
     municipio: "",
     nation: "",
@@ -90,6 +91,8 @@ export class CrearModalComponent implements OnInit {
      // Obtiene la fecha actual en el formato YYYY-MM-DD
      const currentDate = new Date().toISOString().split('T')[0];
      this.maxdate = currentDate;
+    const userlogin = localStorage.getItem(this.userlog);
+    console.log(userlogin)
 
     // Obtener el expediente del paciente
     //this.NuevoExp()

@@ -20,6 +20,7 @@ export class FormularioPacienteComponent implements OnInit {
   public pacientes: Ipaciente[] = [];
   public selectdate: string = '';
   public maxdate: string = '';
+  private userlog: string = 'created_by'
 
   @HostBinding('class') clases = 'row';
 
@@ -51,7 +52,7 @@ export class FormularioPacienteComponent implements OnInit {
     telefono_responsable: 0,
     estado: "v",
     exp_madre: 0,
-    user: "admin",
+    created_by: localStorage.getItem(this.userlog) as string,
     fechaDefuncion: "",  // Variable para la fecha de defunción
     municipio: "",
     nation: "",

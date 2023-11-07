@@ -62,6 +62,7 @@ import { TablaUisauComponent } from './uisau/tablaUisau/tablaUisau.component';
 import { FormUisauComponent } from './uisau/formUisau/formUisau.component';
 import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.component';
 import { LoginComponent } from './login/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -140,6 +141,7 @@ import { LoginComponent } from './login/login/login.component';
 
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -149,35 +151,35 @@ import { LoginComponent } from './login/login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: "login", component: LoginComponent, pathMatch: 'full'},
-      { path: 'pacientes', component: TablaPacientesComponent },
-      { path: 'crear', component: FormularioPacienteComponent },
-      { path: 'paciente/edit/:id', component: FormularioPacienteComponent },
-      { path: 'buscar/view/:id', component: BuscarComponent},
-      { path: 'citas', component: CitasComponent },
-      { path: 'agendar', component: FormCitaComponent },
-      { path: 'agenda/edit/:id', component: FormCitaComponent },
-      { path: 'emergencias', component: EmergenciasComponent },
-      { path: 'emergencias/edit/:id', component: EmergenciasComponent },
-      { path: 'coex', component: CoexComponent },
-      { path: 'coex/edit/:id', component: CoexComponent },
-      { path: 'tablaP', component: TablaComponent },
-      { path: 'nuevaConsulta', component: NuevaConsultaComponent },
-      { path: 'edit/coex/:id', component: FormCoexComponent },
-      { path: 'tablaEmergencia', component: TablaEmergenciaComponent },
-      { path: 'hClinica/view/:id', component: HClinicaComponent },
-      { path: 'ingresos', component: IngresosComponent },
-      { path: 'ingreso', component: FormIngresoComponent },
-      { path: 'ingreso/edit/:id', component: FormIngresoComponent },
-      { path: 'ingresoTabla', component: IngresoTablaComponent },
-      { path: 'ingresohoja/view/:id', component: IngresoHComponent },
-      { path: 'consultas', component: TodasComponent },
-      { path: 'consulta/view/:id', component: ReporteComponent },
-      { path: 'uisau', component: TablaUisauComponent },
-      { path: 'formUisau', component: FormUisauComponent },
-      { path: 'formUisau/edit/:id', component: FormUisauComponent },
-      { path: 'detalleUisau/:id', component: DetalleUisauComponent},
+      { path: 'pacientes', component: TablaPacientesComponent, canActivate: [AuthGuard] },
+      { path: 'crear', component: FormularioPacienteComponent, canActivate: [AuthGuard] },
+      { path: 'paciente/edit/:id', component: FormularioPacienteComponent, canActivate: [AuthGuard] },
+      { path: 'buscar/view/:id', component: BuscarComponent, canActivate: [AuthGuard]},
+      { path: 'citas', component: CitasComponent, canActivate: [AuthGuard] },
+      { path: 'agendar', component: FormCitaComponent, canActivate: [AuthGuard] },
+      { path: 'agenda/edit/:id', component: FormCitaComponent, canActivate: [AuthGuard] },
+      { path: 'emergencias', component: EmergenciasComponent, canActivate: [AuthGuard] },
+      { path: 'emergencias/edit/:id', component: EmergenciasComponent, canActivate: [AuthGuard] },
+      { path: 'coex', component: CoexComponent, canActivate: [AuthGuard] },
+      { path: 'coex/edit/:id', component: CoexComponent, canActivate: [AuthGuard] },
+      { path: 'tablaP', component: TablaComponent, canActivate: [AuthGuard] },
+      { path: 'nuevaConsulta', component: NuevaConsultaComponent, canActivate: [AuthGuard] },
+      { path: 'edit/coex/:id', component: FormCoexComponent, canActivate: [AuthGuard] },
+      { path: 'tablaEmergencia', component: TablaEmergenciaComponent, canActivate: [AuthGuard] },
+      { path: 'hClinica/view/:id', component: HClinicaComponent, canActivate: [AuthGuard] },
+      { path: 'ingresos', component: IngresosComponent, canActivate: [AuthGuard] },
+      { path: 'ingreso', component: FormIngresoComponent, canActivate: [AuthGuard] },
+      { path: 'ingreso/edit/:id', component: FormIngresoComponent, canActivate: [AuthGuard] },
+      { path: 'ingresoTabla', component: IngresoTablaComponent, canActivate: [AuthGuard] },
+      { path: 'ingresohoja/view/:id', component: IngresoHComponent, canActivate: [AuthGuard] },
+      { path: 'consultas', component: TodasComponent, canActivate: [AuthGuard] },
+      { path: 'consulta/view/:id', component: ReporteComponent, canActivate: [AuthGuard] },
+      { path: 'uisau', component: TablaUisauComponent, canActivate: [AuthGuard] },
+      { path: 'formUisau', component: FormUisauComponent, canActivate: [AuthGuard] },
+      { path: 'formUisau/edit/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
+      { path: 'detalleUisau/:id', component: DetalleUisauComponent, canActivate: [AuthGuard]},
 
 
 

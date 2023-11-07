@@ -1,20 +1,60 @@
-<div class="login">
-  <form class="custom-form" method="post">
-    <h1>Login</h1>
-    <input
-      type="email"
-      [(ngModel)]="email"
-      name="email"
-      placeholder="Email"
-      required="required"
-    />
-    <input
-      type="password"
-      [(ngModel)]="password"
-      name="password"
-      placeholder="Password"
-      required="required"
-    />
-    <button type="submit" (click)="login()">Log in</button>
-  </form>
+
+<div class="container">
+  <div class="login-box">
+
+    <form method="post">
+      <div class="user-box">
+        <input type="text"required="" [(ngModel)]="username"
+        name="email">
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input type="password" required="" [(ngModel)]="password"
+        name="password">
+        <label>Password</label>
+      </div>
+      <a (click)="login()">
+             LogIn
+         <span></span>
+      </a>
+    </form>
+  </div>
 </div>
+<div class="box-of-star1">
+  <div class="star star-position1"></div>
+  <div class="star star-position2"></div>
+  <div class="star star-position3"></div>
+  <div class="star star-position4"></div>
+  <div class="star star-position5"></div>
+  <div class="star star-position6"></div>
+  <div class="star star-position7"></div>
+</div>
+<div class="box-of-star2">
+  <div class="star star-position1"></div>
+  <div class="star star-position2"></div>
+  <div class="star star-position3"></div>
+  <div class="star star-position4"></div>
+  <div class="star star-position5"></div>
+  <div class="star star-position6"></div>
+  <div class="star star-position7"></div>
+</div>
+<div class="box-of-star3">
+  <div class="star star-position1"></div>
+  <div class="star star-position2"></div>
+  <div class="star star-position3"></div>
+  <div class="star star-position4"></div>
+  <div class="star star-position5"></div>
+  <div class="star star-position6"></div>
+  <div class="star star-position7"></div>
+</div>
+<div class="box-of-star4">
+  <div class="star star-position1"></div>
+  <div class="star star-position2"></div>
+  <div class="star star-position3"></div>
+  <div class="star star-position4"></div>
+  <div class="star star-position5"></div>
+  <div class="star star-position6"></div>
+  <div class="star star-position7"></div>
+</div>
+
+

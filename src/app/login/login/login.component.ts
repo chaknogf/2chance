@@ -16,30 +16,40 @@ export class LoginComponent implements OnInit {
   ) { }
 
 
-  public email: string = "";
+  public username: string = "";
   public password: string = "";
 
 
+  private userlog: string = 'username';
 
   ngOnInit() {
 
   }
 
   login() {
-    const user = { email: this.email, password: this.password };
+    const user = { username: this.username, password: this.password };
     this.userService.login(user).subscribe(
       (response) => {
         const token = response.access_token;
+        const user = response.username;
+
+        // Almacena el token en una cookie llamada 'token'
         this.userService.setToken(token);
-        console.log(token);
+        // Almacena el token en el almacenamiento local del navegador
         this.userService.storeTokenLocally(token);
-        this.router.navigateByUrl("pacientes")
-        // Redirige al usuario a la página deseada después de iniciar sesión
+
+        this.userService.setUser(user);
+        // Almacena el nombre de usuario en el almacenamiento local
+        this.userService.storeUsernameLocally(user);
+
+        console.log(user)
+
+        this.router.navigateByUrl("pacientes");
       },
       (error) => {
-
         // Manejo de errores, por ejemplo, mostrar un mensaje de error al usuario
       }
     );
   }
+
 }

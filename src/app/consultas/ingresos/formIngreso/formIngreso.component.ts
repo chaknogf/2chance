@@ -143,7 +143,7 @@ export class FormIngresoComponent implements OnInit {
     telefono_responsable: 0,
     estado: "v",
     exp_madre: 0,
-    user: "admin",
+    created_by: "admin",
     fechaDefuncion: "",  // Variable para la fecha de defunción
     municipio: "",
     nation: "",

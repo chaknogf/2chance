@@ -50,7 +50,7 @@ export class ConsultasService {
   }
 
   consultando(fecha: string, tipo: number, esp: number): Observable<any> {
-    return this.http.get(this.urlapi + '/consultando/?fecha=' + fecha + '&tipo=' + tipo + '&especialidad=' + esp);
+    return this.http.get(this.urlapi + '/consultando/?fecha=' + fecha + '&tipo=' + tipo + '&especialidad=' + esp+ '&token='+this.token);
   }
 
   consulTipo(tipo: number): Observable<any> {

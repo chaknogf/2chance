@@ -1,11 +1,12 @@
 export interface Ilogin  {
-  email: string;
+  username: string;
   password: string;
 }
 
 export interface Iusuarios {
   id: number;
   code: number;
+  username: string;
   name: string;
   dpi: number;
   email: string;

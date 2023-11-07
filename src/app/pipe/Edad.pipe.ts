@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'edad'
 })
 export class EdadPipe implements PipeTransform {
-  transform(nacimiento: Date): string {
+  transform(nacimiento: any): string {
     const hoy = new Date();
     const fechaNac = new Date(nacimiento);
     let años = hoy.getFullYear() - fechaNac.getFullYear();

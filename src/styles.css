@@ -12606,11 +12606,14 @@ pre {
 
 
 body {
-  transition: transform 0.2s; /* Agrega una transición suave para el efecto de zoom */
-  background-image: linear-gradient(to left bottom, #1b1b1b, #202026, #232631, #232d3d, #203449);;
-  background-size: contain;
-  background-position: auto;
 
+  width: 100%;
+  height: 100%;
+  /* --color: rgba(114, 114, 114, 0.3); */
+  background-color: #090b26;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color-) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+  background-size: 55px 55px;
 }
 
 /* Aplicar zoom en pantallas pequeñas */
