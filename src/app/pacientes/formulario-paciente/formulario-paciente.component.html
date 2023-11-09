@@ -1,8 +1,8 @@
-<div class="navbar navbar-expand-sm bg-info">
-  <div class="d-flex flex-wrap justify-content-between align-items-center w-100 py-3 px-2">
+<div class="navbar navbar-expand-sm bg-primary">
+  <div class="d-flex  justify-content-between align-items-center w-100 py-3 px-2">
     <!-- <h2 class="col-md-5 col-12 mb-md-0 mb-3 text-light">Crear Paciente</h2> -->
     <div class="d-flex align-items-center gap-2 col-md-4 col-12 mb-md-0 mb-3">
-      <button type="submit" class="btn btn-success border-black"  (click)="edit ? editar() : crearPaciente()">
+      <button type="submit" class="btn btn-success"  (click)="edit ? editar() : crearPaciente()" data-bs-dismiss="modal" aria-label="Close">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
       <path d="M8 0c-.176 0-.35.006-.523.017l.064.998a7.117 7.117 0 0 1 .918 0l.064-.998A8.113 8.113 0 0 0 8
       0zM6.44.152c-.346.069-.684.16-1.012.27l.321.948c.287-.098.582-.177.884-.237L6.44.153zm4.132.271a7.946
@@ -20,7 +20,7 @@
         </svg>Guardar</button>
 
 
-        <button class="btn btn-danger border-black"  routerLink="['/pacientes']" (click)="delete()" >
+        <button class="btn btn-danger"  routerLink="['/pacientes']" (click)="delete()" >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
           <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58
           0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59
@@ -29,180 +29,167 @@
           .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
           </svg>
         </button>
-
-        <button class="btn btn-dark border-black " (click)="back()">Regresar</button>
-
-      <!-- <div class="d-flex justify-content-end">
-        <button class="btn btn-dark" [routerLink]="['/pacientes']"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-           </svg>
-           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-           </svg>
-        </button>
-
-      </div> -->
       </div>
-  </div>
-
-</div>
-<div class="container-fluid ">
-  <form class="container d-flex mt-3 bg-light bg-opacity-30 rounded p-2">
-    <div class="row g-3">
-
-      <div class="col-md-6">
-        <div class="form-check form-switch">
-          <input class="form-check-input display-6 mx-3 text-light" type="checkbox" id="flexSwitchCheckDefault" [checked]="p.estado === 'v'" (change)="cambiarEstado()">
-          <label class="form-check-label fs-3 text-light" for="flexSwitchCheckDefault">{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</label>
+        <div class="col-md-8 w-40 justify-content-end">
+          <label class="form-label text-center">Expediente</label>
+          <input type="number" id="expediente" class="form-control text-center fs-1 bg-primary" [(ngModel)]="p.expediente" name="expediente" readonly>
         </div>
       </div>
-
-
-      <div class="col-md-6 text-light">
-        <label class="form-label ">Expediente</label>
-        <input type="number" id="expediente" class="form-control bg-opacity-85 text-center fs-1 bg-light" [(ngModel)]="p.expediente" name="expediente" readonly>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label class="form-label">Nombre *</label>
-        <input type="text" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.nombre" name="nombre" placeholder="Nombre" autofocus >
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label class="form-label">Apellido *</label>
-        <input type="text" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.apellido" name="apellido" placeholder="Apellido" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>DPI</label>
-        <input type="number" id="dpi" name="dpi" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.dpi" placeholder="dpi" autofocus appDpi>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Pasaporte</label>
-        <input type="text" id="pasaporte" name="pasaporte" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.pasaporte"  placeholder="pasaporte" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Sexo *</label>
-        <select id="sexo" class="form-control bg-light bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.sexo" name="sexo" autofocus>
-          <option value=""></option>
-          <option value="M">Masculino</option>
-          <option value="F">Femenino</option>
-        </select>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Fecha de Nacimiento *</label>
-        <input type="date" id="nacimiento" name="nacieminto" class="form-control bg-light bg-opacity-85 text-uppercase " [(ngModel)]="p.nacimiento" name="nacimiento" placeholder="nacimiento" autofocus [max]="maxdate">
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Nacionalidad</label>
-        <select id="nacionaldad" class="form-control bg-light bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.nacionalidad" name="nacionalidad" autofocus>
-          <option *ngFor="let option of e.nation" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Lugar de Nacimiento</label>
-        <select id="lugarNacimiento" class="form-control bg-light bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.lugar_nacimiento" name="lugarNacimiento" autofocus>
-          <option *ngFor="let option of e.municipio" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-
-
-      <div class="col-md-6 text-light">
-        <label>Estado Civil</label>
-        <select id="estadoCivil" class="form-control bg-light bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.estado_civil" name="estadoCivil" autofocus>
-          <option *ngFor="let option of e.ecivil" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Educación</label>
-
-        <select id="educacion" class="form-control bg-light bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.educacion" name="educacion" autofocus>
-          <option *ngFor="let option of e.academic" [value]="option.value || p.educacion">{{option.label}}</option>
-        </select>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Pueblo</label>
-        <select id="pueblo" class="form-control bg-light bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.pueblo" name="pueblo" autofocus>
-          <option *ngFor="let option of e.people" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Idioma</label>
-        <select id="idioma" class="form-control bg-light bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.idioma" name="idioma" autofocus>
-        <option *ngFor="let option of e.lenguage" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Ocupación</label>
-        <input type="text" id="ocupacion" name="ocupacion" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.ocupacion" name="ocupacion" placeholder="ocupacion" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Dirección de Domicilio</label>
-        <input type="text" id="direccion" name="direccion" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.direccion" name="direccion" placeholder="direccion" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Telefono</label>
-        <input type="text" id="telefono" name="telefono" class="form-control bg-light bg-opacity-85 text-uppercase" [ngModel]="p.telefono" (ngModelChange)="formatPhoneNumber($event)" placeholder="00000000 00000000" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Email</label>
-        <input type="email" id="email" name="email" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.email" name="email" placeholder="email" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Padre</label>
-        <input type="text" id="padre" name="padre" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.padre" name="padre" placeholder="padre" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Madre</label>
-        <input type="text" id="madre" name="madre" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.madre" name="madre" placeholder="madre" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Responsable</label>
-        <input type="text" id="responsable" name="responsable" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.responsable" name="responsable" placeholder="responsable" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Parentesco</label>
-        <select id="parentesco" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.parentesco" name="parentesco" autofocus>
-          <option  *ngFor="let option of e.parents" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>DPI Responsable</label>
-        <input type="number" id="dpiResponsable" name="dpiResponsable" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.dpi_responsable" name="dpiResponsable" placeholder="dpiResponsable" autofocus>
-      </div>
-
-      <div class="col-md-6 text-light">
-        <label>Telefono de Familiar / Responsable en caso de emergencia</label>
-        <input type="number" id="telResponsable" name="telResponsable" class="form-control bg-light bg-opacity-85 text-uppercase" [(ngModel)]="p.telefono_responsable" name="telResponsable" placeholder="00000000 00000000" autofocus>
-      </div>
-
-
-
-
-
-
-
-      <!-- Otros campos del formulario... -->
-
-
-
     </div>
-  </form>
-</div>
+
+
+
+<form class="mt-3">
+  <div class="row g-3">
+
+    <div class="col-md-6">
+      <div class="form-check form-switch ">
+        <input class="form-check-input display-6 mx-3 text-light" type="checkbox" id="flexSwitchCheckDefault" [checked]="p.estado === 'v'" (change)="cambiarEstado()">
+        <label class="form-check-label fs-3 " for="flexSwitchCheckDefault">{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</label>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="col-md-6">
+      <label class="form-label">Nombre *</label>
+      <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.nombre" name="nombre" placeholder="Nombre" autofocus >
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Apellido *</label>
+      <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.apellido" name="apellido" placeholder="Apellido" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>DPI</label>
+      <input type="number" id="dpi" name="dpi" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.dpi" placeholder="dpi" autofocus appDpi>
+    </div>
+
+    <div class="col-md-6">
+      <label>Pasaporte</label>
+      <input type="text" id="pasaporte" name="pasaporte" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.pasaporte"  placeholder="pasaporte" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Sexo *</label>
+      <select id="sexo" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.sexo" name="sexo" autofocus>
+        <option value=""></option>
+        <option value="M">Masculino</option>
+        <option value="F">Femenino</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label>Fecha de Nacimiento *</label>
+      <input type="date" id="nacimiento" name="nacieminto" class="form-control bg-dark bg-opacity-75 " [(ngModel)]="p.nacimiento" name="nacimiento" placeholder="nacimiento" autofocus [max]="maxdate">
+    </div>
+
+    <div class="col-md-6">
+      <label>Nacionalidad</label>
+      <select id="nacionaldad" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.nacionalidad" name="nacionalidad" autofocus>
+        <option *ngFor="let option of e.nation" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label>Lugar de Nacimiento</label>
+      <select id="lugarNacimiento" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.lugar_nacimiento" name="lugarNacimiento" autofocus>
+        <option *ngFor="let option of e.municipio" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+
+
+    <div class="col-md-6">
+      <label>Estado Civil</label>
+      <select id="estadoCivil" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.estado_civil" name="estadoCivil" autofocus>
+        <option *ngFor="let option of e.ecivil" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label>Educación</label>
+
+      <select id="educacion" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.educacion" name="educacion" autofocus>
+        <option *ngFor="let option of e.academic" [value]="option.value || p.educacion">{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label>Pueblo</label>
+      <select id="pueblo" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.pueblo" name="pueblo" autofocus>
+        <option *ngFor="let option of e.people" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label>Idioma</label>
+      <select id="idioma" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.idioma" name="idioma" autofocus>
+      <option *ngFor="let option of e.lenguage" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label>Ocupación</label>
+      <input type="text" id="ocupacion" name="ocupacion" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.ocupacion" name="ocupacion" placeholder="ocupacion" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Dirección de Domicilio</label>
+      <input type="text" id="direccion" name="direccion" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.direccion" name="direccion" placeholder="direccion" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Telefono</label>
+      <input type="text" id="telefono" name="telefono" class="form-control bg-primary bg-opacity-75" [ngModel]="p.telefono" (ngModelChange)="formatPhoneNumber($event)" placeholder="telefono" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Email</label>
+      <input type="email" id="email" name="email" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.email" name="email" placeholder="email" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Padre</label>
+      <input type="text" id="padre" name="padre" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.padre" name="padre" placeholder="padre" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Madre</label>
+      <input type="text" id="madre" name="madre" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.madre" name="madre" placeholder="madre" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Responsable</label>
+      <input type="text" id="responsable" name="responsable" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.responsable" name="responsable" placeholder="responsable" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Parentesco</label>
+      <select id="parentesco" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.parentesco" name="parentesco" autofocus>
+        <option  *ngFor="let option of e.parents" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label>DPI Responsable</label>
+      <input type="number" id="dpiResponsable" name="dpiResponsable" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.dpi_responsable" name="dpiResponsable" placeholder="dpiResponsable" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Telefono Responsable</label>
+      <input type="number" id="telResponsable" name="telResponsable" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.telefono_responsable" name="telResponsable" placeholder="telefono Responsable" autofocus>
+    </div>
+
+
+
+
+
+
+
+    <!-- Otros campos del formulario... -->
+
+
+
+  </div>
+</form>

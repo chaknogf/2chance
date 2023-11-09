@@ -1,0 +1,59 @@
+<div class="">
+  <div class="console-table">
+    <form class="d-flex justify-content-center align-items-center" autocomplete="off" >
+      <input type="text" class="form-control bg-opacity-75 text-center text-uppercase" name="buscarcodigo" placeholder="Código"  [(ngModel)]="buscarcodigo" />
+      <input type="sumit" class="form-control text-capitalize mx-1 " placeholder="diagnostico" name="buscardx"  [(ngModel)]="buscardx">
+      <input type="text" class="form-control text-capitalize mx-1" placeholder="abreviatura" name="buscarabreviatura"  [(ngModel)]="buscarabreviatura">
+      <button type="submit" class="btn btn-light mx-1 "  (click)="filtro()">buscar</button>
+
+    </form>
+  </div>
+
+  <div class="mt-3">
+    <div class="console-table ">
+      <!-- <table class="table table-dark table-borderless fs-5 " aria-labelledby="tableLabel" *ngIf="cie10s.length > 0"> -->
+      <table class="table table-dark">
+        <thead class="">
+          <tr>
+          <th class="text-center "></th>
+          <th class="text-center ">Codigo</th>
+          <th class="text-center ">Grupo</th>
+          <th class="text-center " >DX</th>
+          <th class="text-center " >Especialidad</th>
+          <th class="text-center " >Abreviatura</th>
+          <th class="text-center " >Id</th>
+
+
+        </tr>
+        </thead>
+
+        <tbody class="justify-content-center text-normal  ">
+          <tr *ngFor="let cie10 of resumen">
+
+            <td class="text-text">Op</td>
+            <td class="text-center text-warning" >{{ cie10.cod }}</td>
+            <td class="text-text" > {{ cie10.grupo}} </td>
+            <td class="text-center">{{ cie10.dx}}</td>
+            <td class="text-center">{{ cie10.especialidad | anyToNumber | enumEspecialidad}}</td>
+            <td class="text-center" #edadCell>{{ cie10.abreviatura}}</td>
+            <td class="text-center">{{ cie10.id}}</td>
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+  <!-- Paginación -->
+    <div class="d-flex justify-content-center pagination mt-3">
+      <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
+        <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
+      </div>
+    </div>
+  </div>
+  </div>

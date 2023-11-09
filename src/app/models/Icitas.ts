@@ -2,7 +2,7 @@
 
 export interface Icitas{
   id: number;
-  expediente: number;
+  expediente: number | any;
   fecha: Date | string;
   especialidad: number;
   nota: string;

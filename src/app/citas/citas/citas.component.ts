@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CitasService } from 'src/app/services/citas.service';
 import { Icitas } from 'src/app/models/Icitas';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class CitasComponent implements OnInit {
   public x: string = this.today;
   public y: number = 0;
   public contador: number = 0;
+  public rutaAnterior: string = '../';
   // const currentDate = new Date().getDate();
   day: string = new Date().getDate().toString().padStart(2, '0');
   month: string = (new Date().getMonth()+1).toString().padStart(2, '0');
@@ -35,7 +37,8 @@ export class CitasComponent implements OnInit {
   constructor(
     private CitasService: CitasService,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
@@ -91,7 +94,7 @@ export class CitasComponent implements OnInit {
         console.log(this.citas)
       } else {
         // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
-        this.citasMedi = [{"especialidad": 1, "nota": "", "expediente": 61035, "id": 7, "fecha": new Date(), "cirugia_programada": null, "estado": true, "name": "PEDRO LOPEZ SEY"} ];
+        this.citasMedi = [];
         this.citasPedia = [];
         this.citasTrauma = [];
         this.citasCiru = [];
@@ -151,6 +154,9 @@ export class CitasComponent implements OnInit {
     })
   }
 
+  regresar(){
+    this._location.back();
+  }
 
 
 }

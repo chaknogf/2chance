@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 /* Estilo de la tabla */
 .console-table {
   background-color:#1b1b1b;
@@ -15,28 +8,31 @@
   padding: 5px;
   border-collapse: collapse;
   width: 100%;
+
 }
 
 /* Estilo de las celdas de encabezado */
 .console-table th {
-  background-color: #302f2f;
+  background-color: #1b1b1b;
   padding: 8px;
   text-align: left;
+  color: white;
   /* border: 1px dashed #fff; */
 
 }
 
 /* Estilo de las celdas de datos */
 .console-table td {
-  /* background-color: #463535; */
+  background-color: rgb(34, 3, 3);
+  color: white;
   padding: 8px;
   border: 1px  #fff;
 }
 
 /* Estilo de las filas impares */
 .console-table tr:nth-child(odd) {
-  background-color:#302f2f;
-  color: #fff;;
+  background-color:#944141;
+  color: #fff;
 
 }
 
@@ -68,3 +64,39 @@
 
 }
 
+.btnS {
+  padding: 0.8em 1.8em;
+  border: 2px solid #50eede;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: .3s;
+  z-index: 1;
+  font-family: inherit;
+  color: #50eede;
+}
+
+ .btnS::before {
+  content: '';
+  width: 0;
+  height: 300%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #50eede;
+  transition: .5s ease;
+  display: block;
+  z-index: -1;
+ }
+
+ .btnS:hover::before {
+  width: 105%;
+ }
+
+ .btnS:hover {
+  color: #111;
+ }

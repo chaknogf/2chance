@@ -63,6 +63,7 @@ import { FormUisauComponent } from './uisau/formUisau/formUisau.component';
 import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.component';
 import { LoginComponent } from './login/login/login.component';
 import { AuthGuard } from './auth.guard';
+import { Tabcie10Component } from './cie10/tabcie10/tabcie10/tabcie10.component';
 
 
 
@@ -135,9 +136,7 @@ import { AuthGuard } from './auth.guard';
     DetalleUisauComponent,
     FormUisauComponent,
     LoginComponent,
-
-
-
+    Tabcie10Component,
 
 
 
@@ -151,7 +150,9 @@ import { AuthGuard } from './auth.guard';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+
+      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: "login", component: LoginComponent, pathMatch: 'full'},
       { path: 'pacientes', component: TablaPacientesComponent, canActivate: [AuthGuard] },
       { path: 'crear', component: FormularioPacienteComponent, canActivate: [AuthGuard] },
@@ -179,7 +180,8 @@ import { AuthGuard } from './auth.guard';
       { path: 'uisau', component: TablaUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau/edit/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
-      { path: 'detalleUisau/:id', component: DetalleUisauComponent, canActivate: [AuthGuard]},
+      { path: 'detalleUisau/:id', component: DetalleUisauComponent, canActivate: [AuthGuard] },
+      { path: 'cie10', component: Tabcie10Component, canActivate: [AuthGuard]},
 
 
 

@@ -28,7 +28,7 @@ export class FormCitaComponent implements OnInit {
 
   c: Icitas = {
     id: 0,
-    expediente: 0,
+    expediente: '',
     fecha: "",
     especialidad: 0,
     cirugia_programada: null,
