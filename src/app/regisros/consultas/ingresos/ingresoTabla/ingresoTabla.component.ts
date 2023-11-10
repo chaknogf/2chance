@@ -2,19 +2,17 @@ import { ConsultasService } from 'src/app/services/consultas.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
-import { PageReloadService } from './../../services/PageReload.service';
+import { PageReloadService } from '../../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
-import { bottom } from '@popperjs/core';
-
 
 @Component({
-  selector: 'app-tablaUisau',
-  templateUrl: './tablaUisau.component.html',
-  styleUrls: ['./tablaUisau.component.css']
+  selector: 'ingresoTabla',
+  templateUrl: './ingresoTabla.component.html',
+  styleUrls: ['./ingresoTabla.component.css']
 })
-export class TablaUisauComponent implements OnInit {
+export class IngresoTablaComponent implements OnInit {
 
   constructor(
     private ConsultasService: ConsultasService,
@@ -32,23 +30,17 @@ export class TablaUisauComponent implements OnInit {
   public totalRegistros: number = 12; // Total de registros en la lista
   public paginaActual: number = 1; // Página actual
   public expedienteBuscar: any = '';
-  public idBuscar: any = '';
   public nombreBuscar: string = '';
   public apellidoBuscar: string = '';
   public dpiBuscar: any = '';
   public hojaBuscar: any = '';
   public fechaBuscar: any = '';
-  public fechaEgreso: any = '';
   public selectdate: string = '';
   public maxdate: string = '';
   public idCopiado: number = 0;
-  public porcentajeDeProgreso: number = 0; // Variable para el progreso
-  private sortColumn: string | undefined;
-  private ascendingOrder: boolean = false;
 
 
-
-  consulta: Iconcultas = {
+  ingreso: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
     expediente: null,
@@ -96,7 +88,7 @@ export class TablaUisauComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.consult()
+    this.ingresos()
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
@@ -104,51 +96,14 @@ export class TablaUisauComponent implements OnInit {
   }
 
 
-
-  consult() {
-    const filters = {
-
-      tipo_consulta: 2,
-      status: 1
-
-
-
-    };
-
-    this.porcentajeDeProgreso = 0.5;
-    this.ConsultasService.filterConsultas(filters).subscribe(data => {
-      this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
-      this.porcentajeDeProgreso = 75;
-      this.resumen = data;
-      this.paginar();//Llama a la función aquí para paginar automáticamente
-      this.porcentajeDeProgreso = 100;
-      setTimeout(() => {
-        this.porcentajeDeProgreso = -1; // Puedes establecerlo en -1 o cualquier otro valor para ocultar la barra
-      }, 1000);
-
-    });
+  ingresos() {
+    this.ConsultasService.consulTipo(2)
+      .subscribe(data => {
+        this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+        this.consultas = data;
+        console.log(this.consultas);
+    })
   }
-
-  sortTable(column: keyof Iconcultas) {
-    if (this.sortColumn === column) {
-      this.ascendingOrder = !this.ascendingOrder;
-    } else {
-      this.sortColumn = column;
-      this.ascendingOrder = true;
-    }
-
-    this.resumen.sort((a, b) => {
-      const order = this.ascendingOrder ? 1 : -1;
-      if (a[column] < b[column]) {
-        return -order;
-      } else if (a[column] > b[column]) {
-        return order;
-      } else {
-        return 0;
-      }
-    });
-  }
-
 
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
@@ -180,26 +135,91 @@ export class TablaUisauComponent implements OnInit {
   }
 
   filtro() {
-    // Recopila los valores de entrada del formulario
-    const filters = {
-      id: this.idBuscar,
-      hoja: this.hojaBuscar,
-      expediente: this.expedienteBuscar,
-      fecha_consulta: this.fechaBuscar,
-      nombres: this.nombreBuscar,
-      apellidos: this.apellidoBuscar,
-      dpi: this.dpiBuscar,
-      fecha_egreso: this.fechaEgreso,
 
-    };
+    if (this.hojaBuscar !="") {
+      this.ConsultasService.hoja(this.hojaBuscar).subscribe(data => {
+        if (data) {
+          this.actualizar([data]);
+          this.resumen.push(data);
+        }
+      });
+    }
 
-    this.ConsultasService.filterConsultas(filters).subscribe((result) => {
-      this.resumen = result;
-    });
+    if (this.expedienteBuscar) {
+      this.ConsultasService.expediente(this.expedienteBuscar).subscribe(data => {
+        if (data) {
+          this.actualizar([data]);
+          this.resumen.push(data);
+        }
+      });
+    }
+
+    if (this.dpiBuscar) {
+      this.ConsultasService.dpi(this.dpiBuscar).subscribe(data => {
+        if (data) {
+          this.actualizar([data]);
+        }
+      });
+    }
+
+    if (this.fechaBuscar) {
+      this.ConsultasService.tipoConsulta(this.fechaBuscar, 3).subscribe(data => {
+        if (data && data.length > 0) {
+          this.actualizar(data);
+        }
+      });
+    }
+
+    if (this.nombreBuscar || this.apellidoBuscar) {
+      this.ConsultasService.nombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
+        if (data && data.length > 0) {
+          this.actualizar(data);
+        }
+      });
+    }
+  }
 
 
+
+
+
+
+  buscarPorExpediente() {
+    this.ConsultasService.expediente(this.expedienteBuscar).subscribe(
+      (data) => this.actualizar(data)
+
+    );
+  }
+
+  buscarPorNombre() {
+    this.ConsultasService.nombre(this.nombreBuscar, this.apellidoBuscar).subscribe(
+      (data) => this.actualizar(data)
+    );
+  }
+
+  buscarPorDPI() {
+    this.ConsultasService.dpi(this.dpiBuscar).subscribe(
+      (data) => this.actualizar(data)
+    );
+  }
+
+  buscarPorHojaEmergencia() {
+    this.ConsultasService.hoja(this.hojaBuscar).subscribe(data => {
+      if (data) {
+        this.actualizar([data]);
+        this.resumen = [data];
+      }
+    })
 
   }
+
+  buscarPorFecha() {
+    this.ConsultasService.tipoConsulta(this.fechaBuscar, 3).subscribe(
+      (data) => this.actualizar(data)
+    );
+  }
+
+
 
 
   limpiarInput() {
@@ -209,7 +229,7 @@ export class TablaUisauComponent implements OnInit {
     this.dpiBuscar = '';
     this.hojaBuscar = '';
     this.fechaBuscar = '';
-    this.consult();
+    this.ingresos();
      // Obtén todos los pacientes nuevamente
   }
 
@@ -235,7 +255,7 @@ export class TablaUisauComponent implements OnInit {
   eliminar(id: number) {
     this.ConsultasService.eliminar(id)
       .subscribe(data => {
-        this.consulta = data;
+        this.ingreso = data;
         this.reloadPage();
 
       })

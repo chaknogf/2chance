@@ -84,8 +84,13 @@ export class UsersService {
     localStorage.setItem(this.userlog, user);
   }
 
-  getUsernameLocally(): string | null {
+  getUsernameLocally(): string | any {
     return localStorage.getItem('username');
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.tokenKey)
+    localStorage.removeItem(this.userlog)
   }
 
 

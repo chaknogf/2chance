@@ -21,8 +21,8 @@ export class Cie10Service {
   return this.http.get(this.urlapi + "/cie10" + "?token="+this.token)
   }
 
-  getCodigo(): Observable<any>{
-    return this.http.get(this.urlapi + "/diagnostico" + "?token="+this.token)
+  getCodigo(id: number): Observable<any>{
+    return this.http.get(this.urlapi + "/diagnostico/?id=" +id + "&token="+this.token)
   }
 
   filtrarDX(filtros: any): Observable<any>{
@@ -46,6 +46,14 @@ export class Cie10Service {
         url += `&dx=${filtros.dx}`;
       } else {
         url += `?dx=${filtros.dx}`;
+      }
+    }
+
+    if (filtros.abreviatura) {
+      if (url.includes('?')) {
+        url += `&abreviatura=${filtros.abreviatura}`;
+      } else {
+        url += `?abreviatura=${filtros.abreviatura}`;
       }
     }
 

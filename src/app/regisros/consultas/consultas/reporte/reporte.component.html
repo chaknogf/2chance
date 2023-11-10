@@ -1,0 +1,49 @@
+
+<button type="button" class="d-flex flex-r btn btn-primary" (click)="regresar()">
+  Regresar
+</button>
+
+<div class="container-fluid mt-5 w-auto">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header h4 text-center">
+          Detalles de Consulta
+          <br>Id:  {{consult?.id}}
+        </div>
+        <div class="card-body mx-5 font-monospace">
+          <strong class="h5 me-3">Hoja de Emergencia:</strong> {{consult?.hoja_emergencia}}<br>
+          <strong class="h5 me-3">Expediente:</strong> {{consult?.expediente}}<br>
+          <hr>
+
+          <strong class="h5 me-3">Fecha de Recepción:</strong> {{consult?.fecha_recepcion | anyToText | formatoFecha}}<br>
+          <strong class="h5 me-3">Fecha de Egreso:</strong> {{consult?.fecha_egreso | anyToText | formatoFecha}}<br>
+          <strong class="h5 me-3">Fecha de Consulta:</strong> {{consult?.fecha_consulta | anyToText | formatoFecha}}<br>
+          <strong class="h5 me-3">Hora:</strong> {{consult?.hora}}<br>
+          <strong class="h5 me-3">Status:</strong> {{consult?.status}}<br>
+
+          <hr>
+          <strong class="h5 me-3">Nombres:</strong> {{consult?.nombres | anyToText | capitalizeName}}<br>
+          <strong class="h5 me-3">Apellidos:</strong> {{consult?.apellidos | anyToText | capitalizeName}}<br>
+          <strong class="h5 me-3">Nacimiento:</strong> {{consult?.nacimiento | anyToText | formatoFecha}}<br>
+          <strong class="h5 me-3">Edad en la consulta:</strong> {{consult?.edad}}<br>
+          <strong class="h5 me-3">Sexo:</strong> {{consult?.sexo | anyToText | sexo}}<br>
+          <strong class="h5 me-3">DPI:</strong> {{consult?.dpi | anyToText | formatoDPI}}<br>
+          <hr>
+          <strong class="h5 me-3">Dirección:</strong> {{consult?.direccion}}<br>
+          <strong class="h5 me-3">Acompañante:</strong> {{consult?.acompa | anyToText | capitalizeName}}<br>
+          <strong class="h5 me-3">Parentesco:</strong> {{consult?.parente}}<br>
+          <strong class="h5 me-3">Teléfono:</strong> {{consult?.telefono}}<br>
+          <hr>
+          <strong class="h5 me-3">Especialidad:</strong> {{consult?.especialidad | anyToNumber | enumEspecialidad}}<br>
+          <strong class="h5 me-3">Servicio:</strong> {{consult?.servicio | anyToNumber | enumServicios}}<br>
+          <strong class="h5 me-3">Tipo de Consulta:</strong> {{consult?.tipo_consulta | anyToNumber | enumTipo}}<br>
+          <strong class="h5 me-3">Creado Por:</strong> {{consult?.created_by}}<br>
+          <strong class="h5 me-3">Creado el:</strong> {{consult?.created_at}}<br>
+          <strong class="h5 me-3">Actualizado el:</strong> {{consult?.updated_at}}<br>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

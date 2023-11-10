@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   private userlog: string = 'username';
 
   ngOnInit() {
+    this.logout();
 
   }
 
@@ -50,6 +51,10 @@ export class LoginComponent implements OnInit {
         // Manejo de errores, por ejemplo, mostrar un mensaje de error al usuario
       }
     );
+  }
+
+  logout() {
+    this.userService.logout();
   }
 
 }

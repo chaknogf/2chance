@@ -1,0 +1,192 @@
+<div class="d-flex justify-content-center bg-white">
+  <button class="btn btn-dark mx-2 my-3 w-30" (click)="regresar()" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+    </svg>Regresar</button>
+  <button class="btn btn-info no-imprimir mx-2 my-3 w-30" (click)="imprimir()">Imprimir</button>
+</div>
+<body id="pdf-content." class="imprimir-esto text-black bg-light p-0 w-100"  >
+<div class="container-fluid bg-light">
+  <p class="p-1">{{fechaActual | anyToText | formatoFecha}} - {{horaActual}}</p>
+</div>
+<div id="pdfs-content." class="container-fluid  h-5 blanco">
+  <div class="d-flex justify-content-center align-items-start">
+    <div class="btn btn-primary">HISTORIA CLINICA</div>
+  </div>
+
+
+  <div class="border border-primary rounded">
+    <div class="d-flex">
+
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Fecha de Consulta:
+        <p class="ms-auto mb-0 mx-5 h5 text-black">{{fechaActual | anyToText | formatoFecha}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Expediente:
+        <p class="ms-auto mb-0 mx-1 h3">{{patient?.expediente}}</p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="d-flex justify-content-center align-items-start">
+    <div class="btn btn-primary">DATOS DEL PACIENTE</div>
+  </div>
+
+  <div class="border border-primary rounded">
+    <div class="d-flex ">
+
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Nombre y Apellido:
+        <p class="ms-auto mb-0 mx-5 h5">{{patient?.nombre | anyToText | capitalizeName}} {{patient?.apellido | anyToText | capitalizeName}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-15 text-black">Sexo:
+        <p class="ms-auto mb-0 mx-1 h5">{{patient?.sexo | anyToText | sexo}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-40 text-black">Edad:
+        <p class="ms-auto mb-0 mx-5 h5">{{patient?.nacimiento | anyToNumber | edad}}</p>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Fecha de nacimiento:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.nacimiento | anyToText| formatoFecha}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">DPI:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.dpi| anyToText | formatoDPI}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Tel:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.telefono}}</p>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Dirección:
+        <p class="ms-auto mb-0 mx-2 ">{{patient?.direccion}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-25 text-black">Ocupación:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.ocupacion}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-25 text-black">Educación:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.educacion}}</p>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Responsable:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.responsable}}</p>
+      </div>
+      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Parentesco:
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.parents}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-start">
+    <div class="btn btn-primary">SIGNOS VITALES</div>
+  </div>
+
+  <div class="d-flex border border-primary rounded text-black">
+    <div class="d-flex border border-primary rounded p-2 w-100 justify-content-between">
+      <p class="mx-3">P/A:</p>
+      <p>FC:</p>
+      <p>FR:</p>
+      <p>T:</p>
+      <p>P:</p>
+      <p>TALLA:</p>
+      <p>SO2:</p>
+      <p></p>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-start text-black">
+    <div class="btn btn-primary">DATOS DE LA CONSULTA</div>
+  </div>
+
+  <div class=" border border-primary rounded text-black">
+    <div class="d-flex border border-primary rounded p-2 w-100 justify-content-start">
+      <p class="mx-3">Motivo de la consulta:</p>
+    </div>
+    <div class="border border-primary rounded p-2 w-100 justify-content-start text-black">
+      <p class="mx-3">Historia Clínica:</p>
+      <p class="p-2"></p>
+    </div>
+
+    <div class="border border-primary rounded p-2 w-100 justify-content-start text-black">
+      <p class=" mb-0 mx-3">Antecedentes:</p>
+      <div class="d-flex">
+        <div class="mb-0 w-50 p-2 mx-3">
+          <p class="mb-0">Mx:</p>
+          <p class="mb-0">Qx:</p>
+          <p class="mb-0">Tx:</p>
+          <p class="mb-0">Alx:</p>
+        </div>
+        <div class=" mx-3 w-50 d-flex text-black">Obstetricos - ->
+
+          <p class="mx-3">G:</p>
+          <p class="mx-3">P:</p>
+          <p class="mx-3">Ab:</p>
+          <p class="mx-3">Hv:</p>
+          <p class="mx-3">Hm:</p>
+          <p class="mx-3">Fur:</p>
+          <p class="mx-3">Menarquia:</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
+      <p class="mb-5 mx-3">Examén físico:</p>
+      <p class="p-3"></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
+      <p class="mb-5 mx-3">Diagnósticos:</p>
+      <p class="p-1"></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
+      <p class="mb-5 mx-3">Tratamiento:</p>
+      <p class="p-1"></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
+      <p class="mb-5 mx-3">Estudios Complementarios:</p>
+      <p class="p-2"></p>
+    </div>
+
+
+
+
+  </div>
+
+  <div class="d-flex justify-content-center align-items-start">
+    <div class="btn btn-primary">SEGUIMIENTO DE CASO</div>
+  </div>
+
+  <div class="border border-primary rounded">
+    <div class="border border-primary rounded p-0w-100 justify-content-start text-black">
+      <p class="mx-3">Fecha:</p>
+      <p class=" mt-2 mx-3">Datos subjetivos:</p>
+      <p class=""></p>
+    </div>
+
+    <div class="border border-primary rounded p-1 w-100 justify-content-start text-black">
+      <p class="mb-5 mx-3">Datos Objetivos:</p>
+      <p class="p-4"></p>
+    </div>
+  </div>
+
+  <div class="container p-2 text-center">
+    <h4 class="text-center"> Ministerio de Salud Píblica y Asistencia Social</h4>
+    <h4 class="text-center"> Hospital General Tipo I de Tecpán Guatemala</h4>
+
+    </div>
+
+
+</div>
+</body>
+

@@ -28,42 +28,48 @@ import {
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { TablaPacientesComponent } from './pacientes/tablaPacientes/tablaPacientes.component';
-import { FormularioPacienteComponent } from './pacientes/formulario-paciente/formulario-paciente.component';
-import { BuscarComponent } from './pacientes/buscar/buscar.component';
-import { CitasComponent } from './citas/citas/citas.component';
-import { FormCitaComponent } from './citas/formCita/formCita.component';
+import { TablaPacientesComponent } from './regisros/pacientes/tablaPacientes/tablaPacientes.component';
+import { FormularioPacienteComponent } from './regisros/pacientes/formulario-paciente/formulario-paciente.component';
+import { BuscarComponent } from './regisros/pacientes/buscar/buscar.component';
+import { CitasComponent } from './regisros/citas/citas/citas.component';
+import { FormCitaComponent } from './regisros/citas/formCita/formCita.component';
 import { TextToDatePipe } from './pipe/textToDate.pipe';
 import { ExpedienteToNombrePipe } from './pipe/expToNombre.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightWordsDirective } from './Directive/highlight-words.directive';
 import { HighlightDirective } from './Directive/highlight.directive';
-import { EmergenciasComponent } from './consultas/emergencias/emergencias.component';
-import { CoexComponent } from './consultas/coex/coex.component';
-import { TablaComponent } from './pacientes/tabla/tabla.component';
+import { EmergenciasComponent } from './regisros/consultas/emergencias/emergencias.component';
+import { CoexComponent } from './regisros/consultas/coex/coex/coex.component';
+import { TablaComponent } from './regisros/pacientes/tabla/tabla.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { CrearModalComponent } from './pacientes/crearModal/crearModal.component';
-import { NuevaConsultaComponent } from './consultas/nuevaConsulta/nuevaConsulta.component';
+import { CrearModalComponent } from './regisros/pacientes/crearModal/crearModal.component';
+import { NuevaConsultaComponent } from './regisros/consultas/nuevaConsulta/nuevaConsulta.component';
 import { ShowModalDirective } from './Directive/show-modal.directive';
-import { FormCoexComponent } from './consultas/coex/form-coex/form-coex.component';
-import { TablaEmergenciaComponent } from './consultas/emergencias/tablaEmergencia/tablaEmergencia.component';
-import { HClinicaComponent } from './consultas/coex/hClinica/hClinica.component';
-import { FormIngresoComponent } from './consultas/ingresos/formIngreso/formIngreso.component';
-import { IngresosComponent } from './consultas/ingresos/ingresos/ingresos.component';
-import { IngresoTablaComponent } from './consultas/ingresos/ingresoTabla/ingresoTabla.component';
-import { NuevoIngresoComponent } from './consultas/ingresos/nuevoIngreso/nuevoIngreso.component';
-import { TabPacienteComponent } from './consultas/ingresos/tabPaciente/tabPaciente.component';
-import { IngresoHComponent } from './consultas/ingresos/ingresoH/ingresoH.component';
-import { TabEmerExpComponent } from './consultas/emergencias/tabEmerExp/tabEmerExp.component';
-import { TodasComponent } from './consultas/consultas/todas/todas.component';
-import { ReporteComponent } from './consultas/consultas/reporte/reporte.component';
+import { FormCoexComponent } from './regisros/consultas/coex/form-coex/form-coex.component';
+import { TablaEmergenciaComponent } from './regisros/consultas/emergencias/tablaEmergencia/tablaEmergencia.component';
+import { HClinicaComponent } from './regisros/consultas/coex/hClinica/hClinica.component';
+import { FormIngresoComponent } from './regisros/consultas/ingresos/formIngreso/formIngreso.component';
+import { IngresosComponent } from './regisros/consultas/ingresos/ingresos/ingresos.component';
+import { IngresoTablaComponent } from './regisros/consultas/ingresos/ingresoTabla/ingresoTabla.component';
+import { NuevoIngresoComponent } from './regisros/consultas/ingresos/nuevoIngreso/nuevoIngreso.component';
+import { TabPacienteComponent } from './regisros/consultas/ingresos/tabPaciente/tabPaciente.component';
+import { IngresoHComponent } from './regisros/consultas/ingresos/ingresoH/ingresoH.component';
+import { TabEmerExpComponent } from './regisros/consultas/emergencias/tabEmerExp/tabEmerExp.component';
+import { TodasComponent } from './regisros/consultas/consultas/todas/todas.component';
+import { ReporteComponent } from './regisros/consultas/consultas/reporte/reporte.component';
 import { TablaUisauComponent } from './uisau/tablaUisau/tablaUisau.component';
 import { FormUisauComponent } from './uisau/formUisau/formUisau.component';
 import { DetalleUisauComponent } from './uisau/detalleUisau/detalleUisau.component';
 import { LoginComponent } from './login/login/login.component';
 import { AuthGuard } from './auth.guard';
-import { Tabcie10Component } from './cie10/tabcie10/tabcie10/tabcie10.component';
+import { Tabcie10Component } from './estadistica/cie10/tabcie10/tabcie10/tabcie10.component';
+import { RegistrosComponent } from './regisros/registros/registros.component';
+import { EstadisticaComponent } from './estadistica/estadistica/estadistica.component';
+import { Formcie10Component } from './estadistica/cie10/formcie10/formcie10.component';
+import { ReporteCoexComponent } from './regisros/consultas/coex/reporte/reporteCoex.component';
+
+
 
 
 
@@ -137,6 +143,10 @@ import { Tabcie10Component } from './cie10/tabcie10/tabcie10/tabcie10.component'
     FormUisauComponent,
     LoginComponent,
     Tabcie10Component,
+    RegistrosComponent,
+    EstadisticaComponent,
+    Formcie10Component,
+    ReporteCoexComponent,
 
 
 
@@ -181,7 +191,12 @@ import { Tabcie10Component } from './cie10/tabcie10/tabcie10/tabcie10.component'
       { path: 'formUisau', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau/edit/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'detalleUisau/:id', component: DetalleUisauComponent, canActivate: [AuthGuard] },
-      { path: 'cie10', component: Tabcie10Component, canActivate: [AuthGuard]},
+      { path: 'cie10', component: Tabcie10Component, canActivate: [AuthGuard] },
+      { path: 'registros', component: RegistrosComponent, canActivate: [AuthGuard] },
+      { path: 'estadistica', component: EstadisticaComponent, canActivate: [AuthGuard] },
+      { path: 'formcie10', component: Formcie10Component, canActivate: [AuthGuard] },
+      { path: 'cie10edit/:id', component: Formcie10Component, canActivate: [AuthGuard] },
+      { path: 'coexreport', component: ReporteCoexComponent, canActivate: [AuthGuard]},
 
 
 

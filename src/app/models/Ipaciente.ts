@@ -42,6 +42,8 @@ export interface Ipaciente {
   academic: string;
   parents: string;
   lenguage: string;
+  created_at: string;
+  update_at: string;
 
 
 }

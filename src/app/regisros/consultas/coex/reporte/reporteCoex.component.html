@@ -1,0 +1,196 @@
+<div class="container-fluid d-flex justify-content-center bg-white">
+<button class="btn btn-dark mx-2 my-3 w-30 no-imprimir" (click)="regresar()" >
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+  </svg>Regresar</button>
+<button class="btn btn-info no-imprimir mx-2 my-3 w-30" (click)="imprimir()">Imprimir</button>
+</div>
+<body id="pdf-content." class="imprimir-esto text-black bg-light p-0 w-100"  >
+<div class="container-fluid bg-white">
+<p class="p-1">Impreso: {{fechaActual | anyToText | formatoFecha}} - {{horaActual}}</p>
+
+<h3 class="text-center">Reporte de Pacientes de Consulta Externa</h3>
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 1 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasMedi; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 2 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasPedia; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 3 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasGine; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 4 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasCiru; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 5 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasTrauma; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 6 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasPsico; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 7 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasNutri; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
