@@ -2,14 +2,9 @@
 <div class="mt-3 ">
   <h2 class="text-center text-light">Registro de Consulta Externa</h2>
  <div class="  ">
-  <button class="btnS btn-dark rounded text-waning mx-5" [routerLink]="['/citas']">C i t a s
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-day" viewBox="0 0 16 16">
-      <path d="M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z"/>
-      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-    </svg>
-  </button>
 
-    <div class="container-fluid justify-content-center text-center  ">
+
+    <div class="container-fluid justify-content-center text-center p-0 my-0 ">
       <form class="form-inline d-flex w-25 mx-auto">
         <div class="form-group flex-grow-1 ">
           <h6 class="text-warning" for="day">Día</h6>
@@ -26,11 +21,18 @@
           <input type="text" class="form-control text-center" id="year" name="year" [(ngModel)]="year" placeholder="Año" (ngModelChange)="updateDate()" disabled="">
         </div>
       </form>
+
+      <button class="btnS d-flex rounded text-waning mx-5 p-1" [routerLink]="['/citas']">C i t a s .
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-day" viewBox="0 0 16 16">
+          <path d="M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z"/>
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+        </svg>
+      </button>
     </div>
+<hr class="p-0 my-1">
 
 
-
-    <div class="mt-4">
+    <div class="mt-1">
       <div class="row d-flex justify-content-between">
         <div class="col-md-6">
           <!-- Contenido de la columna izquierda  tabla de pacientes-->
@@ -41,18 +43,19 @@
         <div class=" col-md-6  btn">
           <!-- Contenido de la columna derecha -->
           <div class="d-flex justify-content-end">
-            <button class="btnS rounded " [routerLink]="['/coexreport']" >Reporte <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+            <button class="btnS rounded p-1" [routerLink]="['/coexreport']" >Reporte <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
               <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
               <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
             </svg></button>
           </div>
+          <hr class="my-0 mt-1 p-1">
           <!-- Primer contenedor Medicina -->
-          <div class="container-fluid console-table">
+          <div class="container-fluid  mt-1">
             <h4 class="text-center">{{ 1 | enumEspecialidad }}</h4>
             <div class="table-responsive">
               <!-- Tabla de Medicina -->
               <div class="table-responsive">
-                <table class="table table-hover table-auto console-table" *ngIf="consultasMedi.length > 0">
+                <table class="table table-hover table-auto table-black" *ngIf="consultasMedi.length > 0">
                   <!-- Encabezados de columna -->
                   <thead>
                     <tr>
@@ -92,13 +95,13 @@
               </div>
             </div>
           </div>
-
+          <hr class="my-0 p-1">
           <!-- Segundo contenedor Pediatría -->
-          <div class="container-fluid console-table">
+          <div class="container-fluid">
             <h4 class="text-center">{{ 2 | enumEspecialidad }}</h4>
             <div class="table-responsive">
               <!-- Tabla de Pediatría -->
-              <table class="table table-hover table-auto console-table" *ngIf="consultasPedia.length > 0">
+              <table class="table table-hover table-auto table-black" *ngIf="consultasPedia.length > 0">
                 <!-- Encabezados de columna -->
                 <thead>
                   <tr>
@@ -138,13 +141,13 @@
               </table>
             </div>
           </div>
-
+          <hr class="my-0 p-1">
           <!-- Tercer contenedor Ginecología -->
-          <div class="container-fluid console-table">
+          <div class="container-fluid table-black">
             <h4 class="text-center">{{ 3 | enumEspecialidad }}</h4>
             <div class="table-responsive">
               <!-- Tabla de Ginecología -->
-              <table class="table table-hover table-auto console-table" *ngIf="consultasGine.length > 0">
+              <table class="table table-hover table-auto table-black" *ngIf="consultasGine.length > 0">
                 <!-- Encabezados de columna -->
                 <thead>
                   <tr>
@@ -185,13 +188,13 @@
 
             </div>
           </div>
-
+          <hr class="my-0 p-1">
           <!-- Cuarto contenedor Cirugía -->
-          <div class="container-fluid console-table">
+          <div class="container-fluid table-black">
             <h4 class="text-center">{{ 4 | enumEspecialidad }}</h4>
             <div class="table-responsive">
               <!-- Tabla de Cirugía -->
-              <table class="table table-hover table-auto console-table" *ngIf="consultasCiru.length > 0">
+              <table class="table table-hover table-auto table-black" *ngIf="consultasCiru.length > 0">
                 <!-- Encabezados de columna -->
                 <thead>
                   <tr>
@@ -230,13 +233,13 @@
               </table>
             </div>
           </div>
-
+          <hr class="my-0 p-1">
           <!-- Quinto contenedor Trauma -->
-          <div class="container-fluid console-table">
+          <div class="container-fluid ">
             <h4 class="text-center">{{ 5 | enumEspecialidad }}</h4>
             <div class="table-responsive">
               <!-- Tabla de Trauma -->
-              <table class="table table-hover table-auto console-table" *ngIf="consultasTrauma.length > 0">
+              <table class="table table-hover table-auto table-black" *ngIf="consultasTrauma.length > 0">
                 <!-- Encabezados de columna -->
                 <thead>
                   <tr>
@@ -276,13 +279,13 @@
               </table>
             </div>
           </div>
-
+          <hr class="my-0 p-1">
           <!-- Sexto contenedor Psicologia -->
-          <div class="container-fluid console-table">
+          <div class="container-fluid ">
             <h4 class="text-center">{{ 6 | enumEspecialidad }}</h4>
             <div class="table-responsive">
               <!-- Tabla de Psicología -->
-              <table class="table table-hover table-auto console-table" *ngIf="consultasPsico.length > 0">
+              <table class="table table-hover table-auto table-black" *ngIf="consultasPsico.length > 0">
                 <!-- Encabezados de columna -->
                 <thead>
                   <tr>
@@ -321,13 +324,13 @@
               </table>
             </div>
           </div>
-
+          <hr class="my-0 p-1">
           <!-- Septimo contenedor Nutricion -->
-          <div class="container-fluid console-table">
+          <div class="container-fluid">
             <h4 class="text-center">{{ 7 | enumEspecialidad }}</h4>
             <div class="table-responsive">
               <!-- Tabla de Nutrición -->
-              <table class="table table-hover table-auto console-table" *ngIf="consultasNutri.length > 0">
+              <table class="table table-hover table-auto table-black" *ngIf="consultasNutri.length > 0">
                 <!-- Encabezados de columna -->
                 <thead>
                   <tr>
@@ -336,7 +339,7 @@
                     <th class="text-center" scope="col">Expediente</th>
                     <th class="text-center" scope="col">Nombre</th>
                     <th class="text-center" scope="col" >Hora</th>
-                    <th class="text-center" scope="col" >Status</th>
+                    <th class="text-center" scope="col" ></th>
 
                   </tr>
                 </thead>

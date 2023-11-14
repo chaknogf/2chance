@@ -148,11 +148,27 @@ export class ConsultasService {
       }
     }
 
+    if (filtros.fecha_recepcion) {
+      if (url.includes('?')) {
+        url += `&fecha_egreso=${filtros.fecha_recepcion}`;
+      } else {
+        url += `?fecha_egreso=${filtros.fecha_recepcion}`;
+      }
+    }
+
     if (filtros.tipo_consulta) {
       if (url.includes('?')) {
         url += `&tipo_consulta=${filtros.tipo_consulta}`;
       } else {
         url += `?tipo_consulta=${filtros.tipo_consulta}`;
+      }
+    }
+
+    if (filtros.no_es) {
+      if (url.includes('?')) {
+        url += `&no_es=${filtros.no_es}`;
+      } else {
+        url += `?no_es=${filtros.no_es}`;
       }
     }
 

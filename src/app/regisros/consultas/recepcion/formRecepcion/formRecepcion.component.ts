@@ -7,15 +7,14 @@ import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { UsersService } from 'src/app/services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'form-coex',
-  templateUrl: './form-coex.component.html',
-  styleUrls: ['./form-coex.component.css']
+  selector: 'app-formRecepcion',
+  templateUrl: './formRecepcion.component.html',
+  styleUrls: ['./formRecepcion.component.css']
 })
-export class FormCoexComponent implements OnInit {
-
-
+export class FormRecepcionComponent implements OnInit {
   constructor(
     private ConsultasService: ConsultasService,
     private FechaService: FechaService,
@@ -23,6 +22,8 @@ export class FormCoexComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private user: UsersService,
+    private _location: Location
+
 
   ) { }
 
@@ -31,17 +32,19 @@ export class FormCoexComponent implements OnInit {
   public fechaActual: string = this.FechaService.FechaActual();
   public horaActual: string = this.FechaService.HoraActual();
   public fechaRecepcion: string = this.FechaService.registroTiempo();
+  public fechaEgreso: string = this.FechaService.FechaActual();
   edit: boolean = false;
   public selectdate: string = '';
   public maxdate: string = '';
   private nuevoStatus: number = 0;
   public username = this.user.getUsernameLocally()
+  public rutaAnterior: string = '../';
 
 
 
   @HostBinding('class') clases = 'row';
 
-  coex: Iconcultas = {
+  consulta: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
     expediente: null,
@@ -60,7 +63,7 @@ export class FormCoexComponent implements OnInit {
     especialidad: 0,
     servicio: null,
     status: 1,
-    fecha_recepcion: this.fechaRecepcion,
+    fecha_recepcion: '',
     fecha_egreso: null,
     tipo_consulta: 1,
     nota: "",
@@ -69,12 +72,12 @@ export class FormCoexComponent implements OnInit {
     prenatal: null,
     lactancia: null,
     dx: null,
+    medico: null,
     folios: null,
     archived_by: null,
     created_at: '',
     updated_at: '',
-    created_by: null,
-    medico: null
+    created_by: null
   }
 
    e: Ienum = {
@@ -96,7 +99,7 @@ export class FormCoexComponent implements OnInit {
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
 
-    this.coex.created_by = this.username;
+    this.consulta.created_by = this.username;
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
@@ -105,7 +108,7 @@ export class FormCoexComponent implements OnInit {
       this.ConsultasService.Consulta(params['id'])
         .subscribe(
           data => {
-            this.coex = data;
+            this.consulta = data;
             this.edit = true;
 
 
@@ -120,30 +123,48 @@ export class FormCoexComponent implements OnInit {
 
   onSubmit() {
 
-    this.ConsultasService.editarConsulta(this.coex.id, this.coex)
+    this.ConsultasService.editarConsulta(this.consulta.id, this.consulta)
       .subscribe(data => {
-        this.coex = data;
-        this.router.navigate(['/coex']);
+        this.consulta = data;
+        this.router.navigate(['/recepciones']);
       })
 
 
   }
 
-  status() {
-    this.coex.fecha_recepcion = this.fechaRecepcion
-    if (this.coex.fecha_recepcion) {
-
-      this.coex.status = 2;
+  recepcion() {
+    this.consulta.fecha_recepcion = this.fechaRecepcion;
+    if (this.consulta.fecha_recepcion) {
+      this.consulta.status = 2;
     }
     else {
-      this.coex.status = 1;
+      this.consulta.status = 1;
     }
   }
 
-  limpiarInput() {
-    this.coex.fecha_recepcion = null;
-    this.coex.status = 1;
+  statusegreso() {
+    this.consulta.fecha_egreso = this.fechaEgreso;
+    if (this.consulta.fecha_egreso) {
+
+      this.consulta.status = 2;
+    }
+    else {
+      this.consulta.status = 1;
+    }
   }
 
+  limpiarRecepcion() {
+    this.consulta.fecha_recepcion = null;
+    this.consulta.status = 1;
+  }
+
+  limpiarEgreso() {
+    this.consulta.fecha_egreso = null;
+    this.consulta.status = 1;
+  }
+
+  regresar(){
+    this._location.back();
+  }
 
 }

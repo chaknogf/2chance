@@ -1,0 +1,112 @@
+
+
+
+<div class="container-fluid d-flex my-3">
+  <button class="btnS  rounded border-quatz mx-4 w-10 p-0 justify-content-start" (click)="regresar()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+    </svg>
+    Regresar
+  </button>
+  <h5 class="mx-auto">Control de Expediente - Recepción de Consulta</h5>
+</div>
+
+
+<div class="container-fluid d-flex">
+  <div class="text-white border-quatz btn text-end p-2 col-4">
+    <button class="text-center justify-content-end mx-1 mb-1 bg-quatz rounded btn p-0 w-20">Edit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+      </svg>
+    </button>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Consulta No:</span>{{ consulta.id }}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Expediente:</span>{{ consulta.expediente }}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Hoja de Emeregencia:</span>{{ consulta.hoja_emergencia }}</p>
+    <hr style="margin: 0;">
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ consulta.nombres | anyToText | capitalizeName }} {{ consulta.apellidos | anyToText | capitalizeName }}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ consulta.sexo}}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad en consulta:</span>{{ consulta.edad}}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad real:</span>{{ consulta.nacimiento | anyToText | edad}}</p>
+    <hr style="margin: 0;">
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Fecha de consulta:</span>{{ consulta.fecha_consulta | anyToText | formatoFecha }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Especialidad:</span>{{ consulta.especialidad | anyToNumber | enumEspecialidad }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Servicios:</span>{{ consulta.servicio | anyToNumber | enumEspecialidad }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Tipo de Consulta:</span>{{ consulta.tipo_consulta | anyToNumber | enumTipo }}</p>
+    <hr style="margin: 0;">
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado Por:</span>{{ consulta.created_by }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado:</span>{{ consulta.created_at }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Archivado Por:</span>{{ consulta.archived_by }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Actualizado:</span>{{ consulta.updated_at }}</p>
+  </div>
+
+  <div class="container-fluid d-flex">
+    <form class="">
+      <p class="text-info bg-dark rounded">Datos de Partograma</p>
+        <div class="d-flex justify-content-center">
+          <div class="w-30">
+            <label class="text-light" for="prenatal"># de Controles Prenatal:</label>
+            <input type="number" class="form-control text-center bg-primary bg-opacity-75 p-1" name="prenatal" [(ngModel)]="consulta.prenatal">
+          </div>
+
+          <div class=" mx-1 w-30 my-0">
+            <label class="text-light" for="lactancia">Lactancia Materna:</label>
+            <select id="lactancia" class="form-control bg-primary bg-opacity-75 text-uppercase text-center p-1" [(ngModel)]="consulta.lactancia" name="lactancia" autofocus>
+              <option value=""></option>
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        </div>
+        <hr class="my-1">
+        <p class="text-info bg-dark rounded">Recepción y Archivo</p>
+        <div class="d-flex">
+          <div class="w-40 mx-1">
+            <label class="text-light" for="folios">Diagnostico:</label>
+            <input type="text" class="form-control bg-primary bg-opacity-75" name="folios" [(ngModel)]="consulta.folios">
+          </div>
+
+          <div class="w-20 mx-1">
+            <label class="text-light" for="folios">Medico:</label>
+            <input type="number" class="form-control bg-primary bg-opacity-75" name="medico" [(ngModel)]="consulta.medico">
+          </div>
+
+          <div class="w-20 mx-1">
+            <label class="text-light" for="folios">Folios:</label>
+            <input type="number" class="form-control bg-primary bg-opacity-75" name="folios" [(ngModel)]="consulta.folios">
+          </div>
+        </div>
+        <hr class="my-1">
+
+        <div class=" d-flex">
+        <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
+          <input class="form-control bg-primary bg-opacity-75 mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="consulta.fecha_recepcion"  (click)="recepcion()" [max]="maxdate">
+          <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarRecepcion()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
+             2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
+              11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+          </svg></button>
+        </div>
+
+        <div class=" d-flex mt-2">
+          <label for="fecha_recepcion" class="form-label">Fecha Egreso</label>
+            <input class="form-control bg-primary bg-opacity-75 mx-3" type="date" id="fecha_recepcion" name="fecha_egreso" [(ngModel)]="consulta.fecha_egreso" (click)="statusegreso()" [max]="maxdate">
+            <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarEgreso()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+              <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
+               2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
+                11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+            </svg></button>
+          </div>
+
+        <div class="mb-3 mt-3 text-center">
+          <button class="btnS btn p-1" (click)="onSubmit()">Guardar</button>
+        </div>
+
+    </form>
+</div>
+
+</div>
+
+
+
+
+

@@ -68,6 +68,8 @@ import { RegistrosComponent } from './regisros/registros/registros.component';
 import { EstadisticaComponent } from './estadistica/estadistica/estadistica.component';
 import { Formcie10Component } from './estadistica/cie10/formcie10/formcie10.component';
 import { ReporteCoexComponent } from './regisros/consultas/coex/reporte/reporteCoex.component';
+import { RecepciónComponent } from './regisros/consultas/recepcion/recepción/recepción.component';
+import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecepcion/formRecepcion.component';
 
 
 
@@ -147,6 +149,8 @@ import { ReporteCoexComponent } from './regisros/consultas/coex/reporte/reporteC
     EstadisticaComponent,
     Formcie10Component,
     ReporteCoexComponent,
+    RecepciónComponent,
+    FormRecepcionComponent,
 
 
 
@@ -196,7 +200,9 @@ import { ReporteCoexComponent } from './regisros/consultas/coex/reporte/reporteC
       { path: 'estadistica', component: EstadisticaComponent, canActivate: [AuthGuard] },
       { path: 'formcie10', component: Formcie10Component, canActivate: [AuthGuard] },
       { path: 'cie10edit/:id', component: Formcie10Component, canActivate: [AuthGuard] },
-      { path: 'coexreport', component: ReporteCoexComponent, canActivate: [AuthGuard]},
+      { path: 'coexreport', component: ReporteCoexComponent, canActivate: [AuthGuard] },
+      { path: 'recepciones', component: RecepciónComponent, canActivate: [AuthGuard] },
+      { path: 'recept/:id', component: FormRecepcionComponent, canActivate: [AuthGuard]},
 
 
 

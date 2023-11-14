@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
         console.log(user)
 
-        this.router.navigateByUrl("pacientes");
+        this.router.navigateByUrl("home");
       },
       (error) => {
         // Manejo de errores, por ejemplo, mostrar un mensaje de error al usuario

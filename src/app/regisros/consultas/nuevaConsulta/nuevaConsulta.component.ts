@@ -29,51 +29,6 @@ export class NuevaConsultaComponent implements OnInit {
   mostrarModal = false;
 
 
-  coex: Iconcultas = {
-    id: 0,
-    hoja_emergencia: null,
-    expediente: null,
-    fecha_consulta: this.fechaActual,
-    hora: this.horaActual,
-    nombres: "",
-    apellidos: "",
-    nacimiento: "",
-    edad: "",
-    sexo: "",
-    dpi: "",
-    direccion: "",
-    acompa: null,
-    parente: null,
-    telefono: "",
-    especialidad: 0,
-    servicio: null,
-    status: 1,
-    fecha_recepcion: "",
-    fecha_egreso: "",
-    tipo_consulta: 1,
-    nota: "",
-    name: "",
-    lastname: "",
-    prenatal: null,
-    lactancia: null,
-    dx: null,
-    folios: null,
-    archived_by: null,
-    created_at: '',
-    updated_at: '',
-    created_by: null
-  }
-  e: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio
-  }
 
   constructor(
     private modalService: NgbModal,
@@ -93,18 +48,6 @@ export class NuevaConsultaComponent implements OnInit {
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
-    // Verificar si se proporcionó un ID de paciente
-    if (params['id']) {
-      this.ConsultasService.Consulta(params['id'])
-        .subscribe(
-          data => {
-            this.coex = data;
-            this.new = true;
-          },
-          error => console.log(error)
-        )
-    }
-    this.resumen;
   }
 
   recibirId(id: number) {

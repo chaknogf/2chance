@@ -1,5 +1,5 @@
 
-<div class="justify-content-center console-table">
+<div class="justify-content-center ">
   <div class="justify-content-between">
     <form class="d-flex justify-content-between align-items-center" autocomplete="off">
       <input type="text" class="form-control bg-opacity-75  text-center" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
@@ -8,8 +8,8 @@
       <input type="text" class="form-control  text-capitalize mx-1" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
       <input type="text" class="form-control text-capitalize mx-1" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
       <input type="text" class="form-control  text-capitalize mx-1 text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-light mx-1 "  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn btn-light mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+      <button type="submit" class="btn btn-quatz mx-1 "  (click)="filtro()">buscar</button>
+      <button type="submit" class="btn border-quatz mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
@@ -19,8 +19,8 @@
   </div>
 
 
-<div class="console-table">
-  <table class="table table-dark" >
+<div class="table mt-1">
+  <table class="table table-hover table-black" >
     <thead>
       <tr>
         <th>Opciones</th>
@@ -47,7 +47,7 @@
           3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
           1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
         </svg></td>
-        <td class="text-center font-weight-bold text-primary h5" [routerLink]="['/ingreso/edit', ingreso.id]"> {{ingreso.id}} </td>
+        <td class="text-center font-weight-bold text-warning h5" [routerLink]="['/ingreso/edit', ingreso.id]"> {{ingreso.id}} </td>
         <td class="text-center"> {{ingreso.fecha_consulta | anyToText | formatoFecha}} </td>
         <td class="text-center"> {{ingreso.hora}} </td>
         <td class="text-center"> {{ingreso.nombres}} {{ingreso.apellidos}} </td>

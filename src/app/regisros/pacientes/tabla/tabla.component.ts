@@ -83,7 +83,8 @@ export class TablaComponent implements OnInit {
     archived_by: null,
     created_at: null,
     updated_at: null,
-    created_by: ''
+    created_by: '',
+    medico: null
   }
 
   @Output() idPaciente = new EventEmitter<number>();

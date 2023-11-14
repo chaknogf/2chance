@@ -1,3 +1,52 @@
-<p>
-  detalleUisau works!
-</p>
+
+
+
+<div class="container-fluid d-flex my-3">
+  <button class="btnS  rounded border-quatz mx-4 w-10 p-0 justify-content-start" (click)="regresar()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+    </svg>
+    Regresar
+  </button>
+  <h5 class="mx-auto">Control Consulta y seguimiento de Pacientes</h5>
+</div>
+
+
+<div class="container-fluid d-flex">
+  <div class="text-white border-quatz hover table-hover text-end p-2 col-3">
+    <button class="text-center justify-content-end mx-1 mb-1 bg-quatz rounded btn p-0 w-20">Edit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+      </svg>
+    </button>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Consulta No:</span>{{ consulta.id }}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Expediente:</span>{{ consulta.expediente }}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Hoja de Emeregencia:</span>{{ consulta.hoja_emergencia }}</p>
+    <hr style="margin: 0;">
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ consulta.nombres | anyToText | capitalizeName }} {{ consulta.apellidos | anyToText | capitalizeName }}</p>
+    <!-- <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ patient?.nombre | anyToText | capitalizeName }} {{ patient?.apellido | anyToText | capitalizeName }}</p> -->
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ consulta.sexo}}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad en consulta:</span>{{ consulta.edad}}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad real:</span>{{ consulta.nacimiento | anyToText | edad}}</p>
+    <hr style="margin: 0;">
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Fecha de consulta:</span>{{ consulta.fecha_consulta | anyToText | formatoFecha }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Especialidad:</span>{{ consulta.especialidad | anyToNumber | enumEspecialidad }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Servicios:</span>{{ consulta.servicio | anyToNumber | enumEspecialidad }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Tipo de Consulta:</span>{{ consulta.tipo_consulta | anyToNumber | enumTipo }}</p>
+    <hr style="margin: 0;">
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado Por:</span>{{ consulta.created_by }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado:</span>{{ consulta.created_at }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Archivado Por:</span>{{ consulta.archived_by }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Actualizado:</span>{{ consulta.updated_at }}</p>
+  </div>
+
+  <div class="container-fluid d-flex">
+
+</div>
+
+</div>
+
+
+
+
+

@@ -4,9 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from './../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
-import { bottom } from '@popperjs/core';
+import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
+import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, tipo } from 'src/app/enums/enums';
 
 
 @Component({
@@ -45,6 +44,9 @@ export class TablaUisauComponent implements OnInit {
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
+  public tipoBuscar: string = '';
+  public statusBuscar: any = 1;
+
 
 
 
@@ -80,7 +82,8 @@ export class TablaUisauComponent implements OnInit {
     archived_by: null,
     created_at: '',
     updated_at: '',
-    created_by: null
+    created_by: null,
+    medico: null
   }
 
    e: Ienum = {
@@ -93,6 +96,9 @@ export class TablaUisauComponent implements OnInit {
     lenguage: lenguaje,
     servicios: servicios,
     servicio: servicio
+   }
+   enums: OtrosEnums = {
+    tipo: tipo
   }
 
   ngOnInit() {
@@ -108,8 +114,9 @@ export class TablaUisauComponent implements OnInit {
   consult() {
     const filters = {
 
-      tipo_consulta: 2,
-      status: 1
+
+      status: 1,
+      no_es: 1
 
 
 
@@ -190,6 +197,9 @@ export class TablaUisauComponent implements OnInit {
       apellidos: this.apellidoBuscar,
       dpi: this.dpiBuscar,
       fecha_egreso: this.fechaEgreso,
+      tipo_consulta: this.tipoBuscar,
+      status: this.statusBuscar,
+      no_es: 1
 
     };
 

@@ -1,13 +1,12 @@
 /* Estilo de la tabla */
 .console-table {
-  background-color: black;
+  background-color:black;
   color: #fff;
-  border: 2px solid rgb(61, 54, 54);
+  border: 2px solid rgb(81, 75, 75);
   border-radius: 12px;
   padding: 5px;
   border-collapse: collapse;
-  max-width: 100%; /* Establece el ancho máximo al 100% del contenedor */
-  width: auto;
+  width: 100%;
 }
 
 /* Estilo de las celdas de encabezado */
@@ -15,27 +14,51 @@
   background-color: black;
   padding: 8px;
   text-align: left;
-  border: 1px solid black; /* Establece un borde en las celdas */
-  padding: 8px; /* Agrega un relleno para espaciar el contenido */
+  /* border: 1px dashed #fff; */
+
 }
 
 /* Estilo de las celdas de datos */
 .console-table td {
   background-color: var(--bs-btn-disabled-border-color);
   padding: 8px;
-  border: 1px solid black; /* Establece un borde en las celdas */
-  padding: 8px; /* Agrega un relleno para espaciar el contenido */
+  border: 1px  #fff;
 }
 
 /* Estilo de las filas impares */
 .console-table tr:nth-child(odd) {
   background-color: #222;
+
 }
 
-/* Ocultar columnas en pantallas más pequeñas */
-@media (max-width: 768px) {
-  .console-table td.column2, .console-table th.column2,
-  .console-table td.column3, .console-table th.column3 {
-    display: none; /* Ocultar columnas 2 y 3 */
-  }
+.celesce {
+  color: #007bff; /* color celesce */
+}
+
+.rosado {
+  color: #ff007f; /* color rosado */
+}
+
+.highlight {
+  font-weight: bold; /* Puedes personalizar el estilo aquí */
+  color: #007bff;
+}
+.font-fam {
+
+  font-size: 1.10rem;
+  color: #f6ca8f;
+  font: bold;
+
+}
+
+.f-resaltado {
+  /* font-family: 'Cairo Play'; */
+ font-size: 1.10rem;
+ color: #050505;
+ font: bolder;
+
+}
+
+.text-exp {
+  color: #93efca ;
 }

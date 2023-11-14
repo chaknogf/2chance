@@ -1,10 +1,19 @@
 
-<div class="justify-content-center console-table">
+<div class="justify-content-center ">
   <div>
     <p class="text-center display-6">Unidad de Informacion en Salud al Usuario</p>
   </div>
+  <hr class="my-0 p-1">
   <div class="justify-content-between">
-    <form class="d-flex justify-content-between align-items-center" autocomplete="off">
+    <form class="d-flex justify-content-between align-items-center font-ubuntu" autocomplete="off">
+      <select id="status" class="form-control mx-1 w-30" [(ngModel)]="statusBuscar" name="statusBuscar">
+        <option value="1">Activos</option>
+        <option value="2">Archivados</option>
+      </select>
+      <select id="especialidad" class="form-control " [(ngModel)]="tipoBuscar" name="tipoBuscar">
+        <option value="" disabled selected hidden>Tipo Consulta</option>
+        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+      </select>
       <input type="number" class="form-control bg-opacity-75  text-center" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
       <input type="number" class="form-control bg-opacity-75  text-center" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
       <input type="number" class="form-control text-capitalize mx-1 text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
@@ -12,8 +21,8 @@
       <input type="text" class="form-control  text-capitalize mx-1" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
       <input type="text" class="form-control text-capitalize mx-1" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
       <input type="text" class="form-control  text-capitalize mx-1 text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-light mx-1 "  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn btn-light mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+      <button type="submit" class="btn btn-quatz mx-1 "  (click)="filtro()">buscar</button>
+      <button type="submit" class="btn border-quatz mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
@@ -23,11 +32,11 @@
   </div>
 
 
-<div class="console-table">
-  <table class="table table-dark" >
+<div class="mt-1">
+  <table class="table table-hover table-black" >
     <thead>
       <tr>
-        <th class="text-center">Opciones</th>
+        <th class="text-center"></th>
         <th class="text-center">Consulta</th>
         <th class="text-center">Expediente ( Emergencia )</th>
         <th class="text-center">Ingreso</th>
@@ -44,18 +53,12 @@
     <tbody class="justify-content-center  opacity-90">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let consulta of resumen">
-        <td class="text-center"  (click)="copiarId(consulta.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-          <svg xmlns="http://www.w3.org/2000/svg"
-          width="16" height="16" fill="currentColor"
-            class="bi bi-grip-vertical" viewBox="0 0 16 16">
-          <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-          0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-          3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-          1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg></td>
-        <td class="text-center font-weight-bold text-warning bg-black font-ubuntu" [routerLink]="['/detalleUisau/', consulta.id]"> {{consulta.id}}
-          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
-             0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path></svg> </td>
+        <td class="text-center"  [routerLink]="['/detalleUisau/', consulta.id]" (click)="copiarId(consulta.id)" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
+            <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
+            <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM8.5 6.5V8H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V9H6a.5.5 0 0 1 0-1h1.5V6.5a.5.5 0 0 1 1 0Z"/>
+          </svg></td>
+        <td class="text-center h5  text-warning font-ubuntu" > {{consulta.id}}</td>
         <td class="text-center font-ubuntu">{{consulta.expediente}} ( {{consulta.hoja_emergencia}} )</td>
         <td class="text-center"> {{consulta.fecha_consulta | anyToText | formatoFecha}} </td>
         <td class="text-center "> {{consulta.nombres | anyToText |capitalizeName }} {{consulta.apellidos |anyToText | capitalizeName}} </td>
@@ -81,16 +84,4 @@
       </div>
     </div>
 
-    <div class="modal" id="opciones">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content bg-light">
 
-          <!-- <button class="btn btn-dark bg-danger my-2" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button> -->
-          <button class="btn btn-info bg-black my-2" data-bs-dismiss="modal" >Editar Consulta</button>
-
-          <button class="btn btn-black" data-bs-dismiss="modal">Cerrar</button>
-
-
-        </div>
-      </div>
-    </div>

@@ -83,7 +83,8 @@ export class TabPacienteComponent implements OnInit  {
     archived_by: null,
     created_at: '',
     updated_at: '',
-    created_by: null
+    created_by: null,
+    medico: null
   }
 
   @Output() idPaciente = new EventEmitter<number>();

@@ -74,7 +74,8 @@ export class CoexComponent implements OnInit {
     archived_by: null,
     created_at: '',
     updated_at: '',
-    created_by: null
+    created_by: null,
+    medico: null,
   }
 
    e: Ienum = {
@@ -180,6 +181,8 @@ export class CoexComponent implements OnInit {
   isStatusTrue(status: number): boolean {
     return status === 2;
   }
+
+
 
 
   eliminar(id: number) {

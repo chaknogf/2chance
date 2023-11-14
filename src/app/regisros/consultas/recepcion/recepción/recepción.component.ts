@@ -1,18 +1,20 @@
+import { tipo, Tipos, status } from './../../../../enums/enums';
 import { ConsultasService } from 'src/app/services/consultas.service';
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
-import { PageReloadService } from '../../../../services/PageReload.service';
+import { PageReloadService } from 'src/app/services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
+import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 
+
 @Component({
-  selector: 'todas',
-  templateUrl: './todas.component.html',
-  styleUrls: ['./todas.component.css']
+  selector: 'app-recepción',
+  templateUrl: './recepción.component.html',
+  styleUrls: ['./recepción.component.css']
 })
-export class TodasComponent implements OnInit {
+export class RecepciónComponent implements OnInit {
 
   constructor(
     private ConsultasService: ConsultasService,
@@ -23,9 +25,6 @@ export class TodasComponent implements OnInit {
 
   ) { }
 
-  isExpanded = false;
-  @ViewChild('navbarButton')
-  navbarButton!: ElementRef;
   @Output() idConsulta = new EventEmitter<number>();
   public consultas: Iconcultas[] = [];
   public resumen: Iconcultas[] = [];
@@ -36,9 +35,11 @@ export class TodasComponent implements OnInit {
   public idBuscar: any = '';
   public nombreBuscar: string = '';
   public apellidoBuscar: string = '';
+  public tipoBuscar: string = '';
   public dpiBuscar: any = '';
   public hojaBuscar: any = '';
   public fechaBuscar: any = '';
+  public statusBuscar: any = 1;
   public fechaEgreso: any = '';
   public selectdate: string = '';
   public maxdate: string = '';
@@ -94,7 +95,12 @@ export class TodasComponent implements OnInit {
     parents: parents,
     lenguage: lenguaje,
     servicios: servicios,
-    servicio: servicio
+    servicio: servicio,
+
+   }
+
+  enums: OtrosEnums = {
+    tipo: tipo
   }
 
   ngOnInit() {
@@ -106,9 +112,20 @@ export class TodasComponent implements OnInit {
   }
 
 
+
   consult() {
+    const filters = {
+
+
+      fecha_recepcion: null,
+      status: 1
+
+
+
+    };
+
     this.porcentajeDeProgreso = 0.5;
-    this.ConsultasService.Consultas().subscribe(data => {
+    this.ConsultasService.filterConsultas(filters).subscribe(data => {
       this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
       this.porcentajeDeProgreso = 75;
       this.resumen = data;
@@ -175,13 +192,16 @@ export class TodasComponent implements OnInit {
     // Recopila los valores de entrada del formulario
     const filters = {
       id: this.idBuscar,
-      hoja_emergencia: this.hojaBuscar,
+      hoja: this.hojaBuscar,
       expediente: this.expedienteBuscar,
-      fecha_consulta: this.fechaBuscar,
+      fecha_recepcion: this.fechaBuscar,
       nombres: this.nombreBuscar,
       apellidos: this.apellidoBuscar,
       dpi: this.dpiBuscar,
       fecha_egreso: this.fechaEgreso,
+      tipo_consulta: this.tipoBuscar,
+      status: this.statusBuscar,
+
     };
 
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {
@@ -191,48 +211,6 @@ export class TodasComponent implements OnInit {
 
 
   }
-
-
-
-
-
-
-  buscarPorExpediente() {
-    this.ConsultasService.expediente(this.expedienteBuscar).subscribe(
-      (data) => this.actualizar(data)
-
-    );
-  }
-
-  buscarPorNombre() {
-    this.ConsultasService.nombre(this.nombreBuscar, this.apellidoBuscar).subscribe(
-      (data) => this.actualizar(data)
-    );
-  }
-
-  buscarPorDPI() {
-    this.ConsultasService.dpi(this.dpiBuscar).subscribe(
-      (data) => this.actualizar(data)
-    );
-  }
-
-  buscarPorHojaEmergencia() {
-    this.ConsultasService.hoja(this.hojaBuscar).subscribe(data => {
-      if (data) {
-        this.actualizar([data]);
-        this.resumen = [data];
-      }
-    })
-
-  }
-
-  buscarPorFecha() {
-    this.ConsultasService.tipoConsulta(this.fechaBuscar, 3).subscribe(
-      (data) => this.actualizar(data)
-    );
-  }
-
-
 
 
   limpiarInput() {
@@ -287,11 +265,6 @@ export class TodasComponent implements OnInit {
     this.PageReloadService.reloadPage();
   }
 
-  hideMenu() {
-    if (this.navbarButton && this.navbarButton.nativeElement) {
-      this.navbarButton.nativeElement.click();
-    }
-  }
 
 
 }
