@@ -50,15 +50,10 @@ export class CrearModalComponent implements OnInit {
     exp_madre: 0,
     created_by: '',
     fechaDefuncion: "",
-    municipio: "",
-    nation: "",
-    people: "",
-    ecivil: "",
-    academic: "",
-    parents: "",
-    lenguage: "",
+    municipio: 0,
     created_at: "",
-    update_at: ""
+    update_at: "",
+    depto: 0
   };
   e: Ienum = {
     municipio: municipio,
@@ -121,6 +116,7 @@ export class CrearModalComponent implements OnInit {
     this.PacientesService.crearPaciente(this.p).subscribe(data => {
       this.p = data;
       this.pageReload.reloadPage()
+      console.log(data)
 
 
       })

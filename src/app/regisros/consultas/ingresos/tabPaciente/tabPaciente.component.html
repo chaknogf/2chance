@@ -39,7 +39,7 @@
               <!-- <button class="btn btn-outline-dark" [routerLink]="['/detalleP/view', paciente.expediente]">ver</button> -->
             </td>
             <td>
-              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento)" data-bs-toggle="modal" data-bs-target="#formularioCrear" >
+              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.direccion, paciente.telefono)" data-bs-toggle="modal" data-bs-target="#formularioCrear" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
                   <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0
                   0-.5-.5.5.5 0 0 1-.5-.5Z"/>
@@ -160,12 +160,15 @@
       <div class="modal-content">
        <!--  -->
        <div class="form-group">
-        <input type="text" class="form-control" id="nombre" name="nombre"  [(ngModel)]='ingreso.nombres' placeholder="nombres" disabled="">
+        <input type="text" class="form-control" id="nombre" name="nombre"  [(ngModel)]='ingreso.nombres' value="paciente.nombre" placeholder="nombres" disabled="">
         <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="ingreso.apellidos" placeholder="apellidos" disabled="">
         <input type="date" class="form-control" id="fecha_consulta" name="fecha_consulta" [(ngModel)]="ingreso.fecha_consulta" placeholder="fecha de consulta" disabled="">
         <input type="time" class="form-control" id="hora" name="hora" [(ngModel)]="ingreso.hora" placeholder="hora" disabled="">
         <input type="text" class="form.control" id="edad" name="edad" [(ngModel)]="ingreso.edad" placeholder="edad" value="paciente.nacimiento" disabled="">
-        <input type="text" class="form-control" id="nacimiento" name="nacimiento" [(ngModel)]="ingreso.nacimiento" placeholder="fecha de nacimiento" disabled="">
+        <input type="text" class="form-control" id="nacimiento" name="nacimiento" [(ngModel)]="ingreso.nacimiento" value="paciente.nacimiento" placeholder="fecha de nacimiento" disabled="">
+        <input type="text" class="form-control" id="sexo" name="nacimiento" [(ngModel)]="ingreso.sexo" placeholder="sexo" value="paciente.sexo" disabled="">
+        <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="ingreso.direccion" value="paciente.direccion" placeholder="direccion" disabled="">
+        <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="ingreso.telefono" value="paciente.telefono" placeholder="telefono" disabled="">
       </div>
 
 

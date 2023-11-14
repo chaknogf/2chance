@@ -2133,6 +2133,24 @@ progress {
 
 }
 
+.table-non {
+  --bs-table-color: #09f7c0;
+  --bs-table-bg: #2c2c2f00;
+  --bs-table-border-color: #9ed98787;
+  --bs-table-striped-bg: #9ed98739;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #373b3e;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: #23076b;
+  --bs-table-hover-color: rgb(140, 224, 252)
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+  border-radius: 20%;
+  font-family: "Robot";
+
+
+}
+
 .table-responsive {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;

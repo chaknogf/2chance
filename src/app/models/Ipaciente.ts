@@ -1,3 +1,4 @@
+import { municipio } from 'src/app/enums/enums';
 import { Municipio } from './../enums/enums';
 import { Nacionalidad, nation } from "../enums/enums";
 
@@ -23,6 +24,8 @@ export interface Ipaciente {
   idioma: number;
   ocupacion: string;
   direccion: string;
+  municipio: number;
+  depto: number;
   telefono: string;
   email: string;
   padre: string;
@@ -35,13 +38,6 @@ export interface Ipaciente {
   exp_madre: number;
   created_by: string;
   fechaDefuncion: string | Date;
-  municipio: string;
-  nation: string;
-  people: string;
-  ecivil: string;
-  academic: string;
-  parents: string;
-  lenguage: string;
   created_at: string;
   update_at: string;
 

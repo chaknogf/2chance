@@ -92,6 +92,11 @@ export class TabPacienteComponent implements OnInit  {
   @Output() apellidoPaciente = new EventEmitter<string>();
   @Output() edadPaciente = new EventEmitter<string>();
   @Output() nacimientoPaciente = new EventEmitter<Date>();
+  @Output() sexoPaciente = new EventEmitter<string>();
+  @Output() direccionPaciente = new EventEmitter<string>();
+  @Output() telefonoPaciente = new EventEmitter<string>();
+
+
   @ViewChild('edadCell', { static: false }) edadCell: ElementRef = new ElementRef(null);
 
   constructor(private pacientesService: PacientesService,
@@ -132,11 +137,15 @@ export class TabPacienteComponent implements OnInit  {
     this.resumen;
   }
 
-  copiarId(exp: number, nombre: string, apellido: string, nacimiento: Date) {
+  copiarId(exp: number, nombre: string, apellido: string, nacimiento: Date, sexo: string, direccion: string, telefono: string) {
     this.idPaciente.emit(exp);
     this.nombrePaciente.emit(nombre);
     this.apellidoPaciente.emit(apellido);
     this.nacimientoPaciente.emit(nacimiento);
+    this.sexoPaciente.emit(sexo);
+    this.direccionPaciente.emit(direccion);
+    this.telefonoPaciente.emit(telefono);
+
     const valorCelda = this.edadCell.nativeElement.textContent;
     console.log('Valor copiado:', valorCelda);
     //this.edadPaciente.emit(edad);
@@ -147,6 +156,9 @@ export class TabPacienteComponent implements OnInit  {
     this.ingreso.fecha_consulta = this.fechaActual;
     this.ingreso.hora = this.horaActual;
     this.ingreso.edad = valorCelda;
+    this.ingreso.sexo = sexo;
+    this.ingreso.direccion = direccion;
+    this.ingreso.telefono = telefono;
 
     // console.log(exp)
   }

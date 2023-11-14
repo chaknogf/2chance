@@ -116,15 +116,10 @@ export class DetalleUisauComponent implements OnInit {
     exp_madre: 0,
     created_by: '',
     fechaDefuncion: '',
-    municipio: '',
-    nation: '',
-    people: '',
-    ecivil: '',
-    academic: '',
-    parents: '',
-    lenguage: '',
+    municipio: 0,
     created_at: '',
-    update_at: ''
+    update_at: '',
+    depto: 0
   }
 
    e: Ienum = {
@@ -150,22 +145,24 @@ export class DetalleUisauComponent implements OnInit {
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
-    this.route.paramMap.subscribe(params => {
-      const idParam = params.get('id');
-      if (idParam !== null) {
-        const id = +idParam;
-        this.ConsultasService.Consulta(id).subscribe(data => {
-          this.consulta = data;
-          this.edit = true;
-          this.pt.getPaciente(this.consult?.expediente)
-            .subscribe(
-              data => {
-                this.paciente = data;
-            }
-          )
-        });
-      }
-    });
+    if (params['id']) {
+      this.ConsultasService.Consulta(params['id'])
+        .subscribe(
+          data => {
+            this.consulta = data;
+            this.edit = true;
+            this.pt.getPaciente(this.consulta.expediente)
+              .subscribe(
+                dta => {
+                  this.paciente = dta;
+
+              }
+            )
+          },
+          error => console.log(error)
+        )
+    }
+    this.resumen;
 
   }
 

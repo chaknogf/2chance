@@ -55,15 +55,10 @@ export class FormularioPacienteComponent implements OnInit {
     exp_madre: 0,
     created_by: '',
     fechaDefuncion: "",
-    municipio: "",
-    nation: "",
-    people: "",
-    ecivil: "",
-    academic: "",
-    parents: "",
-    lenguage: "",
+    municipio: 0,
     created_at: "",
-    update_at: ""
+    update_at: "",
+    depto: 0
   };
   e: Ienum = {
     municipio: municipio,
@@ -120,7 +115,7 @@ export class FormularioPacienteComponent implements OnInit {
     // Crear un nuevo paciente
     this.PacientesService.crearPaciente(this.p).subscribe(data => {
       this.p = data;
-
+      console.log(data)
         // this.router.navigate(['/pacientes']);
       })
   }

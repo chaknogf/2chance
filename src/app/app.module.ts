@@ -23,7 +23,7 @@ import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe, EnumTipoPipe,
-  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -105,6 +105,7 @@ import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecep
     EnumEtniaPipe,
     AnyToNumberPipe,
     EnumMunicipioPipe,
+    EnumDeptoPipe,
     EnumEducacionPipe,
     EnumCivilPipe,
     EnumIdiomaPipe,
