@@ -37,6 +37,8 @@ export class TabPacienteComponent implements OnInit  {
   horaActual: string = "";
   idCopiado: number = 0;
   mostrarModal = false;
+  public edad: number = 0;
+
 
 
 
@@ -314,6 +316,10 @@ export class TabPacienteComponent implements OnInit  {
     this.PageReloadService.reloadPage();
   }
 
+  calcularEdad(nac: any): number {
+    this.edad = this.fechaService.años(nac);
+    return this.edad;
+  }
 
 }
 

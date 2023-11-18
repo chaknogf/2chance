@@ -15,7 +15,7 @@ export class IngresoHComponent implements OnInit {
 
   public detalleVisible: boolean = false;
   public patient: Ipaciente | undefined;
-  public ingreso: Iconcultas | undefined;
+  public consulta: Iconcultas | undefined;
   public fechaActual: string = "";
   public horaActual: string = "";
 
@@ -35,9 +35,9 @@ export class IngresoHComponent implements OnInit {
       if (idParam !== null) {
         const id = +idParam;
         this.consultasService.Consulta(id).subscribe(data => {
-          this.ingreso = data;
+          this.consulta = data;
           this.detalleVisible = true;
-          this.pacientesService.getPaciente(this.ingreso?.expediente)
+          this.pacientesService.getPaciente(this.consulta?.expediente)
             .subscribe(
               data => {
                 this.patient = data;
@@ -47,7 +47,7 @@ export class IngresoHComponent implements OnInit {
       }
     });
 
-    this.imprimir()
+
 
   }
 

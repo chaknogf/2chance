@@ -1,11 +1,12 @@
-import { Ienum } from 'src/app/models/Ienum';
+import { Ienum, deptos } from 'src/app/models/Ienum';
 import { PacientesService } from '../../../services/pacientes.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
+import {  municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation, departamentos, Municipio } from 'src/app/enums/enums';
 import { UsersService } from 'src/app/services/user.service';
+import { Location } from '@angular/common';
 
 
 //import { FortmatPhone } from 'src/app/pipe/telefono.pipe';
@@ -71,10 +72,16 @@ export class FormularioPacienteComponent implements OnInit {
     servicios: servicios,
     servicio: servicio
   }
+  d: deptos = {
+    departamentos: departamentos
+  }
+
 
 
   edit: boolean = false;
   isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
+
+
 
   constructor(
     public PacientesService: PacientesService,
@@ -82,8 +89,12 @@ export class FormularioPacienteComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private fecha: FechaService,
     private user: UsersService,
+    private _location: Location,
+  ) { }
 
-    ) { }
+
+
+
 
   ngOnInit() {
 
@@ -116,7 +127,7 @@ export class FormularioPacienteComponent implements OnInit {
     this.PacientesService.crearPaciente(this.p).subscribe(data => {
       this.p = data;
       console.log(data)
-        // this.router.navigate(['/pacientes']);
+        this.regresar()
       })
   }
 
@@ -125,7 +136,7 @@ export class FormularioPacienteComponent implements OnInit {
     this.PacientesService.editPaciente(this.p.expediente, this.p)
       .subscribe(data => {
         this.p = data;
-        this.router.navigate(['/pacientes']);
+        this.regresar()
       })
   }
 
@@ -189,6 +200,30 @@ export class FormularioPacienteComponent implements OnInit {
     const formattedValue = numericAndSpaceValue.replace(/(\d{8})(?=\d)/g, '$1 ');
     this.p.telefono = formattedValue;
   }
+
+  regresar(){
+    this._location.back();
+  }
+
+  municipiosFiltrados: any[] = []; // Lista de municipios filtrados
+
+  filtrarMunicipios() {
+    // Filtrar la lista de municipios basándote en el departamento seleccionado
+    this.municipiosFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto);
+    console.log(this.municipiosFiltrados, this.p.depto)
+  }
+
+  munisFiltrados: any[] = []; // Lista de municipios filtrados
+  deptoNac: number = 0;
+
+  filtrarMunis() {
+    // Filtrar la lista de municipios basándote en el departamento seleccionado
+    this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.deptoNac);
+    console.log(this.municipiosFiltrados, this.p.depto)
+  }
+
+
+
 
 
 

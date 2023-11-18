@@ -1,28 +1,36 @@
 <button class="btn btn-info no-imprimir mx-0" (click)="imprimir()">Imprimir</button>
 
-<div class="background-container mx-auto ">
-  <!-- Otros elementos que se superpondrán a la imagen de fondo -->
+<body class="card-container">
 
-  <div class="container-fluid text-sm zoomable-content">
-    <!-- Contenido superpuesto -->
+  <section class="my-0 p-0 titulo">
+    <div class="h4 my-0" >MINISTERIO DE SAUL PÚBLICA Y ASISTENCIA SOCIAL</div>
+    <div></div>
+    <div class="h5 my-0">HOSPITAL GENERAL TIPO I DE TECPAN GUATEMALA</div>
+    <div></div>
+  </section>
 
-    <div class="d-flex justify-content-center zoomable-content">
-      <p class=" h3 tm-8-5 ml-3-5 text-center w-20">{{ingreso?.servicio | anyToNumber|enumServicios}}</p>
+  <section class="servicio">
+    <div class="item-1"></div>
+    <div class="item-2 p-0 my-0">servicio:</div>
+    <div class="item-3"></div>
+    <div class="item 4"></div>
+    <div class="item-5 my-0 p-0">{{consulta?.servicio | anyToNumber | enumServicios}}</div>
+    <div class="item-6"></div>
+  </section>
 
-    </div>
+  <section>
+    <div>{{consulta?.apellidos | anyToText | capitalizeName}}</div>
+    <div>{{consulta?.nombres | anyToText | capitalizeName}}</div>
+    <div>{{consulta?.expediente}}</div>
+  </section>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
 
-    <div class="d-flex justify-content-start zoomable-content">
-      <p class="h3 tm-3 ml-7-25 w-31 p-0 text-between"> {{patient?.apellido}} </p>
-      <p class="h3 tm-3  w-40 p-0 text-between"> {{patient?.nombre}}</p>
-      <p class="h3 tm-3 w-20 text-between">34560</p>
-    </div>
+</body>
 
-    <div class="d-flex justify-content-start zoomable-content">
-      <p class="h4 mt-6 ms-10 text-center">1era calle </p>
-
-    </div>
-
-
-
-  </div>
-</div>

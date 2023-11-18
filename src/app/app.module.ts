@@ -43,7 +43,6 @@ import { EmergenciasComponent } from './regisros/consultas/emergencias/emergenci
 import { CoexComponent } from './regisros/consultas/coex/coex/coex.component';
 import { TablaComponent } from './regisros/pacientes/tabla/tabla.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { CrearModalComponent } from './regisros/pacientes/crearModal/crearModal.component';
 import { NuevaConsultaComponent } from './regisros/consultas/nuevaConsulta/nuevaConsulta.component';
 import { ShowModalDirective } from './Directive/show-modal.directive';
 import { FormCoexComponent } from './regisros/consultas/coex/form-coex/form-coex.component';
@@ -68,8 +67,9 @@ import { RegistrosComponent } from './regisros/registros/registros.component';
 import { EstadisticaComponent } from './estadistica/estadistica/estadistica.component';
 import { Formcie10Component } from './estadistica/cie10/formcie10/formcie10.component';
 import { ReporteCoexComponent } from './regisros/consultas/coex/reporte/reporteCoex.component';
-import { RecepciónComponent } from './regisros/consultas/recepcion/recepción/recepción.component';
+import { RecepciónComponent } from './regisros/consultas/recepción/recepción.component';
 import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecepcion/formRecepcion.component';
+import { RecienacidosComponent } from './regisros/pacientes/recienacidos/recienacidos.component';
 
 
 
@@ -123,7 +123,6 @@ import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecep
     EmergenciasComponent,
     CoexComponent,
     TablaComponent,
-    CrearModalComponent,
     NuevaConsultaComponent,
     ShowModalDirective,
     FormCoexComponent,
@@ -152,6 +151,7 @@ import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecep
     ReporteCoexComponent,
     RecepciónComponent,
     FormRecepcionComponent,
+    RecienacidosComponent,
 
 
 
@@ -204,7 +204,7 @@ import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecep
       { path: 'coexreport', component: ReporteCoexComponent, canActivate: [AuthGuard] },
       { path: 'recepciones', component: RecepciónComponent, canActivate: [AuthGuard] },
       { path: 'recept/:id', component: FormRecepcionComponent, canActivate: [AuthGuard]},
-
+      { path: 'rn/:id', component: RecienacidosComponent, canActivate: [AuthGuard]},
 
 
 

@@ -1,5 +1,5 @@
 import { AppComponent } from './../../../../app.component';
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -44,7 +44,7 @@ export class FormIngresoComponent implements OnInit {
   private nuevoStatus: number = 0;
   public username = this.user.getUsernameLocally()
   public rutaAnterior: string = '../';
-  public patient: Ipaciente | undefined;
+  public patient: Ipaciente | any;
 
 
 
@@ -67,11 +67,11 @@ export class FormIngresoComponent implements OnInit {
     parente: null,
     telefono: null,
     especialidad: 0,
-    servicio: null,
+    servicio: 0,
     status: 1,
     fecha_recepcion: '',
     fecha_egreso: null,
-    tipo_consulta: 1,
+    tipo_consulta: 2,
     nota: "",
     name: null,
     lastname: null,
@@ -131,17 +131,34 @@ export class FormIngresoComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  editar() {
 
     this.ConsultasService.editarConsulta(this.consulta.id, this.consulta)
       .subscribe(data => {
         this.consulta = data;
-        console.log(this.consulta)
+        console.log(data)
         this.router.navigate(['/ingresos']);
       })
 
 
   }
+
+  @ViewChild('edadCell', { static: false }) edadCell: ElementRef = new ElementRef(null);
+
+
+  copiarId() {
+  console.log(this.consulta);
+  this.consulta.nombres = this.patient?.nombre;
+  this.consulta.apellidos = this.patient?.apellido; // Corregido
+  this.consulta.nacimiento = this.patient?.nacimiento;
+  // this.consulta.edad = valorCelda;
+  this.consulta.sexo = this.patient?.sexo;
+  this.consulta.direccion = this.patient?.direccion;
+  this.consulta.telefono = this.patient?.telefono;
+  console.log(this.consulta);
+}
+
+
 
   recepcion() {
     this.consulta.fecha_recepcion = this.fechaRecepcion;
@@ -177,5 +194,8 @@ export class FormIngresoComponent implements OnInit {
   regresar(){
     this._location.back();
   }
+
+
+
 
 }

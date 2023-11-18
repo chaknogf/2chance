@@ -4,6 +4,7 @@ import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/user.service';
 import { HttpHeaders } from '@angular/common/http';
+import { FechaService } from 'src/app/services/fecha.service';
 
 
 @Component({
@@ -25,13 +26,15 @@ export class TablaPacientesComponent{
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
+  public edad: number = 0;
 
 
 
   constructor(private pacientesService: PacientesService,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private userService: UsersService
+    private userService: UsersService,
+    private fecha: FechaService,
     ) { }
   reset: boolean = false;
 
@@ -42,6 +45,10 @@ export class TablaPacientesComponent{
   }
 
 
+  calcularEdad(nac: any): number {
+    this.edad = this.fecha.años(nac);
+    return this.edad;
+  }
 
 
 
@@ -247,6 +254,11 @@ export class TablaPacientesComponent{
       this.filteredPacientes = [];
     }
   }
+
+
+
+
+
 
 }
 

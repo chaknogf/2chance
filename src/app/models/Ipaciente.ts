@@ -15,7 +15,7 @@ export interface Ipaciente {
   dpi: number;
   pasaporte: string;
   sexo: string;
-  nacimiento: Date  ;
+  nacimiento: Date | any ;
   nacionalidad: number;
   lugar_nacimiento: number;
   estado_civil: number;

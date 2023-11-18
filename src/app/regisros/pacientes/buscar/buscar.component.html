@@ -1,11 +1,14 @@
 
 <div class="mb-3">
-  <button type="button" class="d-flex flex-r btn btn-primary" (click)="regresar()">
-  Regresar
-  </button>
+
   <div class="container-fluid mt-5 w-auto">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="container-fluid d-flex justify-content-center my-2">
+        <button type="button" class="d-flex flex-r btnS border-quatz rounded" (click)="regresar()">
+          Regresar
+          </button>
+        </div>
+        <div class="col-md-6">
         <div class="card">
           <div class="card-header h4 text-center">
 
@@ -32,7 +35,7 @@
             <strong class="h5">Telefono de Familiar / responsable:</strong> {{patient?.telefono_responsable}}<br>
             <hr>
             <strong class="h5 me-3">Responsable:</strong> {{patient?.responsable | anyToText | capitalizeName}}<br>
-            <strong class="h5 me-3">Parentesco:</strong> {{patient?.parentesco}}<br>
+            <strong class="h5 me-3">Parentesco:</strong> {{patient?.parentesco | anyToNumber | enumParentesco}}<br>
             <strong class="h5 me-3">Dpi del responsable:</strong> {{patient?.dpi_responsable}}<br>
             <hr>
             <strong class="h5 me-3">Madre:</strong> {{patient?.madre | anyToText | capitalizeName}}<br>

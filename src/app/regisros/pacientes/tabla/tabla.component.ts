@@ -36,7 +36,8 @@ export class TablaComponent implements OnInit {
   mostrarModal = false;
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
-  public username = this.user.getUsernameLocally()
+  public username = this.user.getUsernameLocally();
+  public edad: number = 0;
 
 
 
@@ -92,6 +93,9 @@ export class TablaComponent implements OnInit {
   @Output() apellidoPaciente = new EventEmitter<string>();
   @Output() edadPaciente = new EventEmitter<string>();
   @Output() nacimientoPaciente = new EventEmitter<Date>();
+  @Output() sexoPaciente = new EventEmitter<string>();
+  @Output() direccionPaciente = new EventEmitter<string>();
+  @Output() telefonoPaciente = new EventEmitter<string>();
   @ViewChild('edadCell', { static: false }) edadCell: ElementRef = new ElementRef(null);
 
   constructor(private pacientesService: PacientesService,
@@ -133,11 +137,15 @@ export class TablaComponent implements OnInit {
     this.resumen;
   }
 
-  copiarId(exp: number, nombre: string, apellido: string, nacimiento: Date) {
+  copiarId(exp: number, nombre: string, apellido: string, nacimiento: Date, sexo: string, direccion: string, telefono: string) {
     this.idPaciente.emit(exp);
     this.nombrePaciente.emit(nombre);
     this.apellidoPaciente.emit(apellido);
     this.nacimientoPaciente.emit(nacimiento);
+    this.sexoPaciente.emit(sexo);
+    this.direccionPaciente.emit(direccion);
+    this.telefonoPaciente.emit(telefono);
+
     const valorCelda = this.edadCell.nativeElement.textContent;
     console.log('Valor copiado:', valorCelda);
     //this.edadPaciente.emit(edad);
@@ -148,6 +156,9 @@ export class TablaComponent implements OnInit {
     this.coex.fecha_consulta = this.fechaActual;
     this.coex.hora = this.horaActual;
     this.coex.edad = valorCelda;
+    this.coex.sexo = sexo;
+    this.coex.direccion = direccion;
+    this.coex.telefono = telefono;
 
     // console.log(exp)
   }
@@ -319,5 +330,12 @@ export class TablaComponent implements OnInit {
       }
     });
   }
+
+  calcularEdad(nac: any): number {
+    this.edad = this.fechaService.años(nac);
+    return this.edad;
+  }
+
+
 }
 
