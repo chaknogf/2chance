@@ -14,7 +14,7 @@
 
 <div class="container-fluid d-flex">
   <div class="text-white border-quatz btn text-end p-2 col-4">
-    <button class="text-center justify-content-end mx-1 mb-1 bg-quatz rounded btn p-0 w-20">Edit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+    <button class="text-center justify-content-end mx-1 mb-1 bg-quatz rounded btn p-0 w-20" [routerLink]="['/paciente/edit/', patient?.id]">Edit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
       <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
       <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
       </svg>
@@ -24,7 +24,7 @@
     <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Hoja de Emeregencia:</span>{{ consulta.hoja_emergencia }}</p>
     <hr style="margin: 0;">
     <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ consulta.nombres | anyToText | capitalizeName }} {{ consulta.apellidos | anyToText | capitalizeName }}</p>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ consulta.sexo}}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ consulta.sexo | anyToText |sexo}}</p>
     <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad en consulta:</span>{{ consulta.edad}}</p>
     <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad real:</span>{{ consulta.nacimiento | anyToText | edad}}</p>
     <hr style="margin: 0;">
@@ -32,6 +32,7 @@
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Especialidad:</span>{{ consulta.especialidad | anyToNumber | enumEspecialidad }}</p>
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Servicios:</span>{{ consulta.servicio | anyToNumber | enumEspecialidad }}</p>
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Tipo de Consulta:</span>{{ consulta.tipo_consulta | anyToNumber | enumTipo }}</p>
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Medico:</span>{{ consulta.medico | anyToText | capitalizeName }}</p>
     <hr style="margin: 0;">
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado Por:</span>{{ consulta.created_by }}</p>
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado:</span>{{ consulta.created_at }}</p>
@@ -62,12 +63,12 @@
         <div class="d-flex">
           <div class="w-40 mx-1">
             <label class="text-light" for="folios">Diagnostico:</label>
-            <input type="text" class="form-control bg-primary bg-opacity-75" name="folios" [(ngModel)]="consulta.folios">
+            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" name="dx" [(ngModel)]="consulta.dx">
           </div>
 
           <div class="w-20 mx-1">
-            <label class="text-light" for="folios">Medico:</label>
-            <input type="number" class="form-control bg-primary bg-opacity-75" name="medico" [(ngModel)]="consulta.medico">
+            <label class="text-light" for="medico">Medico:</label>
+            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" name="medico" [(ngModel)]="consulta.medico">
           </div>
 
           <div class="w-20 mx-1">

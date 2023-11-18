@@ -1,13 +1,16 @@
 
 
 
-<div class="container-fluid ">
+<div class="container-fluid mt-2">
   <div class="row">
     <div class="col-md-6">
       <!-- Contenido del formulario -->
 
-      <form class="p-1  bg-info bg-opacity-25 p-3 card">
-        <button type="button" class="d-flex  btn btn-dark bg-black w-20" (click)="regresar()">
+      <form class="p-1  bg-night bg-opacity-25 p-3 card-black">
+        <button type="button" class="btnS bg-black border-quatz p-1 rounded w-auto" (click)="regresar()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+          </svg>
           Regresar
         </button>
         <div class="card-header text-center text-light h3">Registro de Hoja de Emergencia</div>
@@ -15,14 +18,14 @@
         <div class="card-body">
         <div class="form-group">
           <label for="hoja_emergencia" class="text-light">Hoja de Emeregncia:</label>
-          <input type="number" class="form-control bg-primary bg-opacity-75 text-uppercase" id="hoja_emergencia" name="hoja_emergencia" [(ngModel)]="tuNumero">
+          <input type="number" class="form-control bg-dark text-uppercase" id="hoja_emergencia" name="hoja_emergencia" [(ngModel)]="tuNumero">
         </div>
 
         <div class="form-group d-flex mt-3 align-items-center">
           <label class="text-light" for="fecha">Fecha:</label>
-          <input type="date" class="form-control w-50 mx-2 bg-primary bg-opacity-75 text-uppercase" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
+          <input type="date" class="form-control w-50 mx-2 bg-dark text-uppercase" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
           <label class="text-light mx-2" for="hora">Hora:</label>
-          <input type="time" class="form-control w-25 bg-primary bg-opacity-75 text-uppercase" id="hora" name="hora"
+          <input type="time" class="form-control w-25 bg-dark text-uppercase" id="hora" name="hora"
              placeholder="hh:mm" [(ngModel)]="emergencia.hora">
         </div>
 
@@ -33,18 +36,18 @@
 
         <div class="form-group mt-2">
           <label class="text-light" for="apellidos">Apellidos:</label>
-          <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="apellidos" name="apellidos" placeholder="apellidos" [(ngModel)]="emergencia.apellidos">
+          <input type="text" class="form-control bg-dark text-uppercase" id="apellidos" name="apellidos" placeholder="apellidos" [(ngModel)]="emergencia.apellidos">
         </div>
 
         <div class="form-group mt-2">
           <label class="text-light" for="nombres">Nombres:</label>
-          <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="nombres" name="nombres" placeholder="nombres" [(ngModel)]="emergencia.nombres">
+          <input type="text" class="form-control bg-dark text-uppercase" id="nombres" name="nombres" placeholder="nombres" [(ngModel)]="emergencia.nombres">
         </div>
 
         <div class="form-group mt-2">
           <label class="text-light" for="nacimiento">Fecha de nacimiento:</label>
           <div class="d-flex">
-            <input type="date" class="form-control w-50 bg-primary bg-opacity-75 text-uppercase" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
+            <input type="date" class="form-control w-50 bg-dark text-uppercase" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
             <button class="btn btn-info bg-black bg-opacity-25 mx-2" (click)="calcularedad()">Calcular edad</button>
             <span></span>
           </div>
@@ -52,16 +55,16 @@
 
         <div class="form-group d-flex mt-3 justify-content-center align-items-center">
           <label class="text-light" for="edad">Edad:</label>
-          <input type="text" class="form-control w-15 mx-1 bg-primary bg-opacity-75 text-uppercase" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
-          <input type="text" class="form-control w-15 mx-1 bg-primary bg-opacity-75 text-uppercase" id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
-          <input type="text" class="form-control w-15 mx-1 bg-primary bg-opacity-75 text-uppercase" id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
+          <input type="text" class="form-control w-15 mx-1 bg-dark text-uppercase" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
+          <input type="text" class="form-control w-15 mx-1 bg-dark text-uppercase" id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
+          <input type="text" class="form-control w-15 mx-1 bg-dark text-uppercase" id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
 
           <button class="btn btn-info bg-black bg-opacity-25 w-40 text-light" (click)="calcularNacimiento()">Calcular Nacimiento</button>
         </div>
 
         <div class="form-group mt-3">
           <label class="text-light" for="sexo">Sexo:</label>
-          <select id="sexo" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="emergencia.sexo" name="sexo" autofocus>
+          <select id="sexo" class="form-control bg-dark text-uppercase" [(ngModel)]="emergencia.sexo" name="sexo" autofocus>
             <option value=""></option>
             <option value="M">Masculino</option>
             <option value="F">Femenino</option>
@@ -70,54 +73,54 @@
 
         <div class="form-group mt-3">
           <label class="text-light" for="telefono">Teléfono:</label>
-          <input type="text" id="telefono" name="telefono" class="form-control bg-primary bg-opacity-75 text-uppercase" [ngModel]="emergencia.telefono"  placeholder="telefono" autofocus espaciosNumeros>
+          <input type="text" id="telefono" name="telefono" class="form-control bg-dark text-uppercase" [ngModel]="emergencia.telefono"  placeholder="telefono" autofocus espaciosNumeros>
           <span></span>
         </div>
 
         <div class="form-group mt-3">
           <label class="text-light" for="DPI/CUI de paciente">DPI/CUI:</label>
-          <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="dpi" name="dpi" placeholder="DPI/CUI" [(ngModel)]="emergencia.dpi" appDpi >
+          <input type="text" class="form-control bg-dark text-uppercase" id="dpi" name="dpi" placeholder="DPI/CUI" [(ngModel)]="emergencia.dpi" appDpi >
           <span></span>
         </div>
 
         <div class="form-group mt-3">
           <label class="text-light" for="direccion">Dirección:</label>
-          <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="emergencia.direccion" >
+          <input type="text" class="form-control bg-dark text-uppercase" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="emergencia.direccion" >
           <span></span>
         </div>
 
         <div class="form-group mt-3">
           <label class="text-light" for="acompañante">Acompañante:</label>
-          <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="acompañante" name="acompañante" placeholder="acompañante"  [(ngModel)]="emergencia.acompa" >
+          <input type="text" class="form-control bg-dark text-uppercase" id="acompañante" name="acompañante" placeholder="acompañante"  [(ngModel)]="emergencia.acompa" >
           <span></span>
         </div>
 
         <div class="form-group mt-3">
           <label class="text-light" for="aprentesco">Parentesco:</label>
-          <select id="parentesco" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="emergencia.parente" name="parente" autofocus>
+          <select id="parentesco" class="form-control bg-dark text-uppercase" [(ngModel)]="emergencia.parente" name="parente" autofocus>
             <option  *ngFor="let option of e.parents" [value]="option.value">{{option.label}}</option>
           </select>
         </div>
 
         <div class="form-group mt-3">
           <label class="text-light" for="nota">Nota:</label>
-          <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="nota" name="nota" placeholder="nota" [(ngModel)]="emergencia.nota" >
+          <input type="text" class="form-control bg-dark text-uppercase" id="nota" name="nota" placeholder="nota" [(ngModel)]="emergencia.nota" >
           <span></span>
         </div>
 
         <div class="form-group mt-3">
           <label class="text-light" for="nota">Expediente:</label>
-          <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="emergencia.expediente" >
+          <input type="text" class="form-control bg-dark text-uppercase" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="emergencia.expediente" >
           <span></span>
         </div>
 
       </div>
       <div class="d-flex justify-content-center mx-4 ml-3 align-items-center py-3 px-2">
         <div>
-          <button type="submit" class="btn btn-success bg-black" (click)="edit ? editar() :registrarEmergencia()">Guardar</button>
+          <button type="submit" class="btnS border-success rounded w-auto p-1 bg-black" (click)="edit ? editar() :registrarEmergencia()">Guardar</button>
         </div>
         <div class="mx-3">
-          <button class="btn btn-danger bg-black">
+          <button class="btnS border-danger rounded w-auto p-1 bg-black">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
               <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58
               0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59
@@ -125,6 +128,7 @@
               0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1
               .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
               </svg>
+              Borrar
           </button>
         </div>
       </div>
@@ -138,6 +142,13 @@
       [dpiBuscar]="emergencia.dpi"
 
       (idPaciente)="emergencia.expediente= $event"
+      (apellido)="emergencia.apellidos= $event"
+      (direccion)="emergencia.direccion= $event"
+      (nacimiento)="emergencia.nacimiento= $event"
+      (nombre)="emergencia.nombres= $event"
+      (sexo)="emergencia.sexo= $event"
+      (dpi)="emergencia.dpi= $event"
+
 
        ></tabEmerExp>
     </div>

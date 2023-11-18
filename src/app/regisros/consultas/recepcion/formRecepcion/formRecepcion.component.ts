@@ -8,6 +8,8 @@ import {  Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { UsersService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
+import { PacientesService } from 'src/app/services/pacientes.service';
+import { Ipaciente } from 'src/app/models/Ipaciente';
 
 @Component({
   selector: 'app-formRecepcion',
@@ -22,8 +24,8 @@ export class FormRecepcionComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private user: UsersService,
-    private _location: Location
-
+    private _location: Location,
+    private pt: PacientesService,
 
   ) { }
 
@@ -39,6 +41,7 @@ export class FormRecepcionComponent implements OnInit {
   private nuevoStatus: number = 0;
   public username = this.user.getUsernameLocally()
   public rutaAnterior: string = '../';
+  public patient: Ipaciente | any;
 
 
 
@@ -110,7 +113,10 @@ export class FormRecepcionComponent implements OnInit {
           data => {
             this.consulta = data;
             this.edit = true;
-
+            this.pt.getPaciente(this.consulta.expediente)
+              .subscribe(dtas => {
+                this.patient = dtas;
+              })
 
           },
           error => console.log(error)
@@ -122,7 +128,7 @@ export class FormRecepcionComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.copiarId()
     this.ConsultasService.editarConsulta(this.consulta.id, this.consulta)
       .subscribe(data => {
         this.consulta = data;
@@ -165,6 +171,18 @@ export class FormRecepcionComponent implements OnInit {
 
   regresar(){
     this._location.back();
+  }
+
+  copiarId() {
+    console.log(this.consulta);
+    this.consulta.nombres = this.patient?.nombre;
+    this.consulta.apellidos = this.patient?.apellido; // Corregido
+    this.consulta.nacimiento = this.patient?.nacimiento;
+    // this.consulta.edad = valorCelda;
+    this.consulta.sexo = this.patient?.sexo;
+    this.consulta.direccion = this.patient?.direccion;
+    this.consulta.telefono = this.patient?.telefono;
+    console.log(this.consulta);
   }
 
 }

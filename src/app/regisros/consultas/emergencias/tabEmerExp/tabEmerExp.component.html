@@ -1,17 +1,18 @@
 <div class="">
-  <div class="table">
+  <div class="mt-2">
     <form class="d-flex justify-content-center align-items-center" autocomplete="off" >
       <input type="text" class="form-control bg-opacity-75 text-center" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
       <input type="sumit" class="form-control text-center text-capitalize mx-1 " placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
       <input type="text" class="form-control text-center text-capitalize mx-1" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
       <input type="text" class="form-control text-center mx-1" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-light mx-1 "  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn btn-light mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+      <button type="submit" class="btn btn-quatz mx-1 "  (click)="filtro()">buscar</button>
+      <button type="submit" class="btn border-quatz mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-      </svg></button>
-      <button class="btn btn-info bg-black mx-1 w-2" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
+      </svg>
+      </button>
+
     </form>
   </div>
 
@@ -40,7 +41,7 @@
               <!-- <button class="btn btn-outline-dark" [routerLink]="['/detalleP/view', paciente.expediente]">ver</button> -->
             </td>
             <td>
-              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente)" >
+              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.dpi, paciente.direccion)" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
                   <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0
                   0-.5-.5.5.5 0 0 1-.5-.5Z"/>

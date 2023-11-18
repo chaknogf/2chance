@@ -1,11 +1,12 @@
 <div class="d-flex justify-content-center bg-white">
-  <button class="btn btn-dark mx-2 my-3 w-30" (click)="regresar()" >
+  <button class="btn btn-dark no-imprimir mx-2 my-3 w-30" (click)="regresar()" >
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
     </svg>Regresar</button>
   <button class="btn btn-info no-imprimir mx-2 my-3 w-30" (click)="imprimir()">Imprimir</button>
 </div>
-<body id="pdf-content." class="imprimir-esto text-black bg-light p-0 w-100"  >
+<hr class="mt-2">
+<body id="pdf-content" class="imprimir-esto text-black bg-light p-0 w-100"  >
 <div class="container-fluid bg-light">
   <p class="p-1">{{fechaActual | anyToText | formatoFecha}} - {{horaActual}}</p>
 </div>

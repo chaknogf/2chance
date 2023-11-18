@@ -32,9 +32,9 @@ export class TabEmerExpComponent implements OnInit {
   idCopiado: number = 0;
   mostrarModal = false;
 
-  @Input() nombreBuscar: any
-  @Input()apellidoBuscar: any
-  @Input() dpiBuscar: any
+  @Input() nombreBuscar: any;
+  @Input() apellidoBuscar: any;
+  @Input() dpiBuscar: any;
 
 
   e: Ienum = {
@@ -85,6 +85,13 @@ export class TabEmerExpComponent implements OnInit {
   }
 
   @Output() idPaciente = new EventEmitter<number>();
+  @Output() nombre = new EventEmitter<string>();
+  @Output() apellido = new EventEmitter<string>();
+  @Output() nacimiento = new EventEmitter<string>();
+  @Output() sexo = new EventEmitter<string>();
+  @Output() dpi = new EventEmitter<any>();
+  @Output() direccion = new EventEmitter<string>();
+
 
 
 
@@ -125,8 +132,14 @@ export class TabEmerExpComponent implements OnInit {
     this.resumen;
   }
 
-  copiarId(exp: number) {
+  copiarId(exp: number, nom: string, ape: string, nac: string, sex: string, cui: any, dirc: string) {
     this.idPaciente.emit(exp);
+    this.nombre.emit(nom);
+    this.apellido.emit(ape);
+    this.nacimiento.emit(nac);
+    this.sexo.emit(sex);
+    this.dpi.emit(cui);
+    this.direccion.emit(dirc);
     console.log(exp)
     // this.emergencia.expediente = exp;
 

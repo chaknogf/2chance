@@ -29,7 +29,7 @@ export interface Iconcultas {
   lactancia: number | null;
   dx: string | null;
   folios: number | null;
-  medico: any | null;
+  medico: string | null;
   archived_by: number | null;
   created_at: string | null;
   updated_at: string | null;

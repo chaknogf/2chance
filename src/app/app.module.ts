@@ -67,7 +67,7 @@ import { RegistrosComponent } from './regisros/registros/registros.component';
 import { EstadisticaComponent } from './estadistica/estadistica/estadistica.component';
 import { Formcie10Component } from './estadistica/cie10/formcie10/formcie10.component';
 import { ReporteCoexComponent } from './regisros/consultas/coex/reporte/reporteCoex.component';
-import { RecepciónComponent } from './regisros/consultas/recepción/recepción.component';
+import { RecepciónComponent } from './regisros/consultas/recepcion/recepción/recepción.component';
 import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecepcion/formRecepcion.component';
 import { RecienacidosComponent } from './regisros/pacientes/recienacidos/recienacidos.component';
 

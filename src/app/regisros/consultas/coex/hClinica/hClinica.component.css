@@ -12453,8 +12453,11 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
   /* Estilos de impresión generales */
   body {
     font-size: 12pt;
-    margin: 0;
+    width: 21cm; /* Ancho de una carta */
+    height: 29.7cm; /* Altura de una carta */
+    margin: auto; /* Centrar en la pantalla */
     padding: 0;
+
   }
 }
 

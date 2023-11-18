@@ -1,4 +1,4 @@
-import { tipo, Tipos, status } from '../../../enums/enums';
+import { tipo, Tipos, status } from '../../../../enums/enums';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
