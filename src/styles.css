@@ -338,6 +338,9 @@ b,
 strong {
   font-weight: bolder;
   font-family: "Cabin Sketch", cursive;
+  overflow:visible;
+  white-space: wrap;
+
 }
 
 small, .small {
@@ -809,11 +812,13 @@ progress {
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
+    font-size: 8px;
   }
 }
 @media (min-width: 768px) {
   .container-md, .container-sm, .container {
     max-width: 720px;
+    font-size: 8px;
   }
 }
 @media (min-width: 992px) {
@@ -7704,6 +7709,11 @@ textarea.form-control-lg {
   border-color: rgba(var(--bs-black-rgb), var(--bs-border-opacity)) !important;
 }
 
+.border-quatz {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-quatz-rgb), var(--bs-border-opacity)) !important;
+}
+
 .border-white {
   --bs-border-opacity: 1;
   border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
@@ -9035,6 +9045,11 @@ textarea.form-control-lg {
 .bg-opacity-50 {
   --bs-bg-opacity: 0.5;
 }
+
+.bg-opacity-60 {
+  --bs-bg-opacity: 0.6;
+}
+
 
 .bg-opacity-75 {
   --bs-bg-opacity: 0.75;
@@ -12826,6 +12841,7 @@ body {
   padding: 1%;
 }
 
+
 .rosado {
   /* color: #f6a5ca ;  */
   background-color: #f6a5ca ;
@@ -12900,5 +12916,35 @@ input, select {
  .btnS:hover {
   color: #111;
  }
+ .f-negrita {
+  color: #09f7c0;
+  text-wrap:balance;
 
+  border-color:  #9ed98787;
+  font-size: 1rem;
+  font-weight: bolder;
+  text-decoration:solid;
+  border-radius: 2%;
+  font-family: "Robot";
+  overflow: hidden;
+  white-space: wrap ;
+ }
+
+ .f-negrita-black {
+  color: #175164;
+  text-wrap:balance;
+
+  border-color:  #9ed98787;
+  font-size: 1rem;
+  font-weight: bolder;
+  text-decoration:solid;
+  border-radius: 2%;
+  font-family: "Robot";
+  overflow: hidden;
+  white-space: wrap ;
+ }
+
+ .fs-8 {
+  font-size: 13px;
+}
 

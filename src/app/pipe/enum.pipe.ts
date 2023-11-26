@@ -1,8 +1,9 @@
+import { situacion, estadia, referencia } from './../enums/enums';
 
 
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
 import {servicio, nation, municipio, etnias, ecivil,
-  academic,  parents, lenguaje, servicios, tipo, status, departamentos
+  academic,  parents, lenguaje, servicios, tipo, status, departamentos, estado
 } from '../enums/enums';
 
 @Pipe({
@@ -176,3 +177,63 @@ export class EnumStatusPipe implements PipeTransform {
     }
   }
 }
+
+@Pipe({
+  name: 'enumEstado'
+})
+export class EnumEstadoPipe implements PipeTransform {
+  transform(value: any): string {
+    const estadoEncontrado = estado.find(estado => estado.value === value);
+    if (estadoEncontrado) {
+      return estadoEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumSituacion'
+})
+export class EnumSituacionPipe implements PipeTransform {
+  transform(value: any): string {
+    const situacionEncontrado = situacion.find(situacion => situacion.value === value);
+    if (situacionEncontrado) {
+      return situacionEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumEstadia'
+})
+export class EnumEstadiaPipe implements PipeTransform {
+  transform(value: any): string {
+    const estadiaEncontrado = estadia.find(estadia => estadia.value === value);
+    if (estadiaEncontrado) {
+      return estadiaEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumReferencia'
+})
+export class EnumReferenciaPipe implements PipeTransform {
+  transform(value: any): string {
+    const refEncontrado = referencia.find(referencia => referencia.value === value);
+    if (refEncontrado) {
+      return refEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+
+
+

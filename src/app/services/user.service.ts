@@ -46,12 +46,12 @@ export class UsersService {
 
   setToken(token: string): void {
     this.cookies.set('token', token);  // Guarda el token en una cookie llamada 'token'
-    console.log(this.cookies)
+    // console.log(this.cookies)
   }
 
   setUser(user: string): void {
     this.cookies.set('user', user);  // Guarda el token en una cookie llamada 'token'
-    console.log(this.cookies)
+    // console.log(this.cookies)
   }
 
   getToken(): string {
@@ -73,7 +73,7 @@ export class UsersService {
       // Verifica aquí si el token es válido y aún no ha expirado
       console.log('Usuario autenticado');
       const user = localStorage.getItem('username');
-      console.log(user);
+      // console.log(user);
       return true;
     }
     console.log('Usuario no autenticado');

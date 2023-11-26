@@ -1,15 +1,17 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios} from 'src/app/enums/enums';
 import { UsersService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { PacientesService } from 'src/app/services/pacientes.service';
+import { Iuisau } from 'src/app/models/Iuisau';
+import { UisauService } from 'src/app/services/uisau.service';
 
 
 @Component({
@@ -28,111 +30,58 @@ export class DetalleUisauComponent implements OnInit {
     private _location: Location,
     private pt: PacientesService,
     private route: ActivatedRoute,
+    private au: UisauService,
 
 
   ) { }
 
   public consultas: Iconcultas[] = [];
-  public resumen: Iconcultas[] = [];
   public fechaActual: string = this.FechaService.FechaActual();
   public horaActual: string = this.FechaService.HoraActual();
   public fechaRecepcion: string = this.FechaService.registroTiempo();
   public fechaEgreso: string = this.FechaService.FechaActual();
-  edit: boolean = false;
+  view: boolean = false;
   public selectdate: string = '';
   public maxdate: string = '';
   private nuevoStatus: number = 0;
   public username = this.user.getUsernameLocally()
   public rutaAnterior: string = '../';
-  public patient: Ipaciente | undefined;
-  public consult: Iconcultas | undefined;
+  public paciente: Ipaciente | undefined;
+  public consulta: Iconcultas | any;
+  public resumen: Iuisau[] = [];
+  public infos_: Iuisau[] = [];
+  private sortColumn: string | undefined;
+  private ascendingOrder: boolean = false;
+  public paginaActual: number = 1; // Página actual
+  private totalRegistros: number = 5;
 
+  @Output() idConsulta = new EventEmitter<number>();
 
-
-  @HostBinding('class') clases = 'row';
-
-  consulta: Iconcultas = {
-    id: 0,
-    hoja_emergencia: null,
-    expediente: null,
-    fecha_consulta: "",
-    hora: "",
-    nombres: "",
-    apellidos: "",
-    nacimiento: "",
-    edad: "",
-    sexo: "",
-    dpi: null,
-    direccion: "",
-    acompa: null,
-    parente: null,
-    telefono: null,
-    especialidad: 0,
-    servicio: null,
-    status: 1,
-    fecha_recepcion: '',
-    fecha_egreso: null,
-    tipo_consulta: 1,
-    nota: "",
-    name: null,
-    lastname: null,
-    prenatal: null,
-    lactancia: null,
-    dx: null,
-    folios: null,
-    archived_by: null,
-    created_at: '',
-    updated_at: '',
-    created_by: null,
-    medico: null
-  }
-
-  paciente: Ipaciente = {
+  info: Iuisau = {
     id: 0,
     expediente: 0,
-    nombre: '',
-    apellido: '',
-    dpi: 0,
-    pasaporte: '',
-    sexo: '',
-    nacimiento: new Date(),
-    nacionalidad: 0,
-    lugar_nacimiento: 0,
-    estado_civil: 0,
-    educacion: 0,
-    pueblo: 0,
-    idioma: 0,
-    ocupacion: '',
-    direccion: '',
-    telefono: '',
-    email: '',
-    padre: '',
-    madre: '',
-    responsable: '',
+    nombres: '',
+    apellidos: '',
+    estado: 0,
+    situacion: 0,
+    lugar_referencia: 0,
+    fecha_referencia: '',
+    estadia: 0,
+    cama: 0,
+    especialidad: 0,
+    servicio: 0,
+    informacion: '',
+    contacto: '',
     parentesco: 0,
-    dpi_responsable: 0,
-    telefono_responsable: 0,
-    estado: '',
-    exp_madre: 0,
-    created_by: '',
-    fechaDefuncion: '',
-    municipio: 0,
-    created_at: '',
-    update_at: '',
-    depto: 0
+    telefono: 0,
+    fecha: '',
+    nota: '',
+    estudios: '',
+    evolucion: '',
+    id_consulta: 0,
+    created_by: ''
   }
 
-   e: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio
-  }
 
 
   ngOnInit() {
@@ -141,7 +90,7 @@ export class DetalleUisauComponent implements OnInit {
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
 
-    this.consulta.created_by = this.username;
+
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
@@ -150,11 +99,19 @@ export class DetalleUisauComponent implements OnInit {
         .subscribe(
           data => {
             this.consulta = data;
-            this.edit = true;
-            this.pt.getPaciente(this.consulta.expediente)
+            this.view = true;
+            this.au.InfoConsulta(this.consulta?.id)
+        .subscribe(
+          data => {
+            this.infos_ = data;
+            this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+            console.log(data)
+          })
+            this.pt.getPaciente(this.consulta?.expediente)
               .subscribe(
                 dta => {
                   this.paciente = dta;
+                  console.log(dta, data)
 
               }
             )
@@ -162,54 +119,57 @@ export class DetalleUisauComponent implements OnInit {
           error => console.log(error)
         )
     }
-    this.resumen;
 
-  }
-
-  onSubmit() {
-
-    this.ConsultasService.editarConsulta(this.consulta.id, this.consulta)
-      .subscribe(data => {
-        this.consulta = data;
-        this.router.navigate(['/recepciones']);
-      })
+    this.paginar();
 
 
   }
 
-  recepcion() {
-    this.consulta.fecha_recepcion = this.fechaRecepcion;
-    if (this.consulta.fecha_recepcion) {
-      this.consulta.status = 2;
-    }
-    else {
-      this.consulta.status = 1;
-    }
-  }
-
-  statusegreso() {
-    this.consulta.fecha_egreso = this.fechaEgreso;
-    if (this.consulta.fecha_egreso) {
-
-      this.consulta.status = 2;
-    }
-    else {
-      this.consulta.status = 1;
-    }
-  }
-
-  limpiarRecepcion() {
-    this.consulta.fecha_recepcion = null;
-    this.consulta.status = 1;
-  }
-
-  limpiarEgreso() {
-    this.consulta.fecha_egreso = null;
-    this.consulta.status = 1;
-  }
 
   regresar(){
     this._location.back();
   }
+
+  onPageChange(pageNumber: number) {
+    this.paginaActual = pageNumber;
+    this.paginar();
+  }
+
+
+  paginar() {
+
+    const tamanoPagina = 5;
+    console.log(tamanoPagina)
+    const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
+    console.log(indiceInicio)
+    const indiceFin = indiceInicio + tamanoPagina;
+    console.log(indiceFin)
+    this.resumen = this.infos_.slice(indiceInicio, indiceFin);
+    console.log(this.infos_, this.resumen)
+    // this.totalRegistros = this.resumen.length; // Agrega esta línea para actualizar el número total de registros por página
+    // console.log(this.totalRegistros)
+  }
+
+  getPaginas(): number[] {
+    const totalPaginas = this.totalPaginas();
+    console.log(totalPaginas)
+
+    // Verificar si totalPaginas es válido antes de crear el array
+    if (totalPaginas <= 0) {
+      return [];
+    }
+
+    // Generar un array de números basado en el número total de páginas
+    return Array.from({ length: totalPaginas }, (_, index) => index + 1);
+  }
+
+  totalPaginas(): number {
+    return Math.ceil(this.resumen.length / this.totalRegistros);
+
+  }
+
+
+
+
 
 }

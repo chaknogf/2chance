@@ -1,9 +1,9 @@
 import { ResumenCitasPipe } from './pipe/resumenCitas.pipe';
-import { NgModule, Pipe } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from "ngx-cookie-service";
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
 import { FormatoDPIPipe } from './pipe/formatoDPI.pipe';
@@ -23,7 +23,7 @@ import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe, EnumTipoPipe,
-  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -70,7 +70,8 @@ import { ReporteCoexComponent } from './regisros/consultas/coex/reporte/reporteC
 import { RecepciónComponent } from './regisros/consultas/recepcion/recepción/recepción.component';
 import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecepcion/formRecepcion.component';
 import { RecienacidosComponent } from './regisros/pacientes/recienacidos/recienacidos.component';
-
+import { DateTimePipe } from './pipe/dateTime.pipe';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -110,8 +111,13 @@ import { RecienacidosComponent } from './regisros/pacientes/recienacidos/reciena
     EnumCivilPipe,
     EnumIdiomaPipe,
     EnumServiciosPipe,
+    EnumEstadoPipe,
+    EnumSituacionPipe,
+    EnumEstadiaPipe,
+    DateTimePipe,
     TextToDatePipe,
     EnumStatusPipe,
+    EnumReferenciaPipe,
     ExpedienteToNombrePipe,
     ResumenCitasPipe,
     WeekdayPipe,
@@ -156,12 +162,13 @@ import { RecienacidosComponent } from './regisros/pacientes/recienacidos/reciena
 
 
 
+
   ],
   imports: [
     BrowserModule,
     ModalModule,
     FormsModule,
-
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
@@ -194,7 +201,7 @@ import { RecienacidosComponent } from './regisros/pacientes/recienacidos/reciena
       { path: 'consulta/view/:id', component: ReporteComponent, canActivate: [AuthGuard] },
       { path: 'uisau', component: TablaUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau', component: FormUisauComponent, canActivate: [AuthGuard] },
-      { path: 'formUisau/edit/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
+      { path: 'formUisau/new/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'detalleUisau/:id', component: DetalleUisauComponent, canActivate: [AuthGuard] },
       { path: 'cie10', component: Tabcie10Component, canActivate: [AuthGuard] },
       { path: 'registros', component: RegistrosComponent, canActivate: [AuthGuard] },

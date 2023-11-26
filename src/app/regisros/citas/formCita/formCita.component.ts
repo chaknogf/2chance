@@ -1,10 +1,13 @@
+import { ConsultasService } from './../../../services/consultas.service';
+import { Iconcultas } from 'src/app/models/Iconsultas';
 import { CitasService } from '../../../services/citas.service';
-import { Ienum } from 'src/app/models/Ienum';
+import { IenumCitas } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
 import { PageReloadService } from '../../../services/PageReload.service';
+
 
 import { FormBuilder } from '@angular/forms';
 import { FechaService } from 'src/app/services/fecha.service';
@@ -23,6 +26,7 @@ export class FormCitaComponent implements OnInit {
   bsConfig = { dateInputFormat: 'DD-MM-YYYY' };
   edit: boolean = false;
   selectExpediente: any;
+  public consultas: Iconcultas[] = []
 
   fechaActual: string = "";
 
@@ -36,23 +40,55 @@ export class FormCitaComponent implements OnInit {
     estado: false,
     name: ''
   }
-  e: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio
-    }
+
+  coex: Iconcultas = {
+    id: 0,
+    hoja_emergencia: null,
+    expediente: undefined,
+    fecha_consulta: null,
+    hora: null,
+    nombres: null,
+    apellidos: null,
+    nacimiento: null,
+    edad: null,
+    sexo: null,
+    dpi: null,
+    direccion: null,
+    acompa: null,
+    parente: null,
+    telefono: null,
+    especialidad: null,
+    servicio: null,
+    status: null,
+    fecha_recepcion: null,
+    fecha_egreso: null,
+    tipo_consulta: null,
+    nota: null,
+    name: null,
+    lastname: null,
+    prenatal: null,
+    lactancia: null,
+    dx: null,
+    folios: null,
+    medico: null,
+    archived_by: null,
+    created_at: null,
+    updated_at: null,
+    created_by: null
+  }
+
+  e: IenumCitas = {
+    servicio: [],
+    servicios: [],
+    parents: [],
+    departamentos: []
+  }
 
   constructor(public CitasService: CitasService,
     private router: Router,
     private fechaService: FechaService,
     private activateRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private CS: ConsultasService,
     private PageReloadService: PageReloadService
   ) { }
 

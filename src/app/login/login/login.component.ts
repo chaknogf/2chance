@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/user.service';
-import { Router, RouterLink } from "@angular/router";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         // Almacena el nombre de usuario en el almacenamiento local
         this.userService.storeUsernameLocally(user);
 
-        console.log(user)
+
 
         this.router.navigateByUrl("home");
       },

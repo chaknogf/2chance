@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CitasService } from 'src/app/services/citas.service';
 import { Icitas } from 'src/app/models/Icitas';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -36,9 +36,9 @@ export class CitasComponent implements OnInit {
 
   constructor(
     private CitasService: CitasService,
-    private router: Router,
+    private _location: Location,
     private activateRoute: ActivatedRoute,
-    private _location: Location
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -155,7 +155,7 @@ export class CitasComponent implements OnInit {
   }
 
   regresar(){
-    this._location.back();
+    this.router.navigate(['/coex']);
   }
 
 

@@ -17,9 +17,6 @@ export class TablaUisauComponent implements OnInit {
 
   constructor(
     private ConsultasService: ConsultasService,
-    private router: Router,
-    private activateRoute: ActivatedRoute,
-    private FechaService: FechaService,
     private PageReloadService: PageReloadService
 
   ) { }
@@ -223,24 +220,6 @@ export class TablaUisauComponent implements OnInit {
      // Obtén todos los pacientes nuevamente
   }
 
-  private actualizar(data: any[]) {
-    if (data.length > 0) {
-      // this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }) => b.expediente - a.expediente);
-      this.resumen = data;
-      console.log(this.resumen)
-      this.paginar();
-      this.dpiBuscar = '';
-      this.nombreBuscar = '';
-      this.apellidoBuscar = '';
-      this.expedienteBuscar = '';
-      this.hojaBuscar = '';
-      this.fechaBuscar = '';
-
-    } else {
-      this.consultas = [];
-      this.totalRegistros = 0;
-    }
-  }
 
   eliminar(id: number) {
     this.ConsultasService.eliminar(id)
