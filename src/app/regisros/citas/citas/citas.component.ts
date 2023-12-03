@@ -59,7 +59,7 @@ export class CitasComponent implements OnInit {
     this.citanutri(this.x);
 
 
-    console.log(this.x)
+
 
     }
 

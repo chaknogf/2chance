@@ -37,7 +37,8 @@ export class CitasService {
   }
 
   agendar(cita: Icitas): Observable<any>{
-    return this.http.post(this.urlapi + "/cita/?token="+this.token, cita);
+    return this.http.post(this.urlapi + "/cita/?token=" + this.token, cita);
+
    }
 
   getCitasFecha(date: Date): Observable<any> {

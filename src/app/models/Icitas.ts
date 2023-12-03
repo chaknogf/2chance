@@ -2,13 +2,14 @@
 
 export interface Icitas{
   id: number;
-  expediente: number | any;
-  fecha: Date | string;
-  especialidad: number;
-  nota: string;
-  estado: boolean;
-  name: string;
-  cirugia_programada: null| Date;
+  expediente: number | any | null;
+  fecha: Date | string | null;
+  especialidad: number | null;
+  nota: string | null;
+  estado: boolean | null;
+  cirugia_programada: null | Date;
+  created_by: string | null;
+  name: string | null;
 }
 
 export interface IVistaCitas{

@@ -1,16 +1,16 @@
+import { UsersService } from 'src/app/services/user.service';
 import { ConsultasService } from './../../../services/consultas.service';
+import { PacientesService } from 'src/app/services/pacientes.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { CitasService } from '../../../services/citas.service';
 import { IenumCitas } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit,OnChanges ,HostBinding } from '@angular/core';
 import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
 import { PageReloadService } from '../../../services/PageReload.service';
-
-
-import { FormBuilder } from '@angular/forms';
 import { FechaService } from 'src/app/services/fecha.service';
+import { Ipaciente } from 'src/app/models/Ipaciente';
+import { departamentos, parents, servicio, servicios } from 'src/app/enums/enums';
 
 @Component({
   selector: 'app-form-cita',
@@ -21,67 +21,38 @@ export class FormCitaComponent implements OnInit {
 
   public cita: Icitas[] = [];
   public resumen: IVistaCitas[] = [];
+  public paciente: Ipaciente | undefined;
   @HostBinding('class') clases = 'row';
   selectedDate: Date | null = null; // Declaración de la propiedad selectedDate
   bsConfig = { dateInputFormat: 'DD-MM-YYYY' };
   edit: boolean = false;
   selectExpediente: any;
   public consultas: Iconcultas[] = []
-
+  public expediente: any = '';
   fechaActual: string = "";
+  public username = this.usr.getUsernameLocally()
+
+
 
   c: Icitas = {
     id: 0,
-    expediente: '',
+    expediente: this.expediente,
     fecha: "",
     especialidad: 0,
     cirugia_programada: null,
     nota: '',
     estado: false,
-    name: ''
-  }
-
-  coex: Iconcultas = {
-    id: 0,
-    hoja_emergencia: null,
-    expediente: undefined,
-    fecha_consulta: null,
-    hora: null,
-    nombres: null,
-    apellidos: null,
-    nacimiento: null,
-    edad: null,
-    sexo: null,
-    dpi: null,
-    direccion: null,
-    acompa: null,
-    parente: null,
-    telefono: null,
-    especialidad: null,
-    servicio: null,
-    status: null,
-    fecha_recepcion: null,
-    fecha_egreso: null,
-    tipo_consulta: null,
-    nota: null,
     name: null,
-    lastname: null,
-    prenatal: null,
-    lactancia: null,
-    dx: null,
-    folios: null,
-    medico: null,
-    archived_by: null,
-    created_at: null,
-    updated_at: null,
     created_by: null
   }
 
+
+
   e: IenumCitas = {
-    servicio: [],
-    servicios: [],
-    parents: [],
-    departamentos: []
+    servicio: servicio,
+    servicios: servicios,
+    parents: parents,
+    departamentos: departamentos
   }
 
   constructor(public CitasService: CitasService,
@@ -89,13 +60,15 @@ export class FormCitaComponent implements OnInit {
     private fechaService: FechaService,
     private activateRoute: ActivatedRoute,
     private CS: ConsultasService,
-    private PageReloadService: PageReloadService
+    private PageReloadService: PageReloadService,
+    private pacientes: PacientesService,
+    private usr: UsersService,
   ) { }
 
 
   ngOnInit() {
 
-
+    this.c.created_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
     // const params = this.activateRoute.snapshot.params;
 
@@ -117,9 +90,15 @@ export class FormCitaComponent implements OnInit {
 
   }
 
+  ngOnchages() {
+    this.paciente_()
+
+  }
   crearCita(): void {
     this.CitasService.agendar(this.c).subscribe(
       (response) => {
+
+        console.log(response, this.c.expediente, this.c.cirugia_programada, this.c.created_by, this.c.especialidad, this.c.estado, this.c.fecha, this.c.name, this.c.nota, this.c.id)
         // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta creada con éxito', response);
 
@@ -131,7 +110,7 @@ export class FormCitaComponent implements OnInit {
         this.router.navigate(['/citas'])
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
-          this.reloadPage();
+          // this.reloadPage();
         }, 2000); // 1000 ms = 1 segundo
       },
       (error) => {
@@ -146,7 +125,7 @@ export class FormCitaComponent implements OnInit {
 
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
-          this.reloadPage();
+          // this.reloadPage();
         }, 2000); // 1000 ms = 1 segundo
 
 
@@ -211,6 +190,13 @@ export class FormCitaComponent implements OnInit {
 
 
 
+  paciente_() {
+
+    this.pacientes.getPaciente(this.expediente).subscribe(data => {
+      this.paciente = data;
+      console.log(this.paciente?.nombre, this.paciente?.apellido,this.expediente)
+    })
+  }
 
 
 
