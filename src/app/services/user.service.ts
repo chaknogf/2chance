@@ -23,7 +23,12 @@ export class UsersService {
   constructor(
     private http: HttpClient,
     private cookies: CookieService
-  ) { }
+  ) {
+     // Agrega un escuchador para el evento beforeunload al inicializar el servicio
+    //  window.addEventListener('beforeunload', () => {
+    //   this.clearLocalStorageOnExit();
+    // });
+  }
 
 
   login(user: any): Observable<any> {
@@ -71,12 +76,12 @@ export class UsersService {
     const token = this.getTokenLocally();
     if (token) {
       // Verifica aquí si el token es válido y aún no ha expirado
-      console.log('Usuario autenticado');
+      // console.log('Usuario autenticado');
       const user = localStorage.getItem('username');
       // console.log(user);
       return true;
     }
-    console.log('Usuario no autenticado');
+    // console.log('Usuario no autenticado');
     return false;
   }
 
@@ -93,6 +98,11 @@ export class UsersService {
     localStorage.removeItem(this.userlog)
   }
 
+  private clearLocalStorageOnExit(): void {
+    // Lógica para borrar el Local Storage al cerrar la ventana del navegador
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userlog);
+  }
 
   // Otras solicitudes protegidas por autenticación
 }

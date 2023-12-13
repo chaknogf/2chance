@@ -215,7 +215,108 @@
 
   <section class="container-fluid col-9 font-ubuntu rounded mx-0 p-0">
 
-    <table class="table table-black fs-8 table-hover w-auto table-resposive">
+    <div *ngFor="let item of resumen" class="b-div">
+      <div class="row d-flex p-1 my-0 mx-1 text-wrap">
+
+        <div class="col-1 my-0 ms-1 border-end rounded">
+          <button class="btn text-center" [routerLink]="['/contacto/', item.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z"/>
+            </svg> <p  class="f-negrita p-0 my-0 text-center">{{ item.id}}</p>
+          </button>
+
+        </div>
+
+
+
+        <div *ngIf="item.created_by" class="col-auto p-0 my-0 border-end rounded p-1 ">
+          <p  class="f-negrita p-0 my-0 text-center">usuario</p>
+          <p class="p-0 my-0 text-center">{{  item.created_by}}</p>
+        </div>
+
+        <div class="col-1 p-0 my-0 border-end rounded">
+          <p class="f-negrita text-wrap p-0 my-0 text-center">fecha</p>
+          <p class="p-0 my-0 text-center">{{ item.fecha | anyToText | formatoFecha }} {{item.hora }}</p>
+        </div>
+
+        <div *ngIf="item.estado" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-center">estado</p>
+          <p class="p-0 my-0 text-center">{{  item.estado |anyToNumber | enumEstado}}</p>
+        </div>
+
+        <div *ngIf="item.situacion" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-center">situacion</p>
+          <p class="p-0 my-0 text-center">{{  item.situacion |anyToNumber | enumSituacion}}</p>
+        </div>
+
+        <div *ngIf="item.cama" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-center">cama</p>
+          <p class="p-0 my-0 text-center">{{  item.cama }}</p>
+        </div>
+
+        <div *ngIf="item.especialidad || item.servicio" class="col-2 p-0 my-0 border-end rounded">
+          <p  class="f-negrita p-0 my-0 text-center">servicio</p>
+          <p class="p-0 my-0 text-center text-wrap">{{  item.especialidad | anyToNumber | enumEspecialidad }} {{  item.servicio | anyToNumber | enumServicios }}</p>
+        </div>
+
+        <div  *ngIf="item.lugar_referencia" class="col-2 p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-center text-wrap">referencia</p>
+          <p class="p-0 my-0 text-center">{{  item.lugar_referencia | anyToNumber | enumReferencia }}</p>
+        </div>
+
+        <div *ngIf="item.fecha_referencia" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-center text-wrap">fecha ref.</p>
+          <p class="p-0 my-0 text-center">{{  item.fecha_referencia | anyToText | formatoFecha }}</p>
+        </div>
+
+        <div *ngIf="item.informacion" class="col-1 p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-center text-wrap">se informo</p>
+          <p class="p-0 my-0 text-center">{{  item.informacion}}</p>
+        </div>
+
+        <div *ngIf="item.contacto" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">contacto</p>
+          <p class="p-0 my-0 text-center">{{  item.contacto | anyToText | capitalizeName}} - ({{ item.parentesco | anyToNumber | enumParentesco}})</p>
+          <p  class="f-negrita p-0 my-0 text-center">telefono</p>
+          <p class="p-0 my-0 text-center"> {{ item.telefono}}</p>
+        </div>
+
+        <div *ngIf="item.update_by" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">Fecha y Hora Contacto</p>
+          <p class="p-0 my-0 text-center">{{item.fecha_contacto | anyToText | formatoFecha }} {{item.hora_contacto}}</p>
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">llamo</p>
+          <p class="p-0 my-0 text-center">{{item.update_by}}</p>
+        </div>
+
+
+      </div>
+
+      <div class=" row d-flex gap-1 p-1 ms-1 my-0 text-wrap">
+
+
+
+
+
+
+        <div *ngIf="item.evolucion" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">evolucion</p>
+          <p class="p-0 my-0 text-center">{{ item.evolucion}}</p>
+        </div>
+
+        <div *ngIf="item.estudios" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">estudios</p>
+          <p class="p-0 my-0 text-center">{{  item.estudios}}</p>
+        </div>
+
+        <div *ngIf="item.nota" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">nota</p>
+          <p class="p-0 my-0 text-center">{{  item.nota}}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <table class="table table-black fs-8 table-hover w-auto table-resposive">
       <thead>
         <tr>
           <th class="f-negrita text-center">Datos</th>
@@ -223,105 +324,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of resumen" class="table-active">
-          <td class=" gap-1 p-0 my-0 text-wrap">
-
-            <div class="row d-flex p-1 my-0 mx-1 text-wrap">
-
-              <div class="col-auto  my-0 ms-1 border-end rounded">
-                <p class="f-negrita p-0 my-0 text-center">id</p>
-                <p class="p-0 my-0 text-center">{{ item.id}}</p>
-              </div>
-
-              <div *ngIf="item.created_by" class="col-auto p-0 my-0 border-end rounded p-1 ">
-                <p  class="f-negrita p-0 my-0 text-center">usuario</p>
-                <p class="p-0 my-0 text-center">{{  item.created_by}}</p>
-              </div>
-
-              <div class="col-1 p-0 my-0 border-end rounded">
-                <p class="f-negrita text-wrap p-0 my-0 text-center">fecha</p>
-                <p class="p-0 my-0 text-center">{{ item.fecha | anyToText | dateTime }}</p>
-              </div>
-
-              <div *ngIf="item.estado" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center">estado</p>
-                <p class="p-0 my-0 text-center">{{  item.estado |anyToNumber | enumEstado}}</p>
-              </div>
-
-              <div *ngIf="item.situacion" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center">situacion</p>
-                <p class="p-0 my-0 text-center">{{  item.situacion |anyToNumber | enumSituacion}}</p>
-              </div>
-
-              <div *ngIf="item.cama" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center">cama</p>
-                <p class="p-0 my-0 text-center">{{  item.cama }}</p>
-              </div>
-
-              <div *ngIf="item.especialidad || item.servicio" class="col-2 p-0 my-0 border-end rounded">
-                <p  class="f-negrita p-0 my-0 text-center">servicio</p>
-                <p class="p-0 my-0 text-center text-wrap">{{  item.especialidad | anyToNumber | enumEspecialidad }} {{  item.servicio | anyToNumber | enumServicios }}</p>
-              </div>
-
-              <div  *ngIf="item.lugar_referencia" class="col-2 p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center text-wrap">referencia</p>
-                <p class="p-0 my-0 text-center">{{  item.lugar_referencia | anyToNumber | enumReferencia }}</p>
-              </div>
-
-              <div *ngIf="item.fecha_referencia" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center text-wrap">fecha ref.</p>
-                <p class="p-0 my-0 text-center">{{  item.fecha_referencia | anyToText | formatoFecha }}</p>
-              </div>
-
-              <div *ngIf="item.informacion" class="col-1 p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center text-wrap">se informo</p>
-                <p class="p-0 my-0 text-center">{{  item.informacion}}</p>
-              </div>
-
-              <div *ngIf="item.contacto" class="col-1 p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-wrap text-center">contacto</p>
-                <p class="p-0 my-0 text-center">{{  item.contacto | anyToText | capitalizeName}}</p>
-              </div>
-
-              <div *ngIf="item.parentesco" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center">parentesco</p>
-                <p class="p-0 my-0 text-center">{{ item.parentesco | anyToNumber | enumParentesco}}</p>
-              </div>
-
-              <div *ngIf="item.parentesco" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-center">telefono</p>
-                <p class="p-0 my-0 text-center">{{ item.telefono}}</p>
-              </div>
+          <td class=" gap-1 p-0 my-0 text-wrap border-quatz">
 
 
-            </div>
-
-            <div class=" row d-flex gap-1 p-1 ms-1 my-0 text-wrap">
-
-
-
-
-
-
-              <div *ngIf="item.evolucion" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-wrap text-center">evolucion</p>
-                <p class="p-0 my-0 text-center">{{ item.evolucion}}</p>
-              </div>
-
-              <div *ngIf="item.estudios" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-wrap text-center">estudios</p>
-                <p class="p-0 my-0 text-center">{{  item.estudios}}</p>
-              </div>
-
-              <div *ngIf="item.nota" class="col-auto p-0 my-0 border-end rounded p-1">
-                <p  class="f-negrita p-0 my-0 text-wrap text-center">nota</p>
-                <p class="p-0 my-0 text-center">{{  item.nota}}</p>
-              </div>
-            </div>
 
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
 
    <!-- Paginación -->
 <div class="d-flex justify-content-center pagination mt-3">

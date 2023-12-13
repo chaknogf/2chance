@@ -64,7 +64,11 @@ export class FormUisauComponent implements OnInit {
     estudios: null,
     evolucion: null,
     id_consulta: null,
-    created_by: null
+    created_by: null,
+    hora: null,
+    fecha_contacto: null,
+    hora_contacto: null,
+    update_by: null
   }
 
   c: Iconcultas = {
@@ -117,6 +121,8 @@ export class FormUisauComponent implements OnInit {
     this.maxdate = this.Fecha.FechaActual();
 
     this.info.created_by = this.username;
+    this.info.fecha = this.fechaActual;
+    this.info.hora = this.horaActual;
     const params = this.activateRoute.snapshot.params;
 
     if (params['id']) {
@@ -141,9 +147,6 @@ export class FormUisauComponent implements OnInit {
 
 
 
-
-
-
   }
 
 
@@ -163,13 +166,23 @@ export class FormUisauComponent implements OnInit {
         console.log('Consulta registrada con éxito', response);
         this.message = 'Consulta registrada con éxito';
         this.showAlertSuccess = true;
-        this.reloadPage();
+
+         setTimeout(() => {
+
+           this.regresar()
+        }, 2000); // 1000 ms = 1 segundo
+
       },
       (error) => {
         console.error('Error al crear consulta', error);
         this.message = 'Error al crear consulta';
         this.showAlertWarning = true;
-        this.reloadPage();
+
+        setTimeout(() => {
+          this.reloadPage();
+
+       }, 2000); // 1000 ms = 1 segundo
+
       }
     );
   }

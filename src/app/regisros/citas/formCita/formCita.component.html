@@ -39,7 +39,7 @@
 
           <div class="form-group  my-0 p-0">
             <label class="text-light" for="expediente">Expediente:</label>
-            <input type="text" class="form-control bg-primary bg-opacity-75 p-1" id="expediente" name="expediente" (change)="paciente_()"  [(ngModel)]='expediente'  >
+            <input type="number" class="form-control bg-primary bg-opacity-75 p-1" id="expediente" name="expediente" (change)="paciente_()"  [(ngModel)]='c.expediente'  >
           </div>
 
           <div class="container-fluid d-flex mt-1 bg-black bg-opacity-75 rounded">
@@ -67,7 +67,7 @@
 
           <div class="form-group mt-2">
             <label class="text-light" for="especialidad">Especialidad:</label>
-            <select id="especialidad" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.especialidad" name="especialidad" >
+            <select id="especialidad" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)="verResumen($event)" >
               <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
             </select>
           </div>
@@ -103,21 +103,22 @@
           <th class="text-center f-negritat">Fecha</th>
           <th class="text-center f-negrita">Día</th>
           <th class="text-center f-negrita">Citas para ese día</th>
+          <th class="text-center f-negrita">Citas Disponibles</th>
         </tr>
       </thead>
       <tbody>
         <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
         <tr *ngFor="let cita of resumen">
           <td class="text-center text-light ">{{ cita.especialidad | enumEspecialidad}}</td>
-          <td class="text-center text-light">{{ cita.dia | formatoFecha }}</td>
+          <td class="text-center text-light">{{ cita.dia| formatoFecha }}</td>
           <td class="text-center text-light">{{cita.dia | weekday  }}</td>
           <td class="text-center text-light">{{cita.total_citas}}</td>
+          <td class="text-center text-info">{{10 - cita.total_citas}}</td>
         </tr>
       </tbody>
         </table>
     </div>
     </div>
-
 
 
 </div>

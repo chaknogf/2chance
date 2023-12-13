@@ -10,7 +10,7 @@ import { UsersService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { PacientesService } from 'src/app/services/pacientes.service';
-import { Iuisau } from 'src/app/models/Iuisau';
+import { Iuisau, Iuisau_v } from 'src/app/models/Iuisau';
 import { UisauService } from 'src/app/services/uisau.service';
 
 
@@ -48,8 +48,8 @@ export class DetalleUisauComponent implements OnInit {
   public rutaAnterior: string = '../';
   public paciente: Ipaciente | undefined;
   public consulta: Iconcultas | any;
-  public resumen: Iuisau[] = [];
-  public infos_: Iuisau[] = [];
+  public resumen: Iuisau_v[] = [];
+  public infos_: Iuisau_v[] = [];
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
   public paginaActual: number = 1; // Página actual
@@ -57,7 +57,7 @@ export class DetalleUisauComponent implements OnInit {
 
   @Output() idConsulta = new EventEmitter<number>();
 
-  info: Iuisau = {
+  info: Iuisau_v = {
     id: 0,
     expediente: 0,
     nombres: '',
@@ -79,7 +79,13 @@ export class DetalleUisauComponent implements OnInit {
     estudios: '',
     evolucion: '',
     id_consulta: 0,
-    created_by: ''
+    created_by: '',
+    hora: '',
+    fecha_contacto: '',
+    hora_contacto: '',
+    update_by: '',
+    created_at: '',
+    update_at: ''
   }
 
 
@@ -105,13 +111,13 @@ export class DetalleUisauComponent implements OnInit {
           data => {
             this.infos_ = data;
             this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
-            console.log(data)
+            // console.table(this.resumen)
           })
             this.pt.getPaciente(this.consulta?.expediente)
               .subscribe(
                 dta => {
                   this.paciente = dta;
-                  console.log(dta, data)
+                  // console.table(dta, data)
 
               }
             )
@@ -139,20 +145,20 @@ export class DetalleUisauComponent implements OnInit {
   paginar() {
 
     const tamanoPagina = 5;
-    console.log(tamanoPagina)
+    // console.log(tamanoPagina)
     const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
-    console.log(indiceInicio)
+    // console.log(indiceInicio)
     const indiceFin = indiceInicio + tamanoPagina;
-    console.log(indiceFin)
+    // console.log(indiceFin)
     this.resumen = this.infos_.slice(indiceInicio, indiceFin);
-    console.log(this.infos_, this.resumen)
+    // console.log(this.infos_, this.resumen)
     // this.totalRegistros = this.resumen.length; // Agrega esta línea para actualizar el número total de registros por página
     // console.log(this.totalRegistros)
   }
 
   getPaginas(): number[] {
     const totalPaginas = this.totalPaginas();
-    console.log(totalPaginas)
+    // console.log(totalPaginas)
 
     // Verificar si totalPaginas es válido antes de crear el array
     if (totalPaginas <= 0) {

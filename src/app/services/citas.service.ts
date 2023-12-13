@@ -92,5 +92,9 @@ export class CitasService {
     return this.http.delete(this.urlapi + "/borrar/" + id+"?token="+this.token);
   }
 
+  getVigentes(especialidad: number): Observable<any> {
+    return this.http.get(this.urlapi + "/citasVigentes?especialidad=" + especialidad + "&token=" + this.token)
+  }
+
 
 }

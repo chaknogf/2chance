@@ -68,6 +68,7 @@ export class FormCitaComponent implements OnInit {
 
   ngOnInit() {
 
+
     this.c.created_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
     // const params = this.activateRoute.snapshot.params;
@@ -91,14 +92,16 @@ export class FormCitaComponent implements OnInit {
   }
 
   ngOnchages() {
-    this.paciente_()
+    this.paciente_();
+    this.c.expediente = this.expediente;
+    console.log(this.c.expediente)
 
   }
   crearCita(): void {
     this.CitasService.agendar(this.c).subscribe(
       (response) => {
 
-        console.log(response, this.c.expediente, this.c.cirugia_programada, this.c.created_by, this.c.especialidad, this.c.estado, this.c.fecha, this.c.name, this.c.nota, this.c.id)
+        console.table(this.c)
         // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta creada con éxito', response);
 
@@ -110,11 +113,12 @@ export class FormCitaComponent implements OnInit {
         this.router.navigate(['/citas'])
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
-          // this.reloadPage();
+          this.reloadPage();
         }, 2000); // 1000 ms = 1 segundo
       },
       (error) => {
         // Manejar errores aquí
+        console.table(this.c)
         console.error('Error!! al cita ya estaba registrada o se ha llegado al limite de citas', error);
 
         // Mostrar una alerta de error con estilo Bootstrap
@@ -125,7 +129,7 @@ export class FormCitaComponent implements OnInit {
 
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
-          // this.reloadPage();
+          this.reloadPage();
         }, 2000); // 1000 ms = 1 segundo
 
 
@@ -161,8 +165,9 @@ export class FormCitaComponent implements OnInit {
 
 
   verResumen(especiliadad: number) {
-    this.CitasService.getResumenCitas(especiliadad).subscribe(data => {
+    this.CitasService.getVigentes(especiliadad).subscribe(data => {
       this.resumen = data;
+      console.table(this.resumen)
     })
   }
 
@@ -192,7 +197,7 @@ export class FormCitaComponent implements OnInit {
 
   paciente_() {
 
-    this.pacientes.getPaciente(this.expediente).subscribe(data => {
+    this.pacientes.getPaciente(this.c.expediente).subscribe(data => {
       this.paciente = data;
       console.log(this.paciente?.nombre, this.paciente?.apellido,this.expediente)
     })

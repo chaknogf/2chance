@@ -67,129 +67,108 @@
   </div>
 
   <div class="border rounded p-1">
+
       <div class="row mt-2">
 
-        <div class="col-md-2  text-center">
-          <label  for="cama" class="form-label f-negrita">Cama</label>
-          <input id="cama" class="form-control bg-info bg-opacity-60 text-uppercase text-center" type="number" name="cama" [(ngModel)]="info.cama">
+        <div class="col-6 border-end">
+          <div class="row">
+            <div class="col-md-6  text-center mt-2">
+              <label for="estado" class=" f-negrita">Estado del Paciente</label>
+              <select id="estado" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.estado" name="estado" autofocus>
+                <option ></option>
+                <option *ngFor="let option of op.estado" [value]="option.value">{{option.label}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6  text-center mt-2">
+              <label for="situacion" class=" f-negrita">Situación</label>
+              <select id="situacion" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.situacion" (change)="mostrarRef()" name="situacion" autofocus>
+                <option></option>
+                <option *ngFor="let option of op.situacion" [value]="option.value">{{option.label}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-md-6  text-center mt-2" *ngIf="info.situacion == 1">
+              <label  for="cama" class=" f-negrita">Cama</label>
+              <input id="cama" class="form-control bg-info bg-opacity-60 text-uppercase text-center" type="number" name="cama" [(ngModel)]="info.cama">
+            </div>
+
+            <div class="col-md-6  text-center mt-2">
+              <label for="estadia" class=" f-negrita">Estadia</label>
+              <select id="estadia" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.estadia" name="estadia"  autofocus>
+                <option></option>
+                <option *ngFor="let option of op.estadia" [value]="option.value">{{option.label}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8  text-center mt-2" *ngIf="info.situacion == 4">
+              <label for="referencia" class=" f-negrita">Lugar de Referencia</label>
+              <select id="referencia" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.lugar_referencia" name="referencia" autofocus>
+                <option></option>
+                <option *ngFor="let option of refFiltrados" [value]="option.value">{{option.label}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-4  text-center mt-2" *ngIf="info.situacion == 4">
+              <label class=" f-negrita">Fecha de Referencia</label>
+              <input class="form-control bg-info bg-opacity-60 text-center" type="date" [max]="fechaActual" [min]="mindate"  name="fecha_ref" [(ngModel)]="info.fecha_referencia">
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6  text-center mt-2" *ngIf="info.situacion == 5">
+              <label for="especialidad" class=" f-negrita">Especialidad</label>
+              <select id="especialidad" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.especialidad" name="especialidad" autofocus>
+                <option></option>
+                <option *ngFor="let option of op.especialidad" [value]="option.value">{{option.label}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6  text-center mt-2" *ngIf="info.situacion == 5">
+              <label for="servicios" class=" f-negrita">Servicio</label>
+              <select id="servicios" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.servicio" name="servicio" autofocus>
+                <option></option>
+                <option *ngFor="let option of op.servicios" [value]="option.value">{{option.label}}</option>
+              </select>
+            </div>
+          </div>
+
+
+
+
         </div>
 
-        <div class="col-md-3  text-center">
-          <label for="estado" class="form-label f-negrita">Estado del Paciente</label>
-          <select id="estado" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.estado" name="estado" autofocus>
-            <option ></option>
-            <option *ngFor="let option of op.estado" [value]="option.value">{{option.label}}</option>
-          </select>
+        <div class="col-6">
+          <div class="col-md-12  text-center">
+            <label for="evolucion" class=" f-negrita">Evolución</label>
+            <textarea class="form-control bg-info bg-opacity-60 text-uppercase text-center text-center" name="evolicion" id="evolucion" [(ngModel)]="info.evolucion"></textarea>
+          </div>
+
+        <div class="row">
+          <div class="col-md-12  text-center">
+            <label class=" f-negrita">Estudios</label>
+            <textarea class="form-control bg-info bg-opacity-60 text-uppercase text-center text-center" name="estudios" id="estudios" [(ngModel)]="info.estudios"></textarea>
+          </div>
         </div>
 
-        <div class="col-md-4  text-center">
-          <label for="situacion" class="form-label f-negrita">Situación</label>
-          <select id="situacion" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.situacion" (change)="mostrarRef()" name="situacion" autofocus>
-            <option></option>
-            <option *ngFor="let option of op.situacion" [value]="option.value">{{option.label}}</option>
-          </select>
+        <div class="row">
+          <div class="col-md-12  text-center">
+            <label class=" f-negrita">Nota</label>
+            <textarea class="form-control bg-info bg-opacity-60 text-uppercase text-center text-center" name="nota" id="nota" [(ngModel)]="info.nota"></textarea>
+          </div>
         </div>
 
-        <div class="col-md-3  text-center">
-          <label for="estadia" class="form-label f-negrita">Estadia</label>
-          <select id="estadia" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.estadia" name="estadia"  autofocus>
-            <option></option>
-            <option *ngFor="let option of op.estadia" [value]="option.value">{{option.label}}</option>
-          </select>
         </div>
+
+
       </div>
 
 
-
-      <div class="row">
-
-        <div class="col-md-8  text-center">
-          <label for="referencia" class="form-label f-negrita">Lugar de Referencia</label>
-          <select id="referencia" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.lugar_referencia" name="referencia" autofocus>
-            <option></option>
-            <option *ngFor="let option of refFiltrados" [value]="option.value">{{option.label}}</option>
-          </select>
-        </div>
-
-        <div class="col-md-4  text-center">
-          <label class="form-label f-negrita">Fecha de Referencia</label>
-          <input class="form-control bg-info bg-opacity-60 text-center" type="date" [max]="fechaActual" [min]="mindate"  name="fecha_ref" [(ngModel)]="info.fecha_referencia">
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-md-6  text-center">
-          <label for="especialidad" class="form-label f-negrita">Especialidad</label>
-          <select id="especialidad" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.especialidad" name="especialidad" autofocus>
-            <option></option>
-            <option *ngFor="let option of op.especialidad" [value]="option.value">{{option.label}}</option>
-          </select>
-        </div>
-
-        <div class="col-md-6  text-center">
-          <label for="servicios" class="form-label f-negrita">Servicio</label>
-          <select id="servicios" class="form-control bg-info bg-opacity-60 text-uppercase text-center" [(ngModel)]="info.servicio" name="servicio" autofocus>
-            <option></option>
-            <option *ngFor="let option of op.servicios" [value]="option.value">{{option.label}}</option>
-          </select>
-        </div>
-      </div>
-
-
-      <div class="row">
-
-        <div class="col-md-12  text-center">
-          <label for="evolucion" class="form-label f-negrita">Evolución</label>
-          <textarea class="form-control bg-info bg-opacity-60 text-uppercase text-center text-center" name="evolicion" id="evolucion" [(ngModel)]="info.evolucion"></textarea>
-        </div>
-
-      <div class="row">
-        <div class="col-md-12  text-center">
-          <label class="form-label f-negrita">Estudios</label>
-          <textarea class="form-control bg-info bg-opacity-60 text-uppercase text-center text-center" name="estudios" id="estudios" [(ngModel)]="info.estudios"></textarea>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12  text-center">
-          <label class="form-label f-negrita">Nota</label>
-          <textarea class="form-control bg-info bg-opacity-60 text-uppercase text-center text-center" name="nota" id="nota" [(ngModel)]="info.nota"></textarea>
-        </div>
-      </div>
-
-      </div>
-
-      <div class="row">
-
-        <div class="col-md-3  text-center">
-          <label for="contacto" class="form-label f-negrita">Contacto</label>
-          <input class="form-control bg-info bg-opacity-60 text-uppercase text-center" type="text" name="contacto" id="contacto" [(ngModel)]="info.contacto" autocomplete="off">
-        </div>
-
-        <div class="col-md-3  text-center">
-          <label class="form-label f-negrita">Parentesco</label>
-          <select id="parentesco" class="form-control bg-info bg-opacity-60 text-upercase text-center" [(ngModel)]="info.parentesco" name="parentesco" autofocus>
-            <option></option>
-            <option *ngFor="let option of op.parentesco" [value]="option.value">{{option.label}}</option>
-          </select>
-        </div>
-
-        <div class="col-md-3  text-center">
-          <label class="form-label f-negrita">Telefono</label>
-          <input type="number" name="telefono" id="telefono" class="form-control bg-info bg-opacity-60 text-uppercase text-center text-center" [(ngModel)]="info.telefono" autocomplete="off">
-        </div>
-
-
-        <div class="col-md-3  text-center">
-          <label class="form-label f-negrita">Se informo?</label>
-          <select *ngIf="info.contacto" id="informacion" class="form-control bg-info bg-opacity-60 text-upercase text-center" [(ngModel)]="info.informacion" name="informacion" autofocus>
-            <option value="SI">SI</option>
-            <option value="NO">NO</option>
-          </select>
-        </div>
-
-      </div>
   </div>
 
 

@@ -72,6 +72,7 @@ import { FormRecepcionComponent } from './regisros/consultas/recepcion/formRecep
 import { RecienacidosComponent } from './regisros/pacientes/recienacidos/recienacidos.component';
 import { DateTimePipe } from './pipe/dateTime.pipe';
 import { ToastrModule } from 'ngx-toastr';
+import { EditUisauComponent } from './uisau/editUisau/editUisau.component';
 
 
 
@@ -158,6 +159,7 @@ import { ToastrModule } from 'ngx-toastr';
     RecepciónComponent,
     FormRecepcionComponent,
     RecienacidosComponent,
+    EditUisauComponent,
 
 
 
@@ -201,6 +203,7 @@ import { ToastrModule } from 'ngx-toastr';
       { path: 'consulta/view/:id', component: ReporteComponent, canActivate: [AuthGuard] },
       { path: 'uisau', component: TablaUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau', component: FormUisauComponent, canActivate: [AuthGuard] },
+      { path: 'contacto/:id', component: EditUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau/new/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'detalleUisau/:id', component: DetalleUisauComponent, canActivate: [AuthGuard] },
       { path: 'cie10', component: Tabcie10Component, canActivate: [AuthGuard] },

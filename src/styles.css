@@ -12948,3 +12948,17 @@ input, select {
   font-size: 13px;
 }
 
+
+.b-div {
+  /* Estilos predeterminados del div */
+  color: #fff;
+  background-color: #2c2c2f;
+  border-color:  #4d5154;
+
+  transition: background-color 0.3s;  /* Transición suave para el cambio de color */
+}
+
+.b-div:hover {
+  background-color: #23076b;  /* Color diferente al pasar el ratón sobre el div */
+  color: rgb(140, 224, 252)
+}

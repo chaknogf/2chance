@@ -150,7 +150,7 @@ export class UisauService {
   }
 
   editar(id: number, actualizar: Iuisau): Observable<any> {
-    return this.http.put(this.urlapi + '/uisauedit/' + id+"?token="+ this.token, actualizar);
+    return this.http.put(this.urlapi + '/uisauedit?id=' + id+"&token="+ this.token, actualizar);
   }
 
   eliminar(id: number): Observable<any> {
