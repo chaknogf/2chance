@@ -7,7 +7,7 @@ import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, tipo } from 'src/app/enums/enums';
 
-
+// Decorador Component para definir la estructura del componente
 @Component({
   selector: 'app-tablaUisau',
   templateUrl: './tablaUisau.component.html',
@@ -15,13 +15,16 @@ import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servici
 })
 export class TablaUisauComponent implements OnInit {
 
+  // Inyección de servicios en el constructor
   constructor(
     private ConsultasService: ConsultasService,
     private PageReloadService: PageReloadService
 
   ) { }
 
+  // Evento de salida para emitir el ID de la consulta seleccionada
   @Output() idConsulta = new EventEmitter<number>();
+  // Variables utilizadas en el componente
   public consultas: Iconcultas[] = [];
   public resumen: Iconcultas[] = [];
   public searchText: string = '';
@@ -82,7 +85,7 @@ export class TablaUisauComponent implements OnInit {
     created_by: null,
     medico: null
   }
-
+// Enumeraciones utilizadas en el componente
    e: Ienum = {
     municipio: municipio,
     nation: nation,
@@ -98,6 +101,7 @@ export class TablaUisauComponent implements OnInit {
     tipo: tipo
   }
 
+  // Método que se ejecuta al inicializar el componente
   ngOnInit() {
     this.consult()
     // Obtiene la fecha actual en el formato YYYY-MM-DD
@@ -107,7 +111,7 @@ export class TablaUisauComponent implements OnInit {
   }
 
 
-
+// Método para obtener consultas del servicio
   consult() {
     const filters = {
 
@@ -119,6 +123,7 @@ export class TablaUisauComponent implements OnInit {
 
     };
 
+    // Llama al servicio para obtener consultas
     this.porcentajeDeProgreso = 0.5;
     this.ConsultasService.filterConsultas(filters).subscribe(data => {
       this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
@@ -133,6 +138,7 @@ export class TablaUisauComponent implements OnInit {
     });
   }
 
+  // Método para ordenar la tabla por una columna específica
   sortTable(column: keyof Iconcultas) {
     if (this.sortColumn === column) {
       this.ascendingOrder = !this.ascendingOrder;
@@ -153,7 +159,7 @@ export class TablaUisauComponent implements OnInit {
     });
   }
 
-
+// Métodos para manejar la paginación
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
     this.paginar();
@@ -183,6 +189,7 @@ export class TablaUisauComponent implements OnInit {
 
   }
 
+  // Método para filtrar consultas
   filtro() {
     // Recopila los valores de entrada del formulario
     const filters = {
@@ -208,6 +215,7 @@ export class TablaUisauComponent implements OnInit {
 
   }
 
+  // Método para limpiar los campos de búsqueda
 
   limpiarInput() {
     this.expedienteBuscar = ''; // Limpia el contenido del input
@@ -220,7 +228,7 @@ export class TablaUisauComponent implements OnInit {
      // Obtén todos los pacientes nuevamente
   }
 
-
+// Método para eliminar una consulta
   eliminar(id: number) {
     this.ConsultasService.eliminar(id)
       .subscribe(data => {
@@ -230,7 +238,7 @@ export class TablaUisauComponent implements OnInit {
       })
   }
 
-
+// Método para copiar el ID de una consulta
   copiarId(id: number) {
     this.idConsulta.emit(id);
     this.idCopiado = id;
@@ -238,6 +246,7 @@ export class TablaUisauComponent implements OnInit {
     console.log(id, this.idCopiado)
   }
 
+   // Método para recargar la página
   reloadPage() {
     // Llama al servicio para recargar la página
     this.PageReloadService.reloadPage();

@@ -1,7 +1,8 @@
+// Importa los módulos y servicios necesarios
 import { FechaService } from './../../services/fecha.service';
 import { PageReloadService } from './../../services/PageReload.service';
 import { Component, OnInit } from '@angular/core';
-import { parents, servicio, servicios, estado, estadia, referencia, situacion  } from 'src/app/enums/enums';
+import { parents, servicio, servicios, estado, estadia, referencia, situacion } from 'src/app/enums/enums';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UsersService } from 'src/app/services/user.service';
@@ -11,6 +12,7 @@ import { UisauService } from 'src/app/services/uisau.service';
 import { uisauEnum } from 'src/app/models/Ienum';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
+
 @Component({
   selector: 'app-formUisau',
   templateUrl: './formUisau.component.html',
@@ -18,6 +20,7 @@ import { Iconcultas } from 'src/app/models/Iconsultas';
 })
 export class FormUisauComponent implements OnInit {
 
+  // Inyección de servicios en el constructor
   constructor(
     private activateRoute: ActivatedRoute,
     private Fecha: FechaService,
@@ -25,8 +28,10 @@ export class FormUisauComponent implements OnInit {
     private _location: Location,
     private user: UsersService,
     private au: UisauService,
-    private consultas: ConsultasService  ) { }
+    private consultas: ConsultasService
+  ) { }
 
+  // Variables y propiedades del componente
   public username = this.user.getUsernameLocally();
   public resumen: Iuisau[] = [];
   public maxdate: string = '';
@@ -36,12 +41,12 @@ export class FormUisauComponent implements OnInit {
   public registro: string = this.Fecha.registroTiempo();
   public idCopiado: number = 0;
   private new: boolean = false;
-  private consu: Iconcultas | any
+  private consu: Iconcultas | any;
   public message: string = '';
   showAlertSuccess = false;
   showAlertWarning = false;
 
-
+  // Modelo para la información de la consulta
   info: Iuisau = {
     id: 0,
     expediente: null,
@@ -69,8 +74,9 @@ export class FormUisauComponent implements OnInit {
     fecha_contacto: null,
     hora_contacto: null,
     update_by: null
-  }
+  };
 
+  // Modelo para la consulta inicial
   c: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
@@ -105,8 +111,9 @@ export class FormUisauComponent implements OnInit {
     created_at: null,
     updated_at: null,
     created_by: null
-  }
+  };
 
+  // Opciones enumeradas para formularios
   op: uisauEnum = {
     estadia: estadia,
     situacion: situacion,
@@ -115,28 +122,32 @@ export class FormUisauComponent implements OnInit {
     especialidad: servicio,
     parentesco: parents,
     servicios: servicios
-  }
+  };
 
   ngOnInit() {
+    // Configuración de fechas
     this.maxdate = this.Fecha.FechaActual();
-
     this.info.created_by = this.username;
     this.info.fecha = this.fechaActual;
     this.info.hora = this.horaActual;
+
+    // Obtiene los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
+    // Verifica si es una nueva consulta o una consulta existente
     if (params['id']) {
       this.info.id_consulta = params['id'];
       this.new = true;
 
+      // Obtiene los detalles de la consulta existente
       this.consultas.Consulta(params['id']).subscribe(
         data => {
           this.consu = data;
           this.c = data;
           this.mindate = this.c.fecha_consulta;
-          this.info.nombres = this.c.nombres
-          this.info.apellidos = this.c.apellidos
-          this.info.expediente = this.c.expediente
+          this.info.nombres = this.c.nombres;
+          this.info.apellidos = this.c.apellidos;
+          this.info.expediente = this.c.expediente;
           this.info.telefono = this.c.telefono ? parseInt(this.c.telefono, 10) : null;
           this.info.contacto = this.c.acompa;
           this.info.parentesco = this.c.parente;
@@ -144,22 +155,20 @@ export class FormUisauComponent implements OnInit {
           this.info.servicio = this.c.servicio;
         });
     }
-
-
-
   }
 
-
-  regresar(){
+  // Método para regresar a la página anterior
+  regresar() {
     this._location.back();
-
   }
 
+  // Método para cerrar las alertas
   closeAlert(): void {
     this.showAlertSuccess = false;
     this.showAlertWarning = false;
   }
 
+  // Método para registrar una nueva consulta
   registrar(): void {
     this.au.crear(this.info).subscribe(
       (response) => {
@@ -167,50 +176,40 @@ export class FormUisauComponent implements OnInit {
         this.message = 'Consulta registrada con éxito';
         this.showAlertSuccess = true;
 
-         setTimeout(() => {
-
-           this.regresar()
+        // Redirecciona después de 2 segundos
+        setTimeout(() => {
+          this.regresar();
         }, 2000); // 1000 ms = 1 segundo
-
       },
       (error) => {
         console.error('Error al crear consulta', error);
         this.message = 'Error al crear consulta';
         this.showAlertWarning = true;
 
+        // Recarga la página después de 2 segundos en caso de error
         setTimeout(() => {
           this.reloadPage();
-
-       }, 2000); // 1000 ms = 1 segundo
-
+        }, 2000); // 1000 ms = 1 segundo
       }
     );
   }
 
-
-
+  // Método para recargar la página
   reloadPage() {
-    // Llama al servicio para recargar la página
     this.PageReloadService.reloadPage();
-
   }
 
-
-  refFiltrados: any[] = []; // Lista de municipios filtrados
+  // Lista de municipios filtrados para referencia
+  refFiltrados: any[] = [];
   ref: number = 0;
 
+  // Método para mostrar referencias según la situación
   mostrarRef() {
     if (this.info.situacion == 4) {
       this.refFiltrados = this.op.referencia;
-      console.log(this.refFiltrados, this.info.situacion)
+      console.log(this.refFiltrados, this.info.situacion);
     } else {
-      this.refFiltrados = []
+      this.refFiltrados = [];
     }
   }
-
-
-
-
-
 }
-

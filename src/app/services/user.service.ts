@@ -11,6 +11,8 @@ import { CookieService } from "ngx-cookie-service";
 })
 export class UsersService {
 
+  private inactivityTimeout: any;
+  private readonly inactivityTime = 900000; // 15 minutos en milisegundos
 
   private tokenKey = 'auth_token';
   private userlog = 'username';
@@ -28,6 +30,8 @@ export class UsersService {
     //  window.addEventListener('beforeunload', () => {
     //   this.clearLocalStorageOnExit();
     // });
+    this.initInactivityDetection();
+    this.initUnloadDetection();
   }
 
 
@@ -102,6 +106,33 @@ export class UsersService {
     // Lógica para borrar el Local Storage al cerrar la ventana del navegador
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userlog);
+  }
+
+  private initInactivityDetection(): void {
+    document.addEventListener('mousemove', this.resetInactivityTimer.bind(this));
+    document.addEventListener('keydown', this.resetInactivityTimer.bind(this));
+
+    this.inactivityTimeout = setTimeout(() => {
+      // Aquí puedes ejecutar acciones cuando ha pasado el tiempo de inactividad
+      this.logout();
+      console.log('Tiempo de inactividad detectado');
+    }, this.inactivityTime);
+  }
+
+  private resetInactivityTimer(): void {
+    clearTimeout(this.inactivityTimeout);
+    this.inactivityTimeout = setTimeout(() => {
+      // Aquí puedes ejecutar acciones cuando ha pasado el tiempo de inactividad
+      this.logout();
+      console.log('Tiempo de inactividad detectado');
+    }, this.inactivityTime);
+  }
+
+  private initUnloadDetection(): void {
+    window.addEventListener('unload', () => {
+      // Acciones a realizar al cerrar la ventana
+      this.logout();
+    });
   }
 
   // Otras solicitudes protegidas por autenticación
