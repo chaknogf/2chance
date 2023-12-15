@@ -73,6 +73,9 @@ import { RecienacidosComponent } from './regisros/pacientes/recienacidos/reciena
 import { DateTimePipe } from './pipe/dateTime.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { EditUisauComponent } from './uisau/editUisau/editUisau.component';
+import { Report_uisauComponent } from './uisau/report_uisau/report_uisau.component';
+import { Report_estdComponent } from './estadistica/report_estd/report_estd.component';
+import { Report_rmComponent } from './regisros/report_rm/report_rm.component';
 
 
 
@@ -160,6 +163,9 @@ import { EditUisauComponent } from './uisau/editUisau/editUisau.component';
     FormRecepcionComponent,
     RecienacidosComponent,
     EditUisauComponent,
+    Report_uisauComponent,
+    Report_estdComponent,
+    Report_rmComponent
 
 
 
@@ -214,7 +220,10 @@ import { EditUisauComponent } from './uisau/editUisau/editUisau.component';
       { path: 'coexreport', component: ReporteCoexComponent, canActivate: [AuthGuard] },
       { path: 'recepciones', component: RecepciónComponent, canActivate: [AuthGuard] },
       { path: 'recept/:id', component: FormRecepcionComponent, canActivate: [AuthGuard]},
-      { path: 'rn/:id', component: RecienacidosComponent, canActivate: [AuthGuard]},
+      { path: 'rn/:id', component: RecienacidosComponent, canActivate: [AuthGuard] },
+      { path: 'reportrm', component: Report_rmComponent, canActivate: [AuthGuard] },
+      { path: 'reportuisau', component: Report_uisauComponent, canActivate: [AuthGuard] },
+      { path: 'reportstd', component: Report_estdComponent, canActivate: [AuthGuard] },
 
 
 

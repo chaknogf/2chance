@@ -71,8 +71,8 @@ export class RecienacidosComponent implements OnInit {
     created_by: '',
     fechaDefuncion: "",
     municipio: 0,
-    created_at: "",
-    update_at: "",
+    created_at: null,
+    update_at: null,
     depto: 0
   };
 
@@ -213,11 +213,13 @@ export class RecienacidosComponent implements OnInit {
   }
 
   crear() {
+    console.table(this.rn)
     this.PacientesService.crearPaciente(this.rn)
       .subscribe(data => {
         this.rn = data;
         this.regresar();
         console.log(data);
+        console.table(data)
     })
   }
 

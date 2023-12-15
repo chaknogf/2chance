@@ -1,5 +1,3 @@
-import { tipo } from './../enums/enums';
-import { FechaService } from 'src/app/services/fecha.service';
 import { Injectable } from '@angular/core';
 import { Iconcultas } from '../models/Iconsultas';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -17,7 +15,6 @@ export class ConsultasService {
   private urlapi = environment.apiUrl;
   constructor(
     private http: HttpClient,
-    private FechaService: FechaService,
     private auth: UsersService
   ) { }
 

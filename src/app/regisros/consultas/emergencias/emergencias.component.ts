@@ -59,17 +59,17 @@ export class EmergenciasComponent implements OnInit {
 
   emergencia: Iconcultas = {
     id: 0,
-    hoja_emergencia: null,
+    hoja_emergencia: this.tuNumero.toString(),
     expediente: null,
-    fecha_consulta: null,
-    hora: null,
-    nombres: null,
-    apellidos: null,
+    fecha_consulta: this.fechaActual,
+    hora: this.horaActual,
+    nombres: '',
+    apellidos: '',
     nacimiento: new Date(),
     edad: `${this.edadA} años ${this.edadMeses} meses ${this.edadDias} dias`,
     sexo: null,
-    dpi: null,
-    direccion: null,
+    dpi: '',
+    direccion: '',
     acompa: null,
     parente: null,
     telefono: null,
@@ -112,6 +112,7 @@ export class EmergenciasComponent implements OnInit {
   ngOnInit() {
     this.emergencia.created_by = this.username;
     this.emergencia.hoja_emergencia = this.tuNumero.toString();
+    console.table(this.emergencia)
 
 // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
@@ -168,6 +169,7 @@ export class EmergenciasComponent implements OnInit {
   registrarEmergencia(): void {
     this.ConsultasService.registrar(this.emergencia)
       .subscribe((response) => {
+        console.table(this.emergencia,response)
         // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta registrada con éxito', response);
 
@@ -180,12 +182,13 @@ export class EmergenciasComponent implements OnInit {
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
           this.reloadPage();
+          console.table(this.emergencia)
         }, 2000); // 1000 ms = 1 segundo
       },
         (error) => {
           // Manejar errores aquí
           console.error('Error al crear consulta', error);
-
+          console.table(this.emergencia,error)
           // Mostrar una alerta de error con estilo Bootstrap
           const alertDiv = document.createElement('div');
           alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
@@ -214,12 +217,12 @@ export class EmergenciasComponent implements OnInit {
     this.emergencia.telefono = formattedValue;
   }
 
-  formatDPI(inputValue: string) {
-    const numericAndSpaceValue = inputValue.replace(/[^\d\s]/g, '');
-    const formattedValue = numericAndSpaceValue.replace(/(\d{4})(?=\d)/g, '$1 ');
-    this.emergencia.telefono = formattedValue;
+  // formatDPI(inputValue: string): void {
+  //   const numericAndSpaceValue = inputValue.replace(/[^\d\s]/g, '');
+  //   const formattedValue = numericAndSpaceValue.replace(/(\d{4})(?=\d)/g, '$1 ');
+  //   this.emergencia.telefono = formattedValue;
 
-  }
+  // }
 
   editar() {
     // Editar el paciente existente

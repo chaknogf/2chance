@@ -18,7 +18,7 @@
         <div class="card-body">
         <div class="form-group">
           <label for="hoja_emergencia" class="text-light">Hoja de Emeregncia:</label>
-          <input type="number" class="form-control bg-dark text-uppercase" id="hoja_emergencia" name="hoja_emergencia" [(ngModel)]="tuNumero">
+          <input type="text" class="form-control bg-dark text-uppercase" id="hoja_emergencia" name="hoja_emergencia" [(ngModel)]="emergencia.hoja_emergencia">
         </div>
 
         <div class="form-group d-flex mt-3 align-items-center">
@@ -79,7 +79,7 @@
 
         <div class="form-group mt-3">
           <label class="text-light" for="DPI/CUI de paciente">DPI/CUI:</label>
-          <input type="text" class="form-control bg-dark text-uppercase" id="dpi" name="dpi" placeholder="DPI/CUI" [(ngModel)]="emergencia.dpi" appDpi >
+          <input type="text" class="form-control bg-dark " id="dpi" name="dpi" placeholder="DPI/CUI" [(ngModel)]="emergencia.dpi"  >
           <span></span>
         </div>
 
@@ -147,7 +147,7 @@
       (nacimiento)="emergencia.nacimiento= $event"
       (nombre)="emergencia.nombres= $event"
       (sexo)="emergencia.sexo= $event"
-      (dpi)="emergencia.dpi= $event"
+      (dpi)="emergencia.dpi = $event.toString()"
 
 
        ></tabEmerExp>

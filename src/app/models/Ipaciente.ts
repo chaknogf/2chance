@@ -24,8 +24,8 @@ export interface Ipaciente {
   idioma: number;
   ocupacion: string;
   direccion: string;
-  municipio: number;
-  depto: number;
+  municipio: number | null;
+  depto: number | null;
   telefono: string;
   email: string;
   padre: string;
@@ -38,8 +38,8 @@ export interface Ipaciente {
   exp_madre: number;
   created_by: string;
   fechaDefuncion: string | Date;
-  created_at: string;
-  update_at: string;
+  created_at: string | null;
+  update_at: string | null;
 
 
 }

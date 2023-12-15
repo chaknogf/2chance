@@ -35,6 +35,7 @@ export class BuscarComponent implements OnInit {
         const id = +idParam;
         this.pacientesService.getIdPaciente(id).subscribe(data => {
           this.patient = data;
+          console.table(this.patient, data)
           this.detalleVisible = true;
         });
       }
