@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   showNavbar: boolean = true;
 
   // Título de la aplicación
-  title = '2chance';
+  title = 'webSystem';
 
   // Constructor del componente con inyección de dependencias
   constructor(private router: Router) {}
