@@ -139,7 +139,7 @@ export class RecienacidosComponent implements OnInit {
 
     // Verificar si se proporcionó un ID de paciente
     if (params['id']) {
-      this.PacientesService.getIdPaciente(params['id'])
+      this.PacientesService.getPaciente(params['id'])
         .subscribe(
           data => {
             this.madre = data;
@@ -151,23 +151,26 @@ export class RecienacidosComponent implements OnInit {
     }
   }
 
+  OnChange() {
+   this.nombreDeRN()
 
-
+  }
+  opcionesSexo = [
+    { valor: 'M', label: 'Masculino' },
+    { valor: 'F', label: 'Femenino' }
+  ];
 
   nombreDeRN() {
-    if (this.rn.sexo === 'M') {
-      this.nombreBebe = 'HIJO DE '
-      this.rn.nombre = this.nombreBebe + this.madre?.nombre;
+    console.log(this.rn.sexo);
 
-    }
-    else {
-      this.nombreBebe = 'HIJA DE '
-      this.rn.nombre = this.nombreBebe + this.madre?.nombre;
+    this.nombreBebe = this.rn.sexo === 'M' ? 'HIJO DE ' : 'HIJA DE ';
+    this.rn.nombre = this.nombreBebe + this.madre?.nombre;
 
-    }
-    this.copiarDatosMadre()
-    console.log(this.rn.sexo, this.nombreBebe,this.rn.nombre)
+    this.copiarDatosMadre();
+
+    console.log(this.rn.sexo, this.nombreBebe, this.rn.nombre);
   }
+
 
 
   regresar(){

@@ -162,7 +162,7 @@
               <div class="form-group">
                 <label for="especialidad">Especialidad:</label>
                 <select id="especialidad" class="form-control" [(ngModel)]="coex.especialidad" name="especialidad" >
-                  <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
+                  <option class="bg-dark" *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
                 </select>
               </div>
 

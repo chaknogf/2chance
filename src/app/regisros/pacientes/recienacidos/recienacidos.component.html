@@ -35,9 +35,8 @@
 
       <div class="col-md-4">
         <label class="form-label">Sexo del Recien Nacido</label>
-        <select class="form-control text-uppercase" name="sexo" (ngModelChange)="nombreDeRN()" [(ngModel)]="rn.sexo">
-          <option value="M">Masculino</option>
-          <option value="F">Femenino</option>
+        <select class="form-control text-uppercase bg-primary" name="sexo" (click)="nombreDeRN()" [(ngModel)]="rn.sexo">
+          <option *ngFor="let opcion of opcionesSexo" [value]="opcion.valor">{{ opcion.label }}</option>
         </select>
       </div>
 

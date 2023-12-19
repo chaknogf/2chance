@@ -37,7 +37,7 @@ export class PacientesService {
   }
 
   getExpe(exp: number): Observable<any> {
-    return this.http.get(this.urlapi + "/paciente/" + exp);
+    return this.http.get(this.urlapi + "/paciente/" + exp );
   }
 
 
