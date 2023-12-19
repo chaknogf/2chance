@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "2chance:build:production"
+              "buildTarget": "2chance:build:production"
             },
             "development": {
-              "browserTarget": "2chance:build:development"
+              "buildTarget": "2chance:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "2chance:build"
+            "buildTarget": "2chance:build"
           }
         },
         "test": {
