@@ -30,8 +30,8 @@ export class UsersService {
     //  window.addEventListener('beforeunload', () => {
     //   this.clearLocalStorageOnExit();
     // });
-    this.initInactivityDetection();
-    this.initUnloadDetection();
+    //this.initInactivityDetection();
+    //this.initUnloadDetection();
   }
 
 
@@ -131,7 +131,8 @@ export class UsersService {
   private initUnloadDetection(): void {
     window.addEventListener('unload', () => {
       // Acciones a realizar al cerrar la ventana
-      this.logout();
+      console.log('se cerro ventana')
+      //this.logout();
     });
   }
 

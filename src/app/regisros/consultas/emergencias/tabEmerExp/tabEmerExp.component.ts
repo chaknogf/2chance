@@ -125,6 +125,7 @@ export class TabEmerExpComponent implements OnInit {
           data => {
             this.emergencia = data;
             this.new = true;
+            console.table(data)
           },
           error => console.log(error)
         )

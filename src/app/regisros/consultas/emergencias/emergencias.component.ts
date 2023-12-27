@@ -55,6 +55,7 @@ export class EmergenciasComponent implements OnInit {
   public maxdate: string = '';
   edit: boolean = false;
   public tuNumero: any = 0;
+  public fechaEgreso: string = this.FechaService.FechaActual();
 
 
   emergencia: Iconcultas = {
@@ -233,5 +234,11 @@ export class EmergenciasComponent implements OnInit {
       })
   }
 
+  archivar(){
+    this.emergencia.archived_by = this.username;
+    this.emergencia.fecha_recepcion = this.fechaRecepcion;
+    this.emergencia.fecha_egreso = this.fechaEgreso;
+    this.emergencia.status = 2
+  }
 
 }

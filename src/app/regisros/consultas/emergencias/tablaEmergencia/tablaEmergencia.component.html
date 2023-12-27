@@ -25,6 +25,17 @@
 
   </div>
 
+  <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
+    
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
+         role="progressbar"
+         [style.width.%]="porcentajeDeProgreso"
+         [attr.aria-valuenow]="porcentajeDeProgreso"
+         aria-valuemin="0"
+         aria-valuemax="100">
+     <strong class="">C o m p l e t a d o</strong>
+    </div>
+  </div>
 
 <div class="d-5 mt-2">
   <table class="table table-hover table-black font-monospace" >
@@ -65,7 +76,7 @@
     </tbody>
       </table>
   </div>
-
+  <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
 
  <!-- Paginación -->
     <div class="d-flex justify-content-center pagination mt-3">

@@ -37,6 +37,7 @@ export class TablaEmergenciaComponent implements OnInit {
   public idBuscar: any = '';
   public fechaEgreso: any = '';
   public tipoConsulta: any = 3;
+  public porcentajeDeProgreso: number = 0; // Variable para el progreso
 
 
 
@@ -51,14 +52,21 @@ export class TablaEmergenciaComponent implements OnInit {
 
 
   emergencias() {
+    this.porcentajeDeProgreso = 0.5;
     this.ConsultasService.consulTipo(3)
       .subscribe(data => {
-        this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+        this.porcentajeDeProgreso = 75;
+        this.resumen = data.sort((a: { id: number }, b: { id: number }): number => b.id - a.id);
         this.consultas = data;
-        console.log(this.consultas);
-    })
+        this.paginar();
+        this.porcentajeDeProgreso = 100;
+        setTimeout(() => {  // Añade los paréntesis aquí
+          this.porcentajeDeProgreso = -1;
+        }, 1000);
+        // console.log(this.consultas);
+      });
   }
-
+  
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
     this.paginar();

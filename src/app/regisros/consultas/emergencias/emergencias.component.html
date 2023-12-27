@@ -79,11 +79,11 @@
 
         <div class="form-group mt-3">
           <label class="text-light" for="DPI/CUI de paciente">DPI/CUI:</label>
-          <input type="text" class="form-control bg-dark " id="dpi" name="dpi" placeholder="DPI/CUI" [(ngModel)]="emergencia.dpi"  >
+          <input type="text" class="form-control bg-dark " id="dpi" name="dpi" placeholder="DPI/CUI sin espacios" [(ngModel)]="emergencia.dpi"  >
           <span></span>
         </div>
 
-        <div class="form-group mt-3">
+        <div class="form-group mt-3">                                                                                                                 
           <label class="text-light" for="direccion">Dirección:</label>
           <input type="text" class="form-control bg-dark text-uppercase" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="emergencia.direccion" >
           <span></span>
@@ -114,8 +114,15 @@
           <span></span>
         </div>
 
+        <div *ngIf="emergencia.status == 2">
+          <input type="text" name="status" id="status" class="f-negrita" value="Archivado" disabled="">
+        </div>
+        
       </div>
       <div class="d-flex justify-content-center mx-4 ml-3 align-items-center py-3 px-2">
+        <div>
+          <button class="btnS border-light rounded w-auto p-1 mx-1" (click)="archivar()">Archivar</button>
+        </div>
         <div>
           <button type="submit" class="btnS border-success rounded w-auto p-1 bg-black" (click)="edit ? editar() :registrarEmergencia()">Guardar</button>
         </div>
