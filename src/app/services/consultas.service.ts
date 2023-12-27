@@ -54,6 +54,10 @@ export class ConsultasService {
     return this.http.get(this.urlapi + '/consult/?tipo=' + tipo + "&token="+this.token)
   }
 
+  emergencias(): Observable<any> {
+    return this.http.get(this.urlapi + '/emerg/?token=' + this.token)
+  }
+
   expediente(exp: number): Observable<any> {
     return this.http.get(this.urlapi + '/exp/' + exp)
   }

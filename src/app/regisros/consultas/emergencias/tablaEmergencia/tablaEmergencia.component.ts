@@ -53,7 +53,8 @@ export class TablaEmergenciaComponent implements OnInit {
 
   emergencias() {
     this.porcentajeDeProgreso = 0.5;
-    this.ConsultasService.consulTipo(3)
+   // this.ConsultasService.consulTipo(3)
+    this.ConsultasService.emergencias()
       .subscribe(data => {
         this.porcentajeDeProgreso = 75;
         this.resumen = data.sort((a: { id: number }, b: { id: number }): number => b.id - a.id);
