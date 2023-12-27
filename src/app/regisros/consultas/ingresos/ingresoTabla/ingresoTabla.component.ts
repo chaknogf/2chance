@@ -38,6 +38,7 @@ export class IngresoTablaComponent implements OnInit {
   public selectdate: string = '';
   public maxdate: string = '';
   public idCopiado: number = 0;
+  public idBuscar: number = 0;
 
 
   ingreso: Iconcultas = {
@@ -134,51 +135,30 @@ export class IngresoTablaComponent implements OnInit {
     return Math.ceil(this.consultas.length / this.totalRegistros);
 
   }
-
+ 
   filtro() {
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      id: this.idBuscar,
+      hoja: this.hojaBuscar,
+      expediente: this.expedienteBuscar,
+      fecha_consulta: this.fechaBuscar,
+      nombres: this.nombreBuscar,
+      apellidos: this.apellidoBuscar,
+      dpi: this.dpiBuscar,
+      
+      tipo_consulta: 2,
+    };
 
-    if (this.hojaBuscar !="") {
-      this.ConsultasService.hoja(this.hojaBuscar).subscribe(data => {
-        if (data) {
-          this.actualizar([data]);
-          this.resumen.push(data);
-        }
-      });
-    }
+    this.ConsultasService.filterConsultas(filters).subscribe((result) => {
+      this.resumen = result;
+      this.consultas = result;
+    });
 
-    if (this.expedienteBuscar) {
-      this.ConsultasService.expediente(this.expedienteBuscar).subscribe(data => {
-        if (data) {
-          this.actualizar([data]);
-          this.resumen.push(data);
-        }
-      });
-    }
 
-    if (this.dpiBuscar) {
-      this.ConsultasService.dpi(this.dpiBuscar).subscribe(data => {
-        if (data) {
-          this.actualizar([data]);
-        }
-      });
-    }
 
-    if (this.fechaBuscar) {
-      this.ConsultasService.tipoConsulta(this.fechaBuscar, 3).subscribe(data => {
-        if (data && data.length > 0) {
-          this.actualizar(data);
-        }
-      });
-    }
-
-    if (this.nombreBuscar || this.apellidoBuscar) {
-      this.ConsultasService.nombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-        if (data && data.length > 0) {
-          this.actualizar(data);
-        }
-      });
-    }
   }
+
 
 
 

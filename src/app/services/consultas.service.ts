@@ -59,7 +59,7 @@ export class ConsultasService {
   }
 
   expediente(exp: number): Observable<any> {
-    return this.http.get(this.urlapi + '/exp/' + exp)
+    return this.http.get(this.urlapi + '/exp/' + exp + '?token=' + this.token)
   }
 
   nombre(nombre: string, apellido: string): Observable<any> {
