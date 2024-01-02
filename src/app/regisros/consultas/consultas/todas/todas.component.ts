@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from '../../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
+import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, tipo } from 'src/app/enums/enums';
 
 @Component({
   selector: 'todas',
@@ -13,6 +13,7 @@ import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servici
   styleUrls: ['./todas.component.css']
 })
 export class TodasComponent implements OnInit {
+[x: string]: any;
 
   constructor(
     private ConsultasService: ConsultasService,
@@ -46,6 +47,8 @@ export class TodasComponent implements OnInit {
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
+  public tipoBuscar: string = '';
+  public statusBuscar: any = '';
 
 
 
@@ -97,6 +100,9 @@ export class TodasComponent implements OnInit {
     servicio: servicio
   }
 
+  enums: OtrosEnums = {
+    tipo: tipo
+  }
   ngOnInit() {
     this.consult()
     // Obtiene la fecha actual en el formato YYYY-MM-DD
@@ -182,6 +188,8 @@ export class TodasComponent implements OnInit {
       apellidos: this.apellidoBuscar,
       dpi: this.dpiBuscar,
       fecha_egreso: this.fechaEgreso,
+      tipo_consulta: this.tipoBuscar,
+      status: this.statusBuscar,
     };
 
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {

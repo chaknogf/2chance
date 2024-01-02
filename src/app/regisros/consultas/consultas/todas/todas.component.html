@@ -9,6 +9,10 @@
   <div class="justify-content-between">
     <form class="d-flex justify-content-between align-items-center" autocomplete="off">
       <input type="number" class="form-control bg-opacity-75  text-center" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
+     <select id="especialidad" class="form-control bg-primary" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+        <option value="" disabled selected hidden>Tipo Consulta</option>
+        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+      </select>
       <input type="number" class="form-control bg-opacity-75  text-center" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
       <input type="number" class="form-control text-capitalize mx-1 text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
       <input type="date" class="form-control text-capitalize mx-1" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />

@@ -161,7 +161,7 @@
 
               <div class="form-group">
                 <label for="especialidad">Especialidad:</label>
-                <select id="especialidad" class="form-control" [(ngModel)]="ingreso.especialidad" name="especialidad" >
+                <select id="especialidad" class="form-control bg-primary" [(ngModel)]="ingreso.especialidad" name="especialidad" >
                   <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
                 </select>
               </div>
@@ -169,7 +169,7 @@
 
               <div class="form-group">
                 <label for="especialidad">Servicio:</label>
-                <select id="especialidad" class="form-control" [(ngModel)]="ingreso.servicio" name="servicios" >
+                <select id="especialidad" class="form-control bg-primary" [(ngModel)]="ingreso.servicio" name="servicios" >
                   <option *ngFor="let option of e.servicios" [value]="option.value">{{ option.label }}</option>
                 </select>
               </div>

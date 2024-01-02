@@ -67,7 +67,7 @@ export class TablaEmergenciaComponent implements OnInit {
         // console.log(this.consultas);
       });
   }
-  
+
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
     this.paginar();
@@ -101,7 +101,7 @@ export class TablaEmergenciaComponent implements OnInit {
     // Recopila los valores de entrada del formulario
     const filters = {
       id: this.idBuscar,
-      hoja: this.hojaBuscar,
+      hoja_emergencia: this.hojaBuscar,
       expediente: this.expedienteBuscar,
       fecha_consulta: this.fechaBuscar,
       nombres: this.nombreBuscar,

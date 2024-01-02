@@ -27,7 +27,12 @@
           <strong class="h5 me-3">Fecha de Consulta:</strong> {{consult?.fecha_consulta | anyToText | formatoFecha}}<br>
           <strong class="h5 me-3">Hora:</strong> {{consult?.hora}}<br>
           <strong class="h5 me-3">Status:</strong> {{consult?.status | anyToNumber | enumStatus}}<br>
-
+          <strong class="h5 me-3">Folios:</strong> {{consult?.folios}}<br>
+          <hr>
+          <strong class="h5 me-3">Diagnostico:</strong> {{consult?.dx}}<br>
+          <strong class="h5 me-3">Controles Prematales:</strong> {{consult?.prenatal}}<br>
+          <strong class="h5 me-3">Lactancia Materna:</strong> {{consult?.lactancia}}<br>
+          <strong class="h5 me-3">Medico que da Egreso:</strong> {{consult?.medico}}<br>
           <hr>
           <strong class="h5 me-3">Nombres:</strong> {{consult?.nombres | anyToText | capitalizeName}}<br>
           <strong class="h5 me-3">Apellidos:</strong> {{consult?.apellidos | anyToText | capitalizeName}}<br>
@@ -46,8 +51,11 @@
           <strong class="h5 me-3">Tipo de Consulta:</strong> {{consult?.tipo_consulta | anyToNumber | enumTipo}}<br>
           <strong class="h5 me-3">Medico:</strong> {{consult?.medico | anyToText | capitalizeName}}<br>
           <strong class="h5 me-3">Creado Por:</strong> {{consult?.created_by}}<br>
+          <strong class="h5 me-3">Archivado Por:</strong> {{consult?.archived_by}}<br>
           <strong class="h5 me-3">Creado el:</strong> {{consult?.created_at}}<br>
           <strong class="h5 me-3">Actualizado el:</strong> {{consult?.updated_at}}<br>
+
+
 
         </div>
       </div>

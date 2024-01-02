@@ -48,6 +48,8 @@ export const servicios: Servicios[] = [
   { value: 13, label: 'Medicina mujeres' },
   { value: 14, label: 'vsvs' },
   { value: 15, label: 'Covid' },
+  { value: 16, label: 'labor & parto' },
+  { value: 15, label: 'area roja emergencia' },
 
 
 
