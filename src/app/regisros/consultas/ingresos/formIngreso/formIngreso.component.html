@@ -176,14 +176,14 @@
       <div class="row mb-3">
         <div class="col-md-5 mt-1">
           <label for="especialidad" class="form-label">Especialidad:</label>
-          <select id="especialidad" class="form-select" [(ngModel)]="consulta.especialidad" name="especialidad">
+          <select id="especialidad" class="form-select bg-primary" [(ngModel)]="consulta.especialidad" name="especialidad">
             <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
           </select>
         </div>
 
         <div class="col-md-5 mt-1">
           <label for="servicio" class="form-label">Servicio:</label>
-          <select id="servicio" class="form-select" [(ngModel)]="consulta.servicio" name="servicio">
+          <select id="servicio" class="form-select bg-primary" [(ngModel)]="consulta.servicio" name="servicio">
             <option *ngFor="let option of e.servicios" [value]="option.value">{{ option.label }}</option>
           </select>
         </div>
