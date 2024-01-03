@@ -41,6 +41,14 @@
       </div>
 
       <div class="col-md-4">
+        <label class="form-label">es Gemelo?</label>
+        <select class="form-control text-uppercase bg-primary" name="gemelo" id="gemelo" [(ngModel)]="rn.gemelo">
+          <option class="bg-dark" value="">NO</option>
+          <option class="bg-dark" value="si">SI</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
         <label class="form-label">Fecha de Nacimiento</label>
         <input class="form-control text-center fs-5" type="date" name="nacimiento" placeholder="fecha de nacimiento" [(ngModel)]="rn.nacimiento" max="maxdate" autocomplete="off" >
       </div>
