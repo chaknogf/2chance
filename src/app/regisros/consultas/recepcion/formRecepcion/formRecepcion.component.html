@@ -19,24 +19,141 @@
       <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
       </svg>
     </button>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Consulta No:</span>{{ consulta.id }}</p>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Expediente:</span>{{ consulta.expediente }}</p>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Hoja de Emeregencia:</span>{{ consulta.hoja_emergencia }}</p>
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Id Paciente:</span>{{ patient?.id }}
+      <ng-container *ngIf="patient?.id; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Expediente:</span>{{ patient?.expediente }}
+      <ng-container *ngIf="patient?.expediente; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
     <hr style="margin: 0;">
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ consulta.nombres | anyToText | capitalizeName }} {{ consulta.apellidos | anyToText | capitalizeName }}</p>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ consulta.sexo | anyToText |sexo}}</p>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad en consulta:</span>{{ consulta.edad}}</p>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad real:</span>{{ consulta.nacimiento | anyToText | edad}}</p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ patient?.nombre | anyToText | capitalizeName }} {{ patient?.apellido | anyToText | capitalizeName }}
+      <ng-container *ngIf="patient?.nombre && patient?.apellido; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ patient?.sexo | anyToText |sexo}}
+       <ng-container *ngIf="patient?.sexo; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">DPI:</span>{{ patient?.dpi | anyToText | formatoDPI}}
+      <ng-container *ngIf="patient?.dpi; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Fecha de nacimiento:</span>{{ patient?.nacimiento | anyToText | formatoFecha}}
+      <ng-container *ngIf="patient?.nacimiento; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad:</span>{{ patient?.nacimiento | anyToText | edad}}
+      <ng-container *ngIf="patient?.nacimiento; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Lugar de Nacimiento:</span>{{ patient?.lugar_nacimiento | anyToNumber | enumMunicipio}}
+      <ng-container *ngIf="patient?.lugar_nacimiento; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
     <hr style="margin: 0;">
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Fecha de consulta:</span>{{ consulta.fecha_consulta | anyToText | formatoFecha }}</p>
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Especialidad:</span>{{ consulta.especialidad | anyToNumber | enumEspecialidad }}</p>
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Servicios:</span>{{ consulta.servicio | anyToNumber | enumEspecialidad }}</p>
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Tipo de Consulta:</span>{{ consulta.tipo_consulta | anyToNumber | enumTipo }}</p>
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Medico:</span>{{ consulta.medico | anyToText | capitalizeName }}</p>
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Vecindad:</span>{{ patient?.municipio | anyToNumber | enumMunicipio }}, {{patient?.depto | anyToNumber | enumDepto}}
+      <ng-container *ngIf="patient?.municipio && patient?.depto; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Dirección:</span>{{ patient?.direccion | anyToText | capitalizeName}}
+      <ng-container *ngIf="patient?.direccion; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Telefono:</span>{{ patient?.telefono}}
+      <ng-container *ngIf="patient?.telefono; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+  </p>
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Telefono Familiar:</span>{{ patient?.telefono_responsable }}
+      <ng-container *ngIf="patient?.telefono_responsable; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <hr style="margin: 0;">
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Estado Civil:</span>{{ patient?.estado_civil |anyToNumber | enumCivil }}
+      <ng-container *ngIf="patient?.estado_civil; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Ocupación:</span>{{ patient?.ocupacion | anyToText | capitalizeName}}
+      <ng-container *ngIf="patient?.ocupacion; else noData">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Responsable:</span>{{ patient?.responsable  | anyToText | capitalizeName}}
+      <ng-container *ngIf="patient?.responsable; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Parentesco:</span>{{ patient?.parentesco |anyToNumber | enumParentesco}}
+      <ng-container *ngIf="patient?.parentesco; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Padre:</span>{{ patient?.padre | anyToText | capitalizeName}}
+      <ng-container *ngIf="patient?.padre; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
+    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Madre:</span>{{ patient?.madre | anyToText | capitalizeName}}
+      <ng-container *ngIf="patient?.madre; else noData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
+          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
+        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+    </p>
+
     <hr style="margin: 0;">
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado Por:</span>{{ consulta.created_by }}</p>
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado:</span>{{ consulta.created_at }}</p>
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Archivado Por:</span>{{ consulta.archived_by }}</p>
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Actualizado:</span>{{ consulta.updated_at }}</p>
   </div>
 

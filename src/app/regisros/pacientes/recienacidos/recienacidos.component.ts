@@ -73,7 +73,8 @@ export class RecienacidosComponent implements OnInit {
     municipio: 0,
     created_at: null,
     update_at: null,
-    depto: 0
+    depto: 0,
+    gemelo: ''
   };
 
   edit: boolean = false;
@@ -117,7 +118,8 @@ export class RecienacidosComponent implements OnInit {
     created_by: '',
     fechaDefuncion: '',
     created_at: '',
-    update_at: ''
+    update_at: '',
+    gemelo: ''
   }
   public hoy = this.fecha.FechaActual();
 

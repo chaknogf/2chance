@@ -42,6 +42,7 @@ export class TablaPacientesComponent{
     this.getPacientes();
     this.paginarPacientes();
 
+
   }
 
 
@@ -72,6 +73,7 @@ export class TablaPacientesComponent{
       setTimeout(() => {
         this.porcentajeDeProgreso = -1;
       }, 1000);
+      //console.table(data)
     });
   }
 

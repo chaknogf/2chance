@@ -36,6 +36,7 @@ export interface Ipaciente {
   telefono_responsable: number;
   estado: string;
   exp_madre: number;
+  gemelo: string;
   created_by: string;
   fechaDefuncion: string | Date;
   created_at: string | null;
