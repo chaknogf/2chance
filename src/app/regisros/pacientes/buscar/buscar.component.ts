@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { Location } from '@angular/common';
-
-
-
 
 @Component({
   selector: 'buscar',
@@ -14,25 +11,26 @@ import { Location } from '@angular/common';
 })
 export class BuscarComponent implements OnInit {
   public detalleVisible: boolean = false;
-  public patient: Ipaciente | undefined;
+  // public patient: Ipaciente | undefined;
   public rutaAnterior: string = '../';
+  public modalVisible: boolean = false;
+  @Input() patient: Ipaciente | undefined;
 
   constructor(
     private pacientesService: PacientesService,
     private route: ActivatedRoute,
     private _location: Location
-
   ) { }
 
-  regresar(){
+  regresar() {
+    this.modalVisible = false;
     this._location.back();
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const idParam = params.get('id');
-      if (idParam !== null) {
-        const id = +idParam;
+    this.route.params.subscribe(params => {
+      const id = +params['id']; // Obtener el ID del parámetro de la ruta
+      if (id) {
         this.pacientesService.getIdPaciente(id).subscribe(data => {
           this.patient = data;
           console.table(this.patient, data)
@@ -40,5 +38,9 @@ export class BuscarComponent implements OnInit {
         });
       }
     });
+  }
+
+  abrirModal() {
+    this.modalVisible = true;
   }
 }

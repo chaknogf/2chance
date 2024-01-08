@@ -17,6 +17,7 @@ export interface Ipaciente {
   sexo: string;
   nacimiento: Date | any ;
   nacionalidad: number;
+  depto_nac: number;
   lugar_nacimiento: number;
   estado_civil: number;
   educacion: number;

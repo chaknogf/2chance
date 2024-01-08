@@ -11,19 +11,30 @@
   <p class="p-1">{{fechaActual | anyToText | formatoFecha}} - {{horaActual}}</p>
 </div>
 <div id="pdfs-content." class="container-fluid  h-5 blanco">
-  <div class="d-flex justify-content-center align-items-start">
+
+
+
+  <div class="d-flex justify-content-center align-items-start mt-0 mb-1">
     <div class="btn btn-primary">HISTORIA CLINICA</div>
   </div>
 
 
-  <div class="border border-primary rounded">
-    <div class="d-flex">
+  <div class="cuadro w-18 p-0 my-3 rounded">
+    <div class="content-cuadro d-flex justify-content-center">
+      <p class="text-center display-1 w-100">{{ contador }}</p>
+      <p class="text-center h3 mx-2"> {{ e | anyToNumber | enumEspecialidad }}</p>
+    </div>
+  </div>
 
-      <div class="d-flex border border-primary rounded p-2 w-50 text-black">Fecha de Consulta:
+
+  <div class=" border-primary rounded">
+    <div class="d-flex">
+      <div class="col-2-5 "></div>
+      <div class="d-flex border border-primary rounded p-2 col-5 text-black">Fecha de Consulta:
         <p class="ms-auto mb-0 mx-5 h5 text-black">{{fechaActual | anyToText | formatoFecha}}</p>
       </div>
       <div class="d-flex border border-primary rounded p-2 w-50 text-black">Expediente:
-        <p class="ms-auto mb-0 mx-1 h3">{{patient?.expediente}}</p>
+        <p class="ms-auto mb-0 mx-5 h3">{{patient?.expediente}}</p>
       </div>
     </div>
   </div>
@@ -72,7 +83,7 @@
         <p class="ms-auto mb-0 mx-2 h5">{{patient?.ocupacion}}</p>
       </div>
       <div class="d-flex border border-primary rounded p-2 w-25 text-black">Educación:
-        <p class="ms-auto mb-0 mx-2 h5">{{patient?.educacion}}</p>
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.educacion | anyToNumber | enumEducacion}}</p>
       </div>
     </div>
 
@@ -81,7 +92,7 @@
         <p class="ms-auto mb-0 mx-2 h5">{{patient?.responsable}}</p>
       </div>
       <div class="d-flex border border-primary rounded p-2 w-50 text-black">Parentesco:
-        <p class="ms-auto mb-0 mx-2 h5">{{patient?.parentesco}}</p>
+        <p class="ms-auto mb-0 mx-2 h5">{{patient?.parentesco | anyToNumber | enumParentesco}}</p>
       </div>
     </div>
   </div>
@@ -99,6 +110,7 @@
       <p>P:</p>
       <p>TALLA:</p>
       <p>SO2:</p>
+      <p>Hora:</p>
       <p></p>
     </div>
   </div>
@@ -110,7 +122,10 @@
   <div class=" border border-primary rounded text-black">
     <div class="d-flex border border-primary rounded p-2 w-100 justify-content-start">
       <p class="mx-3">Motivo de la consulta:</p>
+      <p class="ms-auto mx-5">Hora:</p>
+      <p class="mx-5"></p>
     </div>
+
     <div class="border border-primary rounded p-2 w-100 justify-content-start text-black">
       <p class="mx-3">Historia Clínica:</p>
       <p class="p-2"></p>

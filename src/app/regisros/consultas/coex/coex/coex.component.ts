@@ -5,6 +5,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {  Ienum } from 'src/app/models/Ienum';
 import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { Iconcultas } from 'src/app/models/Iconsultas';
+import { ContadorService } from 'src/app/services/Contador.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class CoexComponent implements OnInit {
   public consultasHoy: Iconcultas[] = [];
   public consultasMedi: Iconcultas[] = [];
   public contador: number = 0;
+  public especialidad: number = 0;
   public expedienteBuscar: any = '';
   public nombreBuscar: string = '';
   public apellidoBuscar: string = '';
@@ -96,7 +98,9 @@ export class CoexComponent implements OnInit {
 
     private ConsultasService: ConsultasService,
     private FechaService: FechaService,
-    private PageReloadService: PageReloadService
+    private PageReloadService: PageReloadService,
+    private contadorService: ContadorService
+
   ) { }
 
   ngOnInit() {
@@ -112,6 +116,8 @@ export class CoexComponent implements OnInit {
     this.consultastrauma(this.today);
     this.consultaspsico(this.today);
     this.consultasnutri(this.today);
+
+
   }
 
   updateDate() {
@@ -198,6 +204,8 @@ export class CoexComponent implements OnInit {
   copiarId(id: number) {
     this.idConsulta.emit(id);
     this.idCopiado = id;
+    // Emitir el nuevo valor del contador
+    this.contadorService.actualizarContador(this.contador);
 
     console.log(id, this.idCopiado)
   }
@@ -208,6 +216,12 @@ export class CoexComponent implements OnInit {
   }
 
 
+  copiarValor(i: number, e: any) {
+    // Actualiza el valor del contador en el servicio
+    this.contadorService.actualizarContador(this.contador + i + 1);
+    //console.log(this.contador + i )
+    this.contadorService.repetirEspecialidad(e)
+  }
 
 
 

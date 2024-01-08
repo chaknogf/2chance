@@ -1,17 +1,17 @@
 <div class="">
   <div class="">
-    <form class="d-flex justify-content-center align-items-center" autocomplete="off" >
-      <input type="text" class="form-control bg-opacity-75 text-center" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
-      <input type="sumit" class="form-control text-capitalize mx-1 " placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control text-capitalize mx-1" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control  mx-1" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-quatz mx-1 "  (click)="filtro()">buscar</button>
+    <form class="d-flex justify-content-center align-items-center gap-1" autocomplete="off" >
+      <input type="text" class="form-control bg-opacity-75 text-center expande-contenido" name="expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+      <input type="text" class="form-control text-center text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar" />
+      <input type="text" class="form-control text-center text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar" />
+      <input type="text" class="form-control text-center expande-contenido" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar" />
+      <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
       <button type="submit" class="btn border-quatz " (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
       </svg></button>
-      <button class="btn btn-info bg-black mx-1  w-15 p-0" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
+      <button class="btn btn-info bg-black  w-auto p-0" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
     </form>
   </div>
 
@@ -90,7 +90,7 @@
 
           </td>
 
-          <td class="h3 text-center text-success" [routerLink]="['/buscar/view/', paciente.id]">{{ paciente.expediente }}</td>
+          <td class="h3 text-center text-success" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver" >{{ paciente.expediente }}</td>
 
           <td class="text-center text-justify" appHighlightWords >
             <span class="font-fam">Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
@@ -213,3 +213,51 @@
 
 
 
+  <div class="modal" id="ver">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content w-80 p-1 bg-info bg-opacity-50">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="">
+            <div class=" h4 text-center">
+              Detalle del Paciente expediente: <strong>{{ patient?.expediente }}</strong><br>
+              Id: {{ patient?.id }}
+            </div>
+            <div class=" w-100 mx-5 font-monospace text-body-secondary">
+              <hr>
+              <strong class="h5 me-3">Nombres:</strong> {{ patient?.nombre | anyToText | capitalizeName }}<br>
+              <strong class="h5 me-3">Apellidos:</strong> {{ patient?.apellido | anyToText | capitalizeName }}<br>
+              <strong class="h5 me-3">Nacimiento:</strong> {{ patient?.nacimiento | anyToText | formatoFecha }}<br>
+              <strong class="h5 me-3">Edad:</strong> {{ patient?.nacimiento | edad }}<br>
+              <strong class="h5 me-3">Sexo:</strong> {{ patient?.sexo | anyToText | sexo }}<br>
+              <strong class="h5 me-3">DPI:</strong> {{ patient?.dpi | anyToText | formatoDPI }}<br>
+              <hr>
+              <strong class="h5 me-3">Nacionalidad:</strong> {{ patient?.nacionalidad | anyToNumber | enumNacion }}<br>
+              <strong class="h5 me-3">Estado Civil:</strong> {{ patient?.estado_civil | anyToNumber | enumCivil }}<br>
+              <strong class="h5 me-3">Ocupación:</strong> {{ patient?.ocupacion }}<br>
+              <strong class="h5 me-3">Nivel Académico:</strong> {{ patient?.educacion | anyToNumber | enumEducacion }}<br>
+              <hr>
+              <strong class="h5 me-3">Dirección:</strong> {{ patient?.direccion | anyToText | capitalizeName }}<br>
+              <strong class="h5 me-3">Teléfono:</strong> {{ patient?.telefono }}<br>
+              <strong class="h5">Teléfono de Familiar / responsable:</strong> {{ patient?.telefono_responsable }}<br>
+              <hr>
+              <strong class="h5 me-3">Responsable:</strong> {{ patient?.responsable | anyToText | capitalizeName }}<br>
+              <strong class="h5 me-3">Parentesco:</strong> {{ patient?.parentesco | anyToNumber | enumParentesco }}<br>
+              <strong class="h5 me-3">DPI del responsable:</strong> {{ patient?.dpi_responsable }}<br>
+              <hr>
+              <strong class="h5 me-3">Madre:</strong> {{ patient?.madre | anyToText | capitalizeName }}<br>
+              <strong class="h5 me-3">Padre:</strong> {{ patient?.padre | anyToText | capitalizeName }}<br>
+              <hr>
+              <strong class="h5 me-3">Creado por:</strong> {{ patient?.created_by }}<br>
+              <strong class="h5 me-3">Creado el:</strong> {{ patient?.created_at }}<br>
+              <strong class="h5 me-3">Actualizado el:</strong> {{ patient?.update_at }}<br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

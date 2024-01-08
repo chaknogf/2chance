@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/user.service';
 import { HttpHeaders } from '@angular/common/http';
 import { FechaService } from 'src/app/services/fecha.service';
+
 
 
 @Component({
@@ -27,6 +28,9 @@ export class TablaPacientesComponent{
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
   public edad: number = 0;
+  @Input() patient: Ipaciente | undefined;
+
+  detalleVisible: boolean | undefined;
 
 
 
@@ -258,6 +262,14 @@ export class TablaPacientesComponent{
   }
 
 
+  abrirModal(paciente: Ipaciente) {
+    this.pacientesService.getIdPaciente(paciente.id).subscribe(data => {
+      this.patient = data;
+      console.table(this.patient, data);
+      // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
+      this.detalleVisible = true;
+    });
+  }
 
 
 

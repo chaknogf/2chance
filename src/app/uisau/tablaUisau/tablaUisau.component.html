@@ -5,24 +5,24 @@
   </div>
   <hr class="my-0 p-1">
   <div class="justify-content-between">
-    <form class="d-flex justify-content-between align-items-center font-ubuntu" autocomplete="off">
-      <select id="status" class="form-control mx-1 w-30" [(ngModel)]="statusBuscar" name="statusBuscar">
+    <form class="d-flex justify-content-between align-items-center font-ubuntu gap-1" autocomplete="off">
+      <select id="status" class="form-control expande-contenido" [(ngModel)]="statusBuscar" name="statusBuscar">
         <option value="1">Activos</option>
         <option value="2">Archivados</option>
       </select>
-      <select id="especialidad" class="form-control " [(ngModel)]="tipoBuscar" name="tipoBuscar">
+      <select id="especialidad" class="form-control expande-contenido" [(ngModel)]="tipoBuscar" name="tipoBuscar">
         <option value="" disabled selected hidden>Tipo Consulta</option>
         <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
       </select>
-      <input type="number" class="form-control bg-opacity-75  text-center" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
-      <input type="number" class="form-control bg-opacity-75  text-center" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-      <input type="number" class="form-control text-capitalize mx-1 text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-      <input type="date" class="form-control text-capitalize mx-1" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control  text-capitalize mx-1" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control text-capitalize mx-1" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control  text-capitalize mx-1 text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-quatz mx-1 "  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn border-quatz mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+      <input type="number" class="form-control bg-opacity-75  text-center expande-contenido" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
+      <input type="number" class="form-control bg-opacity-75  text-center expande-contenido" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+      <input type="number" class="form-control text-capitalize expande-contenido text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+      <input type="date" class="form-control text-capitalize expande-contenido" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+      <input type="text" class="form-control  text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="form-control  text-capitalize expande-contenido text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+      <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
+      <button type="submit" class="btn border-quatz" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>

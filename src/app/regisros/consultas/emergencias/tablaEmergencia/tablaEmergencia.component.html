@@ -7,15 +7,15 @@
 
 <div class="justify-content-center table-hover table-black">
   <div class="justify-content-between">
-    <form class="d-flex justify-content-between align-items-center" autocomplete="off">
-      <input type="text" class="form-control bg-opacity-75 w-20 text-center mx-1" name="hojaBuscar" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-      <input type="text" class="form-control bg-opacity-75 w-20 text-center mx-1" name="expedienteBuscar" placeholder="exp" [(ngModel)]="expedienteBuscar" />
-      <input type="date" class="form-control bg-opacity-75 w-20 text-center mx-1" name="fechaBuscar" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control w-20 text-capitalize mx-1" placeholder="nombreBuscar" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control w-20 text-capitalize mx-1" placeholder="apellidoBuscar" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control w-20 mx-1" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-quatz mx-1" (click)="filtro()" >buscar</button>
-      <button type="button" class="btn border-quatz mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+    <form class="d-flex justify-content-between align-items-center gap-1" autocomplete="off">
+      <input type="text" class="form-control bg-opacity-75  text-center expande-contenido" name="hojaBuscar" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+      <input type="text" class="form-control bg-opacity-75 text-center expande-contenido" name="expedienteBuscar" placeholder="exp" [(ngModel)]="expedienteBuscar" />
+      <input type="date" class="form-control bg-opacity-75 text-center expande-contenido" name="fechaBuscar" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+      <input type="text" class="form-control text-capitalize expande-contenido" placeholder="nombreBuscar" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control text-capitalize expande-contenido" placeholder="apellidoBuscar" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="form-control expande-contenido" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+      <button type="submit" class="btn btn-quatz " (click)="filtro()" >buscar</button>
+      <button type="button" class="btn border-quatz" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
@@ -26,7 +26,7 @@
   </div>
 
   <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
-    
+
     <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
          role="progressbar"
          [style.width.%]="porcentajeDeProgreso"

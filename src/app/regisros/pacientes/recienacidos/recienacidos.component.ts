@@ -74,7 +74,8 @@ export class RecienacidosComponent implements OnInit {
     created_at: null,
     update_at: null,
     depto: 0,
-    gemelo: ''
+    gemelo: '',
+    depto_nac: 0
   };
 
   edit: boolean = false;
@@ -119,7 +120,8 @@ export class RecienacidosComponent implements OnInit {
     fechaDefuncion: '',
     created_at: '',
     update_at: '',
-    gemelo: ''
+    gemelo: '',
+    depto_nac: 0
   }
   public hoy = this.fecha.FechaActual();
 
@@ -201,6 +203,7 @@ export class RecienacidosComponent implements OnInit {
     this.rn.exp_madre = this.madre.expediente;
     this.rn.municipio = this.madre.municipio;
     this.rn.depto = this.madre.depto;
+    this.rn.depto = 4
 
 
     console.log(this.rn)

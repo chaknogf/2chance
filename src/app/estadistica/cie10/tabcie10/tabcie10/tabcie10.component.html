@@ -1,22 +1,22 @@
 <app-estadistica></app-estadistica>
 <div class="">
   <div class="console-table">
-    <form class="d-flex justify-content-center align-items-center" autocomplete="off" >
-      <input type="text" class="form-control bg-opacity-75 text-center text-capitalize" name="buscarcodigo" placeholder="Código"  [(ngModel)]="buscarcodigo" />
-      <input type="text" class="form-control bg-opacity-75 text-center text-capitalize" name="buscargrupo" placeholder="Grupo"  [(ngModel)]="buscargrupo" />
-      <input type="sumit" class="form-control text-capitalize mx-1 " placeholder="diagnostico" name="buscardx"  [(ngModel)]="buscardx">
-      <input type="text" class="form-control text-capitalize mx-1" placeholder="abreviatura" name="buscarabreviatura"  [(ngModel)]="buscarabreviatura">
-      <select id="especialidad" class="form-control" placeholder="Especialidad" [(ngModel)]="buscarespecialidad" name="especialidad" >
+    <form class="d-flex justify-content-center align-items-center gap-1" autocomplete="off" >
+      <input type="text" class="form-control bg-opacity-75 text-center text-capitalize expande-contenido" name="buscarcodigo" placeholder="Código"  [(ngModel)]="buscarcodigo" />
+      <input type="text" class="form-control bg-opacity-75 text-center text-capitalize expande-contenido" name="buscargrupo" placeholder="Grupo"  [(ngModel)]="buscargrupo" />
+      <input type="sumit" class="form-control text-capitalize expande-contenido" placeholder="diagnostico" name="buscardx"  [(ngModel)]="buscardx">
+      <input type="text" class="form-control text-capitalize expande-contenido" placeholder="abreviatura" name="buscarabreviatura"  [(ngModel)]="buscarabreviatura">
+      <select id="especialidad" class="form-control expande-contenido" placeholder="Especialidad" [(ngModel)]="buscarespecialidad" name="especialidad" >
         <option value="" disabled selected hidden>Especialidad</option>
         <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
       </select>
-      <button type="submit" class="btn btn-light mx-1 "  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn btn-light mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+      <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
+      <button type="submit" class="btn btn-light" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
       </svg></button>
-      <button class="btn btn-info bg-black mx-1 w-2 " data-bs-toggle="modal" [routerLink]="['/formcie10']">Crear Codigo</button>
+      <button class="btn btn-info bg-black w-2 p-0" data-bs-toggle="modal" [routerLink]="['/formcie10']">Crear Codigo</button>
     </form>
   </div>
 

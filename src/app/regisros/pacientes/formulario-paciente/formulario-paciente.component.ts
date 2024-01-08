@@ -60,7 +60,8 @@ export class FormularioPacienteComponent implements OnInit {
     created_at: "",
     update_at: "",
     depto: 0,
-    gemelo: ''
+    gemelo: '',
+    depto_nac: 0
   };
   e: Ienum = {
     municipio: municipio,
@@ -100,11 +101,14 @@ export class FormularioPacienteComponent implements OnInit {
   ngOnInit() {
 
     this.p.created_by = this.username;
+
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
     // Obtener el expediente del paciente
     //this.NuevoExp()
+
+
 
 
     // Obtener los parámetros de la ruta
@@ -117,10 +121,14 @@ export class FormularioPacienteComponent implements OnInit {
           data => {
             this.p = data;
             this.edit = true;
+            this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto_nac);
+            this.municipiosFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto);
           },
           error => console.log(error)
         )
     }
+
+
   }
 
   crearPaciente(): void {
@@ -215,12 +223,13 @@ export class FormularioPacienteComponent implements OnInit {
   }
 
   munisFiltrados: any[] = []; // Lista de municipios filtrados
-  deptoNac: number = 0;
+  deptoNac: number = this.p.depto_nac;
 
   filtrarMunis() {
     // Filtrar la lista de municipios basándote en el departamento seleccionado
-    this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.deptoNac);
-    console.log(this.municipiosFiltrados, this.p.depto)
+    this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto_nac);
+
+    console.log(this.municipiosFiltrados, this.p.depto_nac)
   }
 
 

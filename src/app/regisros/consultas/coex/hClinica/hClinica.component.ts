@@ -5,6 +5,7 @@ import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { FechaService } from 'src/app/services/fecha.service';
 import { Location } from '@angular/common';
+import { ContadorService } from 'src/app/services/Contador.service';
 
 
 
@@ -20,19 +21,22 @@ export class HClinicaComponent implements OnInit {
   public fechaActual: string = "";
   public horaActual: string = "";
   public rutaAnterior: string = '../';
+  public contador: number = 0;
+  public e: any = '';
 
   constructor(
     private pacientesService: PacientesService,
     private route: ActivatedRoute,
     private fechaService: FechaService,
     private PageReloadService: PageReloadService,
-    private _location: Location
+    private _location: Location,
+    private contadorService: ContadorService
 
   ) { }
 
   ngOnInit() {
     this.fechaActual = this.fechaService.FechaActual();
-    this.horaActual= this.fechaService.HoraActual();
+    this.horaActual = this.fechaService.HoraActual();
 
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
@@ -45,8 +49,16 @@ export class HClinicaComponent implements OnInit {
       }
     });
 
+    // Suscríbete al observable para obtener actualizaciones del contador
+    this.contadorService.contador$.subscribe(contador => {
+      this.contador = contador;
+    });
 
+    this.contadorService.especialidad$.subscribe(e => {
+      this.e = e;
+    })
   }
+
   reloadPage() {
     // Llama al servicio para recargar la página
     this.PageReloadService.reloadPage();

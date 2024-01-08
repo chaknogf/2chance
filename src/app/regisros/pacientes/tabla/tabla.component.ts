@@ -1,5 +1,5 @@
 import { PageReloadService } from '../../../services/PageReload.service';
-import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRef, Input } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -39,6 +39,9 @@ export class TablaComponent implements OnInit {
   public username = this.user.getUsernameLocally();
   public edad: number = 0;
 
+  @Input() patient: Ipaciente | undefined;
+
+  detalleVisible: boolean | undefined;
 
 
   e: Ienum = {
@@ -335,6 +338,16 @@ export class TablaComponent implements OnInit {
     this.edad = this.fechaService.años(nac);
     return this.edad;
   }
+
+  abrirModal(paciente: Ipaciente) {
+    this.pacientesService.getIdPaciente(paciente.id).subscribe(data => {
+      this.patient = data;
+      console.table(this.patient, data);
+      // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
+      this.detalleVisible = true;
+    });
+  }
+
 
 
 }
