@@ -30,4 +30,12 @@ export class CNacService {
     return this.http.post(this.urlapi + "/crear_cons_nac/?token=" + this.token, constancia)
   }
 
+  editarConstancia(id: number, constancia: IconsNac): Observable<any> {
+    return this.http.put(this.urlapi + "/cons_nac/"+ id + "?token=" + this.token, constancia)
+  }
+
+  borrarConstancia(id: number): Observable<any> {
+    return this.http.delete(this.urlapi + "/cons_nac?id=" +id + "&token=" + this.token )
+  }
+
 }
