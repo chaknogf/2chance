@@ -1,3 +1,142 @@
-<p>
-  form-nac works!
-</p>
+<div class="container d-flex justify-content-center gap-1 my-2">
+  <div>
+    <button class="btnS btn bg-success">Guardar</button>
+  </div>
+  <div>
+    <button class="btnS btn bg-dark" (click)="regresar()">regresar</button>
+  </div>
+
+</div>
+
+<div class="container-fluid d-flex text-center justify-content-wrap">
+  <div class="formGroup">
+
+    <div>
+      <label>expediente</label>
+      <input type="text" class="form-control" id="exp" name="exp" >
+    </div>
+
+    <div>
+      <label>documento</label>
+      <input type="text" class="form-control" id="exp" name="exp" [(ngModel)]="cNac.doc">
+    </div>
+
+    <div>
+      <label>Correlativo</label>
+      <input class="form-control w-auto" type="number" id="cor" name="cor" [(ngModel)]="cNac.cor">
+      <label>Año</label>
+      <input class="form-control w-auto" type="number" id="año" name="año" [(ngModel)]="cNac.ao">
+    </div>
+
+    <div>
+      <label>fecha de emision</label>
+      <input type="date" class="form-control w-auto" id="fecha" name="fecha">
+    </div>
+
+    <div>
+      <label for="">Fecha de Parto</label>
+      <input class="form-control" type="date" id="fechaParto" name="fechaParto">
+    </div>
+
+    <div>
+      <label>Paciente</label>
+      <input class="form-control" type="text" id="madre" name="madre">
+    </div>
+
+    <div>
+      <select class="form-control" name="doc" id="doc" [(ngModel)]="doc">
+        <option value="1">DPI</option>
+        <option value="0">Certificado</option>
+      </select>
+      <div *ngIf="doc == 1">
+        <label >DPI</label>
+        <input class="form-control" type="number" id="dpi" name="dpi">
+      </div>
+      <div *ngIf="doc == 0">
+        <label >Certificado Renap</label>
+        <input class="form-control" type="number" id="folio" name="folio">
+        <input class="form-control" type="number" id="libro" name="libro">
+        <input class="form-control" type="number" id="partida" name="partida">
+      </div>
+
+
+    </div>
+
+    <div>
+      <label>Edad</label>
+      <input class="form-control" type="number" id="edad" name="edad">
+    </div>
+
+    <div>
+      <label>Departamento</label>
+      <input class="form-control" type="number" id="depto" name="depto">
+    </div>
+
+    <div>
+      <label>Originario</label>
+      <input class="form-control" type="number" id="originario" name="originario">
+    </div>
+
+
+    <div>
+      <label>Sexo de Recien Nacido</label>
+      <input class="form-control" type="text" id="sexo" name="sexo">
+    </div>
+
+    <div>
+      <label>Peso</label>
+      <div class="d-flex justify-content-center border rounded text-center">
+        <div class="d-flex align-items-center gap-1">
+          <input class="form-control border-0 w-auto" type="number" id="lb" name="lb" min="0">
+          <span class="align-items-bottom">lb</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <input class="form-control border-0 w-auto" type="number" id="onz" name="onz" max="15" min="0">
+          <span class="align-items-bottom mx-1">onz</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label>Hora de nacimiento</label>
+      <input class="form-control w-auto" type="time" id="hora" name="hora" >
+    </div>
+
+    <div>
+      <label>Medico</label>
+      <select class="form-control">
+        <option value="1">dr. </option>
+      </select>
+      <input class="form-control">
+      <input class="form-control">
+    </div>
+
+    <div>
+      <label>Hijos</label>
+      <input class="form-control">
+      <input class="form-control">
+    </div>
+
+    <div>
+      <label>datos del parto</label>
+
+      <select class="form-control">
+        <option></option>
+      </select>
+
+      <select class="form-control">
+        <option></option>
+      </select>
+
+    </div>
+
+    <div>
+      <label>Certifica</label>
+      <select class="form-control">
+        <option></option>
+      </select>
+    </div>
+
+
+  </div>
+</div>

@@ -5,7 +5,7 @@ export interface IconsNac {
   id: number;
   fecha: Date | any;
   cor: number | null;
-  año: number | null;
+  ao: number | null;
   doc: string | null;
   fecha_parto: Date | null;
   madre: string | null;
@@ -30,5 +30,6 @@ export interface IconsNac {
   tipo_parto: number | null;
   clase_parto: number | null;
   certifica: number | null;
+  create_by: string | null;
 
  }

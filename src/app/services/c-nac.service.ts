@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, interval } from 'rxjs';
+import { Observable, interval, switchMap } from 'rxjs';
 import { environment } from 'src/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { IconsNac } from '../models/IconsNac';
@@ -38,8 +38,93 @@ export class CNacService {
     return this.http.delete(this.urlapi + "/cons_nac?id=" +id + "&token=" + this.token )
   }
 
-  // filtrar(filtros: any): Observable<any> {
 
-  // }
+  filterConsultas(filtros: any): Observable<any> {
+    // Inicializa una cadena vacía para la URL
+    let url = `${this.urlapi}/filtrarConstanciaN/`;
 
+    if (filtros.fecha) {
+      url += `?fecha=${filtros.fecha}`;
+    }
+
+    if (filtros.cor) {
+      if (url.includes('?')) {
+        url += `&cor=${filtros.cor}`;
+      } else {
+        url += `?cor=${filtros.cor}`;
+      }
+    }
+
+    if (filtros.fecha_parto) {
+      if (url.includes('?')) {
+        url += `&fecha_parto=${filtros.fecha_parto}`;
+      } else {
+        url += `?fecha_parto=${filtros.fecha_parto}`
+      }
+    }
+
+    if (filtros.madre) {
+      if (url.includes('?')) {
+        url += `&madre=${filtros.madre}`;
+      } else {
+        url += `?madre=${filtros.madre}`
+      }
+    }
+
+    if (filtros.medico) {
+      if (url.includes('?')) {
+        url += `&medico=${filtros.medico}`;
+      } else {
+        url += `?medico=${filtros.medico}`
+      }
+    }
+
+    if (filtros.certifica) {
+      if (url.includes('?')) {
+        url += `&certifica=${filtros.certifica}`;
+      } else {
+        url += `?certifica=${filtros.certifica}`
+      }
+    }
+
+    if (filtros.tipo_parto) {
+      if (url.includes('?')) {
+        url += `&tipo_parto=${filtros.tipo_parto}`;
+      } else {
+        url += `?tipo_parto=${filtros.tipo_parto}`
+      }
+    }
+
+    if (filtros.clase_parto) {
+      if (url.includes('?')) {
+        url += `&clase_parto=${filtros.clase_parto}`;
+      } else {
+        url += `?clase_parto=${filtros.clase_parto}`
+      }
+    }
+
+    if (filtros.lb) {
+      if (url.includes('?')) {
+        url += `&lb=${filtros.lb}`;
+      } else {
+        url += `?lb=${filtros.lb}`
+      }
+    }
+
+    if (filtros.onz) {
+      if (url.includes('?')) {
+        url += `&onz=${filtros.onz}`;
+      } else {
+        url += `?onz=${filtros.onz}`
+      }
+    }
+
+    return this.http.get(url);
+  }
+
+  correlativo(): Observable<any> {
+    return interval(900).pipe(
+      switchMap(() => this.http.get(this.urlapi + '/cor_nuevo?token=' + this.token))
+    );
+  }
 }
