@@ -38,4 +38,8 @@ export class CNacService {
     return this.http.delete(this.urlapi + "/cons_nac?id=" +id + "&token=" + this.token )
   }
 
+  // filtrar(filtros: any): Observable<any> {
+
+  // }
+
 }
