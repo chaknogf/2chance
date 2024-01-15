@@ -45,3 +45,8 @@ export interface IenumCitas {
   departamentos: Departamentos[];
 
 }
+
+export interface lugares {
+  departamentos: Departamentos[];
+  municipio: Municipio[];
+}

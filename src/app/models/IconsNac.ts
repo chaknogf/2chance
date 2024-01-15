@@ -14,6 +14,7 @@ export interface IconsNac {
   libro: number | null;
   folio: number | null;
   partida: number | null;
+  depto: number | null;
   muni: number | null;
   edad: number | null;
   vecindad: number | null;
@@ -31,5 +32,6 @@ export interface IconsNac {
   clase_parto: number | null;
   certifica: number | null;
   create_by: string | null;
+  expediente: number | null;
 
  }

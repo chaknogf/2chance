@@ -1,13 +1,18 @@
+import { PacientesService } from './../../../services/pacientes.service';
+import { lugares } from './../../../models/Ienum';
 import { FechaService } from './../../../services/fecha.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CNacService } from './../../../services/c-nac.service';
 import { Component, OnInit } from '@angular/core';
 import { IconsNac } from 'src/app/models/IconsNac';
-import { PacientesService } from 'src/app/services/pacientes.service';
 import { PageReloadService } from 'src/app/services/PageReload.service';
 import { UsersService } from 'src/app/services/user.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { Location } from '@angular/common';
+import { departamentos, municipio } from 'src/app/enums/enums';
+import { Imedico } from 'src/app/models/Imedico';
+import { MedicoService } from 'src/app/services/medico.service';
+
 @Component({
   selector: 'app-form-nac',
   templateUrl: './form-nac.component.html',
@@ -18,17 +23,20 @@ export class FormNacComponent implements OnInit {
 
   constructor(
     private ns: CNacService,
-    private ps: PacientesService,
+    private pserv: PacientesService,
     private activateRoute: ActivatedRoute,
     private PageRe: PageReloadService,
     private usr: UsersService,
     private fs: FechaService,
     private router: Router,
     private _location: Location,
+    private mserv: MedicoService,
 
   ) { }
 
   public constancias: IconsNac[] = [];
+  public medicos: Imedico[] = [];
+  public _medico: Imedico | undefined;
   public paciente: Ipaciente | undefined;
   edit: boolean = false;
   public username = this.usr.getUsernameLocally();
@@ -37,7 +45,7 @@ export class FormNacComponent implements OnInit {
   public expediente: any = '';
   selectedDate: Date | null = null; // Declaración de la propiedad selectedDate
   bsConfig = { dateInputFormat: 'DD-MM-YYYY' };
-  public doc: number = 1;
+  public document: number = 1;
 
 
 
@@ -62,7 +70,7 @@ export class FormNacComponent implements OnInit {
     onz: null,
     hora: null,
     medico: null,
-    colegiado: null,
+    colegiado: 0,
     dpi_medico: null,
     hijos: null,
     vivos: null,
@@ -70,15 +78,29 @@ export class FormNacComponent implements OnInit {
     tipo_parto: null,
     clase_parto: null,
     certifica: null,
-    create_by: null
+    create_by: null,
+    depto: null,
+    expediente: null
+  }
+  d: lugares = {
+    departamentos: departamentos,
+    municipio: municipio
   }
 
 
 
   ngOnInit() {
     this.NuevoCor();
+
     this.cNac.create_by = this.username;
     this.fechaActual = this.fs.FechaActual();
+    this.cNac.fecha = this.fechaActual
+    this.municipiosFiltrados = this.d.municipio.filter(muni => muni.depto == this.cNac.depto);
+    this.mserv.getMedicos().subscribe(
+      data => {
+        this.medicos = data;
+      }
+    )
 
     //obtener parametros de la ruta
     const params = this.activateRoute.snapshot.params;
@@ -98,6 +120,8 @@ export class FormNacComponent implements OnInit {
 
   }
 
+
+
   public corAño: string = ""
   public corOrden: string = ""
 
@@ -108,9 +132,38 @@ export class FormNacComponent implements OnInit {
         this.cNac.cor = data.cor;
         this.cNac.ao = data.año;
       }
+      this.cNac.doc = `${this.cNac.cor}-${this.cNac.ao}`
       console.table(data)
     });
   }
+
+  seleccionarPaciente(exp: any) {
+    this.pserv.getPaciente(exp).subscribe(data => {
+      console.table(data);
+      this.cNac.madre = data.nombre + " " + data.apellido;
+      this.cNac.dpi = data.dpi;
+      this.cNac.edad = this.calcularEdad(data.nacimiento);
+      this.cNac.depto = data.depto;
+      this.cNac.vecindad = data.municipio;
+
+    })
+  }
+
+
+
+  calcularEdad(fechaNacimiento: string): number {
+  const hoy = new Date();
+  const fechaNac = new Date(fechaNacimiento);
+  let edad = hoy.getFullYear() - fechaNac.getFullYear();
+
+  // Ajusta la edad si aún no ha pasado el cumpleaños en el año actual
+  if (hoy < new Date(hoy.getFullYear(), fechaNac.getMonth(), fechaNac.getDate())) {
+    edad--;
+  }
+
+    return edad;
+  }
+
 
 
 
@@ -188,7 +241,23 @@ export class FormNacComponent implements OnInit {
   }
 
 
+  municipiosFiltrados: any[] = []; // Lista de municipios filtrados
 
+  filtrarMunicipios() {
+    // Filtrar la lista de municipios basándote en el departamento seleccionado
+    this.municipiosFiltrados = this.d.municipio.filter(muni => muni.depto == this.cNac.depto);
+    console.log(this.municipiosFiltrados, this.cNac.depto)
+  }
+
+  medico() {
+    this.mserv.getMedicoCol(this.cNac.colegiado).subscribe(data => {
+        this._medico = data;
+        this.cNac.medico = data.name;
+        this.cNac.dpi_medico = data.dpi;
+      }
+    )
+  }
 
 
 }
+

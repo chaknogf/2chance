@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
 import { FormatoDPIPipe } from './pipe/formatoDPI.pipe';
 import { AnyToTextPipe } from './pipe/anyToText.pipe';
-import { EdadPipe } from './pipe/Edad.pipe';
+import { AñosPipe, EdadPipe } from './pipe/Edad.pipe';
 import { FortmatPhone } from './pipe/telefono.pipe';
 import { CapitalizeNamePipe } from './pipe/sentenceCase.pipe';
 import { AppComponent } from './app.component';
@@ -101,6 +101,7 @@ import { ConstanciaComponent } from './regisros/nacimientos/constancia/constanci
     FormatoDPIPipe,
     AnyToTextPipe,
     EdadPipe,
+    AñosPipe,
     FortmatPhone,
     FormularioPacienteComponent,
     IngresoHComponent,

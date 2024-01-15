@@ -13,12 +13,12 @@
 
     <div>
       <label>expediente</label>
-      <input type="text" class="form-control" id="exp" name="exp" >
+      <input type="text" class="form-control" id="exp" name="exp" (click)="seleccionarPaciente(cNac.expediente)" [(ngModel)]="cNac.expediente">
     </div>
 
     <div>
       <label>documento</label>
-      <input type="text" class="form-control" id="exp" name="exp" [(ngModel)]="cNac.doc">
+      <input type="text" class="form-control" id="doc" name="doc" [(ngModel)]="cNac.doc">
     </div>
 
     <div>
@@ -30,33 +30,33 @@
 
     <div>
       <label>fecha de emision</label>
-      <input type="date" class="form-control w-auto" id="fecha" name="fecha">
+      <input type="date" class="form-control w-auto" id="fecha" name="fecha" [(ngModel)]="cNac.fecha">
     </div>
 
     <div>
       <label for="">Fecha de Parto</label>
-      <input class="form-control" type="date" id="fechaParto" name="fechaParto">
+      <input class="form-control" type="date" id="fechaParto" name="fechaParto" [(ngModel)]="cNac.fecha_parto">
     </div>
 
     <div>
       <label>Paciente</label>
-      <input class="form-control" type="text" id="madre" name="madre">
+      <input class="form-control" type="text" id="madre" name="madre" [(ngModel)]="cNac.madre">
     </div>
 
     <div>
-      <select class="form-control" name="doc" id="doc" [(ngModel)]="doc">
-        <option value="1">DPI</option>
+      <select class="form-control text-center" name="doc" id="doc" [(ngModel)]="document">
+        <option class="text-center" value="1">DPI</option>
         <option value="0">Certificado</option>
       </select>
-      <div *ngIf="doc == 1">
+      <div *ngIf="document == 1">
         <label >DPI</label>
-        <input class="form-control" type="number" id="dpi" name="dpi">
+        <input class="form-control" type="number" id="dpi" name="dpi" [(ngModel)]="cNac.dpi">
       </div>
-      <div *ngIf="doc == 0">
+      <div *ngIf="document == 0">
         <label >Certificado Renap</label>
-        <input class="form-control" type="number" id="folio" name="folio">
-        <input class="form-control" type="number" id="libro" name="libro">
-        <input class="form-control" type="number" id="partida" name="partida">
+        <input class="form-control" type="number" id="folio" name="folio" [(ngModel)]="cNac.folio">
+        <input class="form-control" type="number" id="libro" name="libro" [(ngModel)]="cNac.libro">
+        <input class="form-control" type="number" id="partida" name="partida" [(ngModel)]="cNac.partida">
       </div>
 
 
@@ -64,34 +64,41 @@
 
     <div>
       <label>Edad</label>
-      <input class="form-control" type="number" id="edad" name="edad">
+      <input class="form-control" type="number" id="edad" name="edad" [(ngModel)]="cNac.edad">
     </div>
 
     <div>
       <label>Departamento</label>
-      <input class="form-control" type="number" id="depto" name="depto">
+      <select id="depto" class="form-control text-uppercase" [(ngModel)]="cNac.depto" name="depto" (change)="filtrarMunicipios()" placeholder="Departamento" autofocus>
+        <option *ngFor="let option of d.departamentos" [value]="option.value">{{option.label}}</option>
+      </select>
     </div>
 
     <div>
-      <label>Originario</label>
-      <input class="form-control" type="number" id="originario" name="originario">
+      <label>Vecindad</label>
+      <select id="municipio" class="form-control  text-uppercase" [(ngModel)]="cNac.vecindad" name="municipio" placeholder="Municipio" autofocus>
+        <option *ngFor="let option of municipiosFiltrados" [value]="option.value">{{option.label}}</option>
+      </select>
     </div>
 
 
     <div>
       <label>Sexo de Recien Nacido</label>
-      <input class="form-control" type="text" id="sexo" name="sexo">
+      <select class="form-control" id="sexo" name="sexo" [(ngModel)]="cNac.sexo_rn">
+        <option value="M">Masculino</option>
+        <option value="F">Femenino</option>
+      </select>
     </div>
 
     <div>
       <label>Peso</label>
       <div class="d-flex justify-content-center border rounded text-center">
         <div class="d-flex align-items-center gap-1">
-          <input class="form-control border-0 w-auto" type="number" id="lb" name="lb" min="0">
+          <input class="form-control border-0 w-auto" type="number" id="lb" name="lb" min="0" [(ngModel)]="cNac.lb">
           <span class="align-items-bottom">lb</span>
         </div>
         <div class="d-flex align-items-center">
-          <input class="form-control border-0 w-auto" type="number" id="onz" name="onz" max="15" min="0">
+          <input class="form-control border-0 w-auto" type="number" id="onz" name="onz" max="15" min="0" [(ngModel)]="cNac.onz">
           <span class="align-items-bottom mx-1">onz</span>
         </div>
       </div>
@@ -99,32 +106,40 @@
 
     <div>
       <label>Hora de nacimiento</label>
-      <input class="form-control w-auto" type="time" id="hora" name="hora" >
+      <input class="form-control w-auto" type="time" id="hora" name="hora" [(ngModel)]="cNac.hora">
     </div>
 
     <div>
       <label>Medico</label>
-      <select class="form-control">
-        <option value="1">dr. </option>
+      <select class="form-control" name="colegiado" id="colegiado" [(ngModel)]="cNac.colegiado" (onchange)="medico()">
+        <option *ngFor="let m of medicos" [ngValue]="m.colegiado">{{ m.name }} {{m.colegiado}}</option>
       </select>
-      <input class="form-control">
-      <input class="form-control">
+
+      <!-- Obtener el dato dependiendo del select -->
+      <input class="form-control" name="medico" id="medico" [(ngModel)]="cNac.medico">
+
+      <!-- Obtener el dato dependiendo del select -->
+      <input class="form-control" name="dpi_medico" id="dpi_medico" [(ngModel)]="cNac.dpi_medico">
     </div>
+
+
 
     <div>
       <label>Hijos</label>
-      <input class="form-control">
-      <input class="form-control">
+      <input type="number" class="form-control" name="hijos" id="hijos" [(ngModel)]="cNac.hijos">
+      <input type="number" class="form-control" name="vivos" id="vivos" [(ngModel)]="cNac.vivos">
+      <input type="number" class="form-control" name="muertos" id="muertos" [(ngModel)]="cNac.muertos">
+
     </div>
 
     <div>
       <label>datos del parto</label>
 
-      <select class="form-control">
-        <option></option>
+      <select class="form-control" name="tipo_parto" id="tipo_parto" [(ngModel)]="cNac.tipo_parto">
+        <option ></option>
       </select>
 
-      <select class="form-control">
+      <select class="form-control" name="clase_parto" id="clase_parto" [(ngModel)]="cNac.clase_parto">
         <option></option>
       </select>
 
@@ -132,9 +147,7 @@
 
     <div>
       <label>Certifica</label>
-      <select class="form-control">
-        <option></option>
-      </select>
+      <input class="form-control" name="certifica" id="certifica" [(ngModel)]="cNac.certifica">
     </div>
 
 
