@@ -14,8 +14,26 @@ export const servicio: Especialidad[] = [
   { value: 6, label: 'Psicologia' },
   { value: 7, label: 'Nutrición' },
 
+
 ]
 
+export interface Especialistas {
+  value: number;
+  label: string;
+}
+
+export const especialista: Especialistas[] = [
+  { value: 1, label: 'Médico Internista' },
+  { value: 2, label: 'Médico Pediatria' },
+  { value: 3, label: 'Médico Ginecólogo' },
+  { value: 4, label: 'Médico Cirujano' },
+  { value: 5, label: 'Médico Traumatologo' },
+  { value: 6, label: 'Psicologo' },
+  { value: 7, label: 'Nutricionista' },
+  { value: 8, label: 'Médico General' },
+
+
+]
 export interface Tipos {
   value: number;
   label: string;
