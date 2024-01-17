@@ -28,6 +28,10 @@ export class PacientesService {
     return this.http.get(this.urlapi + "/pacientes?token="+ this.token);
   }
 
+  getPersonas(): Observable<any> {
+
+    return this.http.get(this.urlapi + "/personas?token="+ this.token);
+  }
 
 
 
@@ -77,4 +81,3 @@ export class PacientesService {
 
 
 }
-

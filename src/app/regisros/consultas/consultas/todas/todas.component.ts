@@ -52,6 +52,7 @@ export class TodasComponent implements OnInit {
 
 
 
+
   consulta: Iconcultas = {
     id: 0,
     hoja_emergencia: null,

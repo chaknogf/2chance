@@ -79,6 +79,7 @@ import { Report_rmComponent } from './regisros/report_rm/report_rm.component';
 import { FormNacComponent } from './regisros/nacimientos/form-nac/form-nac.component';
 import { NacimientosComponent } from './regisros/nacimientos/nacimientos/nacimientos.component';
 import { ConstanciaComponent } from './regisros/nacimientos/constancia/constancia.component';
+import { PersonasComponent } from './estadistica/personas/personas.component';
 
 
 
@@ -173,6 +174,7 @@ import { ConstanciaComponent } from './regisros/nacimientos/constancia/constanci
     FormNacComponent,
     NacimientosComponent,
     ConstanciaComponent,
+    PersonasComponent,
 
 
 
@@ -232,7 +234,8 @@ import { ConstanciaComponent } from './regisros/nacimientos/constancia/constanci
       { path: 'reportuisau', component: Report_uisauComponent, canActivate: [AuthGuard] },
       { path: 'reportstd', component: Report_estdComponent, canActivate: [AuthGuard] },
       { path: 'consNac', component: ConstanciaComponent, canActivate: [AuthGuard] },
-      { path: 'formConsNac', component: FormNacComponent, canActivate: [AuthGuard]},
+      { path: 'formConsNac', component: FormNacComponent, canActivate: [AuthGuard] },
+      { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard]},
 
 
 

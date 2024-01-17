@@ -1,0 +1,198 @@
+<app-estadistica></app-estadistica>
+<div class=" mt-3">
+
+<hr class="my-0 p-1">
+  <div class="">
+    <div class="rounded p-1">
+      <form class="d-flex justify-content-center align-items-center gap-1" autocomplete="off" >
+        <input type="text" class="form-control bg-opacity-75 text-center expande-contenido" name="expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+        <input type="text" class="form-control text-center text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar" />
+        <input type="text" class="form-control text-center text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar" />
+        <input type="text" class="form-control text-center expande-contenido" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar" />
+        <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
+        <button type="submit" class="btn border-quatz " (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+          <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
+           2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
+            11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+        </svg></button>
+        <button class="btn btn-info bg-black  w-auto p-2" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
+      </form>
+
+
+    </div>
+  </div>
+
+  <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
+         role="progressbar"
+         [style.width.%]="porcentajeDeProgreso"
+         [attr.aria-valuenow]="porcentajeDeProgreso"
+         aria-valuemin="0"
+         aria-valuemax="100">
+     <strong class="">C o m p l e t a d o</strong>
+    </div>
+  </div>
+
+
+
+
+  <div class="table p-1 my-0 font-monospace">
+    <!-- <table class="table table-hover table-black table-borderless fs-5 " aria-labelledby="tableLabel" *ngIf="pacientes.length > 0"> -->
+    <table class="table table-hover table-black ">
+      <thead class="text-normal">
+        <tr>
+
+          <th class="text-center " (click)="sortTable('expediente')">Expediente</th>
+          <th class="text-center " (click)="sortTable('nombre')">Nombre</th>
+          <th class="text-center " (click)="sortTable('dpi')">DPI</th>
+          <th class="text-center " (click)="sortTable('sexo')">Sexo</th>
+          <th class="text-center " (click)="sortTable('nacimiento')">Fecha Nacimiento</th>
+          <th class="text-center " (click)="sortTable('estado')">Estado</th>
+          <th class="text-center " (click)="sortTable('estado')">Direccion</th>
+
+        </tr>
+      </thead>
+
+      <tbody class="justify-content-center  opacity-90 ">
+        <tr *ngFor="let paciente of filteredPacientes">
+
+          <td class="h3 text-center text-warning" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver">
+            {{ paciente.expediente }}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
+              <path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path>
+            </svg>
+          </td>
+
+
+
+          <td class="text-text text-justify " appHighlightWords >
+            <span class="font-fam" >Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
+            <span class="font-fam">Apellido:</span> {{ paciente.apellido | capitalizeName }}
+            <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cc9a06" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>Gem<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cc9a06" class="bi bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+            </span>
+          </td>
+          <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
+          <td class="text-center">{{ paciente.sexo }}</td>
+          <td class="text-center">{{ paciente.nacimiento | anyToText | formatoFecha}}</td>
+          <td class="text-center">{{ paciente.estado }}</td>
+          <td class="text-center">{{ paciente.direccion }}, {{paciente.municipio | anyToNumber | enumMunicipio}}, {{paciente.depto |anyToNumber | enumDepto}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+<!-- Paginación -->
+  <div class="d-flex justify-content-center pagination mt-3">
+    <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="formularioModal" tabindex="-1" aria-labelledby="formularioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-terce">
+        <h5 class="modal-title " id="formularioModalLabel">Busqueda Avanzada</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form class="d-flex justify-content-center align-items-center">
+          <input type="sumit" class="form-control rounded text-capitalize mx-1 " placeholder="nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+          <input type="text" class="form-control  rounded text-capitalize mx-1" placeholder="apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+          <input type="text" class="form-control rounded mx-1" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+          <button type="submit" class="btn btn-outline-primary " data-bs-dismiss="modal" (click)="buscarPacientes()">buscar</button>
+        </form>
+        <form>
+
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="formularioModalP">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Formulario de Creación de Pacientes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <formulario-paciente></formulario-paciente>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="ver">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content w-80 p-1 bg-info bg-opacity-50">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="">
+          <div class=" h4 text-center">
+            Detalle del Paciente expediente: <strong>{{ patient?.expediente }}</strong><br>
+            Id: {{ patient?.id }}
+          </div>
+          <div class=" w-100 mx-5 font-monospace text-body-secondary">
+            <hr>
+            <strong class="h5 me-3">Nombres:</strong> {{ patient?.nombre | anyToText | capitalizeName }}<br>
+            <strong class="h5 me-3">Apellidos:</strong> {{ patient?.apellido | anyToText | capitalizeName }}<br>
+            <strong class="h5 me-3">Nacimiento:</strong> {{ patient?.nacimiento | anyToText | formatoFecha }}<br>
+            <strong class="h5 me-3">Edad:</strong> {{ patient?.nacimiento | edad }}<br>
+            <strong class="h5 me-3">Sexo:</strong> {{ patient?.sexo | anyToText | sexo }}<br>
+            <strong class="h5 me-3">DPI:</strong> {{ patient?.dpi | anyToText | formatoDPI }}<br>
+            <hr>
+            <strong class="h5 me-3">Nacionalidad:</strong> {{ patient?.nacionalidad | anyToNumber | enumNacion }}<br>
+            <strong class="h5 me-3">Estado Civil:</strong> {{ patient?.estado_civil | anyToNumber | enumCivil }}<br>
+            <strong class="h5 me-3">Ocupación:</strong> {{ patient?.ocupacion }}<br>
+            <strong class="h5 me-3">Nivel Académico:</strong> {{ patient?.educacion | anyToNumber | enumEducacion }}<br>
+            <hr>
+            <strong class="h5 me-3">Dirección:</strong> {{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, {{patient?.depto | anyToNumber | enumDepto | capitalizeName}}<br>
+            <strong class="h5 me-3">Teléfono:</strong> {{ patient?.telefono }}<br>
+            <strong class="h5">Teléfono de Familiar / responsable:</strong> {{ patient?.telefono_responsable }}<br>
+            <hr>
+            <strong class="h5 me-3">Responsable:</strong> {{ patient?.responsable | anyToText | capitalizeName }}<br>
+            <strong class="h5 me-3">Parentesco:</strong> {{ patient?.parentesco | anyToNumber | enumParentesco }}<br>
+            <strong class="h5 me-3">DPI del responsable:</strong> {{ patient?.dpi_responsable }}<br>
+            <hr>
+            <strong class="h5 me-3">Madre:</strong> {{ patient?.madre | anyToText | capitalizeName }}<br>
+            <strong class="h5 me-3">Padre:</strong> {{ patient?.padre | anyToText | capitalizeName }}<br>
+            <hr>
+            <strong class="h5 me-3">Creado por:</strong> {{ patient?.created_by }}<br>
+            <strong class="h5 me-3">Creado el:</strong> {{ patient?.created_at }}<br>
+            <strong class="h5 me-3">Actualizado el:</strong> {{ patient?.update_at }}<br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

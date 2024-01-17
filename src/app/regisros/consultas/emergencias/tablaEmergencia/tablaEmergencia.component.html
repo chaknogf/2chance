@@ -25,6 +25,9 @@
 
   </div>
 
+  <div class="loader-container">
+    <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
+  </div>
   <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
 
     <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"

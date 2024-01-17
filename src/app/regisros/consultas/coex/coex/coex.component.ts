@@ -15,11 +15,16 @@ import { ContadorService } from 'src/app/services/Contador.service';
 })
 export class CoexComponent implements OnInit {
 
+  today: string = "";
+  selectDate: Date = new Date();
   day: string = new Date().getDate().toString().padStart(2, '0');
   month: string = (new Date().getMonth()+1).toString().padStart(2, '0');
   year: string = new Date().getFullYear().toString();
-  today: string = "";
+  slectDay: string = '';
+  slectMonth: string = '';
+  slectYear: string = '';
   public x: string = this.today;
+  public y: number = 0;
   public pacientes: [] = [];
   public consultas: Iconcultas[] = [];
   public consultasPedia: Iconcultas[] = [];
@@ -108,14 +113,22 @@ export class CoexComponent implements OnInit {
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
 
-    this.today = `${this.year}-${this.month}-${this.day}`;
-    this.consultasmedicina(this.today);
-    this.consultaspedia(this.today);
-    this.consultasgine(this.today);
-    this.consultasciru(this.today);
-    this.consultastrauma(this.today);
-    this.consultaspsico(this.today);
-    this.consultasnutri(this.today);
+
+    this.consultasmedicina;
+    this.consultaspedia;
+    this.consultasgine;
+    this.consultasciru;
+    this.consultastrauma;
+    this.consultaspsico;
+    this.consultasnutri;
+    this.x = `${this.year}-${this.month}-${this.day}`;
+    this.consultasmedicina(this.x);
+    this.consultaspedia(this.x);
+    this.consultasgine(this.x);
+    this.consultasciru(this.x);
+    this.consultastrauma(this.x);
+    this.consultaspsico(this.x);
+    this.consultasnutri(this.x);
 
 
   }
@@ -143,6 +156,13 @@ export class CoexComponent implements OnInit {
 
     } else {
       // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
+      this.consultasmedicina(this.x);
+      this.consultaspedia(this.x);
+      this.consultasgine(this.x);
+      this.consultasciru(this.x);
+      this.consultastrauma(this.x);
+      this.consultaspsico(this.x);
+      this.consultasnutri(this.x);
 
     }
   }

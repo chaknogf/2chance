@@ -51,7 +51,9 @@
       </tr>
     </thead>
 
-    <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
+    <div class="loader-container">
+      <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
+    </div>
     <tbody class="justify-content-center  opacity-90">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let consulta of resumen">
@@ -107,4 +109,17 @@
 
         </div>
       </div>
+    </div>
+
+
+
+    <div class="modal">
+
+
+
+
+
+
+
+
     </div>

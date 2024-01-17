@@ -336,8 +336,8 @@ blockquote {
 
 b,
 strong {
-  font-weight: bolder;
-  font-family: "Cabin Sketch", cursive;
+  font-weight: lighter;
+  font-family: "ubuntu", cursive;
   overflow:visible;
   white-space: wrap;
 
