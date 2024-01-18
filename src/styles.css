@@ -337,7 +337,7 @@ blockquote {
 b,
 strong {
   font-weight: lighter;
-  font-family: "ubuntu", cursive;
+  font-family: "arial";
   overflow:visible;
   white-space: wrap;
 
@@ -8976,6 +8976,11 @@ textarea.form-control-lg {
 .bg-quatz {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-quatz-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-aqua {
+  --bs-bg-opacity: 1;
+  background-color: #00537e  !important;
 }
 
 .bg-secondary {

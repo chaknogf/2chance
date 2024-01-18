@@ -38,7 +38,8 @@ export class TablaEmergenciaComponent implements OnInit {
   public fechaEgreso: any = '';
   public tipoConsulta: any = 3;
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
-
+  public detalleVisible: boolean = false;
+  public consult: Iconcultas | undefined;
 
 
 
@@ -189,6 +190,13 @@ export class TablaEmergenciaComponent implements OnInit {
       this.consultas = [];
       this.totalRegistros = 0;
     }
+  }
+
+  detalle(x: number) {
+    this.ConsultasService.Consulta(x).subscribe(data => {
+      this.consult = data;
+      this.detalleVisible = true;
+    })
   }
 
 }

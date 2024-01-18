@@ -47,6 +47,9 @@ export class RecepciónComponent implements OnInit {
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
+  public detalleVisible: boolean = false;
+  public consult: Iconcultas | undefined;
+
 
 
 
@@ -104,7 +107,7 @@ export class RecepciónComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.consult()
+    this.consultar()
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
@@ -113,7 +116,7 @@ export class RecepciónComponent implements OnInit {
 
 
 
-  consult() {
+  consultar() {
     const filters = {
 
 
@@ -220,7 +223,7 @@ export class RecepciónComponent implements OnInit {
     this.dpiBuscar = '';
     this.hojaBuscar = '';
     this.fechaBuscar = '';
-    this.consult();
+    this.consultar();
      // Obtén todos los pacientes nuevamente
   }
 
@@ -265,6 +268,11 @@ export class RecepciónComponent implements OnInit {
     this.PageReloadService.reloadPage();
   }
 
-
+  detalle(x: number) {
+    this.ConsultasService.Consulta(x).subscribe(data => {
+      this.consult = data;
+      this.detalleVisible = true;
+    })
+  }
 
 }

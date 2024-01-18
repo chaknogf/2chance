@@ -201,7 +201,7 @@
 
 <div class="modal" id="ver">
   <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content w-80 p-1 bg-info bg-opacity-50">
+    <div class="modal-content w-80 p-1 bg-aqua  bg-opacity-75">
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"></span>
@@ -210,7 +210,7 @@
       <div class="modal-body">
         <div class="">
           <div class=" h4 text-center">
-            Detalle del Paciente expediente: <strong>{{ patient?.expediente }}</strong><br>
+            Detalle del Paciente <br> expediente:  <strong>{{ patient?.expediente }}</strong><br>
             Id: {{ patient?.id }}
           </div>
           <div class=" w-100 mx-5 font-monospace text-body-secondary">
@@ -227,7 +227,7 @@
             <strong class="h5 me-3">Ocupación:</strong> {{ patient?.ocupacion }}<br>
             <strong class="h5 me-3">Nivel Académico:</strong> {{ patient?.educacion | anyToNumber | enumEducacion }}<br>
             <hr>
-            <strong class="h5 me-3">Dirección:</strong> {{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, {{patient?.depto | anyToNumber | enumDepto | capitalizeName}}<br>
+            <strong class="h5 me-3">Dirección:</strong> {{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, <br> {{patient?.depto | anyToNumber | enumDepto | capitalizeName}}<br>
             <strong class="h5 me-3">Teléfono:</strong> {{ patient?.telefono }}<br>
             <strong class="h5">Teléfono de Familiar / responsable:</strong> {{ patient?.telefono_responsable }}<br>
             <hr>

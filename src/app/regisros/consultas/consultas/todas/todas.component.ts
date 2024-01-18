@@ -49,6 +49,8 @@ export class TodasComponent implements OnInit {
   private ascendingOrder: boolean = false;
   public tipoBuscar: string = '';
   public statusBuscar: any = '';
+  public detalleVisible: boolean = false;
+  public consult: Iconcultas | undefined;
 
 
 
@@ -105,7 +107,7 @@ export class TodasComponent implements OnInit {
     tipo: tipo
   }
   ngOnInit() {
-    this.consult()
+    this.consultar()
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
@@ -113,7 +115,7 @@ export class TodasComponent implements OnInit {
   }
 
 
-  consult() {
+  consultar() {
     this.porcentajeDeProgreso = 0.5;
     this.ConsultasService.Consultas().subscribe(data => {
       this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
@@ -251,7 +253,7 @@ export class TodasComponent implements OnInit {
     this.dpiBuscar = '';
     this.hojaBuscar = '';
     this.fechaBuscar = '';
-    this.consult();
+    this.consultar();
      // Obtén todos los pacientes nuevamente
   }
 
@@ -302,5 +304,11 @@ export class TodasComponent implements OnInit {
     }
   }
 
+  detalle(x: number) {
+    this.ConsultasService.Consulta(x).subscribe(data => {
+      this.consult = data;
+      this.detalleVisible = true;
+    })
+  }
 
 }
