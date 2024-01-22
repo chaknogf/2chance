@@ -38,7 +38,7 @@ export class RegistroProceComponent implements OnInit {
     procedimiento: '',
     especialidad: 0,
     cantidad: 0,
-    medico: '',
+    medico: null,
     created_by: ''
   }
 
@@ -95,6 +95,9 @@ export class RegistroProceComponent implements OnInit {
       (error) => {
         // Manejar errores aquí
         console.error('Error!! ', error);
+        console.log(error)
+        console.table(error)
+        console.table(this.proce)
 
 
         // Mostrar una alerta de error con estilo Bootstrap
