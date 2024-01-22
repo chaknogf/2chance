@@ -156,11 +156,11 @@ export class ProcedimientosMedicosService {
 
 
   editProceMedic(id: number, update: IproceMedico): Observable<any> {
-    return this.http.put(this.urlapi + '/abreviatura_editada/' + id + "?token=" + this.token, update);
+    return this.http.put(this.urlapi + '/abreviatura_editada?id=' + id + "&token=" + this.token, update);
   }
 
   editAbreviatura(id: number, update: Iabreviaturas): Observable<any> {
-    return this.http.put(this.urlapi + '/procedimiento_editado/' + id + "?token=" + this.token, update);
+    return this.http.put(this.urlapi + '/abreviatura_editada?id=' + id + "&token=" + this.token, update);
   }
 
   registrar(proce: IproceMedico): Observable<any> {
