@@ -1,0 +1,107 @@
+
+
+
+<div class="">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+
+      <form class=" p-3 bg-night" autocomplete="off">
+
+
+        <div class="card-header text-light text-center h2">Registrar Procedimiento</div>
+        <div class="d-flex  justify-content-center align-items-center w-100 p-0 mt-2 gap-2">
+          <button class="btn btn-warning bg-black w-auto" [routerLink]="['/listProce']">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+            </svg>
+            Regresar
+          </button>
+
+          <button class="btn btn-danger bg-black  w-auto" (click)="borrar()" [routerLink]="['/listProce']">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+            </svg>
+          </button>
+
+          <button class="btn btn-info bg-black w-auto p-1" data-bs-toggle="modal" data-bs-target="#nuevo" >Nuevo Codigo</button>
+        </div>
+
+        <hr>
+
+        <div class="card-body bg-night">
+
+          <div class="form-group mt-1">
+            <label class="text-light" for="fecha">Fecha:</label>
+            <input type="date" class="form-control bg-primary bg-opacity-75 text-uppercase" id="fecha" name="fecha"  [(ngModel)]='proce.fecha' >
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="especialidad">Especialidad:</label>
+            <select id="especialidad" class="form-control bg-night  text-uppercase text-uppercase" [(ngModel)]="proce.especialidad" name="especialidad" >
+              <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="especialidad">Servicio:</label>
+            <select id="servicio" class="form-control bg-night  text-uppercase text-uppercase" [(ngModel)]="proce.servicio" name="servicio" >
+              <option *ngFor="let option of e.serv" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="expediente">Abreviatura:</label>
+            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="abreviatura" name="abreviatura" (change)="procedimiento()" [(ngModel)]='proce.abreviatura' >
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="expediente">Procedimiento:</label>
+            <input type="text" class="form-control bg-night bg-opacity-75 text-capitalize" id="procedimiento" name="procedimiento"  [(ngModel)]='proce.procedimiento' disabled="" >
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="sexo">Sexo:</label>
+            <select id="sexo" class="form-control bg-night  text-uppercase text-uppercase" [(ngModel)]="proce.sexo" name="sexo" >
+              <option  value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="cantidad">Cantidad:</label>
+            <input type="number" class="form-control bg-night bg-opacity-75 text-capitalize" id="cantidad" name="cantidad"  [(ngModel)]='proce.cantidad' min="1">
+          </div>
+
+          <button type="submit" class="btnS btn btn-success bg-black mt-2 w-auto" (click)="edit ? editar() : crear()">Guardar</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="nuevo">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuevo Procedimiento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <app-nuevoProce></app-nuevoProce>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

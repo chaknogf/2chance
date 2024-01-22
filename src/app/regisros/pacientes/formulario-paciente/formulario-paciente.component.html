@@ -42,7 +42,7 @@
 </div>
 
 
-<form class="mt-3 mt-2">
+<form class="mt-3 mt-2" autocomplete="off">
   <div class="row g-3">
 
     <div class="container-fluid mt-2 p-0 col-md-6 d-flex justify-content-center align-items-center">
@@ -198,6 +198,11 @@
     <div class="col-md-6">
       <label>Madre</label>
       <input type="text" id="madre" name="madre" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.madre" name="madre" placeholder="madre" autofocus>
+    </div>
+
+    <div class="col-md-6">
+      <label>Conyugue</label>
+      <input type="text" id="conyugue" name="conyugue" class="form-control bg-night bg-opacity-75 text-uppercase" [(ngModel)]="p.conyugue" name="conyugue" placeholder="conyugue" autofocus>
     </div>
 
     <div class="col-md-6">

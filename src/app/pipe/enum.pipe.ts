@@ -1,4 +1,4 @@
-import { situacion, estadia, referencia } from './../enums/enums';
+import { situacion, estadia, referencia, serv } from './../enums/enums';
 
 
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
@@ -228,6 +228,20 @@ export class EnumReferenciaPipe implements PipeTransform {
     const refEncontrado = referencia.find(referencia => referencia.value === value);
     if (refEncontrado) {
       return refEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumServ'
+})
+export class EnumServPipe implements PipeTransform {
+  transform(value: any): string {
+    const servEncontrado = serv.find(serv => serv.value === value);
+    if (servEncontrado) {
+      return servEncontrado.label;
     } else {
       return ''
     }

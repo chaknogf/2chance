@@ -23,7 +23,7 @@ import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe, EnumTipoPipe,
-  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe, EnumServPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -80,6 +80,10 @@ import { FormNacComponent } from './regisros/nacimientos/form-nac/form-nac.compo
 import { NacimientosComponent } from './regisros/nacimientos/nacimientos/nacimientos.component';
 import { ConstanciaComponent } from './regisros/nacimientos/constancia/constancia.component';
 import { PersonasComponent } from './estadistica/personas/personas.component';
+import { List_ProceMedicComponent } from './estadistica/procedimientosMedicos/list_ProceMedic/list_ProceMedic.component';
+import { NuevoProceComponent } from './estadistica/procedimientosMedicos/nuevoProce/nuevoProce.component';
+import { ProceCodigosComponent } from './estadistica/procedimientosMedicos/proceCodigos/proceCodigos.component';
+import { RegistroProceComponent } from './estadistica/procedimientosMedicos/registroProce/registroProce.component';
 
 
 
@@ -175,6 +179,11 @@ import { PersonasComponent } from './estadistica/personas/personas.component';
     NacimientosComponent,
     ConstanciaComponent,
     PersonasComponent,
+    List_ProceMedicComponent,
+    NuevoProceComponent,
+    ProceCodigosComponent,
+    RegistroProceComponent,
+    EnumServPipe,
 
 
 
@@ -235,8 +244,13 @@ import { PersonasComponent } from './estadistica/personas/personas.component';
       { path: 'reportstd', component: Report_estdComponent, canActivate: [AuthGuard] },
       { path: 'consNac', component: ConstanciaComponent, canActivate: [AuthGuard] },
       { path: 'formConsNac', component: FormNacComponent, canActivate: [AuthGuard] },
-      { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard]},
-
+      { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard] },
+      { path: 'listProce', component: List_ProceMedicComponent, canActivate: [AuthGuard] },
+      { path: 'nuevProce', component: NuevoProceComponent, canActivate: [AuthGuard] },
+      { path: 'editProce/:id', component: NuevoProceComponent, canActivate: [AuthGuard] },
+      { path: 'abreviaturas', component: ProceCodigosComponent, canActivate: [AuthGuard] },
+      { path: 'registrarProceMed', component: RegistroProceComponent, canActivate: [AuthGuard]},
+      { path: 'editProceMed/:id', component: RegistroProceComponent, canActivate: [AuthGuard]},
 
 
     ]),

@@ -1,6 +1,28 @@
 <app-estadistica></app-estadistica>
 <div class=" mt-3">
 
+  <div *ngIf="porcentajeDeProgreso >= 0" class="d-flex justify-content-center">
+    <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+      <div class="wheel"></div>
+      <div class="hamster">
+        <div class="hamster__body">
+          <div class="hamster__head">
+            <div class="hamster__ear"></div>
+            <div class="hamster__eye"></div>
+            <div class="hamster__nose"></div>
+          </div>
+          <div class="hamster__limb hamster__limb--fr"></div>
+          <div class="hamster__limb hamster__limb--fl"></div>
+          <div class="hamster__limb hamster__limb--br"></div>
+          <div class="hamster__limb hamster__limb--bl"></div>
+          <div class="hamster__tail"></div>
+        </div>
+      </div>
+      <div class="spoke"></div>
+    </div>
+  </div>
+
+
 <hr class="my-0 p-1">
   <div class="">
     <div class="rounded p-1">
@@ -15,7 +37,7 @@
            2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
             11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
         </svg></button>
-        <button class="btn btn-info bg-black  w-auto p-2" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
+
       </form>
 
 
@@ -47,7 +69,6 @@
           <th class="text-center " (click)="sortTable('dpi')">DPI</th>
           <th class="text-center " (click)="sortTable('sexo')">Sexo</th>
           <th class="text-center " (click)="sortTable('nacimiento')">Fecha Nacimiento</th>
-          <th class="text-center " (click)="sortTable('estado')">Estado</th>
           <th class="text-center " (click)="sortTable('estado')">Direccion</th>
 
         </tr>
@@ -79,8 +100,7 @@
           <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
           <td class="text-center">{{ paciente.sexo }}</td>
           <td class="text-center">{{ paciente.nacimiento | anyToText | formatoFecha}}</td>
-          <td class="text-center">{{ paciente.estado }}</td>
-          <td class="text-center">{{ paciente.direccion }}, {{paciente.municipio | anyToNumber | enumMunicipio}}, {{paciente.depto |anyToNumber | enumDepto}}</td>
+          <td class="text-center">{{ paciente.direccion | anyToText | capitalizeName}}, {{paciente.municipio | anyToNumber | enumMunicipio}}, {{paciente.depto |anyToNumber | enumDepto}}</td>
 
         </tr>
       </tbody>
@@ -180,9 +200,10 @@
             <strong class="h5 me-3">Teléfono:</strong> {{ patient?.telefono }}<br>
             <strong class="h5">Teléfono de Familiar / responsable:</strong> {{ patient?.telefono_responsable }}<br>
             <hr>
+            <strong class="h5 me-3">Conyugue:</strong> {{ patient?.conyugue | anyToText | capitalizeName }}<br>
             <strong class="h5 me-3">Responsable:</strong> {{ patient?.responsable | anyToText | capitalizeName }}<br>
             <strong class="h5 me-3">Parentesco:</strong> {{ patient?.parentesco | anyToNumber | enumParentesco }}<br>
-            <strong class="h5 me-3">DPI del responsable:</strong> {{ patient?.dpi_responsable }}<br>
+            <strong class="h5 me-3">DPI del responsable:</strong> {{ patient?.dpi_responsable | anyToText | formatoDPI}}<br>
             <hr>
             <strong class="h5 me-3">Madre:</strong> {{ patient?.madre | anyToText | capitalizeName }}<br>
             <strong class="h5 me-3">Padre:</strong> {{ patient?.padre | anyToText | capitalizeName }}<br>

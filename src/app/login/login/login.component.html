@@ -2,22 +2,21 @@
 <div class="container">
   <div class="login-box">
 
-    <form method="post">
+    <form method="post" autocomplete="off" (ngSubmit)="login()">
       <div class="user-box">
-        <input type="text"required="" [(ngModel)]="username"
-        name="email">
+        <input type="text" required="" [(ngModel)]="username" name="email">
         <label>Username</label>
       </div>
       <div class="user-box">
-        <input type="password" required="" [(ngModel)]="password"
-        name="password">
+        <input type="password" required="" [(ngModel)]="password" name="password">
         <label>Password</label>
       </div>
-      <a (click)="login()">
-             LogIn
-         <span></span>
-      </a>
+      <button class="btn" type="submit">
+        LogIn
+        <span></span>
+      </button>
     </form>
+
   </div>
 </div>
 <div class="box-of-star1">

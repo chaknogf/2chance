@@ -13024,3 +13024,6 @@ input, select {
   left: 10px; /* Ajusta el espacio a la izquierda según tus preferencias */
 }
 
+.bg-night {
+  background-color: #192a55;
+}

@@ -75,7 +75,8 @@ export class RecienacidosComponent implements OnInit {
     update_at: null,
     depto: 0,
     gemelo: '',
-    depto_nac: 0
+    depto_nac: 0,
+    conyugue: ''
   };
 
   edit: boolean = false;
@@ -121,7 +122,8 @@ export class RecienacidosComponent implements OnInit {
     created_at: '',
     update_at: '',
     gemelo: '',
-    depto_nac: 0
+    depto_nac: 0,
+    conyugue: '',
   }
   public hoy = this.fecha.FechaActual();
 
@@ -204,6 +206,7 @@ export class RecienacidosComponent implements OnInit {
     this.rn.municipio = this.madre.municipio;
     this.rn.depto = this.madre.depto;
     this.rn.depto = 4
+    this.rn.padre = this.madre.conyugue;
 
 
     console.log(this.rn)

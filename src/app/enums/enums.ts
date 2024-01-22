@@ -666,4 +666,18 @@ export const estadia: Estadia[] = [
   { value: 5, label: 'otro' },
 ]
 
+export interface Serv {
+  value: number;
+  label: string;
+}
+
+
+export const serv: Serv[] = [
+  { value: 1, label: 'COEX' },
+  { value: 2, label: 'Encamamiento' },
+  { value: 3, label: 'Emergencia' },
+  { value: 4, label: 'SOP emergencia' },
+  { value: 5, label: 'SOP electiva' },
+  { value: 6, label: 'Maternidad' },
+]
 

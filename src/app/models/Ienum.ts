@@ -1,5 +1,5 @@
 import { servicio } from 'src/app/enums/enums';
-import { Municipio, Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Departamentos, Estadia, Estado, Referencia, Situacion } from './../enums/enums';
+import { Municipio, Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Departamentos, Estadia, Estado, Referencia, Situacion, Serv, serv } from './../enums/enums';
 
 
 export interface Ienum {
@@ -49,4 +49,9 @@ export interface IenumCitas {
 export interface lugares {
   departamentos: Departamentos[];
   municipio: Municipio[];
+}
+
+export interface serv_espc {
+  servicio: Especialidad[];
+  serv: Serv[];
 }

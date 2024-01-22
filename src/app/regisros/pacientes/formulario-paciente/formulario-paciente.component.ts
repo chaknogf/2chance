@@ -61,7 +61,8 @@ export class FormularioPacienteComponent implements OnInit {
     update_at: "",
     depto: 0,
     gemelo: '',
-    depto_nac: 0
+    depto_nac: 0,
+    conyugue: '',
   };
   e: Ienum = {
     municipio: municipio,

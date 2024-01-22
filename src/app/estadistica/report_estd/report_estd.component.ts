@@ -87,4 +87,23 @@ export class Report_estdComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
+
+  descargarProcedimientos() {
+    this.rp.excel_procedimientos(this.fecha_inicio_consultas, this.fecha_final_consultas).subscribe(
+      (response: any) => {
+        const blob = new Blob([response.body], { type: 'application/octet-stream' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = 'Procedimientos.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error => {
+        console.error('Error al descargar el archivo', error);
+        // Manejar el error según sea necesario
+      }
+    );
+  }
 }

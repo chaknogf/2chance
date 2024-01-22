@@ -33,4 +33,10 @@ export class ReportsService {
     return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
 
+  excel_procedimientos(inicio: string, final: string): Observable<HttpResponse<Blob>> {
+    const url = `${this.urlapi}/report_procedimiento/?fecha_inicio=${inicio}&fecha_final=${final}&token=${this.token}`;
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
+
+
 }

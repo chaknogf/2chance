@@ -42,6 +42,7 @@ export interface Ipaciente {
   fechaDefuncion: string | Date;
   created_at: string | null;
   update_at: string | null;
+  conyugue: string | null | any
 
 
 }
