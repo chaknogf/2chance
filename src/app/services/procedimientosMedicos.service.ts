@@ -117,7 +117,7 @@ export class ProcedimientosMedicosService {
 
   filtrarAbr(filtros: any): Observable<any>{
     // Inicializa una cadena vacía para la URL
-    let url = `${this.urlapi}/iltrar_abreviaturas/`;
+    let url = `${this.urlapi}/filtrar_abreviaturas/`;
 
     if (filtros.id) {
       url += `?id=${filtros.id}`;
