@@ -174,7 +174,7 @@ export class RecienacidosComponent implements OnInit {
 
     this.copiarDatosMadre();
 
-    console.log(this.rn.sexo, this.nombreBebe, this.rn.nombre);
+    // console.log(this.rn.sexo, this.nombreBebe, this.rn.nombre);
   }
 
 

@@ -103,7 +103,7 @@ export class IngresoTablaComponent implements OnInit {
       .subscribe(data => {
         this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
         this.consultas = data;
-        console.log(this.consultas);
+        // console.log(this.consultas);
     })
   }
 
@@ -135,7 +135,7 @@ export class IngresoTablaComponent implements OnInit {
     return Math.ceil(this.consultas.length / this.totalRegistros);
 
   }
- 
+
   filtro() {
     // Recopila los valores de entrada del formulario
     const filters = {
@@ -146,7 +146,7 @@ export class IngresoTablaComponent implements OnInit {
       nombres: this.nombreBuscar,
       apellidos: this.apellidoBuscar,
       dpi: this.dpiBuscar,
-      
+
       tipo_consulta: 2,
     };
 

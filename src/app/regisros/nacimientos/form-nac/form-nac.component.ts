@@ -133,7 +133,7 @@ export class FormNacComponent implements OnInit {
         this.cNac.ao = data.año;
       }
       this.cNac.doc = `${this.cNac.cor}-${this.cNac.ao}`
-      console.table(data)
+      // console.table(data)
     });
   }
 

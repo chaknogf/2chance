@@ -190,7 +190,7 @@ export class ConsultasService {
     }
 
 
-    console.log(filtros, url)
+    // console.log(filtros, url)
     // Realiza la solicitud GET con la URL construida dinámicamente
     return this.http.get(url);
 
