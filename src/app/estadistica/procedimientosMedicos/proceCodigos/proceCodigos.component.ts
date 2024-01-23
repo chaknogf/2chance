@@ -94,7 +94,7 @@ filtro() {
     abreviatura: this.buscarAbreviatura,
   };
 
-  this.prm.filtrarProce(filters).subscribe((result) => {
+  this.prm.filtrarAbr(filters).subscribe((result) => {
     this.resumen = result;
   });
 
