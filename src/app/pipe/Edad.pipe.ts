@@ -27,10 +27,10 @@ export class EdadPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'años'
+  name: 'years'
 })
 export class AñosPipe implements PipeTransform {
-  transform(nacimiento: any): number {
+  transform(nacimiento: any): string {
     const hoy = new Date();
     const fechaNac = new Date(nacimiento);
     let años = hoy.getFullYear() - fechaNac.getFullYear();
@@ -48,6 +48,6 @@ export class AñosPipe implements PipeTransform {
       dias += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
     }
 
-    return años;
+    return `${años}`;
   }
 }

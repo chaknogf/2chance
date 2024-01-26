@@ -38,6 +38,7 @@ export class FormNacComponent implements OnInit {
   public medicos: Imedico[] = [];
   public _medico: Imedico | undefined;
   public paciente: Ipaciente | undefined;
+
   edit: boolean = false;
   public username = this.usr.getUsernameLocally();
   public fechaActual: string = "";
@@ -140,6 +141,7 @@ export class FormNacComponent implements OnInit {
   seleccionarPaciente(exp: any) {
     this.pserv.getPaciente(exp).subscribe(data => {
       console.table(data);
+      this.paciente = data;
       this.cNac.madre = data.nombre + " " + data.apellido;
       this.cNac.dpi = data.dpi;
       this.cNac.edad = this.calcularEdad(data.nacimiento);
@@ -148,6 +150,7 @@ export class FormNacComponent implements OnInit {
 
     })
   }
+
 
 
 
