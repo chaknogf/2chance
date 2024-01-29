@@ -39,7 +39,7 @@ export class CNacService {
   }
 
 
-  filterConsultas(filtros: any): Observable<any> {
+  filterDocs(filtros: any): Observable<any> {
     // Inicializa una cadena vacía para la URL
     let url = `${this.urlapi}/filtrarConstanciaN/`;
 
@@ -47,11 +47,26 @@ export class CNacService {
       url += `?fecha=${filtros.fecha}`;
     }
 
-    if (filtros.cor) {
+    if (filtros.doc) {
       if (url.includes('?')) {
-        url += `&cor=${filtros.cor}`;
+        url += `&doc=${filtros.doc}`;
       } else {
-        url += `?cor=${filtros.cor}`;
+        url += `?doc=${filtros.doc}`;
+      }
+    }
+    if (filtros.expediente) {
+      if (url.includes('?')) {
+        url += `&expediente=${filtros.expediente}`;
+      } else {
+        url += `?expediente=${filtros.expediente}`;
+      }
+    }
+
+    if (filtros.ao) {
+      if (url.includes('?')) {
+        url += `&ao=${filtros.ao}`;
+      } else {
+        url += `?ao=${filtros.ao}`;
       }
     }
 

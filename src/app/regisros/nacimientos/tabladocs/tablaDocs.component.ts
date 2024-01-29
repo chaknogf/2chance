@@ -1,17 +1,17 @@
-import { CNacService } from './../../../services/c-nac.service';
+import { CNacService } from 'src/app/services/c-nac.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageReloadService } from './../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum } from 'src/app/models/Ienum';
 import { IconsNac } from 'src/app/models/IconsNac';
-@Component({
-  selector: 'app-constancia',
-  templateUrl: './constancia.component.html',
-  styleUrls: ['./constancia.component.css']
-})
-export class ConstanciaComponent implements OnInit {
 
+@Component({
+  selector: 'tablaDocs',
+  templateUrl: './tablaDocs.component.html',
+  styleUrls: ['./tablaDocs.component.css']
+})
+export class TablaDocsComponent implements OnInit {
 
   constructor(
     private nacServ: CNacService,
@@ -31,10 +31,7 @@ export class ConstanciaComponent implements OnInit {
   public expedienteBuscar: any = '';
   public nombreBuscar: string = '';
   public aoBuscar: any = '';
-  public dpiBuscar: any = '';
-  public hojaBuscar: any = '';
   public fechaBuscar: any = '';
-  public selectdate: string = '';
   public maxdate: string = '';
   public idCopiado: number = 0;
   public idBuscar: number = 0;
@@ -78,7 +75,7 @@ export class ConstanciaComponent implements OnInit {
 
 
   ngOnInit() {
-    this.ingresos()
+    this.constanciasEmitidas();
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
@@ -86,11 +83,11 @@ export class ConstanciaComponent implements OnInit {
   }
 
 
-  ingresos() {
-    this.nacServ.getConstancias().subscribe(data => {
-        this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+  constanciasEmitidas() {
+    this.nacServ.getConstancias()
+      .subscribe(data => {
+        this.resumen = data;
         this.constancias = data;
-        // console.log(this.constancias);
     })
   }
 
@@ -123,6 +120,26 @@ export class ConstanciaComponent implements OnInit {
 
   }
 
+  filtro() {
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      id: this.idBuscar,
+      doc: this.documentoBuscar,
+      expediente: this.expedienteBuscar,
+      madre: this.nombreBuscar,
+      ao: this.aoBuscar,
+
+      tipo_consulta: 2,
+    };
+
+    this.nacServ.filterDocs(filters).subscribe((result) => {
+      this.resumen = result;
+      this.constancias = result;
+    });
+
+
+
+  }
 
 
 
@@ -131,11 +148,9 @@ export class ConstanciaComponent implements OnInit {
     this.expedienteBuscar = ''; // Limpia el contenido del input
     this.nombreBuscar = '';
     this.aoBuscar = '';
-    this.dpiBuscar = '';
     this.documentoBuscar = '';
 
-    this.ingresos();
-     // Obtén todos los pacientes nuevamente
+
   }
 
   private actualizar(data: any[]) {
@@ -144,7 +159,6 @@ export class ConstanciaComponent implements OnInit {
       this.resumen = data;
       console.log(this.resumen)
       this.paginar();
-      this.dpiBuscar = '';
       this.nombreBuscar = '';
       this.aoBuscar = '';
       this.expedienteBuscar = '';

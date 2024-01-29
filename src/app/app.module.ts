@@ -84,6 +84,8 @@ import { List_ProceMedicComponent } from './estadistica/procedimientosMedicos/li
 import { NuevoProceComponent } from './estadistica/procedimientosMedicos/nuevoProce/nuevoProce.component';
 import { ProceCodigosComponent } from './estadistica/procedimientosMedicos/proceCodigos/proceCodigos.component';
 import { RegistroProceComponent } from './estadistica/procedimientosMedicos/registroProce/registroProce.component';
+import { TabMadresComponent } from './regisros/nacimientos/tabmadres/tabMadres.component';
+import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.component';
 
 
 
@@ -184,6 +186,9 @@ import { RegistroProceComponent } from './estadistica/procedimientosMedicos/regi
     ProceCodigosComponent,
     RegistroProceComponent,
     EnumServPipe,
+    TabMadresComponent,
+    TablaDocsComponent,
+    AñosPipe,
 
 
 

@@ -210,9 +210,9 @@ export class TablaPacientesComponent{
       this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }) => b.expediente - a.expediente);
       this.filteredPacientes = data;
       this.paginarPacientes();
-      this.dpiBuscar = '';
-      this.nombreBuscar = '';
-      this.apellidoBuscar = ''
+      // this.dpiBuscar = '';
+      // this.nombreBuscar = '';
+      // this.apellidoBuscar = ''
     } else {
       this.pacientes = [];
       this.filteredPacientes = [];
