@@ -50,6 +50,7 @@ export class TabMadresComponent implements OnInit  {
   detalleVisible: boolean | undefined;
   public paciente: Ipaciente | undefined;
   @Input() madre: Ipaciente | undefined;
+  public patient: Ipaciente | undefined;
   public idCopiado: number = 0;
   public mostrarModal = false;
 
@@ -194,6 +195,8 @@ export class TabMadresComponent implements OnInit  {
     this.NuevoCor();
 
 
+
+
     }
 
     abrirModal(paciente: Ipaciente) {
@@ -202,6 +205,7 @@ export class TabMadresComponent implements OnInit  {
         console.table(this.madre, data);
         // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
         this.detalleVisible = true;
+        this.constancia.madre = `${data.nombre} ${data.apellido}`
       });
     }
 
