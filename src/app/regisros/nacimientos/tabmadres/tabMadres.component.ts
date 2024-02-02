@@ -1,3 +1,4 @@
+import { EdadService } from 'src/app/services/edad.service';
 import { PageReloadService } from '../../../services/PageReload.service';
 import { Component, Renderer2, EventEmitter, OnInit, Output, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
@@ -10,11 +11,11 @@ import { FormBuilder } from '@angular/forms';
 import { UsersService } from 'src/app/services/user.service';
 import { IconsNac } from 'src/app/models/IconsNac';
 import { AnyToTextPipe } from 'src/app/pipe/anyToText.pipe';
-import { EdadPipe } from 'src/app/pipe/Edad.pipe';
 import { Location } from '@angular/common';
 import { departamentos, municipio } from 'src/app/enums/enums';
 import { Imedico } from 'src/app/models/Imedico';
-import { lugares } from './../../../models/Ienum';
+import { lugares, deptos } from './../../../models/Ienum';
+import { TextoService } from 'src/app/services/texto.service';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class TabMadresComponent implements OnInit  {
     private PageReloadService: PageReloadService,
     private user: UsersService,
     private mserv: MedicoService,
+    private Edad: EdadService,
+    private texto: TextoService,
   ) { }
 
   //variables para pacientes
@@ -91,7 +94,7 @@ export class TabMadresComponent implements OnInit  {
     partida: null,
     depto: null,
     muni: null,
-    edad: null,
+    edad: '',
     vecindad: null,
     sexo_rn: null,
     lb: null,
@@ -205,7 +208,13 @@ export class TabMadresComponent implements OnInit  {
         console.table(this.madre, data);
         // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
         this.detalleVisible = true;
-        this.constancia.madre = `${data.nombre} ${data.apellido}`
+        this.constancia.madre = this.texto.capitalizar(`${data.nombre} ${data.apellido}`);
+        this.constancia.edad = this.Edad.años(data.nacimiento);
+        this.constancia.dpi = data.dpi;
+        this.constancia.passport = data.pasaporte;
+        this.constancia.vecindad = data.muni;
+        this.constancia.expediente = data.expediente;
+
       });
     }
 

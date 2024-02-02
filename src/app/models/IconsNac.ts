@@ -16,7 +16,7 @@ export interface IconsNac {
   partida: number | null;
   depto: number | null;
   muni: number | null;
-  edad: number | null;
+  edad: any | null;
   vecindad: number | null;
   sexo_rn: string | null;
   lb: number | null;
