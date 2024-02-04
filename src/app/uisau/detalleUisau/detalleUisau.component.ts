@@ -4,8 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios} from 'src/app/enums/enums';
 import { UsersService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 import { Ipaciente } from 'src/app/models/Ipaciente';

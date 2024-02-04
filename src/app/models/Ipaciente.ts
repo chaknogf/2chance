@@ -1,7 +1,3 @@
-import { municipio } from 'src/app/enums/enums';
-import { Municipio } from './../enums/enums';
-import { Nacionalidad, nation } from "../enums/enums";
-
 
 
 

@@ -135,4 +135,62 @@ export class PacientesService {
   }
 
 
+  filterPersona(filtros: any): Observable<any> {
+    // Inicializa una cadena vacía para la URL
+    let url = `${this.urlapi}/filtrarPersonas/`;
+
+    // Construye la URL de manera dinámica agregando los filtros no vacíos
+    if (filtros.id) {
+      url += `?id=${filtros.id}`;
+    }
+
+    if (filtros.expediente) {
+      if (url.includes('?')) {
+        url += `&expediente=${filtros.expediente}`;
+      } else {
+        url += `?expediente=${filtros.expediente}`;
+      }
+    }
+
+    if (filtros.nombre) {
+      if (url.includes('?')) {
+        url += `&nombre=${filtros.nombre}`;
+      } else {
+        url += `?nombre=${filtros.nombre}`;
+      }
+    }
+
+    if (filtros.apellido) {
+      if (url.includes('?')) {
+        url += `&apellido=${filtros.apellido}`;
+      } else {
+        url += `?apellido=${filtros.apellido}`;
+      }
+    }
+
+    if (filtros.dpi) {
+      if (url.includes('?')) {
+        url += `&dpi=${filtros.dpi}`;
+      } else {
+        url += `?dpi=${filtros.dpi}`;
+      }
+    }
+
+
+    if (filtros) {
+      if (url.includes('?')) {
+        url += `&token=${this.token}`;
+      } else {
+        url += `?token=${this.token}`;
+      }
+    }
+
+
+    console.log(filtros, url)
+    // Realiza la solicitud GET con la URL construida dinámicamente
+    return this.http.get(url);
+
+  }
+
+
 }

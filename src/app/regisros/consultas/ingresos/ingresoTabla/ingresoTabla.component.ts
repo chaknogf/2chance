@@ -5,7 +5,8 @@ import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from '../../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import {  Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { municipio } from 'src/app/enums/vencindad';
 
 @Component({
   selector: 'ingresoTabla',

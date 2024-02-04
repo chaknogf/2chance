@@ -10,7 +10,8 @@ import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
 import { PageReloadService } from '../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
-import { departamentos, parents, servicio, servicios } from 'src/app/enums/enums';
+import { parents, servicio, servicios } from 'src/app/enums/enums';
+import { departamentos } from 'src/app/enums/vencindad';
 
 @Component({
   selector: 'app-form-cita',

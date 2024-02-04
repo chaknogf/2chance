@@ -4,7 +4,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation, departamentos, Municipio } from 'src/app/enums/enums';
+import { etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
+import { municipio, departamentos } from 'src/app/enums/vencindad';
 import { UsersService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 

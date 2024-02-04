@@ -1,14 +1,17 @@
+
 import { PageReloadService } from '../../../../services/PageReload.service';
 import { Component, Renderer2,EventEmitter, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  Ienum } from 'src/app/models/Ienum';
-import {  municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
+import { etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
+import { municipio, departamentos, vecindad } from 'src/app/enums/vencindad';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { FormBuilder } from '@angular/forms';
+import { EnumsService } from 'src/app/services/enums.service';
 
 
 @Component({
@@ -25,6 +28,7 @@ export class TabEmerExpComponent implements OnInit {
   public expedienteBuscar: any = '';
   public resumen: Iconcultas[] = [];
   public paciente: Ipaciente | undefined;
+  public nuevaDireccion: string = '';
   edit: boolean = false;
   new: boolean = false;
   fechaActual: string = "";
@@ -91,6 +95,7 @@ export class TabEmerExpComponent implements OnInit {
   @Output() sexo = new EventEmitter<string>();
   @Output() dpi = new EventEmitter<any>();
   @Output() direccion = new EventEmitter<string>();
+  @Output() municipio = new EventEmitter<any>();
 
 
 
@@ -103,7 +108,8 @@ export class TabEmerExpComponent implements OnInit {
     private fechaService: FechaService,
     private PageReloadService: PageReloadService,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private enums: EnumsService,
   ) { }
   reset: boolean = false;
   busqueda: string = '';
@@ -125,7 +131,7 @@ export class TabEmerExpComponent implements OnInit {
           data => {
             this.emergencia = data;
             this.new = true;
-            console.table(data)
+            //console.table(data)
           },
           error => console.log(error)
         )
@@ -133,23 +139,25 @@ export class TabEmerExpComponent implements OnInit {
     this.resumen;
   }
 
-  copiarId(exp: number, nom: string, ape: string, nac: string, sex: string, cui: any, dirc: string) {
+  copiarId(exp: number, nom: string, ape: string, nac: string, sex: string, cui: any, mun: any) {
     this.idPaciente.emit(exp);
     this.nombre.emit(nom);
     this.apellido.emit(ape);
     this.nacimiento.emit(nac);
     this.sexo.emit(sex);
     this.dpi.emit(cui);
-    this.direccion.emit(dirc);
-    console.log(exp)
+    this.direccion.emit(this.nuevaDireccion);
+    this.municipio.emit(mun)
+    console.log(exp, mun)
     // this.emergencia.expediente = exp;
 
   }
 
   getPacientes() {
-    this.pacientesService.getPacientes().subscribe(data => {
-      this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }): number => b.expediente - a.expediente);
+    this.pacientesService.getPersonas().subscribe(data => {
+      this.pacientes = data;
       this.filteredPacientes = data;
+
       this.paginarPacientes();//Llama a la función aquí para paginar automáticamente
     });
   }
@@ -185,45 +193,32 @@ export class TabEmerExpComponent implements OnInit {
 
   }
 
-  filtro() {
-    if (this.expedienteBuscar !== "") {
-      this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-        if (data) {
-          this.actualizarPacientes([data]);
-          this.filteredPacientes = [data];
 
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else if (this.nombreBuscar || this.apellidoBuscar) {
-      this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-        if (data && data.length > 0) {
-          this.actualizarPacientes(data);
-          this.filteredPacientes = data;
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else if (this.dpiBuscar !="" ) {
-      this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
-        if (data) {
-          this.actualizarPacientes([data]);
-          this.filteredPacientes = data;
-          console.log(this.filteredPacientes)
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else {
-      // Limpiar resultados si no se proporciona ningún criterio de búsqueda
-      this.actualizarPacientes([]);
-      this.filteredPacientes = [];
-    }
+  filtro() {
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      expediente: this.expedienteBuscar,
+      nombre: this.nombreBuscar,
+      apellido: this.apellidoBuscar,
+      dpi: this.dpiBuscar,
+    };
+
+    this.pacientesService.filterPersona(filters).subscribe((result) => {
+      // this.actualizarPacientes([result]);
+      this.filteredPacientes = result;
+      console.log(result.municipio)
+      let vecin = this.enums.Vecin(result.municipio);
+      this.nuevaDireccion = result.direccion + ', ' + vecin;
+      console.table(result)
+      // console.log(this.nuevaDireccion, vecin, result.municipio)
+    });
+
+    this.paginarPacientes()
+
+
+
   }
+
 
   limpiarInput() {
     this.expedienteBuscar = ''; // Limpia el contenido del input
@@ -238,7 +233,7 @@ export class TabEmerExpComponent implements OnInit {
     if (data.length > 0) {
       // this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }) => b.expediente - a.expediente);
       this.filteredPacientes = data;
-      console.log(this.filteredPacientes)
+      //console.log(this.filteredPacientes)
       this.paginarPacientes();
       this.dpiBuscar = '';
       this.nombreBuscar = '';

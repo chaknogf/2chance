@@ -9,7 +9,7 @@ import { PageReloadService } from 'src/app/services/PageReload.service';
 import { UsersService } from 'src/app/services/user.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { Location } from '@angular/common';
-import { departamentos, municipio } from 'src/app/enums/enums';
+import { departamentos, municipio } from 'src/app/enums/vencindad';
 import { Imedico } from 'src/app/models/Imedico';
 import { MedicoService } from 'src/app/services/medico.service';
 

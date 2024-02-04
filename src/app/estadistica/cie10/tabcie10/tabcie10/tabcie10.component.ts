@@ -1,5 +1,5 @@
-import { municipio, nation, etnias, ecivil, academic, parents, lenguaje, servicios, servicio } from 'src/app/enums/enums';
-import { Ienum } from 'src/app/models/Ienum';
+import { servicio, serv } from 'src/app/enums/enums';
+import { serv_espc } from 'src/app/models/Ienum';
 import { Icie10 } from '../../../../models/Icie10';
 import { Cie10Service } from '../../../../services/cie10.service';
 import { Component, OnInit } from '@angular/core';
@@ -41,17 +41,10 @@ export class Tabcie10Component implements OnInit {
     abreviatura: '',
     especialidad: 0
   }
-  e: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio
-    }
+  e: serv_espc = {
+    servicio: servicio,
+    serv: serv
+  }
 
   ngOnInit() {
     this.consult()

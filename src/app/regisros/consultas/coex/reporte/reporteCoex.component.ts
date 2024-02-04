@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FechaService } from 'src/app/services/fecha.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
-import { municipio, nation, etnias, ecivil, academic, parents, lenguaje, servicios, servicio } from 'src/app/enums/enums';
+import { nation, etnias, ecivil, academic, parents, lenguaje, servicios, servicio } from 'src/app/enums/enums';
+import { municipio } from 'src/app/enums/vencindad';
 import { Ienum } from 'src/app/models/Ienum';
 import { ConsultasService } from 'src/app/services/consultas.service';
 

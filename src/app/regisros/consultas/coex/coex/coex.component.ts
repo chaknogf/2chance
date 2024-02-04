@@ -3,7 +3,8 @@ import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from '../../../../services/consultas.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {  Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { municipio, departamentos, vecindad } from 'src/app/enums/vencindad';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ContadorService } from 'src/app/services/Contador.service';
 

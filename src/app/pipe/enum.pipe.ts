@@ -1,10 +1,7 @@
 import { situacion, estadia, referencia, serv } from './../enums/enums';
-
-
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
-import {servicio, nation, municipio, etnias, ecivil,
-  academic,  parents, lenguaje, servicios, tipo, status, departamentos, estado
-} from '../enums/enums';
+import {servicio, nation, etnias, ecivil,  academic,  parents, lenguaje, servicios, tipo, status, estado} from '../enums/enums';
+import { departamentos, municipio, vecindad } from '../enums/vencindad';
 
 @Pipe({
   name: 'enumEspecialidad'

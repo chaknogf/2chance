@@ -12,10 +12,11 @@ import { UsersService } from 'src/app/services/user.service';
 import { IconsNac } from 'src/app/models/IconsNac';
 import { AnyToTextPipe } from 'src/app/pipe/anyToText.pipe';
 import { Location } from '@angular/common';
-import { departamentos, municipio } from 'src/app/enums/enums';
+import { departamentos, municipio, vecindad } from 'src/app/enums/vencindad'
 import { Imedico } from 'src/app/models/Imedico';
 import { lugares, deptos } from './../../../models/Ienum';
 import { TextoService } from 'src/app/services/texto.service';
+import { from } from 'rxjs';
 
 
 @Component({
@@ -212,7 +213,7 @@ export class TabMadresComponent implements OnInit  {
         this.constancia.edad = this.Edad.años(data.nacimiento);
         this.constancia.dpi = data.dpi;
         this.constancia.passport = data.pasaporte;
-        this.constancia.vecindad = data.muni;
+        this.constancia.vecindad = data.municipio;
         this.constancia.expediente = data.expediente;
 
       });

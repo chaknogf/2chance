@@ -1,6 +1,6 @@
 import { servicio } from 'src/app/enums/enums';
-import { Municipio, Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Departamentos, Estadia, Estado, Referencia, Situacion, Serv, serv } from './../enums/enums';
-
+import { Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Estadia, Estado, Referencia, Situacion, Serv, serv } from './../enums/enums';
+import { Vecindad, Municipio, Departamentos } from '../enums/vencindad';
 
 export interface Ienum {
   municipio: Municipio[];

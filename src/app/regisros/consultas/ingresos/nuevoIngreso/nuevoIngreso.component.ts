@@ -1,6 +1,4 @@
 import { FechaService } from '../../../../services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, HostBinding, Input } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';

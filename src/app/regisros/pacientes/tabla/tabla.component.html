@@ -24,7 +24,7 @@
 
             <th class="text-center ">in</th>
             <th class="text-center ">in</th>
-            <th class="text-center " >Exp</th>
+            <th class="text-center " >Exp </th>
             <th class="text-center " >Nombre</th>
             <th class="text-center " >DPI</th>
             <th class="text-center " >Sexo</th>
@@ -79,7 +79,7 @@
           </td>
 
           <td>
-            <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.direccion, paciente.telefono)" data-bs-toggle="modal" data-bs-target="#formularioCrear" >
+            <button *ngIf="paciente?.depto && paciente?.municipio && paciente?.sexo && paciente?.telefono" class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.direccion, paciente.telefono)" data-bs-toggle="modal" data-bs-target="#formularioCrear" >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
                 <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0
                 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
@@ -90,7 +90,7 @@
 
           </td>
 
-          <td class="h3 text-center text-success" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver" >{{ paciente.expediente }}</td>
+          <td class="h3 text-center text-success" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver" >validar {{ paciente.expediente }}</td>
 
           <td class="text-center text-justify" appHighlightWords >
             <span class="font-fam">Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
@@ -235,26 +235,19 @@
               <strong class="h5 me-3">Edad:</strong> {{ patient?.nacimiento | edad }}<br>
               <strong class="h5 me-3">Sexo:</strong> {{ patient?.sexo | anyToText | sexo }}<br>
               <strong class="h5 me-3">DPI:</strong> {{ patient?.dpi | anyToText | formatoDPI }}<br>
-              <hr>
-              <strong class="h5 me-3">Nacionalidad:</strong> {{ patient?.nacionalidad | anyToNumber | enumNacion }}<br>
-              <strong class="h5 me-3">Estado Civil:</strong> {{ patient?.estado_civil | anyToNumber | enumCivil }}<br>
-              <strong class="h5 me-3">Ocupación:</strong> {{ patient?.ocupacion }}<br>
-              <strong class="h5 me-3">Nivel Académico:</strong> {{ patient?.educacion | anyToNumber | enumEducacion }}<br>
-              <hr>
-              <strong class="h5 me-3">Dirección:</strong> {{ patient?.direccion | anyToText | capitalizeName }}<br>
+              <strong class="h5 me-3">Dirección:</strong> {{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio}}, {{patient?.depto | anyToNumber | enumDepto}}<br>
               <strong class="h5 me-3">Teléfono:</strong> {{ patient?.telefono }}<br>
               <strong class="h5">Teléfono de Familiar / responsable:</strong> {{ patient?.telefono_responsable }}<br>
-              <hr>
               <strong class="h5 me-3">Responsable:</strong> {{ patient?.responsable | anyToText | capitalizeName }}<br>
               <strong class="h5 me-3">Parentesco:</strong> {{ patient?.parentesco | anyToNumber | enumParentesco }}<br>
-              <strong class="h5 me-3">DPI del responsable:</strong> {{ patient?.dpi_responsable }}<br>
-              <hr>
-              <strong class="h5 me-3">Madre:</strong> {{ patient?.madre | anyToText | capitalizeName }}<br>
-              <strong class="h5 me-3">Padre:</strong> {{ patient?.padre | anyToText | capitalizeName }}<br>
-              <hr>
-              <strong class="h5 me-3">Creado por:</strong> {{ patient?.created_by }}<br>
-              <strong class="h5 me-3">Creado el:</strong> {{ patient?.created_at }}<br>
-              <strong class="h5 me-3">Actualizado el:</strong> {{ patient?.update_at }}<br>
+
+
+              <button class="btn btn-dark btn-sm" [routerLink]="['/paciente/edit', patient?.id]" data-bs-dismiss="modal" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>Actualizar
+              </button>
             </div>
           </div>
         </div>

@@ -3,11 +3,13 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Ienum } from 'src/app/models/Ienum';
-import { nation, municipio, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { municipio } from 'src/app/enums/vencindad';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FechaService } from 'src/app/services/fecha.service';
 import { Location } from '@angular/common';
 import { UsersService } from 'src/app/services/user.service';
+import { EnumsService } from 'src/app/services/enums.service';
 
 @Component({
   selector: 'emergencias',
@@ -25,6 +27,7 @@ export class EmergenciasComponent implements OnInit {
     private PageReloadService: PageReloadService,
     private _location: Location,
     private user: UsersService,
+    private enums: EnumsService
 
 
   ) {
@@ -113,7 +116,7 @@ export class EmergenciasComponent implements OnInit {
   ngOnInit() {
     this.emergencia.created_by = this.username;
     this.emergencia.hoja_emergencia = this.tuNumero.toString();
-    console.table(this.emergencia)
+    //console.table(this.emergencia)
 
 // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];

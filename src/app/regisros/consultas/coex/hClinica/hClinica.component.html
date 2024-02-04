@@ -79,7 +79,7 @@
 
     <div class="d-flex">
       <div class="d-flex border border-primary rounded p-2 w-50 text-black">Dirección:
-        <p class="ms-auto mb-0 mx-2 ">{{patient?.direccion}}</p>
+        <p class="ms-auto mb-0 mx-2 ">{{patient?.direccion}}, {{patient?.municipio | anyToNumber | enumMunicipio}}, {{patient?.depto | anyToNumber | enumDepto}}</p>
       </div>
       <div class="d-flex border border-primary rounded p-2 w-25 text-black">Ocupación:
         <p class="ms-auto mb-0 mx-2 h5">{{patient?.ocupacion}}</p>

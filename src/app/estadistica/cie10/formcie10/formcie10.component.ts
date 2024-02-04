@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Icie10 } from 'src/app/models/Icie10';
 import { PageReloadService } from 'src/app/services/PageReload.service';
-import { Ienum } from 'src/app/models/Ienum';
-import { municipio, nation, etnias, ecivil, academic, parents, lenguaje, servicios, servicio } from 'src/app/enums/enums';
+import { serv_espc} from 'src/app/models/Ienum';
+import { servicio, serv } from 'src/app/enums/enums';
 
 @Component({
   selector: 'app-formcie10',
@@ -25,17 +25,10 @@ export class Formcie10Component implements OnInit {
     abreviatura: '',
     especialidad: 0
   }
-  e: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio
-    }
+  e: serv_espc = {
+    servicio: servicio,
+    serv: serv
+  }
 
   constructor(
     private Cie10Service: Cie10Service,
