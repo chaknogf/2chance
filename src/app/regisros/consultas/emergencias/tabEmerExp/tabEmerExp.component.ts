@@ -29,6 +29,7 @@ export class TabEmerExpComponent implements OnInit {
   public resumen: Iconcultas[] = [];
   public paciente: Ipaciente | undefined;
   public nuevaDireccion: string = '';
+  public vecindad: string = '';
   edit: boolean = false;
   new: boolean = false;
   fechaActual: string = "";
@@ -94,8 +95,8 @@ export class TabEmerExpComponent implements OnInit {
   @Output() nacimiento = new EventEmitter<string>();
   @Output() sexo = new EventEmitter<string>();
   @Output() dpi = new EventEmitter<any>();
-  @Output() direccion = new EventEmitter<string>();
-  @Output() municipio = new EventEmitter<any>();
+  @Output() direccion = new EventEmitter<any>();
+  @Output() municipio = new EventEmitter<string>();
 
 
 
@@ -139,7 +140,9 @@ export class TabEmerExpComponent implements OnInit {
     this.resumen;
   }
 
-  copiarId(exp: number, nom: string, ape: string, nac: string, sex: string, cui: any, mun: any) {
+  copiarId(exp: number, nom: string, ape: string, nac: string, sex: string, cui: any, mun: any, dir: any) {
+    this.vecindad = this.enums.Vecin(mun);
+    this.nuevaDireccion = dir + ', ' + this.vecindad;
     this.idPaciente.emit(exp);
     this.nombre.emit(nom);
     this.apellido.emit(ape);
@@ -147,8 +150,7 @@ export class TabEmerExpComponent implements OnInit {
     this.sexo.emit(sex);
     this.dpi.emit(cui);
     this.direccion.emit(this.nuevaDireccion);
-    this.municipio.emit(mun)
-    console.log(exp, mun)
+    console.log(exp, this.direccion)
     // this.emergencia.expediente = exp;
 
   }
