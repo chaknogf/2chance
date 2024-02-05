@@ -22,12 +22,12 @@ export interface IconsNac {
   lb: number | null;
   onz: number | null;
   hora: Time| null;
-  medico: number | null;
-  colegiado: number | null;
+  medico: number | any ;
+  colegiado: number | any;
   dpi_medico: number | null;
-  hijos: number | null;
-  vivos: number | null;
-  muertos: number | null;
+  hijos: number | any;
+  vivos: number | any;
+  muertos: number | any;
   tipo_parto: number | null;
   clase_parto: number | null;
   certifica: number | null;

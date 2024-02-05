@@ -1,3 +1,4 @@
+
 import { EdadService } from 'src/app/services/edad.service';
 import { PageReloadService } from '../../../services/PageReload.service';
 import { Component, Renderer2, EventEmitter, OnInit, Output, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
@@ -10,13 +11,13 @@ import { CNacService } from 'src/app/services/c-nac.service';
 import { FormBuilder } from '@angular/forms';
 import { UsersService } from 'src/app/services/user.service';
 import { IconsNac } from 'src/app/models/IconsNac';
-import { AnyToTextPipe } from 'src/app/pipe/anyToText.pipe';
 import { Location } from '@angular/common';
 import { departamentos, municipio, vecindad } from 'src/app/enums/vencindad'
 import { Imedico } from 'src/app/models/Imedico';
-import { lugares, deptos } from './../../../models/Ienum';
+import { lugares, deptos, vecindades, partos } from './../../../models/Ienum';
 import { TextoService } from 'src/app/services/texto.service';
-import { from } from 'rxjs';
+import { claseParto, tipoParto } from 'src/app/enums/parto';
+
 
 
 @Component({
@@ -68,18 +69,27 @@ export class TabMadresComponent implements OnInit  {
   public edad: number = 0;
   public fechaActual: string = "";
   public resumen: IconsNac[] = [];
+  vecindadFiltrados: any[] = []; // Lista de municipios filtrados
+  hijosNacidos: number = 0;
 
   //variables para medicos
   public medicos: Imedico[] = [];
   public _medico: Imedico | undefined;
+  public cui_medic: any = '';
 
 
 
 //objeto constancias
-  d: lugares = {
+  d: vecindades = {
     departamentos: departamentos,
-    municipio: municipio
+    municipio: municipio,
+    vecindad: vecindad,
   }
+  parto: partos = {
+    claseparto: claseParto,
+    tipoparto: tipoParto
+  }
+
   constancia: IconsNac = {
     id: 0,
     fecha: undefined,
@@ -118,11 +128,19 @@ export class TabMadresComponent implements OnInit  {
     this.NuevoCor();
     this.constancia.create_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
-    this.horaActual= this.fechaService.HoraActual();
+    this.horaActual = this.fechaService.HoraActual();
+    this.mserv.getMedicos().subscribe(
+      data => {
+        this.medicos = data;
+      });
+
   }
 
   OnChanges() {
     this.NuevoCor();
+    this.hijosNacidos = this.constancia.vivos + this.constancia.muertos;
+    this.constancia.hijos = this.hijosNacidos;
+    //console.log(this.hijosNacidos)
   }
 
   //metodos pacientes
@@ -130,6 +148,13 @@ export class TabMadresComponent implements OnInit  {
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
     this.paginarPacientes();
+  }
+
+  actualizarHijos() {
+    // Actualizar el valor de hijosNacidos sumando vivos y muertos
+    this.hijosNacidos = this.constancia.vivos + this.constancia.muertos;
+    this.constancia.hijos = this.hijosNacidos;
+    console.log(this.constancia.vivos)
   }
 
   paginarPacientes() {
@@ -203,7 +228,8 @@ export class TabMadresComponent implements OnInit  {
 
     }
 
-    abrirModal(paciente: Ipaciente) {
+  abrirModal(paciente: Ipaciente) {
+
       this.pacientesService.getIdPaciente(paciente.id).subscribe(data => {
         this.madre = data;
         console.table(this.madre, data);
@@ -217,6 +243,7 @@ export class TabMadresComponent implements OnInit  {
         this.constancia.expediente = data.expediente;
 
       });
+      this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
     }
 
     NuevoCor() {
@@ -231,14 +258,28 @@ export class TabMadresComponent implements OnInit  {
       });
     }
 
-    medico() {
-      this.mserv.getMedicoCol(this.constancia.colegiado).subscribe(data => {
+    medico(col: number) {
+      this.mserv.getMedicoCol(col).subscribe(data => {
           this._medico = data;
-          this.constancia.medico = data.name;
-          this.constancia.dpi_medico = data.dpi;
+          this.medicos = data;
+          this.constancia.medico = data.colegiado;
+          this.cui_medic = data.dpi;
+          this.constancia.dpi_medico = this.cui_medic;
+          this.constancia.colegiado = data.colegiado;
+          console.table(this.medicos)
         }
       )
     }
+
+
+
+
+
+    filtrarVecindades() {
+      // Filtrar la lista de municipios basándote en el departamento seleccionado
+      this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
+    }
+
 
 
 

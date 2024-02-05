@@ -130,18 +130,7 @@
               <strong class="h5 me-3">Hoja de Emergencia:</strong> {{consult?.hoja_emergencia}}<br>
               <strong class="h5 me-3">Expediente:</strong> {{consult?.expediente}}<br>
               <hr>
-
-              <strong class="h5 me-3">Fecha de Recepción:</strong> {{consult?.fecha_recepcion | anyToText | formatoFecha}}<br>
-              <strong class="h5 me-3">Fecha de Egreso:</strong> {{consult?.fecha_egreso | anyToText | formatoFecha}}<br>
-              <strong class="h5 me-3">Fecha de Consulta:</strong> {{consult?.fecha_consulta | anyToText | formatoFecha}}<br>
-              <strong class="h5 me-3">Hora:</strong> {{consult?.hora}}<br>
-              <strong class="h5 me-3">Status:</strong> {{consult?.status | anyToNumber | enumStatus}}<br>
-              <strong class="h5 me-3">Folios:</strong> {{consult?.folios}}<br>
-              <hr>
-              <strong class="h5 me-3">Diagnostico:</strong> {{consult?.dx}}<br>
-              <strong class="h5 me-3">Controles Prematales:</strong> {{consult?.prenatal}}<br>
-              <strong class="h5 me-3">Lactancia Materna:</strong> {{consult?.lactancia}}<br>
-              <strong class="h5 me-3">Medico que da Egreso:</strong> {{consult?.medico}}<br>
+              <strong class="h5 me-3">Nota:</strong> {{consult?.nota}}<br>
               <hr>
               <strong class="h5 me-3">Nombres:</strong> {{consult?.nombres | anyToText | capitalizeName}}<br>
               <strong class="h5 me-3">Apellidos:</strong> {{consult?.apellidos | anyToText | capitalizeName}}<br>
@@ -154,6 +143,18 @@
               <strong class="h5 me-3">Acompañante:</strong> {{consult?.acompa | anyToText | capitalizeName}}<br>
               <strong class="h5 me-3">Parentesco:</strong> {{consult?.parente}}<br>
               <strong class="h5 me-3">Teléfono:</strong> {{consult?.telefono}}<br>
+              <hr>
+              <strong class="h5 me-3">Fecha de Recepción:</strong> {{consult?.fecha_recepcion | anyToText | formatoFecha}}<br>
+              <strong class="h5 me-3">Fecha de Egreso:</strong> {{consult?.fecha_egreso | anyToText | formatoFecha}}<br>
+              <strong class="h5 me-3">Fecha de Consulta:</strong> {{consult?.fecha_consulta | anyToText | formatoFecha}}<br>
+              <strong class="h5 me-3">Hora:</strong> {{consult?.hora}}<br>
+              <strong class="h5 me-3">Status:</strong> {{consult?.status | anyToNumber | enumStatus}}<br>
+              <strong class="h5 me-3">Folios:</strong> {{consult?.folios}}<br>
+              <hr>
+              <strong class="h5 me-3">Diagnostico:</strong> {{consult?.dx}}<br>
+              <strong class="h5 me-3">Controles Prematales:</strong> {{consult?.prenatal}}<br>
+              <strong class="h5 me-3">Lactancia Materna:</strong> {{consult?.lactancia}}<br>
+              <strong class="h5 me-3">Medico que da Egreso:</strong> {{consult?.medico}}<br>
               <hr>
               <strong class="h5 me-3">Especialidad:</strong> {{consult?.especialidad | anyToNumber | enumEspecialidad}}<br>
               <strong class="h5 me-3">Servicio:</strong> {{consult?.servicio | anyToNumber | enumServicios}}<br>

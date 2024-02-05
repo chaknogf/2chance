@@ -1,6 +1,7 @@
-import { servicio } from 'src/app/enums/enums';
+
 import { Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Estadia, Estado, Referencia, Situacion, Serv, serv } from './../enums/enums';
 import { Vecindad, Municipio, Departamentos } from '../enums/vencindad';
+import { ClaseParto, TipoParto } from '../enums/parto';
 
 export interface Ienum {
   municipio: Municipio[];
@@ -12,9 +13,6 @@ export interface Ienum {
   lenguage: Lenguage[];
   servicio: Especialidad[];
   servicios: Servicios[];
-
-
-
 
 }
 
@@ -51,7 +49,18 @@ export interface lugares {
   municipio: Municipio[];
 }
 
+export interface vecindades {
+  departamentos: Departamentos[];
+  municipio: Municipio[];
+  vecindad: Vecindad[];
+}
+
 export interface serv_espc {
   servicio: Especialidad[];
   serv: Serv[];
+}
+
+export interface partos {
+  claseparto: ClaseParto[];
+  tipoparto: TipoParto[];
 }
