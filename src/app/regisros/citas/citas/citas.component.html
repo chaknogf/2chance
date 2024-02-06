@@ -57,7 +57,7 @@
       <div class="d-flex justify-content-between">
         <!-- Primer contenedor Medicina -->
         <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 1 | enumEspecialidad }}</h3>
+          <h3 class="text-light mx-3 border-text">{{ 1 | enumCitas }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasMedi.length > 0">
               <!-- Encabezados de columna -->
@@ -86,7 +86,7 @@
 
         <!-- Segundo contenedor Pediatría -->
         <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 2 | enumEspecialidad }}</h3>
+          <h3 class="text-light mx-3 border-text">{{ 2 | enumCitas }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-sm" *ngIf="citasPedia">
               <!-- Encabezados de columna -->
@@ -151,7 +151,7 @@
 
         <!-- Primer contenedor Cirugía -->
         <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 4 | enumEspecialidad }}</h3>
+          <h3 class="text-light mx-3 border-text">{{ 4 | enumCitas }}</h3>
           <div class="table-responsive ">
             <table class="table table-hover table-sm " *ngIf="citasCiru">
               <!-- Encabezados de columna -->
@@ -181,7 +181,7 @@
 
         <!-- Segundo contenedor Trauma -->
         <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 5 | enumEspecialidad }}</h3>
+          <h3 class="text-light mx-3 border-text">{{ 5 | enumCitas }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasTrauma.length > 0">
               <!-- Encabezados de columna -->
@@ -210,7 +210,7 @@
 
           <!-- Tercer contenedor Obstetricia -->
           <div class="container-fluid console-table p-0 bg-info mx-2">
-            <h3 class="text-light mx-3 border-text">{{ 8 | enumCitas }}</h3>
+            <h3 class="text-light mx-3 border-text">{{ 8 | enumCitas }} - preoperatorias</h3>
             <div class="table-responsive">
               <table class="table table-hover table-auto" *ngIf="citasObst.length > 0">
                 <!-- Encabezados de columna -->
@@ -247,7 +247,7 @@
         <!-- Primer contenedor Nutrición
          -->
         <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 7 | enumEspecialidad }}</h3>
+          <h3 class="text-light mx-3 border-text">{{ 7 | enumCitas }}</h3>
           <div class="table-responsive ">
             <table class="table table-hover table-auto" *ngIf="citasNutri.length > 0">
               <!-- Encabezados de columna -->
@@ -277,7 +277,7 @@
 
         <!-- Tercer contenedor Psicologia -->
         <div class="container-fluid console-table p-0 bg-info">
-          <h3 class="text-light mx-3 border-text">{{ 6 | enumEspecialidad }}</h3>
+          <h3 class="text-light mx-3 border-text">{{ 6 | enumCitas }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasPsico.length > 0">
               <!-- Encabezados de columna -->

@@ -109,7 +109,7 @@
       <tbody>
         <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
         <tr *ngFor="let cita of resumen">
-          <td class="text-center text-light ">{{ cita.especialidad | enumEspecialidad}}</td>
+          <td class="text-center text-light ">{{ cita.especialidad | enumCitas}}</td>
           <td class="text-center text-light">{{ cita.dia| formatoFecha }}</td>
           <td class="text-center text-light">{{cita.dia | weekday  }}</td>
           <td class="text-center text-light">{{cita.total_citas}}</td>
