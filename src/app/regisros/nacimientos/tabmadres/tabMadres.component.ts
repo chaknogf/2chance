@@ -20,6 +20,7 @@ import { claseParto, tipoParto } from 'src/app/enums/parto';
 
 
 
+
 @Component({
   selector: 'tabMadres',
   templateUrl: './tabMadres.component.html',
@@ -71,6 +72,7 @@ export class TabMadresComponent implements OnInit  {
   public resumen: IconsNac[] = [];
   vecindadFiltrados: any[] = []; // Lista de municipios filtrados
   hijosNacidos: number = 0;
+
 
   //variables para medicos
   public medicos: Imedico[] = [];
@@ -129,6 +131,7 @@ export class TabMadresComponent implements OnInit  {
     this.constancia.create_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
     this.horaActual = this.fechaService.HoraActual();
+    this.constancia.fecha = this.fechaActual;
     this.mserv.getMedicos().subscribe(
       data => {
         this.medicos = data;
@@ -154,7 +157,7 @@ export class TabMadresComponent implements OnInit  {
     // Actualizar el valor de hijosNacidos sumando vivos y muertos
     this.hijosNacidos = this.constancia.vivos + this.constancia.muertos;
     this.constancia.hijos = this.hijosNacidos;
-    console.log(this.constancia.vivos)
+    //console.log(this.constancia.vivos)
   }
 
   paginarPacientes() {
@@ -260,13 +263,11 @@ export class TabMadresComponent implements OnInit  {
 
     medico(col: number) {
       this.mserv.getMedicoCol(col).subscribe(data => {
-          this._medico = data;
-          this.medicos = data;
           this.constancia.medico = data.colegiado;
-          this.cui_medic = data.dpi;
-          this.constancia.dpi_medico = this.cui_medic;
           this.constancia.colegiado = data.colegiado;
-          console.table(this.medicos)
+          this.constancia.dpi_medico = data.dpi;
+
+          //console.table(this.medicos)
         }
       )
     }
@@ -279,6 +280,34 @@ export class TabMadresComponent implements OnInit  {
       // Filtrar la lista de municipios basándote en el departamento seleccionado
       this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
     }
+
+    reloadPage() {
+      // Llama al servicio para recargar la página
+      this.PageReloadService.reloadPage();
+    }
+
+    crear(): void {
+      this.cnacSer.crearConstancias(this.constancia).subscribe(
+        (response) => {
+
+          //manejar la respuesta exitosa
+          console.log('Exito al crear', response);
+          //mostrar alert
+          const alertDiv = document.createElement('div');
+          alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
+          alertDiv.textContent = 'Cita Agendada con éxito';
+          document.body.appendChild(alertDiv);
+          this.router.navigate(['/constanciasNac'])
+          // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+          setTimeout(() => {
+            this.reloadPage();
+          }, 2000); // 1000 ms = 1 segundo
+        }
+      );
+    }
+
+
+  //formato hora
 
 
 

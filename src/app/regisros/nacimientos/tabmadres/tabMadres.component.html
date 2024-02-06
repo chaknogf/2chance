@@ -100,7 +100,7 @@
             <form class="form-group">
               <div class="wave-group d-flex justify-content-center">
                 <div class="wave-group">
-                  <input type="text" name="doc" id="doc" class="input text-light  text-center bg-night" [(ngModel)]="constancia.doc">
+                  <input type="text" name="doc" id="doc" class="input text-light  text-center bg-night" [(ngModel)]="constancia.doc" autocomplete="off">
                   <span class="bar"></span>
                   <label class="label">
                     <span class="label-char" style="--index: 0">D</span>
@@ -118,7 +118,7 @@
                 <div class="row mt-2">
                   <div class="col-8">
                     <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="madre" id="madre" [(ngModel)]="constancia.madre">
+                      <input  type="text" class="input  text-light w-100" name="madre" id="madre" [(ngModel)]="constancia.madre" autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">N</span>
@@ -133,7 +133,7 @@
 
                   <div class="col-3">
                     <div class="wave-group d-flex">
-                      <input type="text" class="input text-light w-100 text-center" name="edad" id="edad" [(ngModel)]="constancia.edad" ><span class="p-1 text-start">años</span>
+                      <input type="text" class="input text-light w-100 text-center" name="edad" id="edad" [(ngModel)]="constancia.edad"  autocomplete="off"><span class="p-1 text-start">años</span>
                        <span class="bar"></span>
                        <label class="label">
                          <span class="label-char" style="--index: 0">E</span>
@@ -148,7 +148,7 @@
                 <div class="row mt-2 gap-1">
                   <div class="col-6" *ngIf="constancia.dpi" >
                     <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="dpi" id="dpi" [(ngModel)]="constancia.dpi">
+                      <input  type="text" class="input  text-light w-100" name="dpi" id="dpi" [(ngModel)]="constancia.dpi" autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">C</span>
@@ -160,7 +160,7 @@
 
                   <div class="col-6" *ngIf="constancia.passport">
                     <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="passport" id="passport" [(ngModel)]="constancia.passport">
+                      <input  type="text" class="input  text-light w-100" name="passport" id="passport" [(ngModel)]="constancia.passport" autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">P</span>
@@ -179,9 +179,9 @@
                 <div class="col-6" *ngIf="!constancia.dpi">
                   <div class="wave-group">
                     <div class="d-flex">
-                      <input  type="text" class="input  text-light w-100" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio">
-                      <input  type="text" class="input  text-light w-100" name="folio" id="partida" [(ngModel)]="constancia.partida" placeholder="partida">
-                      <input  type="text" class="input  text-light w-100" name="folio" id="libro" [(ngModel)]="constancia.libro" placeholder="libro">
+                      <input  type="text" class="input  text-light w-100" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio" autocomplete="off">
+                      <input  type="text" class="input  text-light w-100" name="folio" id="partida" [(ngModel)]="constancia.partida" placeholder="partida" autocomplete="off">
+                      <input  type="text" class="input  text-light w-100" name="folio" id="libro" [(ngModel)]="constancia.libro" placeholder="libro" autocomplete="off">
                     <span class="bar"></span>
                     <label class="label">
                       <span class="label-char" style="--index: 0">C</span>
@@ -248,8 +248,8 @@
                   <div class="col-4">
                     <div class="wave-group">
                       <div class="d-flex ">
-                        <input class="input text-light w-auto" type="number" id="lb" name="lb" min="0" placeholder="Libras" [(ngModel)]="constancia.lb">
-                        <input class="input text-light w-auto" type="number" id="onz" name="onz" min="0" placeholder="Onzas" [(ngModel)]="constancia.onz">
+                        <input class="input text-light w-auto" type="number" id="lb" name="lb" min="0" placeholder="Libras" [(ngModel)]="constancia.lb" autocomplete="off">
+                        <input class="input text-light w-auto" type="number" id="onz" name="onz" min="0" placeholder="Onzas" [(ngModel)]="constancia.onz" autocomplete="off">
                         <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">P</span>
@@ -268,7 +268,7 @@
                 <div class="row mt-2 gap-1">
                   <div class="col-5">
                     <div class="wave-group">
-                      <input  type="date" class="input  text-light w-100" name="fecha_parto" id="fecha_parto" [(ngModel)]="constancia.fecha_parto">
+                      <input  type="date" class="input  text-light w-100" name="fecha_parto" id="fecha_parto" [(ngModel)]="constancia.fecha_parto" autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">F</span>
@@ -288,8 +288,9 @@
 
                   </div>
                   <div class="col-5">
+
                     <div class="wave-group">
-                      <input  type="time" class="input  text-light w-100" name="hora" id="hora" [(ngModel)]="constancia.hora">
+                      <input type="time" class="input text-light w-100 " name="hora" id="hora" placeholder="hh:mm" [(ngModel)]="constancia.hora" autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">H</span>
@@ -355,7 +356,7 @@
                 <div class="row mt-2 gap-1">
                   <div class="col-3">
                     <div class="wave-group">
-                      <input  type="number" class="input text-light w-100" name="vivos" id="vivos" [(ngModel)]="constancia.vivos" min="0" (ngModelChange)="actualizarHijos()" autofocus>
+                      <input  type="number" class="input text-light w-100" name="vivos" id="vivos" [(ngModel)]="constancia.vivos" min="0" (ngModelChange)="actualizarHijos()" autofocus autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">V</span>
@@ -368,7 +369,7 @@
                   </div>
                     <div class="col-3">
                       <div class="wave-group">
-                        <input  type="number" class="input text-light w-100" name="muertos" id="muertos" [(ngModel)]="constancia.muertos" min="0" (ngModelChange)="actualizarHijos()" autofocus>
+                        <input  type="number" class="input text-light w-100" name="muertos" id="muertos" [(ngModel)]="constancia.muertos" min="0" (ngModelChange)="actualizarHijos()" autofocus autocomplete="off">
                         <span class="bar"></span>
                         <label class="label">
                           <span class="label-char" style="--index: 0">M</span>
@@ -387,7 +388,7 @@
 
                     <div class="col-3">
                       <div class="wave-group">
-                        <input  type="number" class="input text-light w-100" name="hijos" id="hijos"  [(ngModel)]="hijosNacidos">
+                        <input  type="number" class="input text-light w-100" name="hijos" id="hijos"  [(ngModel)]="hijosNacidos" autocomplete="off">
                         <span class="bar"></span>
                         <label class="label">
                           <span class="label-char" style="--index: 0">H</span>
@@ -406,7 +407,7 @@
                 <div class="row mt-2 gap-1">
                   <div class="col-3">
                     <div class="wave-group">
-                      <input  type="text" class="input text-light w-100" name="colegiado" id="colegiado" [(ngModel)]="constancia.colegiado" (ngModelChange)="medico(constancia.colegiado)">
+                      <input  type="text" class="input text-light w-100" name="colegiado" id="colegiado" [(ngModel)]="constancia.colegiado" (ngModelChange)="medico(constancia.colegiado)" autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">C</span>
@@ -426,7 +427,7 @@
 
                   <div class="col-7">
                     <div class="wave-group">
-                      <select  type="text" class="input text-light w-100" name="medico" id="medico" [(ngModel)]="constancia.medico" (ngModelChange)="medico(constancia.medico)">
+                      <select  type="text" class="input text-light w-100 bg-night" name="medico" id="medico" [(ngModel)]="constancia.medico" (ngModelChange)="medico(constancia.medico)">
                         <option *ngFor="let m of medicos" [ngValue]="m.colegiado">{{ m.name }} {{m.colegiado}}</option>
                       </select>
                       <span class="bar"></span>
@@ -446,7 +447,7 @@
 
                   <div class="col-5">
                     <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="dpi_medico" id="dpi_medico" [(ngModel)]="cui_medic">
+                      <input  type="text" class="input  text-light w-100" name="dpi_medico" id="dpi_medico" [(ngModel)]="constancia.dpi_medico"  autocomplete="off">
                       <span class="bar"></span>
                       <label class="label">
                         <span class="label-char" style="--index: 0">D</span>
@@ -470,7 +471,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary"  >Save changes</button>
+          <button type="button" class="btn btn-primary" (click)="crear()" >Crear Constancia</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarInput()">Close</button>
         </div>
       </div>

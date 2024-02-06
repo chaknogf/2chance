@@ -24,7 +24,7 @@ export interface IconsNac {
   hora: Time| null;
   medico: number | any ;
   colegiado: number | any;
-  dpi_medico: number | null;
+  dpi_medico: number | any;
   hijos: number | any;
   vivos: number | any;
   muertos: number | any;
