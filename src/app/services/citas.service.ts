@@ -80,6 +80,10 @@ export class CitasService {
     return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=7"+"&token="+this.token);
   }
 
+  getCitaObst(fecha: string): Observable<any> {
+    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=8"+"&token="+this.token);
+  }
+
   getResumenCitas(value: number): Observable<any> {
     return this.http.get(this.urlapi + "/cita/servicio/?especialidad=" + value+"&token="+this.token)
   }

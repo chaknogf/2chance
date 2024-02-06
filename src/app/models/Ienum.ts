@@ -2,6 +2,7 @@
 import { Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Estadia, Estado, Referencia, Situacion, Serv, serv } from './../enums/enums';
 import { Vecindad, Municipio, Departamentos } from '../enums/vencindad';
 import { ClaseParto, TipoParto } from '../enums/parto';
+import { Citas } from './../enums/enums';
 
 export interface Ienum {
   municipio: Municipio[];
@@ -63,4 +64,8 @@ export interface serv_espc {
 export interface partos {
   claseparto: ClaseParto[];
   tipoparto: TipoParto[];
+}
+
+export interface _citas {
+  citas: Citas[];
 }

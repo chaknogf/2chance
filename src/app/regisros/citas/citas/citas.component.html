@@ -116,7 +116,7 @@
 
          <!-- Tercer contenedor Ginecología -->
          <div class="container-fluid console-table p-0 bg-info">
-          <h3 class="text-light mx-3 border-text">{{ 3 | enumEspecialidad }}</h3>
+          <h3 class="text-light mx-3 border-text">{{ 3 | enumCitas }}</h3>
           <div class="table-responsive">
             <table class="table table-hover table-auto" *ngIf="citasGine.length > 0">
               <!-- Encabezados de columna -->
@@ -208,34 +208,35 @@
           </div>
         </div>
 
-        <!-- Tercer contenedor Psicologia -->
-        <div class="container-fluid console-table p-0 bg-info">
-          <h3 class="text-light mx-3 border-text">{{ 6 | enumEspecialidad }}</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-auto" *ngIf="citasPsico.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasPsico; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- Tercer contenedor Obstetricia -->
+          <div class="container-fluid console-table p-0 bg-info mx-2">
+            <h3 class="text-light mx-3 border-text">{{ 8 | enumCitas }}</h3>
+            <div class="table-responsive">
+              <table class="table table-hover table-auto" *ngIf="citasObst.length > 0">
+                <!-- Encabezados de columna -->
+                <thead>
+                  <tr>
+                    <th class="bg-info text-light text-center" scope="col">Expediente</th>
+                    <th class="bg-info text-light text-center" scope="col">Nombre</th>
+                    <th class="bg-info text-light text-center" scope="col">No.</th>
+                  </tr>
+                </thead>
+                <!-- Datos de la tabla -->
+                <tbody>
+                  <tr *ngFor="let cita of citasObst; let i = index">
+                    <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg> {{ cita.expediente }}</td>
+                    <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+                    <td class="text-center">{{ contador + i + 1 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+
 
       </div>
     </div>
@@ -274,11 +275,11 @@
           </div>
         </div>
 
-        <!-- Segundo contenedor Otro -->
-        <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">Otro</h3>
+        <!-- Tercer contenedor Psicologia -->
+        <div class="container-fluid console-table p-0 bg-info">
+          <h3 class="text-light mx-3 border-text">{{ 6 | enumEspecialidad }}</h3>
           <div class="table-responsive">
-            <table class="table table-hover table-auto" >
+            <table class="table table-hover table-auto" *ngIf="citasPsico.length > 0">
               <!-- Encabezados de columna -->
               <thead>
                 <tr>
@@ -289,16 +290,19 @@
               </thead>
               <!-- Datos de la tabla -->
               <tbody>
-                <tr >
-                  <td ></td>
-                  <td class="text-center"></td>
-                  <td class="text-center"></td>
+                <tr *ngFor="let cita of citasPsico; let i = index">
+                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg> {{ cita.expediente }}</td>
+                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+                  <td class="text-center">{{ contador + i + 1 }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-
         <!-- Tercer contenedor Otro -->
         <div class="container-fluid console-table p-0 bg-info mx-2">
           <h3 class="text-light mx-3 border-text">Otro</h3>

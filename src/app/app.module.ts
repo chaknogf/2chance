@@ -23,7 +23,7 @@ import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe, EnumTipoPipe,
-  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe, EnumServPipe
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe, EnumServPipe, EnumCitasPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -189,6 +189,7 @@ import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.c
     TabMadresComponent,
     TablaDocsComponent,
     AñosPipe,
+    EnumCitasPipe,
 
 
 

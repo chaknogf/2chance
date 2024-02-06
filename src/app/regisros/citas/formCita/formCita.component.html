@@ -68,7 +68,7 @@
           <div class="form-group mt-2">
             <label class="text-light" for="especialidad">Especialidad:</label>
             <select id="especialidad" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)="verResumen($event)" >
-              <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
+              <option *ngFor="let option of e.citas" [value]="option.value">{{ option.label }}</option>
             </select>
           </div>
 

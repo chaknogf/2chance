@@ -18,6 +18,7 @@ export class CitasComponent implements OnInit {
   public citasTrauma: Icitas[] = [];
   public citasCiru: Icitas[] = [];
   public citasGine: Icitas[] = [];
+  public citasObst: Icitas[] = [];
   public citasPsico: Icitas[] = [];
   public citasNutri: Icitas[] = [];
   public citasHoy: Icitas[] = [];
@@ -49,6 +50,7 @@ export class CitasComponent implements OnInit {
       this.citasGine;
       this.citasCiru;
       this.citasNutri;
+      this.citasObst;
       this.x = `${this.year}-${this.month}-${this.day}`;
       this.citasmedicina(this.x);
       this.citaspedia(this.x);
@@ -56,7 +58,8 @@ export class CitasComponent implements OnInit {
       this.citapsico(this.x);
       this.citastrauma(this.x);
       this.citagine(this.x);
-    this.citanutri(this.x);
+      this.citanutri(this.x);
+      this.citaobst(this.x);
 
 
 
@@ -82,6 +85,7 @@ export class CitasComponent implements OnInit {
         this.citasGine = [];
         this.citasPsico = [];
         this.citasNutri = [];
+        this.citasObst = [];
 
         // Llama a las funciones para actualizar los datos de las citas
         this.citasmedicina(this.x);
@@ -91,6 +95,7 @@ export class CitasComponent implements OnInit {
         this.citastrauma(this.x);
         this.citagine(this.x);
         this.citanutri(this.x);
+        this.citaobst(this.x);
         console.log(this.citas)
       } else {
         // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
@@ -101,6 +106,7 @@ export class CitasComponent implements OnInit {
         this.citasGine = [];
         this.citasPsico = [];
         this.citasNutri = [];
+        this.citasObst = [];
       }
     }
 
@@ -150,6 +156,13 @@ export class CitasComponent implements OnInit {
   citanutri(fecha:string) {
     this.CitasService.getCitaNutri(fecha).subscribe(data => {
       this.citasNutri = data;
+      this.citas = data;
+    })
+  }
+
+  citaobst(fecha:string) {
+    this.CitasService.getCitaObst(fecha).subscribe(data => {
+      this.citasObst = data;
       this.citas = data;
     })
   }

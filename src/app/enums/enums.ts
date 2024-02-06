@@ -15,6 +15,26 @@ export const servicio: Especialidad[] = [
   { value: 7, label: 'Nutrición' },
 
 
+
+]
+
+
+export interface Citas {
+  value: number;
+  label: string;
+}
+
+export const citas: Citas[] = [
+  { value: 1, label: 'Medicina Interna' },
+  { value: 2, label: 'Pediatria' },
+  { value: 3, label: 'Ginecologia' },
+  { value: 4, label: 'Cirugia' },
+  { value: 5, label: 'Traumatologia' },
+  { value: 6, label: 'Psicologia' },
+  { value: 7, label: 'Nutrición' },
+  { value: 8, label: 'Obstetricia' },
+
+
 ]
 
 export interface Especialistas {

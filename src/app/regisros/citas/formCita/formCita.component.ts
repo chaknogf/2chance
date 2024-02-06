@@ -3,14 +3,14 @@ import { ConsultasService } from './../../../services/consultas.service';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { CitasService } from '../../../services/citas.service';
-import { IenumCitas } from 'src/app/models/Ienum';
+import { _citas } from 'src/app/models/Ienum';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit,OnChanges ,HostBinding } from '@angular/core';
 import { Icitas, IVistaCitas } from 'src/app/models/Icitas';
 import { PageReloadService } from '../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
-import { parents, servicio, servicios } from 'src/app/enums/enums';
+import {  citas } from 'src/app/enums/enums';
 import { departamentos } from 'src/app/enums/vencindad';
 
 @Component({
@@ -49,11 +49,8 @@ export class FormCitaComponent implements OnInit {
 
 
 
-  e: IenumCitas = {
-    servicio: servicio,
-    servicios: servicios,
-    parents: parents,
-    departamentos: departamentos
+  e:_citas = {
+   citas: citas,
   }
 
   constructor(public CitasService: CitasService,
