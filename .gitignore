@@ -40,7 +40,7 @@ Thumbs.db
 /coverage/
 /dist/
 /tmp/
-/enviroment/
+/enviroments/
 
 # Inclusión de otros archivos específicos para tu proyecto
 # (por ejemplo, archivos de configuración personalizados)
