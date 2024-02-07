@@ -17,6 +17,8 @@ import { Imedico } from 'src/app/models/Imedico';
 import { lugares, deptos, vecindades, partos } from './../../../models/Ienum';
 import { TextoService } from 'src/app/services/texto.service';
 import { claseParto, tipoParto } from 'src/app/enums/parto';
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Iusuarios } from 'src/app/models/Iusers';
 
 
 
@@ -40,6 +42,7 @@ export class TabMadresComponent implements OnInit  {
     private mserv: MedicoService,
     private Edad: EdadService,
     private texto: TextoService,
+    private usuario: UsuariosService,
   ) { }
 
   //variables para pacientes
@@ -79,6 +82,8 @@ export class TabMadresComponent implements OnInit  {
   public _medico: Imedico | undefined;
   public cui_medic: any = '';
 
+  //variables para usuario
+  public usuarioActual: Iusuarios[] = [];
 
 
 //objeto constancias
@@ -136,6 +141,15 @@ export class TabMadresComponent implements OnInit  {
       data => {
         this.medicos = data;
       });
+
+    this.usuario.obteneruser(this.username).subscribe(
+      result => {
+        this.usuarioActual = result;
+        this.constancia.certifica = result.name;
+      }
+    )
+
+
 
   }
 

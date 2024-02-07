@@ -86,6 +86,8 @@ import { ProceCodigosComponent } from './estadistica/procedimientosMedicos/proce
 import { RegistroProceComponent } from './estadistica/procedimientosMedicos/registroProce/registroProce.component';
 import { TabMadresComponent } from './regisros/nacimientos/tabmadres/tabMadres.component';
 import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.component';
+import { ActualizarComponent } from './usuarios/actualizar/actualizar.component';
+import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
 
 
 
@@ -190,6 +192,8 @@ import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.c
     TablaDocsComponent,
     AñosPipe,
     EnumCitasPipe,
+    SubmenuComponent,
+    ActualizarComponent,
 
 
 
@@ -257,7 +261,8 @@ import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.c
       { path: 'editProce/:id', component: NuevoProceComponent, canActivate: [AuthGuard] },
       { path: 'abreviaturas', component: ProceCodigosComponent, canActivate: [AuthGuard] },
       { path: 'registrarProceMed', component: RegistroProceComponent, canActivate: [AuthGuard]},
-      { path: 'editProceMed/:id', component: RegistroProceComponent, canActivate: [AuthGuard]},
+      { path: 'editProceMed/:id', component: RegistroProceComponent, canActivate: [AuthGuard] },
+      { path: 'usuario', component: ActualizarComponent, canActivate: [AuthGuard]},
 
 
     ]),
