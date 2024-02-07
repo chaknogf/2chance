@@ -6,8 +6,8 @@ export interface Icitas{
   fecha: Date | string | null;
   especialidad: number | null;
   nota: string | null;
-  estado: boolean | null;
-  cirugia_programada: null | Date;
+  tipo: number | null;
+  fecha_cita: any | Date;
   created_by: string | null;
   name: string | null;
 }

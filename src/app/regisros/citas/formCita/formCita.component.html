@@ -74,6 +74,15 @@
 
 
           <div class="form-group mt-2">
+            <label class="text-light" for="tipo">Tipo de cita:</label>
+            <select id="tipo" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.tipo" name="tipo"  >
+              <option value="1">Consulta</option>
+              <option value="2">Ingreso / operatorio</option>
+            </select>
+          </div>
+
+
+          <div class="form-group mt-2">
             <label class="text-light" for="fecha">Fecha:</label>
             <input type="date" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="fecha" name="fecha"
               (change)="onDateChange($event)" [(ngModel)]="c.fecha" placeholder="hoy">

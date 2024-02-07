@@ -40,9 +40,9 @@ export class FormCitaComponent implements OnInit {
     expediente: this.expediente,
     fecha: "",
     especialidad: 0,
-    cirugia_programada: null,
+    fecha_cita: this.fechaActual,
     nota: '',
-    estado: false,
+    tipo: 1,
     name: null,
     created_by: null
   }
@@ -66,6 +66,7 @@ export class FormCitaComponent implements OnInit {
 
   ngOnInit() {
 
+    this.c.fecha_cita = this.fechaActual;
 
     this.c.created_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
