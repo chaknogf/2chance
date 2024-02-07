@@ -250,6 +250,7 @@ import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.c
       { path: 'reportstd', component: Report_estdComponent, canActivate: [AuthGuard] },
       { path: 'consNac', component: ConstanciaComponent, canActivate: [AuthGuard] },
       { path: 'formConsNac', component: FormNacComponent, canActivate: [AuthGuard] },
+      { path: 'editConsNac/edit/:id', component: FormNacComponent, canActivate: [AuthGuard] },
       { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard] },
       { path: 'listProce', component: List_ProceMedicComponent, canActivate: [AuthGuard] },
       { path: 'nuevProce', component: NuevoProceComponent, canActivate: [AuthGuard] },
