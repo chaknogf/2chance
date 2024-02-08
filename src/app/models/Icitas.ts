@@ -7,7 +7,7 @@ export interface Icitas{
   especialidad: number | null;
   nota: string | null;
   tipo: number | null;
-  fecha_cita: any | Date;
+  fecha_cita: Date | any;
   created_by: string | null;
   name: string | null;
 }

@@ -40,7 +40,7 @@ export class FormCitaComponent implements OnInit {
     expediente: this.expediente,
     fecha: "",
     especialidad: 0,
-    fecha_cita: this.fechaActual,
+    fecha_cita: new Date(),
     nota: '',
     tipo: 1,
     name: null,
@@ -66,10 +66,11 @@ export class FormCitaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.c.fecha_cita = this.fechaActual;
+   
 
     this.c.created_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
+    this.c.fecha_cita = this.fechaActual;
     // const params = this.activateRoute.snapshot.params;
 
     // Obtener los parámetros de la ruta
