@@ -66,7 +66,7 @@ export class FormCitaComponent implements OnInit {
 
   ngOnInit() {
 
-   
+
 
     this.c.created_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
@@ -97,6 +97,7 @@ export class FormCitaComponent implements OnInit {
     console.log(this.c.expediente)
 
   }
+
   crearCita(): void {
     this.CitasService.agendar(this.c).subscribe(
       (response) => {
@@ -194,15 +195,60 @@ export class FormCitaComponent implements OnInit {
 }
 
 
-
-  paciente_() {
-
-    this.pacientes.getPaciente(this.c.expediente).subscribe(data => {
+paciente_() {
+  this.pacientes.getPaciente(this.c.expediente).subscribe(
+    (data) => {
       this.paciente = data;
-      console.log(this.paciente?.nombre, this.paciente?.apellido,this.expediente)
-    })
-  }
+      console.log(this.paciente);
+      console.log(this.paciente?.nombre, this.paciente?.apellido, this.expediente);
+    },
+    (error) => {
+      console.error('Error al obtener datos del paciente:', error);
+    }
+  );
+}
 
+
+  crearespecial(): void {
+    this.CitasService.especial(this.c).subscribe(
+      (response) => {
+
+        console.table(this.c)
+        // Manejar la respuesta exitosa aquí, si es necesario
+        console.log('Consulta creada con éxito', response);
+
+        // Mostrar una alerta de éxito con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
+        alertDiv.textContent = 'Cita Agendada con éxito';
+        document.body.appendChild(alertDiv);
+        this.router.navigate(['/citas'])
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+      },
+      (error) => {
+        // Manejar errores aquí
+        console.table(this.c)
+        console.error('Error!! al cita ya estaba registrada o se ha llegado al limite de citas', error);
+
+        // Mostrar una alerta de error con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
+        alertDiv.textContent = 'Error!! al cita ya estaba registrada o se ha llegado al limite de citas';
+        document.body.appendChild(alertDiv);
+
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+
+
+      }
+    );
+
+  }
 
 
 

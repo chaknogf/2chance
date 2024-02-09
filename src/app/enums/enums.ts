@@ -33,6 +33,7 @@ export const citas: Citas[] = [
   { value: 6, label: 'Psicologia' },
   { value: 7, label: 'Nutrición' },
   { value: 8, label: 'Obstetricia' },
+  { value: 9, label: 'especial medicina'}
 
 
 ]

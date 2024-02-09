@@ -23,6 +23,7 @@ export class CitasComponent implements OnInit {
   public citasNutri: Icitas[] = [];
   public citasHoy: Icitas[] = [];
   public citasMedi: Icitas[] = [];
+  public citasMediEspc: Icitas[] = [];
   public x: string = this.today;
   public y: number = 0;
   public contador: number = 0;
@@ -45,6 +46,7 @@ export class CitasComponent implements OnInit {
   ngOnInit(): void {
       this.citas;
       this.citasMedi;
+      this.citasMediEspc;
       this.citasPedia;
       this.citasTrauma;
       this.citasGine;
@@ -60,6 +62,7 @@ export class CitasComponent implements OnInit {
       this.citagine(this.x);
       this.citanutri(this.x);
       this.citaobst(this.x);
+      this.citasmedicinaEspc(this.x);
 
 
 
@@ -79,6 +82,7 @@ export class CitasComponent implements OnInit {
 
         //vaciar los arrays
         this.citasMedi = [];
+        this.citasMediEspc = [];
         this.citasPedia = [];
         this.citasTrauma = [];
         this.citasCiru = [];
@@ -89,6 +93,7 @@ export class CitasComponent implements OnInit {
 
         // Llama a las funciones para actualizar los datos de las citas
         this.citasmedicina(this.x);
+        this.citasmedicinaEspc(this.x);
         this.citaspedia(this.x);
         this.citaciru(this.x);
         this.citapsico(this.x);
@@ -100,6 +105,7 @@ export class CitasComponent implements OnInit {
       } else {
         // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
         this.citasMedi = [];
+        this.citasMediEspc = [];
         this.citasPedia = [];
         this.citasTrauma = [];
         this.citasCiru = [];
@@ -119,6 +125,14 @@ export class CitasComponent implements OnInit {
       this.citas = data;
     })
   }
+
+  citasmedicinaEspc(fecha:string) {
+    this.CitasService.getCitaMediEspc(fecha).subscribe(data => {
+      this.citasMediEspc = data;
+      this.citas = data;
+    })
+  }
+
   citaspedia(fecha:string) {
     this.CitasService.getCitaPedia(fecha).subscribe(data => {
       this.citasPedia = data;

@@ -13,7 +13,10 @@
           Citas
         </button>
 
-        <button type="submit" class="btn btn-success bg-black mx-5 w-auto" (click)="crearCita()">Guardar</button>
+        <button type="submit" class="btn btn-success bg-black mx-5 w-auto"
+        (click)="c.especialidad !== 9 && crearCita()"
+        *ngIf="c.especialidad == 9 && crearespecial()">Guardar</button>
+
 
         <button class="btn btn-danger bg-black mx-2 w-auto" (click)="borrar()" [routerLink]="['/citas']">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -71,7 +74,6 @@
               <option *ngFor="let option of e.citas" [value]="option.value">{{ option.label }}</option>
             </select>
           </div>
-
 
           <div class="form-group mt-2">
             <label class="text-light" for="tipo">Tipo de cita:</label>

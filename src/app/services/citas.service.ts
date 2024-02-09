@@ -41,6 +41,11 @@ export class CitasService {
 
    }
 
+   especial(cita: Icitas): Observable<any>{
+    return this.http.post(this.urlapi + "/citaespecial/?token=" + this.token, cita);
+
+   }
+
   getCitasFecha(date: Date): Observable<any> {
     const queryParams = `?value=${date}&token=${this.token}`;
     return this.http.get(`${this.urlapi}/cita/fecha/${queryParams}`);
@@ -53,8 +58,10 @@ export class CitasService {
 
   getCitaMedi(fecha: string): Observable<any> {
     return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=1"+"&token="+this.token);
+  }
 
-    console.log()
+  getCitaMediEspc(fecha: string): Observable<any> {
+    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=9"+"&token="+this.token);
   }
 
   getCitaPedia(fecha: string): Observable<any> {
