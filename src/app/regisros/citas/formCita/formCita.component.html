@@ -129,7 +129,8 @@
           <td class="text-center text-light">{{ cita.dia| formatoFecha }}</td>
           <td class="text-center text-light">{{cita.dia | weekday  }}</td>
           <td class="text-center text-light">{{cita.total_citas}}</td>
-          <td class="text-center text-info">{{10 - cita.total_citas}}</td>
+          <td *ngIf="cita.especialidad != 9" class="text-center text-info">{{10 - cita.total_citas}}</td>
+          <td *ngIf="cita.especialidad == 9" class="text-center text-info">{{4 - cita.total_citas}}</td>
         </tr>
       </tbody>
         </table>
