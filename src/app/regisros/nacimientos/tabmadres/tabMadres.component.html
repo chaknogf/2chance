@@ -186,7 +186,7 @@
                   </div>
 
 
-                <div class="col-6" *ngIf="!constancia.dpi">
+                <div class="col-6" *ngIf="!constancia.dpi && !constancia.passport">
                   <div class="wave-group">
                     <div class="d-flex">
                       <input  type="text" class="input  text-light w-100" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio" autocomplete="off">
@@ -211,8 +211,49 @@
                   </div>
                 </div>
               </div>
+              <div class="row mt-2 gap-1" *ngIf="constancia.passport">
+                <div class="col-8 justify-content-center">
+                  <div class="wave-group">
 
-                <div class="row mt-2 gap-1">
+                    <input class="input  text-light w-100" name="pais" id="pais" [(ngModel)]="constancia.pais" autofocus autocomplete="off">
+
+                    <span class="bar"></span>
+                    <label class="label">
+                      <span class="label-char" style="--index: 0">P</span>
+                      <span class="label-char" style="--index: 1">a</span>
+                      <span class="label-char" style="--index: 2">i</span>
+                      <span class="label-char" style="--index: 3">s</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-8 justify-content-center">
+                  <div class="wave-group">
+
+                    <input class="input  text-light w-100" name="nacionalidad" id="nacionalidad" [(ngModel)]="constancia.nacionalidad" autofocus autocomplete="off">
+
+                    <span class="bar"></span>
+                    <label class="label">
+                      <span class="label-char" style="--index: 0">N</span>
+                      <span class="label-char" style="--index: 1">a</span>
+                      <span class="label-char" style="--index: 2">c</span>
+                      <span class="label-char" style="--index: 3">i</span>
+                      <span class="label-char" style="--index: 4">o</span>
+                      <span class="label-char" style="--index: 5">n</span>
+                      <span class="label-char" style="--index: 6">a</span>
+                      <span class="label-char" style="--index: 7">l</span>
+                      <span class="label-char" style="--index: 8">i</span>
+                      <span class="label-char" style="--index: 9">d</span>
+                      <span class="label-char" style="--index: 10">a</span>
+                      <span class="label-char" style="--index: 11">d</span>
+                    </label>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="row mt-2 gap-1" *ngIf="!constancia.passport">
                   <div class="col-8 justify-content-center">
                     <div class="wave-group">
 

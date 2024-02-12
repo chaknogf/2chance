@@ -72,9 +72,8 @@ extendido por el Registro Nacional de las Personas de la Republica de Guatemala.
 
     </p>
     <p class="text-justify" *ngIf="documetos?.passport && !documetos?.dpi">
-      Se identifica con pasaporte {{documetos?.passport}} de nacionalidad _________________.
-       De {{documetos?.edad}} años de edad. Originaria de
-      _______________________ .
+      Se identifica con pasaporte {{documetos?.passport}} de nacionalidad {{documetos?.nacionalidad}}.
+       De {{documetos?.edad}} años de edad. Originaria de {{documetos?.pais}}.
 
       </p>
 

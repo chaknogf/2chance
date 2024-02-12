@@ -360,7 +360,8 @@ export const departamentos: Departamentos[] = [
   { value: 19, label: 'Zacapa' },
   { value: 20, label: 'Chiquimula' },
   { value: 21, label: 'Jalapa' },
-  { value: 22, label: 'Jutiapa' }
+  { value: 22, label: 'Jutiapa' },
+  { value: 99, label: 'Otro Pais'}
 
 ]
 
@@ -696,5 +697,6 @@ export const municipio: Municipio[] = [
   { value: 2214, label: 'Moyuta', depto: 22 },
   { value: 2215, label: 'Pasaco', depto: 22 },
   { value: 2216, label: 'San José Acatempa', depto: 22 },
-  { value: 2217, label: 'Quesada', depto: 22 }
+  { value: 2217, label: 'Quesada', depto: 22 },
+  { value: 9, label: 'Otro Pais', depto: 99}
 ]

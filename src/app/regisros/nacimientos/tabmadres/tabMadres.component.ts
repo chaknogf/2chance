@@ -128,7 +128,9 @@ export class TabMadresComponent implements OnInit  {
     clase_parto: null,
     certifica: null,
     create_by: null,
-    expediente: 0
+    expediente: 0,
+    nacionalidad: null,
+    pais: null
   }
 
   ngOnInit() {
@@ -260,6 +262,7 @@ export class TabMadresComponent implements OnInit  {
         this.constancia.expediente = data.expediente;
         this.constancia.muni = data.ugar_nacimiento;
         this.constancia.depto = data.depto_nac;
+        this.constancia.pais = data.nacionalidad;
 
       });
       this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);

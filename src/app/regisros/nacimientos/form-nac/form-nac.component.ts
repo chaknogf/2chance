@@ -126,7 +126,9 @@ export class FormNacComponent implements OnInit {
     clase_parto: null,
     certifica: null,
     create_by: null,
-    expediente: 0
+    expediente: 0,
+    nacionalidad: null,
+    pais: null
   }
 
   ngOnInit() {

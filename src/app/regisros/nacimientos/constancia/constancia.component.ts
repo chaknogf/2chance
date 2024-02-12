@@ -75,7 +75,9 @@ export class ConstanciaComponent implements OnInit {
     clase_parto: null,
     certifica: 0,
     create_by: null,
-    expediente: 0
+    expediente: 0,
+    nacionalidad: null,
+    pais: null
   }
 
 

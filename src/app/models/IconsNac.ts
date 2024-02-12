@@ -32,6 +32,8 @@ export interface IconsNac {
   clase_parto: number | null;
   certifica: number | any;
   create_by: string | null;
-  expediente: number ;
+  expediente: number;
+  nacionalidad: string | null;
+  pais: string | null;
 
  }
