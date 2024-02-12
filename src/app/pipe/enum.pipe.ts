@@ -1,7 +1,9 @@
+
 import { situacion, estadia, referencia, serv } from './../enums/enums';
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
 import {servicio, nation, etnias, ecivil,  academic,  parents, lenguaje, servicios, tipo, status, estado, citas} from '../enums/enums';
 import { departamentos, municipio, vecindad } from '../enums/vencindad';
+import { claseParto, tipoParto } from '../enums/parto';
 
 @Pipe({
   name: 'enumEspecialidad'
@@ -74,6 +76,20 @@ export class EnumNacionalidadPipe implements PipeTransform {
     } else {
       // Manejar el caso en el que no se encuentre la nacionalidad.
       return '';
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumVecindad'
+})
+export class EnumVecindadPipe implements PipeTransform {
+  transform(value: number): string {
+    const vecindadEncontrado = vecindad.find(vecindad => vecindad.value === value);
+    if (vecindadEncontrado) {
+      return vecindadEncontrado.label;
+    } else {
+      return ''
     }
   }
 }
@@ -260,6 +276,33 @@ export class EnumServPipe implements PipeTransform {
   }
 }
 
+@Pipe({
+  name: 'enumClaseParto'
+})
+export class EnumClasePartoPipe implements PipeTransform {
+  transform(value: any): string {
+    const clasePartoEncontrado = claseParto.find(claseParto => claseParto.value === value);
+    if (clasePartoEncontrado) {
+      return clasePartoEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumTipoParto'
+})
+export class EnumTipoPartoPipe implements PipeTransform {
+  transform(value: any): string {
+    const tipoPartoEncontrado = tipoParto.find(tipoParto => tipoParto.value === value);
+    if (tipoPartoEncontrado) {
+      return tipoPartoEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
 
 
 

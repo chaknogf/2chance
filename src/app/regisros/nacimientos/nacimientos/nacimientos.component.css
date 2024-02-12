@@ -1,0 +1,13 @@
+
+body {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.blanco {
+  margin-top: 0;
+  background-color: white;
+  background-color: url('/src/assets/carta.png');
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el elemento */
+  background-position: center; /* Centra la imagen */
+}

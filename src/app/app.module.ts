@@ -1,3 +1,4 @@
+import { claseParto } from './enums/parto';
 import { ResumenCitasPipe } from './pipe/resumenCitas.pipe';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,7 +15,7 @@ import { CapitalizeNamePipe } from './pipe/sentenceCase.pipe';
 import { AppComponent } from './app.component';
 import { DiaDeSemana } from './pipe/diaDeSemana.pipe';
 import { WeekdayPipe } from './pipe/weekDay.pipe';
-import { FormatoFechaPipe } from './pipe/formatoFecha.pipe';
+import { FechaCartaPipe, FormatoFechaPipe } from './pipe/formatoFecha.pipe';
 import { ColorizePipe } from './pipe/colorize.pipe';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { GenderPipe } from './pipe/genero.pipe';
@@ -23,7 +24,7 @@ import { EspacioNumerosDirective } from './Directive/espacioNumeros.directive';
 import {
   EnumEspecialidadPipe, EnumNacionalidadPipe, EnumMunicipioPipe,
   EnumEducacionPipe, EnumCivilPipe, EnumIdiomaPipe, EnumTipoPipe,
-  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe, EnumServPipe, EnumCitasPipe
+  EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe, EnumServPipe, EnumCitasPipe, EnumVecindadPipe, EnumClasePartoPipe, EnumTipoPartoPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -88,6 +89,9 @@ import { TabMadresComponent } from './regisros/nacimientos/tabmadres/tabMadres.c
 import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.component';
 import { ActualizarComponent } from './usuarios/actualizar/actualizar.component';
 import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
+import { FormatoHoraPipe } from './pipe/hora.pipe';
+import { MedicosPipe} from './pipe/medicos.pipe';
+import { UsuariosPipe } from './pipe/usuario.pipe';
 
 
 
@@ -194,6 +198,14 @@ import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
     EnumCitasPipe,
     SubmenuComponent,
     ActualizarComponent,
+    FechaCartaPipe,
+    EnumVecindadPipe,
+    FormatoHoraPipe,
+    MedicosPipe,
+    EnumClasePartoPipe,
+    EnumTipoPartoPipe,
+    UsuariosPipe,
+
 
 
 
@@ -254,7 +266,7 @@ import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
       { path: 'reportstd', component: Report_estdComponent, canActivate: [AuthGuard] },
       { path: 'consNac', component: ConstanciaComponent, canActivate: [AuthGuard] },
       { path: 'formConsNac', component: FormNacComponent, canActivate: [AuthGuard] },
-      { path: 'editConsNac/edit/:id', component: FormNacComponent, canActivate: [AuthGuard] },
+      { path: 'formConsNac/:id', component: FormNacComponent, canActivate: [AuthGuard] },
       { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard] },
       { path: 'listProce', component: List_ProceMedicComponent, canActivate: [AuthGuard] },
       { path: 'nuevProce', component: NuevoProceComponent, canActivate: [AuthGuard] },
@@ -262,7 +274,8 @@ import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
       { path: 'abreviaturas', component: ProceCodigosComponent, canActivate: [AuthGuard] },
       { path: 'registrarProceMed', component: RegistroProceComponent, canActivate: [AuthGuard]},
       { path: 'editProceMed/:id', component: RegistroProceComponent, canActivate: [AuthGuard] },
-      { path: 'usuario', component: ActualizarComponent, canActivate: [AuthGuard]},
+      { path: 'usuario', component: ActualizarComponent, canActivate: [AuthGuard] },
+      { path: 'constancia/:id', component: NacimientosComponent, canActivate: [AuthGuard]},
 
 
     ]),

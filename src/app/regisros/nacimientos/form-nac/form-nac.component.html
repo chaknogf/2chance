@@ -1,4 +1,11 @@
 <form class="form-group">
+
+  <div class="d-flex justify-content-center gap-2 mt-2">
+    <button class="btnS bg-primary btn-info btn " [routerLink]="['/consNac']">Regresar</button>
+    <button type="button" class="btnS btn w-auto" (click)="guardar()" >Guardar</button>
+
+  </div>
+
   <div class="wave-group d-flex justify-content-center mt-3">
     <div class="wave-group">
       <input type="text" name="doc" id="doc" class="input text-light  text-center w-100" [(ngModel)]="constancia.doc" autocomplete="off">
@@ -49,7 +56,7 @@
     <div class="row mt-2 gap-1">
       <div class="col-6"  >
         <div class="wave-group">
-          <input  type="text" class="input  text-light w-100" name="dpi" id="dpi" [(ngModel)]="constancia.dpi" autocomplete="off">
+          <input  type="number" class="input  text-light w-100" name="dpi" id="dpi" [(ngModel)]="constancia.dpi" autocomplete="off">
           <span class="bar"></span>
           <label class="label">
             <span class="label-char" style="--index: 0">C</span>
@@ -83,9 +90,9 @@
     <div class="col-6" *ngIf="!constancia.dpi">
       <div class="wave-group">
         <div class="d-flex">
-          <input  type="text" class="input  text-light w-100" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio" autocomplete="off">
-          <input  type="text" class="input  text-light w-100" name="folio" id="partida" [(ngModel)]="constancia.partida" placeholder="partida" autocomplete="off">
-          <input  type="text" class="input  text-light w-100" name="folio" id="libro" [(ngModel)]="constancia.libro" placeholder="libro" autocomplete="off">
+          F<input  type="text" class="input  text-light w-100" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio" autocomplete="off">
+          P<input  type="text" class="input  text-light w-100" name="partida" id="partida" [(ngModel)]="constancia.partida" placeholder="partida" autocomplete="off">
+          L<input  type="text" class="input  text-light w-100" name="libro" id="libro" [(ngModel)]="constancia.libro" placeholder="libro" autocomplete="off">
         <span class="bar"></span>
         <label class="label">
           <span class="label-char" style="--index: 0">C</span>

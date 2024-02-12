@@ -128,7 +128,7 @@ export class TabMadresComponent implements OnInit  {
     clase_parto: null,
     certifica: null,
     create_by: null,
-    expediente: null
+    expediente: 0
   }
 
   ngOnInit() {
@@ -145,7 +145,7 @@ export class TabMadresComponent implements OnInit  {
     this.usuario.obteneruser(this.username).subscribe(
       result => {
         this.usuarioActual = result;
-        this.constancia.certifica = result.name;
+        this.constancia.certifica = result.id;
       }
     )
 
@@ -258,6 +258,8 @@ export class TabMadresComponent implements OnInit  {
         this.constancia.passport = data.pasaporte;
         this.constancia.vecindad = data.municipio;
         this.constancia.expediente = data.expediente;
+        this.constancia.muni = data.ugar_nacimiento;
+        this.constancia.depto = data.depto_nac;
 
       });
       this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
@@ -307,18 +309,82 @@ export class TabMadresComponent implements OnInit  {
           //manejar la respuesta exitosa
           console.log('Exito al crear', response);
           //mostrar alert
-          const alertDiv = document.createElement('div');
-          alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
-          alertDiv.textContent = 'Cita Agendada con éxito';
-          document.body.appendChild(alertDiv);
-          this.router.navigate(['/constanciasNac'])
-          // Retrasar la recarga de la página por, por ejemplo, 1 segundo
-          setTimeout(() => {
-            this.reloadPage();
-          }, 2000); // 1000 ms = 1 segundo
-        }
-      );
-    }
+          const alertDiv = document.createElement("div");
+        alertDiv.classList.add(
+          "alert",
+          "alert-sucess",
+          "fixed-top",
+          "d-flex",
+          "justify-content-center",
+          "align-items-center",
+        );
+        alertDiv.style.width = "80vw";
+        alertDiv.style.height = "10vh";
+        alertDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        alertDiv.style.position = "fixed";
+        alertDiv.style.top = "0";
+        alertDiv.style.left = "0";
+        alertDiv.style.zIndex = "9999";
+
+        const messageDiv = document.createElement("div");
+        messageDiv.textContent = "Constancia Creada con Exito";
+        messageDiv.style.color = "white";
+        messageDiv.style.textAlign = "center";
+        messageDiv.style.padding = "20px";
+        alertDiv.appendChild(messageDiv);
+
+        document.body.appendChild(alertDiv);
+        this.router.navigate(["/constancia/",this.constancia.id]);
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          document.body.removeChild(alertDiv);
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+      },
+      (error) => {
+        // Manejar errores aquí
+        //console.table(this.c)
+        console.error(
+          "Error!! al cita ya estaba registrada o se ha llegado al limite de citas",
+          error,
+        );
+
+        const alertDiv = document.createElement("div");
+        alertDiv.classList.add(
+          "alert",
+          "alert-danger",
+          "fixed-top",
+          "d-flex",
+          "justify-content-center",
+          "align-items-center",
+        );
+        alertDiv.style.width = "40vw";
+        alertDiv.style.height = "20vh";
+        alertDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        alertDiv.style.position = "fixed";
+        alertDiv.style.top = "0";
+        alertDiv.style.left = "0";
+        alertDiv.style.zIndex = "9999";
+
+        const messageDiv = document.createElement("div");
+        messageDiv.textContent =
+          "Error!! ";
+        messageDiv.style.color = "white";
+        messageDiv.style.textAlign = "center";
+        messageDiv.style.padding = "20px";
+        alertDiv.appendChild(messageDiv);
+
+        document.body.appendChild(alertDiv);
+
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          document.body.removeChild(alertDiv);
+
+          //
+        }, 2000); // 1000 ms = 1 segundo
+      },
+    );
+  }
 
 
   //formato hora

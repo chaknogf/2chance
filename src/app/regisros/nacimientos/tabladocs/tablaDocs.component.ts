@@ -70,7 +70,7 @@ export class TablaDocsComponent implements OnInit {
     clase_parto: null,
     certifica: null,
     create_by: null,
-    expediente: null
+    expediente: 0
   }
 
 
@@ -200,6 +200,9 @@ export class TablaDocsComponent implements OnInit {
     }
     console.log(this.idCopiado, this.mostrarModal)
   }
+
+
+
 
 
 }

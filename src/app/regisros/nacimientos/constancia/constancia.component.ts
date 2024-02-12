@@ -40,6 +40,8 @@ export class ConstanciaComponent implements OnInit {
   public idBuscar: number = 0;
   public documentoBuscar: any = '';
   mostrarModal = false;
+  public derecha: number = 0;
+  public izquierda: number = 1;
 
 
   constancia: IconsNac = {
@@ -71,9 +73,9 @@ export class ConstanciaComponent implements OnInit {
     muertos: 0,
     tipo_parto: null,
     clase_parto: null,
-    certifica: null,
+    certifica: 0,
     create_by: null,
-    expediente: null
+    expediente: 0
   }
 
 
@@ -185,6 +187,16 @@ export class ConstanciaComponent implements OnInit {
       // this.abrirModal(); // Abre el modal
     }
     console.log(this.idCopiado, this.mostrarModal)
+  }
+
+  ladoDerecho() {
+    this.izquierda = 0;
+    this.derecha = 1;
+  }
+
+  ladoIzquierdo() {
+    this.izquierda = 1;
+    this.derecha = 0;
   }
 
 

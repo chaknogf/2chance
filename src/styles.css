@@ -8566,6 +8566,11 @@ textarea.form-control-lg {
   font-size: 1rem !important;
 }
 
+.fs-7 {
+  font-size: 1.7rem !important;
+}
+
+
 .fst-italic {
   font-style: italic !important;
 }
@@ -9498,6 +9503,7 @@ textarea.form-control-lg {
   .justify-content-sm-around {
     justify-content: space-around !important;
   }
+
   .justify-content-sm-evenly {
     justify-content: space-evenly !important;
   }
@@ -12802,11 +12808,12 @@ body {
 
   }
 
-  /* Estilos de impresión generales */
+   /* Estilos de impresión generales  */
   body {
     font-size: 12pt;
     margin: 0;
     padding: 0;
+
   }
 }
 
@@ -12913,6 +12920,12 @@ input, select {
   display: inline-block;
   padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
 }
+
+.btnS-indigo:hover{
+
+  background: var(--bs-indigo);
+}
+
 
  .btnS::before {
   content: '';

@@ -21,6 +21,10 @@ export class UsuariosService {
     return this.http.get(this.urlapi + "/username/?user=" + user + '&token=' + this.token);
   }
 
+  obteneruserid(id: number): Observable<any> {
+    return this.http.get(this.urlapi + "/usuario/?id=" + id + '&token=' + this.token);
+  }
+
   actualizar(username: string, user: Iusuarios): Observable<any> {
     return this.http.put(this.urlapi + '/updateuser/' + username +"?token="+ this.token, user);
   }

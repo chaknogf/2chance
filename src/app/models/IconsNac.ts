@@ -9,7 +9,7 @@ export interface IconsNac {
   doc: string | null;
   fecha_parto: Date | null;
   madre: string | null;
-  dpi: number | null;
+  dpi: number | null | any;
   passport: string | null;
   libro: number | null;
   folio: number | null;
@@ -30,8 +30,8 @@ export interface IconsNac {
   muertos: number | any;
   tipo_parto: number | null;
   clase_parto: number | null;
-  certifica: number | null;
+  certifica: number | any;
   create_by: string | null;
-  expediente: number | null;
+  expediente: number ;
 
  }
