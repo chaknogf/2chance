@@ -133,7 +133,7 @@ export class FormNacComponent implements OnInit {
 
   ngOnInit() {
     this.constancia.certifica = 0;
-    this.constancia.create_by = this.username;
+    // this.constancia.create_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
     this.horaActual = this.fechaService.HoraActual();
     this.constancia.fecha = this.fechaActual;
@@ -158,12 +158,13 @@ export class FormNacComponent implements OnInit {
     this.mserv.getMedicos().subscribe(
       data => {
         this.medicos = data;
+        this.constancia.medico = data.name;
       });
 
       this.usuario.obteneruser(this.username).subscribe(
         result => {
           this.usuarioActual = result;
-          this.constancia.certifica = result.id;
+          this.constancia.certifica = result.name;
         }
       )
 
@@ -274,9 +275,10 @@ export class FormNacComponent implements OnInit {
         this.constancia.dpi = data.dpi;
         this.constancia.passport = data.pasaporte;
         this.constancia.vecindad = data.municipio;
-
         this.constancia.muni = data.lugar_nacimiento;
         this.constancia.depto = data.depto_nac;
+        this.constancia.nacionalidad = data.nacionalidad.toString();
+
 
 
       });
@@ -297,7 +299,7 @@ export class FormNacComponent implements OnInit {
 
     medico(col: number) {
       this.mserv.getMedicoCol(col).subscribe(data => {
-          this.constancia.medico = data.colegiado;
+          this.constancia.medico = data.name;
           this.constancia.colegiado = data.colegiado;
           this.constancia.dpi_medico = data.dpi;
 

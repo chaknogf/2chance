@@ -147,7 +147,7 @@ export class TabMadresComponent implements OnInit  {
     this.usuario.obteneruser(this.username).subscribe(
       result => {
         this.usuarioActual = result;
-        this.constancia.certifica = result.id;
+        this.constancia.certifica = result.name;
       }
     )
 
@@ -262,7 +262,8 @@ export class TabMadresComponent implements OnInit  {
         this.constancia.expediente = data.expediente;
         this.constancia.muni = data.ugar_nacimiento;
         this.constancia.depto = data.depto_nac;
-        this.constancia.pais = data.nacionalidad;
+        this.constancia.nacionalidad = data.nacionalidad.toString();
+
 
       });
       this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
@@ -282,7 +283,7 @@ export class TabMadresComponent implements OnInit  {
 
     medico(col: number) {
       this.mserv.getMedicoCol(col).subscribe(data => {
-          this.constancia.medico = data.colegiado;
+          this.constancia.medico = data.name;
           this.constancia.colegiado = data.colegiado;
           this.constancia.dpi_medico = data.dpi;
 

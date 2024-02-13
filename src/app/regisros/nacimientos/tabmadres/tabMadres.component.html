@@ -479,7 +479,7 @@
                   <div class="col-7">
                     <div class="wave-group">
                       <select  type="text" class="input text-light w-100 bg-night" name="medico" id="medico" [(ngModel)]="constancia.medico" (ngModelChange)="medico(constancia.medico)">
-                        <option *ngFor="let m of medicos" [ngValue]="m.colegiado">{{ m.name }} {{m.colegiado}}</option>
+                        <option *ngFor="let m of medicos" [ngValue]="m.name">{{ m.name }} {{m.colegiado}}</option>
                       </select>
                       <span class="bar"></span>
                       <label class="label">

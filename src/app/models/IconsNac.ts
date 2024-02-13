@@ -22,7 +22,7 @@ export interface IconsNac {
   lb: number | null;
   onz: number | null;
   hora: Time| null;
-  medico: number | any ;
+  medico: string | any ;
   colegiado: number | any;
   dpi_medico: number | any;
   hijos: number | any;
@@ -30,7 +30,7 @@ export interface IconsNac {
   muertos: number | any;
   tipo_parto: number | null;
   clase_parto: number | null;
-  certifica: number | any;
+  certifica: string | any;
   create_by: string | null;
   expediente: number;
   nacionalidad: string | null;

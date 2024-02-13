@@ -83,7 +83,7 @@ extendido por el Registro Nacional de las Personas de la Republica de Guatemala.
     <p>
       Un producto de sexo: {{documetos?.sexo_rn | anyToText | sexo}}
       que pesó {{documetos?.lb}} libras {{documetos?.onz}} onzas, a las {{documetos?.hora | anyToText | formatoHora}}.
-      Parto que fue atendido por {{pronombre}}:  {{documetos?.medico | medicos | async}}  Colegiado Activo {{documetos?.colegiado}} Con Código único De Identificación
+      Parto que fue atendido por {{pronombre}}:  {{documetos?.medico}}  Colegiado Activo {{documetos?.colegiado}} Con Código único De Identificación
        {{documetos?.dpi_medico | anyToText | formatoDPI}}.
     </p>
   </div>
@@ -109,7 +109,7 @@ extendido por el Registro Nacional de las Personas de la Republica de Guatemala.
 
   <div class="d-flex justify-content-center align-items-center mt-5">
     <p class="p-0 mb-0">
-    {{ certificador}}
+    {{ documetos?.certifica}}
     </p>
   </div>
 

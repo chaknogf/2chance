@@ -58,11 +58,7 @@ export class NacimientosComponent implements OnInit {
               }
             }
           );
-          this.userSe.obteneruserid(data.certifica).subscribe(
-            dta => {
-              this.certificador = dta.name;
-            }
-          )
+
         });
       }
     });
