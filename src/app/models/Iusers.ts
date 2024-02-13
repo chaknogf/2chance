@@ -8,7 +8,7 @@ export interface Iusuarios {
   code: number;
   username: string;
   name: string;
-  dpi: number;
+  dpi: number | any;
   email: string;
   password: string;
   rol: number;

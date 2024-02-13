@@ -26,7 +26,7 @@ export class UsuariosService {
   }
 
   actualizar(username: string, user: Iusuarios): Observable<any> {
-    return this.http.put(this.urlapi + '/updateuser/' + username +"?token="+ this.token, user);
+    return this.http.put(this.urlapi + '/updateuser/?username=' + username +"&token="+ this.token, user);
   }
 
 

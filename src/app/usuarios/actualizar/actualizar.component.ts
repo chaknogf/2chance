@@ -29,7 +29,7 @@ export class ActualizarComponent implements OnInit {
     code: 0,
     username: '',
     name: '',
-    dpi: 0,
+    dpi: '',
     email: '',
     password: '',
     rol: 0
@@ -41,6 +41,14 @@ export class ActualizarComponent implements OnInit {
     this.usuario.obteneruser(this.username).subscribe(
       result => {
         this.usuarioActual = result;
+        this.us.name = result.name;
+        this.us.dpi = result.dpi;
+        this.us.password = result.password;
+        this.us.email = result.email;
+        this.us.id = result.id;
+        this.us.code = result.code;
+        this.us.username = result.username;
+        this.us.rol = result.rol;
 
 
       }
@@ -60,9 +68,9 @@ export class ActualizarComponent implements OnInit {
        //mostrar alert
        const alertDiv = document.createElement('div');
        alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
-       alertDiv.textContent = 'Cita Agendada con éxito';
+       alertDiv.textContent = 'Usuario Actualizado con Exito';
        document.body.appendChild(alertDiv);
-       this.router.navigate(['/constanciasNac'])
+       this.router.navigate(['/'])
        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
        setTimeout(() => {
          this.reloadPage();

@@ -1,28 +1,29 @@
-<form class="form">
-  <p class="title">Actualización de Usuario</p>
-  <p class="message">Completa tus datos, o cambia tu contraseña si crees que esta comprometida. </p>
-      <div class="flex">
-      <label>
-          <input class="input w-100" type="text" placeholder="" required="" [(ngModel)]="us.name">
-          <span>Nombre Completo</span>
-      </label>
+<div class="d-flex justify-content-center align-items-center mt-3">
+  <form class="form ">
+    <p class="title">Actualización de Usuario</p>
+    <p class="message">Completa tus datos, o cambia tu contraseña si crees que esta comprometida. </p>
+
+    <label>
+      <input class="input " type="text" placeholder="Nombre Completo" name="name" [(ngModel)]="us.name" required="">
+    </label>
+    <label>
+      <input class="input" type="number" placeholder="DPI" name="dpi" [(ngModel)]="us.dpi" required="">
+
+    </label>
+
+    <label>
+        <input class="input" type="email" placeholder="email" name="email" [(ngModel)]="us.email" required="">
+    </label>
+
+    <label>
+        <input class="input" type="password" placeholder="Password" name="password" [(ngModel)]="us.password" required="">
+
+    </label>
 
 
-  </div>
 
-  <label>
-      <input class="input" type="email" placeholder="" required="">
-      <span>Email</span>
-  </label>
+    <button class="submit"(click)="guardar()">Actualiza Datos</button>
 
-  <label>
-      <input class="input" type="password" placeholder="" required="">
-      <span>Password</span>
-  </label>
-  <label>
-      <input class="input" type="password" placeholder="" required="">
-      <span>Confirm password</span>
-  </label>
-  <button class="submit">Submit</button>
-  <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
-</form>
+  </form>
+</div>
+
