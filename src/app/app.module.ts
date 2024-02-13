@@ -87,12 +87,13 @@ import { ProceCodigosComponent } from './estadistica/procedimientosMedicos/proce
 import { RegistroProceComponent } from './estadistica/procedimientosMedicos/registroProce/registroProce.component';
 import { TabMadresComponent } from './regisros/nacimientos/tabmadres/tabMadres.component';
 import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.component';
-import { ActualizarComponent } from './usuarios/actualizar/actualizar.component';
+import { ActualizarComponent } from './personal/actualizar/actualizar.component';
 import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
 import { FormatoHoraPipe } from './pipe/hora.pipe';
 import { MedicosPipe} from './pipe/medicos.pipe';
 import { UsuariosPipe } from './pipe/usuario.pipe';
 import { ConsultarComponent } from './estadistica/consultar/consultar.component';
+import { MedicosComponent } from './personal/medicos/medicos.component';
 
 
 
@@ -207,6 +208,7 @@ import { ConsultarComponent } from './estadistica/consultar/consultar.component'
     EnumTipoPartoPipe,
     UsuariosPipe,
     ConsultarComponent,
+    MedicosComponent,
 
 
 
@@ -278,7 +280,8 @@ import { ConsultarComponent } from './estadistica/consultar/consultar.component'
       { path: 'editProceMed/:id', component: RegistroProceComponent, canActivate: [AuthGuard] },
       { path: 'usuario', component: ActualizarComponent, canActivate: [AuthGuard] },
       { path: 'constancia/:id', component: NacimientosComponent, canActivate: [AuthGuard] },
-      { path: 'consultarE', component: ConsultarComponent, canActivate: [AuthGuard]},
+      { path: 'consultarE', component: ConsultarComponent, canActivate: [AuthGuard] },
+      { path: 'medicos', component: MedicosComponent, canActivate: [AuthGuard]},
 
 
     ]),

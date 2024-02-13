@@ -258,7 +258,7 @@
                     <div class="wave-group">
 
                       <select class="input  text-light w-100" name="vecindad" id="vecindad" [(ngModel)]="constancia.vecindad" autofocus>
-                        <option *ngFor="let option of d.vecindad" [value]="option.value">{{option.label}}</option>
+                        <option class="bg-primary" *ngFor="let option of d.vecindad" [value]="option.value">{{option.label}}</option>
                       </select>
                       <span class="bar"></span>
                       <label class="label">
@@ -281,8 +281,8 @@
                   <div class="col-4">
                     <div class="wave-group">
                       <select class="input text-light w-100" name="sexo" id="sexo" [(ngModel)]="constancia.sexo_rn" autofocus>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
+                        <option class="bg-info" value="M">Masculino</option>
+                        <option class="rosado" value="F">Femenino</option>
                       </select>
                       <span class="bar"></span>
                       <label class="label">
@@ -362,7 +362,7 @@
                   <div class="col-5">
                     <div class="wave-group">
                       <select  type="text" class="input  text-light w-100" name="tipo_parto" id="tipo_parto" [(ngModel)]="constancia.tipo_parto">
-                        <option *ngFor="let option of parto.tipoparto" [value]="option.value">{{option.label}}</option>
+                        <option class="bg-primary" *ngFor="let option of parto.tipoparto" [value]="option.value">{{option.label}}</option>
                       </select>
                       <span class="bar"></span>
                       <label class="label">
@@ -384,7 +384,7 @@
                   <div class="col-5">
                     <div class="wave-group">
                       <select  type="text" class="input  text-light w-100" name="clase_parto" id="clase_parto" [(ngModel)]="constancia.clase_parto">
-                        <option *ngFor="let option of parto.claseparto" [value]="option.value">{{option.label}}</option>
+                        <option class="bg-primary" *ngFor="let option of parto.claseparto" [value]="option.value">{{option.label}}</option>
                       </select>
                       <span class="bar"></span>
                       <label class="label">
@@ -478,8 +478,8 @@
 
                   <div class="col-7">
                     <div class="wave-group">
-                      <select  type="text" class="input text-light w-100 bg-night" name="medico" id="medico" [(ngModel)]="constancia.medico" (ngModelChange)="medico(constancia.medico)">
-                        <option *ngFor="let m of medicos" [ngValue]="m.name">{{ m.name }} {{m.colegiado}}</option>
+                      <select  type="text" class="input text-light w-100 bg-night" name="medico" id="medico" [(ngModel)]="constancia.medico" (ngModelChange)="medico(constancia.colegiado)">
+                        <option class="bg-primary" *ngFor="let m of medicos" [ngValue]="m.name">{{ m.name }} {{m.colegiado}}</option>
                       </select>
                       <span class="bar"></span>
                       <label class="label">

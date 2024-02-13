@@ -338,7 +338,7 @@ export class TabMadresComponent implements OnInit  {
         alertDiv.appendChild(messageDiv);
 
         document.body.appendChild(alertDiv);
-        this.router.navigate(["/constancia/",this.constancia.id]);
+       // this.router.navigate(["/constancia/",this.constancia.id]);
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
           document.body.removeChild(alertDiv);
