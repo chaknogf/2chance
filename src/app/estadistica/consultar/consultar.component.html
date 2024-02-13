@@ -1,0 +1,61 @@
+<app-estadistica></app-estadistica>
+
+
+<div class="container-fluid d-flex">
+  <div class="col-11">
+
+    <div class="fade-in-out" [hidden]="!izquierda">
+      <p>Buscar paciente</p>
+      <personas></personas>
+    </div>
+
+    <div class="fade-in-out" [hidden]="!derecha">
+      <p>Buscar Documento</p>
+      <todas></todas>
+    </div>
+
+
+
+  </div>
+
+  <div class="col-2">
+    <button class="btn btnS-indigo btn-block p-2 h-100" (click)="ladoIzquierdo()" *ngIf="derecha == 1">
+      <p class="mt-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffff99" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+      </svg>
+      </p>
+      <p class="mb-0">E</p>
+      <p class="my-0">X</p>
+      <p class="my-0">P</p>
+      <p class="my-0">E</p>
+      <p class="my-0">D</p>
+      <p class="my-0">I</p>
+      <p class="my-0">E</p>
+      <p class="my-0">N</p>
+      <p class="my-0">T</p>
+      <p class="my-0">E</p>
+      <p class="my-0">S</p>
+    </button>
+    <button class="btn btnS-indigo btn-block p-2 h-100" (click)="ladoDerecho()" *ngIf="izquierda == 1">
+      <p class="mt-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffff99" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+      </svg>
+      </p>
+      <p class="mb-0">C</p>
+      <p class="my-0">O</p>
+      <p class="my-0">N</p>
+      <p class="my-0">S</p>
+      <p class="my-0">U</p>
+      <p class="my-0">L</p>
+      <p class="my-0">T</p>
+      <p class="my-0">A</p>
+      <p class="mt-0">S</p>
+    </button>
+  </div>
+
+
+</div>
+
+

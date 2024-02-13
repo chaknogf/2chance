@@ -92,6 +92,7 @@ import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
 import { FormatoHoraPipe } from './pipe/hora.pipe';
 import { MedicosPipe} from './pipe/medicos.pipe';
 import { UsuariosPipe } from './pipe/usuario.pipe';
+import { ConsultarComponent } from './estadistica/consultar/consultar.component';
 
 
 
@@ -205,6 +206,7 @@ import { UsuariosPipe } from './pipe/usuario.pipe';
     EnumClasePartoPipe,
     EnumTipoPartoPipe,
     UsuariosPipe,
+    ConsultarComponent,
 
 
 
@@ -275,7 +277,8 @@ import { UsuariosPipe } from './pipe/usuario.pipe';
       { path: 'registrarProceMed', component: RegistroProceComponent, canActivate: [AuthGuard]},
       { path: 'editProceMed/:id', component: RegistroProceComponent, canActivate: [AuthGuard] },
       { path: 'usuario', component: ActualizarComponent, canActivate: [AuthGuard] },
-      { path: 'constancia/:id', component: NacimientosComponent, canActivate: [AuthGuard]},
+      { path: 'constancia/:id', component: NacimientosComponent, canActivate: [AuthGuard] },
+      { path: 'consultarE', component: ConsultarComponent, canActivate: [AuthGuard]},
 
 
     ]),
