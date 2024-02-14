@@ -174,8 +174,8 @@ export class MedicosComponent implements OnInit {
     })
   }
 
-  borrar() {
-    this.medicSer.eliminarMedico(this.medicoM.id)
+  borrar(id: number) {
+    this.medicSer.eliminarMedico(id)
       .subscribe(data => {
         this.medicoM = data;
         this.reloadPage();
@@ -183,6 +183,11 @@ export class MedicosComponent implements OnInit {
   }
 
 
+  obtenerMedico(id: number) {
+    this.medicSer.getMedico(id).subscribe(data => {
+      this.medicoM = data;
+    })
+  }
 
 }
 

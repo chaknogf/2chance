@@ -16,7 +16,7 @@
          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
           11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
       </svg></button>
-      <button class="btn btn-info bg-black w-2 p-0" data-bs-toggle="modal" >Crear Codigo</button>
+      <button class="btn btn-info bg-black w--auto p-2" data-bs-toggle="modal" data-bs-target="#nuevo"  >Crear Medico</button>
     </form>
   </div>
 
@@ -26,26 +26,37 @@
       <table class="table table-hover table-black">
         <thead class="">
           <tr>
-          <th class="text-center "></th>
+          <th class="text-center ">Editar</th>
           <th class="text-center ">Colegiado</th>
           <th class="text-center ">Nombre</th>
           <th class="text-center " >DPI</th>
           <th class="text-center " >Especialidad</th>
           <th class="text-center " >Sexo</th>
           <th class="text-center " >Id</th>
+          <th class="text-center">Borrar</th>
         </tr>
         </thead>
 
         <tbody class="justify-content-center text-normal  ">
           <tr *ngFor="let medico of resumen">
 
-            <td class="text-text"> </td>
+            <td class="text-center p-1" data-bs-toggle="modal" data-bs-target="#editar" (click)="obtenerMedico(medico.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#39cbfb" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+             </svg>
+           </td>
             <td class="text-center text-warning" >{{ medico.colegiado }}</td>
             <td class="text-text" > {{ medico.name}} </td>
             <td class="text-center">{{ medico.dpi}}</td>
             <td class="text-center">{{ medico.especialidad | anyToNumber | enumEspecialidad}}</td>
             <td class="text-center tex-uppercase">{{ medico.sexo}}</td>
             <td class="text-center">{{ medico.id}}</td>
+            <td class="text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd7e14" class="bi bi-x-circle" viewBox="0 0 16 16" (click)="borrar(medico.id)">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </td>
 
 
           </tr>
@@ -65,4 +76,87 @@
       </div>
     </div>
   </div>
+  </div>
+
+
+  <div class="modal" id="nuevo">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content w-80 p-1 ">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <form>
+              <label class="mt-1">Nombre del Medico</label>
+              <input type="text" class="form-control text-light w-100 bg-night" name="medico" id="medico" [(ngModel)]="medicoM.name" autocomplete="off">
+              <label class="mt-1">Colegiado</label>
+              <input  type="text" class="form-control text-light w-100 bg-night" name="colegiado" id="colegiado" [(ngModel)]="medicoM.colegiado" autocomplete="off">
+              <label class="mt-1">DPI</label>
+              <input  type="text" class="form-control text-light w-100 bg-night" name="dpi_medico" id="dpi_medico" [(ngModel)]="medicoM.dpi"  autocomplete="off">
+              <label class="mt-1">sexo</label>
+              <select class="form-control text-light w-100 bg-night" name="sexo" id="sexo" [(ngModel)]="medicoM.sexo" autofocus>
+                <option class="bg-info" value="M">Masculino</option>
+                <option class="rosado" value="F">Femenino</option>
+              </select>
+              <label class="mt-1">Especalidad</label>
+              <select class="form-control text-light w-100 bg-night" name="especialidad" id="especialidad" [(ngModel)]="medicoM.especialidad" autofocus>
+                <option class=" bg-primary" *ngFor="let option of e.servicio" [value]="option.value">{{option.label}}</option>
+              </select>
+
+              <div class="d-flex justify-content-around mt-2">
+                <button class="btn btnS" (click)="crear()">Guardar</button>
+                <button class="btn btnS" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+              </div>
+
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="editar">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content w-80 p-1 ">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <form>
+              <label class="mt-1">Nombre del Medico</label>
+              <input type="text" class="form-control text-light w-100 bg-night" name="medico" id="medico" [(ngModel)]="medicoM.name" autocomplete="off">
+              <label class="mt-1">Colegiado</label>
+              <input  type="text" class="form-control text-light w-100 bg-night" name="colegiado" id="colegiado" [(ngModel)]="medicoM.colegiado" autocomplete="off">
+              <label class="mt-1">DPI</label>
+              <input  type="text" class="form-control text-light w-100 bg-night" name="dpi_medico" id="dpi_medico" [(ngModel)]="medicoM.dpi"  autocomplete="off">
+              <label class="mt-1">sexo</label>
+              <select class="form-control text-light w-100 bg-night" name="sexo" id="sexo" [(ngModel)]="medicoM.sexo" autofocus>
+                <option class="bg-info" value="M">Masculino</option>
+                <option class="rosado" value="F">Femenino</option>
+              </select>
+              <label class="mt-1">Especalidad</label>
+              <select class="form-control text-light w-100 bg-night" name="especialidad" id="especialidad" [(ngModel)]="medicoM.especialidad" autofocus>
+                <option class=" bg-primary" *ngFor="let option of e.servicio" [value]="option.value">{{option.label}}</option>
+              </select>
+
+              <div class="d-flex justify-content-around mt-2">
+                <button class="btn btnS" (click)="editar()">Guardar</button>
+                <button class="btn btnS" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+              </div>
+
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
