@@ -4,4 +4,5 @@ export interface Imedico {
   name: string | null;
   dpi: number | any;
   especialidad: number | null;
+  sexo: string | any;
 }

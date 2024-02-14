@@ -1,6 +1,10 @@
+
 import { Component, OnInit } from '@angular/core';
 import { MedicoService } from 'src/app/services/medico.service';
 import { Imedico } from 'src/app/models/Imedico';
+import { serv_espc } from 'src/app/models/Ienum';
+import { servicio, serv } from 'src/app/enums/enums';
+import { PageReloadService } from 'src/app/services/PageReload.service';
 
 @Component({
   selector: 'app-medicos',
@@ -9,16 +13,11 @@ import { Imedico } from 'src/app/models/Imedico';
 })
 export class MedicosComponent implements OnInit {
 
-  constructor(
-    private medicSer: MedicoService,
-
-  ) { }
-
   public resumen: Imedico[] = []
-  public buscarcodigo: string = '';
-  public buscardx: any = '';
-  public buscarabreviatura: any = '';
-  public buscargrupo: any = '';
+  public Medicos: Imedico[] = [];
+  public buscarcolegiado: any = '';
+  public buscarDPI: string = '';
+  public buscarName: string = '';
   public buscarespecialidad: any = '';
   public totalRegistros: number = 12; // Total de registros en la lista
   public paginaActual: number = 1; // Página actual
@@ -26,28 +25,39 @@ export class MedicosComponent implements OnInit {
   private ascendingOrder: boolean = false;
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
 
+
+  constructor(
+    private medicSer: MedicoService,
+    private PageReloadService: PageReloadService,
+
+  ) { }
+
+
   medicoM: Imedico = {
     id: 0,
     colegiado: 0,
     name: null,
     dpi: undefined,
-    especialidad: null
+    especialidad: null,
+    sexo: ''
+  }
+  e: serv_espc = {
+    servicio: servicio,
+    serv: serv
   }
 
 
 
   ngOnInit() {
+    this.consult();
 
-    this.medicSer.getMedicos().subscribe(data => {
-      this.resumen = data;
-    })
 
   }
   paginar() {
     const tamanoPagina = 12;
     const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
     const indiceFin = indiceInicio + tamanoPagina;
-    this.resumen = this.cie10.slice(indiceInicio, indiceFin);
+    this.resumen = this.Medicos.slice(indiceInicio, indiceFin);
     this.totalRegistros = this.resumen.length; // Agrega esta línea para actualizar el número total de registros por página
   }
 
@@ -63,18 +73,17 @@ export class MedicosComponent implements OnInit {
   }
 
   totalPaginas(): number {
-    return Math.ceil(this.cie10.length / this.totalRegistros);
+    return Math.ceil(this.Medicos.length / this.totalRegistros);
 
   }
 
   filtro() {
     // Recopila los valores de entrada del formulario
     const filters = {
-      cod: this.buscarcodigo,
-      dx: this.buscardx,
-      abreviatura: this.buscarabreviatura,
+      colegiado: this.buscarcolegiado,
       especialidad: this.buscarespecialidad,
-      grupo: this.buscargrupo,
+      dpi: this.buscarDPI,
+      name: this.buscarName,
     };
 
     this.medicSer.filtrarmedico(filters).subscribe((result) => {
@@ -85,10 +94,9 @@ export class MedicosComponent implements OnInit {
 
   limpiarInput() {
     this.buscarcolegiado = '';
-    this.buscarabreviatura = '';
-    this.buscardx = '';
+    this.buscarDPI = '';
+    this.buscarName = '';
     this.buscarespecialidad = '';
-    this.buscargrupo = '';
     this.consult();
   }
 
@@ -98,10 +106,11 @@ export class MedicosComponent implements OnInit {
     this.paginar();
   }
 
+
   consult() {
     this.porcentajeDeProgreso = 0.5;
-    this.cie.getCodigos().subscribe(data => {
-      this.cie10 = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+    this.medicSer.getMedicos().subscribe(data => {
+      this.Medicos = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
       this.porcentajeDeProgreso = 75;
       this.resumen = data;
       this.paginar();//Llama a la función aquí para paginar automáticamente
@@ -114,6 +123,67 @@ export class MedicosComponent implements OnInit {
   }
 
 
-}
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
+  }
+
+  crear(): void {
+    this.medicSer.crearMedico(this.medicoM).subscribe(
+      (response) => {
+        // Manejar la respuesta exitosa aquí, si es necesario
+        console.log('Consulta creada con éxito', response);
+
+        // Mostrar una alerta de éxito con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
+        alertDiv.textContent = 'Medico creado con éxito 🤓';
+        document.body.appendChild(alertDiv);
+
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+      },
+      (error) => {
+        // Manejar errores aquí
+        console.error('Error!! ', error);
+
+        // Mostrar una alerta de error con estilo Bootstrap
+        const alertDiv = document.createElement('div');
+        alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
+        alertDiv.textContent = 'Error!!  😫';
+        document.body.appendChild(alertDiv);
+
+        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
+        setTimeout(() => {
+          this.reloadPage();
+        }, 2000); // 1000 ms = 1 segundo
+
+
+      }
+    );
+
+  }
+
+  editar(){
+    this.medicSer.editarMedico(this.medicoM.id, this.medicoM)
+      .subscribe(data => {
+        this.medicoM = data;
+        this.reloadPage();
+    })
+  }
+
+  borrar() {
+    this.medicSer.eliminarMedico(this.medicoM.id)
+      .subscribe(data => {
+        this.medicoM = data;
+        this.reloadPage();
+    })
+  }
+
+
 
 }
+
+

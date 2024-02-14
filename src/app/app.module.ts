@@ -1,3 +1,4 @@
+import { PersonalNavbarComponent } from './personal/personal-navbar/personal-navbar.component';
 import { claseParto } from './enums/parto';
 import { ResumenCitasPipe } from './pipe/resumenCitas.pipe';
 import { NgModule } from '@angular/core';
@@ -209,6 +210,7 @@ import { MedicosComponent } from './personal/medicos/medicos.component';
     UsuariosPipe,
     ConsultarComponent,
     MedicosComponent,
+    PersonalNavbarComponent,
 
 
 
@@ -281,7 +283,8 @@ import { MedicosComponent } from './personal/medicos/medicos.component';
       { path: 'usuario', component: ActualizarComponent, canActivate: [AuthGuard] },
       { path: 'constancia/:id', component: NacimientosComponent, canActivate: [AuthGuard] },
       { path: 'consultarE', component: ConsultarComponent, canActivate: [AuthGuard] },
-      { path: 'medicos', component: MedicosComponent, canActivate: [AuthGuard]},
+      { path: 'medicos', component: MedicosComponent, canActivate: [AuthGuard] },
+      { path: 'personal', component: PersonalNavbarComponent, canActivate: [AuthGuard]},
 
 
     ]),
