@@ -15,7 +15,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./nacimientos.component.css']
 })
 export class NacimientosComponent implements OnInit {
-  public detalleVisible: boolean = false;
+  public detalleVisible: boolean = true;
   public patient: Ipaciente | undefined;
   public documetos: IconsNac | undefined;
   public fechaActual: string = "";
@@ -51,7 +51,8 @@ export class NacimientosComponent implements OnInit {
           this.detalleVisible = true;
           this.medic.getMedicoCol(data.colegiado).subscribe(
             result => {
-              if (result.sexo == 'f') {
+              console.log(result.sexo)
+              if (result.sexo === 'F') {
                 this.pronombre = 'la doctora';
               } else {
                 this.pronombre = 'el doctor';
@@ -82,6 +83,17 @@ export class NacimientosComponent implements OnInit {
     this._location.back();
   }
 
+  pronombres(col: number) {
+    this.medic.getMedicoCol(col).subscribe(
+      data => {
+        if (data == "F") {
+          this.pronombre = 'la doctora';
+        } else {
+          this.pronombre = 'el doctor';
+        }
+      }
+    )
+  }
 
 
 
