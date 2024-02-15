@@ -5,8 +5,8 @@ export interface ClaseParto {
 
 
 export const claseParto: ClaseParto[] = [
-  { value: 1, label: 'Parto Normal' },
-  { value: 2, label: 'Cesárea' },
+  { value: 1, label: 'Eutócico' },
+  { value: 2, label: 'Distócico' },
 ]
 
 export interface TipoParto {

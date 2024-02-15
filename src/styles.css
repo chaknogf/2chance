@@ -13040,3 +13040,23 @@ input, select {
 .bg-night {
   background-color: #192a55;
 }
+
+.font-fam {
+
+  font-size: 1.10rem;
+  color: #f6ca8f;
+  font: bold;
+
+}
+
+.f-resaltado {
+  /* font-family: 'Cairo Play'; */
+ font-size: 1.10rem;
+ color: #050505;
+ font: bolder;
+
+}
+
+.text-exp {
+  color: #93efca ;
+}

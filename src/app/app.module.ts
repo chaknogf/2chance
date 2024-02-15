@@ -95,6 +95,7 @@ import { MedicosPipe} from './pipe/medicos.pipe';
 import { UsuariosPipe } from './pipe/usuario.pipe';
 import { ConsultarComponent } from './estadistica/consultar/consultar.component';
 import { MedicosComponent } from './personal/medicos/medicos.component';
+import { ConsultasRMComponent } from './estadistica/consultasRM/consultasRM.component';
 
 
 
@@ -211,6 +212,7 @@ import { MedicosComponent } from './personal/medicos/medicos.component';
     ConsultarComponent,
     MedicosComponent,
     PersonalNavbarComponent,
+    ConsultasRMComponent,
 
 
 
