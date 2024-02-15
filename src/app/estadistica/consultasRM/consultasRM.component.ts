@@ -308,6 +308,7 @@ export class ConsultasRMComponent implements OnInit {
 
   detalle(x: number) {
     this.ConsultasService.Consulta(x).subscribe(data => {
+    //  console.table(data)
       this.consult = data;
       this.detalleVisible = true;
     })

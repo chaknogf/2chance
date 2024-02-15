@@ -51,7 +51,6 @@ export class NacimientosComponent implements OnInit {
           this.detalleVisible = true;
           this.medic.getMedicoCol(data.colegiado).subscribe(
             result => {
-              console.log(result.sexo)
               if (result.sexo === 'F') {
                 this.pronombre = 'la doctora';
               } else {
