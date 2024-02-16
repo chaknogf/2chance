@@ -89,8 +89,8 @@
 
       </tr>
     </tbody>
-      </table>
-  </div>
+  </table>
+</div>
 
 
  <!-- Paginación -->
@@ -139,57 +139,117 @@
               <div class="text-start">
                 <p>&#123;</p>
                   <div class="d-flex justify-content-wrap p-0">
-                    <span class="me-3 font-title m-0">Hoja de emergencia: </span>
-                    <p class="font-value m-0">{{consult?.hoja_emergencia}},</p>
+                    <span class="me-1 font-title m-0 m-0">Hoja de emergencia: </span>
+                    <p class="font-value m-0 m-0">{{consult?.hoja_emergencia}},</p>
                   </div>
                   <div class="d-flex justify-content-wrap p-0">
-                    <span class="me-3 font-title">Expediente: </span>
-                    <p class="font-value">{{consult?.expediente}},</p>
+                    <span class="me-1 font-title m-0 m-0">Expediente: </span>
+                    <p class="font-value m-0 m-0">{{consult?.expediente}},</p>
                   </div>
                   <div class="d-flex justify-content-wrap p-0">
-                    <span class="me-3 font-title">Nota: </span>
-                    <p class="font-value">{{consult?.nota}},</p>
+                    <span class="me-1 font-title m-0">Nota: </span>
+                    <p class="font-value m-0">{{consult?.nota}},</p>
                   </div>
                   <div class="d-flex justify-content-wrap p-0">
-                    <span class="me-3 font-title">Paciente: </span>
-                    <p class="font-value">{{consult?.nombres | anyToText | capitalizeName}} {{consult?.apellidos | anyToText | capitalizeName}},</p>
+                    <span class="me-1 font-title m-0">Paciente: </span>
+                    <p class="font-value m-0">{{consult?.nombres | anyToText | capitalizeName}} {{consult?.apellidos | anyToText | capitalizeName}},</p>
                   </div>
-
-
-
-
-
-                  <strong class="h5 me-3">Apellidos:</strong> {{consult?.apellidos | anyToText | capitalizeName}}<br>
-                  <strong class="h5 me-3">Nacimiento:</strong> {{consult?.nacimiento | anyToText | formatoFecha}}<br>
-                  <strong class="h5 me-3">Edad en la consulta:</strong> {{consult?.edad}}<br>
-                  <strong class="h5 me-3">Sexo:</strong> {{consult?.sexo | anyToText | sexo}}<br>
-                  <strong class="h5 me-3">DPI:</strong> {{consult?.dpi | anyToText | formatoDPI}}<br>
-                  <hr>
-                  <strong class="h5 me-3">Dirección:</strong> {{consult?.direccion | anyToText | capitalizeName}}<br>
-                  <strong class="h5 me-3">Acompañante:</strong> {{consult?.acompa | anyToText | capitalizeName}}<br>
-                  <strong class="h5 me-3">Parentesco:</strong> {{consult?.parente}}<br>
-                  <strong class="h5 me-3">Teléfono:</strong> {{consult?.telefono}}<br>
-                  <hr>
-                  <strong class="h5 me-3">Fecha de Recepción:</strong> {{consult?.fecha_recepcion | anyToText | formatoFecha}}<br>
-                  <strong class="h5 me-3">Fecha de Egreso:</strong> {{consult?.fecha_egreso | anyToText | formatoFecha}}<br>
-                  <strong class="h5 me-3">Fecha de Consulta:</strong> {{consult?.fecha_consulta | anyToText | formatoFecha}}<br>
-                  <strong class="h5 me-3">Hora:</strong> {{consult?.hora}}<br>
-                  <strong class="h5 me-3">Status:</strong> {{consult?.status | anyToNumber | enumStatus}}<br>
-                  <strong class="h5 me-3">Folios:</strong> {{consult?.folios}}<br>
-                  <hr>
-                  <strong class="h5 me-3">Diagnostico:</strong> {{consult?.dx}}<br>
-                  <strong class="h5 me-3">Controles Prematales:</strong> {{consult?.prenatal}}<br>
-                  <strong class="h5 me-3">Lactancia Materna:</strong> {{consult?.lactancia}}<br>
-                  <strong class="h5 me-3">Medico que da Egreso:</strong> {{consult?.medico}}<br>
-                  <hr>
-                  <strong class="h5 me-3">Especialidad:</strong> {{consult?.especialidad | anyToNumber | enumEspecialidad}}<br>
-                  <strong class="h5 me-3">Servicio:</strong> {{consult?.servicio | anyToNumber | enumServicios}}<br>
-                  <strong class="h5 me-3">Tipo de Consulta:</strong> {{consult?.tipo_consulta | anyToNumber | enumTipo}}<br>
-                  <strong class="h5 me-3">Medico:</strong> {{consult?.medico | anyToText | capitalizeName}}<br>
-                  <strong class="h5 me-3">Creado Por:</strong> {{consult?.created_by}}<br>
-                  <strong class="h5 me-3">Archivado Por:</strong> {{consult?.archived_by}}<br>
-                  <strong class="h5 me-3">Creado el:</strong> {{consult?.created_at}}<br>
-                  <strong class="h5 me-3">Actualizado el:</strong> {{consult?.updated_at}}<br>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha de Nacimiento: </span>
+                    <p class="font-value m-0">{{consult?.nacimiento | anyToText | formatoFecha}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Edad: </span>
+                    <p class="font-value m-0">{{consult?.nacimiento | edad}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Edad de la consulta: </span>
+                    <p class="font-value m-0">{{consult?.edad}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Sexo: </span>
+                    <p class="font-value m-0">{{consult?.sexo | anyToText | sexo}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">DPI: </span>
+                    <p class="font-value m-0">{{consult?.dpi | anyToText | formatoDPI}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Dirección: </span>
+                    <p class="font-value m-0">{{consult?.direccion | anyToText | capitalizeName}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Acompañante: </span>
+                    <p class="font-value m-0">{{consult?.acompa | anyToText | capitalizeName}} - {{consult?.parente | anyToNumber | enumParentesco}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Telefonos: </span>
+                    <p class="font-value m-0">{{consult?.telefono}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha de Recepción: </span>
+                    <p class="font-value m-0">{{consult?.fecha_recepcion | anyToText | formatoFecha}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha de Egreso: </span>
+                    <p class="font-value m-0">{{consult?.fecha_egreso | anyToText | formatoFecha}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha y hora de Consulta: </span>
+                    <p class="font-value m-0">{{consult?.fecha_consulta | anyToText | formatoFecha}} {{consult?.hora}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Status: </span>
+                    <p class="font-value m-0">{{consult?.status | anyToNumber | enumStatus}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Folios: </span>
+                    <p class="font-value m-0">{{consult?.folios}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Diagnostico: </span>
+                    <p class="font-value m-0">{{consult?.dx}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Controles Prenatales: </span>
+                    <p class="font-value m-0">{{consult?.prenatal}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Lactancia materna: </span>
+                    <p class="font-value m-0">{{consult?.lactancia}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Medico: </span>
+                    <p class="font-value m-0">{{consult?.medico | anyToText | capitalizeName}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Especialidad: </span>
+                    <p class="font-value m-0">{{consult?.especialidad | anyToNumber | enumEspecialidad}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Servicio: </span>
+                    <p class="font-value m-0">{{consult?.servicio | anyToNumber | enumServicios}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Tipo de Consulta: </span>
+                    <p class="font-value m-0">{{consult?.tipo_consulta | anyToNumber | enumTipo}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Creado Por: </span>
+                    <p class="font-value m-0">{{consult?.created_by}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Archivado Por: </span>
+                    <p class="font-value m-0">{{consult?.archived_by}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Creado el: </span>
+                    <p class="font-value m-0">{{consult?.created_at}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Actualizado el: </span>
+                    <p class="font-value m-0">{{consult?.updated_at}},</p>
+                  </div>
 
                   <p>&#125;</p>
               </div>
