@@ -42,7 +42,7 @@
 </div>
 
 <div class="d-flex justify-content-center mt-2">
-  <p class="align-content-center" *ngIf="documetos?.dpi && documetos?.edad > 18">
+  <p class="align-content-center" *ngIf="documetos?.dpi && documetos?.edad >= 18">
     Se identifica con Documento Personal de Identificación con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}
 extendido por el Registro Nacional de las Personas de la Republica de Guatemala. De {{documetos?.edad}} años de edad. Originaria de
 {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecindada en
@@ -64,7 +64,7 @@ extendido por el Registro Nacional de las Personas de la Republica de Guatemala.
      {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
   </p>
-  <p class="text-justify" *ngIf="documetos?.dpi && documetos?.edad < 18 && !documetos?.folio">
+  <p class="text-justify" *ngIf="documetos?.dpi && documetos?.edad <= 18 && !documetos?.folio">
     Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
      {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}.
      De {{documetos?.edad}} años de edad. Originaria de
