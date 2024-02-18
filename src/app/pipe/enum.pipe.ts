@@ -1,7 +1,7 @@
 
-import { situacion, estadia, referencia, serv } from './../enums/enums';
+import { situacion, estadia, referencia, serv, todoservicios } from './../enums/enums';
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
-import {servicio, nation, etnias, ecivil,  academic,  parents, lenguaje, servicios, tipo, status, estado, citas} from '../enums/enums';
+import {servicio, nation, etnias, ecivil, academic,  parents, lenguaje, servicios, tipo, status, estado, citas} from '../enums/enums';
 import { departamentos, municipio, vecindad } from '../enums/vencindad';
 import { claseParto, tipoParto } from '../enums/parto';
 
@@ -41,9 +41,9 @@ export class EnumCitasPipe implements PipeTransform {
   })
   export class EnumServiciosPipe implements PipeTransform {
     transform(value: number): string{
-      const serviciosEncontrado = servicios.find(servicios => servicios.value === value);
-      if (serviciosEncontrado) {
-        return serviciosEncontrado.label;
+      const todoserviciosEncontrado = todoservicios.find(todoservicios => todoservicios.value === value);
+      if (todoserviciosEncontrado) {
+        return todoserviciosEncontrado.label;
       } else {
         return ''
       }

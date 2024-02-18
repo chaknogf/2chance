@@ -33,14 +33,16 @@
     <thead>
       <tr>
 
-        <th class="text-center">ID</th>
-        <th class="text-center bg-night" (click)="sortTable('hoja_emergencia')">Hoja / Expediente</th>
-        <th class="text-center">Nombre</th>
+        <th class="text-center" (click)="sortTable('id')" >
+          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
+          0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path>
+          </svg>ID
+        </th>
+        <th class="text-center bg-aqua" >Historia Clinica</th>
+        <th class="text-center">Paciente</th>
         <th class="text-center">Direccion</th>
-        <th class="text-center">Fecha y Hora de Ingreso</th>
-
-        <th class="text-center">Egreso</th>
-        <th class="text-center">Servicio y Especialidad</th>
+        <th class="text-center">Fecha de Registros</th>
+          <th class="text-center">Servicio</th>
         <th class="text-center">Tipo</th>
         <th class="text-center">Status</th>
 
@@ -56,32 +58,30 @@
       <tr *ngFor="let consulta of resumen">
 
         <td class="text-center font-weight-bold text-warning k h5" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#verCons"> {{consulta.id}}
-          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
-             0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path></svg> </td>
-        <td class="text-center bg-black font-ubuntu">
-           <span class="font-fam">Emer: </span> {{consulta.hoja_emergencia}}
-           <br>
-           <span class="text-info">Exp: </span> {{consulta.expediente}}
+
+        </td>
+        <td class="text-center bg-aqua font-ubuntu">
+          <span class="me-1 font-title1">Expediente: </span>{{consulta.expediente}}<br>
+          <span class="me-1 font-title1">Hoja Emergencia: </span>{{consulta.hoja_emergencia}}
         </td>
         <td class="text-center">
-            {{consulta.nombres | anyToText |capitalizeName }}
-            <br>
-             {{consulta.apellidos |anyToText | capitalizeName}}
+          <span [ngClass]="{'mujer': consulta.sexo == 'F', 'hombre': consulta.sexo != 'F'}">{{ consulta.nombres | anyToText | capitalizeName }}</span><br>
+            {{consulta.apellidos |anyToText | capitalizeName}}
         </td>
         <td class="text-center">
-          {{consulta.direccion}}
+          {{consulta.direccion | anyToText | capitalizeName}}
         </td>
         <td class="text-center">
-           {{consulta.fecha_consulta | anyToText | formatoFecha}}
-           <br>
-           <span class="font-ubuntu" >{{consulta.hora}} </span>
+          <span class="me-1 font-title1">Ingreso: </span>  {{consulta.fecha_consulta | anyToText | formatoFecha}}<br>
+          <span class="me-1 font-title1">Hora Ingreso: </span>  {{consulta.hora}}<br>
+          <span class="me-1 font-title1">Egreso: </span>  {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
+          <p *ngIf="consulta.tipo_consulta==2"><span class="me-1 font-title">Estancia: </span>  {{ consulta.fecha_consulta | estancia: consulta.fecha_egreso }}</p>
+
         </td>
 
-        <td class="text-center"> {{consulta.fecha_egreso | anyToText | formatoFecha}} </td>
         <td class="text-center">
-          <span class="font-fam">Servicio: </span>{{consulta.servicio | anyToNumber| enumServicios}}
-          <br>
-           <span class="font-fam">Especialidad: </span> {{consulta.especialidad | anyToNumber| enumEspecialidad}}
+          <span class="font-title1">{{consulta.especialidad | anyToNumber| enumEspecialidad}}: </span><br>
+        {{consulta.servicio | anyToNumber| enumServicios}}
         </td>
         <td class="text-center">{{consulta.tipo_consulta | anyToNumber| enumTipo }}</td>
         <td class="text-center">{{consulta.status | anyToNumber| enumStatus }}</td>

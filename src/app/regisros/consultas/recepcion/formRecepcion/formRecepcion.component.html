@@ -158,7 +158,7 @@
   </div>
 
   <div class="container-fluid d-flex">
-    <form class="" autocomplete="off">
+    <form class="form-group" autocomplete="off">
       <p class="text-info bg-dark rounded">Datos de Partograma</p>
         <div class="d-flex justify-content-center">
           <div class="w-30">
@@ -196,8 +196,8 @@
         <hr class="my-1">
 
         <div class=" d-flex">
-        <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
-          <input class="form-control bg-primary bg-opacity-75 mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="consulta.fecha_recepcion"  (click)="recepcion()" [max]="maxdate">
+        <label for="fecha_recepcion" class="form-label" *ngIf="consulta.fecha_egreso">Fecha de Recepción</label>
+          <input class="form-control bg-primary bg-opacity-75 mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="consulta.fecha_recepcion"  (click)="recepcion()" [max]="maxdate" disabled="">
           <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarRecepcion()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
             <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
              2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
@@ -207,12 +207,24 @@
 
         <div class=" d-flex mt-2">
           <label for="fecha_recepcion" class="form-label">Fecha Egreso</label>
-            <input class="form-control bg-primary bg-opacity-75 mx-3" type="date" id="fecha_recepcion" name="fecha_egreso" [(ngModel)]="consulta.fecha_egreso" (click)="statusegreso()" [max]="maxdate">
+          <input class="form-control bg-primary bg-opacity-75 mx-3" type="date" id="fecha_recepcion" name="fecha_egreso" [(ngModel)]="consulta.fecha_egreso" (click)="statusegreso()" [max]="maxdate" required>
+
             <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarEgreso()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
               <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
                2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
                 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
             </svg></button>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <p class="mt-2"><span class="font-title1"> {{consulta.especialidad | anyToNumber | enumEspecialidad}}:</span> {{consulta.servicio | anyToNumber | enumServicios}}</p>
+          </div>
+          <div class=" mx-1 w-auto my-0">
+
+            <label class="text-light" for="encamamiento">Actualizar Encamamiento:</label>
+            <select id="encamamiento" class="form-control bg-primary bg-opacity-75 text-uppercase text-center p-1" [(ngModel)]="consulta.servicio" name="encamamiento" autofocus>
+              <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
+            </select>
           </div>
 
         <div class="mb-3 mt-3 text-center">

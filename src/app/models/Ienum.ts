@@ -1,5 +1,5 @@
 
-import { Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Estadia, Estado, Referencia, Situacion, Serv, serv } from './../enums/enums';
+import { Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Estadia, Estado, Referencia, Situacion, Serv, serv, encamamiento, Encamamiento } from './../enums/enums';
 import { Vecindad, Municipio, Departamentos } from '../enums/vencindad';
 import { ClaseParto, TipoParto } from '../enums/parto';
 import { Citas } from './../enums/enums';
@@ -68,4 +68,10 @@ export interface partos {
 
 export interface _citas {
   citas: Citas[];
+}
+
+export interface encamamientos {
+  servicio: Especialidad[];
+  serv: Serv[];
+  encamamiento: Encamamiento[];
 }

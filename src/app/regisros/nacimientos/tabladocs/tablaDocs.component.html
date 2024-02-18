@@ -54,7 +54,7 @@
           </td>
           <td class="text-center font-weight-bold text-warning h5"> {{constancias.doc}} </td>
           <td class="text-center"> {{constancias.fecha | anyToText | formatoFecha}} </td>
-          <td class="text-center"> {{constancias.madre}}  </td>
+          <td class="text-center"> {{constancias.madre | anyToText | capitalizeName}}  </td>
           <td class="text-center">{{constancias.id}}</td>
           <td class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fd7e14" class="bi bi-x-circle" viewBox="0 0 16 16" (click)="eliminar(constancias.id)">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>

@@ -2,7 +2,7 @@
 <app-registros></app-registros>
 <div class="justify-content-center console-table">
   <div>
-    <p class="text-center display-6">Control de Expedientes</p>
+    <p class="text-center display-6" >Control de Expedientes</p>
   </div>
   <hr>
   <div class="justify-content-between">
@@ -36,48 +36,72 @@
   <table class="table table-hover table-black font-monospace" >
     <thead>
       <tr>
-        <th class="text-center">Opciones</th>
-        <th class="text-center">Consulta</th>
-        <th class="text-center">Expediente ( Emergencia )</th>
-        <th class="text-center">Ingreso</th>
+        <th class="text-center">Opc</th>
+        <th class="text-center">Id</th>
+        <th class="text-center">Archivar</th>
+        <th class="text-center">Historia Clinica
+          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
+            0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path>
+         </svg>
+        </th>
         <th class="text-center">Nombre</th>
-        <th class="text-center">Egreso</th>
-        <th class="text-center">Recepcion</th>
+        <th class="text-center">Fecha</th>
+        <th class="text-center">dias</th>
         <th class="text-center">Servicio</th>
-        <th class="text-center">Especiealidad</th>
-        <th class="text-center">Tipo</th>
+        <th class="text-center">Tipo Consulta</th>
         <th class="text-center">Status</th>
+        <th class="text-center">No.</th>
 
 
       </tr>
     </thead>
     <tbody class="justify-content-center  opacity-90">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
-      <tr *ngFor="let consulta of resumen">
-        <td class="text-center "  (click)="copiarId(consulta.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-          <svg xmlns="http://www.w3.org/2000/svg"
-          width="16" height="16" fill="currentColor"
-            class="bi bi-grip-vertical" viewBox="0 0 16 16">
-          <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-          0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-          3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-          1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg></td>
-        <td class="text-center font-weight-bold  bg-black font-ubuntu" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#ver"> {{consulta.id}}
-          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
-             0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path></svg> </td>
-        <td class="text-center text-warning font-ubuntu" [routerLink]="['/recept/', consulta.id]">{{consulta.expediente}} ( {{consulta.hoja_emergencia}} ) <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+      <tr *ngFor="let consulta of resumen; let i = index">
+
+        <td class="text-center "  (click)="consultaro(consulta.id)" data-bs-toggle="modal" data-bs-target="#out">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 28 28">
+            <path d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z"/>
+            <path d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z"/>
+            <text x="0" y="21" font-size="7" class="bi">Egreso</text>
+          </svg>
+
+      </td>
+        <td class="text-center font-weight-bold" > {{consulta.id}}
+
+        </td>
+        <td [routerLink]="['/recept/', consulta.id]" class="text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#f6ca8f" class="bi bi-archive" viewBox="0 0 16 16">
           <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-        </svg></td>
-        <td class="text-center"> {{consulta.fecha_consulta | anyToText | formatoFecha}} </td>
-        <td class="text-center "> {{consulta.nombres | anyToText |capitalizeName }} {{consulta.apellidos |anyToText | capitalizeName}} </td>
-        <td class="text-center"> {{consulta.fecha_egreso | anyToText | formatoFecha}} </td>
-        <td class="text-center"> {{consulta.fecha_recepcion | anyToText | formatoFecha}} </td>
-        <td class="text-center">{{consulta.servicio | anyToNumber| enumServicios}}</td>
-        <td class="text-center">{{consulta.especialidad | anyToNumber| enumEspecialidad}}</td>
+          </svg>
+        </td>
+        <td class="text-center text-warning font-ubuntu" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#verCons">
+          <span class="me-1 font-title1">Expediente: </span>{{consulta.expediente}}<br>
+          <span class="me-1 font-title1">Hoja Emergencia: </span>{{consulta.hoja_emergencia}}
+        </td>
+
+        <td class="text-center">
+          <span [ngClass]="{'mujer': consulta.sexo == 'F', 'hombre': consulta.sexo != 'F'}">{{ consulta.nombres | anyToText | capitalizeName }}</span><br>
+            {{consulta.apellidos |anyToText | capitalizeName}}
+        </td>
+        <td class="text-center">
+          <span class="me-1 font-title1">Ingreso: </span>  {{consulta.fecha_consulta | anyToText | formatoFecha}}<br>
+          <span class="me-1 font-title1">Egreso: </span>  {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
+          <span class="me-1 font-title1">Recepción: </span>  {{consulta.fecha_recepcion | anyToText | formatoFecha}}
+        </td>
+
+        <td class="text-center">
+          {{ consulta.fecha_consulta | estancia: fechaActual }}
+
+        </td>
+
+        <td class="text-center">
+          <span class="font-title1">{{consulta.especialidad | anyToNumber| enumEspecialidad}}</span><br>
+          {{consulta.servicio | anyToNumber| enumServicios}}
+        </td>
         <td class="text-center">{{consulta.tipo_consulta | anyToNumber| enumTipo }}</td>
         <td class="text-center">{{consulta.status | anyToNumber | enumStatus}}</td>
-
+        <td class="text-center" >{{ contador + i + 1}}</td>
       </tr>
     </tbody>
       </table>
@@ -94,15 +118,31 @@
       </div>
     </div>
 
-    <div class="modal" id="opciones">
+    <div class="modal" id="out">
       <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content bg-light">
+        <div class="modal-content w-50 ">
+          <div class="">
+            <div class="form">
+              <div class="subtitle">Egreso de Pacientes<br>
+                <span>exp:{{consulta_.expediente}}</span>
+              </div>
+              <div class="input-container ic1">
+                <select id="encamamiento" class="input" type="text" [(ngModel)]="consulta_.servicio" placeholder="">
+                  <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
+                </select>
+                <div class="cut"></div>
+                <label for="encamamiento" id="placeholder" class="" >Encamamiento</label>
+              </div>
+              <div class="input-container ic2">
+                <input id="egreso" class="input" type="date" placeholder="" [(ngModel)]="consulta_.fecha_egreso" (click)="egreso()"  [max]="maxdate">
+                <div class="cut"></div>
+                <label for="lastname" id="placeholder" class="">Fecha de Egreso</label>
+              </div>
 
-          <!-- <button class="btn btn-dark bg-danger my-2" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button> -->
-          <button class="btn btn-info bg-black my-2" data-bs-dismiss="modal" >Editar Consulta</button>
-
-          <button class="btn btn-black" data-bs-dismiss="modal">Cerrar</button>
-
+              <button type="text" class="submit w-80" data-bs-dismiss="modal" (click)="guardarEgreso()">Guardar</button>
+              <button type="text" class="submit w-80" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -110,59 +150,137 @@
 
 
 
-    <div class="modal" id="ver">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content w-80 p-1 bg-dark bg-opacity-75">
-          <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true"></span>
-            </button>
+    <div class="modal fade" id="verCons" role="dialog" aria-labelledby="verCons" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-lg" role="document">
+        <div class="modal-content w-auto card bg-night">
+          <div class="top">
+            <div class="circle red"></div>
+            <div class="circle yellow"></div>
+            <div class="circle green"></div>
           </div>
-          <div class="modal-body">
-            <div class="card-header h4 text-center">
-              Detalles de Consulta
-              <br>Id:  {{consult?.id}}
+
+          <div class="modal-body code-container" id="code">
+            <div class="card-header  text-center" >
+              Detalles de Consulta: <span class="font-fam">{{consult?.id}}</span>
             </div>
-            <div class="card-body mx-5 font-monospace">
-              <strong class="h5 me-3">Hoja de Emergencia:</strong> {{consult?.hoja_emergencia}}<br>
-              <strong class="h5 me-3">Expediente:</strong> {{consult?.expediente}}<br>
-              <hr>
+            <div class="modal-body mx-5 font-monospace">
+              <div class="text-start">
+                <p>&#123;</p>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0 m-0">Hoja de emergencia: </span>
+                    <p class="font-value m-0 m-0">{{consult?.hoja_emergencia}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0 m-0">Expediente: </span>
+                    <p class="font-value m-0 m-0">{{consult?.expediente}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Nota: </span>
+                    <p class="font-value m-0">{{consult?.nota}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Paciente: </span>
+                    <p class="font-value m-0" id="resalt">{{consult?.nombres | anyToText | capitalizeName}} {{consult?.apellidos | anyToText | capitalizeName}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha de Nacimiento: </span>
+                    <p class="font-value m-0">{{consult?.nacimiento | anyToText | formatoFecha}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Edad: </span>
+                    <p class="font-value m-0">{{consult?.nacimiento | edad}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Edad de la consulta: </span>
+                    <p class="font-value m-0">{{consult?.edad}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Sexo: </span>
+                    <p class="font-value m-0">{{consult?.sexo | anyToText | sexo}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">DPI: </span>
+                    <p class="font-value m-0">{{consult?.dpi | anyToText | formatoDPI}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Dirección: </span>
+                    <p class="font-value m-0">{{consult?.direccion | anyToText | capitalizeName}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Acompañante: </span>
+                    <p class="font-value m-0">{{consult?.acompa | anyToText | capitalizeName}} - {{consult?.parente | anyToNumber | enumParentesco}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Telefonos: </span>
+                    <p class="font-value m-0">{{consult?.telefono}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha de Recepción: </span>
+                    <p class="font-value m-0">{{consult?.fecha_recepcion | anyToText | formatoFecha}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha de Egreso: </span>
+                    <p class="font-value m-0">{{consult?.fecha_egreso | anyToText | formatoFecha}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Fecha y hora de Consulta: </span>
+                    <p class="font-value m-0">{{consult?.fecha_consulta | anyToText | formatoFecha}} {{consult?.hora}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Status: </span>
+                    <p class="font-value m-0">{{consult?.status | anyToNumber | enumStatus}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Folios: </span>
+                    <p class="font-value m-0">{{consult?.folios}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Diagnostico: </span>
+                    <p class="font-value m-0">{{consult?.dx}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Controles Prenatales: </span>
+                    <p class="font-value m-0">{{consult?.prenatal}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Lactancia materna: </span>
+                    <p class="font-value m-0">{{consult?.lactancia}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Medico: </span>
+                    <p class="font-value m-0">{{consult?.medico | anyToText | capitalizeName}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Especialidad: </span>
+                    <p class="font-value m-0">{{consult?.especialidad | anyToNumber | enumEspecialidad}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Servicio: </span>
+                    <p class="font-value m-0">{{consult?.servicio | anyToNumber | enumServicios}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Tipo de Consulta: </span>
+                    <p class="font-value m-0">{{consult?.tipo_consulta | anyToNumber | enumTipo}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Creado Por: </span>
+                    <p class="font-value m-0">{{consult?.created_by}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Archivado Por: </span>
+                    <p class="font-value m-0">{{consult?.archived_by}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Creado el: </span>
+                    <p class="font-value m-0">{{consult?.created_at}},</p>
+                  </div>
+                  <div class="d-flex justify-content-wrap p-0">
+                    <span class="me-1 font-title m-0">Actualizado el: </span>
+                    <p class="font-value m-0">{{consult?.updated_at}},</p>
+                  </div>
 
-              <strong class="h5 me-3">Fecha de Recepción:</strong> {{consult?.fecha_recepcion | anyToText | formatoFecha}}<br>
-              <strong class="h5 me-3">Fecha de Egreso:</strong> {{consult?.fecha_egreso | anyToText | formatoFecha}}<br>
-              <strong class="h5 me-3">Fecha de Consulta:</strong> {{consult?.fecha_consulta | anyToText | formatoFecha}}<br>
-              <strong class="h5 me-3">Hora:</strong> {{consult?.hora}}<br>
-              <strong class="h5 me-3">Status:</strong> {{consult?.status | anyToNumber | enumStatus}}<br>
-              <strong class="h5 me-3">Folios:</strong> {{consult?.folios}}<br>
-              <hr>
-              <strong class="h5 me-3">Diagnostico:</strong> {{consult?.dx}}<br>
-              <strong class="h5 me-3">Controles Prematales:</strong> {{consult?.prenatal}}<br>
-              <strong class="h5 me-3">Lactancia Materna:</strong> {{consult?.lactancia}}<br>
-              <strong class="h5 me-3">Medico que da Egreso:</strong> {{consult?.medico}}<br>
-              <hr>
-              <strong class="h5 me-3">Nombres:</strong> {{consult?.nombres | anyToText | capitalizeName}}<br>
-              <strong class="h5 me-3">Apellidos:</strong> {{consult?.apellidos | anyToText | capitalizeName}}<br>
-              <strong class="h5 me-3">Nacimiento:</strong> {{consult?.nacimiento | anyToText | formatoFecha}}<br>
-              <strong class="h5 me-3">Edad en la consulta:</strong> {{consult?.edad}}<br>
-              <strong class="h5 me-3">Sexo:</strong> {{consult?.sexo | anyToText | sexo}}<br>
-              <strong class="h5 me-3">DPI:</strong> {{consult?.dpi | anyToText | formatoDPI}}<br>
-              <hr>
-              <strong class="h5 me-3">Dirección:</strong> {{consult?.direccion | anyToText | capitalizeName}}<br>
-              <strong class="h5 me-3">Acompañante:</strong> {{consult?.acompa | anyToText | capitalizeName}}<br>
-              <strong class="h5 me-3">Parentesco:</strong> {{consult?.parente}}<br>
-              <strong class="h5 me-3">Teléfono:</strong> {{consult?.telefono}}<br>
-              <hr>
-              <strong class="h5 me-3">Especialidad:</strong> {{consult?.especialidad | anyToNumber | enumEspecialidad}}<br>
-              <strong class="h5 me-3">Servicio:</strong> {{consult?.servicio | anyToNumber | enumServicios}}<br>
-              <strong class="h5 me-3">Tipo de Consulta:</strong> {{consult?.tipo_consulta | anyToNumber | enumTipo}}<br>
-              <strong class="h5 me-3">Medico:</strong> {{consult?.medico | anyToText | capitalizeName}}<br>
-              <strong class="h5 me-3">Creado Por:</strong> {{consult?.created_by}}<br>
-              <strong class="h5 me-3">Archivado Por:</strong> {{consult?.archived_by}}<br>
-              <strong class="h5 me-3">Creado el:</strong> {{consult?.created_at}}<br>
-              <strong class="h5 me-3">Actualizado el:</strong> {{consult?.updated_at}}<br>
-
-
-
+                  <p>&#125;</p>
+              </div>
             </div>
           </div>
         </div>

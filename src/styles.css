@@ -12871,10 +12871,19 @@ body {
   padding: 1%;
 }
 
+.hombre {
+  color: #c2ecfe;
+  font-weight: bold;
+}
+
+.mujer {
+  color: #df7ca8;
+  font-weight: bold;
+}
 
 .rosado {
   /* color: #f6a5ca ;  */
-  background-color: #f6a5ca ;
+  background-color: #df7ca8 ;
   border-radius: 8%;
   color: #203449;
   font-weight: bold;
@@ -13010,7 +13019,7 @@ input, select {
 }
 
 .expande-contenido:focus {
-  width: 600px; /* Ajusta el tamaño máximo cuando el input está enfocado */
+  width: 1000px; /* Ajusta el tamaño máximo cuando el input está enfocado */
   outline-color: #30add5;
   outline: none;
   border-color: rgba(129, 140, 248);
@@ -13069,6 +13078,13 @@ input, select {
 
   font-size: 1.25rem;
   color: #ed964a;
+  font: bold;
+
+}
+.font-title1 {
+
+  font-size: 1.01rem;
+  color: #93efca;
   font: bold;
 
 }
@@ -13154,4 +13170,18 @@ input, select {
 
 #code:focus {
   outline: none !important;
+}
+
+#resalt {
+  background-color: #175164;
+  color: #93efca;
+  border:thin 5px  #175164;
+  border-radius: 15px;
+  transform: skewX(-20deg); /* Inclina el borde hacia afuera */
+  /* Opcional: Agregar un poco de margen para evitar superposiciones */
+  margin: 3px;
+  background: linear-gradient(to right, transparent 0%, #175164 10%, #175164 90%, transparent 100%);
+  padding: 3px; /* Ajusta el relleno según sea necesario */
+
+
 }

@@ -83,18 +83,71 @@ export const servicios: Servicios[] = [
   { value: 9, label: 'Pediatria' },
   { value: 10, label: 'RN' },
   { value: 11, label: 'Neonatos' },
+  //{ value: 12, label: 'Medicina hombres' },
+  //{ value: 13, label: 'Medicina mujeres' },
+  //{ value: 14, label: 'vsvs' },
+  //{ value: 15, label: 'Covid' },
+  //{ value: 16, label: 'labor & parto' },
+  { value: 17, label: 'area roja emergencia' },
+  { value: 18, label: 'Medicina' },
+  { value: 19, label: 'UCIN' },
+
+]
+
+export interface TodoServicios {
+  value: number;
+  label: string;
+}
+export const todoservicios: TodoServicios[] = [
+
+  { value: 0, label: 'Emergencia' },
+  { value: 1, label: 'SOP' },
+  { value: 2, label: 'Maternidad' },
+  { value: 3, label: 'Ginecologia' },
+  { value: 4, label: 'Cirugia' },
+  { value: 5, label: 'Cirugia pedia' },
+  { value: 6, label: 'Trauma' },
+  { value: 7, label: 'Trauma pedia' },
+  { value: 8, label: 'CRN' },
+  { value: 9, label: 'Pediatria' },
+  { value: 10, label: 'Alojamiento RN' },
+  { value: 11, label: 'Neonatos' },
   { value: 12, label: 'Medicina hombres' },
   { value: 13, label: 'Medicina mujeres' },
   { value: 14, label: 'vsvs' },
   { value: 15, label: 'Covid' },
   { value: 16, label: 'labor & parto' },
-  { value: 15, label: 'area roja emergencia' },
+  { value: 17, label: 'area roja emergencia' },
+  { value: 18, label: 'Medicina' },
+  { value: 19, label: 'UCIN' },
+  { value: 20, label: 'COEX' },
+
+]
+
+export interface Encamamiento {
+  value: number;
+  label: string;
+}
+export const encamamiento: Encamamiento[] = [
+
+  { value: 2, label: 'Maternidad' },
+  { value: 3, label: 'Ginecologia' },
+  { value: 4, label: 'Cirugia' },
+  { value: 5, label: 'Cirugia pedia' },
+  { value: 6, label: 'Trauma' },
+  { value: 7, label: 'Trauma pedia' },
+  { value: 8, label: 'CRN' },
+  { value: 9, label: 'Pediatria' },
+  { value: 10, label: 'Alojamiento RN' },
+  { value: 11, label: 'Neonatos' },
+  // { value: 15, label: 'Covid' },
+  { value: 18, label: 'Medicina' },
+  { value: 19, label: 'UCIN' },
 
 
 
 
 ]
-
 
 
 export interface Nacionalidad {

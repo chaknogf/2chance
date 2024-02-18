@@ -2,12 +2,12 @@
 <div class="justify-content-center ">
   <div class="justify-content-between">
     <form class="d-flex justify-content-between align-items-center gap-1" autocomplete="off">
-      <input type="text" class="form-control bg-opacity-75  text-center expande-contenido" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+      <!-- <input type="text" class="form-control bg-opacity-75  text-center expande-contenido" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" /> -->
       <input type="text" class="form-control text-capitalize text-center expande-contenido" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
       <input type="date" class="form-control text-capitalize expande-contenido" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
       <input type="text" class="form-control  text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
       <input type="text" class="form-control text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control  text-capitalize expande-contenido text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+      <!-- <input type="text" class="form-control  text-capitalize expande-contenido text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar"> -->
       <button type="submit" class="btn btn-quatz "  (click)="filtro()">buscar</button>
       <button type="submit" class="btn border-quatz" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
@@ -23,14 +23,13 @@
   <table class="table table-hover table-black" >
     <thead>
       <tr>
-        <th>Opciones</th>
-        <th class="text-center">ID</th>
-        <th class="text-center">Ingreso</th>
-        <th class="text-center">Hora</th>
+        <th>Editar</th>
+        <th class="text-center">Expediente</th>
+        <th class="text-center">Fecha y hora</th>
         <th class="text-center">Nombre</th>
-        <th class="text-center">Egreso</th>
-        <th class="text-center">Exp</th>
         <th class="text-center">Servicio</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Id</th>
 
 
       </tr>
@@ -38,22 +37,26 @@
     <tbody class="justify-content-center  opacity-90">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let ingreso of resumen">
-        <td class="text-center"  (click)="copiarId(ingreso.id)" data-bs-toggle="modal" data-bs-target="#opciones">
-          <svg xmlns="http://www.w3.org/2000/svg"
-          width="16" height="16" fill="currentColor"
-            class="bi bi-grip-vertical" viewBox="0 0 16 16">
-          <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2
-          0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3
-          3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1
-          1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg></td>
-        <td class="text-center font-weight-bold text-warning h5" [routerLink]="['/ingreso/edit', ingreso.id]"> {{ingreso.id}} </td>
-        <td class="text-center"> {{ingreso.fecha_consulta | anyToText | formatoFecha}} </td>
-        <td class="text-center"> {{ingreso.hora}} </td>
-        <td class="text-center"> {{ingreso.nombres}} {{ingreso.apellidos}} </td>
-        <td class="text-center"> {{ingreso.fecha_egreso | anyToText | formatoFecha}} </td>
-        <td class="text-center">{{ingreso.expediente}}</td>
+
+        <td class="text-center" [routerLink]="['/ingreso/edit', ingreso.id]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#39cbfb" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+          </svg>
+         </td>
+         <td class="text-center">{{ingreso.expediente}}</td>
+        <td class="text-center">
+          <span class="me-1 font-title1">Ingreso: </span>  {{ingreso.fecha_consulta | anyToText | formatoFecha}}<br>
+          <span class="me-1 font-title1">Hora: </span>  {{ingreso.hora }}<br>
+          <span class="me-1 font-title1">Egreso: </span>  {{ingreso.fecha_egreso | anyToText | formatoFecha}}
+          </td>
+         <td class="text-center">
+            <span [ngClass]="{'mujer': ingreso.sexo == 'F', 'hombre': ingreso.sexo != 'F'}">{{ ingreso.nombres | anyToText | capitalizeName }}</span><br>
+              {{ingreso.apellidos |anyToText | capitalizeName}}
+          </td>
+
         <td class="text-center">{{ingreso.servicio | anyToNumber| enumServicios}}</td>
+        <td>{{ingreso.status| anyToNumber | enumStatus}}</td>
+        <td class="text-center  " > {{ingreso.id}} </td>
       </tr>
     </tbody>
       </table>

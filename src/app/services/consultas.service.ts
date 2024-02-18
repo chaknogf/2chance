@@ -194,6 +194,7 @@ export class ConsultasService {
     // Realiza la solicitud GET con la URL construida dinámicamente
     return this.http.get(url);
 
+
   }
 
 }

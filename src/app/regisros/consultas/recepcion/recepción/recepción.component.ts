@@ -1,11 +1,11 @@
-import { tipo, Tipos, status } from '../../../../enums/enums';
+import { tipo, Tipos, status, encamamiento } from '../../../../enums/enums';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from 'src/app/services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
+import {  Ienum, OtrosEnums, encamamientos } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 
@@ -41,7 +41,7 @@ export class RecepciónComponent implements OnInit {
   public hojaBuscar: any = '';
   public fechaBuscar: any = '';
   public statusBuscar: any = 1;
-  public fechaEgreso: any = '';
+  public fechaEgreso: string = this.FechaService.FechaActual();
   public selectdate: string = '';
   public maxdate: string = '';
   public idCopiado: number = 0;
@@ -50,11 +50,13 @@ export class RecepciónComponent implements OnInit {
   private ascendingOrder: boolean = false;
   public detalleVisible: boolean = false;
   public consult: Iconcultas | undefined;
+  public contador: number = 0;
+  public fechaActual: string = this.FechaService.FechaActual();
 
 
 
 
-  consulta: Iconcultas = {
+  consulta_: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
     expediente: null,
@@ -90,17 +92,10 @@ export class RecepciónComponent implements OnInit {
     medico: null
   }
 
-   e: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio,
-
+   e: encamamientos = {
+     servicio: servicio,
+     serv: servicios,
+     encamamiento: encamamiento
    }
 
   enums: OtrosEnums = {
@@ -113,6 +108,7 @@ export class RecepciónComponent implements OnInit {
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
 
+
   }
 
 
@@ -124,13 +120,11 @@ export class RecepciónComponent implements OnInit {
       fecha_recepcion: null,
       status: 1
 
-
-
     };
 
     this.porcentajeDeProgreso = 0.5;
     this.ConsultasService.filterConsultas(filters).subscribe(data => {
-      this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+      this.consultas = data//.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
       this.porcentajeDeProgreso = 75;
       this.resumen = data;
       this.paginar();//Llama a la función aquí para paginar automáticamente
@@ -173,11 +167,11 @@ export class RecepciónComponent implements OnInit {
     const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
     const indiceFin = indiceInicio + tamanoPagina;
     this.resumen = this.consultas.slice(indiceInicio, indiceFin);
-    this.totalRegistros = this.resumen.length; // Agrega esta línea para actualizar el número total de registros por página
+    this.totalRegistros = this.consultas.length; // Agrega esta línea para actualizar el número total de registros por página
   }
 
   getPaginas(): number[] {
-    const totalPaginas = Math.ceil(this.resumen.length / this.totalRegistros);
+    const totalPaginas = Math.ceil(this.consultas.length / this.totalRegistros);
 
     // Verificar si totalPaginas es válido antes de crear el array
     if (totalPaginas <= 0) {
@@ -196,13 +190,13 @@ export class RecepciónComponent implements OnInit {
     // Recopila los valores de entrada del formulario
     const filters = {
       id: this.idBuscar,
-      hoja: this.hojaBuscar,
+      hoja_emergencia: this.hojaBuscar,
       expediente: this.expedienteBuscar,
       fecha_recepcion: this.fechaBuscar,
       nombres: this.nombreBuscar,
       apellidos: this.apellidoBuscar,
       dpi: this.dpiBuscar,
-      fecha_egreso: this.fechaEgreso,
+      fecha_egreso: '',
       tipo_consulta: this.tipoBuscar,
       status: this.statusBuscar,
 
@@ -210,6 +204,7 @@ export class RecepciónComponent implements OnInit {
 
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {
       this.resumen = result;
+      this.consultas = result;
     });
 
 
@@ -224,6 +219,8 @@ export class RecepciónComponent implements OnInit {
     this.dpiBuscar = '';
     this.hojaBuscar = '';
     this.fechaBuscar = '';
+    this.tipoBuscar = '';
+    this.statusBuscar = '';
     this.consultar();
      // Obtén todos los pacientes nuevamente
   }
@@ -234,12 +231,12 @@ export class RecepciónComponent implements OnInit {
       this.resumen = data;
       console.log(this.resumen)
       this.paginar();
-      this.dpiBuscar = '';
-      this.nombreBuscar = '';
-      this.apellidoBuscar = '';
-      this.expedienteBuscar = '';
-      this.hojaBuscar = '';
-      this.fechaBuscar = '';
+      // this.dpiBuscar = '';
+      // this.nombreBuscar = '';
+      // this.apellidoBuscar = '';
+      // this.expedienteBuscar = '';
+      // this.hojaBuscar = '';
+      // this.fechaBuscar = '';
 
     } else {
       this.consultas = [];
@@ -247,19 +244,13 @@ export class RecepciónComponent implements OnInit {
     }
   }
 
-  eliminar(id: number) {
-    this.ConsultasService.eliminar(id)
-      .subscribe(data => {
-        this.consulta = data;
-        this.reloadPage();
 
-      })
-  }
 
 
   copiarId(id: number) {
     this.idConsulta.emit(id);
     this.idCopiado = id;
+
 
     console.log(id, this.idCopiado)
   }
@@ -275,5 +266,31 @@ export class RecepciónComponent implements OnInit {
       this.detalleVisible = true;
     })
   }
+
+  egreso() {
+    this.consulta_.fecha_egreso = this.fechaEgreso;
+
+  }
+
+  consultaro(id: number) {
+    console.log(id)
+    this.ConsultasService.Consulta(id).subscribe(data => {
+      this.consulta_ = data;
+
+      console.log(data)
+    }
+
+    )
+  }
+
+  guardarEgreso() {
+    this.ConsultasService.editarConsulta(this.consulta_.id, this.consulta_)
+      .subscribe(data => {
+        this.consulta_ = data;
+
+      });
+    this.reloadPage();
+  }
+
 
 }

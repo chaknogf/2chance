@@ -64,12 +64,12 @@
       <thead class="text-normal">
         <tr>
 
-          <th class="text-center " (click)="sortTable('expediente')">Expediente</th>
-          <th class="text-center " (click)="sortTable('nombre')">Nombre</th>
-          <th class="text-center " (click)="sortTable('dpi')">DPI</th>
-          <th class="text-center " (click)="sortTable('sexo')">Sexo</th>
-          <th class="text-center " (click)="sortTable('nacimiento')">Fecha Nacimiento</th>
-          <th class="text-center " (click)="sortTable('estado')">Direccion</th>
+          <th class="text-center bg-aqua" (click)="sortTable('expediente')">Expediente</th>
+          <th class="text-center bg-aqua" (click)="sortTable('nombre')">Paciente</th>
+          <th class="text-center bg-aqua" (click)="sortTable('dpi')">DPI</th>
+          <th class="text-center bg-aqua" (click)="sortTable('sexo')">Sexo</th>
+          <th class="text-center bg-aqua" (click)="sortTable('nacimiento')">Fecha Nacimiento</th>
+          <th class="text-center bg-aqua" (click)="sortTable('estado')">Direccion</th>
 
         </tr>
       </thead>
@@ -77,18 +77,21 @@
       <tbody class="justify-content-center  opacity-90 ">
         <tr *ngFor="let paciente of filteredPacientes">
 
-          <td class="h3 text-center text-warning" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver">
+          <td class="font-title text-center text-warning" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver">
+            <span>
             {{ paciente.expediente }}
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
-              <path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
             </svg>
+          </span>
           </td>
 
 
 
-          <td class="text-text text-justify " appHighlightWords >
-            <span class="font-fam" >Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
-            <span class="font-fam">Apellido:</span> {{ paciente.apellido | capitalizeName }}
+          <td class="text-center text-justify " appHighlightWords >
+            <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
+            {{ paciente.apellido | capitalizeName }}
             <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cc9a06" class="bi bi-star-fill" viewBox="0 0 16 16">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -98,7 +101,21 @@
             </span>
           </td>
           <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
-          <td class="text-center">{{ paciente.sexo }}</td>
+          <td class="text-center">
+            <ng-container *ngIf="paciente.sexo.toLowerCase() === 'f'; else elseBlock">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#df7ca8" class="bi bi-person-standing-dress" viewBox="0 0 16 16">
+                <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 12.25V12h1v3.25a.75.75 0 0 0 1.5 0V12h1l-1-5v-.215a.285.285 0 0 1 .56-.078l.793 2.777a.711.711 0 1 0 1.364-.405l-1.065-3.461A3 3 0 0 0 8.784 3.5H7.216a3 3 0 0 0-2.868 2.118L3.283 9.079a.711.711 0 1 0 1.365.405l.793-2.777a.285.285 0 0 1 .56.078V7l-1 5h1v3.25a.75.75 0 0 0 1.5 0Z"/>
+              </svg>
+            </ng-container>
+
+            <ng-template #elseBlock>
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#c2ecfe" class="bi bi-person-standing" viewBox="0 0 16 16">
+                <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M6 6.75v8.5a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2.75a.75.75 0 0 0 1.5 0v-2.5a.25.25 0 0 1 .5 0"/>
+              </svg>
+            </ng-template>
+          </td>
           <td class="text-center">{{ paciente.nacimiento | anyToText | formatoFecha}}</td>
           <td class="text-center">{{ paciente.direccion | anyToText | capitalizeName}}, {{paciente.municipio | anyToNumber | enumMunicipio}}, {{paciente.depto |anyToNumber | enumDepto}}</td>
 
@@ -169,48 +186,105 @@
 </div>
 
 <div class="modal" id="ver">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content w-80 p-1 bg-aqua bg-opacity-75">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="">
-          <div class=" h4 text-center">
-            Detalle del Paciente <br> expediente:  <strong>{{ patient?.expediente }}</strong><br>
-            Id: {{ patient?.id }}
-          </div>
-          <div class=" w-100 mx-5 font-monospace text-body-secondary">
-            <hr>
-            <strong class="h5 me-3">Nombres:</strong> {{ patient?.nombre | anyToText | capitalizeName }}<br>
-            <strong class="h5 me-3">Apellidos:</strong> {{ patient?.apellido | anyToText | capitalizeName }}<br>
-            <strong class="h5 me-3">Nacimiento:</strong> {{ patient?.nacimiento | anyToText | formatoFecha }}<br>
-            <strong class="h5 me-3">Edad:</strong> {{ patient?.nacimiento | edad }}<br>
-            <strong class="h5 me-3">Sexo:</strong> {{ patient?.sexo | anyToText | sexo }}<br>
-            <strong class="h5 me-3">DPI:</strong> {{ patient?.dpi | anyToText | formatoDPI }}<br>
-            <hr>
-            <strong class="h5 me-3">Nacionalidad:</strong> {{ patient?.nacionalidad | anyToNumber | enumNacion }}<br>
-            <strong class="h5 me-3">Estado Civil:</strong> {{ patient?.estado_civil | anyToNumber | enumCivil }}<br>
-            <strong class="h5 me-3">Ocupación:</strong> {{ patient?.ocupacion }}<br>
-            <strong class="h5 me-3">Nivel Académico:</strong> {{ patient?.educacion | anyToNumber | enumEducacion }}<br>
-            <hr>
-            <strong class="h5 me-3">Dirección:</strong> {{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, {{patient?.depto | anyToNumber | enumDepto | capitalizeName}}<br>
-            <strong class="h5 me-3">Teléfono:</strong> {{ patient?.telefono }}<br>
-            <strong class="h5">Teléfono de Familiar / responsable:</strong> {{ patient?.telefono_responsable }}<br>
-            <hr>
-            <strong class="h5 me-3">Conyugue:</strong> {{ patient?.conyugue | anyToText | capitalizeName }}<br>
-            <strong class="h5 me-3">Responsable:</strong> {{ patient?.responsable | anyToText | capitalizeName }}<br>
-            <strong class="h5 me-3">Parentesco:</strong> {{ patient?.parentesco | anyToNumber | enumParentesco }}<br>
-            <strong class="h5 me-3">DPI del responsable:</strong> {{ patient?.dpi_responsable | anyToText | formatoDPI}}<br>
-            <hr>
-            <strong class="h5 me-3">Madre:</strong> {{ patient?.madre | anyToText | capitalizeName }}<br>
-            <strong class="h5 me-3">Padre:</strong> {{ patient?.padre | anyToText | capitalizeName }}<br>
-            <hr>
-            <strong class="h5 me-3">Creado por:</strong> {{ patient?.created_by }}<br>
-            <strong class="h5 me-3">Creado el:</strong> {{ patient?.created_at }}<br>
-            <strong class="h5 me-3">Actualizado el:</strong> {{ patient?.update_at }}<br>
+  <div class="modal-dialog modal-lg modal-lg" role="document">
+    <div class="modal-content w-auto card bg-night">
+
+      <div class="modal-body code-container" id="code">
+        <div class="card-header  text-center" >
+          Detalles del Expediente: <span class="font-fam">{{patient?.expediente}}</span>
+        </div>
+        <div class=" modal-body mx-5 font-monospace">
+          <div class="text-start">
+            <p>&#123;</p>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Nombre: </span>
+              <p class="font-value m-0 m-0">{{ patient?.nombre | anyToText | capitalizeName }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Apellido: </span>
+              <p class="font-value m-0 m-0">{{ patient?.apellido | anyToText | capitalizeName }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Fecha de nacimiento: </span>
+              <p class="font-value m-0 m-0">{{ patient?.nacimiento | anyToText | formatoFecha }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Edad: </span>
+              <p class="font-value m-0 m-0">{{ patient?.nacimiento | edad }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Sexo: </span>
+              <p class="font-value m-0 m-0">{{ patient?.sexo | anyToText | sexo }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">DPI: </span>
+              <p class="font-value m-0 m-0">{{ patient?.dpi | anyToText | formatoDPI }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Nacionalidad: </span>
+              <p class="font-value m-0 m-0">{{ patient?.nacionalidad | anyToNumber | enumNacion }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Lugar de Nacimiento: </span>
+              <p class="font-value m-0 m-0">{{ patient?.lugar_nacimiento | anyToNumber | enumVecindad }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Nacionalidad: </span>
+              <p class="font-value m-0 m-0">{{ patient?.nacionalidad | anyToNumber | enumNacion }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Estado civil: </span>
+              <p class="font-value m-0 m-0">{{ patient?.estado_civil | anyToNumber | enumCivil }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Ocupación: </span>
+              <p class="font-value m-0 m-0">{{ patient?.ocupacion | anyToText | capitalizeName}},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Nivel Academico: </span>
+              <p class="font-value m-0 m-0">{{ patient?.educacion | anyToNumber | enumEducacion }},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Dirección: </span>
+              <p class="font-value m-0 m-0">{{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, <br> {{patient?.depto | anyToNumber | enumDepto | capitalizeName}},</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Telefonos: </span>
+              <p class="font-value m-0 m-0">{{ patient?.telefono }} - {{ patient?.telefono_responsable }} ,</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Conyugue: </span>
+              <p class="font-value m-0 m-0">{{ patient?.conyugue | anyToText | capitalizeName }} ,</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Responsable: </span>
+              <p class="font-value m-0 m-0">{{ patient?.responsable | anyToText | capitalizeName }} ,</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Parentesco: </span>
+              <p class="font-value m-0 m-0">{{ patient?.parentesco | anyToNumber | enumParentesco }} ,</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">DPI de responsable: </span>
+              <p class="font-value m-0 m-0">{{ patient?.dpi_responsable | anyToText | formatoDPI }} ,</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Madre: </span>
+              <p class="font-value m-0 m-0">{{ patient?.madre | anyToText | capitalizeName }} ,</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Padre: </span>
+              <p class="font-value m-0 m-0">{{ patient?.padre | anyToText | capitalizeName }} ,</p>
+            </div>
+            <div class="d-flex justify-content-wrap p-0">
+              <span class="me-1 font-title m-0 m-0">Creado por: </span>
+              <p class="font-value m-0 m-0">{{ patient?.created_by }} ,</p>
+            </div>
+            <p>&#125;</p>
+
+
+
+
           </div>
         </div>
       </div>

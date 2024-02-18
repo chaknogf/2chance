@@ -180,28 +180,28 @@ export class TablaPacientesComponent{
     this.getPacientes(); // Obtén todos los pacientes nuevamente
   }
 
-  buscarPacientes() {
-    if (this.nombreBuscar || this.apellidoBuscar || this.expedienteBuscar) {
-      // Si se proporciona nombre, apellido o expediente, intenta buscar por nombre o expediente
-      if (this.nombreBuscar && this.apellidoBuscar) {
-        this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-          this.actualizarPacientes(data);
-        });
-      } else if (this.expedienteBuscar) {
-        this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-          this.actualizarPacientes(data);
-        });
-      }
-    } else if (this.dpiBuscar) {
-      // Si se proporciona DPI, busca por DPI
-      this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
-        this.actualizarPacientes(data);
-      });
-    } else {
-      // Si no se proporciona ninguno de los campos, obtiene todos los pacientes
-      this.getPacientes();
-    }
-  }
+  // buscarPacientes() {
+  //   if (this.nombreBuscar || this.apellidoBuscar || this.expedienteBuscar) {
+  //     // Si se proporciona nombre, apellido o expediente, intenta buscar por nombre o expediente
+  //     if (this.nombreBuscar && this.apellidoBuscar) {
+  //       this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
+  //         this.actualizarPacientes(data);
+  //       });
+  //     } else if (this.expedienteBuscar) {
+  //       this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
+  //         this.actualizarPacientes(data);
+  //       });
+  //     }
+  //   } else if (this.dpiBuscar) {
+  //     // Si se proporciona DPI, busca por DPI
+  //     this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
+  //       this.actualizarPacientes(data);
+  //     });
+  //   } else {
+  //     // Si no se proporciona ninguno de los campos, obtiene todos los pacientes
+  //     this.getPacientes();
+  //   }
+  // }
 
 
 
@@ -221,45 +221,67 @@ export class TablaPacientesComponent{
   }
 
 
-  filtro() {
-    if (this.expedienteBuscar !== "") {
-      this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-        if (data) {
-          this.actualizarPacientes([data]);
-          this.filteredPacientes = [data];
 
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else if (this.nombreBuscar || this.apellidoBuscar) {
-      this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-        if (data && data.length > 0) {
-          this.actualizarPacientes(data);
-          this.filteredPacientes = data;
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else if (this.dpiBuscar !="" ) {
-      this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
-        if (data) {
-          this.actualizarPacientes([data]);
-          this.filteredPacientes = data;
-          console.log(this.filteredPacientes)
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else {
-      // Limpiar resultados si no se proporciona ningún criterio de búsqueda
-      this.actualizarPacientes([]);
-      this.filteredPacientes = [];
-    }
+  filtro() {
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      // id: this.idBuscar,
+      expediente: this.expedienteBuscar,
+      nombre: this.nombreBuscar,
+      apellido: this.apellidoBuscar,
+      dpi: this.dpiBuscar,
+    };
+
+    this.pacientesService.filterPersona(filters).subscribe(result => {
+      //this.pacientes = result;
+      console.table(result)
+      this.filteredPacientes= result;
+    });
+
+
+
   }
+
+
+  // filtro0() {
+  //   if (this.expedienteBuscar !== "") {
+  //     this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
+  //       if (data) {
+  //         this.actualizarPacientes([data]);
+  //         this.filteredPacientes = [data];
+
+  //       } else {
+  //         this.actualizarPacientes([]);
+  //         this.filteredPacientes = [];
+  //       }
+  //     });
+  //   } else if (this.nombreBuscar || this.apellidoBuscar) {
+  //     this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
+  //       if (data && data.length > 0) {
+  //         this.actualizarPacientes(data);
+  //         this.filteredPacientes = data;
+  //       } else {
+  //         this.actualizarPacientes([]);
+  //         this.filteredPacientes = [];
+  //       }
+  //     });
+  //   } else if (this.dpiBuscar !="" ) {
+  //     this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
+  //       if (data) {
+  //         this.actualizarPacientes([data]);
+  //         this.filteredPacientes = data;
+  //         console.log(this.filteredPacientes)
+  //       } else {
+  //         this.actualizarPacientes([]);
+  //         this.filteredPacientes = [];
+  //       }
+  //     });
+  //   } else {
+  //     // Limpiar resultados si no se proporciona ningún criterio de búsqueda
+  //     this.actualizarPacientes([]);
+  //     this.filteredPacientes = [];
+  //   }
+  // }
 
 
   abrirModal(paciente: Ipaciente) {

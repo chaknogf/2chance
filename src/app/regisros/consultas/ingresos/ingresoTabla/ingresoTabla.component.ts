@@ -91,7 +91,8 @@ export class IngresoTablaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ingresos()
+    this.ingresos();
+    this.paginar();
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
@@ -102,8 +103,9 @@ export class IngresoTablaComponent implements OnInit {
   ingresos() {
     this.ConsultasService.consulTipo(2)
       .subscribe(data => {
-        this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+        this.resumen = data//.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
         this.consultas = data;
+        this.paginar()
         // console.log(this.consultas);
     })
   }

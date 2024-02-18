@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
-import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import {  Ienum, encamamientos } from 'src/app/models/Ienum';
+import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, encamamiento } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 import { UsersService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
@@ -67,9 +67,9 @@ export class FormRecepcionComponent implements OnInit {
     especialidad: 0,
     servicio: null,
     status: 1,
-    fecha_recepcion: '',
+    fecha_recepcion: null,
     fecha_egreso: null,
-    tipo_consulta: 1,
+    tipo_consulta: 0,
     nota: "",
     name: null,
     lastname: null,
@@ -84,17 +84,11 @@ export class FormRecepcionComponent implements OnInit {
     created_by: null
   }
 
-   e: Ienum = {
-    municipio: municipio,
-    nation: nation,
-    people: etnias,
-    ecivil: ecivil,
-    academic: academic,
-    parents: parents,
-    lenguage: lenguaje,
-    servicios: servicios,
-    servicio: servicio
-  }
+   e: encamamientos = {
+     servicio: servicio,
+     serv: servicios,
+     encamamiento: encamamiento
+   }
 
 
   ngOnInit() {
@@ -103,7 +97,7 @@ export class FormRecepcionComponent implements OnInit {
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
 
-    this.consulta.created_by = this.username;
+    this.consulta.archived_by = this.username;
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
@@ -130,6 +124,7 @@ export class FormRecepcionComponent implements OnInit {
 
   onSubmit() {
     this.copiarId()
+    this.recepcion()
     this.ConsultasService.editarConsulta(this.consulta.id, this.consulta)
       .subscribe(data => {
         this.consulta = data;
@@ -141,6 +136,7 @@ export class FormRecepcionComponent implements OnInit {
 
   recepcion() {
     this.consulta.fecha_recepcion = this.fechaRecepcion;
+    this.consulta.archived_by = this.username;
     if (this.consulta.fecha_recepcion) {
       this.consulta.status = 2;
     }
@@ -151,8 +147,9 @@ export class FormRecepcionComponent implements OnInit {
 
   statusegreso() {
     this.consulta.fecha_egreso = this.fechaEgreso;
-    if (this.consulta.fecha_egreso) {
-
+    this.consulta.fecha_recepcion = this.fechaRecepcion;
+    this.consulta.archived_by = this.username;
+    if (this.consulta.fecha_recepcion) {
       this.consulta.status = 2;
     }
     else {
@@ -177,7 +174,7 @@ export class FormRecepcionComponent implements OnInit {
   copiarId() {
     console.log(this.consulta);
     this.consulta.nombres = this.patient?.nombre;
-    this.consulta.apellidos = this.patient?.apellido; // Corregido
+    this.consulta.apellidos = this.patient?.apellido;
     this.consulta.nacimiento = this.patient?.nacimiento;
     // this.consulta.edad = valorCelda;
     this.consulta.sexo = this.patient?.sexo;
