@@ -97,7 +97,7 @@ export class FormCoexComponent implements OnInit {
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
 
-    this.coex.created_by = this.username;
+    this.coex.archived_by = this.username;
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
@@ -131,6 +131,8 @@ export class FormCoexComponent implements OnInit {
   }
 
   status() {
+    this.coex.archived_by = this.username;
+    this.coex.fecha_egreso = this.fechaActual;
     this.coex.fecha_recepcion = this.fechaRecepcion
     if (this.coex.fecha_recepcion) {
 

@@ -1,10 +1,9 @@
 <div class="border-quatz">
   <div class=" text-normal">
     <form class="d-flex justify-content-center align-items-center gap-1" autocomplete="off" >
-      <input type="text" class="form-control bg-opacity-75 text-center expande-contenido" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
+      <input type="text" class="form-control text-center expande-contenido" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
       <input type="sumit" class="form-control  text-capitalize expande-contenido text-center " placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
       <input type="text" class="form-control   text-capitalize expande-contenido text-center" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control  expande-contenido text-center" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
       <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
       <button type="submit" class="btn border-quatz" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
         <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
@@ -93,19 +92,65 @@
 
             <td class="h3 text-center text-success" [routerLink]="['/buscar/view/', paciente.id]">{{ paciente.expediente }}</td>
 
-            <td class="text-center text-justify" appHighlightWords >
-              <span class="font-fam">Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
-              <span class="font-fam">Apellido:</span> {{ paciente.apellido | capitalizeName }}
+            <td class="text-center text-justify " appHighlightWords >
+              <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
+              {{ paciente.apellido | capitalizeName }}
+              <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cc9a06" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>Gem<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cc9a06" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+              </span>
             </td>
 
             <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
 
 
-            <td class="text-center">{{ paciente.sexo }}</td>
+            <td class="text-center">
+              <ng-container *ngIf="paciente.sexo == 'F'; else man">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#df7ca8" class="bi bi-person-standing-dress" viewBox="0 0 16 16">
+                  <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 12.25V12h1v3.25a.75.75 0 0 0 1.5 0V12h1l-1-5v-.215a.285.285 0 0 1 .56-.078l.793 2.777a.711.711 0 1 0 1.364-.405l-1.065-3.461A3 3 0 0 0 8.784 3.5H7.216a3 3 0 0 0-2.868 2.118L3.283 9.079a.711.711 0 1 0 1.365.405l.793-2.777a.285.285 0 0 1 .56.078V7l-1 5h1v3.25a.75.75 0 0 0 1.5 0Z"/>
+                </svg>
+              </ng-container>
+
+              <ng-template #man>
+                <ng-container *ngIf="paciente.sexo == 'M'; else NoneBl">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#c2ecfe" class="bi bi-person-standing" viewBox="0 0 16 16">
+                    <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M6 6.75v8.5a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2.75a.75.75 0 0 0 1.5 0v-2.5a.25.25 0 0 1 .5 0"/>
+                  </svg>
+                </ng-container>
+              </ng-template>
+
+              <ng-template #NoneBl>
+
+                none
+              </ng-template>
+
+
+            </td>
 
             <td class="text-center" #edadCell>{{ paciente.nacimiento | edad }}</td>
 
-            <td class="text-center">{{ paciente.estado }}</td>
+            <td class="text-center">
+              <ng-container *ngIf="paciente.estado === 'v'; else dead">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#e92f2f" class="bi bi-heart-pulse" viewBox="0 0 28 28">
+                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857q.09.083.176.171a3 3 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5"/>
+                  <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z"/>
+                  <text x="0" y="21" font-size="6">vivo</text>
+                </svg>
+              </ng-container>
+
+              <ng-template #dead>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-emoji-dizzy-fill" viewBox="0 0 28 28">
+                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708m5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708M8 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4"/>
+                  <text x="0" y="21" font-size="6">Muerto</text>
+                </svg>
+              </ng-template>
+            </td>
 
           </tr>
         </tbody>

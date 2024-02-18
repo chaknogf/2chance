@@ -101,19 +101,21 @@ export class TablaEmergenciaComponent implements OnInit {
   filtro() {
     // Recopila los valores de entrada del formulario
     const filters = {
-      id: this.idBuscar,
+
       hoja_emergencia: this.hojaBuscar,
-      expediente: this.expedienteBuscar,
+
       fecha_consulta: this.fechaBuscar,
       nombres: this.nombreBuscar,
       apellidos: this.apellidoBuscar,
       dpi: this.dpiBuscar,
-      fecha_egreso: this.fechaEgreso,
-      tipo_consulta: this.tipoConsulta,
+
+
     };
 
-    this.ConsultasService.filterConsultas(filters).subscribe((result) => {
+    this.ConsultasService.filterConsultas(filters).subscribe(result => {
+      this.consultas = result;
       this.resumen = result;
+      this.paginar()
     });
 
 

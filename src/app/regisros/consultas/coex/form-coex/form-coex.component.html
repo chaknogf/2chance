@@ -1,65 +1,75 @@
-<div class="d-flex bg-dark w-100 py-3 px-2">
-  <h2 class="text-light"></h2>
 
-</div>
+<div class="card1 bg-night code-container">
 
-<div class="container-fluid">
-  <div class="d-flex justify-content-center align-items-center " style="min-height: 100vh;">
-    <div class="col-md-6 col-lg-4">
-      <form class="container mt-3  bg-opacity-25 card  p-5 text-center display-8 mx-auto box-shadow-sm">
-        <div class="d-flex ml-auto"> <!-- Agrega la clase ml-auto aquí -->
-          <button class="d-flex justify-content-end btn btn-dark border-black mx-3" [routerLink]="['/coex']">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-            </svg>
-            Coex
-          </button>
-        </div>
-
-        <div class="card-header h3">Editar consulta -COEX-</div>
-
-        <div class="card-body">
-
-          <div class="d-flex justify-content-center ">
-            <span class="rounded    w-20  text-center  ">ID: {{ coex.id }}</span>
-          </div>
-
-          <div class="card text-white bg-black mb-3">
-            <span class="text-warning mx-3">Paciente: </span>
-            <p class="my-0 mx-0 text-center  ">{{ coex.nombres | anyToText | capitalizeName }} </p>
-            <p class="my-0 mx-0 text-center ">{{ coex.apellidos | anyToText | capitalizeName }}</p>
-            <span class="text-warning mx-3">Sexo: </span>
-            <p class="my-0 mx-0 text-center ">{{ coex.sexo}}</p>
-            <span class="text-warning mx-3">Edad: </span>
-            <p class="my-0 mx-0 text-center ">{{ coex.edad | anyToText | formatoFecha }}</p>
-          </div>
-
-          <div class="mb-3 ">
-            <label for="especialidad" class="form-label ">Especialidad</label>
-            <select id="especialidad" class="form-select border  display-7" [(ngModel)]="coex.especialidad" name="especialidad" >
-              <option  *ngFor="let opcion of e.servicio" [value]="opcion.value">{{ opcion.label }}</option>
-            </select>
-          </div>
-
-
-
-          <div class="d-flex mb-3 mt-4 ">
-            <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
-            <input class="form-control mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" (click)="status()" [max]="maxdate">
-            <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-              <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-               2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-                11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-            </svg></button>
-          </div>
-
-
-
-          <div class="mb-3">
-            <button class="btnS btn" (click)="onSubmit()">Guardar</button>
-          </div>
-        </div>
-      </form>
-      </div>
-    </div>
+  <div class="d-flex p-0 m-0">
+    <button class="btn  border-black w-100 text-start m-0" [routerLink]="['/coex']">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+      </svg>
+      Regresar
+    </button>
   </div>
+
+  <div class="code-editor mt-3 text-start">
+        <div class="header">
+          <span class="title">Expediente = {{coex.expediente}}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="icon"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linecap="round" stroke-width="2" stroke="#4C4F5A" d="M6 6L18 18"></path> <path stroke-linecap="round" stroke-width="2" stroke="#4C4F5A" d="M18 6L6 18"></path> </g></svg>
+        </div>
+        <div class="editor-content">
+          <code class="code">
+            <p><span class="color-0">.{{coex.id}} </span> <span>&#123;</span></p>
+
+            <p class="property">
+              <span class="color-2">Paciente</span><span>:</span>
+              <span class="color-1">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</span>;
+            </p>
+            <p class="property">
+              <span class="color-2">Sexo</span><span>:</span>
+              <span ><ng-container *ngIf="coex.sexo == 'F'; else man">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#df7ca8" class="bi bi-person-standing-dress" viewBox="0 0 16 16">
+                  <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 12.25V12h1v3.25a.75.75 0 0 0 1.5 0V12h1l-1-5v-.215a.285.285 0 0 1 .56-.078l.793 2.777a.711.711 0 1 0 1.364-.405l-1.065-3.461A3 3 0 0 0 8.784 3.5H7.216a3 3 0 0 0-2.868 2.118L3.283 9.079a.711.711 0 1 0 1.365.405l.793-2.777a.285.285 0 0 1 .56.078V7l-1 5h1v3.25a.75.75 0 0 0 1.5 0Z"/>
+                </svg>
+              </ng-container>
+
+              <ng-template #man>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#c2ecfe" class="bi bi-person-standing" viewBox="0 0 16 16">
+                  <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M6 6.75v8.5a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2.75a.75.75 0 0 0 1.5 0v-2.5a.25.25 0 0 1 .5 0"/>
+                </svg>
+              </ng-template></span><span class="">{{ coex.sexo | anyToText|sexo}}</span>;
+            </p>
+            <p class="property">
+              <span class="color-2"> Edad</span><span>:</span>
+              <span class="color-1">{{ coex.edad | anyToText | formatoFecha }}</span>;
+            </p>
+
+            <span>&#125;</span>
+          </code>
+        </div>
+  </div>
+
+
+      <div class="mb-3 ">
+        <label for="especialidad" class="form-label ">Especialidad</label>
+        <select id="especialidad" class="form-select border  display-7" [(ngModel)]="coex.especialidad" name="especialidad" >
+          <option  *ngFor="let opcion of e.servicio" [value]="opcion.value">{{ opcion.label }}</option>
+        </select>
+      </div>
+
+      <div class="d-flex mb-3 mt-4 ">
+        <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
+        <input class="form-control mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" (click)="status()" [max]="maxdate">
+        <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarInput()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+          <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
+          2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
+            11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mb-3">
+        <button class="btnS btn" (click)="onSubmit()">Guardar</button>
+      </div>
+</div>

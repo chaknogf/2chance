@@ -228,7 +228,7 @@ export class CoexComponent implements OnInit {
     // Emitir el nuevo valor del contador
     this.contadorService.actualizarContador(this.contador);
 
-    console.log(id, this.idCopiado)
+    // console.log(id, this.idCopiado)
   }
 
   reloadPage() {

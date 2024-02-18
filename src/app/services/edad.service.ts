@@ -7,7 +7,7 @@ export class EdadService {
 
 constructor() { }
 
-  años(nacimiento: any): string {
+  años(nacimiento: any): any {
     const hoy = new Date();
     const fechaNac = new Date(nacimiento);
     let años = hoy.getFullYear() - fechaNac.getFullYear();

@@ -23,9 +23,9 @@
 
         <div class="form-group d-flex mt-3 align-items-center">
           <label class="text-light" for="fecha">Fecha:</label>
-          <input type="date" class="form-control w-50 mx-2 bg-dark text-uppercase" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
+          <input type="date" class="form-control w-50 mx-2 bg-dark" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
           <label class="text-light mx-2" for="hora">Hora:</label>
-          <input type="time" class="form-control w-25 bg-dark text-uppercase" id="hora" name="hora"
+          <input type="time" class="form-control w-25 bg-dark" id="hora" name="hora"
              placeholder="hh:mm" [(ngModel)]="emergencia.hora">
         </div>
 
@@ -47,7 +47,7 @@
         <div class="form-group mt-2">
           <label class="text-light" for="nacimiento">Fecha de nacimiento:</label>
           <div class="d-flex">
-            <input type="date" class="form-control w-50 bg-dark text-uppercase" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
+            <input type="date" class="form-control w-50 bg-dark" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
             <button class="btn btn-info bg-black bg-opacity-25 mx-2" (click)="calcularedad()">Calcular edad</button>
             <span></span>
           </div>
@@ -55,9 +55,9 @@
 
         <div class="form-group d-flex mt-3 justify-content-center align-items-center">
           <label class="text-light" for="edad">Edad:</label>
-          <input type="text" class="form-control w-15 mx-1 bg-dark text-uppercase" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
-          <input type="text" class="form-control w-15 mx-1 bg-dark text-uppercase" id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
-          <input type="text" class="form-control w-15 mx-1 bg-dark text-uppercase" id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
+          <input type="text" class="form-control w-15 mx-1 bg-dark" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
+          <input type="text" class="form-control w-15 mx-1 bg-dark" id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
+          <input type="text" class="form-control w-15 mx-1 bg-dark" id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
 
           <button class="btn btn-info bg-black bg-opacity-25 w-40 text-light" (click)="calcularNacimiento()">Calcular Nacimiento</button>
         </div>
@@ -73,7 +73,7 @@
 
         <div class="form-group mt-3">
           <label class="text-light" for="telefono">Teléfono:</label>
-          <input type="text" id="telefono" name="telefono" class="form-control bg-dark text-uppercase" [ngModel]="emergencia.telefono"  placeholder="telefono" autofocus espaciosNumeros>
+          <input type="text" id="telefono" name="telefono" class="form-control bg-dark" [ngModel]="emergencia.telefono"  placeholder="telefono" autofocus espaciosNumeros>
           <span></span>
         </div>
 
@@ -122,7 +122,7 @@
 
         <div class="form-group mt-3">
           <label class="text-light" for="nota">Expediente:</label>
-          <input type="text" class="form-control bg-dark text-uppercase" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="emergencia.expediente" >
+          <input type="text" class="form-control bg-dark" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="emergencia.expediente" >
           <span></span>
         </div>
 

@@ -386,14 +386,12 @@
 
 <div class="modal" id="opciones">
   <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content p-3">
-
-      <button class="btnS bg-quatz mt-2" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button>
-      <button class="btnS bg-info mt-2 text-primary" data-bs-dismiss="modal" [routerLink]="['/edit/coex', idCopiado]" >Editar Consulta</button>
-
-      <button class="btn bg-black border mt-2" data-bs-dismiss="modal">Cerrar</button>
-
-
+    <div class="modal-content">
+      <div class="d-flex justify-content-center gap-1 bg-night">
+        <button class="btn bg-quatz w-20" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button>
+        <button class="btn bg-aqua text-light w-20" data-bs-dismiss="modal" [routerLink]="['/edit/coex', idCopiado]" >Editar Consulta</button>
+        <button class="btn bg-black border w-20" data-bs-dismiss="modal">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>

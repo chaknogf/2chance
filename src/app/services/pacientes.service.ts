@@ -186,7 +186,7 @@ export class PacientesService {
     }
 
 
-    console.log(filtros, url)
+    // console.log(filtros, url)
     // Realiza la solicitud GET con la URL construida dinámicamente
     return this.http.get(url);
 
@@ -243,7 +243,7 @@ export class PacientesService {
     }
 
 
-    console.log(filtros, url)
+    // console.log(filtros)
     // Realiza la solicitud GET con la URL construida dinámicamente
     return this.http.get(url);
 

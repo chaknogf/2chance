@@ -51,9 +51,9 @@ export class EmergenciasComponent implements OnInit {
   public horaActual: string = this.FechaService.HoraActual();
   public idCopiado: number = 0;
   public fechaRecepcion: string = this.FechaService.registroTiempo();
-  public edadA: number = 0;
-  public edadMeses: number = 0;
-  public edadDias: number = 0;
+  public edadA: any = '';
+  public edadMeses: any = '';
+  public edadDias: any = '';
   public selectdate: string = '';
   public maxdate: string = '';
   edit: boolean = false;

@@ -96,13 +96,13 @@
 
     <div class="col-md-6">
       <label>Fecha de Nacimiento *</label>
-      <input type="date" id="nacimiento" name="nacieminto" class="form-control bg-dark bg-opacity-75 text-uppercase" [(ngModel)]="p.nacimiento" name="nacimiento" placeholder="nacimiento" autofocus [max]="maxdate">
+      <input type="date" id="nacimiento" name="nacieminto" class="form-control bg-dark bg-opacity-75" [(ngModel)]="p.nacimiento" name="nacimiento" placeholder="nacimiento" autofocus [max]="maxdate">
     </div>
 
     <hr class="my-2 p-0">
     <div class="mt-0 col-md-6">
       <label>Nacionalidad</label>
-      <select id="nacionaldad" class="form-control bg-primary bg-opacity-75 text-uppercase" [(ngModel)]="p.nacionalidad" name="nacionalidad" autofocus>
+      <select id="nacionaldad" class="form-control bg-primary bg-opacity-75" [(ngModel)]="p.nacionalidad" name="nacionalidad" autofocus>
         <option *ngFor="let option of e.nation" [value]="option.value">{{option.label}}</option>
       </select>
     </div>

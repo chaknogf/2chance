@@ -21,14 +21,14 @@ export class TablaPacientesComponent{
   public paginaActual: number = 1; // Página actual
   public expedienteBuscar: any = '';
   public nombreBuscar: string = '';
-  public apellidoBuscar: string = '';
+  public apellidoBuscar: any = '';
   public dpiBuscar: any = '';
-  public paciente: Ipaciente | undefined;
+  public paciente_: Ipaciente | undefined;
   public porcentajeDeProgreso: number = 0; // Variable para el progreso
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
   public edad: number = 0;
-  @Input() patient: Ipaciente | undefined;
+  patient: Ipaciente | undefined;
 
   detalleVisible: boolean | undefined;
 
@@ -176,7 +176,7 @@ export class TablaPacientesComponent{
   limpiarInput() {
     this.expedienteBuscar = ''; // Limpia el contenido del input
     this.nombreBuscar = '';
-    this.apellidoBuscar = ''
+    this.apellidoBuscar = '';
     this.getPacientes(); // Obtén todos los pacientes nuevamente
   }
 
@@ -232,9 +232,9 @@ export class TablaPacientesComponent{
       dpi: this.dpiBuscar,
     };
 
-    this.pacientesService.filterPersona(filters).subscribe(result => {
-      //this.pacientes = result;
-      console.table(result)
+    this.pacientesService.filterPaciente(filters).subscribe(result => {
+      this.pacientes = result;
+      // console.table(result)
       this.filteredPacientes= result;
     });
 

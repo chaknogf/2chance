@@ -232,8 +232,8 @@ export class PersonasComponent{
       dpi: this.dpiBuscar,
     };
 
-    this.pacientesService.filterPaciente(filters).subscribe((result) => {
-      this.actualizarPacientes([result])
+    this.pacientesService.filterPersona(filters).subscribe((result) => {
+      this.pacientes = result;
       this.filteredPacientes= result;
     });
 

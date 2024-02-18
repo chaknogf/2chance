@@ -23,6 +23,8 @@ export class FormularioPacienteComponent implements OnInit {
   public selectdate: string = '';
   public maxdate: string = '';
   public username = this.user.getUsernameLocally()
+  //Variables para el expediente
+  public nuevoExp: number = 0;
 
 
   @HostBinding('class') clases = 'row';
@@ -169,9 +171,8 @@ export class FormularioPacienteComponent implements OnInit {
         );
     }
   }
-  //Variables para el expediente
-  public nuevoExp: number = 0;
-  exp = this.NuevoExp()
+
+  // exp = this.NuevoExp()
 
   NuevoExp() {
     // Obtener el expediente del paciente inicialmente
@@ -179,6 +180,7 @@ export class FormularioPacienteComponent implements OnInit {
       if (this.edit == false) {
         this.nuevoExp = data;
         this.p.expediente = this.nuevoExp;
+
       }
     });
 
