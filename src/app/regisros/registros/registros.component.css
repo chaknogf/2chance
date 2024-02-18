@@ -46,3 +46,23 @@
   transition-delay: 0.4s;
   color: aliceblue;
 }
+
+.sidebar {
+  width: auto; /* Ancho de la barra lateral */
+  position: relative;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50; /* Asegura que la barra lateral esté encima del contenido */
+  background-color: #343a40; /* Color de fondo de la barra lateral */
+  visibility: inherit;
+}
+
+
+.sidebar .nav-link {
+  color: #fff; /* Color de texto para los enlaces */
+}
+
+.sidebar .nav-link:hover {
+  background-color: #495057; /* Cambia el color de fondo al pasar el ratón */
+}

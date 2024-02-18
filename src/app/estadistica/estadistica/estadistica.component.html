@@ -1,31 +1,50 @@
-<ul class="nav " role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="btn nav-link active" data-bs-toggle="tab" href="#cie10" aria-selected="true" role="tab" [routerLink]="['/cie10']">
-      Cie-10
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="btn nav-link active" data-bs-toggle="tab" href="#personas" aria-selected="true" role="tab" [routerLink]="['/consultarE']">
-      Pacientes
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="btn nav-link" data-bs-toggle="tab" href="#rn" aria-selected="false" role="tab" tabindex="-1" [routerLink]="['/rn']">
-      Recien Nacidos
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class=" btn nav-link" data-bs-toggle="tab" href="#procedimientos" aria-selected="false" role="tab" tabindex="-1" [routerLink]="['/listProce']">
-      Procedimientos
-    </button>
-  </li>
+<nav class="navbar navbar-dark  d-flex justify-content-center bg-dark p-0 m-0">
+  <ul class="nav " role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="btn nav-link active" data-bs-toggle="tab" href="#cie10" aria-selected="true" role="tab" [routerLink]="['/cie10']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-code" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8.646 5.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 8 8.646 6.354a.5.5 0 0 1 0-.708m-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 8l1.647-1.646a.5.5 0 0 0 0-.708"/>
+          <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+          <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+        </svg>
+        Cie-10
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="btn nav-link active" data-bs-toggle="tab" href="#personas" aria-selected="true" role="tab" [routerLink]="['/consultarE']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+        </svg>
+        Pacientes
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="btn nav-link" data-bs-toggle="tab" href="#rn" aria-selected="false" role="tab" tabindex="-1" [routerLink]="['/rn']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-postcard-fill" viewBox="0 0 16 16">
+          <path d="M11 8h2V6h-2z"/>
+          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0zM2 5.5a.5.5 0 0 0 .5.5H6a.5.5 0 0 0 0-1H2.5a.5.5 0 0 0-.5.5M2.5 7a.5.5 0 0 0 0 1H6a.5.5 0 0 0 0-1zM2 9.5a.5.5 0 0 0 .5.5H6a.5.5 0 0 0 0-1H2.5a.5.5 0 0 0-.5.5m8-4v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5"/>
+        </svg>
+        Recien Nacidos
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class=" btn nav-link" data-bs-toggle="tab" href="#procedimientos" aria-selected="false" role="tab" tabindex="-1" [routerLink]="['/listProce']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-scissors" viewBox="0 0 16 16">
+          <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
+        </svg>
+        Procedimientos
+      </button>
+    </li>
 
-  <li class="nav-item" role="presentation">
-    <button class="btn nav-link active" data-bs-toggle="tab" href="#pacientes" aria-selected="true" role="tab" [routerLink]="['/reportstd']">
-      Reportes
-    </button>
-  </li>
+    <li class="nav-item" role="presentation">
+      <button class="btn nav-link active" data-bs-toggle="tab" href="#pacientes" aria-selected="true" role="tab" [routerLink]="['/reportstd']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+          <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+          <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+        </svg>
+        Reportes
+      </button>
+    </li>
+  </ul>
+</nav>
 
-
-
-</ul>
