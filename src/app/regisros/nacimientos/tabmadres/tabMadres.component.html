@@ -186,7 +186,7 @@
                   </div>
 
 
-                <div class="col-6" *ngIf="!constancia.dpi && !constancia.passport">
+                <div class="col-6" *ngIf="constancia.edad < 18">
                   <div class="wave-group">
                     <div class="d-flex">
                       <input  type="text" class="input  text-light w-100" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio" autocomplete="off">
