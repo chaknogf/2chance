@@ -194,7 +194,7 @@ export class PacientesService {
 
   filterPaciente(filtros: any): Observable<any> {
     // Inicializa una cadena vacía para la URL
-    let url = `${this.urlapi}/filtrarpaciente/`;
+    let url = `${this.urlapi}/filtrarpaciente_/`;
 
     // Construye la URL de manera dinámica agregando los filtros no vacíos
     if (filtros.id) {
