@@ -180,28 +180,28 @@ export class TablaPacientesComponent{
     this.getPacientes(); // Obtén todos los pacientes nuevamente
   }
 
-  // buscarPacientes() {
-  //   if (this.nombreBuscar || this.apellidoBuscar || this.expedienteBuscar) {
-  //     // Si se proporciona nombre, apellido o expediente, intenta buscar por nombre o expediente
-  //     if (this.nombreBuscar && this.apellidoBuscar) {
-  //       this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-  //         this.actualizarPacientes(data);
-  //       });
-  //     } else if (this.expedienteBuscar) {
-  //       this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-  //         this.actualizarPacientes(data);
-  //       });
-  //     }
-  //   } else if (this.dpiBuscar) {
-  //     // Si se proporciona DPI, busca por DPI
-  //     this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
-  //       this.actualizarPacientes(data);
-  //     });
-  //   } else {
-  //     // Si no se proporciona ninguno de los campos, obtiene todos los pacientes
-  //     this.getPacientes();
-  //   }
-  // }
+  buscarPacientes() {
+    if (this.nombreBuscar || this.apellidoBuscar || this.expedienteBuscar) {
+      // Si se proporciona nombre, apellido o expediente, intenta buscar por nombre o expediente
+      if (this.nombreBuscar && this.apellidoBuscar) {
+        this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
+          this.actualizarPacientes(data);
+        });
+      } else if (this.expedienteBuscar) {
+        this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
+          this.actualizarPacientes(data);
+        });
+      }
+    } else if (this.dpiBuscar) {
+      // Si se proporciona DPI, busca por DPI
+      this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
+        this.actualizarPacientes(data);
+      });
+    } else {
+      // Si no se proporciona ninguno de los campos, obtiene todos los pacientes
+      this.getPacientes();
+    }
+  }
 
 
 

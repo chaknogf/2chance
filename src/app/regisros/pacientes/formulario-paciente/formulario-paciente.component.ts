@@ -172,7 +172,7 @@ export class FormularioPacienteComponent implements OnInit {
     }
   }
 
-  // exp = this.NuevoExp()
+   exp = this.NuevoExp()
 
   NuevoExp() {
     // Obtener el expediente del paciente inicialmente
