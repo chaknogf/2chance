@@ -277,7 +277,7 @@ export class FormNacComponent implements OnInit {
         this.constancia.vecindad = data.municipio;
         this.constancia.muni = data.lugar_nacimiento;
         this.constancia.depto = data.depto_nac;
-        this.constancia.nacionalidad = data.nacionalidad.toString();
+       // this.constancia.nacionalidad = data.nacionalidad.toString();
 
 
 
