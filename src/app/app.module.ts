@@ -16,7 +16,7 @@ import { CapitalizeNamePipe } from './pipe/sentenceCase.pipe';
 import { AppComponent } from './app.component';
 import { DiaDeSemana } from './pipe/diaDeSemana.pipe';
 import { WeekdayPipe } from './pipe/weekDay.pipe';
-import { FechaCartaPipe, FormatoFechaPipe } from './pipe/formatoFecha.pipe';
+import { FechaCartaPipe, FechaCortaPipe, FormatoFechaPipe } from './pipe/formatoFecha.pipe';
 import { ColorizePipe } from './pipe/colorize.pipe';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { GenderPipe } from './pipe/genero.pipe';
@@ -215,6 +215,7 @@ import { EstanciaPipe } from './pipe/camas.pipe';
     PersonalNavbarComponent,
     ConsultasRMComponent,
     EstanciaPipe,
+    FechaCortaPipe,
 
 
 
