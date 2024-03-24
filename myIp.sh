@@ -18,7 +18,7 @@ import { HostListener } from '@angular/core';
 
 const hostname = window.location.hostname.split(':')[0];
 const ip0 = 'http://'+hostname+':8000';
-#const ip = 'http://${IP}:8000';
+//const ip = 'http://${IP}:8000';
 
 export const environment = {
   production: false,

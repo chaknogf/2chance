@@ -10,14 +10,16 @@ export class FormatoHoraPipe implements PipeTransform {
     const partes = hora.split(':'); // Divide la hora en partes
 
     // Extrae las horas y los minutos
-    let horas = parseInt(partes[0]);
-    let minutos = parseInt(partes[1]);
-
-    // Ajusta los minutos si hay un valor incorrecto
-    const minutosStr = minutos < 10 ? '0' + minutos : minutos.toString(); // Agrega un cero al principio si los minutos son de un solo dígito
+    const horas = parseInt(partes[0]);
+    const minutos = parseInt(partes[1]);
 
     // Construye la cadena de formato
-    const resultado = `${horas}:${minutosStr} horas` ;
+    let resultado = `${horas} horas`;
+
+    // Agrega los minutos si existen
+    if (minutos > 0) {
+      resultado += ` ${minutos} minutos`;
+    }
 
     return resultado;
   }
