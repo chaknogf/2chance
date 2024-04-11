@@ -44,6 +44,13 @@ export class NavbarComponent {
 
   }
 
+  onMenuChange(event: any) {
+    const selectedValue = event.target.value;
+    this.router.navigateByUrl(selectedValue);
+  }
+
+
+
 
 
 }

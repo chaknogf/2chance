@@ -1,41 +1,19 @@
-<header class="fs-5 d-flex justify-content-center">
-  <nav class="  navbar navbar-expand-md border-bottom box-shadow mb-0 "  >
-    <div class="container">
-      <a class="navbar-brand text-light" [routerLink]="['/home']">Home</a>
-      <button class="navbar-toggler" #navbarButton type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation" (click)="toggle()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="d-flex justify-content-center p-1">
 
-      <div class="collapse navbar-collapse" id="navbarNav" [ngClass]="{ show: isExpanded }">
-        <ul class="navbar-nav ml-auto nav-tabs ">
+  <select class="btn-select  text-center " (change)="onMenuChange($event)">
+    <span class="icon">
+      <svg viewBox="0 0 175 80" width="40" height="40">
+          <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+          <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+          <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+      </svg>
+  </span>
+    <option value="/home" class="text">Home</option>
+    <option value="/estadistica" class="text">Estadistica</option>
+    <option value="/registros" class="text">Registros</option>
+    <option value="/uisau" class="text">UISAU</option>
+    <option value="/personal" class="text">Personal</option>
+  </select>
 
-          <!-- Repite para otras opciones del menú -->
-
-
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <button class="nav-link text-light fs-8 p-2" [routerLink]="['/estadistica']" (click)="hideMenu()">Estadistica</button>
-          </li>
-
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <button class="nav-link text-light fs-8 p-2" [routerLink]="['/registros']" (click)="hideMenu()">Registros</button>
-          </li>
-
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <button class="nav-link text-light fs-8 p-2" [routerLink]="['/uisau']" (click)="hideMenu()">UISAU</button>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <button class="nav-link text-light fs-8 p-2" [routerLink]="['/personal']" (click)="hideMenu()">Personal</button>
-          </li>
-
-        </ul>
-      </div>
-
-      <button class="button" [attr.data-content]="User" (click)="logout()"></button>
-
-
-
-
-    </div>
-  </nav>
-</header>
+</nav>
 

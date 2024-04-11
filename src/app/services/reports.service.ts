@@ -38,5 +38,10 @@ export class ReportsService {
     return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
 
+  excel_dco(inicio: string, final: string): Observable<HttpResponse<Blob>> {
+    const url = `${this.urlapi}/censo_camas/?fecha_inicio=${inicio}&fecha_final=${final}&token=${this.token}`;
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
+
 
 }
