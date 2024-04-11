@@ -85,6 +85,13 @@
             <select id="tipo" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.tipo" name="tipo"  >
               <option value="1">Consulta</option>
               <option value="2">Ingreso / operatorio</option>
+              <option *ngIf="c.especialidad == 3" value="3">USG Obstetric.</option>
+              <option *ngIf="c.especialidad == 3" value="4">USG Endo/Pelvic</option>
+              <option *ngIf="c.especialidad == 3" value="5">Colposcopia.</option>
+              <option value="6">Especial</option>
+
+
+
             </select>
           </div>
 
