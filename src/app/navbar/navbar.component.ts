@@ -12,7 +12,7 @@ export class NavbarComponent {
   isExpanded = false;
   @ViewChild('navbarButton')
   navbarButton!: ElementRef;
-  public value: string = "";
+
   constructor(
     private user: UsersService,
     private router: Router,
@@ -51,7 +51,7 @@ export class NavbarComponent {
   onMenuChange(event: any) {
     const selectedValue = event.target.value;
     this.router.navigateByUrl(selectedValue);
-    this.value = ""
+
   }
 
 
