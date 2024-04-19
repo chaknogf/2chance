@@ -1,3 +1,4 @@
+import { PageReloadService } from './../services/PageReload.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UsersService } from '../services/user.service';
 import { Router } from '@angular/router';
@@ -11,9 +12,11 @@ export class NavbarComponent {
   isExpanded = false;
   @ViewChild('navbarButton')
   navbarButton!: ElementRef;
+  public value: string = "";
   constructor(
     private user: UsersService,
-    private router: Router
+    private router: Router,
+    private reload: PageReloadService
 
   ) { }
 
@@ -41,12 +44,27 @@ export class NavbarComponent {
   logout() {
     this.user.logout()
     this.router.navigateByUrl("/login");
+    this.reload.reloadPage()
 
   }
 
   onMenuChange(event: any) {
     const selectedValue = event.target.value;
     this.router.navigateByUrl(selectedValue);
+    this.value = ""
+  }
+
+
+  isHidden: boolean = false;
+
+
+
+  onBlur() {
+    this.isHidden = true;
+  }
+
+  onFocus() {
+    this.isHidden = false;
   }
 
 
