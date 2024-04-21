@@ -176,7 +176,8 @@ export class PersonasComponent{
   limpiarInput() {
     this.expedienteBuscar = ''; // Limpia el contenido del input
     this.nombreBuscar = '';
-    this.apellidoBuscar = ''
+    this.apellidoBuscar = '';
+    this.dpiBuscar = '';
     this.getPacientes(); // Obtén todos los pacientes nuevamente
   }
 

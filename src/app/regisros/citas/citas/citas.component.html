@@ -53,288 +53,433 @@
 
 </div>
 
-    <div class="container-fluid">
-      <div class="d-flex justify-content-between">
-        <!-- Primer contenedor Medicina -->
-        <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 1 | enumCitas }}</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-auto" *ngIf="citasMedi.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr class="">
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody class="bg-light">
-                <tr *ngFor="let cita of citasMedi; let i = index">
-                  <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
+<section>
+  <div *ngIf="citas_medicina_consulta.length >= 1">
+    <span class="text-center h3">Reconsultas Medicina Interna</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_medicina_consulta; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div *ngIf="citas_medicina_preop.length >= 1  ">
+    <span class="text-center h3">Reconsultas Preop Medicina Interna</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_medicina_preop; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- Segundo contenedor Pediatría -->
-        <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 2 | enumCitas }}</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-sm" *ngIf="citasPedia">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
+  <div *ngIf="citas_medicina_especial.length >= 1">
+    <span class="text-center h3">Reconsultas Especiales Medicina Interna</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_medicina_especial; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasPedia; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div *ngIf="citas_pedia_consulta.length >= 1">
+    <span class="text-center h3">Reconsultas Pediatria</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_pedia_consulta; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-         <!-- Tercer contenedor Ginecología -->
-         <div class="container-fluid console-table p-0 bg-info">
-          <h3 class="text-light mx-3 border-text">{{ 3 | enumCitas }}</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-auto" *ngIf="citasGine.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasGine; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div *ngIf="citas_gine_consulta.length >=1">
+    <span class="text-center h3">Reconsultas Ginecologia y Obstetricia</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_gine_consulta; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-      </div>
-    </div>
+  <div *ngIf="citas_gine_preop.length >=1">
+    <span class="text-center h3">Reconsultas Preoperatorias Ginecologia</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_gine_preop; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-    <div class="container-fluid  mt-2">
-      <div class="d-flex justify-content-between">
+  <div *ngIf="citas_gine_usg_obs.length >=1">
+    <span class="text-center h3">Ultrasonidos Obstetricos</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_gine_usg_obs; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- Primer contenedor Cirugía -->
-        <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 4 | enumCitas }}</h3>
-          <div class="table-responsive ">
-            <table class="table table-hover table-sm " *ngIf="citasCiru">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
+  <div *ngIf="citas_gine_usg_pel.length >=1">
+    <span class="text-center h3">Ultrasonidos Pelvicos y Endovaginales</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_gine_usg_pel; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasCiru; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div *ngIf="citas_gine_colpo.length >=1">
+    <span class="text-center h3">Colposcopias</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_gine_colpo; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-        <!-- Segundo contenedor Trauma -->
-        <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 5 | enumCitas }}</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-auto" *ngIf="citasTrauma.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasTrauma; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div *ngIf="citas_gine_especial.length >=1">
+    <span class="text-center h3">Reconsultas Especiales Ginecologia y Obstetricia</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_gine_especial; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
 
-          <!-- Tercer contenedor Obstetricia -->
-          <div class="container-fluid console-table p-0 bg-info mx-2">
-            <h3 class="text-light mx-3 border-text">{{ 8 | enumCitas }} - preoperatorias</h3>
-            <div class="table-responsive">
-              <table class="table table-hover table-auto" *ngIf="citasObst.length > 0">
-                <!-- Encabezados de columna -->
-                <thead>
-                  <tr>
-                    <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                    <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                    <th class="bg-info text-light text-center" scope="col">No.</th>
-                  </tr>
-                </thead>
-                <!-- Datos de la tabla -->
-                <tbody>
-                  <tr *ngFor="let cita of citasObst; let i = index">
-                    <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                      </svg> {{ cita.expediente }}</td>
-                    <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                    <td class="text-center">{{ contador + i + 1 }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+  <div *ngIf="citas_ciru_consulta.length >=1">
+    <span class="text-center h3">Reconsultas Cirugía</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_ciru_consulta; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="citas_trauma_consulta.length >=1">
+    <span class="text-center h3">Reconsultas Traumatología</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_trauma_consulta; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="citas_nutricion_consulta.length >=1">
+    <span class="text-center h3">Reconsultas Nutrición</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_nutricion_consulta; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="citas_psicologia_consulta.length >=1">
+    <span class="text-center h3">Reconsultas psicologia</span>
+    <table class="table table-hover table-black">
+      <thead>
+        <tr>
+          <th class="text-center">edit</th>
+          <th class="text-center">especialidad</th>
+          <th class="text-center">Tipo</th>
+          <th class="text-center">Expediente</th>
+          <th class="text-center">Nombre</th>
+          <th class="text-center">No.</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cita of citas_psicologia_consulta; let i = index">
+        <tr>
+          <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </td>
+          <td class="text-center">{{cita.especialidad |anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+          <td class="text-center">{{ cita.expediente }}</td>
+          <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+          <td class="text-center">{{ contador + i + 1 }}</td>
+      </tbody>
+    </table>
+  </div>
+
+</section>
 
 
-      </div>
-    </div>
+<!-- tablas antiguas -->
 
-    <div class="container-fluid  mt-2">
-      <div class="d-flex justify-content-between">
-
-        <!-- Primer contenedor Nutrición
-         -->
-        <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">{{ 7 | enumCitas }}</h3>
-          <div class="table-responsive ">
-            <table class="table table-hover table-auto" *ngIf="citasNutri.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
-
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasNutri; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Tercer contenedor Psicologia -->
-        <div class="container-fluid console-table p-0 bg-info">
-          <h3 class="text-light mx-3 border-text">{{ 6 | enumCitas }}</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-auto" *ngIf="citasPsico.length > 0">
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasPsico; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <!-- Tercer contenedor Otro -->
-        <div class="container-fluid console-table p-0 bg-info mx-2">
-          <h3 class="text-light mx-3 border-text">Medicina Especial</h3>
-          <div class="table-responsive">
-            <table class="table table-hover table-auto" >
-              <!-- Encabezados de columna -->
-              <thead>
-                <tr>
-                  <th class="bg-info text-light text-center" scope="col">Expediente</th>
-                  <th class="bg-info text-light text-center" scope="col">Nombre</th>
-                  <th class="bg-info text-light text-center" scope="col">No.</th>
-                </tr>
-              </thead>
-              <!-- Datos de la tabla -->
-              <tbody>
-                <tr *ngFor="let cita of citasMediEspc; let i = index">
-                  <td class="text-center" [routerLink]="['/agenda/edit', cita.id]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                    </svg> {{ cita.expediente }}</td>
-                  <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
-                  <td class="text-center">{{ contador + i + 1 }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div>
-    </div>
 
 
 

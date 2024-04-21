@@ -97,6 +97,7 @@ import { ConsultarComponent } from './estadistica/consultar/consultar.component'
 import { MedicosComponent } from './personal/medicos/medicos.component';
 import { ConsultasRMComponent } from './estadistica/consultasRM/consultasRM.component';
 import { EstanciaPipe } from './pipe/camas.pipe';
+import { EnumTipoCitaPipe } from './pipe/enum.pipe';
 
 
 
@@ -216,6 +217,8 @@ import { EstanciaPipe } from './pipe/camas.pipe';
     ConsultasRMComponent,
     EstanciaPipe,
     FechaCortaPipe,
+    EnumTipoCitaPipe,
+
 
 
 

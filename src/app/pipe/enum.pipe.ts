@@ -1,9 +1,10 @@
 
-import { situacion, estadia, referencia, serv, todoservicios } from './../enums/enums';
+import { situacion, estadia, referencia, serv, todoservicios, tipo_citas } from './../enums/enums';
 import { Pipe, PipeDecorator, PipeTransform } from '@angular/core';
 import {servicio, nation, etnias, ecivil, academic,  parents, lenguaje, servicios, tipo, status, estado, citas} from '../enums/enums';
 import { departamentos, municipio, vecindad } from '../enums/vencindad';
 import { claseParto, tipoParto } from '../enums/parto';
+
 
 @Pipe({
   name: 'enumEspecialidad'
@@ -298,6 +299,20 @@ export class EnumTipoPartoPipe implements PipeTransform {
     const tipoPartoEncontrado = tipoParto.find(tipoParto => tipoParto.value === value);
     if (tipoPartoEncontrado) {
       return tipoPartoEncontrado.label;
+    } else {
+      return ''
+    }
+  }
+}
+
+@Pipe({
+  name: 'enumTipoCita'
+})
+export class EnumTipoCitaPipe implements PipeTransform {
+  transform(value: any): string {
+    const tipoCitaEncontrado = tipo_citas.find(tipoCita => tipoCita.value === value);
+    if (tipoCitaEncontrado) {
+      return tipoCitaEncontrado.label;
     } else {
       return ''
     }

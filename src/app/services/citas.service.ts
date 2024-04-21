@@ -41,55 +41,19 @@ export class CitasService {
 
    }
 
-   especial(cita: Icitas): Observable<any>{
-    return this.http.post(this.urlapi + "/citaespecial/?token=" + this.token, cita);
 
-   }
 
   getCitasFecha(date: Date): Observable<any> {
     const queryParams = `?value=${date}&token=${this.token}`;
     return this.http.get(`${this.urlapi}/cita/fecha/${queryParams}`);
   }
 
-  getCitaTabla(fecha: string, especialidad: number): Observable<any> {
-    const queryParams = `?data=${fecha}&especialidad=${especialidad}&token=${this.token}`;
+  getCitaTabla(fecha: string, especialidad: number, tipo: number): Observable<any> {
+    const queryParams = `?fecha=${fecha}&especialidad=${especialidad}&tipo=${tipo}&token=${this.token}`;
     return this.http.get(`${this.urlapi}/cita/tabla/${queryParams}`)
   }
 
-  getCitaMedi(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=1"+"&token="+this.token);
-  }
 
-  getCitaMediEspc(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=9"+"&token="+this.token);
-  }
-
-  getCitaPedia(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=2"+"&token="+this.token);
-  }
-
-  getCitaGine(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=3"+"&token="+this.token);
-  }
-
-  getCitaCiru(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=4"+"&token="+this.token);
-  }
-
-  getCitaTrauma(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=5"+"&token="+this.token);
-  }
-  getCitaPsico(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=6"+"&token="+this.token);
-  }
-
-  getCitaNutri(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=7"+"&token="+this.token);
-  }
-
-  getCitaObst(fecha: string): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/tabla/?data=" + fecha + "&especialidad=8"+"&token="+this.token);
-  }
 
   getResumenCitas(value: number): Observable<any> {
     return this.http.get(this.urlapi + "/cita/servicio/?especialidad=" + value+"&token="+this.token)
@@ -103,8 +67,26 @@ export class CitasService {
     return this.http.delete(this.urlapi + "/borrar/" + id+"?token="+this.token);
   }
 
-  getVigentes(especialidad: number): Observable<any> {
-    return this.http.get(this.urlapi + "/citasVigentes?especialidad=" + especialidad + "&token=" + this.token)
+  getVigentes(especialidad: number, tipo: number): Observable<any> {
+    const queryParams = `?especialidad=${especialidad}&tipo=${tipo}&token=${this.token}`
+    return this.http.get(`${this.urlapi}/citasVigentes${queryParams}`)
+
+  }
+
+  getCitasOcupadas(especialidad: number, tipo: number, fecha: string): Observable<any> {
+    const queryParams = `?especialidad=${especialidad}&tipo=${tipo}&fecha=${fecha}&token=${this.token}`
+    return this.http.get(`${this.urlapi}/citas_disponible${queryParams}`)
+
+  }
+
+
+  diaSemana(date: any): string {
+      if (!date) return '';
+
+      const diasSemana = [ 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado','Domingo'];
+      const indiceDia = date.getDay(); // Obtiene el índice del día de la semana (0-6)
+
+      return diasSemana[indiceDia];
   }
 
 

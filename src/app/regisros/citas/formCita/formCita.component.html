@@ -17,9 +17,6 @@
         (click)="crearCita()"
         *ngIf="c.especialidad != 9">Guardar</button>
 
-        <button type="button" class="btn btn-light bg-black text-light w-auto"
-        (click)="crearespecial()"
-        *ngIf="c.especialidad == 9">Guardar cita especial</button>
 
 
 
@@ -75,20 +72,20 @@
 
           <div class="form-group mt-2">
             <label class="text-light" for="especialidad">Especialidad:</label>
-            <select id="especialidad" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)="verResumen($event)" >
+            <select id="especialidad" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)=" citasOcupadas($event, c.tipo, c.fecha, $event)" >
               <option *ngFor="let option of e.citas" [value]="option.value">{{ option.label }}</option>
             </select>
           </div>
 
           <div class="form-group mt-2">
             <label class="text-light" for="tipo">Tipo de cita:</label>
-            <select id="tipo" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.tipo" name="tipo"  >
+            <select id="tipo" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.tipo" name="tipo"  (ngModelChange)="citasOcupadas(c.especialidad, $event, c.fecha, $event)">
               <option value="1">Consulta</option>
               <option value="2">Ingreso / operatorio</option>
               <option *ngIf="c.especialidad == 3" value="3">USG Obstetric.</option>
               <option *ngIf="c.especialidad == 3" value="4">USG Endo/Pelvic</option>
               <option *ngIf="c.especialidad == 3" value="5">Colposcopia.</option>
-              <option value="6">Especial</option>
+              <option value="9">Especial</option>
 
 
 
@@ -99,7 +96,7 @@
           <div class="form-group mt-2">
             <label class="text-light" for="fecha">Fecha:</label>
             <input type="date" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="fecha" name="fecha"
-              (change)="onDateChange($event)" [(ngModel)]="c.fecha" placeholder="hoy">
+              (change)="citasOcupadas(c.especialidad, c.tipo, c.fecha, $event)" [(ngModel)]="c.fecha" placeholder="hoy">
           </div>
 
           <div class="form-group mt-2">
@@ -112,6 +109,15 @@
             <textarea class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="nota" name="nota" rows="4" [(ngModel)]="c.nota" ></textarea>
           </div>
         </div>
+
+          <!-- <div class="d-flex justify-content-center mt-2">
+            <p>Citas ocupadas: <span class="fw-bold">{{ocupado}}</span></p>
+           </div>
+           <div class="d-flex justify-content-center mt-2" >
+            <p  class="">Citas disponibles: <span class="fw-bold">{{disponible - ocupado}}</span></p>
+          </div> -->
+
+
 
         </form>
 

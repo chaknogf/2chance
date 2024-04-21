@@ -391,3 +391,17 @@ export const serv: Serv[] = [
   { value: 6, label: 'Maternidad' },
 ]
 
+export interface Tipo_citas {
+  value: number;
+  label: string;
+}
+
+export const tipo_citas: Tipo_citas[] = [
+  { value: 1, label: 'Consulta' },
+  { value: 2, label: 'Ingreso - Operatorio' },
+  { value: 3, label: 'USG Obstetrico' },
+  { value: 4, label: 'USG Pelvico' },
+  { value: 5, label: 'Colposcopia' },
+  { value: 9, label: 'Especial'}
+]
+

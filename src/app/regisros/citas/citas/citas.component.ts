@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-citas', // Asegúrate de usar el selector correcto aquí
   templateUrl: './citas.component.html',
@@ -14,16 +15,29 @@ export class CitasComponent implements OnInit {
   today: string = "";
   selectDate: Date = new Date();
   public citas: Icitas[] = [];
-  public citasPedia: Icitas[] = [];
-  public citasTrauma: Icitas[] = [];
-  public citasCiru: Icitas[] = [];
-  public citasGine: Icitas[] = [];
-  public citasObst: Icitas[] = [];
-  public citasPsico: Icitas[] = [];
-  public citasNutri: Icitas[] = [];
-  public citasHoy: Icitas[] = [];
-  public citasMedi: Icitas[] = [];
-  public citasMediEspc: Icitas[] = [];
+  public citas_medicina_consulta: Icitas[] = [];
+  public citas_medicina_preop: Icitas[] = [];
+  public citas_medicina_especial: Icitas[] = [];
+  public citas_pedia_consulta: Icitas[] = [];
+  public citas_gine_consulta: Icitas[] = [];
+  public citas_gine_preop: Icitas[] = [];
+  public citas_gine_usg_obs: Icitas[] = [];
+  public citas_gine_usg_pel: Icitas[] = [];
+  public citas_gine_colpo: Icitas[] = [];
+  public citas_gine_especial: Icitas[] = [];
+  public citas_ciru_consulta: Icitas[] = [];
+  public citas_trauma_consulta: Icitas[] = [];
+  public citas_nutricion_consulta: Icitas[] = [];
+  public citas_psicologia_consulta: Icitas[] = [];
+
+
+
+
+
+
+
+
+
   public x: string = this.today;
   public y: number = 0;
   public contador: number = 0;
@@ -43,27 +57,26 @@ export class CitasComponent implements OnInit {
     private router: Router,
   ) { }
 
+
+
   ngOnInit(): void {
       this.citas;
-      this.citasMedi;
-      this.citasMediEspc;
-      this.citasPedia;
-      this.citasTrauma;
-      this.citasGine;
-      this.citasCiru;
-      this.citasNutri;
-      this.citasObst;
-      this.x = `${this.year}-${this.month}-${this.day}`;
-      this.citasmedicina(this.x);
-      this.citaspedia(this.x);
-      this.citaciru(this.x);
-      this.citapsico(this.x);
-      this.citastrauma(this.x);
-      this.citagine(this.x);
-      this.citanutri(this.x);
-      this.citaobst(this.x);
-      this.citasmedicinaEspc(this.x);
 
+      this.x = `${this.year}-${this.month}-${this.day}`;
+      this.medicina_consulta(this.x);
+      this.medicina_preop(this.x);
+      this.medicina_especial(this.x);
+      this.pedia_consulta(this.x);
+      this.gine_consulta(this.x);
+      this.gine_preop(this.x);
+      this.gine_usgObs(this.x);
+      this.gine_usgPel(this.x);
+      this.gine_colpo(this.x);
+      this.gine_especial(this.x);
+      this.ciru_consulta(this.x);
+      this.trauma_consulta(this.x);
+      this.nutri_consulta(this.x);
+      this.psico_consulta(this.x);
 
 
 
@@ -81,109 +94,170 @@ export class CitasComponent implements OnInit {
         this.x = `${this.year}-${this.month}-${this.day}`;
 
         //vaciar los arrays
-        this.citasMedi = [];
-        this.citasMediEspc = [];
-        this.citasPedia = [];
-        this.citasTrauma = [];
-        this.citasCiru = [];
-        this.citasGine = [];
-        this.citasPsico = [];
-        this.citasNutri = [];
-        this.citasObst = [];
+        this.citas_medicina_consulta =[];
+        this.citas_medicina_preop = [];
+        this.citas_medicina_especial = [];
+        this.citas_pedia_consulta = [];
+        this.citas_gine_consulta = [];
+        this.citas_gine_preop = [];
+        this.citas_gine_usg_obs = [];
+        this.citas_gine_usg_pel = [];
+        this.citas_gine_colpo = [];
+        this.citas_gine_especial = [];
+        this.citas_ciru_consulta = [];
+        this.citas_trauma_consulta = [];
+        this.citas_nutricion_consulta = [];
+        this.citas_psicologia_consulta = [];
 
         // Llama a las funciones para actualizar los datos de las citas
-        this.citasmedicina(this.x);
-        this.citasmedicinaEspc(this.x);
-        this.citaspedia(this.x);
-        this.citaciru(this.x);
-        this.citapsico(this.x);
-        this.citastrauma(this.x);
-        this.citagine(this.x);
-        this.citanutri(this.x);
-        this.citaobst(this.x);
+        this.medicina_consulta(this.x);
+        this.medicina_preop(this.x);
+        this.medicina_especial(this.x);
+        this.pedia_consulta(this.x);
+        this.gine_consulta(this.x);
+        this.gine_preop(this.x);
+        this.gine_usgObs(this.x);
+        this.gine_usgPel(this.x);
+        this.gine_colpo(this.x);
+        this.gine_especial(this.x);
+        this.ciru_consulta(this.x);
+        this.trauma_consulta(this.x);
+        this.nutri_consulta(this.x);
+        this.psico_consulta(this.x);
+
         console.log(this.citas)
       } else {
         // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
-        this.citasMedi = [];
-        this.citasMediEspc = [];
-        this.citasPedia = [];
-        this.citasTrauma = [];
-        this.citasCiru = [];
-        this.citasGine = [];
-        this.citasPsico = [];
-        this.citasNutri = [];
-        this.citasObst = [];
+        this.citas_medicina_consulta =[];
+        this.citas_medicina_preop = [];
+        this.citas_medicina_especial = [];
+        this.citas_pedia_consulta = [];
+        this.citas_gine_consulta = [];
+        this.citas_gine_preop = [];
+        this.citas_gine_usg_obs = [];
+        this.citas_gine_usg_pel = [];
+        this.citas_gine_colpo = [];
+        this.citas_gine_especial = [];
+        this.citas_ciru_consulta = [];
+        this.citas_trauma_consulta = [];
+        this.citas_nutricion_consulta = [];
+        this.citas_psicologia_consulta = [];
+
       }
     }
 
 
-
-
-  citasmedicina(fecha:string) {
-    this.CitasService.getCitaMedi(fecha).subscribe(data => {
-      this.citasMedi = data;
+  citasTabla(fecha: string, tipo: number, especialidad: number) {
+    this.CitasService.getCitaTabla(fecha, especialidad, tipo).subscribe(data => {
+      this.citas = data;
+    })
+  }
+  psico_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 6, 1).subscribe(data => {
+      this.citas_psicologia_consulta = data;
       this.citas = data;
     })
   }
 
-  citasmedicinaEspc(fecha:string) {
-    this.CitasService.getCitaMediEspc(fecha).subscribe(data => {
-      this.citasMediEspc = data;
+  nutri_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 7, 1).subscribe(data => {
+      this.citas_nutricion_consulta = data;
       this.citas = data;
     })
   }
 
-  citaspedia(fecha:string) {
-    this.CitasService.getCitaPedia(fecha).subscribe(data => {
-      this.citasPedia = data;
+  trauma_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 5, 1).subscribe(data => {
+      this.citas_trauma_consulta = data;
       this.citas = data;
     })
   }
 
-  citastrauma(fecha:string) {
-    this.CitasService.getCitaTrauma(fecha).subscribe(data => {
-      this.citasTrauma = data;
-      this.citas = data;
-    })
-  }
-  citaciru(fecha:string) {
-    this.CitasService.getCitaCiru(fecha).subscribe(data => {
-      this.citasCiru = data;
+  ciru_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 4, 1).subscribe(data => {
+      this.citas_ciru_consulta = data;
       this.citas = data;
     })
   }
 
-  citagine(fecha:string) {
-    this.CitasService.getCitaGine(fecha).subscribe(data => {
-      this.citasGine = data;
+  gine_especial(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 3, 9).subscribe(data => {
+      this.citas_gine_especial = data;
       this.citas = data;
     })
   }
 
-  citapsico(fecha:string) {
-    this.CitasService.getCitaPsico(fecha).subscribe(data => {
-      this.citasPsico = data;
+  gine_colpo(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 3, 4).subscribe(data => {
+      this.citas_gine_colpo = data;
       this.citas = data;
     })
   }
 
-  citanutri(fecha:string) {
-    this.CitasService.getCitaNutri(fecha).subscribe(data => {
-      this.citasNutri = data;
+  gine_usgPel(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 3, 4).subscribe(data => {
+      this.citas_gine_usg_pel = data;
       this.citas = data;
     })
   }
 
-  citaobst(fecha:string) {
-    this.CitasService.getCitaObst(fecha).subscribe(data => {
-      this.citasObst = data;
+  gine_usgObs(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 3, 3).subscribe(data => {
+      this.citas_gine_usg_obs = data;
       this.citas = data;
     })
   }
+
+  gine_preop(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 3, 2).subscribe(data => {
+      this.citas_gine_preop = data;
+      this.citas = data;
+    })
+  }
+
+  gine_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 3, 1).subscribe(data => {
+      this.citas_gine_consulta = data;
+      this.citas = data;
+    })
+  }
+
+  pedia_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 2, 1).subscribe(data => {
+      this.citas_pedia_consulta = data;
+      this.citas = data;
+    })
+  }
+
+  medicina_especial(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 1, 9).subscribe(data => {
+      this.citas_medicina_especial = data;
+      this.citas = data;
+    })
+  }
+
+  medicina_preop(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 1, 2).subscribe(data => {
+      this.citas_medicina_preop = data;
+      this.citas = data;
+    })
+  }
+
+  medicina_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 1, 1).subscribe(data => {
+      this.citas_medicina_consulta = data;
+      this.citas = data;
+    })
+  }
+
+
+
 
   regresar(){
     this.router.navigate(['/coex']);
   }
+
+
 
 
 }
