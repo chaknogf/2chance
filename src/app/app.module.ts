@@ -259,6 +259,7 @@ import { EnumTipoCitaPipe } from './pipe/enum.pipe';
       { path: 'ingreso/edit/:id', component: FormIngresoComponent, canActivate: [AuthGuard] },
       { path: 'ingresoTabla', component: IngresoTablaComponent, canActivate: [AuthGuard] },
       { path: 'ingresohoja/view/:id', component: IngresoHComponent, canActivate: [AuthGuard] },
+      { path: 'ingresoh', component: IngresoHComponent, canActivate: [AuthGuard] },
       { path: 'consultas', component: TodasComponent, canActivate: [AuthGuard] },
       { path: 'consulta/view/:id', component: ReporteComponent, canActivate: [AuthGuard] },
       { path: 'uisau', component: TablaUisauComponent, canActivate: [AuthGuard] },
