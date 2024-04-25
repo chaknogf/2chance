@@ -1,162 +1,319 @@
+<div class="d-flex justify-content-center bg-white">
+  <button class="btn btn-dark no-imprimir mx-2 my-3 w-30" (click)="regresar()" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+    </svg>Regresar</button>
+  <button class="btn btn-info no-imprimir mx-2 my-3 w-30" (click)="imprimir()">Imprimir</button>
+</div>
+
 <div style="width: 1024px; height: 1440px; position: relative; background: white; margin:0%">
-  <div style="width: 193px; height: 11px; left: 699px; top: 1356px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Firma y sello del Médico</div>
-  <div style="width: 50px; height: 10px; left: 69px; top: 1061px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Otras:</div>
-  <div style="width: 158px; height: 11px; left: 210px; top: 1188px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Condición de Salida</div>
-  <div style="width: 141px; height: 11px; left: 69px; top: 1294px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Causa de muerte:</div>
-  <div style="width: 108px; height: 11px; left: 188px; top: 1356px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Fecha de Alta</div>
-  <div style="width: 299px; height: 17px; left: 378px; top: 1381px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 20px; word-wrap: break-word; padding:0%; margin:0%">HOJA DE INGRESO Y EGRESO</div>
-  <div style="width: 116px; height: 11px; left: 64px; top: 1207px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Recuperado</div>
-  <div style="width: 133px; height: 12px; left: 64px; top: 1229px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Mismo estado</div>
-  <div style="width: 83px; height: 11px; left: 64px; top: 1247px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Fugado</div>
-  <div style="width: 186px; height: 12px; left: 64px; top: 1267px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Fallecido sin autopsia</div>
-  <div style="width: 81px; height: 11px; left: 316px; top: 1207px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Estable</div>
-  <div style="width: 185px; height: 10px; left: 540px; top: 1190px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Referido o trasladado al:</div>
-  <div style="width: 64px; height: 11px; left: 540px; top: 1209px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Servicio:</div>
-  <div style="width: 68px; height: 11px; left: 540px; top: 1228px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Hospital:</div>
-  <div style="width: 39px; height: 11px; left: 540px; top: 1245px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Otro:</div>
-  <div style="width: 141px; height: 12px; left: 316px; top: 1229px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Contraindicado</div>
-  <div style="width: 193px; height: 11px; left: 316px; top: 1249px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">Fallecido con autopsia</div>
-  <div style="width: 201px; height: 12px; left: 69px; top: 1114px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">A) Fecha de la operación:</div>
-  <div style="width: 119px; height: 11px; left: 69px; top: 1156px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">C)  Resultados:</div>
-  <div style="width: 181px; height: 11px; left: 531px; top: 1156px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">D) Se practicó autopia:</div>
-  <div style="width: 13px; height: 11px; left: 744px; top: 1156px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Si</div>
-  <div style="width: 23px; height: 11px; left: 820px; top: 1156px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">No</div>
-  <div style="width: 194px; height: 12px; left: 531px; top: 1114px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">B) Médico que la realizo:</div>
-  <div style="width: 45px; height: 11px; left: 96px; top: 300px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Edad:</div>
-  <div style="width: 183px; height: 11px; left: 69px; top: 420px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Nombre del conyugue:</div>
-  <div style="width: 107px; height: 11px; left: 68px; top: 505px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Responsable:</div>
-  <div style="width: 202px; height: 11px; left: 66px; top: 543px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">No. de Hospitalizaciones:</div>
-  <div style="width: 141px; height: 11px; left: 66px; top: 585px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Fecha de ingreso:</div>
-  <div style="width: 77px; height: 11px; left: 68px; top: 978px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Principal:</div>
-  <div style="width: 77px; height: 11px; left: 68px; top: 1008px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Principal:</div>
-  <div style="width: 77px; height: 11px; left: 68px; top: 1008px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Principal:</div>
-  <div style="width: 105px; height: 11px; left: 452px; top: 980px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Operaciones:</div>
-  <div style="width: 45px; height: 11px; left: 404px; top: 585px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Hora:</div>
-  <div style="width: 270px; height: 10px; left: 64px; top: 747px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Enumer en orden de importancia:</div>
-  <div style="width: 58px; height: 27px; left: 886px; top: 739px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Código<br/>CIE-10</div>
-  <div style="width: 57px; height: 27px; left: 892px; top: 972px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Código<br/>CIE-10</div>
-  <div style="width: 44px; height: 11px; left: 756px; top: 585px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Hora:</div>
-  <div style="width: 136px; height: 11px; left: 849px; top: 585px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Dias de estancia:</div>
-  <div style="width: 134px; height: 11px; left: 552px; top: 585px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Fecha de egreso:</div>
-  <div style="width: 216px; height: 11px; left: 443px; top: 647px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">DIAGNÓSTICO DE INGRESO</div>
-  <div style="width: 166px; height: 10px; left: 388px; top: 747px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">DIAGNÓSTICO FINAL</div>
-  <div style="width: 73px; height: 11px; left: 533px; top: 543px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Referido:</div>
-  <div style="width: 51px; height: 11px; left: 68px; top: 461px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Padre:</div>
-  <div style="width: 57px; height: 11px; left: 529px; top: 461px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Madre:</div>
-  <div style="width: 81px; height: 11px; left: 527px; top: 420px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Dirección:</div>
-  <div style="width: 95px; height: 11px; left: 552px; top: 503px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Parentesco:</div>
-  <div style="width: 74px; height: 11px; left: 819px; top: 503px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Telefono:</div>
-  <div style="width: 43px; height: 11px; left: 231px; top: 300px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Sexo:</div>
-  <div style="width: 99px; height: 11px; left: 400px; top: 300px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Estado Civil:</div>
-  <div style="width: 92px; height: 11px; left: 643px; top: 300px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Ocupación:</div>
-  <div style="width: 134px; height: 11px; left: 835px; top: 300px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">CUI o pasaporte:</div>
-  <div style="width: 16px; height: 11px; left: 218px; top: 325px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">M</div>
-  <div style="width: 8px; height: 11px; left: 281px; top: 325px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">F</div>
-  <div style="width: 105px; height: 10px; left: 139px; top: 217px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Calle o lugar:</div>
-  <div style="width: 172px; height: 11px; left: 74px; top: 257px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Lugar de nacimiento:</div>
-  <div style="width: 172px; height: 11px; left: 391px; top: 257px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Fecha de nacimiento:</div>
-  <div style="width: 85px; height: 10px; left: 442px; top: 215px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Municipio:</div>
-  <div style="width: 188px; height: 11px; left: 442px; top: 193px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">RECIDENCIA  HABITUAL</div>
-  <div style="width: 123px; height: 10px; left: 660px; top: 215px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Departamento:</div>
-  <div style="width: 111px; height: 11px; left: 724px; top: 257px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Nacionalidad:</div>
-  <div style="width: 76px; height: 10px; left: 886px; top: 217px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Telefono:</div>
-  <div style="width: 79px; height: 10px; left: 550px; top: 132px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Nombres:</div>
-  <div style="width: 94px; height: 10px; left: 830px; top: 132px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Expediente:</div>
-  <div style="width: 68px; height: 11px; left: 359px; top: 82px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Servicio:</div>
-  <div style="width: 106px; height: 11px; left: 714px; top: 82px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Especialidad:</div>
-  <div style="width: 79px; height: 10px; left: 184px; top: 132px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Apellidos:</div>
-  <div style="width: 668px; height: 44px; left: 75px; top: 24px; position: absolute; color: black; font-size: 22px; font-family: Noto Sans; font-weight: 700; line-height: 24px; word-wrap: break-word">MINISTERIO DE SALUD PÚBLICA Y ASISTENCIA SOCIAL<br/>HOSPITAL GENERAL TIPO I DE TECPÁN GUATEMALA</div>
-  <div style="width: 647px; height: 49px; left: 345px; top: 79px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 944px; height: 30px; left: 48px; top: 183px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 944px; height: 44px; left: 48px; top: 211px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 944px; height: 43px; left: 48px; top: 253px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 944px; height: 25px; left: 48px; top: 295px; position: absolute; background: rgba(217, 217, 217, 0); border: 2px black solid"></div>
-  <div style="width: 152px; height: 60px; left: 48px; top: 318px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 57px; height: 60px; left: 198px; top: 318px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 62px; height: 60px; left: 253px; top: 318px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 239px; height: 60px; left: 313px; top: 318px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 224px; height: 60px; left: 550px; top: 318px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 220px; height: 60px; left: 772px; top: 318px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 470px; height: 42px; left: 48px; top: 376px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 476px; height: 42px; left: 516px; top: 376px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 470px; height: 42px; left: 48px; top: 416px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 476px; height: 42px; left: 516px; top: 416px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 470px; height: 45px; left: 48px; top: 456px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 476px; height: 45px; left: 516px; top: 456px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 470px; height: 42px; left: 48px; top: 499px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 476px; height: 42px; left: 516px; top: 499px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 470px; height: 42px; left: 48px; top: 539px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 476px; height: 42px; left: 516px; top: 539px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 470px; height: 43px; left: 48px; top: 579px; position: absolute; background: rgba(217, 217, 217, 0); border: 2px black solid"></div>
-  <div style="width: 797px; height: 38px; left: 53px; top: 732px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 38px; left: 849px; top: 732px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 28px; left: 53px; top: 768px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 28px; left: 849px; top: 768px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 27px; left: 53px; top: 794px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 942px; height: 27px; left: 50px; top: 640px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.80px black solid"></div>
-  <div style="width: 942px; height: 27px; left: 50px; top: 665px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.80px black solid"></div>
-  <div style="width: 942px; height: 27px; left: 50px; top: 690px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.80px black solid"></div>
-  <div style="width: 141px; height: 27px; left: 849px; top: 794px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 27px; left: 53px; top: 819px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 27px; left: 849px; top: 819px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 28px; left: 53px; top: 844px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 28px; left: 849px; top: 844px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 27px; left: 53px; top: 870px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 27px; left: 849px; top: 870px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 28px; left: 53px; top: 895px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 28px; left: 849px; top: 895px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 27px; left: 53px; top: 921px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 27px; left: 849px; top: 921px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 22px; left: 53px; top: 946px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 22px; left: 849px; top: 946px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 35px; left: 53px; top: 966px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 35px; left: 849px; top: 966px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 28px; left: 53px; top: 999px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 28px; left: 849px; top: 999px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 29px; left: 53px; top: 1026px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 29px; left: 849px; top: 1026px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 25px; left: 53px; top: 1053px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 25px; left: 849px; top: 1053px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 797px; height: 26px; left: 53px; top: 1076px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 141px; height: 26px; left: 849px; top: 1076px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 467px; height: 45px; left: 53px; top: 1101px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 472px; height: 45px; left: 518px; top: 1101px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 467px; height: 40px; left: 53px; top: 1144px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 472px; height: 40px; left: 518px; top: 1144px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 937px; height: 29px; left: 53px; top: 1284px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 937px; height: 65px; left: 53px; top: 1311px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 467px; height: 104px; left: 53px; top: 1182px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 472px; height: 104px; left: 518px; top: 1182px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 476px; height: 43px; left: 516px; top: 579px; position: absolute; background: rgba(217, 217, 217, 0); border: 2px black solid"></div>
-  <div style="width: 944px; height: 59px; left: 48px; top: 126px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.8px  black solid"></div>
-  <div style="width: 218px; height: 63px; left: 774px; top: 126px; position: absolute; background: rgba(217, 217, 217, 0)"></div>
-  <div style="width: 17px; height: 13px; left: 766px; top: 1154px; position: absolute; background: #D9D9D9; border: 1.8px  black solid"></div>
-  <div style="width: 16px; height: 13px; left: 847px; top: 1154px; position: absolute; background: #D9D9D9; border: 1.8px  black solid"></div>
-  <div style="width: 41px; height: 11px; left: 197px; top: 158px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 570px; top: 158px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 42px; height: 11px; left: 861px; top: 158px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 160px; top: 236px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 134px; top: 274px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 100px; top: 340px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 10px; left: 207px; top: 353px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 10px; left: 420px; top: 349px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 350px; top: 433px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 794px; top: 427px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 12px; left: 347px; top: 472px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 794px; top: 474px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 347px; top: 516px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 255px; top: 596px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 42px; height: 11px; left: 457px; top: 601px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 679px; top: 520px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 842px; top: 520px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 638px; top: 347px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 10px; left: 863px; top: 346px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 10px; left: 268px; top: 349px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 42px; height: 11px; left: 452px; top: 274px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 755px; top: 274px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 42px; height: 11px; left: 462px; top: 236px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 690px; top: 236px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 903px; top: 234px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 386px; top: 104px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
-  <div style="width: 41px; height: 11px; left: 747px; top: 104px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 400; line-height: 14px; word-wrap: break-word">value</div>
+
+  <section name="hoja">
+    <div style="width: 193px; height: 11px; left: 699px; top: 1356px;" class="hoja-div">Firma y sello del Médico</div>
+    <div style="width: 50px; height: 10px; left: 69px; top: 1061px;" class="hoja-div">Otras:</div>
+    <div style="width: 158px; height: 11px; left: 210px; top: 1188px" class="hoja-div">Condición de Salida</div>
+    <div style="width: 141px; height: 11px; left: 69px; top: 1294px" class="hoja-div">Causa de muerte:</div>
+    <div style="width: 108px; height: 11px; left: 188px; top: 1356px" class="hoja-div">Fecha de Alta</div>
+    <div style="width: 299px; height: 17px; left: 378px; top: 1381px; position: absolute; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 20px; word-wrap: break-word; padding:0%; margin:0%">HOJA DE INGRESO Y EGRESO</div>
+    <div style="width: 116px; height: 11px; left: 64px; top: 1207px;" class="hoja-div">Recuperado</div>
+    <div style="width: 133px; height: 12px; left: 64px; top: 1229px;" class="hoja-div">Mismo estado</div>
+    <div style="width: 83px; height: 11px; left: 64px; top: 1247px;" class="hoja-div">Fugado</div>
+    <div style="width: 186px; height: 12px; left: 64px; top: 1267px;" class="hoja-div">Fallecido sin autopsia</div>
+    <div style="width: 81px; height: 11px; left: 316px; top: 1207px;" class="hoja-div">Estable</div>
+    <div style="width: 185px; height: 10px; left: 540px; top: 1190px;" class="hoja-div">Referido o trasladado al:</div>
+    <div style="width: 64px; height: 11px; left: 540px; top: 1209px;" class="hoja-div">Servicio:</div>
+    <div style="width: 68px; height: 11px; left: 540px; top: 1228px;" class="hoja-div">Hospital:</div>
+    <div style="width: 39px; height: 11px; left: 540px; top: 1245px;" class="hoja-div">Otro:</div>
+    <div style="width: 141px; height: 12px; left: 316px; top: 1229px;" class="hoja-div">Contraindicado</div>
+    <div style="width: 193px; height: 11px; left: 316px; top: 1249px;" class="hoja-div">Fallecido con autopsia</div>
+    <div style="width: 201px; height: 12px; left: 69px; top: 1114px" class="hoja-div">A) Fecha de la operación:</div>
+    <div style="width: 119px; height: 11px; left: 69px; top: 1156px" class="hoja-div">C)  Resultados:</div>
+    <div style="width: 181px; height: 11px; left: 531px; top: 1156px" class="hoja-div">D) Se practicó autopia:</div>
+    <div style="width: 13px; height: 11px; left: 744px; top: 1156px" class="hoja-div">Si</div>
+    <div style="width: 23px; height: 11px; left: 820px; top: 1156px" class="hoja-div">No</div>
+    <div style="width: 194px; height: 12px; left: 531px; top: 1114px" class="hoja-div">B) Médico que la realizo:</div>
+    <div style="width: 45px; height: 11px; left: 96px; top: 300px" class="hoja-div">Edad:</div>
+    <div style="width: 183px; height: 11px; left: 69px; top: 420px" class="hoja-div">Nombre del conyugue:</div>
+    <div style="width: 107px; height: 11px; left: 68px; top: 505px" class="hoja-div">Responsable:</div>
+    <div style="width: 202px; height: 11px; left: 66px; top: 543px" class="hoja-div">No. de Hospitalizaciones:</div>
+    <div style="width: 141px; height: 11px; left: 66px; top: 585px" class="hoja-div">Fecha de ingreso:</div>
+    <div style="width: 77px; height: 11px; left: 68px; top: 978px" class="hoja-div">Principal:</div>
+    <div style="width: 77px; height: 11px; left: 68px; top: 1008px" class="hoja-div">Principal:</div>
+    <div style="width: 77px; height: 11px; left: 68px; top: 1008px" class="hoja-div">Principal:</div>
+    <div style="width: 105px; height: 11px; left: 452px; top: 980px" class="hoja-div">Operaciones:</div>
+    <div style="width: 45px; height: 11px; left: 404px; top: 585px" class="hoja-div">Hora:</div>
+    <div style="width: 270px; height: 10px; left: 64px; top: 747px" class="hoja-div">Enumer en orden de importancia:</div>
+    <div style="width: 58px; height: 27px; left: 886px; top: 739px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Código<br/>CIE-10</div>
+    <div style="width: 57px; height: 27px; left: 892px; top: 972px; position: absolute; text-align: center; color: black; font-size: 14px; font-family: Noto Sans; font-weight: 700; line-height: 14px; word-wrap: break-word">Código<br/>CIE-10</div>
+    <div style="width: 44px; height: 11px; left: 756px; top: 585px" class="hoja-div">Hora:</div>
+    <div style="width: 136px; height: 11px; left: 849px; top: 585px" class="hoja-div">Dias de estancia:</div>
+    <div style="width: 134px; height: 11px; left: 552px; top: 585px" class="hoja-div">Fecha de egreso:</div>
+    <div style="width: 216px; height: 11px; left: 443px; top: 647px" class="hoja-div">DIAGNÓSTICO DE INGRESO</div>
+    <div style="width: 166px; height: 10px; left: 388px; top: 747px" class="hoja-div">DIAGNÓSTICO FINAL</div>
+    <div style="width: 73px; height: 11px; left: 533px; top: 543px" class="hoja-div">Referido:</div>
+    <div style="width: 51px; height: 11px; left: 68px; top: 461px" class="hoja-div">Padre:</div>
+    <div style="width: 57px; height: 11px; left: 529px; top: 461px" class="hoja-div">Madre:</div>
+    <div style="width: 81px; height: 11px; left: 527px; top: 420px" class="hoja-div">Dirección:</div>
+    <div style="width: 95px; height: 11px; left: 552px; top: 503px" class="hoja-div">Parentesco:</div>
+    <div style="width: 74px; height: 11px; left: 819px; top: 503px" class="hoja-div">Telefono:</div>
+    <div style="width: 43px; height: 11px; left: 231px; top: 300px" class="hoja-div">Sexo:</div>
+    <div style="width: 99px; height: 11px; left: 400px; top: 300px" class="hoja-div">Estado Civil:</div>
+    <div style="width: 92px; height: 11px; left: 643px; top: 300px" class="hoja-div">Ocupación:</div>
+    <div style="width: 134px; height: 11px; left: 835px; top: 300px" class="hoja-div">CUI o pasaporte:</div>
+    <div style="width: 16px; height: 11px; left: 218px; top: 325px" class="hoja-div">M</div>
+    <div style="width: 8px; height: 11px; left: 281px; top: 325px" class="hoja-div">F</div>
+    <div style="width: 105px; height: 10px; left: 139px; top: 217px" class="hoja-div">Calle o lugar:</div>
+    <div style="width: 172px; height: 11px; left: 74px; top: 257px" class="hoja-div">Lugar de nacimiento:</div>
+    <div style="width: 172px; height: 11px; left: 391px; top: 257px" class="hoja-div">Fecha de nacimiento:</div>
+    <div style="width: 85px; height: 10px; left: 442px; top: 215px" class="hoja-div">Municipio:</div>
+    <div style="width: 188px; height: 11px; left: 442px; top: 193px" class="hoja-div">RECIDENCIA  HABITUAL</div>
+    <div style="width: 123px; height: 10px; left: 660px; top: 215px" class="hoja-div">Departamento:</div>
+    <div style="width: 111px; height: 11px; left: 724px; top: 257px" class="hoja-div">Nacionalidad:</div>
+    <div style="width: 76px; height: 10px; left: 810px; top: 217px" class="hoja-div">Telefono:</div>
+    <div style="width: 79px; height: 10px; left: 550px; top: 132px" class="hoja-div">Nombres:</div>
+    <div style="width: 94px; height: 10px; left: 830px; top: 132px" class="hoja-div">Expediente:</div>
+    <div style="width: 68px; height: 11px; left: 359px; top: 82px" class="hoja-div">Servicio:</div>
+    <div style="width: 106px; height: 11px; left: 714px; top: 82px" class="hoja-div">Especialidad:</div>
+    <div style="width: 79px; height: 10px; left: 184px; top: 132px" class="hoja-div">Apellidos:</div>
+    <div class="titulo">MINISTERIO DE SALUD PÚBLICA Y ASISTENCIA SOCIAL<br/>HOSPITAL GENERAL TIPO I DE TECPÁN GUATEMALA</div>
+    <div style="width: 647px; height: 49px; left: 345px; top: 79px; " class="divs-hoja"></div>
+    <div style="width: 944px; height: 30px; left: 48px; top: 183px; " class="divs-hoja"></div>
+    <div style="width: 944px; height: 44px; left: 48px; top: 211px; " class="divs-hoja"></div>
+    <div style="width: 944px; height: 43px; left: 48px; top: 253px; " class="divs-hoja"></div>
+    <div style="width: 944px; height: 25px; left: 48px; top: 295px; position: absolute; background: rgba(217, 217, 217, 0); border: 2px black solid"></div>
+    <div style="width: 152px; height: 60px; left: 48px; top: 318px; " class="divs-hoja"></div>
+    <div style="width: 57px; height: 60px; left: 198px; top: 318px; " class="divs-hoja"></div>
+    <div style="width: 62px; height: 60px; left: 253px; top: 318px; " class="divs-hoja"></div>
+    <div style="width: 239px; height: 60px; left: 313px; top: 318px; " class="divs-hoja"></div>
+    <div style="width: 224px; height: 60px; left: 550px; top: 318px; " class="divs-hoja"></div>
+    <div style="width: 220px; height: 60px; left: 772px; top: 318px; " class="divs-hoja"></div>
+    <div style="width: 470px; height: 42px; left: 48px; top: 376px; " class="divs-hoja"></div>
+    <div style="width: 476px; height: 42px; left: 516px; top: 376px; " class="divs-hoja"></div>
+    <div style="width: 470px; height: 42px; left: 48px; top: 416px; " class="divs-hoja"></div>
+    <div style="width: 476px; height: 42px; left: 516px; top: 416px; " class="divs-hoja"></div>
+    <div style="width: 470px; height: 45px; left: 48px; top: 456px; " class="divs-hoja"></div>
+    <div style="width: 476px; height: 45px; left: 516px; top: 456px; " class="divs-hoja"></div>
+    <div style="width: 470px; height: 42px; left: 48px; top: 499px; " class="divs-hoja"></div>
+    <div style="width: 476px; height: 42px; left: 516px; top: 499px; " class="divs-hoja"></div>
+    <div style="width: 470px; height: 42px; left: 48px; top: 539px; " class="divs-hoja"></div>
+    <div style="width: 476px; height: 42px; left: 516px; top: 539px; " class="divs-hoja"></div>
+    <div style="width: 470px; height: 43px; left: 48px; top: 579px; position: absolute; background: rgba(217, 217, 217, 0); border: 2px black solid"></div>
+    <div style="width: 797px; height: 38px; left: 53px; top: 732px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 38px; left: 849px; top: 732px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 28px; left: 53px; top: 768px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 28px; left: 849px; top: 768px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 27px; left: 53px; top: 794px; " class="divs-hoja"></div>
+    <div style="width: 942px; height: 27px; left: 50px; top: 640px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.80px black solid"></div>
+    <div style="width: 942px; height: 27px; left: 50px; top: 665px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.80px black solid"></div>
+    <div style="width: 942px; height: 27px; left: 50px; top: 690px; position: absolute; background: rgba(217, 217, 217, 0); border: 1.80px black solid"></div>
+    <div style="width: 141px; height: 27px; left: 849px; top: 794px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 27px; left: 53px; top: 819px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 27px; left: 849px; top: 819px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 28px; left: 53px; top: 844px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 28px; left: 849px; top: 844px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 27px; left: 53px; top: 870px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 27px; left: 849px; top: 870px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 28px; left: 53px; top: 895px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 28px; left: 849px; top: 895px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 27px; left: 53px; top: 921px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 27px; left: 849px; top: 921px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 22px; left: 53px; top: 946px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 22px; left: 849px; top: 946px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 35px; left: 53px; top: 966px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 35px; left: 849px; top: 966px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 28px; left: 53px; top: 999px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 28px; left: 849px; top: 999px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 29px; left: 53px; top: 1026px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 29px; left: 849px; top: 1026px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 25px; left: 53px; top: 1053px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 25px; left: 849px; top: 1053px; " class="divs-hoja"></div>
+    <div style="width: 797px; height: 26px; left: 53px; top: 1076px; " class="divs-hoja"></div>
+    <div style="width: 141px; height: 26px; left: 849px; top: 1076px; " class="divs-hoja"></div>
+    <div style="width: 467px; height: 45px; left: 53px; top: 1101px; " class="divs-hoja"></div>
+    <div style="width: 472px; height: 45px; left: 518px; top: 1101px; " class="divs-hoja"></div>
+    <div style="width: 467px; height: 40px; left: 53px; top: 1144px; " class="divs-hoja"></div>
+    <div style="width: 472px; height: 40px; left: 518px; top: 1144px; " class="divs-hoja"></div>
+    <div style="width: 937px; height: 29px; left: 53px; top: 1284px; " class="divs-hoja"></div>
+    <div style="width: 937px; height: 65px; left: 53px; top: 1311px; " class="divs-hoja"></div>
+    <div style="width: 467px; height: 104px; left: 53px; top: 1182px; " class="divs-hoja"></div>
+    <div style="width: 472px; height: 104px; left: 518px; top: 1182px; " class="divs-hoja"></div>
+    <div class="div-hoja-q"></div>
+    <div style="width: 944px; height: 59px; left: 48px; top: 126px; " class="divs-hoja"></div>
+    <div class="div-hoja-w"></div>
+    <div style="width: 17px; height: 13px; left: 766px; top: 1154px;" class="div-hoja-e"></div>
+    <div style="width: 16px; height: 13px; left: 847px; top: 1154px;" class="div-hoja-e"></div>
+  </section>
+
+  <section name="datos">
+
+    <div
+      style=" left: 65px; top: 158px;"
+      class="hoja-values">
+      {{patient?.apellido | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 510px; top: 158px;"
+      class="hoja-values">
+      {{patient?.nombre | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 830px; top: 158px;"
+      class="hoja-values">
+      {{patient?.expediente}}
+    </div>
+
+    <div
+      style=" left: 65px; top: 236px;"
+      class="hoja-values">
+      {{patient?.direccion | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 65px; top: 277px;"
+      class="hoja-values">
+      {{patient?.lugar_nacimiento | anyToNumber | enumVecindad}}
+    </div>
+
+    <div
+      style=" left: 70px; top: 331px;"
+      class="hoja-values-wrap">
+      {{patient?.nacimiento | edad}}
+    </div>
+
+    <div
+      style=" left: 207px; top: 353px;"
+      *ngIf="patient?.sexo == 'm'"
+      class="hoja-values">
+      X
+    </div>
+
+    <div
+      style=" left: 400px; top: 349px;"
+      class="hoja-values">
+      {{patient?.estado_civil | anyToNumber | enumCivil}}
+    </div>
+
+    <div
+      style=" left: 110px; top: 438px;"
+      class="hoja-values">
+      {{patient?.conyugue | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 794px; top: 427px;"
+      name="direccion_conyugue"
+      class="hoja-values">
+    </div>
+
+    <div
+     style=" left: 110px; top: 480px;"
+     class="hoja-values">
+     {{patient?.padre | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 540px; top: 480px;"
+      class="hoja-values">
+      {{patient?.madre | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 110px; top: 520px;"
+      class="hoja-values">
+      {{patient?.responsable | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 70px; top: 603px;"
+      class="hoja-values">
+      {{consulta?.fecha_consulta | anyToText | formatoFecha}}
+    </div>
+
+    <div
+       style=" left: 390px; top: 603px;"
+       class="hoja-values">
+       {{consulta?.hora}}
+    </div>
+
+    <div
+       style=" left: 600px; top: 520px;"
+       class="hoja-values">
+       {{patient?.parentesco | anyToNumber | enumParentesco}}
+    </div>
+
+    <div
+      style=" left: 811px; top: 520px;"
+      class="hoja-values">
+      {{patient?.telefono_responsable}}
+    </div>
+
+    <div
+      style=" left: 580px; top: 347px;"
+      class="hoja-values">
+      {{patient?.ocupacion | anyToText | capitalizeName}}
+    </div>
+
+    <div
+      style=" left: 810px; top: 346px;"
+      class="hoja-values">
+      <p *ngIf="patient?.dpi">
+        {{patient?.dpi | anyToText | formatoDPI}}
+      </p>
+      <p *ngIf="patient?.pasaporte">
+        {{patient?.pasaporte}}
+      </p>
+    </div>
+
+    <div
+      style=" left: 268px; top: 349px;"
+      *ngIf="patient?.sexo == 'f'">
+      X {{patient?.sexo}}
+    </div>
+
+    <div
+      style=" left: 452px; top: 277px;"
+      class="hoja-values">
+      {{patient?.nacimiento}}
+    </div>
+
+    <div
+      style=" left: 718px; top: 277px;"
+      class="hoja-values">
+      {{patient?.nacionalidad | anyToNumber | enumNacion}}
+    </div>
+
+    <div
+      style=" left: 432px; top: 236px;"
+      class="hoja-values">
+      {{patient?.municipio | anyToNumber | enumMunicipio}}
+    </div>
+
+    <div
+      style=" left: 660px; top: 236px;"
+      class="hoja-values">
+      {{patient?.depto | anyToNumber | enumDepto}}
+    </div>
+
+    <div
+      style=" left: 823px; top: 234px;"
+      class="hoja-values">
+      {{patient?.telefono}}
+    </div>
+
+    <div
+      style=" left: 360px; top: 104px;"
+      class="hoja-values">
+      {{consulta?.servicio | anyToNumber | enumServicios}}
+    </div>
+
+    <div
+      style=" left: 700px; top: 104px;"
+      class="hoja-values">
+      {{consulta?.especialidad | anyToNumber | enumEspecialidad}}
+    </div>
+
+  </section>
+
 </div>

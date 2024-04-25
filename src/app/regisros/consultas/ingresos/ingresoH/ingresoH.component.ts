@@ -5,6 +5,7 @@ import { PacientesService } from 'src/app/services/pacientes.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { Iconcultas } from 'src/app/models/Iconsultas';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'ingresoH',
@@ -24,6 +25,7 @@ export class IngresoHComponent implements OnInit {
     private consultasService: ConsultasService,
     private fechaService: FechaService,
     private route: ActivatedRoute,
+    private _location: Location,
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,10 @@ export class IngresoHComponent implements OnInit {
   imprimir() {
 
     window.print();
+  }
+
+  regresar(){
+    this._location.back();
   }
 
 }
