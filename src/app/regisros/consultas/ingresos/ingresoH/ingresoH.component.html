@@ -160,7 +160,7 @@
 
     <div
       style=" left: 830px; top: 158px;"
-      class="hoja-values">
+      class="hoja-expediente">
       {{patient?.expediente}}
     </div>
 
@@ -180,13 +180,6 @@
       style=" left: 70px; top: 331px;"
       class="hoja-values-wrap">
       {{patient?.nacimiento | edad}}
-    </div>
-
-    <div
-      style=" left: 207px; top: 353px;"
-      *ngIf="patient?.sexo == 'm'"
-      class="hoja-values">
-      X
     </div>
 
     <div
@@ -268,8 +261,18 @@
 
     <div
       style=" left: 268px; top: 349px;"
-      *ngIf="patient?.sexo == 'f'">
-      X {{patient?.sexo}}
+      class="hoja-values">
+      <p *ngIf="patient?.sexo == 'F'">
+        X
+      </p>
+    </div>
+
+    <div
+      style=" left: 219px; top: 353px;"
+      class="hoja-values">
+      <p *ngIf="patient?.sexo == 'M'">
+        X
+      </p>
     </div>
 
     <div

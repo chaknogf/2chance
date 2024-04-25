@@ -67,6 +67,21 @@
   justify-content: center;
 }
 
+.hoja-expediente {
+  position: absolute;
+  color: black;
+  font-size: 28px;
+  font: bold;
+  font-family: Noto Sans;
+  font-weight: 400;
+  line-height: 14px;
+  word-wrap: break-word;
+  height: 20px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
 .hoja-values-wrap {
   position: absolute;
   color: black;
