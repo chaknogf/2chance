@@ -55,7 +55,7 @@
     <div style="width: 57px; height: 11px; left: 529px; top: 461px" class="hoja-div">Madre:</div>
     <div style="width: 81px; height: 11px; left: 527px; top: 420px" class="hoja-div">Dirección:</div>
     <div style="width: 95px; height: 11px; left: 552px; top: 503px" class="hoja-div">Parentesco:</div>
-    <div style="width: 74px; height: 11px; left: 819px; top: 503px" class="hoja-div">Telefono:</div>
+    <div style="width: 74px; height: 11px; left: 819px; top: 503px" class="hoja-div">Teléfono:</div>
     <div style="width: 43px; height: 11px; left: 231px; top: 300px" class="hoja-div">Sexo:</div>
     <div style="width: 99px; height: 11px; left: 400px; top: 300px" class="hoja-div">Estado Civil:</div>
     <div style="width: 92px; height: 11px; left: 643px; top: 300px" class="hoja-div">Ocupación:</div>
@@ -66,10 +66,10 @@
     <div style="width: 172px; height: 11px; left: 74px; top: 257px" class="hoja-div">Lugar de nacimiento:</div>
     <div style="width: 172px; height: 11px; left: 391px; top: 257px" class="hoja-div">Fecha de nacimiento:</div>
     <div style="width: 85px; height: 10px; left: 442px; top: 215px" class="hoja-div">Municipio:</div>
-    <div style="width: 188px; height: 11px; left: 442px; top: 193px" class="hoja-div">RECIDENCIA  HABITUAL</div>
+    <div style="width: 188px; height: 11px; left: 442px; top: 193px" class="hoja-div">RESIDENCIA  HABITUAL</div>
     <div style="width: 123px; height: 10px; left: 660px; top: 215px" class="hoja-div">Departamento:</div>
     <div style="width: 111px; height: 11px; left: 724px; top: 257px" class="hoja-div">Nacionalidad:</div>
-    <div style="width: 76px; height: 10px; left: 810px; top: 217px" class="hoja-div">Telefono:</div>
+    <div style="width: 76px; height: 10px; left: 810px; top: 217px" class="hoja-div">Teléfono:</div>
     <div style="width: 79px; height: 10px; left: 550px; top: 132px" class="hoja-div">Nombres:</div>
     <div style="width: 94px; height: 10px; left: 830px; top: 132px" class="hoja-div">Expediente:</div>
     <div style="width: 68px; height: 11px; left: 359px; top: 82px" class="hoja-div">Servicio:</div>
@@ -239,7 +239,7 @@
     <div
       style=" left: 811px; top: 520px;"
       class="hoja-values">
-      {{patient?.telefono_responsable}}
+      {{patient?.Teléfono_responsable}}
     </div>
 
     <div
@@ -278,7 +278,7 @@
     <div
       style=" left: 452px; top: 277px;"
       class="hoja-values">
-      {{patient?.nacimiento}}
+      {{patient?.nacimiento | formatoFecha}}
     </div>
 
     <div
@@ -302,7 +302,7 @@
     <div
       style=" left: 823px; top: 234px;"
       class="hoja-values">
-      {{patient?.telefono}}
+      {{patient?.Teléfono}}
     </div>
 
     <div
