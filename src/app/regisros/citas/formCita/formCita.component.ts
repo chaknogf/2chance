@@ -76,12 +76,17 @@ export class FormCitaComponent implements OnInit {
       this.CitasService.getCita(params["id"]).subscribe(
         (data) => {
           this.c = data;
+          this.paciente_();
           this.edit = true;
         },
         (error) => console.log(error),
       );
     }
     this.resumen;
+    
+
+    
+
   }
 
   ngOnchages() {

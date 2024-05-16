@@ -51,7 +51,7 @@
             <div class="col-auto" *ngIf="paciente?.nombre && paciente?.apellido else noExiste ">
               <p class="f-negrita mb-0 ">Nombre de Paciente</p>
               <p class="text-light">{{ paciente?.nombre | anyToText | capitalizeName}} {{paciente?.apellido| anyToText | capitalizeName}}</p>
-              <p class="text-light">{{ paciente?.telefono }} - {{paciente?.telefono_responsable}}</p>
+              <p class="text-light">Telefono: {{ paciente?.telefono }} - {{paciente?.telefono_responsable}}</p>
             </div>
             <ng-template #noExiste>
               <div class="col-6">
