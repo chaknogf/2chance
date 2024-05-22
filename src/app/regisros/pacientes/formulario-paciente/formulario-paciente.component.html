@@ -1,6 +1,6 @@
 <div class="container d-flex justify-content-center mt-2 gap-2">
 
-  <button class="btnS  rounded border-danger w-auto p-3 h4" routerLink="['/pacientes']" (click)="delete()" >
+  <button class="btnS  rounded border-danger w-auto p-3 h4" routerLink="['/pacientes']" (click)="confirmarBorrar()" >
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
     <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58
     0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59
@@ -10,7 +10,7 @@
     </svg>Borrar
   </button>
 
-  <button type="submit" class="btnS rounded border-sucess w-auto p-3 h4"  (click)="edit ? editar() : crearPaciente()" data-bs-dismiss="modal" aria-label="Close">
+  <button type="submit" *ngIf="traslado == false" class="btnS rounded border-sucess w-auto p-3 h4"  (click)="edit ? editar() : crearPaciente()" data-bs-dismiss="modal" aria-label="Close">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
   <path d="M8 0c-.176 0-.35.006-.523.017l.064.998a7.117 7.117 0 0 1 .918 0l.064-.998A8.113 8.113 0 0 0 8
   0zM6.44.152c-.346.069-.684.16-1.012.27l.321.948c.287-.098.582-.177.884-.237L6.44.153zm4.132.271a7.946
@@ -27,7 +27,11 @@
   0 0 1-.918 0l-.064.998zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
     </svg>Guardar
   </button>
-
+  <button type="submit" *ngIf="traslado == true" class="btnS rounded border-sucess w-auto p-3 h4"  (click)="ActualizarTraslado(p.id)" data-bs-dismiss="modal" aria-label="Close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M3.291 3.309a.75.75 0 0 0-.976.996l3.093 6.945H13a.75.75 0 0 1 0 1.5H5.408l-3.093 6.945a.75.75 0 0 0 .976.996l19-8a.75.75 0 0 0 0-1.382z" clipRule="evenodd"/>
+    </svg>
+    Guardar
+  </button>
 
   <button class="btnS  rounded border-quatz w-auto p-3 h4" data-bs-dismiss="modal" aria-label="Close" (click)="regresar()">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
@@ -60,6 +64,12 @@
         <label class="form-label text-center">Expediente</label>
         <input type="number" id="expediente" class="form-control text-center fs-2 bg-primary p-0" [(ngModel)]="p.expediente" name="expediente" readonly>
       </div>
+    </div>
+
+    <div class="col-md-6" *ngIf="edit == true">
+      <label>Expedinet de Referencia</label>
+      <input type="number" id="exp_ref" name="exp_ref" [(ngModel)]="p.exp_ref" class="form-control">
+      <button class="btn btn-info" (click)="confirmarCambio()">Cambiar Expediente</button>
     </div>
 
 
@@ -234,6 +244,8 @@
         <option value="si">Si</option>
       </select>
     </div>
+
+
 
   </div>
 </form>

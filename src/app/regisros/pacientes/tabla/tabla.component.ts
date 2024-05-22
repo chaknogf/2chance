@@ -260,10 +260,10 @@ export class TablaComponent implements OnInit {
       this.filteredPacientes = data;
       console.log(this.filteredPacientes)
       this.paginarPacientes();
-      this.dpiBuscar = '';
-      this.nombreBuscar = '';
-      this.apellidoBuscar = '';
-      this.expedienteBuscar = '';
+      // this.dpiBuscar = '';
+      // this.nombreBuscar = '';
+      // this.apellidoBuscar = '';
+      // this.expedienteBuscar = '';
 
     } else {
       this.pacientes = [];
@@ -287,7 +287,7 @@ export class TablaComponent implements OnInit {
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
           this.reloadPage();
-        }, 2000); // 1000 ms = 1 segundo
+        }, 1400); // 1000 ms = 1 segundo
       },
       (error) => {
         // Manejar errores aquí

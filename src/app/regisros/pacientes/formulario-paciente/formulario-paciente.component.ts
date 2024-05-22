@@ -27,6 +27,7 @@ export class FormularioPacienteComponent implements OnInit {
   public nuevoExp: number = 0;
 
 
+
   @HostBinding('class') clases = 'row';
 
   // Objeto del paciente
@@ -66,6 +67,7 @@ export class FormularioPacienteComponent implements OnInit {
     gemelo: '',
     depto_nac: 0,
     conyugue: '',
+    exp_ref: null
   };
   e: Ienum = {
     municipio: municipio,
@@ -85,7 +87,8 @@ export class FormularioPacienteComponent implements OnInit {
 
 
   edit: boolean = false;
-  isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
+ traslado: boolean = false
+ isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
 
 
 
@@ -106,15 +109,6 @@ export class FormularioPacienteComponent implements OnInit {
 
     this.p.created_by = this.username;
 
-    // Obtiene la fecha actual en el formato YYYY-MM-DD
-    const currentDate = new Date().toISOString().split('T')[0];
-    this.maxdate = currentDate;
-    // Obtener el expediente del paciente
-    //this.NuevoExp()
-
-
-
-
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
 
@@ -125,8 +119,8 @@ export class FormularioPacienteComponent implements OnInit {
           data => {
             this.p = data;
             this.edit = true;
-            this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto_nac);
-            this.municipiosFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto);
+
+
           },
           error => console.log(error)
         )
@@ -236,7 +230,40 @@ export class FormularioPacienteComponent implements OnInit {
     console.log(this.municipiosFiltrados, this.p.depto_nac)
   }
 
+  ActualizarTraslado(id: number) {
+    this.PacientesService.trasladar(id, this.p)
+      .subscribe(data => {
+        this.p = data;
 
+    })
+  }
+
+  CamposTrasladados() {
+    this.traslado = true;
+    this.p.exp_ref = this.p.expediente;
+    this.PacientesService.Expediente().subscribe(data => {
+      if (this.traslado == true) {
+        this.nuevoExp = data;
+        this.p.expediente = this.nuevoExp;
+
+      }
+    });
+  }
+
+  // Método que muestra el alert de confirmación
+  confirmarCambio() {
+    const confirmacion = confirm('¿Desea realizar el cambio?');
+    if (confirmacion) {
+      this.CamposTrasladados();
+    }
+  }
+
+  confirmarBorrar() {
+    const confirmacion = confirm('¿Desea Borrar el Expediente?');
+    if (confirmacion) {
+      this.delete();
+    }
+  }
 
 
 

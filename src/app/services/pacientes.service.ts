@@ -73,6 +73,10 @@ export class PacientesService {
     return this.http.put(this.urlapi + "/paciente/" + exp + "?token=" + this.token, updateP);
   }
 
+  trasladar(id: number, updateP: Ipaciente): Observable<any>{
+    return this.http.put(this.urlapi + '/trasladar/' + id + '?token=' + this.token, updateP)
+  }
+
   deletePaciente(id: number): Observable<any>{
     return this.http.delete(this.urlapi + "/borrarpaciente/" + id + "?token=" + this.token);
   }

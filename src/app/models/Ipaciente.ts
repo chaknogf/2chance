@@ -39,6 +39,7 @@ export interface Ipaciente {
   created_at: string | null;
   update_at: string | null;
   conyugue: string | null | any
+  exp_ref?: number | null
 
 
 }
