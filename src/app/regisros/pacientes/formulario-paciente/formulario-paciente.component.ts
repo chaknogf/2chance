@@ -119,6 +119,8 @@ export class FormularioPacienteComponent implements OnInit {
           data => {
             this.p = data;
             this.edit = true;
+	    this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto_nac);
+            this.municipiosFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto);
 
 
           },
