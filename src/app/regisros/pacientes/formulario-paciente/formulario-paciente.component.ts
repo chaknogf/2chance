@@ -140,6 +140,11 @@ export class FormularioPacienteComponent implements OnInit {
       })
   }
 
+  traslado_exp() {
+    this.crearPaciente();
+    this.delete()
+  }
+
   editar() {
     // Editar el paciente existente
     this.PacientesService.editPaciente(this.p.expediente, this.p)
