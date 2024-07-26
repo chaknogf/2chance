@@ -87,17 +87,24 @@
               <option *ngIf="c.especialidad == 3" value="4">USG Endo/Pelvic</option>
               <option *ngIf="c.especialidad == 3" value="5">Colposcopia.</option>
               <option value="9">Especial</option>
-
-
-
             </select>
           </div>
-
 
           <div class="form-group mt-2">
             <label class="text-light" for="fecha">Fecha:</label>
             <input type="date" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="fecha" name="fecha"
               (change)="citasOcupadas(c.especialidad, c.tipo, c.fecha, $event)" [(ngModel)]="c.fecha" placeholder="hoy">
+
+          </div>
+
+          <div class="form-group mt-2">
+            <label class="text-light" for="lab" >Laboratorio Clinico en Hospital</label>
+            <button (click)="getCitaLab(c.fecha ? c.fecha.toString() : '')">generar</button>
+          </div>
+
+          <div class="form-group mt-2" *ngIf="c.lab == 1">
+            <label class="text-light" for="lab">Fecha realizarse laboratorios</label>
+            <input  type="date" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="fecha_lab" name="fecha_lab" [(ngModel)]="c.fecha_lab" >
           </div>
 
           <div class="form-group mt-2">

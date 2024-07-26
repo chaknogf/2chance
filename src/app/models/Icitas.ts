@@ -1,6 +1,6 @@
 
 
-export interface Icitas{
+export interface Icitas {
   id: number;
   expediente?: number | any | null;
   fecha?: Date | string | null;
@@ -10,9 +10,11 @@ export interface Icitas{
   fecha_cita?: Date | any;
   created_by?: string | null;
   name?: string | null;
+  lab?: number | null;
+  fecha_lab?: Date | string | null;
 }
 
-export interface IVistaCitas{
+export interface IVistaCitas {
   id: number;
   especialidad: number;
   dia: string;

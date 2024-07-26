@@ -34,6 +34,7 @@ export class FormCitaComponent implements OnInit {
   public ocupado: number = 0;
   fechaActual: string = "";
   public username = this.usr.getUsernameLocally();
+  public citaParaLab: string = ""
 
   c: Icitas = {
     id: 0,
@@ -43,6 +44,8 @@ export class FormCitaComponent implements OnInit {
     fecha_cita: new Date(),
     nota: "",
     tipo: 1,
+    lab: 0,
+    fecha_lab: null,
     name: null,
     created_by: null,
   };
@@ -60,7 +63,8 @@ export class FormCitaComponent implements OnInit {
     private PageReloadService: PageReloadService,
     private pacientes: PacientesService,
     private usr: UsersService,
-  ) {}
+
+  ) { }
 
   ngOnInit() {
     this.c.created_by = this.username;
@@ -83,9 +87,9 @@ export class FormCitaComponent implements OnInit {
       );
     }
     this.resumen;
-    
 
-    
+
+
 
   }
 
@@ -138,6 +142,7 @@ export class FormCitaComponent implements OnInit {
       (error) => {
         // Manejar errores aquí
         //console.table(this.c)
+        console.table(this.c)
         console.error(
           "Error!! al cita ya estaba registrada o se ha llegado al limite de citas",
           error,
@@ -284,6 +289,19 @@ export class FormCitaComponent implements OnInit {
         console.error("Error al obtener datos del paciente:", error);
       },
     );
+  }
+
+
+  getCitaLab(fecha: string) {
+    this.CitasService.getCitaLab(fecha).subscribe(
+      (data) => {
+
+        this.citaParaLab = data;
+        this.c.fecha_lab = data;
+        this.c.lab = 1;
+        console.log(data)
+      }
+    )
   }
 
 

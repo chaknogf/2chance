@@ -25,21 +25,25 @@ export class CitasService {
 
 
   getCitas(): Observable<any> {
-    return this.http.get(this.urlapi + "/citas/"+"?token="+this.token)
+    return this.http.get(this.urlapi + "/citas/" + "?token=" + this.token)
   }
 
   getCitasHoy(): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/hoy/"+"?token="+this.token)
+    return this.http.get(this.urlapi + "/cita/hoy/" + "?token=" + this.token)
   }
 
   getCita(id: number): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/id/?value=" + id+"&token="+this.token)
+    return this.http.get(this.urlapi + "/cita/id/?value=" + id + "&token=" + this.token)
   }
 
-  agendar(cita: Icitas): Observable<any>{
+  agendar(cita: Icitas): Observable<any> {
     return this.http.post(this.urlapi + "/cita/?token=" + this.token, cita);
 
-   }
+  }
+
+  getCitaLab(fecha_cita: string): Observable<any> {
+    return this.http.get(this.urlapi + "/cita_lab/" + fecha_cita + "?token=" + this.token)
+  }
 
 
 
@@ -56,15 +60,15 @@ export class CitasService {
 
 
   getResumenCitas(value: number): Observable<any> {
-    return this.http.get(this.urlapi + "/cita/servicio/?especialidad=" + value+"&token="+this.token)
+    return this.http.get(this.urlapi + "/cita/servicio/?especialidad=" + value + "&token=" + this.token)
   }
 
-  editarCita(id: number, actualizarCita: Icitas): Observable<any>{
-    return this.http.put(this.urlapi + "/citas/" + id+"?token="+this.token, actualizarCita)
+  editarCita(id: number, actualizarCita: Icitas): Observable<any> {
+    return this.http.put(this.urlapi + "/citas/" + id + "?token=" + this.token, actualizarCita)
   }
 
-  borrarCita(id: number): Observable<any>{
-    return this.http.delete(this.urlapi + "/borrar/" + id+"?token="+this.token);
+  borrarCita(id: number): Observable<any> {
+    return this.http.delete(this.urlapi + "/borrar/" + id + "?token=" + this.token);
   }
 
   getVigentes(especialidad: number, tipo: number): Observable<any> {
@@ -81,12 +85,12 @@ export class CitasService {
 
 
   diaSemana(date: any): string {
-      if (!date) return '';
+    if (!date) return '';
 
-      const diasSemana = [ 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado','Domingo'];
-      const indiceDia = date.getDay(); // Obtiene el índice del día de la semana (0-6)
+    const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+    const indiceDia = date.getDay(); // Obtiene el índice del día de la semana (0-6)
 
-      return diasSemana[indiceDia];
+    return diasSemana[indiceDia];
   }
 
 
