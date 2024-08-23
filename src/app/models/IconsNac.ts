@@ -13,7 +13,7 @@ export interface IconsNac {
   passport: string | null;
   libro: number | null;
   folio: number | null;
-  partida: number | null;
+  partida: string | null;
   depto: number | null;
   muni: number | null;
   edad: any | null;
