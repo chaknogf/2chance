@@ -63,7 +63,7 @@
 
         </td>
         <td class="text-center bg-aqua font-ubuntu">
-          <span class="me-1 font-title1">Expediente: </span>{{consulta.expediente}}<br>
+          <span class="me-1 font-title1" >Expediente: </span>{{consulta.expediente}}<br>
           <span class="me-1 font-title1">Hoja Emergencia: </span>{{consulta.hoja_emergencia}}
         </td>
         <td class="text-center">
@@ -73,7 +73,7 @@
         </td>
         <td class="text-center">{{consulta.dpi | anyToText| formatoDPI}}</td>
         <td class="text-center">{{consulta.nacimiento | anyToText |FechaCorta}}</td>
-        <td class="text-center">
+        <td class="text-center" #cellContent (click)="copyToClipboard(cellContent)">
           {{consulta.direccion | anyToText | capitalizeName}}
         </td>
         <td class="text-center">

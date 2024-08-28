@@ -125,8 +125,12 @@
 
           </td>
           <td class="text-center">{{ paciente.nacimiento | anyToText | formatoFecha}}</td>
-          <td class="text-center">{{ paciente.direccion | anyToText | capitalizeName}}, {{paciente.municipio | anyToNumber | enumMunicipio}}, {{paciente.depto |anyToNumber | enumDepto}}</td>
-
+          <td class="text-center" #cellContent (click)="copyToClipboard(cellContent)">
+            {{ paciente.direccion | anyToText | capitalizeName }}, 
+            {{ paciente.municipio | anyToNumber | enumMunicipio }}, 
+            {{ paciente.depto | anyToNumber | enumDepto }}
+          </td>
+          
         </tr>
       </tbody>
     </table>

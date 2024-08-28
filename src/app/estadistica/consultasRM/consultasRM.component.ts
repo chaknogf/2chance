@@ -314,4 +314,20 @@ export class ConsultasRMComponent implements OnInit {
     })
   }
 
+
+  copyToClipboard(element: HTMLTableCellElement): void {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const selection = window.getSelection();
+    if (selection) {
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+      selection.removeAllRanges(); // Para deseleccionar después de copiar
+      
+    }
+  }
+
+
+
 }
