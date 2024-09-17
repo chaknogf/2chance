@@ -81,6 +81,17 @@ export class EditUisauComponent implements OnInit {
     fecha_contacto: this.fechaActual,
     hora_contacto: this.horaActual,
     update_by: '',
+    receta_por: '',
+    shampoo: false,
+    toalla: false,
+    peine: false,                    
+    jabon: false,                  
+    cepillo_dientes: false,                             
+    pasta_dental: false,                          
+    sandalias: false,                               
+    agua: false,                              
+    papel: false,                                       
+    panales: false,
   };
 
   // Modelo para la consulta inicial

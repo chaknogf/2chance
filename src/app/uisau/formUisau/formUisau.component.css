@@ -1,0 +1,13 @@
+.cuadro-articulos {
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+    border: aqua solid 1px;
+    border-radius: 12px;
+    padding: 1.1rem;
+}
+
+.cuadro-articulos > div {
+    flex: 1 1 calc(33.33% - 1rem); /* Tres elementos por fila */
+    margin-bottom: 1rem; /* Espacio entre filas */
+}

@@ -163,6 +163,341 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <label class="f-negrita">Receta Por:</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="recetaPor"
+                id="recetaPorSi"
+                value="s"
+                [(ngModel)]="info.receta_por"
+              />
+              <label class="form-check-label" for="optionSi">Sí</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="recetaPor"
+                id="recetaPorNo"
+                value="n"
+                [(ngModel)]="info.receta_por"
+              />
+              <label class="form-check-label" for="recetaPorNo">No</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <label class="f-negrita">Articulos:</label>
+          </div>
+        </div>
+
+        <div class="cuadro-articulos gap-2">
+    
+          <div class="row">
+            <p class="text-center">Shampoo</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shampoo"
+                  id="shampooSi"
+                  value="true"
+                  [(ngModel)]="info.shampoo"
+                />
+                <label class="form-check-label" for="shampooSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shampoo"
+                  id="shampooNo"
+                  value="false"
+                  [(ngModel)]="info.shampoo"
+                />
+                <label class="form-check-label" for="shampooNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="text-center">Toalla</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="toalla"
+                  id="toallaSi"
+                  value="true"
+                  [(ngModel)]="info.toalla"
+                />
+                <label class="form-check-label" for="toallaSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="toalla"
+                  id="toallaNo"
+                  value="false"
+                  [(ngModel)]="info.toalla"
+                />
+                <label class="form-check-label" for="toallaNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="text-center">Peine</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="peine"
+                  id="peineSi"
+                  value="true"
+                  [(ngModel)]="info.peine"
+                />
+                <label class="form-check-label" for="peineSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="peine"
+                  id="peineNo"
+                  value="false"
+                  [(ngModel)]="info.peine"
+                />
+                <label class="form-check-label" for="peineNo">No</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="cuadro-articulos gap-2">
+    
+          <div class="row">
+            <p class="text-center">Jabon</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabon"
+                  id="jabonSi"
+                  value="true"
+                  [(ngModel)]="info.jabon"
+                />
+                <label class="form-check-label" for="jabonSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabon"
+                  id="jabonNo"
+                  value="false"
+                  [(ngModel)]="info.jabon"
+                />
+                <label class="form-check-label" for="jabonNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="text-center">Cepillo de Dientes</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cepilloDientes"
+                  id="cepilloDientesSi"
+                  value="true"
+                  [(ngModel)]="info.cepillo_dientes"
+                />
+                <label class="form-check-label" for="cepilloDientesSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="cepilloDientes"
+                  id="cepilloDientesNo"
+                  value="false"
+                  [(ngModel)]="info.cepillo_dientes"
+                />
+                <label class="form-check-label" for="cepilloDientesNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="text-center">Pasta Dental</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="pastaDental"
+                  id="pastaDentalSi"
+                  value="true"
+                  [(ngModel)]="info.pasta_dental"
+                />
+                <label class="form-check-label" for="pastadentalSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="pastaDental"
+                  id="pastaDentalNo"
+                  value="false"
+                  [(ngModel)]="info.pasta_dental"
+                />
+                <label class="form-check-label" for="pastaDentalNo">No</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="cuadro-articulos gap-2">
+    
+          <div class="row">
+            <p class="text-center">Sandalias (caites)</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sandalias"
+                  id="sandaliasSi"
+                  value="true"
+                  [(ngModel)]="info.sandalias"
+                />
+                <label class="form-check-label" for="sandaliasSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sandalias"
+                  id="sandaliasNo"
+                  value="false"
+                  [(ngModel)]="info.sandalias"
+                />
+                <label class="form-check-label" for="sandaliasNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="text-center">Agua Pura</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="agua"
+                  id="aguaSi"
+                  value="true"
+                  [(ngModel)]="info.agua"
+                />
+                <label class="form-check-label" for="aguaSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="agua"
+                  id="aguaNo"
+                  value="false"
+                  [(ngModel)]="info.agua"
+                />
+                <label class="form-check-label" for="aguaNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="text-center">Papel Higienico</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="papel"
+                  id="papelSi"
+                  value="true"
+                  [(ngModel)]="info.papel"
+                />
+                <label class="form-check-label" for="papelSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="papel"
+                  id="papelNo"
+                  value="false"
+                  [(ngModel)]="info.papel"
+                />
+                <label class="form-check-label" for="papelNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="text-center">Pañales</p>
+            <div class="col-md-12 text-center">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="panal"
+                  id="panalSi"
+                  value="true"
+                  [(ngModel)]="info.panales"
+                />
+                <label class="form-check-label" for="panalSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="panal"
+                  id="panalNo"
+                  value="false"
+                  [(ngModel)]="info.panales"
+                />
+                <label class="form-check-label" for="panalNo">No</label>
+              </div>
+            </div>
+          </div>
+
+
+         
+        </div>
+        
+     
+
         </div>
 
 

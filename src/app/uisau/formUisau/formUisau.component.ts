@@ -73,7 +73,18 @@ export class FormUisauComponent implements OnInit {
     hora: null,
     fecha_contacto: null,
     hora_contacto: null,
-    update_by: null
+    update_by: null,
+    receta_por: 'n',
+    shampoo: null,
+    toalla: null,
+    peine: null,                    
+    jabon: null,                  
+    cepillo_dientes: null,                             
+    pasta_dental: null,                          
+    sandalias: null,                               
+    agua: null,                              
+    papel: null,                                       
+    panales: null,  
   };
 
   // Modelo para la consulta inicial
@@ -185,11 +196,11 @@ export class FormUisauComponent implements OnInit {
         console.error('Error al crear consulta', error);
         this.message = 'Error al crear consulta';
         this.showAlertWarning = true;
-
+        
         // Recarga la página después de 2 segundos en caso de error
-        setTimeout(() => {
-          this.reloadPage();
-        }, 2000); // 1000 ms = 1 segundo
+        // setTimeout(() => {
+        //   this.reloadPage();
+        // }, 20000); // 1000 ms = 1 segundo
       }
     );
   }
