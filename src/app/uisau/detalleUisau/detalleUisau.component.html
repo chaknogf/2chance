@@ -288,6 +288,36 @@
           <p class="p-0 my-0 text-center">{{item.update_by}}</p>
         </div>
 
+        <div *ngIf="item.receta_por" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">Receta Por</p>
+          <p class="p-0 my-0 text-center">{{item.receta_por }}</p>
+        </div>
+
+        <div 
+        *ngIf="item.shampoo 
+        || item.toalla 
+        || item.peine 
+        || item.jabon 
+        || item.cepillo_dientes 
+        || item.pasta_dental
+        || item.sandalias
+        || item.agua
+        || item.papel
+        || item.panales" class="col-auto p-0 my-0 border-end rounded p-1">
+          <p  class="f-negrita p-0 my-0 text-wrap text-center">Articulos</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.shampoo">Shampoo</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.toalla">Toalla</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.peine">Peine</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.jabon">Jabon</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.cepillo_dientes">Cepillo de dientes</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.pasta_dental">Pasta de dientes</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.sandalias">Sandalias</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.agua">Agua</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.papel">Pepel Higienico</p>
+          <p class="p-0 my-0 text-center" *ngIf="item.panales">Pañales</p>
+        </div>
+
+
 
       </div>
 

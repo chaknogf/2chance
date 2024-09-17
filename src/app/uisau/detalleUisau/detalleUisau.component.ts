@@ -46,8 +46,8 @@ export class DetalleUisauComponent implements OnInit {
   public rutaAnterior: string = '../';
   public paciente: Ipaciente | undefined;
   public consulta: Iconcultas | any;
-  public resumen: Iuisau_v[] = [];
-  public infos_: Iuisau_v[] = [];
+  public resumen: Iuisau[] = [];
+  public infos_: Iuisau[] = [];
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
   public paginaActual: number = 1; // Página actual
