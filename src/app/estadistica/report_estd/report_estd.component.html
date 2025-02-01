@@ -42,15 +42,12 @@
 
     <div *ngIf="opcion == 3">
       <div class="my-1">
-        <label>Fecha inicio</label>
-        <input class="form-control" type="date">
+        <label>Fecha Reporte</label>
+        <input class="form-control" type="date" name="fecha_reporte" [(ngModel)]="fecha_reporte">
         </div>
 
 
-        <div class="my-1">
-          <label>Fecha final</label>
-        <input class="form-control" type="date">
-        </div>
+
 
         <div class="my-1">
           <button class="btnS btn" (click)="descargarUisau()">

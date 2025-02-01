@@ -15,6 +15,7 @@ export class Report_estdComponent implements OnInit {
   public fecha_final_consultas: string = "";
   public fecha_inicio_uisau: string = "";
   public fecha_final_uisau: string = "";
+  public fecha_reporte: string = "";
   cargando: boolean = false;
 
   constructor(
@@ -44,7 +45,7 @@ export class Report_estdComponent implements OnInit {
   }
 
   descargarUisau() {
-    this.rp.excel_uisau(this.fecha_inicio_uisau, this.fecha_final_uisau).subscribe(
+    this.rp.excel_uisau(this.fecha_reporte).subscribe(
       (response: any) => {
         const blob = new Blob([response.body], { type: 'application/octet-stream' });
         const url = window.URL.createObjectURL(blob);

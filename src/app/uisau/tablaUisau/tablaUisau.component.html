@@ -1,87 +1,137 @@
+<!-- Título -->
+<h2 class="text-center">Unidad de Información en Salud al Usuario</h2>
 
-<div class="justify-content-center ">
-  <div>
-    <p class="text-center display-6">Unidad de Informacion en Salud al Usuario</p>
-  </div>
-  <hr class="my-0 p-1">
-  <div class="justify-content-between">
-    <form class="d-flex justify-content-between align-items-center font-ubuntu gap-1" autocomplete="off">
-      <select id="status" class="form-control expande-contenido" [(ngModel)]="statusBuscar" name="statusBuscar">
-        <option value="1">Activos</option>
-        <option value="2">Archivados</option>
-      </select>
-      <select id="especialidad" class="form-control expande-contenido" [(ngModel)]="tipoBuscar" name="tipoBuscar">
-        <option value="" disabled selected hidden>Tipo Consulta</option>
-        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
-      </select>
-      <input type="number" class="form-control bg-opacity-75  text-center expande-contenido" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
-      <input type="number" class="form-control bg-opacity-75  text-center expande-contenido" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-      <input type="number" class="form-control text-capitalize expande-contenido text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-      <input type="date" class="form-control text-capitalize expande-contenido" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control  text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control  text-capitalize expande-contenido text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn border-quatz" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-         2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-          11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-      </svg></button>
-    </form>
+<!-- Botones de acción -->
+<div class="d-flex justify-content-end gap-1">
+  <button type="button" class="btn btn-info m-0 p-1 fs-9 text-black wrap-text w-5" data-bs-toggle="modal" data-bs-target="#formModal">
+    Buscar Paciente
+  </button>
+  <button type="button" class="btn btn-info m-0 p-1 fs-9 text-black wrap-text w-5" data-bs-toggle="modal" data-bs-target="#reporte">
+    Reporte
+  </button>
+  <button type="button" class="btn btn-info m-0 p-1 fs-9 text-black wrap-text w-5" (click)="tablillaNavigate()">
+    Tablilla de Información
+  </button>
 
-  </div>
+</div>
 
-
-<div class="mt-1">
-  <table class="table table-hover table-black font-monospace" >
-    <thead>
-      <tr>
-        <th class="text-center"></th>
-        <th class="text-center">Consulta</th>
-        <th class="text-center">Expediente ( Emergencia )</th>
-        <th class="text-center">Ingreso</th>
-        <th class="text-center">Nombre</th>
-        <th class="text-center">Egreso</th>
-        <th class="text-center">Servicio</th>
-        <th class="text-center">Especiealidad</th>
-        <th class="text-center">Tipo</th>
-        <th class="text-center">Status</th>
-
-
-      </tr>
-    </thead>
-    <tbody class="justify-content-center  opacity-90">
-      <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
-      <tr *ngFor="let consulta of resumen">
-        <td class="text-center"  [routerLink]="['/detalleUisau/', consulta.id]" (click)="copiarId(consulta.id)" >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
-            <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
-            <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM8.5 6.5V8H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V9H6a.5.5 0 0 1 0-1h1.5V6.5a.5.5 0 0 1 1 0Z"/>
-          </svg></td>
-        <td class="text-center h5  text-warning h5" > {{consulta.id}}</td>
-        <td class="text-center font-ubuntu">{{consulta.expediente}} ( {{consulta.hoja_emergencia}} )</td>
-        <td class="text-center"> {{consulta.fecha_consulta | anyToText | formatoFecha}} </td>
-        <td class="text-center "> {{consulta.nombres | anyToText |capitalizeName }} {{consulta.apellidos |anyToText | capitalizeName}} </td>
-        <td class="text-center"> {{consulta.fecha_egreso | anyToText | formatoFecha}} </td>
-        <td class="text-center">{{consulta.servicio | anyToNumber| enumServicios}}</td>
-        <td class="text-center">{{consulta.especialidad | anyToNumber| enumEspecialidad}}</td>
-        <td class="text-center">{{consulta.tipo_consulta | anyToNumber| enumTipo }}</td>
-        <td class="text-center">{{consulta.status | anyToNumber | enumStatus}}</td>
-
-      </tr>
-    </tbody>
-      </table>
-  </div>
-
-
- <!-- Paginación -->
-    <div class="d-flex justify-content-center pagination mt-3">
-      <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
+<!-- Modal de búsqueda -->
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Buscar Paciente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-2 font-ubuntu" (ngSubmit)="filtro()">
+          <div class="col-md-6">
+            <select id="status" class="form-control" [(ngModel)]="statusBuscar" name="statusBuscar">
+              <option value="1">Activos</option>
+              <option value="2">Archivados</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <select id="especialidad" class="form-control" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+              <option value="" disabled selected hidden>Tipo Consulta</option>
+              <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <input type="number" class="form-control text-center" name="id" placeholder="ID" [(ngModel)]="idBuscar" />
+          </div>
+          <div class="col-md-4">
+            <input type="number" class="form-control text-center" name="hoja" placeholder="Hoja" [(ngModel)]="hojaBuscar" />
+          </div>
+          <div class="col-md-4">
+            <input type="number" class="form-control text-center" name="expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+          </div>
+          <div class="col-md-6">
+            <input type="date" class="form-control" name="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control text-capitalize" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control text-capitalize" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control text-center" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+          </div>
+          <div class="col-12 text-center mt-3">
+            <button type="submit" class="btn btn-quatz">Buscar</button>
+            <button type="reset" class="btn border-quatz" (click)="limpiarInput()">Limpiar</button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Tabla de resultados -->
+<div class="table-wrapper-uisau mt-3">
+  <table class="uisau-table table-hover text-center">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Consulta</th>
+        <th>Expediente (Emergencia)</th>
+        <th>Ingreso/Egreso</th>
+        <th>Nombre</th>
+        <th>Servicio</th>
+        <th>Especialidad</th>
+        <th>Tipo</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let consulta of resumen">
+        <td>
+          <button type="button" class="uisau-btn fs-9 w-80 p-1 m-0" [routerLink]="['/detalleUisau/', consulta.id]" (click)="copiarId(consulta.id)">
+            ✏️
+          </button>
+        </td>
+        <td class="text-warning">{{ consulta.id }}</td>
+        <td>{{ consulta.expediente }} ({{ consulta.hoja_emergencia }})</td>
+        <td>{{ consulta.fecha_consulta | anyToText | formatoFecha }} - {{ consulta.fecha_egreso | anyToText | formatoFecha }}</td>
+        <td>{{ consulta.nombres | anyToText | capitalizeName }} {{ consulta.apellidos | anyToText | capitalizeName }}</td>
+        <td>{{ consulta.servicio | anyToNumber | enumServicios }}</td>
+        <td>{{ consulta.especialidad | anyToNumber | enumEspecialidad }}</td>
+        <td>{{ consulta.tipo_consulta | anyToNumber | enumTipo }}</td>
+        <td>{{ consulta.status | anyToNumber | enumStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
+<!-- Modal de Reporte -->
+<div class="modal fade" id="reporte" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reporte</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="fecha_reporte" class="form-label">Fecha Reporte</label>
+          <input class="form-control" type="date" id="fecha_reporte" name="fecha_reporte" [(ngModel)]="fecha_reporte">
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-primary" (click)="descargarUisau()">Generar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Paginación -->
+<div class="d-flex justify-content-center mt-3">
+  <div class="btn-group" *ngIf="totalPaginas()">
+    <button type="button" class="btn btn-secondary" [disabled]="paginaActual === 1" (click)="onPageChange(1)">Primera</button>
+    <button type="button" class="btn btn-secondary" [disabled]="paginaActual === 1" (click)="onPageChange(paginaActual - 1)">Anterior</button>
+    <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)">Siguiente</button>
+    <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())">Última</button>
+  </div>
+</div>

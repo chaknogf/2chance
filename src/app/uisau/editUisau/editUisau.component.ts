@@ -36,7 +36,7 @@ export class EditUisauComponent implements OnInit {
     private user: UsersService,
     private au: UisauService,
     private consultas: ConsultasService
-  ) {}
+  ) { }
 
   // Variables y propiedades del componente
   public username = this.user.getUsernameLocally();
@@ -52,10 +52,12 @@ export class EditUisauComponent implements OnInit {
   public message: string = '';
   showAlertSuccess = false;
   showAlertWarning = false;
+  public diagnotico = '';
 
   // Modelo para la información de la consulta
   info: Iuisau = {
     id: 0,
+    consulta_id: 0,
     expediente: 0,
     nombres: '',
     apellidos: '',
@@ -81,6 +83,11 @@ export class EditUisauComponent implements OnInit {
     fecha_contacto: this.fechaActual,
     hora_contacto: this.horaActual,
     update_by: '',
+    dxA: '',
+    dxB: '',
+    dxC: '',
+    dxD: '',
+    dxE: '',
   };
 
   // Modelo para la consulta inicial
@@ -140,6 +147,8 @@ export class EditUisauComponent implements OnInit {
     this.info.fecha_contacto = this.fechaActual;
     this.info.hora_contacto = this.horaActual;
 
+
+
     // Obtiene los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
     console.log(
@@ -157,6 +166,7 @@ export class EditUisauComponent implements OnInit {
         this.info.update_by = this.username;
         this.info.fecha_contacto = this.fechaActual;
         this.info.hora_contacto = this.horaActual;
+        this.diagnotico = `${this.info.dxA}-${this.info.dxB}-${this.info.dxC}-${this.info.dxD}-${this.info.dxE}`;
       });
     }
   }

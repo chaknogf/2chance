@@ -57,6 +57,13 @@
         </select>
       </div>
 
+      <div class="mb-3 ">
+        <label for="consulta_por" class="form-label ">Consulta por</label>
+        <select id="consulta_por" class="form-select border  display-7" [(ngModel)]="coex.consulta_por" name="consulta_por" >
+          <option  *ngFor="let opcion of consult.consult" [value]="opcion.value">{{ opcion.label }}</option>
+        </select>
+      </div>
+
       <div class="d-flex mb-3 mt-4 ">
         <label for="fecha_recepcion" class="form-label">Fecha de Recepción</label>
         <input class="form-control mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="coex.fecha_recepcion" (click)="status()" [max]="maxdate">

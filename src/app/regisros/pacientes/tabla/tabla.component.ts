@@ -1,10 +1,10 @@
 import { PageReloadService } from '../../../services/PageReload.service';
-import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, Renderer2, EventEmitter, OnInit, Output, ViewChild, ElementRef, Input } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  Ienum } from 'src/app/models/Ienum';
-import { etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
+import { IconsultasPor, Ienum } from 'src/app/models/Ienum';
+import { etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation, tipo_citas, consult_coex } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from 'src/app/services/consultas.service';
@@ -56,6 +56,10 @@ export class TablaComponent implements OnInit {
     servicios: servicios,
     servicio: servicio
   }
+
+  cnsult: IconsultasPor = {
+    consult: consult_coex
+  }
   coex: Iconcultas = {
     id: 0,
     hoja_emergencia: null,
@@ -85,6 +89,7 @@ export class TablaComponent implements OnInit {
     lactancia: null,
     dx: null,
     folios: null,
+    consulta_por: 1,
     archived_by: null,
     created_at: null,
     updated_at: null,
@@ -121,7 +126,7 @@ export class TablaComponent implements OnInit {
 
 
     this.fechaActual = this.fechaService.FechaActual();
-    this.horaActual= this.fechaService.HoraActual();
+    this.horaActual = this.fechaService.HoraActual();
 
     this.coex.created_by = this.username;
     // Obtener los parámetros de la ruta
@@ -227,7 +232,7 @@ export class TablaComponent implements OnInit {
           this.filteredPacientes = [];
         }
       });
-    } else if (this.dpiBuscar !="" ) {
+    } else if (this.dpiBuscar != "") {
       this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
         if (data) {
           this.actualizarPacientes([data]);
@@ -251,7 +256,7 @@ export class TablaComponent implements OnInit {
     this.apellidoBuscar = '';
     this.dpiBuscar = '';
     this.filteredPacientes = [];
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizarPacientes(data: any[]) {

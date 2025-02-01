@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
-import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
+import { IconsultasPor, Ienum } from 'src/app/models/Ienum';
+import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, tipo_citas } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 import { UsersService } from 'src/app/services/user.service';
 
@@ -75,10 +75,11 @@ export class FormCoexComponent implements OnInit {
     created_at: '',
     updated_at: '',
     created_by: null,
-    medico: null
+    medico: null,
+    consulta_por: 1
   }
 
-   e: Ienum = {
+  e: Ienum = {
     municipio: municipio,
     nation: nation,
     people: etnias,
@@ -88,6 +89,10 @@ export class FormCoexComponent implements OnInit {
     lenguage: lenguaje,
     servicios: servicios,
     servicio: servicio
+  }
+
+  consult: IconsultasPor = {
+    consult: tipo_citas
   }
 
 

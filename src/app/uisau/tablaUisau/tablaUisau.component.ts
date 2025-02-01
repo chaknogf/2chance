@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from './../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
+import { Ienum, OtrosEnums } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, tipo } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
+import { ReportsService } from 'src/app/services/reports.service';
 
 // Decorador Component para definir la estructura del componente
 @Component({
@@ -19,7 +20,9 @@ export class TablaUisauComponent implements OnInit {
   // Inyección de servicios en el constructor
   constructor(
     private ConsultasService: ConsultasService,
-    private PageReloadService: PageReloadService
+    private PageReloadService: PageReloadService,
+    private rp: ReportsService,
+    private router: Router,
 
   ) { }
 
@@ -47,6 +50,7 @@ export class TablaUisauComponent implements OnInit {
   private ascendingOrder: boolean = false;
   public tipoBuscar: string = '';
   public statusBuscar: any = 1;
+  public fecha_reporte: string = '';
 
 
 
@@ -86,8 +90,8 @@ export class TablaUisauComponent implements OnInit {
     created_by: null,
     medico: null
   }
-// Enumeraciones utilizadas en el componente
-   e: Ienum = {
+  // Enumeraciones utilizadas en el componente
+  e: Ienum = {
     municipio: municipio,
     nation: nation,
     people: etnias,
@@ -97,8 +101,8 @@ export class TablaUisauComponent implements OnInit {
     lenguage: lenguaje,
     servicios: servicios,
     servicio: servicio
-   }
-   enums: OtrosEnums = {
+  }
+  enums: OtrosEnums = {
     tipo: tipo
   }
 
@@ -112,7 +116,7 @@ export class TablaUisauComponent implements OnInit {
   }
 
 
-// Método para obtener consultas del servicio
+  // Método para obtener consultas del servicio
   consult() {
     const filters = {
 
@@ -160,7 +164,7 @@ export class TablaUisauComponent implements OnInit {
     });
   }
 
-// Métodos para manejar la paginación
+  // Métodos para manejar la paginación
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
     this.paginar();
@@ -226,10 +230,10 @@ export class TablaUisauComponent implements OnInit {
     this.hojaBuscar = '';
     this.fechaBuscar = '';
     this.consult();
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
-// Método para eliminar una consulta
+  // Método para eliminar una consulta
   eliminar(id: number) {
     this.ConsultasService.eliminar(id)
       .subscribe(data => {
@@ -239,7 +243,7 @@ export class TablaUisauComponent implements OnInit {
       })
   }
 
-// Método para copiar el ID de una consulta
+  // Método para copiar el ID de una consulta
   copiarId(id: number) {
     this.idConsulta.emit(id);
     this.idCopiado = id;
@@ -247,12 +251,35 @@ export class TablaUisauComponent implements OnInit {
     console.log(id, this.idCopiado)
   }
 
-   // Método para recargar la página
+  // Método para recargar la página
   reloadPage() {
     // Llama al servicio para recargar la página
     this.PageReloadService.reloadPage();
   }
 
+
+  descargarUisau() {
+    this.rp.excel_uisau(this.fecha_reporte).subscribe(
+      (response: any) => {
+        const blob = new Blob([response.body], { type: 'application/octet-stream' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.href = url;
+        a.download = 'uisau.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error => {
+        console.error('Error al descargar el archivo', error);
+        // Manejar el error según sea necesario
+      }
+    );
+  }
+
+  tablillaNavigate() {
+    this.router.navigateByUrl('/reportuisau');
+  }
 
 
 }

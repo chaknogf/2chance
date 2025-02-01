@@ -23,8 +23,8 @@ export class ReportsService {
   }
 
 
-  excel_uisau(inicio: string, final: string): Observable<any> {
-    const url = `${this.urlapi}/report_uisau/?fecha_inicio=${inicio}&fecha_final=${final}&token=${this.token}`;
+  excel_uisau(fecha: string): Observable<any> {
+    const url = `${this.urlapi}/report_uisau/?fecha_reporte=${fecha}&token=${this.token}`;
     return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
 

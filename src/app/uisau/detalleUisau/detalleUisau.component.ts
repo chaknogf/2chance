@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, HostListener, OnInit, HostBinding, Output, EventEmitter } from '@angular/core';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -52,6 +52,9 @@ export class DetalleUisauComponent implements OnInit {
   private ascendingOrder: boolean = false;
   public paginaActual: number = 1; // Página actual
   private totalRegistros: number = 5;
+  mostrarInfo: boolean = false;
+  isDesktop: boolean = false;
+
 
   @Output() idConsulta = new EventEmitter<number>();
 
@@ -93,6 +96,7 @@ export class DetalleUisauComponent implements OnInit {
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
+    this.verificarPantalla();
 
 
     // Obtener los parámetros de la ruta
@@ -105,20 +109,20 @@ export class DetalleUisauComponent implements OnInit {
             this.consulta = data;
             this.view = true;
             this.au.InfoConsulta(this.consulta?.id)
-        .subscribe(
-          data => {
-            this.infos_ = data;
-            this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
-            // console.table(this.resumen)
-          })
+              .subscribe(
+                data => {
+                  this.infos_ = data;
+                  this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+                  // console.table(this.resumen)
+                })
             this.pt.getPaciente(this.consulta?.expediente)
               .subscribe(
                 dta => {
                   this.paciente = dta;
                   // console.table(dta, data)
 
-              }
-            )
+                }
+              )
           },
           error => console.log(error)
         )
@@ -130,7 +134,7 @@ export class DetalleUisauComponent implements OnInit {
   }
 
 
-  regresar(){
+  regresar() {
     this._location.back();
   }
 
@@ -170,6 +174,13 @@ export class DetalleUisauComponent implements OnInit {
   totalPaginas(): number {
     return Math.ceil(this.resumen.length / this.totalRegistros);
 
+  }
+  @HostListener('window:resize', [])
+  verificarPantalla() {
+    this.isDesktop = window.innerWidth >= 768; // Considera escritorio desde 768px
+    if (this.isDesktop) {
+      this.mostrarInfo = true;
+    }
   }
 
 

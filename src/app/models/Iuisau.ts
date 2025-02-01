@@ -1,6 +1,7 @@
 export interface Iuisau {
 
   id: number;
+  consulta_id: number;
   expediente: number | null;
   nombres: string | null;
   apellidos: string | null;
@@ -26,6 +27,11 @@ export interface Iuisau {
   id_consulta: number | null;
   created_by: string | null;
   update_by: string | null;
+  dxA?: string | null;
+  dxB?: string | null;
+  dxC?: string | null;
+  dxD?: string | null;
+  dxE?: string | null;
 
 }
 
@@ -59,6 +65,11 @@ export interface Iuisau_v {
   update_by: string | null;
   created_at: string | null;
   update_at: string | null;
+  dxA?: string | null;
+  dxB?: string | null;
+  dxC?: string | null;
+  dxD?: string | null;
+  dxE?: string | null;
 
 }
 

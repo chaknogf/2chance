@@ -75,7 +75,7 @@ import { RecienacidosComponent } from './regisros/pacientes/recienacidos/reciena
 import { DateTimePipe } from './pipe/dateTime.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { EditUisauComponent } from './uisau/editUisau/editUisau.component';
-import { Report_uisauComponent } from './uisau/report_uisau/report_uisau.component';
+import { ReportUisauComponent } from './uisau/report_uisau/report_uisau.component';
 import { Report_estdComponent } from './estadistica/report_estd/report_estd.component';
 import { Report_rmComponent } from './regisros/report_rm/report_rm.component';
 import { FormNacComponent } from './regisros/nacimientos/form-nac/form-nac.component';
@@ -91,7 +91,7 @@ import { TablaDocsComponent } from './regisros/nacimientos/tabladocs/tablaDocs.c
 import { ActualizarComponent } from './personal/actualizar/actualizar.component';
 import { SubmenuComponent } from './home/submenus/submenu/submenu.component';
 import { FormatoHoraPipe } from './pipe/hora.pipe';
-import { MedicosPipe} from './pipe/medicos.pipe';
+import { MedicosPipe } from './pipe/medicos.pipe';
 import { UsuariosPipe } from './pipe/usuario.pipe';
 import { ConsultarComponent } from './estadistica/consultar/consultar.component';
 import { MedicosComponent } from './personal/medicos/medicos.component';
@@ -186,7 +186,7 @@ import { EnumTipoCitaPipe } from './pipe/enum.pipe';
     FormRecepcionComponent,
     RecienacidosComponent,
     EditUisauComponent,
-    Report_uisauComponent,
+    ReportUisauComponent,
     Report_estdComponent,
     Report_rmComponent,
     FormNacComponent,
@@ -237,11 +237,11 @@ import { EnumTipoCitaPipe } from './pipe/enum.pipe';
 
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: "login", component: LoginComponent, pathMatch: 'full'},
+      { path: "login", component: LoginComponent, pathMatch: 'full' },
       { path: 'pacientes', component: TablaPacientesComponent, canActivate: [AuthGuard] },
       { path: 'crear', component: FormularioPacienteComponent, canActivate: [AuthGuard] },
       { path: 'paciente/edit/:id', component: FormularioPacienteComponent, canActivate: [AuthGuard] },
-      { path: 'buscar/view/:id', component: BuscarComponent, canActivate: [AuthGuard]},
+      { path: 'buscar/view/:id', component: BuscarComponent, canActivate: [AuthGuard] },
       { path: 'citas', component: CitasComponent, canActivate: [AuthGuard] },
       { path: 'agendar', component: FormCitaComponent, canActivate: [AuthGuard] },
       { path: 'agenda/edit/:id', component: FormCitaComponent, canActivate: [AuthGuard] },
@@ -274,10 +274,10 @@ import { EnumTipoCitaPipe } from './pipe/enum.pipe';
       { path: 'cie10edit/:id', component: Formcie10Component, canActivate: [AuthGuard] },
       { path: 'coexreport', component: ReporteCoexComponent, canActivate: [AuthGuard] },
       { path: 'recepciones', component: RecepciónComponent, canActivate: [AuthGuard] },
-      { path: 'recept/:id', component: FormRecepcionComponent, canActivate: [AuthGuard]},
+      { path: 'recept/:id', component: FormRecepcionComponent, canActivate: [AuthGuard] },
       { path: 'rn/:id', component: RecienacidosComponent, canActivate: [AuthGuard] },
       { path: 'reportrm', component: Report_rmComponent, canActivate: [AuthGuard] },
-      { path: 'reportuisau', component: Report_uisauComponent, canActivate: [AuthGuard] },
+      { path: 'reportuisau', component: ReportUisauComponent, canActivate: [AuthGuard] },
       { path: 'reportstd', component: Report_estdComponent, canActivate: [AuthGuard] },
       { path: 'consNac', component: ConstanciaComponent, canActivate: [AuthGuard] },
       { path: 'formConsNac', component: FormNacComponent, canActivate: [AuthGuard] },
@@ -287,13 +287,13 @@ import { EnumTipoCitaPipe } from './pipe/enum.pipe';
       { path: 'nuevProce', component: NuevoProceComponent, canActivate: [AuthGuard] },
       { path: 'editProce/:id', component: NuevoProceComponent, canActivate: [AuthGuard] },
       { path: 'abreviaturas', component: ProceCodigosComponent, canActivate: [AuthGuard] },
-      { path: 'registrarProceMed', component: RegistroProceComponent, canActivate: [AuthGuard]},
+      { path: 'registrarProceMed', component: RegistroProceComponent, canActivate: [AuthGuard] },
       { path: 'editProceMed/:id', component: RegistroProceComponent, canActivate: [AuthGuard] },
       { path: 'usuario', component: ActualizarComponent, canActivate: [AuthGuard] },
       { path: 'constancia/:id', component: NacimientosComponent, canActivate: [AuthGuard] },
       { path: 'consultarE', component: ConsultarComponent, canActivate: [AuthGuard] },
       { path: 'medicos', component: MedicosComponent, canActivate: [AuthGuard] },
-      { path: 'personal', component: PersonalNavbarComponent, canActivate: [AuthGuard]},
+      { path: 'personal', component: PersonalNavbarComponent, canActivate: [AuthGuard] },
 
 
     ]),

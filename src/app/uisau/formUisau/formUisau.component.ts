@@ -28,7 +28,7 @@ export class FormUisauComponent implements OnInit {
     private _location: Location,
     private user: UsersService,
     private au: UisauService,
-    private consultas: ConsultasService
+    private consultas: ConsultasService,
   ) { }
 
   // Variables y propiedades del componente
@@ -49,6 +49,7 @@ export class FormUisauComponent implements OnInit {
   // Modelo para la información de la consulta
   info: Iuisau = {
     id: 0,
+    consulta_id: 0,
     expediente: null,
     nombres: null,
     apellidos: null,
@@ -73,7 +74,12 @@ export class FormUisauComponent implements OnInit {
     hora: null,
     fecha_contacto: null,
     hora_contacto: null,
-    update_by: null
+    update_by: null,
+    dxA: '',
+    dxB: '',
+    dxC: '',
+    dxD: '',
+    dxE: ''
   };
 
   // Modelo para la consulta inicial
@@ -131,8 +137,18 @@ export class FormUisauComponent implements OnInit {
     this.info.fecha = this.fechaActual;
     this.info.hora = this.horaActual;
 
+
+
+
     // Obtiene los parámetros de la ruta
+
     const params = this.activateRoute.snapshot.params;
+
+
+
+
+    // Obtiene los parámetros de la ruta
+
 
     // Verifica si es una nueva consulta o una consulta existente
     if (params['id']) {

@@ -1,403 +1,197 @@
 
 
-
-<div class="container-fluid d-flex my-3">
-  <button class="btnS  rounded border border-info-quatz mx-4 w-auto p-1 justify-content-start" (click)="regresar()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+<!-- Barra superior con botones y título -->
+<div class="container-fluid d-flex align-items-center my-3">
+  <button class="btn btn-outline-light rounded-pill me-2 p-2" (click)="regresar()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
     </svg>
     Regresar
   </button>
-  <h5 class="mx-auto">Control consulta y seguimiento de pacientes</h5>
+  <h5 class="mx-auto mb-0">Control consulta y seguimiento de pacientes</h5>
 </div>
 
+<!-- Contenedor principal -->
+<div class="container-fluid d-flex flex-column flex-md-row p-0 gap-1">
+ <!-- Sección izquierda: Información del paciente -->
+<section class="container-fluid bg-dark rounded p-2 col-md-4 m-1" [ngClass]="{'femenino': consulta?.sexo === 'F', 'masculino': consulta?.sexo !== 'F'}">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <button class="btn btn-outline-light btn-sm p-1">
+      <i class="bi bi-pencil-square"></i>
+    </button>
+    <p class="mb-0 fw-bold">{{ consulta?.id }}</p>
+    <button class="btn btn-outline-success btn-sm p-1" [routerLink]="['/formUisau/new/', consulta?.id]">
+      <i class="bi bi-plus-circle"></i>
+      <label for="">Nuevo</label>
+    </button>
+  </div>
 
-<div class="container-fluid d-flex p-0">
-  <section class="container-fluid font-ubuntu fs-8  bg-light bg-opacity-80 rounded col-3 mx-0 ">
+  <!-- Información del paciente -->
+  <button class="btn btn-primary d-md-none mb-2" (click)="mostrarInfo = !mostrarInfo">
+    {{ mostrarInfo ? 'Ocultar Información' : 'Mostrar Información' }}
+  </button>
 
-      <div class="row justify-content-end align-item-center">
-        <div class="col-4 order-firts">
-          <button class="text-center justify-content-start mx-1 mb-1 bg-dark rounded btnS p-1 my-1 w-auto">
-            Edit
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentcolor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-            </svg>
-          </button>
-        </div>
+  <div class="row row-cols-2 g-1" *ngIf="mostrarInfo || isDesktop">
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Expediente</p>
+      <p class="mb-0 text-muted">{{ consulta?.expediente }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Hoja Emergencia</p>
+      <p class="mb-0 text-muted">{{ consulta?.hoja_emergencia }}</p>
+    </div>
+    <div class="col-12 border-bottom pb-1">
+      <p class="fw-bold mb-1">Nombre del paciente</p>
+      <p class="mb-0 text-muted">{{ consulta?.nombres | capitalizeName }} {{ consulta?.apellidos | capitalizeName }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Sexo</p>
+      <p class="mb-0 text-muted">{{ consulta?.sexo | sexo }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Nacimiento</p>
+      <p class="mb-0 text-muted">{{ consulta?.nacimiento | formatoFecha }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Edad</p>
+      <p class="mb-0 text-muted">{{ consulta?.nacimiento | edad }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Ocupación</p>
+      <p class="mb-0 text-muted">{{ paciente?.ocupacion }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Nivel Académico</p>
+      <p class="mb-0 text-muted">{{ paciente?.educacion | enumEducacion }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Estado Civil</p>
+      <p class="mb-0 text-muted">{{ paciente?.estado_civil | enumCivil }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Nacionalidad</p>
+      <p class="mb-0 text-muted">{{ paciente?.nacionalidad | anyToNumber | enumNacion }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Teléfono</p>
+      <p class="mb-0 text-muted">{{ paciente?.telefono }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Teléfono Familiar</p>
+      <p class="mb-0 text-muted">{{ paciente?.telefono_responsable }}</p>
+    </div>
+    <div class="col-12 text-center fw-bold border-bottom pb-1">- Datos de Contacto -</div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Padre</p>
+      <p class="mb-0 text-muted">{{ paciente?.padre | anyToText | capitalizeName }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Madre</p>
+      <p class="mb-0 text-muted">{{ paciente?.madre | anyToText | capitalizeName }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Responsable</p>
+      <p class="mb-0 text-muted">{{ paciente?.responsable | anyToText | capitalizeName }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Parentesco</p>
+      <p class="mb-0 text-muted">{{ paciente?.parentesco | enumParentesco }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Fecha Consulta</p>
+      <p class="mb-0 text-muted">{{ consulta?.fecha_consulta | formatoFecha }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Tipo Consulta</p>
+      <p class="mb-0 text-muted">{{ consulta?.tipo_consulta | enumTipo }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Especialidad</p>
+      <p class="mb-0 text-muted">{{ consulta?.especialidad | enumEspecialidad }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Servicio</p>
+      <p class="mb-0 text-muted">{{ consulta?.servicio | enumEspecialidad }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Creado por</p>
+      <p class="mb-0 text-muted">{{ consulta?.created_by }}</p>
+    </div>
+    <div class="col border-bottom pb-1">
+      <p class="fw-bold mb-1">Creado</p>
+      <p class="mb-0 text-muted">{{ consulta?.created_at }}</p>
+    </div>
+  </div>
 
-        <div class="col-md-4  text-center align-item-center">
-          <p class="text-center f-negrita-black">{{ consulta?.id }}</p>
-
-        </div>
-
-        <div class="col-4 order-last">
-          <button class="text-center justify-content-end  mb-1 bg-dark rounded btnS p-1 my-1 w-auto" [routerLink]="['/formUisau/new/', consulta?.id]">
-            Nuevo
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentcolor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-
-
-        <div class="col-md-6 border border-info border border-info-info text-center">
-          <p class="text-center f-negrita-black">Expediente</p>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.expediente }}</p>
-        </div>
-
-        <div class="col-md-6 border border-info text-center">
-          <p class="text-center f-negrita-black">Hoja de Emergencia</p>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.hoja_emergencia }}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-md-12 border border-info text-center" [ngClass]="{'rosado': consulta?.sexo === 'F', 'celesce': consulta?.sexo !== 'F'}">
-          <strong class="text-center f-negrita-black">Nombre del paciente</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.nombres | anyToText | capitalizeName }} {{ consulta?.apellidos | anyToText | capitalizeName }}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-sm-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Sexo</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.sexo | anyToText |sexo }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Fecha Nacimiento</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.nacimiento | anyToText | formatoFecha }}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-sm-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Edad al Ingresar</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.edad }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Edad</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.nacimiento | edad }}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Ocupacion</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.ocupacion}}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Nivel Academico</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.educacion | anyToNumber | enumEducacion}}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Estado Civil</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.estado_civil | anyToNumber | enumCivil}}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Nacionalidad</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.nacionalidad | anyToNumber | enumNacion}}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Fecha de consulta</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.fecha_consulta | anyToText | formatoFecha}}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Tipo de consulta</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.tipo_consulta | anyToNumber | enumTipo }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Especialidad</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.especialidad | anyToNumber | enumEspecialidad }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Servicio</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.servicio | anyToNumber | enumEspecialidad }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col--12 text-center">
-          <strong class="f-negrita-black">- - Datos de Contacto - -</strong>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Telefono</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.telefono }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Telefono de Familiar</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.telefono_responsable}}</p>
-        </div>
-
-        <div class="col-12 border border-info text-center">
-          <strong class="text-center f-negrita-black">Direccón</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.direccion}}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Padre</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.padre | anyToText | capitalizeName }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Madre</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.madre | anyToText | capitalizeName }}</p>
-        </div>
+</section>
 
 
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Responsable</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.responsable | anyToText | capitalizeName }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Parentesco</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ paciente?.parentesco | anyToNumber | enumParentesco }}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Acompañante</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.acompa| anyToText | capitalizeName }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Parentesco Acompañante</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.parente | anyToNumber | enumParentesco }}</p>
-        </div>
-      </div>
-
-      <div class="row d-flex">
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Creado por</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.created_by }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Creado</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.created_at }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Egreso</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.fecha_egreso }}</p>
-        </div>
-
-        <div class="col-6 border border-info text-center">
-          <strong class="text-center f-negrita-black">Status</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ consulta?.status | anyToNumber | enumStatus }}</p>
-        </div>
-
-      </div>
-  </section>
-
-  <section class="container-fluid col-9 font-ubuntu rounded mx-0 p-0">
-
-    <div *ngFor="let item of resumen" class="b-div">
-      <div class="row d-flex p-1 my-0 mx-1 text-wrap">
-
-        <div class="col-1 my-0 ms-1 border-end rounded">
-          <button class="btn text-center" [routerLink]="['/contacto/', item.id]">
+  <!-- Sección derecha: Resumen de consultas -->
+  <section class="container-fluid bg-dark text-light rounded p-3 col-md-8 m-1">
+    <div *ngFor="let item of resumen" class="mb-3 border-bottom pb-3">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <button class="btn btn-outline-light btn-sm" [routerLink]="['/contacto/', item.id]">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z"/>
-            </svg> <p  class="f-negrita p-0 my-0 text-center">{{ item.id}}</p>
+            </svg>
+            {{ item.id }}
           </button>
-
         </div>
 
+        <div class="row">
+          <!-- Primera columna -->
+          <div class="col-md-4" *ngIf="item.hora_contacto">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Información de Contacto</h5>
+                <p class="mb-2"><strong>Fecha de Contacto:</strong> {{ item.fecha_contacto }}</p>
+                <p class="mb-2"><strong>Hora de Contacto:</strong> {{ item.hora_contacto }}</p>
+                <p class="mb-2"><strong>Teléfono:</strong> {{ item.telefono }}</p>
+                <p class="mb-0"><strong>Usuario:</strong> {{ item.update_at }}</p>
+              </div>
+            </div>
+          </div>
 
+          <!-- Segunda columna -->
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Estado y Situación</h5>
+                <p class="mb-2"><strong>Estado:</strong> {{ item.estado | anyToNumber | enumEstado }}</p>
+                <p class="mb-2"><strong>Situación:</strong> {{ item.situacion | anyToNumber | enumSituacion }}</p>
+                <p class="mb-2"><strong>Cama:</strong> {{ item.cama }}</p>
+                <p class="mb-0"><strong>Servicio:</strong> {{ item.especialidad | anyToNumber | enumEspecialidad }} {{ item.servicio | anyToNumber | enumServicios }}</p>
+              </div>
+            </div>
+          </div>
 
-        <div *ngIf="item.created_by" class="col-auto p-0 my-0 border-end rounded p-1 ">
-          <p  class="f-negrita p-0 my-0 text-center">usuario</p>
-          <p class="p-0 my-0 text-center">{{  item.created_by}}</p>
-        </div>
-
-        <div class="col-1 p-0 my-0 border-end rounded">
-          <p class="f-negrita text-wrap p-0 my-0 text-center">fecha</p>
-          <p class="p-0 my-0 text-center">{{ item.fecha | anyToText | formatoFecha }} {{item.hora }}</p>
-        </div>
-
-        <div *ngIf="item.estado" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-center">estado</p>
-          <p class="p-0 my-0 text-center">{{  item.estado |anyToNumber | enumEstado}}</p>
-        </div>
-
-        <div *ngIf="item.situacion" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-center">situacion</p>
-          <p class="p-0 my-0 text-center">{{  item.situacion |anyToNumber | enumSituacion}}</p>
-        </div>
-
-        <div *ngIf="item.cama" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-center">cama</p>
-          <p class="p-0 my-0 text-center">{{  item.cama }}</p>
-        </div>
-
-        <div *ngIf="item.especialidad || item.servicio" class="col-2 p-0 my-0 border-end rounded">
-          <p  class="f-negrita p-0 my-0 text-center">servicio</p>
-          <p class="p-0 my-0 text-center text-wrap">{{  item.especialidad | anyToNumber | enumEspecialidad }} {{  item.servicio | anyToNumber | enumServicios }}</p>
-        </div>
-
-        <div  *ngIf="item.lugar_referencia" class="col-2 p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-center text-wrap">referencia</p>
-          <p class="p-0 my-0 text-center">{{  item.lugar_referencia | anyToNumber | enumReferencia }}</p>
-        </div>
-
-        <div *ngIf="item.fecha_referencia" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-center text-wrap">fecha ref.</p>
-          <p class="p-0 my-0 text-center">{{  item.fecha_referencia | anyToText | formatoFecha }}</p>
-        </div>
-
-        <div *ngIf="item.informacion" class="col-1 p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-center text-wrap">se informo</p>
-          <p class="p-0 my-0 text-center">{{  item.informacion}}</p>
-        </div>
-
-        <div *ngIf="item.contacto" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-wrap text-center">contacto</p>
-          <p class="p-0 my-0 text-center">{{  item.contacto | anyToText | capitalizeName}} - ({{ item.parentesco | anyToNumber | enumParentesco}})</p>
-          <p  class="f-negrita p-0 my-0 text-center">telefono</p>
-          <p class="p-0 my-0 text-center"> {{ item.telefono}}</p>
-        </div>
-
-        <div *ngIf="item.update_by" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-wrap text-center">Fecha y Hora Contacto</p>
-          <p class="p-0 my-0 text-center">{{item.fecha_contacto | anyToText | formatoFecha }} {{item.hora_contacto}}</p>
-          <p  class="f-negrita p-0 my-0 text-wrap text-center">llamo</p>
-          <p class="p-0 my-0 text-center">{{item.update_by}}</p>
-        </div>
-
-
-      </div>
-
-      <div class=" row d-flex gap-1 p-1 ms-1 my-0 text-wrap">
-
-
-
-
-
-
-        <div *ngIf="item.evolucion" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-wrap text-center">evolucion</p>
-          <p class="p-0 my-0 text-center">{{ item.evolucion}}</p>
-        </div>
-
-        <div *ngIf="item.estudios" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-wrap text-center">estudios</p>
-          <p class="p-0 my-0 text-center">{{  item.estudios}}</p>
-        </div>
-
-        <div *ngIf="item.nota" class="col-auto p-0 my-0 border-end rounded p-1">
-          <p  class="f-negrita p-0 my-0 text-wrap text-center">nota</p>
-          <p class="p-0 my-0 text-center">{{  item.nota}}</p>
+          <!-- Tercera columna -->
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Información Adicional</h5>
+                <p class="mb-2"><strong>Usuario:</strong> {{ item.created_by }}</p>
+                <p class="mb-2"><strong>Fecha:</strong> {{ item.fecha | anyToText | formatoFecha }} {{ item.hora }}</p>
+                <p class="mb-2"><strong>Evolución:</strong> {{ item.evolucion }}</p>
+                <p class="mb-2"><strong>Estudios:</strong> {{ item.estudios }}</p>
+                <p class="mb-2"><strong>Nota:</strong> {{ item.nota }}</p>
+                <p class="mb-0"><strong>Diagnósticos:</strong> {{item.dxA}} {{item.dxB}} {{item.dxC}} {{item.dxD}} {{item.dxE}}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
 
-    <!-- <table class="table table-black fs-8 table-hover w-auto table-resposive">
-      <thead>
-        <tr>
-          <th class="f-negrita text-center">Datos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of resumen" class="table-active">
-          <td class=" gap-1 p-0 my-0 text-wrap border-quatz">
-
-
-
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
-
-   <!-- Paginación -->
-<div class="d-flex justify-content-center pagination mt-3">
-  <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
-    <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera" [disabled]="paginaActual === 1">Primera</button>
-    <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior" [disabled]="paginaActual === 1">Anterior</button>
-    <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
-    <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
-  </div>
-</div>
-
-
-
-
-
-
-    <!-- <div class="fs-8 accordion" *ngFor="let item of resumen">
-
-      <div class="row d-flex border border-info rounded accordion-item text-center">
-        <div class="col-auto text-center">
-          <strong class="text-center f-negrita">Id</strong>
-          <p class="p-0 my-0 text-center text-primary ">{{ item.id}}</p>
-        </div>
-
-        <div class="col-auto text-center">
-          <strong class="text-center f-negrita">Fecha</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ item.fecha | anyToText | dateTime }}</p>
-        </div>
-
-        <div class="col-auto text-center">
-          <strong class="text-center f-negrita">Estado</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ item.estado |anyToNumber | enumEstado }}</p>
-        </div>
-
-        <div class="col-auto text-center">
-          <strong class="text-center f-negrita">Situación</strong>
-          <p class="p-0 my-0 text-center text-primary">{{ item.situacion |anyToNumber | enumSituacion}}</p>
-        </div>
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center mt-3">
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline-light" (click)="onPageChange(1)" [disabled]="paginaActual === 1">Primera</button>
+        <button type="button" class="btn btn-outline-light" (click)="onPageChange(paginaActual - 1)" [disabled]="paginaActual === 1">Anterior</button>
+        <button type="button" class="btn btn-outline-light" (click)="onPageChange(paginaActual + 1)" [disabled]="paginaActual === totalPaginas()">Siguiente</button>
+        <button type="button" class="btn btn-outline-light" (click)="onPageChange(totalPaginas())" [disabled]="paginaActual === totalPaginas()">Última</button>
       </div>
-
-    </div> -->
+    </div>
   </section>
 </div>
-
-
-
-<div class="modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Editar</button>
-        <button type="button" class="btn btn-primary">Borrar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
