@@ -6,12 +6,12 @@ export interface Ipaciente {
   // [key: string]: string | number | boolean | Date | Nacionalidad[]| Municipio[]  ;
   id: number;
   expediente: number;
-  nombre: string ;
+  nombre: string;
   apellido: string;
   dpi: number;
   pasaporte: string;
   sexo: string;
-  nacimiento: Date | any ;
+  nacimiento: Date | any;
   nacionalidad: number;
   depto_nac: number;
   lugar_nacimiento: number;
@@ -36,6 +36,7 @@ export interface Ipaciente {
   gemelo: string;
   created_by: string;
   fechaDefuncion: string | Date;
+  hora_defuncion?: string;
   created_at: string | null;
   update_at: string | null;
   conyugue: string | null | any

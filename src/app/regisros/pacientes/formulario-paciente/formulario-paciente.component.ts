@@ -60,6 +60,7 @@ export class FormularioPacienteComponent implements OnInit {
     exp_madre: 0,
     created_by: '',
     fechaDefuncion: "",
+    hora_defuncion: "",
     municipio: 0,
     created_at: "",
     update_at: "",
@@ -87,8 +88,8 @@ export class FormularioPacienteComponent implements OnInit {
 
 
   edit: boolean = false;
- traslado: boolean = false
- isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
+  traslado: boolean = false
+  isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
 
 
 
@@ -119,7 +120,7 @@ export class FormularioPacienteComponent implements OnInit {
           data => {
             this.p = data;
             this.edit = true;
-	    this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto_nac);
+            this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto_nac);
             this.municipiosFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto);
 
 
@@ -136,8 +137,8 @@ export class FormularioPacienteComponent implements OnInit {
     this.PacientesService.crearPaciente(this.p).subscribe(data => {
       this.p = data;
       console.log(data)
-        this.regresar()
-      })
+      this.regresar()
+    })
   }
 
   traslado_exp() {
@@ -173,9 +174,10 @@ export class FormularioPacienteComponent implements OnInit {
     }
   }
 
-   exp = this.NuevoExp()
+  exp = this.NuevoExp()
 
   NuevoExp() {
+
     // Obtener el expediente del paciente inicialmente
     this.PacientesService.Expediente().subscribe(data => {
       if (this.edit == false) {
@@ -200,12 +202,12 @@ export class FormularioPacienteComponent implements OnInit {
 
     // const confirmacion = confirm('¿Estás seguro de cambiar el estado?');
     // if (confirmacion) {
-      if (this.p.estado === 'm') {
-        this.p.estado = 'v';
-      } else {
-        this.p.estado = 'm';
-        this.p.fechaDefuncion = ""; // Asignar la fecha actual como fecha de defunción
-      }
+    if (this.p.estado === 'm') {
+      this.p.estado = 'v';
+    } else {
+      this.p.estado = 'm';
+      this.p.fechaDefuncion = ""; // Asignar la fecha actual como fecha de defunción
+    }
     // }
   }
 
@@ -215,7 +217,7 @@ export class FormularioPacienteComponent implements OnInit {
     this.p.telefono = formattedValue;
   }
 
-  regresar(){
+  regresar() {
     this._location.back();
   }
 
@@ -242,7 +244,7 @@ export class FormularioPacienteComponent implements OnInit {
       .subscribe(data => {
         this.p = data;
 
-    })
+      })
   }
 
   CamposTrasladados() {
@@ -262,7 +264,9 @@ export class FormularioPacienteComponent implements OnInit {
     const confirmacion = confirm('¿Desea realizar el cambio?');
     if (confirmacion) {
       this.CamposTrasladados();
+      this.edit = false;
     }
+
   }
 
   confirmarBorrar() {

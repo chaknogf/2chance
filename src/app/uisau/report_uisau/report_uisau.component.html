@@ -29,8 +29,8 @@
 
 <!-- Tabla de Datos -->
 <div class="table-responsive">
-  <div class="table-wrapper-uisau">
-    <table class="uisau-table">
+  <div class="custom-table-wrapper t-w-d">
+    <table class="custom-table">
       <thead>
         <tr>
           <th></th>
@@ -48,7 +48,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of listado">
-          <td [routerLink]="['/detalleUisau/', item.id_consulta]">✏️</td>
+          <td [routerLink]="['/detalleUisau/', item.id_consulta]"><editIcon /></td>
           <td>{{ item.expediente }}</td>
           <td>{{ item.nombres }} {{item.apellidos}}</td>
           <td>{{ item.estado | anyToNumber | enumEstado }}</td>

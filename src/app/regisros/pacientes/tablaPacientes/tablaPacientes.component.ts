@@ -13,7 +13,7 @@ import { FechaService } from 'src/app/services/fecha.service';
   templateUrl: './tablaPacientes.component.html',
   styleUrls: ['./tablaPacientes.component.css']
 })
-export class TablaPacientesComponent{
+export class TablaPacientesComponent {
   public pacientes: Ipaciente[] = []; // Registros a mostrar en la página actual
   public filteredPacientes: Ipaciente[] = [];
   public searchText: string = '';
@@ -39,7 +39,7 @@ export class TablaPacientesComponent{
     private activateRoute: ActivatedRoute,
     private userService: UsersService,
     private fecha: FechaService,
-    ) { }
+  ) { }
   reset: boolean = false;
 
   ngOnInit() {
@@ -235,7 +235,7 @@ export class TablaPacientesComponent{
     this.pacientesService.filterPaciente(filters).subscribe(result => {
       this.pacientes = result;
       // console.table(result)
-      this.filteredPacientes= result;
+      this.filteredPacientes = result;
     });
 
 
@@ -243,45 +243,6 @@ export class TablaPacientesComponent{
   }
 
 
-  // filtro0() {
-  //   if (this.expedienteBuscar !== "") {
-  //     this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-  //       if (data) {
-  //         this.actualizarPacientes([data]);
-  //         this.filteredPacientes = [data];
-
-  //       } else {
-  //         this.actualizarPacientes([]);
-  //         this.filteredPacientes = [];
-  //       }
-  //     });
-  //   } else if (this.nombreBuscar || this.apellidoBuscar) {
-  //     this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-  //       if (data && data.length > 0) {
-  //         this.actualizarPacientes(data);
-  //         this.filteredPacientes = data;
-  //       } else {
-  //         this.actualizarPacientes([]);
-  //         this.filteredPacientes = [];
-  //       }
-  //     });
-  //   } else if (this.dpiBuscar !="" ) {
-  //     this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
-  //       if (data) {
-  //         this.actualizarPacientes([data]);
-  //         this.filteredPacientes = data;
-  //         console.log(this.filteredPacientes)
-  //       } else {
-  //         this.actualizarPacientes([]);
-  //         this.filteredPacientes = [];
-  //       }
-  //     });
-  //   } else {
-  //     // Limpiar resultados si no se proporciona ningún criterio de búsqueda
-  //     this.actualizarPacientes([]);
-  //     this.filteredPacientes = [];
-  //   }
-  // }
 
 
   abrirModal(paciente: Ipaciente) {
@@ -292,6 +253,7 @@ export class TablaPacientesComponent{
       this.detalleVisible = true;
     });
   }
+
 
 
 

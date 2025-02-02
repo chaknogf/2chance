@@ -4,32 +4,35 @@
     <p class="text-center display-6">Consultas de Pacientes</p>
   </div>
   <hr class="my-0 p-1">
-  <div class="justify-content-between">
-    <form class="d-flex justify-content-between align-items-center gap-1" autocomplete="off">
-      <input type="number" class="form-control bg-opacity-75  text-center expande-contenido" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
-     <select id="especialidad" class="form-control bg-primary expande-contenido" [(ngModel)]="tipoBuscar" name="tipoBuscar">
-        <option value="" disabled selected hidden>Tipo Consulta</option>
-        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
-      </select>
-      <input type="number" class="form-control bg-opacity-75  text-center expande-contenido" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-      <input type="number" class="form-control text-capitalize text-center expande-contenido" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-      <input type="date" class="form-control text-capitalize expande-contenido" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control  text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control  text-capitalize text-center expande-contenido" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-quatz  w-auto "  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn border-quatz" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-         2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-          11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-      </svg></button>
-    </form>
+  <div class="search-container">
+    <div class="rounded p-2 bg-dark">
+      <form class="search-form" autocomplete="off">
+        <input type="number" class="form-control search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
+       <select id="especialidad" class="form-control search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+          <option value="" disabled selected hidden>Tipo Consulta</option>
+          <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+        </select>
+        <input type="number" class="form-control search-input" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+        <input type="number" class="form-control search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+        <input type="date" class="form-control search-input" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+        <input type="text" class="form-control search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+        <input type="text" class="form-control search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+        <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+        <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
+          <searchIcon />
+        </button>
+        <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
+          <deleteInput />
+        </button>
+      </form>
 
+    </div>
   </div>
 
 
-<div class="table mt-1">
-  <table class="table table-hover table-black font-monospace" >
+
+<div class="custom-table-wrapper t-w-d mt-3">
+  <table class="custom-table table-hover text-center" >
     <thead>
       <tr>
 

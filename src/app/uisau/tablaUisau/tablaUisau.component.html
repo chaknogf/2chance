@@ -69,8 +69,8 @@
 </div>
 
 <!-- Tabla de resultados -->
-<div class="table-wrapper-uisau mt-3">
-  <table class="uisau-table table-hover text-center">
+<div class="custom-table-wrapper t-w-d mt-3">
+  <table class="custom-table table-hover text-center">
     <thead>
       <tr>
         <th></th>
@@ -87,8 +87,8 @@
     <tbody>
       <tr *ngFor="let consulta of resumen">
         <td>
-          <button type="button" class="uisau-btn fs-9 w-80 p-1 m-0" [routerLink]="['/detalleUisau/', consulta.id]" (click)="copiarId(consulta.id)">
-            ✏️
+          <button type="button" class="custom-btn fs-9 w-80 p-1 m-0" [routerLink]="['/detalleUisau/', consulta.id]" (click)="copiarId(consulta.id)">
+            <editIcon></editIcon>
           </button>
         </td>
         <td class="text-warning">{{ consulta.id }}</td>

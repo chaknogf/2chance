@@ -39,6 +39,7 @@ export class TablaComponent implements OnInit {
   private ascendingOrder: boolean = false;
   public username = this.user.getUsernameLocally();
   public edad: number = 0;
+  public validar: boolean = false;
 
   @Input() patient: Ipaciente | undefined;
 
@@ -121,6 +122,7 @@ export class TablaComponent implements OnInit {
   reset: boolean = false;
   busqueda: string = '';
   order: string = 'asc';
+
 
   ngOnInit() {
 
@@ -354,6 +356,9 @@ export class TablaComponent implements OnInit {
     });
   }
 
+  validador() {
+    this.validar = true;
+  }
 
 
 }

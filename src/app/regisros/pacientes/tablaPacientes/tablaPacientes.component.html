@@ -30,27 +30,56 @@
 
 
   <hr class="my-0 p-1">
-    <div class="">
-      <div class="rounded p-1">
-        <form class="d-flex justify-content-center align-items-center gap-1" autocomplete="off" >
-          <input type="text" class="form-control bg-opacity-75 text-center expande-contenido" name="expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-          <input type="text" class="form-control text-center text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar" />
-          <input type="text" class="form-control text-center text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar" />
-          <input type="text" class="form-control text-center expande-contenido" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar" />
-          <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
-          <button type="submit" class="btn border-quatz " (click)="limpiarInput()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-             2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-              11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-            </svg>
-          </button>
-          <button class="btn btn-info bg-black  w-auto p-2" data-bs-toggle="modal" data-bs-target="#formularioModalP">Crear Paciente</button>
-        </form>
+  <div class="search-containe">
+    <div class="rounded p-2 bg-dark">
+      <form class="search-form" autocomplete="off">
+        <!-- Campos de búsqueda -->
+        <input
+          type="text"
+          class="form-control search-input"
+          name="expediente"
+          placeholder="Expediente"
+          [(ngModel)]="expedienteBuscar"
+        />
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="Nombre"
+          name="nombreBuscar"
+          [(ngModel)]="nombreBuscar"
+        />
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="Apellido"
+          name="apellidoBuscar"
+          [(ngModel)]="apellidoBuscar"
+        />
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="DPI"
+          name="dpiBuscar"
+          [(ngModel)]="dpiBuscar"
+        />
 
-
-      </div>
+        <!-- Botones de acción -->
+        <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
+          <searchIcon />
+        </button>
+        <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
+          <deleteInput />
+        </button>
+        <button
+          class="btn btn-info search-button"
+          data-bs-toggle="modal"
+          data-bs-target="#formularioModalP"
+        >
+          <createIcon />
+        </button>
+      </form>
     </div>
+  </div>
 
     <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
       <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
@@ -65,9 +94,8 @@
 
 
 
-    <div class="table p-1 my-0 font-monospace">
-      <!-- <table class="table table-hover table-black table-borderless fs-5 " aria-labelledby="tableLabel" *ngIf="pacientes.length > 0"> -->
-      <table class="table table-hover table-black ">
+    <div class="custom-table-wrapper t-w-d mt-3">
+      <table class="custom-table table-hover text-center">
         <thead class="text-normal">
           <tr>
 
@@ -88,119 +116,52 @@
           <tr *ngFor="let paciente of filteredPacientes">
             <td>
               <button *ngIf="paciente.sexo === 'F' && calcularEdad(paciente.nacimiento) > 10" class="btn btn-dark btn-sm" [routerLink]="['/rn/', paciente.expediente]">
-                <svg fill="#000000" height="24px" width="24px" version="1.1" fill="currentColor" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 480 480" xml:space="preserve">
-                <path id="XMLID_819_" d="M251,90c0-5.523,4.477-10,10-10h2c5.523,0,10,4.477,10,10s-4.477,10-10,10h-2
-               C255.477,100,251,95.523,251,90z M217,100h2c5.523,0,10-4.477,10-10s-4.477-10-10-10h-2c-5.523,0-10,4.477-10,10
-               S211.477,100,217,100z M480,200v250c0,16.542-13.458,30-30,30H30c-16.542,0-30-13.458-30-30V200c0-16.542,13.458-30,30-30h42.57
-               c6.191-17.461,22.874-30,42.43-30h10c3.895,0,7.676,0.498,11.283,1.432c-0.166-1.054-0.316-2.112-0.45-3.173
-               C126.569,134.596,120,125.551,120,115c0-12.376,9.04-22.681,20.864-24.658C154.356,51.713,189.38,24.367,230,20.477V10
-               c0-5.523,4.477-10,10-10s10,4.477,10,10v10.477c40.62,3.89,75.644,31.236,89.136,69.865C350.96,92.319,360,102.624,360,115
-               c0,10.551-6.569,19.596-15.833,23.259c-0.134,1.061-0.284,2.119-0.45,3.173C347.324,140.498,351.105,140,355,140h10
-               c19.556,0,36.239,12.539,42.43,30H450C466.542,170,480,183.458,480,200z M334.651,170.492c-1,2.078-2.943,4.216-4.359,10.684
-               c-0.017,0.079-0.289,2.612-0.292,3.764c0,0.003,0,0.005,0,0.008c0,0.006,0,0.012,0,0.018c0,0.011,0,0.022,0,0.033
-               c0,13.785,11.215,25,25,25h10c13.785,0,25-11.215,25-25c0-1.114-0.073-2.21-0.215-3.286c-0.032-0.186-0.059-0.374-0.081-0.563
-               C387.848,169.187,377.477,160,365,160h-10C346.62,160,339.189,164.145,334.651,170.492z M140,115c0,2.757,2.243,5,5,5h0.131
-               c5.322,0,9.711,4.168,9.986,9.482c0.562,10.837,3.182,21.381,7.683,31.125c1.504,2.323,4.665,8.728,5.081,9.393h25.283
-               c-7.24-7.51-12.734-16.8-15.699-27.277c-1.504-5.314,1.585-10.841,6.899-12.345c5.315-1.505,10.841,1.585,12.345,6.899
-               C202.162,156.544,219.963,170,240,170s37.838-13.456,43.29-32.723c1.504-5.314,7.033-8.402,12.345-6.899
-               c5.314,1.503,8.403,7.031,6.899,12.345c-2.965,10.478-8.458,19.768-15.699,27.277h25.283c0.416-0.666,3.577-7.07,5.081-9.393
-               c4.501-9.743,7.121-20.288,7.683-31.125c0.275-5.314,4.665-9.482,9.986-9.482H335c2.757,0,5-2.243,5-5s-2.243-5-5-5h-3.331
-               c-4.512,0-8.465-3.021-9.649-7.375c-9.15-33.627-38.008-58.006-72.037-62.037C249.678,45.837,245.325,50,240,50
-               s-9.678-4.163-9.983-9.412c-34.029,4.031-62.887,28.41-72.037,62.037c-1.185,4.354-5.138,7.375-9.649,7.375H145
-               C142.243,110,140,112.243,140,115z M90,185c0,13.785,11.215,25,25,25h10c13.785,0,25-11.215,25-25c0-0.011,0-0.022,0-0.033
-               c0-0.006,0-0.012,0-0.018c0-0.003,0-0.005,0-0.008c-0.003-1.152-1-8.524-4.651-14.448C140.811,164.145,133.38,160,125,160h-10
-               c-12.477,0-22.848,9.187-24.704,21.151C90.274,181.34,90,183.886,90,185z M460,200c0-5.514-4.486-10-10-10h-40.276
-               c-2.496,22.468-21.601,40-44.724,40h-10c-23.123,0-42.229-17.532-44.724-40H169.724c-2.496,22.468-21.601,40-44.724,40h-10
-               c-23.123,0-42.229-17.532-44.724-40H30c-5.514,0-10,4.486-10,10v250c0,5.514,4.486,10,10,10h420c5.514,0,10-4.486,10-10V200z
-                M416.5,275c-5.523,0-10,4.477-10,10v20c0,11.028-8.972,20-20,20s-20-8.972-20-20v-20c0-5.523-4.477-10-10-10s-10,4.477-10,10v20
-               c0,18.604,12.767,34.283,30,38.734V365c0,5.523,4.477,10,10,10s10-4.477,10-10v-21.266c17.233-4.451,30-20.13,30-38.734v-20
-               C426.5,279.477,422.023,275,416.5,275z M231.5,315v50c0,5.523-4.477,10-10,10s-10-4.477-10-10v-20h-40v20c0,5.523-4.477,10-10,10
-               s-10-4.477-10-10v-50c0-22.056,17.944-40,40-40S231.5,292.944,231.5,315z M211.5,315c0-11.028-8.972-20-20-20s-20,8.972-20,20v10h40
-               V315z M133.5,345c0,16.542-13.458,30-30,30h-40c-5.523,0-10-4.477-10-10v-80c0-5.523,4.477-10,10-10h30c16.542,0,30,13.458,30,30
-               c0,5.345-1.404,10.367-3.865,14.718C127.967,325.054,133.5,334.393,133.5,345z M73.5,315h20c5.514,0,10-4.486,10-10s-4.486-10-10-10
-               h-20V315z M113.5,345c0-5.514-4.486-10-10-10h-30v20h30C109.014,355,113.5,350.514,113.5,345z M334.5,345c0,16.542-13.458,30-30,30
-               h-40c-5.523,0-10-4.477-10-10v-80c0-5.523,4.477-10,10-10h30c16.542,0,30,13.458,30,30c0,5.345-1.404,10.367-3.865,14.718
-               C328.967,325.054,334.5,334.393,334.5,345z M274.5,315h20c5.514,0,10-4.486,10-10s-4.486-10-10-10h-20V315z M314.5,345
-               c0-5.514-4.486-10-10-10h-30v20h30C310.014,355,314.5,350.514,314.5,345z"/>
-                 </svg>
+                <babyIcon />
               </button>
             </td>
             <td>
               <button class="btn btn-dark btn-sm" [routerLink]="['/paciente/edit', paciente.id]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                </svg>
+                <editIcon />
               </button>
             </td>
             <td class="font-title text-center text-warning" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver">
               <span>
+                <dataViewIcon />
               {{ paciente.expediente }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-              </svg>
             </span>
             </td>
-
-
             <td class="text-center text-justify " appHighlightWords >
               <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
               {{ paciente.apellido | capitalizeName }}
               <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cc9a06" class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                </svg>Gem<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cc9a06" class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                </svg>
+                <gemeloIcon />
               </span>
             </td>
             <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
             <td class="text-center">
               <ng-container *ngIf="paciente.sexo == 'F'; else man">
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#df7ca8" class="bi bi-person-standing-dress" viewBox="0 0 16 16">
-                  <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.5 12.25V12h1v3.25a.75.75 0 0 0 1.5 0V12h1l-1-5v-.215a.285.285 0 0 1 .56-.078l.793 2.777a.711.711 0 1 0 1.364-.405l-1.065-3.461A3 3 0 0 0 8.784 3.5H7.216a3 3 0 0 0-2.868 2.118L3.283 9.079a.711.711 0 1 0 1.365.405l.793-2.777a.285.285 0 0 1 .56.078V7l-1 5h1v3.25a.75.75 0 0 0 1.5 0Z"/>
-                </svg>
+               <femIcon/>
               </ng-container>
-
               <ng-template #man>
                 <ng-container *ngIf="paciente.sexo == 'M'; else NoneBl">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#c2ecfe" class="bi bi-person-standing" viewBox="0 0 16 16">
-                    <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M6 6.75v8.5a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2.75a.75.75 0 0 0 1.5 0v-2.5a.25.25 0 0 1 .5 0"/>
-                  </svg>
+                  <maleIcon/>
                 </ng-container>
               </ng-template>
-
               <ng-template #NoneBl>
-
-                none
+                <span class="text-warning">SIn Registrar !!!</span>
+                <atentionIcon />
               </ng-template>
-
-
             </td>
             <td class="text-center">{{ paciente.nacimiento | edad }}</td>
             <td class="text-center">{{ paciente.nacimiento | anyToText | formatoFecha}}</td>
             <td class="text-center">
               <ng-container *ngIf="paciente.estado === 'v'; else dead">
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#e92f2f" class="bi bi-heart-pulse" viewBox="0 0 28 28">
-                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857q.09.083.176.171a3 3 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5"/>
-                  <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z"/>
-                  <text x="0" y="21" font-size="6">vivo</text>
-                </svg>
+                <beatIcon/>
               </ng-container>
-
               <ng-template #dead>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-emoji-dizzy-fill" viewBox="0 0 28 28">
-                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708m5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708M8 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4"/>
-                  <text x="0" y="21" font-size="6">Muerto</text>
-                </svg>
+                <deadIcon/>
               </ng-template>
             </td>
-
             <td class="small">{{ paciente.id }}</td>
           </tr>
         </tbody>
@@ -243,102 +204,126 @@
     </div>
   </div>
 
-  <div class="modal" id="ver">
-    <div class="modal-dialog modal-lg modal-lg" role="document">
-      <div class="modal-content w-auto card bg-night">
 
-        <div class="modal-body code-container" id="code">
-          <div class="card-header  text-center" >
-            Detalles del Expediente: <span class="font-fam">{{patient?.expediente}}</span>
-          </div>
-          <div class=" modal-body mx-5 font-monospace">
-            <div class="text-start">
-              <p>&#123;</p>
-              <div class="d-flex justify-content-wrap p-0">
-                <span class="me-1 font-title m-0 m-0">Nombre: </span>
-                <p class="font-value m-0 m-0">{{ patient?.nombre | anyToText | capitalizeName }},</p>
+
+  <div class="modal fade" id="ver" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content card bg-night">
+        <!-- Encabezado del modal con botón de cierre -->
+        <div class="modal-header">
+          <h5 class="modal-title text-center w-100">
+            Detalles del Expediente: <span class="font-fam">{{ patient?.expediente }}</span>
+          </h5>
+          <button type="button" class="btn-close btn-light" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Cuerpo del modal -->
+      <div class="modal-body code-container" id="code">
+        <div class="modal-body mx-3 mx-md-5 font-monospace">
+          <div class="text-start">
+            <p>&#123;</p>
+              <!-- Contenido del modal -->
+              <div class="etiqueta-modal">
+                <span class="me-1 font-title m-0">Nombre: </span>
+                <p class="font-value m-0">{{ patient?.nombre | anyToText | capitalizeName }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Apellido: </span>
                 <p class="font-value m-0 m-0">{{ patient?.apellido | anyToText | capitalizeName }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Fecha de nacimiento: </span>
                 <p class="font-value m-0 m-0">{{ patient?.nacimiento | anyToText | formatoFecha }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div *ngIf="patient?.fechaDefuncion" class="etiqueta-modal">
+                <span class="me-1 font-title m-0 m-0">Fecha defuncion: </span>
+                <p class="font-value m-0 m-0">{{ patient?.fechaDefuncion | anyToText | formatoFecha }}</p>
+                <deadIcon/>,
+              </div>
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Edad: </span>
                 <p class="font-value m-0 m-0">{{ patient?.nacimiento | edad }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Sexo: </span>
-                <p class="font-value m-0 m-0">{{ patient?.sexo | anyToText | sexo }},</p>
+                <p class="font-value m-0 m-0">{{ patient?.sexo | anyToText | sexo }}</p>
+                <ng-container *ngIf="patient?.sexo == 'F'; else man">
+
+                  <femIcon/>
+                 </ng-container>
+
+                 <ng-template #man>
+                   <ng-container *ngIf="patient?.sexo == 'M'; else NoneBl">
+                     <maleIcon/>
+                   </ng-container>
+                 </ng-template>
+
+                 <ng-template #NoneBl>
+
+                   <span class="text-warning">SIn Registrar !!!</span>
+                 </ng-template> ,
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">DPI: </span>
                 <p class="font-value m-0 m-0">{{ patient?.dpi | anyToText | formatoDPI }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Nacionalidad: </span>
                 <p class="font-value m-0 m-0">{{ patient?.nacionalidad | anyToNumber | enumNacion }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Lugar de Nacimiento: </span>
                 <p class="font-value m-0 m-0">{{ patient?.lugar_nacimiento | anyToNumber | enumVecindad }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Estado civil: </span>
                 <p class="font-value m-0 m-0">{{ patient?.estado_civil | anyToNumber | enumCivil }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Ocupación: </span>
                 <p class="font-value m-0 m-0">{{ patient?.ocupacion | anyToText | capitalizeName}},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Nivel Academico: </span>
                 <p class="font-value m-0 m-0">{{ patient?.educacion | anyToNumber | enumEducacion }},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Dirección: </span>
                 <p class="font-value m-0 m-0">{{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, <br> {{patient?.depto | anyToNumber | enumDepto | capitalizeName}},</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Telefonos: </span>
                 <p class="font-value m-0 m-0">{{ patient?.telefono }} - {{ patient?.telefono_responsable }} ,</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Conyugue: </span>
                 <p class="font-value m-0 m-0">{{ patient?.conyugue | anyToText | capitalizeName }} ,</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Responsable: </span>
                 <p class="font-value m-0 m-0">{{ patient?.responsable | anyToText | capitalizeName }} ,</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Parentesco: </span>
                 <p class="font-value m-0 m-0">{{ patient?.parentesco | anyToNumber | enumParentesco }} ,</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">DPI de responsable: </span>
                 <p class="font-value m-0 m-0">{{ patient?.dpi_responsable | anyToText | formatoDPI }} ,</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Madre: </span>
                 <p class="font-value m-0 m-0">{{ patient?.madre | anyToText | capitalizeName }} ,</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Padre: </span>
                 <p class="font-value m-0 m-0">{{ patient?.padre | anyToText | capitalizeName }} ,</p>
               </div>
-              <div class="d-flex justify-content-wrap p-0">
+              <div class="etiqueta-modal">
                 <span class="me-1 font-title m-0 m-0">Creado por: </span>
                 <p class="font-value m-0 m-0">{{ patient?.created_by }} ,</p>
               </div>
               <p>&#125;</p>
-
-
-
-
             </div>
           </div>
         </div>

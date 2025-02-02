@@ -1,5 +1,4 @@
 import { PersonalNavbarComponent } from './personal/personal-navbar/personal-navbar.component';
-import { claseParto } from './enums/parto';
 import { ResumenCitasPipe } from './pipe/resumenCitas.pipe';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -98,15 +97,32 @@ import { MedicosComponent } from './personal/medicos/medicos.component';
 import { ConsultasRMComponent } from './estadistica/consultasRM/consultasRM.component';
 import { EstanciaPipe } from './pipe/camas.pipe';
 import { EnumTipoCitaPipe } from './pipe/enum.pipe';
-
-
-
-
-
-
-
-
-
+import { EditIconComponent } from 'src/assets/svg/editIcon/editIcon.component';
+import { BabyIconComponent } from 'src/assets/svg/babyIcon/babyIcon.component';
+import { QuestIconComponent } from 'src/assets/svg/questIcon/questIcon.component';
+import { AddIconComponent } from 'src/assets/svg/addIcon/addIcon.component';
+import { GemeloIconComponent } from 'src/assets/svg/gemeloIcon/gemeloIcon.component';
+import { MaleIconComponent } from 'src/assets/svg/maleIcon/maleIcon.component';
+import { FemIconComponent } from 'src/assets/svg/femIcon/femIcon.component';
+import { AtentionIconComponent } from 'src/assets/svg/atentionIcon/atentionIcon.component';
+import { BeatIconComponent } from 'src/assets/svg/beatIcon/beatIcon.component';
+import { DeadIconComponent } from 'src/assets/svg/deadIcon/deadIcon.component';
+import { DataViewIconComponent } from 'src/assets/svg/dataViewIcon/dataViewIcon.component';
+import { DeleteInputComponent } from 'src/assets/svg/deleteInput/deleteInput.component';
+import { SearchIconComponent } from 'src/assets/svg/searchIcon/searchIcon.component';
+import { CreateIconComponent } from 'src/assets/svg/createIcon/createIcon.component';
+import { PacienteIconComponent } from 'src/assets/svg/pacienteIcon/pacienteIcon.component';
+import { CoexIconComponent } from 'src/assets/svg/coexIcon/coexIcon.component';
+import { HospitalizacionIconComponent } from 'src/assets/svg/hospitalizacionIcon/hospitalizacionIcon.component';
+import { EmergenciaIconComponent } from 'src/assets/svg/emergenciaIcon/emergenciaIcon.component';
+import { DocumentIconComponent } from 'src/assets/svg/documentIcon/documentIcon.component';
+import { ConsultasIconComponent } from 'src/assets/svg/consultasIcon/consultasIcon.component';
+import { ArchiveIconComponent } from 'src/assets/svg/archiveIcon/archiveIcon.component';
+import { EliminarIconComponent } from 'src/assets/svg/eliminarIcon/eliminarIcon.component';
+import { SaveIconComponent } from 'src/assets/svg/saveIcon/saveIcon.component';
+import { BackIconComponent } from 'src/assets/svg/backIcon/backIcon.component';
+import { HansterProgressComponent } from 'src/assets/svg/hansterProgress/hansterProgress.component';
+import { NewIconComponent } from 'src/assets/svg/newIcon/newIcon.component';
 
 
 @NgModule({
@@ -218,6 +234,32 @@ import { EnumTipoCitaPipe } from './pipe/enum.pipe';
     EstanciaPipe,
     FechaCortaPipe,
     EnumTipoCitaPipe,
+    EditIconComponent,
+    BabyIconComponent,
+    QuestIconComponent,
+    AddIconComponent,
+    GemeloIconComponent,
+    MaleIconComponent,
+    FemIconComponent,
+    AtentionIconComponent,
+    BeatIconComponent,
+    DeadIconComponent,
+    DataViewIconComponent,
+    DeleteInputComponent,
+    SearchIconComponent,
+    CreateIconComponent,
+    PacienteIconComponent,
+    CoexIconComponent,
+    HospitalizacionIconComponent,
+    EmergenciaIconComponent,
+    DocumentIconComponent,
+    ConsultasIconComponent,
+    ArchiveIconComponent,
+    EliminarIconComponent,
+    SaveIconComponent,
+    BackIconComponent,
+    HansterProgressComponent,
+    NewIconComponent,
 
 
 
