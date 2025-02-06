@@ -36,17 +36,13 @@
     <thead>
       <tr>
 
-        <th class="text-center" (click)="sortTable('id')" >
-          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
-          0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path>
-          </svg>ID
-        </th>
-        <th class="text-center bg-aqua" >Historia Clinica</th>
+        <th class="text-center">Id</th>
+        <th class="text-center" >Expediente</th>
         <th class="text-center">Paciente</th>
         <th class="text-center">DPI</th>
-        <th class="text-center">Fecha Nacimiento</th>
+        <th class="text-center">Nacimiento</th>
         <th class="text-center">Direccion</th>
-        <th class="text-center">Fecha de Registros</th>
+        <th class="text-center">Fecha</th>
         <th class="text-center">Servicio</th>
         <th class="text-center">Tipo</th>
 
@@ -62,28 +58,43 @@
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let consulta of resumen">
 
-        <td class="text-center font-weight-bold text-warning k h5" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#verCons"> {{consulta.id}}
-
+        <td class="text-center w-10" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#verCons">
+          <dataViewIcon />
+          {{consulta.id}}
         </td>
-        <td class="text-center bg-aqua font-ubuntu">
-          <span class="me-1 font-title1">Expediente: </span>{{consulta.expediente}}<br>
-          <span class="me-1 font-title1">Hoja Emergencia: </span>{{consulta.hoja_emergencia}}
+        <td class="text-center w-10">
+          <p class="label-td" *ngIf="consulta.expediente">Expediente:</p>{{consulta.expediente}}
+          <p class="label-td" *ngIf="consulta.hoja_emergencia">Hoja Emergencia:</p>{{consulta.hoja_emergencia}}
         </td>
         <td class="text-center">
           <span [ngClass]="{'mujer': consulta.sexo == 'F', 'hombre': consulta.sexo != 'F'}">{{ consulta.nombres | anyToText | capitalizeName }}</span><br>
             {{consulta.apellidos |anyToText | capitalizeName}} <br>
 
         </td>
-        <td class="text-center">{{consulta.dpi | anyToText| formatoDPI}}</td>
-        <td class="text-center">{{consulta.nacimiento | anyToText |FechaCorta}}</td>
+        <td class="text-center w-10">{{consulta.dpi | anyToText| formatoDPI}}</td>
+        <td class="text-center w-10">{{consulta.nacimiento | anyToText |FechaCorta}}</td>
         <td class="text-center">
           {{consulta.direccion | anyToText | capitalizeName}}
         </td>
         <td class="text-center">
-          <span class="me-1 font-title1">Ingreso: </span>  {{consulta.fecha_consulta | anyToText | formatoFecha}}<br>
-          <span class="me-1 font-title1">Hora Ingreso: </span>  {{consulta.hora}}<br>
-          <span class="me-1 font-title1">Egreso: </span>  {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
-          <p *ngIf="consulta.tipo_consulta==2"><span class="me-1 font-title">Estancia: </span>  {{ consulta.fecha_consulta | estancia: consulta.fecha_egreso }}</p>
+          <div class="row text-center">
+            <p class="label-td">Ingreso</p>
+            <div>
+              {{consulta.fecha_consulta | anyToText | formatoFecha}}<br>
+              {{consulta.hora}}
+            </div>
+          </div>
+          <div *ngIf="consulta.fecha_egreso" class="row text-center">
+            <p class="label-td">Egreso</p>
+            <div>
+              {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
+              {{ consulta.fecha_consulta | estancia: consulta.fecha_egreso }}
+            </div>
+
+          </div>
+
+
+
 
         </td>
 

@@ -1,26 +1,25 @@
-<div class="">
-  <div class="mt-2">
-    <form class="d-flex justify-content-center align-items-center" autocomplete="off" >
-      <input type="text" class="form-control bg-opacity-75 text-center" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
-      <input type="sumit" class="form-control text-center text-capitalize mx-1 " placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control text-center text-capitalize mx-1" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control text-center mx-1" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
-      <button type="submit" class="btn btn-quatz mx-1 "  (click)="filtro()">buscar</button>
-      <button type="submit" class="btn border-quatz mx-1" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-         2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-          11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-      </svg>
+<div class="search-container">
+  <div class="rounded p-2 bg-dark">
+    <form class="search-form" autocomplete="off" >
+      <input type="text" class="form-control search-input" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
+      <input type="sumit" class="form-control search-input" placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control search-input" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
+      <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
+      <!-- Botones de acción -->
+      <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
+        <searchIcon />
+      </button>
+      <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
+        <deleteInput />
       </button>
 
     </form>
   </div>
 
   <div class="mt-3">
-    <div class="table">
-      <!-- <table class="table table-hover table-black table-borderless fs-5 " aria-labelledby="tableLabel" *ngIf="pacientes.length > 0"> -->
-      <table class="table table-hover table-black">
-        <thead class="">
+    <div class="custom-table-wrapper t-w-d mt-3">
+      <table class="custom-table table-hover text-center ">
+        <thead class="text-normal">
           <tr>
 
             <th class="text-center "></th>
@@ -41,13 +40,8 @@
               <!-- <button class="btn btn-outline-dark" [routerLink]="['/detalleP/view', paciente.expediente]">ver</button> -->
             </td>
             <td>
-              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.dpi, paciente.municipio, paciente.direccion)" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
-                  <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0
-                  0-.5-.5.5.5 0 0 1-.5-.5Z"/>
-                  <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5
-                  1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM8.5 6.5V8H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V9H6a.5.5 0 0 1 0-1h1.5V6.5a.5.5 0 0 1 1 0Z"/>
-                </svg>
+              <button class="btn btn-secundary search-button" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.dpi, paciente.municipio, paciente.direccion)" >
+                <copyAddIcon />
               </button>
 
             </td>

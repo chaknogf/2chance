@@ -6,27 +6,26 @@
     <p class="text-center display-6">Consultas de Pacientes</p>
   </div>
   <hr class="my-0 p-1">
-  <div class="search-container justify-content-between">
-    <form class="search-form" autocomplete="off">
-      <input type="number" class="form-control search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
-     <select id="especialidad" class="search-input form-control bg-primary " [(ngModel)]="tipoBuscar" name="tipoBuscar">
-        <option value="" disabled selected hidden>Tipo Consulta</option>
-        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
-      </select>
-      <input type="number" class="form-control search-input " name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-      <input type="number" class="form-control  search-input text-capitalize text-center " name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-      <input type="date" class="form-control search-input text-capitalize " name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control search-input  text-capitalize " placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control  search-input text-capitalize " placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control search-input  text-capitalize text-center " placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+  <div class="search-container">
+    <div class="search-div">
+      <form class="search-form" autocomplete="off">
+        <input type="number" class="search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
+       <select id="especialidad" class="search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+          <option value="" disabled selected hidden>Tipo Consulta</option>
+          <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+        </select>
+        <input type="number" class="search-input" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+        <input type="number" class="search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+        <input type="date" class="search-input" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+        <input type="text" class="search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+        <input type="text" class="search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+        <input type="text" class="search-input" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+          <searchIcon (click)="filtro()"/>
+          <deleteInput (click)="limpiarInput()" />
 
-      <button type="submit" class="btn btn-primary search-button"  (click)="filtro()">
-        <searchIcon />
-      </button>
-      <button type="submit" class="btn btn-secondary search-button" (click)="limpiarInput()">
-        <deleteInput />
-    </button>
-    </form>
+      </form>
+
+    </div>
 
   </div>
 
@@ -35,13 +34,9 @@
     <table class="custom-table table-hover text-center" >
       <thead>
         <tr>
-          <th class="text-center">Opciones</th>
-          <th class="text-center" (click)="sortTable('id')" >
-            <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
-            0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path>
-            </svg>ID
-          </th>
-          <th class="text-center bg-aqua" >Historia Clinica</th>
+          <!-- <th class="text-center">Opciones</th> -->
+          <th class="text-center" (click)="sortTable('id')" >Id</th>
+          <th class="text-center" >Historia Clinica</th>
           <th class="text-center">Paciente</th>
           <th class="text-center">Fecha de Registros</th>
           <th class="text-center">Servicio</th>
@@ -56,17 +51,15 @@
         <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
       </div>
       <tbody class="justify-content-center  opacity-90">
-        <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
+
         <tr *ngFor="let consulta of resumen">
-          <td class="text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#39cbfb" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
-            </svg>
-          </td>
+          <!-- <td class="text-center">
+            <editIcon (click)="editar(consulta.id)" />
+          </td> -->
           <td class="text-center font-weight-bold text-warning k h5" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#verCons"> {{consulta.id}}
 
           </td>
-          <td class="text-center bg-aqua font-ubuntu">
+          <td class="text-center">
             <span class="me-1 font-title1">Expediente: </span>{{consulta.expediente}}<br>
             <span class="me-1 font-title1">Hoja Emergencia: </span>{{consulta.hoja_emergencia}}
           </td>
@@ -77,8 +70,8 @@
           <td class="text-center">
             <span class="me-1 font-title1">Ingreso: </span>  {{consulta.fecha_consulta | anyToText | formatoFecha}}<br>
             <span class="me-1 font-title1">Hora Ingreso: </span>  {{consulta.hora}}<br>
-            <span class="me-1 font-title1">Egreso: </span>  {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
-            <p *ngIf="consulta.tipo_consulta==2"><span class="me-1 font-title">Estancia: </span>  {{ consulta.fecha_consulta | estancia: consulta.fecha_egreso }}</p>
+            <span class="me-1 font-title1" *ngIf=" consulta.tipo_consulta==2">Egreso: </span>  {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
+            <p *ngIf="consulta.tipo_consulta==2 && consulta.fecha_egreso"><span class="me-1 font-title">Estancia: </span>  {{ consulta.fecha_consulta | estancia: consulta.fecha_egreso }}</p>
 
           </td>
           <td class="text-center">

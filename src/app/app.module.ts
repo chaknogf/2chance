@@ -123,6 +123,19 @@ import { SaveIconComponent } from 'src/assets/svg/saveIcon/saveIcon.component';
 import { BackIconComponent } from 'src/assets/svg/backIcon/backIcon.component';
 import { HansterProgressComponent } from 'src/assets/svg/hansterProgress/hansterProgress.component';
 import { NewIconComponent } from 'src/assets/svg/newIcon/newIcon.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { CopyAddIconComponent } from 'src/assets/svg/copyAddIcon/copyAddIcon.component';
+import { PrintIconComponent } from 'src/assets/svg/printIcon/printIcon.component';
+import { CloseIconComponent } from 'src/assets/svg/closeIcon/closeIcon.component';
+import { GoHomeComponent } from 'src/assets/svg/goHomeIcon/goHomeIcon.component';
+import { ExcelIconComponent } from 'src/assets/svg/excelIcon/excelIcon.component';
+import { TablillaIconComponent } from 'src/assets/svg/tablillaIcon/tablillaIcon.component';
+import { AmbulanceIconComponent } from 'src/assets/svg/ambulanceIcon/ambulanceIcon.component';
+import { PatienteIconComponent } from 'src/assets/svg/patienteIcon/patienteIcon.component';
+import { EgresoIconComponent } from 'src/assets/svg/egresoIcon/egresoIcon.component';
+import { SearchContainerComponent } from './components/search-container/search-container.component';
+import { BabyFootIconComponent } from 'src/assets/svg/babyFootIcon/babyFootIcon.component';
+
 
 
 @NgModule({
@@ -260,11 +273,18 @@ import { NewIconComponent } from 'src/assets/svg/newIcon/newIcon.component';
     BackIconComponent,
     HansterProgressComponent,
     NewIconComponent,
-
-
-
-
-
+    NotFoundComponent,
+    CopyAddIconComponent,
+    PrintIconComponent,
+    CloseIconComponent,
+    GoHomeComponent,
+    ExcelIconComponent,
+    TablillaIconComponent,
+    AmbulanceIconComponent,
+    PatienteIconComponent,
+    EgresoIconComponent,
+    SearchContainerComponent,
+    BabyFootIconComponent,
 
 
   ],

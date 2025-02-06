@@ -57,6 +57,6 @@ export class FechaCortaPipe implements PipeTransform {
     const nombreMes = meses[parseInt(mes) - 1];
 
     // Formatea la fecha en el formato 'dd de nombreMes de aaaa'
-    return `${dia}${nombreMes}${anio}`;
+    return `${dia} ${nombreMes} ${anio}`;
   }
 }

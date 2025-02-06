@@ -2,23 +2,22 @@
 
 
 <div class="container-fluid d-flex my-3">
-  <button class="btnS  rounded border-quatz mx-4 w-10 p-0 justify-content-start" (click)="regresar()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-    </svg>
-    Regresar
-  </button>
+
   <h5 class="mx-auto">Control de Expediente - Recepción de Consulta</h5>
 </div>
 
 
 <div class="container-fluid d-flex">
+
   <div class="text-white border-quatz btn text-end p-2 col-4">
-    <button class="text-center justify-content-end mx-1 mb-1 bg-quatz rounded btn p-0 w-20" [routerLink]="['/paciente/edit/', patient?.id]">Edit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-      </svg>
-    </button>
+    <div class="d-flex justify-content-center gap-2">
+      <button class="btn btn-info search-button" (click)="regresar()">
+        <backIcon />
+        </button>
+      <button class="btn btn-dark search-button" [routerLink]="['/paciente/edit/', patient?.id]">
+        <editIcon />
+      </button>
+    </div>
     <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Id Paciente:</span>{{ patient?.id }}
       <ng-container *ngIf="patient?.id; else noData">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
@@ -157,82 +156,85 @@
     <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Actualizado:</span>{{ consulta.updated_at }}</p>
   </div>
 
-  <div class="container-fluid d-flex">
-    <form class="form-group" autocomplete="off">
-      <p class="text-info bg-dark rounded">Datos de Partograma</p>
-        <div class="d-flex justify-content-center">
-          <div class="w-30">
-            <label class="text-light" for="prenatal"># de Controles Prenatal:</label>
-            <input type="number" class="form-control text-center bg-primary bg-opacity-75 p-1" name="prenatal" [(ngModel)]="consulta.prenatal">
-          </div>
+  <div class="">
 
-          <div class=" mx-1 w-30 my-0">
-            <label class="text-light" for="lactancia">Lactancia Materna:</label>
-            <select id="lactancia" class="form-control bg-primary bg-opacity-75 text-uppercase text-center p-1" [(ngModel)]="consulta.lactancia" name="lactancia" autofocus>
-              <option value=""></option>
-              <option value="1">Si</option>
-              <option value="0">No</option>
-            </select>
-          </div>
-        </div>
-        <hr class="my-1">
-        <p class="text-info bg-dark rounded">Recepción y Archivo</p>
-        <div class="d-flex">
-          <div class="w-40 mx-1">
-            <label class="text-light" for="folios">Diagnostico:</label>
-            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" name="dx" [(ngModel)]="consulta.dx">
-          </div>
-
-          <div class="w-20 mx-1">
-            <label class="text-light" for="medico">Medico:</label>
-            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" name="medico" [(ngModel)]="consulta.medico">
-          </div>
-
-          <div class="w-20 mx-1">
-            <label class="text-light" for="folios">Folios:</label>
-            <input type="number" class="form-control bg-primary bg-opacity-75" name="folios" [(ngModel)]="consulta.folios">
-          </div>
-        </div>
-        <hr class="my-1">
-
-        <div class=" d-flex">
-        <label for="fecha_recepcion" class="form-label" *ngIf="consulta.fecha_egreso">Fecha de Recepción</label>
-          <input class="form-control bg-primary bg-opacity-75 mx-3" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="consulta.fecha_recepcion"  (click)="recepcion()" [max]="maxdate" disabled="">
-          <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarRecepcion()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-            <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-             2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-              11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-          </svg></button>
-        </div>
-
-        <div class=" d-flex mt-2">
-          <label for="fecha_recepcion" class="form-label">Fecha Egreso</label>
-          <input class="form-control bg-primary bg-opacity-75 mx-3" type="date" id="fecha_recepcion" name="fecha_egreso" [(ngModel)]="consulta.fecha_egreso" (click)="statusegreso()" [max]="maxdate" required>
-
-            <button type="submit" class="btn btn-danger bg-black mx-1" (click)="limpiarEgreso()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-              <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-               2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-                11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-            </svg></button>
-          </div>
-
-          <div class="d-flex justify-content-center">
-            <p class="mt-2"><span class="font-title1"> {{consulta.especialidad | anyToNumber | enumEspecialidad}}:</span> {{consulta.servicio | anyToNumber | enumServicios}}</p>
-          </div>
-          <div class=" mx-1 w-auto my-0">
-
-            <label class="text-light" for="encamamiento">Actualizar Encamamiento:</label>
-            <select id="encamamiento" class="form-control bg-primary bg-opacity-75 text-uppercase text-center p-1" [(ngModel)]="consulta.servicio" name="encamamiento" autofocus>
-              <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
-            </select>
-          </div>
-
-        <div class="mb-3 mt-3 text-center">
-          <button class="btnS btn p-1" (click)="onSubmit()">Guardar</button>
-        </div>
-
-    </form>
 </div>
+<form class="custom-form" autocomplete="off">
+  <h4>Datos de Partograma</h4>
+  <div class="d-flex gap-2">
+    <div class="custom-form-group">
+      <label class="" for="prenatal"># de Controles Prenatal:</label>
+      <input type="number" class="custom-input " name="prenatal" [(ngModel)]="consulta.prenatal">
+    </div>
+    <div class="custom-form-group">
+      <label class="" for="lactancia">Lactancia Materna:</label>
+        <select id="lactancia" class="custom-input w-50" [(ngModel)]="consulta.lactancia" name="lactancia" autofocus>
+          <option value=""></option>
+          <option value="1">Si</option>
+          <option value="0">No</option>
+        </select>
+    </div>
+  </div>
+
+    <hr class="my-1">
+    <p class="text-info bg-dark rounded">Recepción y Archivo</p>
+    <div class="d-flex">
+      <div class="justify-content-center">
+        <div class="custom-form-group">
+          <label class="text-light" for="folios">Diagnostico:</label>
+          <input type="text" class="custom-input" name="dx" [(ngModel)]="consulta.dx">
+        </div>
+
+        <div class="custom-form-group">
+          <label class="text-light" for="medico">Medico:</label>
+          <input type="text" class="custom-input" name="medico" [(ngModel)]="consulta.medico">
+        </div>
+
+        <div class="custom-form-group">
+          <label class="text-light" for="folios">Folios:</label>
+          <input type="number" class="custom-input " name="folios" [(ngModel)]="consulta.folios">
+        </div>
+      </div>
+    </div>
+
+
+    <hr class="my-1">
+
+    <div class=" d-flex mt-2 gap-2">
+    <label for="fecha_recepcion" class="form-label" *ngIf="consulta.fecha_egreso">Fecha de Recepción</label>
+      <input class="form-control custom-input" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="consulta.fecha_recepcion"  (click)="recepcion()" [max]="maxdate" disabled="">
+      <button type="submit" class="btn btn-secondary search-button" (click)="limpiarRecepcion()">
+        <deleteInput />
+      </button>
+    </div>
+
+    <div class=" d-flex mt-2 gap-2">
+      <label for="fecha_recepcion" class="form-label">Fecha Egreso</label>
+      <input class="form-control custom-input" type="date" id="fecha_recepcion" name="fecha_egreso" [(ngModel)]="consulta.fecha_egreso" (click)="statusegreso()" [max]="maxdate" required>
+
+        <button type="submit" class="btn btn-secondary search-button" (click)="limpiarEgreso()">
+          <deleteInput />
+      </button>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <p class="mt-2"><span class="font-title1"> {{consulta.especialidad | anyToNumber | enumEspecialidad}}:</span> {{consulta.servicio | anyToNumber | enumServicios}}</p>
+      </div>
+      <div class="custom-form-group gap-2">
+
+        <label class="text-light" for="encamamiento">Actualizar Encamamiento:</label>
+        <select id="encamamiento" class="custom-input form-control" [(ngModel)]="consulta.servicio" name="encamamiento" autofocus>
+          <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
+        </select>
+      </div>
+
+    <div class="mb-3 mt-3 text-center">
+      <button class="btn btn-dark search-button" (click)="onSubmit()">
+        <saveIcon />
+      </button>
+    </div>
+
+</form>
 
 </div>
 

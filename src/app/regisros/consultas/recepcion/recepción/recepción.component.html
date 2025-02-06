@@ -1,56 +1,55 @@
 
 <app-registros></app-registros>
-<div class="justify-content-center console-table">
+<div class="justify-content-center ">
   <div>
     <p class="text-center display-6" >Control de Expedientes</p>
   </div>
   <hr>
-  <div class="justify-content-between">
-    <form class="d-flex justify-content-between align-items-center gap-1" autocomplete="off">
-      <select id="status" class="form-control expande-contenido" [(ngModel)]="statusBuscar" name="statusBuscar">
-        <option value="1">Activos</option>
-        <option value="2">Archivados</option>
-      </select>
-      <input type="date" class="form-control text-capitalize text-center expande-contenido" name="fechaBuscar" placeholder="fechaBuscar" [(ngModel)]="fechaBuscar" />
-      <input type="number" class="form-control text-capitalize expande-contenido text-center" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-      <input type="number" class="form-control bg-opacity-75  text-center expande-contenido" name="Hoja" id="hojaBuscar" placeholder="Emergencia" [(ngModel)]="hojaBuscar" />
-      <input type="text" class="form-control  text-capitalize expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control text-capitalize expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <select id="especialidad" class="form-control expande-contenido" [(ngModel)]="tipoBuscar" name="tipoBuscar">
-        <option value="" disabled selected hidden>Tipo Consulta</option>
-        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
-      </select>
-      <button type="submit" class="btn btn border-quatz" (click)="limpiarInput()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
-        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2
-         2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66
-          11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
-      </svg></button>
-      <button type="submit" class="btn btn-quatz"  (click)="filtro()">buscar</button>
+  <div class="search-container">
+    <div class="rounded p-2 bg-dark">
+      <form class="d-flex justify-content-between align-items-center gap-1" autocomplete="off">
+        <select id="status" class="form-control search-input expande-contenido" [(ngModel)]="statusBuscar" name="statusBuscar">
+          <option value="1">Activos</option>
+          <option value="2">Archivados</option>
+        </select>
+        <input type="date" class="form-control search-input expande-contenido" name="fechaBuscar" placeholder="fechaBuscar" [(ngModel)]="fechaBuscar" />
+        <input type="number" class="form-control search-input expande-contenido" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+        <input type="number" class="form-control search-input expande-contenido" name="Hoja" id="hojaBuscar" placeholder="Emergencia" [(ngModel)]="hojaBuscar" />
+        <input type="text" class="form-control search-input expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+        <input type="text" class="form-control search-input expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+        <select id="especialidad" class="form-control " [(ngModel)]="tipoBuscar" name="tipoBuscar">
+          <option value="" disabled selected hidden>Tipo Consulta</option>
+          <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+        </select>
+        <button type="submit" class="btn btn-primary search-button"
+         (click)="filtro()">
+          <searchIcon />
+        </button>
+        <button type="button" class="btn btn-secondary search-button"
+         (click)="limpiarInput()">
+          <deleteInput />
+        </button>
+      </form>
+    </div>
 
-    </form>
 
   </div>
 
 
-<div class="console-table mt-1">
-  <table class="table table-hover table-black font-monospace" >
-    <thead>
+<div class="custom-table-wrapper t-w-d mt-1">
+  <table class="custom-table table-hover text-center" >
+    <thead class="text-normal">
       <tr>
-        <th class="text-center">Opc</th>
-        <th class="text-center">Id</th>
-        <th class="text-center">Archivar</th>
-        <th class="text-center">Historia Clinica
-          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749
-            0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path>
-         </svg>
-        </th>
-        <th class="text-center">Nombre</th>
-        <th class="text-center">Fecha</th>
-        <th class="text-center">dias</th>
-        <th class="text-center">Servicio</th>
-        <th class="text-center">Tipo Consulta</th>
-        <th class="text-center">Status</th>
-        <th class="text-center">No.</th>
+        <th class="text-center fs-9">Egreso</th>
+        <th class="text-center fs-9">Archivar</th>
+        <th class="text-center fs-9">Expediente</th>
+        <th class="text-center fs-9">Paciente</th>
+        <th class="text-center fs-9">Fecha</th>
+        <th class="text-center fs-9">Estancia</th>
+        <th class="text-center fs-9">Servicio</th>
+        <th class="text-center  fs-9">Tipo Consulta</th>
+        <th class="text-center fs-9">Status</th>
+
 
 
       </tr>
@@ -60,21 +59,15 @@
       <tr *ngFor="let consulta of resumen; let i = index">
 
         <td class="text-center "  (click)="consultaro(consulta.id)" data-bs-toggle="modal" data-bs-target="#out">
-          <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 28 28">
-            <path d="M9.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M6.44 3.752A.75.75 0 0 1 7 3.5h1.445c.742 0 1.32.643 1.243 1.38l-.43 4.083a1.8 1.8 0 0 1-.088.395l-.318.906.213.242a.8.8 0 0 1 .114.175l2 4.25a.75.75 0 1 1-1.357.638l-1.956-4.154-1.68-1.921A.75.75 0 0 1 6 8.96l.138-2.613-.435.489-.464 2.786a.75.75 0 1 1-1.48-.246l.5-3a.75.75 0 0 1 .18-.375l2-2.25Z"/>
-            <path d="M6.25 11.745v-1.418l1.204 1.375.261.524a.8.8 0 0 1-.12.231l-2.5 3.25a.75.75 0 1 1-1.19-.914zm4.22-4.215-.494-.494.205-1.843.006-.067 1.124 1.124h1.44a.75.75 0 0 1 0 1.5H11a.75.75 0 0 1-.531-.22Z"/>
-            <text x="0" y="21" font-size="7">Egreso</text>
-          </svg>
+          <goHomeIcon />
 
       </td>
-        <td class="text-center font-weight-bold" > {{consulta.id}}
 
-        </td>
-        <td [routerLink]="['/recept/', consulta.id]" class="text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#f6ca8f" class="bi bi-archive" viewBox="0 0 16 16">
-          <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-          </svg>
-        </td>
+      <td [routerLink]="['/recept/', consulta.id]" class="text-center">
+        <archiveIcon />
+      </td>
+
+
         <td class="text-center text-warning font-ubuntu" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#verCons">
           <span class="me-1 font-title1">Expediente: </span>{{consulta.expediente}}<br>
           <span class="me-1 font-title1">Hoja Emergencia: </span>{{consulta.hoja_emergencia}}
@@ -101,7 +94,7 @@
         </td>
         <td class="text-center">{{consulta.tipo_consulta | anyToNumber| enumTipo }}</td>
         <td class="text-center">{{consulta.status | anyToNumber | enumStatus}}</td>
-        <td class="text-center" >{{ contador + i + 1}}</td>
+
       </tr>
     </tbody>
       </table>
@@ -121,27 +114,42 @@
     <div class="modal" id="out">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content w-50 ">
-          <div class="">
-            <div class="form">
+          <div class=" p-3">
+
+            <form class="cutom-form">
               <div class="subtitle">Egreso de Pacientes<br>
                 <span>exp:{{consulta_.expediente}}</span>
               </div>
-              <div class="input-container ic1">
-                <select id="encamamiento" class="input" type="text" [(ngModel)]="consulta_.servicio" placeholder="">
+              <div class="custom-form-group">
+                <select id="encamamiento" class="custom-input" type="text" [(ngModel)]="consulta_.servicio" placeholder="">
                   <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
                 </select>
                 <div class="cut"></div>
                 <label for="encamamiento" id="placeholder" class="" >Encamamiento</label>
-              </div>
-              <div class="input-container ic2">
-                <input id="egreso" class="input" type="date" placeholder="" [(ngModel)]="consulta_.fecha_egreso" (click)="egreso()"  [max]="maxdate">
+
+                <input id="egreso" class="custom-input" type="date" placeholder="" [(ngModel)]="consulta_.fecha_egreso" (click)="egreso()"  [max]="maxdate">
                 <div class="cut"></div>
                 <label for="lastname" id="placeholder" class="">Fecha de Egreso</label>
               </div>
+              <div class="subtitle">Egreso de Pacientes<br>
+                <span>exp:{{consulta_.expediente}}</span>
+              </div>
+              <div class="search-container">
+                <div class="rounded p-2 bg-dark">
+                  <div class="search-form">
+                    <button type="text" class="btn btn-dark search-button" data-bs-dismiss="modal" (click)="guardarEgreso()">
+                      <saveIcon />
+                    </button>
+                    <button type="text" class="btn btn-dark search-button" data-bs-dismiss="modal">
+                      <closeIcon />
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-              <button type="text" class="submit w-80" data-bs-dismiss="modal" (click)="guardarEgreso()">Guardar</button>
-              <button type="text" class="submit w-80" data-bs-dismiss="modal">Cancelar</button>
-            </div>
+            </form>
+
+
           </div>
 
         </div>

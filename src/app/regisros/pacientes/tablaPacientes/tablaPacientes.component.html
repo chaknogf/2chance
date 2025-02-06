@@ -1,10 +1,8 @@
 <app-registros></app-registros>
 
 <div>
-  <div class=" mt-3">
-    <p class="text-center h2 p-0 text-light">Lista de Pacientes
-
-    </p>
+  <div class=" mt-1">
+    <p class="text-center h2 p-0 text-light">Lista de Pacientes</p>
 
     <div *ngIf="porcentajeDeProgreso >= 0" class="d-flex justify-content-center">
       <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
@@ -29,54 +27,51 @@
 
 
 
-  <hr class="my-0 p-1">
-  <div class="search-containe">
-    <div class="rounded p-2 bg-dark">
+
+  <div class="search-container">
+    <div class="search-div">
       <form class="search-form" autocomplete="off">
         <!-- Campos de búsqueda -->
         <input
           type="text"
-          class="form-control search-input"
+          class="search-input form-control"
           name="expediente"
           placeholder="Expediente"
           [(ngModel)]="expedienteBuscar"
         />
         <input
           type="text"
-          class="form-control search-input"
+          class="search-input form-control"
           placeholder="Nombre"
           name="nombreBuscar"
           [(ngModel)]="nombreBuscar"
         />
         <input
           type="text"
-          class="form-control search-input"
+          class="search-input form-control"
           placeholder="Apellido"
           name="apellidoBuscar"
           [(ngModel)]="apellidoBuscar"
         />
         <input
+        class="search-input form-control"
           type="text"
-          class="form-control search-input"
           placeholder="DPI"
           name="dpiBuscar"
           [(ngModel)]="dpiBuscar"
         />
 
-        <!-- Botones de acción -->
-        <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
-          <searchIcon />
-        </button>
-        <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
-          <deleteInput />
-        </button>
-        <button
-          class="btn btn-info search-button"
-          data-bs-toggle="modal"
-          data-bs-target="#formularioModalP"
-        >
-          <createIcon />
-        </button>
+        <div class="d-flex gap-1">
+          <searchIcon (click)="filtro()"/>
+
+
+          <deleteInput (click)="limpiarInput()"/>
+
+
+          <createIcon data-bs-toggle="modal" data-bs-target="#formularioModalP" />
+
+        </div>
+
       </form>
     </div>
   </div>
@@ -99,45 +94,37 @@
         <thead class="text-normal">
           <tr>
 
-            <th class="text-center bg-aqua"></th>
-            <th class="text-center bg-aqua"></th>
-            <th class="text-center bg-aqua" (click)="sortTable('expediente')">Expediente</th>
-            <th class="text-center bg-aqua" (click)="sortTable('nombre')">Paciente</th>
-            <th class="text-center bg-aqua" (click)="sortTable('dpi')">DPI</th>
-            <th class="text-center bg-aqua" (click)="sortTable('sexo')">Sexo</th>
-            <th class="text-center bg-aqua" (click)="sortTable('nacimiento')">Edad</th>
-            <th class="text-center bg-aqua" (click)="sortTable('nacimiento')">Fecha Nacimiento</th>
-            <th class="text-center bg-aqua" (click)="sortTable('estado')">Estado</th>
-            <th class="text-center bg-aqua" (click)="sortTable('id')">ID</th>
+
+            <th ></th>
+            <th  (click)="sortTable('expediente')">Expediente</th>
+            <th  (click)="sortTable('sexo')">Sexo</th>
+            <th  (click)="sortTable('nombre')">Paciente</th>
+            <th  (click)="sortTable('dpi')">DPI</th>
+            <th  (click)="sortTable('nacimiento')">Edad</th>
+            <th  (click)="sortTable('nacimiento')">Fecha Nacimiento</th>
+            <th  (click)="sortTable('estado')">Estado</th>
+            <th  (click)="sortTable('id')">ID</th>
           </tr>
         </thead>
 
         <tbody class="justify-content-center  opacity-90 ">
           <tr *ngFor="let paciente of filteredPacientes">
             <td>
-              <button *ngIf="paciente.sexo === 'F' && calcularEdad(paciente.nacimiento) > 10" class="btn btn-dark btn-sm" [routerLink]="['/rn/', paciente.expediente]">
-                <babyIcon />
-              </button>
+              <div class="column.block">
+
+                  <babyFootIcon *ngIf="paciente.sexo === 'F' && calcularEdad(paciente.nacimiento) > 12 && calcularEdad(paciente.nacimiento) < 50" [routerLink]="['/rn/', paciente.expediente]" />
+
+                  <editIcon [routerLink]="['/paciente/edit', paciente.id]" />
+
+              </div>
             </td>
-            <td>
-              <button class="btn btn-dark btn-sm" [routerLink]="['/paciente/edit', paciente.id]">
-                <editIcon />
-              </button>
-            </td>
+
             <td class="font-title text-center text-warning" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver">
               <span>
                 <dataViewIcon />
               {{ paciente.expediente }}
             </span>
             </td>
-            <td class="text-center text-justify " appHighlightWords >
-              <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
-              {{ paciente.apellido | capitalizeName }}
-              <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
-                <gemeloIcon />
-              </span>
-            </td>
-            <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
             <td class="text-center">
               <ng-container *ngIf="paciente.sexo == 'F'; else man">
                <femIcon/>
@@ -152,6 +139,16 @@
                 <atentionIcon />
               </ng-template>
             </td>
+            <td class="text-center text-justify " appHighlightWords >
+              <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
+              {{ paciente.apellido | capitalizeName }}
+              <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
+                <gemeloIcon />
+              </span>
+            </td>
+
+            <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
+
             <td class="text-center">{{ paciente.nacimiento | edad }}</td>
             <td class="text-center">{{ paciente.nacimiento | anyToText | formatoFecha}}</td>
             <td class="text-center">
