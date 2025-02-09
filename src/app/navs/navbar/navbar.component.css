@@ -1,0 +1,36 @@
+.navbar-nav .dropdown-menu {
+  background: rgba(10, 25, 47, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: none;
+
+
+}
+
+.navbar-nav .dropdown-menu a {
+  color: white;
+}
+
+.navbar-nav .dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.btn-danger {
+  background: #d9534f;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #c9302c;
+}

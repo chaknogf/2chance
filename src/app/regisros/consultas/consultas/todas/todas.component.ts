@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from '../../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
+import { Ienum, OtrosEnums } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, tipo } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 
@@ -14,7 +14,7 @@ import { municipio } from 'src/app/enums/vencindad';
   styleUrls: ['./todas.component.css']
 })
 export class TodasComponent implements OnInit {
-[x: string]: any;
+  [x: string]: any;
 
   constructor(
     private ConsultasService: ConsultasService,
@@ -52,6 +52,7 @@ export class TodasComponent implements OnInit {
   public statusBuscar: any = '';
   public detalleVisible: boolean = false;
   public consult: Iconcultas | undefined;
+  private hoy: string = '';
 
 
 
@@ -92,7 +93,7 @@ export class TodasComponent implements OnInit {
     medico: null
   }
 
-   e: Ienum = {
+  e: Ienum = {
     municipio: municipio,
     nation: nation,
     people: etnias,
@@ -112,8 +113,11 @@ export class TodasComponent implements OnInit {
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
-
+    this.paginar();
+    this.fechaBuscar = currentDate;
+    this.hoy = currentDate;
   }
+
 
 
   consultar() {
@@ -122,35 +126,14 @@ export class TodasComponent implements OnInit {
       this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
       this.porcentajeDeProgreso = 75;
       this.resumen = data;
-      this.paginar();//Llama a la función aquí para paginar automáticamente
+      this.paginar();
       this.porcentajeDeProgreso = 100;
       setTimeout(() => {
-        this.porcentajeDeProgreso = -1; // Puedes establecerlo en -1 o cualquier otro valor para ocultar la barra
+        this.porcentajeDeProgreso = -1;
       }, 1000);
 
     });
   }
-
-  sortTable(column: keyof Iconcultas) {
-    if (this.sortColumn === column) {
-      this.ascendingOrder = !this.ascendingOrder;
-    } else {
-      this.sortColumn = column;
-      this.ascendingOrder = true;
-    }
-
-    this.resumen.sort((a, b) => {
-      const order = this.ascendingOrder ? 1 : -1;
-      if (a[column] < b[column]) {
-        return -order;
-      } else if (a[column] > b[column]) {
-        return order;
-      } else {
-        return 0;
-      }
-    });
-  }
-
 
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
@@ -197,12 +180,37 @@ export class TodasComponent implements OnInit {
     };
 
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {
+      this.consultas = result;
       this.resumen = result;
+      this.paginar()
     });
 
 
 
   }
+
+
+  sortTable(column: keyof Iconcultas) {
+    if (this.sortColumn === column) {
+      this.ascendingOrder = !this.ascendingOrder;
+    } else {
+      this.sortColumn = column;
+      this.ascendingOrder = true;
+    }
+
+    this.resumen.sort((a, b) => {
+      const order = this.ascendingOrder ? 1 : -1;
+      if (a[column] < b[column]) {
+        return -order;
+      } else if (a[column] > b[column]) {
+        return order;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+
 
 
 
@@ -253,9 +261,9 @@ export class TodasComponent implements OnInit {
     this.apellidoBuscar = '';
     this.dpiBuscar = '';
     this.hojaBuscar = '';
-    this.fechaBuscar = '';
+    this.fechaBuscar = this.hoy;
     this.consultar();
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizar(data: any[]) {

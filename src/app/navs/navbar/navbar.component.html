@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <!-- Marca (Logo o título) -->
+    <a class="navbar-brand" routerLink="/home">Home</a>
+
+    <!-- Botón de toggle para móviles -->
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Contenedor del menú -->
+    <div class="collapse navbar-collapse" [class.show]="isExpanded" id="navbarColor02">
+      <ul class="navbar-nav me-auto ">
+        <!-- Iteramos sobre los elementos del menú -->
+        <li *ngFor="let item of items" class="nav-item" [class.dropdown]="item.children">
+          <!-- Elemento sin submenú -->
+          <a *ngIf="!item.children" class="nav-link" [routerLink]="item.children" (click)="handleLinkClick(item.children)">
+            {{ item.label }}
+          </a>
+
+          <!-- Elemento con submenú -->
+          <div *ngIf="item.children" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"  role="button" (click)="toggleDropdown(item.label)"
+               [attr.aria-expanded]="openDropdown === item.label">
+                 {{ item.label }}
+            </a>
+            <ul class="dropdown-menu" [class.show]="openDropdown === item.label">
+              <li *ngFor="let sub of item.children">
+                <a class="dropdown-item" [routerLink]="sub.subhref" (click)="handleLinkClick(sub.subhref)">
+                  {{ sub.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Input de búsqueda -->
+      <!-- <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Buscar">
+        <button class="btn btn-secondary" type="submit">Buscar</button>
+      </form> -->
+
+      <!-- Botón de cierre de sesión -->
+      <button class="btn btn-danger ms-3" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </div>
+</nav>

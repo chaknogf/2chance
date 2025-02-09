@@ -1,26 +1,12 @@
 <div class="search-container">
-  <div class="rounded p-2 bg-dark">
+  <div class="div-btn-icons">
+    <eliminarIcon (click)="confirmarBorrar()" />
+    <saveIcon (click)="edit ? editar() : crearPaciente()" />
+    <backIcon (click)="modal ? closeModal() : regresar()" />
     <div class="search-form">
-      <button type="button" class="btn btn-secondary search-button" routerLink="['/pacientes']" (click)="confirmarBorrar()" >
-        <eliminarIcon />
-        Eliminar
-       </button>
-
-       <button type="submit" class="btn btn-primary search-button"    (click)="edit ? editar() : crearPaciente()" data-bs-dismiss="modal" aria-label="Close">
-         <saveIcon />
-         Guardar
-       </button>
-
-       <button class="btn btn-info search-button" data-bs-dismiss="modal" aria-label="Close" (click)="regresar()">
-          <backIcon />
-           Regresar
-       </button>
     </div>
-
-
-
-
   </div>
+  <h3 class="text-center">Formulario Paciente</h3>
   <form class="custom-form" autocomplete="off">
     <!-- Estado (Vivo/Fallecido) -->
     <div class="custom-form-group">

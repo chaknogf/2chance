@@ -88,8 +88,10 @@ export class FormularioPacienteComponent implements OnInit {
 
 
   edit: boolean = false;
+  modal: boolean = true;
   traslado: boolean = false
   isDead: boolean = false; // Variable para el estado de fallecido (checkbox)
+  modalService: any;
 
 
 
@@ -120,6 +122,7 @@ export class FormularioPacienteComponent implements OnInit {
           data => {
             this.p = data;
             this.edit = true;
+            this.modal = false;
             this.munisFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto_nac);
             this.municipiosFiltrados = this.e.municipio.filter(muni => muni.depto == this.p.depto);
 
@@ -219,6 +222,8 @@ export class FormularioPacienteComponent implements OnInit {
 
   regresar() {
     this._location.back();
+
+
   }
 
   municipiosFiltrados: any[] = []; // Lista de municipios filtrados
@@ -277,6 +282,9 @@ export class FormularioPacienteComponent implements OnInit {
   }
 
 
+  closeModal() {
+    this.modalService.dismissAll();
+  }
 
 
 }

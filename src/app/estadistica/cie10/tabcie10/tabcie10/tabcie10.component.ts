@@ -47,71 +47,9 @@ export class Tabcie10Component implements OnInit {
   }
 
   ngOnInit() {
-    this.consult()
-
-  }
-
-  getCodigos() {
-    this.cie.getCodigos().subscribe(data => {
-      this.cie10 = data;
-      this.resumen = data;
-      this.paginar();
-    });
-}
-
-  paginar() {
-    const tamanoPagina = 12;
-    const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
-    const indiceFin = indiceInicio + tamanoPagina;
-    this.resumen = this.cie10.slice(indiceInicio, indiceFin);
-    this.totalRegistros = this.resumen.length; // Agrega esta línea para actualizar el número total de registros por página
-  }
-
-  getPaginas(): number[] {
-    const totalPaginas = Math.ceil(this.resumen.length / this.totalRegistros);
-
-    // Verificar si totalPaginas es válido antes de crear el array
-    if (totalPaginas <= 0) {
-      return [];
-    }
-
-    return Array.from({ length: 10 }, (_, index) => index + 1);
-  }
-
-  totalPaginas(): number {
-    return Math.ceil(this.cie10.length / this.totalRegistros);
-
-  }
-
-  filtro() {
-    // Recopila los valores de entrada del formulario
-    const filters = {
-      cod: this.buscarcodigo,
-      dx: this.buscardx,
-      abreviatura: this.buscarabreviatura,
-      especialidad: this.buscarespecialidad,
-      grupo: this.buscargrupo,
-    };
-
-    this.cie.filtrarDX(filters).subscribe((result) => {
-      this.resumen = result;
-    });
-
-  }
-
-  limpiarInput() {
-    this.buscarcodigo = '';
-    this.buscarabreviatura = '';
-    this.buscardx = '';
-    this.buscarespecialidad = '';
-    this.buscargrupo = '';
     this.consult();
-  }
-
-
-  onPageChange(pageNumber: number) {
-    this.paginaActual = pageNumber;
     this.paginar();
+
   }
 
   consult() {
@@ -128,6 +66,71 @@ export class Tabcie10Component implements OnInit {
 
     });
   }
+
+  onPageChange(pageNumber: number) {
+    this.paginaActual = pageNumber;
+    this.paginar();
+  }
+
+  paginar() {
+    const tamanoPagina = 12;
+    const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
+    const indiceFin = indiceInicio + tamanoPagina;
+    this.resumen = this.cie10.slice(indiceInicio, indiceFin);
+    this.totalRegistros = this.resumen.length; // Agrega esta línea para actualizar el número total de registros por página
+  }
+
+  getPaginas(): number[] {
+    const totalPaginas = Math.ceil(this.resumen.length / this.totalRegistros);
+    // Verificar si totalPaginas es válido antes de crear el array
+    if (totalPaginas <= 0) {
+      return [];
+    }
+    return Array.from({ length: 10 }, (_, index) => index + 1);
+  }
+
+  totalPaginas(): number {
+    return Math.ceil(this.cie10.length / this.totalRegistros);
+
+  }
+
+  getCodigos() {
+    this.cie.getCodigos().subscribe(data => {
+      this.cie10 = data;
+      this.resumen = data;
+      this.paginar();
+    });
+  }
+
+  filtro() {
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      cod: this.buscarcodigo,
+      dx: this.buscardx,
+      abreviatura: this.buscarabreviatura,
+      especialidad: this.buscarespecialidad,
+      grupo: this.buscargrupo,
+    };
+
+    this.cie.filtrarDX(filters).subscribe((result) => {
+      this.cie10 = result;
+      this.resumen = result;
+      this.paginar();
+    });
+
+  }
+
+  limpiarInput() {
+    this.buscarcodigo = '';
+    this.buscarabreviatura = '';
+    this.buscardx = '';
+    this.buscarespecialidad = '';
+    this.buscargrupo = '';
+    this.consult();
+  }
+
+
+
 
 
 }

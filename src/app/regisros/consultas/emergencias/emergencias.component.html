@@ -1,180 +1,152 @@
-
-
-
-<div class="container-fluid mt-2">
-  <div class="row">
-    <div class="col-md-6">
-      <!-- Contenido del formulario -->
-
-      <form class="custom-form" autocomplete="off">
-        <button type="button" class="btn btn-info search-button" (click)="regresar()">
-          <backIcon />
-          Regresar
-        </button>
-        <div class="card-header text-center text-light h3">Registro de Hoja de Emergencia</div>
-
-        <div class="card-body">
-
-        <div class="custom-form-group">
-          <label for="hoja_emergencia" class="text-light">Hoja de Emeregncia:</label>
-          <input type="text" class="custom-input text-uppercase" id="hoja_emergencia" name="hoja_emergencia" [(ngModel)]="emergencia.hoja_emergencia">
-        </div>
-
-        <div class="custom-form-group">
-          <label class="text-light" for="fecha">Fecha:</label>
-          <input type="date" class="custom-input" id="fecha" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
-          <label class="text-light mx-2" for="hora">Hora:</label>
-          <input type="time" class="custom-input" id="hora" name="hora"
-             placeholder="hh:mm" [(ngModel)]="emergencia.hora">
-        </div>
-
-
-
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="apellidos">Apellidos:</label>
-          <input type="text" class="custom-input text-uppercase" id="apellidos" name="apellidos" placeholder="apellidos" [(ngModel)]="emergencia.apellidos">
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="nombres">Nombres:</label>
-          <input type="text" class="custom-input text-uppercase" id="nombres" name="nombres" placeholder="nombres" [(ngModel)]="emergencia.nombres">
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="nacimiento">Fecha de nacimiento:</label>
-          <div class="d-flex gap-2">
-            <input type="date" class="custom-input w-50" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
-            <button class="btn btn-dark search-button w-25" (click)="calcularedad()">Calcular edad</button>
-            <span></span>
-          </div>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <div class="d-flex gap-2">
-            <label class="text-light" for="edad">Edad:</label>
-          <input type="text" class="custom-input w-20" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
-          <input type="text" class="custom-input w-20" id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
-          <input type="text" class="custom-input w-20" id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
-
-          <button class="btn btn-dark search-button w-25" (click)="calcularNacimiento()">
-            Calcular Nacimiento
-          </button>
-          </div>
-
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="sexo">Sexo:</label>
-          <select id="sexo" class="custom-input text-uppercase" [(ngModel)]="emergencia.sexo" name="sexo" autofocus>
-            <option value=""></option>
-            <option value="M">Masculino</option>
-            <option value="F">Femenino</option>
-          </select>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="telefono">Teléfono:</label>
-          <input type="text" id="telefono" name="telefono" class="custom-input" [ngModel]="emergencia.telefono"  placeholder="telefono" autofocus espaciosNumeros>
-          <span></span>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="DPI/CUI de paciente">DPI/CUI:</label>
-          <input type="text" class="custom-input " id="dpi" name="dpi" placeholder="DPI/CUI sin espacios" [(ngModel)]="emergencia.dpi"  >
-          <span></span>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="direccion">Dirección:</label>
-          <input type="text" class="custom-input text-uppercase" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="emergencia.direccion" >
-          <span></span>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="acompañante">Acompañante:</label>
-          <input type="text" class="custom-input text-uppercase" id="acompañante" name="acompañante" placeholder="acompañante"  [(ngModel)]="emergencia.acompa" >
-          <span></span>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="aprentesco">Parentesco:</label>
-          <select id="parentesco" class="custom-input text-uppercase" [(ngModel)]="emergencia.parente" name="parente" autofocus>
-            <option  *ngFor="let option of e.parents" [value]="option.value">{{option.label}}</option>
-          </select>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="nota">Nota:</label>
-          <input type="text" class="custom-input text-uppercase" id="nota" name="nota" placeholder="nota" [(ngModel)]="emergencia.nota" >
-          <span></span>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="nota">Dx:</label>
-          <input type="text" class="custom-input text-uppercase" id="dx" name="dx" placeholder="Diagnostico" [(ngModel)]="emergencia.dx" >
-          <span></span>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="nota">Medico:</label>
-          <input type="text" class="custom-input text-uppercase" id="medico" name="medico" placeholder="Medico" [(ngModel)]="emergencia.medico" >
-          <span></span>
-        </div>
-
-        <div class="custom-form-group mt-2">
-          <label class="text-light" for="nota">Expediente:</label>
-          <input type="text" class="custom-input" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="emergencia.expediente" >
-          <span></span>
-        </div>
-
-        <div *ngIf="emergencia.status == 2">
-          <input type="text" name="status" id="status" class="f-negrita" value="Archivado" disabled="">
-        </div>
-
-      </div>
-
-
-      <div >
-        <div class="d-flex justify-content-center gap-2">
-          <button class="btn btn-info search-button" (click)="archivar()">
-            <archiveIcon />
-          </button>
-          <button type="submit" class="btn btn-primary search-button" (click)="edit ? editar() :registrarEmergencia()">
-            <saveIcon />
-          </button>
-          <button class="btn btn-secondary search-button">
-            <eliminarIcon />
-          </button>
-        </div>
-
-
-      </div>
-      </form>
+<div class="d-flex-desktop">
+  <div class="search-container">
+    <div class="div-btn-icons">
+      <backIcon (click)="regresar()" />
+      <archivarIcon  (click)="archivar()" />
+      <saveIcon (click)="edit ? editar() :registrarEmergencia()" />
+      <eliminarIcon  />
     </div>
-    <div class="col-md-6">
-      <!-- Tabla de emergencias -->
+    <h3 class="text-center">Formulario Emergencias</h3>
+    <form class="custom-form" autocomplete="off">
+
+      <div class="custom-form-group">
+        <label for="hoja_emergencia" >Hoja de Emeregncia:</label>
+        <input type="text" class="custom-input" id="hoja_emergencia" name="hoja_emergencia" [(ngModel)]="emergencia.hoja_emergencia">
+      </div>
+
+      <div class="custom-form-group">
+        <label  for="fecha">Fecha:</label>
+        <input type="date" class="custom-input" id="fecha" name="fecha_consulta" placeholder="dd-mm-yyyy" [(ngModel)]="emergencia.fecha_consulta" [max]="maxdate">
+      </div>
+      <div class="custom-form-group">
+        <label class="" for="hora">Hora:</label>
+        <input type="time" class="custom-input" id="hora" name="hora"
+           placeholder="hh:mm" [(ngModel)]="emergencia.hora">
+      </div>
+      <div class="custom-form-group ">
+        <label  for="apellidos">Apellidos:</label>
+        <input type="text" class="custom-input" id="apellidos" name="apellidos" placeholder="apellidos" [(ngModel)]="emergencia.apellidos" required="">
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="nombres">Nombres:</label>
+        <input type="text" class="custom-input" id="nombres" name="nombres" placeholder="nombres" [(ngModel)]="emergencia.nombres" required="">
+      </div>
+      <button class="btn btn-dark search-button w-auto text-yellow" (click)="tabEmerExpRef.filtro()">Filtrar</button>
+
+      <div class="custom-form-group ">
+        <label  for="nacimiento">Fecha de nacimiento:</label>
+        <input type="date" class="custom-input" id="nacimiento" name="nacimiento" placeholder="nacimiento" [(ngModel)]="emergencia.nacimiento" [max]="maxdate" >
+        <button class="btn btn-dark search-button w-auto text-yellow" (click)="calcularedad()">Calcular edad</button>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="edad">Edad:</label>
+        <div class="d-flex justify-content-between gap-1">
+        <input type="text" class="custom-input" id="años" name="edadAños" placeholder="años" [(ngModel)]="edadA" min="0" max="150">
+        <input type="text" class="custom-input " id="meses" name="edadMeses" placeholder="meses" [(ngModel)]="edadMeses" min="0" max="11">
+        <input type="text" class="custom-input " id="dias" name="edadDias" placeholder="dias" [(ngModel)]="edadDias" min="0" max="30">
+        </div>
+        <button class="btn btn-dark search-button w-auto text-yellow" (click)="calcularNacimiento()">
+          Calcular Nacimiento
+        </button>
+      </div>
+      <div class="custom-form-group ">
+        <label  for="sexo">Sexo:</label>
+        <select id="sexo" class="custom-input" [(ngModel)]="emergencia.sexo" name="sexo" autofocus required="">
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+        </select>
+      </div>
+      <div class="custom-form-group ">
+        <label  for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" class="custom-input" [ngModel]="emergencia.telefono"  placeholder="telefono" autofocus espaciosNumeros>
+        <span></span>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="DPI/CUI de paciente">DPI/CUI:</label>
+        <input type="text" class="custom-input " id="dpi" name="dpi" placeholder="DPI/CUI sin espacios" [(ngModel)]="emergencia.dpi"  >
+        <span></span>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="direccion">Dirección:</label>
+        <input type="text" class="custom-input" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="emergencia.direccion" >
+        <span></span>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="acompañante">Acompañante:</label>
+        <input type="text" class="custom-input" id="acompañante" name="acompañante" placeholder="acompañante"  [(ngModel)]="emergencia.acompa" >
+        <span></span>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="aprentesco">Parentesco:</label>
+        <select id="parentesco" class="custom-input" placeholder="parentesco" [(ngModel)]="emergencia.parente" name="parente" autofocus>
+          <option  *ngFor="let option of e.parents" [value]="option.value">{{option.label}}</option>
+        </select>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="nota">Nota:</label>
+        <input type="text" class="custom-input" id="nota" name="nota" placeholder="nota" [(ngModel)]="emergencia.nota" >
+        <span></span>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="nota">Dx:</label>
+        <input type="text" class="custom-input" id="dx" name="dx" placeholder="Diagnostico" [(ngModel)]="emergencia.dx" >
+        <span></span>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="nota">Medico:</label>
+        <input type="text" class="custom-input" id="medico" name="medico" placeholder="Medico" [(ngModel)]="emergencia.medico" >
+        <span></span>
+      </div>
+
+      <div class="custom-form-group ">
+        <label  for="nota">Expediente:</label>
+        <input type="text" class="custom-input" id="expediente" name="expediente" placeholder="expediente" [(ngModel)]="emergencia.expediente" >
+        <span></span>
+      </div>
+
+      <div *ngIf="emergencia.status == 2">
+        <input type="text" name="status" id="status" class="f-negrita rounded" value="Archivado" disabled="">
+      </div>
+    <div >
+    </div>
+    </form>
+  </div>
+<!-- flip card -->
+  <div class="search-containe">
+    <div class="">
       <tabEmerExp
-      [nombreBuscar]="emergencia.nombres"
-      [apellidoBuscar]="emergencia.apellidos"
-      [dpiBuscar]="emergencia.dpi"
+        #tabEmerExpRef
+        [nombreBuscar]="emergencia.nombres"
+        [apellidoBuscar]="emergencia.apellidos"
+        [dpiBuscar]="emergencia.dpi"
+        (idPaciente)="emergencia.expediente= $event"
+        (apellido)="emergencia.apellidos= $event"
+        (direccion)="emergencia.direccion= $event"
+        (nacimiento)="emergencia.nacimiento= $event"
+        (nombre)="emergencia.nombres= $event"
+        (sexo)="emergencia.sexo= $event"
+        (dpi)="emergencia.dpi = $event.toString()"
+      ></tabEmerExp>
 
-      (idPaciente)="emergencia.expediente= $event"
-      (apellido)="emergencia.apellidos= $event"
-      (direccion)="emergencia.direccion= $event"
-      (nacimiento)="emergencia.nacimiento= $event"
-      (nombre)="emergencia.nombres= $event"
-      (sexo)="emergencia.sexo= $event"
-      (dpi)="emergencia.dpi = $event.toString()"
-
-
-       ></tabEmerExp>
     </div>
   </div>
-
-  <!-- Botones de guardar y eliminar -->
-
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -183,8 +155,6 @@
   <input type="sumit" class="form-control w-20 rounded text-capitalize mx-1 " placeholder="nombre" name="nombreBuscar"  [(ngModel)]="emergencia.nombres" disabled="">
   <input type="text" class="form-control w-20 rounded text-capitalize mx-1" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="emergencia.apellidos" disabled="">
   <input type="text" class="form-control w-20 rounded mx-1" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="emergencia.dpi"disabled="">
-
-
 </div>
 
 

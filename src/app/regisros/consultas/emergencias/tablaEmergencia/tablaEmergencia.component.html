@@ -1,87 +1,88 @@
-
-<app-registros></app-registros>
-<div class="d-flex justify-content-center">
-  <h2 class="text-center text-light">Registro de Emeregencias</h2>
-</div>
-<hr class="my-0 p-1">
-
-<div class="justify-content-center table-hover table-black">
-  <div class="search-container">
+<div class="search-container">
+  <div class="search-div">
     <form class="search-form" autocomplete="off">
-      <input type="text" class="form-control search-input expande-contenido" name="hojaBuscar" id="hojaBuscar" placeholder="Hoja de Emergencia" [(ngModel)]="hojaBuscar" />
-      <input type="date" class="form-control search-input expande-contenido" name="fechaBuscar" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control search-input expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control search-input expande-contenido" placeholder="Apellido" name="Apellido" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control expande-contenido" placeholder="DPI" name="dpiBuscar" [(ngModel)]="apellidoBuscar">
-      <button type="submit" class="btn btn-primary search-button" (click)="filtro()" >
-        <searchIcon />
-      </button>
-      <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
-        <deleteInput />
-      </button>
-      <button class="btn btn-info search-button" [routerLink]="['/emergencias']">
-        <createIcon />
-      </button>
+      <input type="text" class="search-input form-control" name="hojaBuscar" id="hojaBuscar" placeholder="Hoja de Emergencia" [(ngModel)]="hojaBuscar" />
+      <input type="date" class="search-input form-control" name="fechaBuscar" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+      <input type="text" class="search-input form-control" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="search-input form-control" placeholder="Apellido" name="Apellido" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="search-input form-control" placeholder="DPI" name="dpiBuscar" [(ngModel)]="apellidoBuscar">
+      <div class="div-btn-icons">
+        <searchIcon (click)="filtro()"/>
+        <deleteInput (click)="limpiarInput()"/>
+        <createIcon data-bs-toggle="modal" data-bs-target="#" [routerLink]="['/emergencias']" />
+      </div>
     </form>
-
   </div>
+</div>
 
-  <div class="loader-container">
-    <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
-  </div>
-  <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
 
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
-         role="progressbar"
-         [style.width.%]="porcentajeDeProgreso"
-         [attr.aria-valuenow]="porcentajeDeProgreso"
-         aria-valuemin="0"
-         aria-valuemax="100">
-     <strong class="">C o m p l e t a d o</strong>
-    </div>
-  </div>
 
-<div class="custom-table-wrapper t-w-d mt-3">
+<div class="custom-table-wrapper mt-2">
+  <h3 class="m-0 p-0">Emergencias</h3>
   <table class="custom-table table-hover text-center" >
     <thead class="text-normal">
       <tr>
-
-        <th class="text-center">Editar</th>
-        <th class="text-center">
-          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z"></path></svg>
-          Hoja Emergencia
-        </th>
+        <th class="text-center">id</th>
+        <th class="text-center">Hoja Emergencia </th>
         <th class="text-center">Paciente</th>
         <th class="text-center">Fecha</th>
-
         <th class="text-center">Expediente</th>
         <th class="text-center">Status</th>
-        <th class="text-center">id</th>
-
+        <th class="text-center">Opciones</th>
       </tr>
     </thead>
-    <tbody class="">
-
+    <tbody class="svg-container">
       <tr *ngFor="let emer of resumen">
-        <td class="text-center" [routerLink]="['/emergencias/edit', emer.id]">
-          <editIcon />
+        <td class="">
+          <p class="text-90">{{emer.id}}</p>
         </td>
-
-        <td class="text-center font-weight-bold text-warning font-monospace h5" (click)="detalle(emer.id)" data-bs-toggle="modal" data-bs-target="#verCons"> {{emer.hoja_emergencia}}
-          <dataViewIcon />
+        <td class="text-center font-weight-bold text-warning font-monospace h5" > {{emer.hoja_emergencia}}
         </td>
-        <td class="text-center">
+        <td class="text-start">
           <span [ngClass]="{'mujer': emer.sexo == 'F', 'hombre': emer.sexo != 'F'}">{{ emer.nombres | anyToText | capitalizeName }}</span><br>
             {{emer.apellidos |anyToText | capitalizeName}}
         </td>
+        <td class="text-start">
+          <div class="row text-center" *ngIf="emer.tipo_consulta==3 && emer.fecha_egreso">
+            <p class="label-td">Ingreso</p>
+              <div>
+                {{emer.fecha_consulta | anyToText | formatoFecha}}<br/>
+                {{emer.hora}}
+              </div>
+
+            <p class="label-td">Egreso</p>
+            <div>
+              {{emer.fecha_egreso | anyToText | formatoFecha}}<br>
+              {{ emer.fecha_consulta | estancia: emer.fecha_egreso }}
+            </div>
+          </div>
+        </td>
+        <td class="text-center"> {{emer.expediente}} </td>
         <td class="text-center">
-          <span class="me-1 font-title1">Fecha: </span>{{emer.fecha_consulta |anyToText | formatoFecha}}<br>
-          <span class="me-1 font-title1">Hora: </span>{{emer.hora}}<br>
+          <ng-container *ngIf="emer.status == 1">
+            <activoIcon  />
+            <br/>
+            <span class="fs-mini">Activo</span>
+            </ng-container>
+            <ng-container *ngIf="emer.status == 2">
+            <archiveIcon  />
+            <br/>
+            <span class="fs-mini">Archivado</span>
+            </ng-container>
+            <ng-container *ngIf="emer.status == 3">
+              <prestamoIcon  />
+              <br/>
+              <span class="fs-mini">Prestamo</span>
+            </ng-container>
         </td>
 
-        <td class="text-center"> {{emer.expediente}} </td>
-        <td class="text-center"> {{emer.status | anyToNumber| enumStatus }} </td>
-        <td class="text-center">{{emer.id}}</td>
+        <td class="text-center" >
+          <div class="div-btn-opt">
+            <editIcon [routerLink]="['/emergencias/edit', emer.id]" />
+            <dataViewIcon (click)="detalle(emer.id)" data-bs-toggle="modal" data-bs-target="#verConsulta" />
+            <printIcon  />
+          </div>
+        </td>
       </tr>
     </tbody>
       </table>
@@ -100,140 +101,107 @@
 
 
 
-    <div class="modal fade" id="verCons" tabindex="-1" aria-labelledby="verCons" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content card bg-night">
-          <!-- Encabezado del modal con botón de cierre -->
+    <div class="modal" id="verConsulta">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-center w-100">
-              Detalles del Consulta: <span class="font-fam">{{ consult?.expediente }}</span>
-            </h5>
-            <button type="button" class="btn-close btn-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title">Detale de Consulta</h5>
+            <closeIcon />
+
           </div>
+          <div class="modal-body">
+            <strong>Hoja de Emergencia:</strong> {{ consult?.hoja_emergencia }}
+            <br/>
+            <strong>Expediente:</strong> {{ consult?.expediente }}
+            <br/>
+            <strong>Paciente:</strong> {{ consult?.nombres | anyToText | capitalizeName }} {{ consult?.apellidos | anyToText | capitalizeName }}
+            <br/>
+            <strong>Fecha de Nacimiento:</strong> {{ consult?.nacimiento| anyToText | formatoFecha }}
+            <br/>
+            <strong>Edad:</strong> {{ consult?.nacimiento | edad }}
+            <br/>
+            <strong>Edad de Consulta:</strong> {{ consult?.edad }}
+            <br/>
+            <strong>Sexo:</strong> {{ consult?.sexo| anyToText | sexo }}
+            <br/>
+            <strong>DPI:</strong> {{ consult?.dpi | anyToText | formatoDPI }}
+            <br/>
+            <strong>Dirección:</strong> {{ consult?.direccion | anyToText | capitalizeName }}
+            <br/>
+            <strong>Acompañante:</strong> {{ consult?.acompa | anyToText | capitalizeName }} - {{ consult?.parente | enumParentesco }}
+            <br/>
+            <strong>Teléfonos:</strong> {{ consult?.telefono }}
+            <br/>
+            <strong>Fecha de Recepción:</strong> {{ consult?.fecha_recepcion | anyToText | formatoFecha }}
+            <br/>
+            <strong>Fecha de Egreso:</strong> {{ consult?.fecha_egreso | anyToText | formatoFecha }}
+            <br/>
+            <strong>Diagnóstico:</strong> {{ consult?.dx }}
+            <br/>
+            <strong>Tipo de Consulta:</strong>
+            <ng-container *ngIf="consult?.tipo_consulta == 1">
+              <coexIcon  />
+              <br/>
+              <span class="fs-mini">Consulta Externa</span>
+            </ng-container>
+            <ng-container *ngIf="consult?.tipo_consulta == 2">
+              <hospitalizacionIcon  />
+              <br/>
+              <span class="fs-mini">Hospitalización</span>
+            </ng-container>
+            <ng-container *ngIf="consult?.tipo_consulta == 3" >
+              <emergenciaIcon  />
+              <br/>
+              <span class="fs-mini">Emergencia</span>
+            </ng-container>
+            <br/>
+            <strong>Médico:</strong> {{ consult?.medico | anyToText |capitalizeName }}
+            <br/>
+            <strong>Especialidad:</strong> {{ consult?.especialidad | anyToNumber | enumEspecialidad }}
+            <br/>
+            <strong>Servicio:</strong> {{ consult?.servicio | anyToNumber | enumServicios }}
+            <br/>
+            <strong>Status:</strong>
+            <ng-container *ngIf="consult?.status == 1">
+              <activoIcon  />
+              <br/>
+              <span class="fs-mini">Activo</span>
+            </ng-container>
+            <ng-container *ngIf="consult?.status == 2">
+              <archiveIcon  />
+              <br/>
+              <span class="fs-mini">Archivado</span>
+            </ng-container>
+            <ng-container *ngIf="consult?.status == 3">
+              <prestamoIcon  />
+              <br/>
+              <span class="fs-mini">Prestamo</span>
+            </ng-container>
+            <br/>
+            <strong>Controles Prenatales:</strong> {{ consult?.prenatal }}
+            <br/>
+            <strong>Creado por:</strong> {{ consult?.created_by }}
+            <br/>
+            <strong>Archivado por:</strong> {{ consult?.archived_by }}
+            <br/>
+            <strong>Actualizado el:</strong> {{ consult?.updated_at }}
 
-          <!-- Cuerpo del modal -->
-          <div class="modal-body code-container">
-          <div class="modal-body mx-3 mx-md-5 font-monospace" >
-            <div class="text-start">
-              <p>&#123;</p>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Hoja de emergencia: </span>
-                  <p class="font-value m-0 m-0">{{consult?.hoja_emergencia}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Expediente: </span>
-                  <p class="font-value m-0 m-0">{{consult?.expediente}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Nota: </span>
-                  <p class="font-value m-0">{{consult?.nota}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Paciente: </span>
-                  <p class="font-value m-0">{{consult?.nombres | anyToText | capitalizeName}} {{consult?.apellidos | anyToText | capitalizeName}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Fecha de Nacimiento: </span>
-                  <p class="font-value m-0">{{consult?.nacimiento | anyToText | formatoFecha}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Edad: </span>
-                  <p class="font-value m-0">{{consult?.nacimiento | edad}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Edad de la consulta: </span>
-                  <p class="font-value m-0">{{consult?.edad}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Sexo: </span>
-                  <p class="font-value m-0">{{consult?.sexo | anyToText | sexo}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">DPI: </span>
-                  <p class="font-value m-0">{{consult?.dpi | anyToText | formatoDPI}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Dirección: </span>
-                  <p class="font-value m-0">{{consult?.direccion | anyToText | capitalizeName}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Acompañante: </span>
-                  <p class="font-value m-0">{{consult?.acompa | anyToText | capitalizeName}} - {{consult?.parente | anyToNumber | enumParentesco}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Telefonos: </span>
-                  <p class="font-value m-0">{{consult?.telefono}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Fecha de Recepción: </span>
-                  <p class="font-value m-0">{{consult?.fecha_recepcion | anyToText | formatoFecha}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Fecha de Egreso: </span>
-                  <p class="font-value m-0">{{consult?.fecha_egreso | anyToText | formatoFecha}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Fecha y hora de Consulta: </span>
-                  <p class="font-value m-0">{{consult?.fecha_consulta | anyToText | formatoFecha}} {{consult?.hora}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Status: </span>
-                  <p class="font-value m-0">{{consult?.status | anyToNumber | enumStatus}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Folios: </span>
-                  <p class="font-value m-0">{{consult?.folios}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Diagnostico: </span>
-                  <p class="font-value m-0">{{consult?.dx}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Controles Prenatales: </span>
-                  <p class="font-value m-0">{{consult?.prenatal}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Lactancia materna: </span>
-                  <p class="font-value m-0">{{consult?.lactancia}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Medico: </span>
-                  <p class="font-value m-0">{{consult?.medico | anyToText | capitalizeName}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Especialidad: </span>
-                  <p class="font-value m-0">{{consult?.especialidad | anyToNumber | enumEspecialidad}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Servicio: </span>
-                  <p class="font-value m-0">{{consult?.servicio | anyToNumber | enumServicios}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Tipo de Consulta: </span>
-                  <p class="font-value m-0">{{consult?.tipo_consulta | anyToNumber | enumTipo}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Creado Por: </span>
-                  <p class="font-value m-0">{{consult?.created_by}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Archivado Por: </span>
-                  <p class="font-value m-0">{{consult?.archived_by}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Creado el: </span>
-                  <p class="font-value m-0">{{consult?.created_at}},</p>
-                </div>
-                <div class="etiqueta-modal">
-                  <span class="me-1 font-title m-0">Actualizado el: </span>
-                  <p class="font-value m-0">{{consult?.updated_at}},</p>
-                </div>
-
-                <p>&#125;</p>
-            </div>
           </div>
+        </div>
+      </div>
+    </div>
 
-        </div>
-        </div>
+    <div class="loader-container">
+      <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
+    </div>
+    <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
+
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
+           role="progressbar"
+           [style.width.%]="porcentajeDeProgreso"
+           [attr.aria-valuenow]="porcentajeDeProgreso"
+           aria-valuemin="0"
+           aria-valuemax="100">
+       <strong class="">C o m p l e t a d o</strong>
       </div>
     </div>

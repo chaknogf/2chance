@@ -1,60 +1,74 @@
 <div class="search-container">
-  <div class="rounded p-2 bg-dark">
-    <form class="search-form" autocomplete="off" >
-      <input type="text" class="form-control search-input" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
-      <input type="sumit" class="form-control search-input" placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control search-input" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
-      <!-- Botones de acción -->
-      <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
-        <searchIcon />
-      </button>
-      <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
-        <deleteInput />
-      </button>
-
+  <div class="rounded p-0">
+    <form class="search-form" autocomplete="off">
+      <input type="text" class="search-input" name="nombreBuscar" placeholder="Nombre"  [(ngModel)]="nombreBuscar">
+      <input type="text" class="search-input" name="apellidoBuscar"  placeholder="Apellido" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="search-input" name="dpiBuscar" placeholder="DPI"  [(ngModel)]="dpiBuscar">
+      <div class="div-btn-icons">
+        <searchIcon (click)="filtro()"/>
+        <deleteInput (click)="limpiarInput()" />
+      </div>
     </form>
   </div>
-
-  <div class="mt-3">
-    <div class="custom-table-wrapper t-w-d mt-3">
+</div>
+  <div class="">
+    <div class="custom-table-wrapper t-w-d mt-2">
+      <h3 class="m-0 p-0">Pacientes</h3>
       <table class="custom-table table-hover text-center ">
         <thead class="text-normal">
           <tr>
-
-            <th class="text-center "></th>
-            <th class="text-center "></th>
-            <th class="text-center " >Exp</th>
+            <th class="text-center ">Copy</th>
+            <th class="text-center " >Expediente</th>
             <th class="text-center " >Nombre</th>
-            <th class="text-center " >DPI</th>
+            <th class="text-center " >CUI</th>
             <th class="text-center " >Sexo</th>
             <th class="text-center " >Edad</th>
-            <th class="text-center " >Estado</th>
             <th class="text-center " >ID</th>
           </tr>
         </thead>
 
-        <tbody class="justify-content-center  opacity-90">
+        <tbody class="svg-container">
           <tr *ngFor="let paciente of filteredPacientes">
             <td>
-              <!-- <button class="btn btn-outline-dark" [routerLink]="['/detalleP/view', paciente.expediente]">ver</button> -->
+              <copyAddIcon
+              (click)="copiarId(
+              paciente.expediente,
+              paciente.nombre,
+              paciente.apellido,
+              paciente.nacimiento,
+              paciente.sexo,
+              paciente.dpi,
+              paciente.municipio,
+              paciente.direccion
+              )" />
             </td>
-            <td>
-              <button class="btn btn-secundary search-button" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.dpi, paciente.municipio, paciente.direccion)" >
-                <copyAddIcon />
-              </button>
-
-            </td>
-            <td class="h3 text-center text-success" #exp >{{ paciente.expediente }}</td>
+            <td class="h3 text-center text-success" >
+              {{ paciente.expediente }}</td>
             <td class="text-text text-justify" appHighlightWords >
-              <span class="font-fam">Nombre:</span> {{ paciente.nombre | capitalizeName }}<br>
-              <span class="font-fam">Apellido:</span> {{ paciente.apellido | capitalizeName }}
+              {{ paciente.nombre | capitalizeName }}
+              <br>
+              {{ paciente.apellido | capitalizeName }}
             </td>
             <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
-            <td class="text-center">{{ paciente.sexo }}</td>
-            <td class="text-center" #edadCell>{{ paciente.nacimiento | edad }}</td>
-            <td class="text-center">{{ paciente.estado }}</td>
-            <td class="small">{{ paciente.id }}</td>
+            <td class="text-center">
+              <ng-container *ngIf="paciente.sexo == 'F'; else man">
+                <femIcon/>
+               </ng-container>
+               <ng-template #man>
+                 <ng-container *ngIf="paciente.sexo == 'M'; else NoneBl">
+                   <maleIcon/>
+                 </ng-container>
+               </ng-template>
+               <ng-template #NoneBl>
+                 <span class="text-warning">SIn Registrar !!!</span>
+                 <atentionIcon />
+               </ng-template>
+            </td>
+            <td class="text-center" #edadCell>
+              {{ paciente.nacimiento | edad }}</td>
+            <td >
+             <p class="text-90"> {{ paciente.id }}</p>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -72,8 +86,6 @@
       </div>
     </div>
   </div>
-  </div>
-
 
 
 

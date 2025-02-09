@@ -1,0 +1,51 @@
+/* ---- CONTENEDOR PRINCIPAL ---- */
+.home {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---- SIDEBAR ---- */
+.sidebar-div {
+  width: 10%; /* Sidebar ocupa el 15% */
+  min-width: 120px; /* Ancho mínimo para evitar colapso */
+  max-width: 170px;
+  background: rgba(10, 25, 47, 0.85); /* Azul oscuro transparente */
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* ---- CONTENIDO ---- */
+.contenido {
+  width: 85%; /* Contenido ocupa el resto */
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+  }
+
+  .sidebar-div {
+    width: 100%;
+    max-width: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .sidebar-div.open {
+    transform: translateX(0);
+  }
+
+  .contenido {
+    width: 100%;
+  }
+}

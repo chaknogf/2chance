@@ -27,7 +27,7 @@ import {
   EnumParentescoPipe, EnumEtniaPipe, EnumServiciosPipe, EnumStatusPipe, EnumDeptoPipe, EnumEstadoPipe, EnumSituacionPipe, EnumEstadiaPipe, EnumReferenciaPipe, EnumServPipe, EnumCitasPipe, EnumVecindadPipe, EnumClasePartoPipe, EnumTipoPartoPipe
 } from './pipe/enum.pipe'
 import { AnyToNumberPipe } from './pipe/anyToNumber.pipe';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './navs/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { TablaPacientesComponent } from './regisros/pacientes/tablaPacientes/tablaPacientes.component';
 import { FormularioPacienteComponent } from './regisros/pacientes/formulario-paciente/formulario-paciente.component';
@@ -135,7 +135,18 @@ import { PatienteIconComponent } from 'src/assets/svg/patienteIcon/patienteIcon.
 import { EgresoIconComponent } from 'src/assets/svg/egresoIcon/egresoIcon.component';
 import { SearchContainerComponent } from './components/search-container/search-container.component';
 import { BabyFootIconComponent } from 'src/assets/svg/babyFootIcon/babyFootIcon.component';
-
+import { IngresoIconComponent } from 'src/assets/svg/ingresoIcon/ingresoIcon.component';
+import { GhostIconComponent } from 'src/assets/svg/ghostIcon/ghostIcon.component';
+import { ActivoIconComponent } from 'src/assets/svg/activoIcon/activoIcon.component';
+import { SaludIconComponent } from 'src/assets/svg/saludIcon/saludIcon.component';
+import { Cie10IconComponent } from 'src/assets/svg/cie10Icon/cie10Icon.component';
+import { LineMenuIconComponent } from 'src/assets/svg/line-menuIcon/line-menuIcon.component';
+import { SidebarComponent } from './navs/sidebar/sidebar.component';
+import { PrestamoIconComponent } from 'src/assets/svg/prestamoIcon/prestamoIcon.component';
+import { CatalogoIcomComponent } from 'src/assets/svg/catalogoIcom/catalogoIcom.component';
+import { ArchivarIconComponent } from 'src/assets/svg/archivarIcon/archivarIcon.component';
+import { CheckIconComponent } from 'src/assets/svg/checkIcon/checkIcon.component';
+import { UpdateIconComponent } from 'src/assets/svg/updateIcon/updateIcon.component';
 
 
 @NgModule({
@@ -285,6 +296,18 @@ import { BabyFootIconComponent } from 'src/assets/svg/babyFootIcon/babyFootIcon.
     EgresoIconComponent,
     SearchContainerComponent,
     BabyFootIconComponent,
+    IngresoIconComponent,
+    GhostIconComponent,
+    ActivoIconComponent,
+    Cie10IconComponent,
+    SaludIconComponent,
+    LineMenuIconComponent,
+    SidebarComponent,
+    PrestamoIconComponent,
+    CatalogoIcomComponent,
+    ArchivarIconComponent,
+    CheckIconComponent,
+    UpdateIconComponent,
 
 
   ],

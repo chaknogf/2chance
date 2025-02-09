@@ -1,33 +1,3 @@
-<app-registros></app-registros>
-
-<div>
-  <div class=" mt-1">
-    <p class="text-center h2 p-0 text-light">Lista de Pacientes</p>
-
-    <div *ngIf="porcentajeDeProgreso >= 0" class="d-flex justify-content-center">
-      <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
-        <div class="wheel"></div>
-        <div class="hamster">
-          <div class="hamster__body">
-            <div class="hamster__head">
-              <div class="hamster__ear"></div>
-              <div class="hamster__eye"></div>
-              <div class="hamster__nose"></div>
-            </div>
-            <div class="hamster__limb hamster__limb--fr"></div>
-            <div class="hamster__limb hamster__limb--fl"></div>
-            <div class="hamster__limb hamster__limb--br"></div>
-            <div class="hamster__limb hamster__limb--bl"></div>
-            <div class="hamster__tail"></div>
-          </div>
-        </div>
-        <div class="spoke"></div>
-      </div>
-    </div>
-
-
-
-
   <div class="search-container">
     <div class="search-div">
       <form class="search-form" autocomplete="off">
@@ -61,41 +31,23 @@
           [(ngModel)]="dpiBuscar"
         />
 
-        <div class="d-flex gap-1">
+        <div class="div-btn-icons">
           <searchIcon (click)="filtro()"/>
-
-
           <deleteInput (click)="limpiarInput()"/>
-
-
           <createIcon data-bs-toggle="modal" data-bs-target="#formularioModalP" />
-
         </div>
 
       </form>
     </div>
   </div>
 
-    <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
-      <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
-           role="progressbar"
-           [style.width.%]="porcentajeDeProgreso"
-           [attr.aria-valuenow]="porcentajeDeProgreso"
-           aria-valuemin="0"
-           aria-valuemax="100">
-       <strong class="">C o m p l e t a d o</strong>
-      </div>
-    </div>
 
-
-
-    <div class="custom-table-wrapper t-w-d mt-3">
+    <div class="custom-table-wrapper  mt-2">
+      <h3 class="m-0 p-0">Pacientes</h3>
       <table class="custom-table table-hover text-center">
         <thead class="text-normal">
           <tr>
-
-
-            <th ></th>
+            <th  (click)="sortTable('id')">ID</th>
             <th  (click)="sortTable('expediente')">Expediente</th>
             <th  (click)="sortTable('sexo')">Sexo</th>
             <th  (click)="sortTable('nombre')">Paciente</th>
@@ -103,29 +55,18 @@
             <th  (click)="sortTable('nacimiento')">Edad</th>
             <th  (click)="sortTable('nacimiento')">Fecha Nacimiento</th>
             <th  (click)="sortTable('estado')">Estado</th>
-            <th  (click)="sortTable('id')">ID</th>
+            <th > opciones</th>
           </tr>
         </thead>
-
-        <tbody class="justify-content-center  opacity-90 ">
-          <tr *ngFor="let paciente of filteredPacientes">
-            <td>
-              <div class="column.block">
-
-                  <babyFootIcon *ngIf="paciente.sexo === 'F' && calcularEdad(paciente.nacimiento) > 12 && calcularEdad(paciente.nacimiento) < 50" [routerLink]="['/rn/', paciente.expediente]" />
-
-                  <editIcon [routerLink]="['/paciente/edit', paciente.id]" />
-
-              </div>
+        <tbody class="svg-container " >
+          <tr *ngFor="let paciente of resumen">
+            <td >
+              <p class="text-90">{{ paciente.id }}</p>
             </td>
-
-            <td class="font-title text-center text-warning" (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver">
-              <span>
-                <dataViewIcon />
-              {{ paciente.expediente }}
-            </span>
+            <td class="font-title text-center text-warning" >
+              <span>{{ paciente.expediente }} </span>
             </td>
-            <td class="text-center">
+            <td class="text-center b-shadow">
               <ng-container *ngIf="paciente.sexo == 'F'; else man">
                <femIcon/>
               </ng-container>
@@ -139,12 +80,11 @@
                 <atentionIcon />
               </ng-template>
             </td>
-            <td class="text-center text-justify " appHighlightWords >
+            <td class="text-start text-justify"   appHighlightWords >
+              <gemeloIcon *ngIf="paciente.gemelo == 'si'" />
               <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
               {{ paciente.apellido | capitalizeName }}
-              <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
-                <gemeloIcon />
-              </span>
+
             </td>
 
             <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
@@ -156,10 +96,19 @@
                 <beatIcon/>
               </ng-container>
               <ng-template #dead>
-                <deadIcon/>
+                <ghostIcon/>
+                <br/>
+                <span class="fs-9">{{paciente.fechaDefuncion}}</span>
+
               </ng-template>
             </td>
-            <td class="small">{{ paciente.id }}</td>
+            <td class="small">
+              <div class="div-btn-opt">
+                <dataViewIcon (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver" />
+                <babyFootIcon *ngIf="paciente.sexo === 'F' && calcularEdad(paciente.nacimiento) > 12 && calcularEdad(paciente.nacimiento) < 50" [routerLink]="['/rn/', paciente.expediente]" />
+                <editIcon [routerLink]="['/paciente/edit', paciente.id]"  />
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -176,7 +125,7 @@
         <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
       </div>
     </div>
-  </div>
+
 
 
 
@@ -203,129 +152,109 @@
 
 
 
-  <div class="modal fade" id="ver" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content card bg-night">
-        <!-- Encabezado del modal con botón de cierre -->
+  <div class="modal" id="ver">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-center w-100">
-            Detalles del Expediente: <span class="font-fam">{{ patient?.expediente }}</span>
+          <h5 class="modal-title">
+            Datos del Paciente
           </h5>
-          <button type="button" class="btn-close btn-light" data-bs-dismiss="modal" aria-label="Close"></button>
+          <closeIcon />
         </div>
-
-        <!-- Cuerpo del modal -->
-      <div class="modal-body code-container" id="code">
-        <div class="modal-body mx-3 mx-md-5 font-monospace">
-          <div class="text-start">
-            <p>&#123;</p>
-              <!-- Contenido del modal -->
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0">Nombre: </span>
-                <p class="font-value m-0">{{ patient?.nombre | anyToText | capitalizeName }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Apellido: </span>
-                <p class="font-value m-0 m-0">{{ patient?.apellido | anyToText | capitalizeName }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Fecha de nacimiento: </span>
-                <p class="font-value m-0 m-0">{{ patient?.nacimiento | anyToText | formatoFecha }},</p>
-              </div>
-              <div *ngIf="patient?.fechaDefuncion" class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Fecha defuncion: </span>
-                <p class="font-value m-0 m-0">{{ patient?.fechaDefuncion | anyToText | formatoFecha }}</p>
-                <deadIcon/>,
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Edad: </span>
-                <p class="font-value m-0 m-0">{{ patient?.nacimiento | edad }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Sexo: </span>
-                <p class="font-value m-0 m-0">{{ patient?.sexo | anyToText | sexo }}</p>
-                <ng-container *ngIf="patient?.sexo == 'F'; else man">
-
-                  <femIcon/>
-                 </ng-container>
-
-                 <ng-template #man>
-                   <ng-container *ngIf="patient?.sexo == 'M'; else NoneBl">
-                     <maleIcon/>
-                   </ng-container>
-                 </ng-template>
-
-                 <ng-template #NoneBl>
-
-                   <span class="text-warning">SIn Registrar !!!</span>
-                 </ng-template> ,
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">DPI: </span>
-                <p class="font-value m-0 m-0">{{ patient?.dpi | anyToText | formatoDPI }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Nacionalidad: </span>
-                <p class="font-value m-0 m-0">{{ patient?.nacionalidad | anyToNumber | enumNacion }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Lugar de Nacimiento: </span>
-                <p class="font-value m-0 m-0">{{ patient?.lugar_nacimiento | anyToNumber | enumVecindad }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Estado civil: </span>
-                <p class="font-value m-0 m-0">{{ patient?.estado_civil | anyToNumber | enumCivil }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Ocupación: </span>
-                <p class="font-value m-0 m-0">{{ patient?.ocupacion | anyToText | capitalizeName}},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Nivel Academico: </span>
-                <p class="font-value m-0 m-0">{{ patient?.educacion | anyToNumber | enumEducacion }},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Dirección: </span>
-                <p class="font-value m-0 m-0">{{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, <br> {{patient?.depto | anyToNumber | enumDepto | capitalizeName}},</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Telefonos: </span>
-                <p class="font-value m-0 m-0">{{ patient?.telefono }} - {{ patient?.telefono_responsable }} ,</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Conyugue: </span>
-                <p class="font-value m-0 m-0">{{ patient?.conyugue | anyToText | capitalizeName }} ,</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Responsable: </span>
-                <p class="font-value m-0 m-0">{{ patient?.responsable | anyToText | capitalizeName }} ,</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Parentesco: </span>
-                <p class="font-value m-0 m-0">{{ patient?.parentesco | anyToNumber | enumParentesco }} ,</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">DPI de responsable: </span>
-                <p class="font-value m-0 m-0">{{ patient?.dpi_responsable | anyToText | formatoDPI }} ,</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Madre: </span>
-                <p class="font-value m-0 m-0">{{ patient?.madre | anyToText | capitalizeName }} ,</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Padre: </span>
-                <p class="font-value m-0 m-0">{{ patient?.padre | anyToText | capitalizeName }} ,</p>
-              </div>
-              <div class="etiqueta-modal">
-                <span class="me-1 font-title m-0 m-0">Creado por: </span>
-                <p class="font-value m-0 m-0">{{ patient?.created_by }} ,</p>
-              </div>
-              <p>&#125;</p>
-            </div>
-          </div>
+      <div class="modal-body">
+        <strong>Expediente:</strong> {{ patient?.expediente }}
+        <br>
+        <strong>Nombre:</strong> {{ patient?.nombre | anyToText | capitalizeName }} {{ patient?.apellido | anyToText | capitalizeName }}
+        <br>
+        <strong>Fecha de Nacimiento:</strong> {{ patient?.nacimiento | anyToText | formatoFecha }}
+        <br>
+        <div *ngIf="patient?.estado === 'm'">
+          <strong>Fecha de Defuncion:</strong> <deadIcon/> {{ patient?.fechaDefuncion | anyToText | formatoFecha }}
+        </div>
+        <br>
+        <strong>Edad:</strong> {{ patient?.nacimiento | edad }}
+        <br>
+        <strong>Sexo:</strong>
+        <ng-container *ngIf="patient?.sexo == 'F'; else man">
+          <femIcon/>
+         </ng-container>
+         <ng-template #man>
+           <ng-container *ngIf="patient?.sexo == 'M'; else NoneBl">
+             <maleIcon/>
+           </ng-container>
+         </ng-template>
+         <ng-template #NoneBl>
+           <span class="text-warning">SIn Registrar !!!</span>
+         </ng-template>
+        <br>
+        <strong>DPI:</strong> {{ patient?.dpi | anyToText | formatoDPI }}
+        <br>
+        <strong>Nacionalidad:</strong> {{ patient?.nacionalidad | anyToNumber | enumNacion }}
+        <br>
+        <strong>Lugar de Nacimiento:</strong> {{ patient?.lugar_nacimiento | anyToNumber | enumVecindad }}
+        <br>
+        <strong>Estado civil:</strong> {{ patient?.estado_civil | anyToNumber | enumCivil }}
+        <br>
+        <strong>Ocupación:</strong> {{ patient?.ocupacion | anyToText | capitalizeName}}
+        <br>
+        <strong>Nivel Academico:</strong> {{ patient?.educacion | anyToNumber | enumEducacion }}
+        <br>
+        <strong>Direccion:</strong>{{ patient?.direccion | anyToText | capitalizeName }}, {{patient?.municipio | anyToNumber | enumMunicipio | capitalizeName}}, <br> {{patient?.depto | anyToNumber | enumDepto | capitalizeName}}
+        <br>
+        <strong>Telefono:</strong> {{ patient?.telefono }}
+        <br>
+        <strong>Telefono del Responsable:</strong> {{ patient?.telefono_responsable }}
+        <br>
+        <strong>Parentesco:</strong> {{ patient?.parentesco | anyToNumber | enumParentesco }}
+        <br>
+        <strong>Conyugue:</strong> {{ patient?.conyugue }}
+        <br>
+        <strong>Madre:</strong> {{ patient?.madre }}
+        <br>
+        <strong>Padre:</strong> {{ patient?.padre }}
+        <br>
+        <strong>DPI de Responsable:</strong> {{ patient?.dpi_responsable | anyToText | formatoDPI }}
+        <br>
+        <strong>Responsable:</strong> {{ patient?.responsable | anyToText | capitalizeName }}
+        <br>
+        <strong>Creado por:</strong>
+        {{ patient?.created_by | anyToText | capitalizeName }}
         </div>
       </div>
     </div>
   </div>
 
-</div>
+
+  <div *ngIf="porcentajeDeProgreso >= 0" class="d-flex justify-content-center">
+    <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+      <div class="wheel"></div>
+      <div class="hamster">
+        <div class="hamster__body">
+          <div class="hamster__head">
+            <div class="hamster__ear"></div>
+            <div class="hamster__eye"></div>
+            <div class="hamster__nose"></div>
+          </div>
+          <div class="hamster__limb hamster__limb--fr"></div>
+          <div class="hamster__limb hamster__limb--fl"></div>
+          <div class="hamster__limb hamster__limb--br"></div>
+          <div class="hamster__limb hamster__limb--bl"></div>
+          <div class="hamster__tail"></div>
+        </div>
+      </div>
+      <div class="spoke"></div>
+    </div>
+  </div>
+
+  <div *ngIf="porcentajeDeProgreso >= 0" class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-quatz text-light"
+         role="progressbar"
+         [style.width.%]="porcentajeDeProgreso"
+         [attr.aria-valuenow]="porcentajeDeProgreso"
+         aria-valuemin="0"
+         aria-valuemax="100">
+     <strong class="">C o m p l e t a d o</strong>
+    </div>
+  </div>
+
+

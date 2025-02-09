@@ -1,0 +1,123 @@
+
+
+/* ASIDE GENERAL */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  background: rgb(5,16,47);
+  background: linear-gradient(180deg, #f2f4f7 5%, #abb4e44c 90%, #6c889b1a 100%);
+  opacity: 0.6;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(3px); /* Efecto vidrio */
+  border-radius: 0 1px 1px 0;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.botones-li {
+  background: rgba(33, 32, 32, 0.075);
+  border-radius: 8px ;
+}
+
+/* BOTÓN DE MENÚ */
+.menu-btn {
+  background: none;
+  border: none;
+  color: rgb(43, 39, 39);
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.menu-btn:hover {
+  background: rgba(145, 230, 17, 0.535);
+  /* text-shadow: #010114 1px 1px 1px, #dd0000 -1px -1px 1px, #e8840a 1px -1px 1px, #fdfdfe -1px 1px 1px; */
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+/* LISTA PRINCIPAL */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+/* SUBMENÚ */
+.submenu {
+  list-style: none;
+  padding-left: 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.submenu.show {
+  max-height: 100%;
+}
+
+/* BOTONES SUBMENÚ */
+.submenu-btn {
+  background: none;
+  border: none;
+  color: rgb(43, 40, 40);
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s ease;
+}
+
+.submenu-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -100%;
+    width: 200px;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+}
+
+
+
+.menu {
+  flex-grow: 1; /* Permite que el menú ocupe el espacio disponible */
+}
+
+.menu-btn-close {
+  margin-top: auto; /* Empuja el botón hacia la parte inferior */
+  background: red;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.menu-btn-close:hover {
+  background: darkred;
+}
+

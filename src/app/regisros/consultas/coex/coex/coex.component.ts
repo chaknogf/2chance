@@ -2,7 +2,7 @@ import { PageReloadService } from '../../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
 import { ConsultasService } from '../../../../services/consultas.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {  Ienum } from 'src/app/models/Ienum';
+import { Ienum } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { municipio, departamentos, vecindad } from 'src/app/enums/vencindad';
 import { Iconcultas } from 'src/app/models/Iconsultas';
@@ -19,7 +19,7 @@ export class CoexComponent implements OnInit {
   today: string = "";
   selectDate: Date = new Date();
   day: string = new Date().getDate().toString().padStart(2, '0');
-  month: string = (new Date().getMonth()+1).toString().padStart(2, '0');
+  month: string = (new Date().getMonth() + 1).toString().padStart(2, '0');
   year: string = new Date().getFullYear().toString();
   slectDay: string = '';
   slectMonth: string = '';
@@ -86,7 +86,7 @@ export class CoexComponent implements OnInit {
     medico: null,
   }
 
-   e: Ienum = {
+  e: Ienum = {
     municipio: municipio,
     nation: nation,
     people: etnias,
@@ -109,6 +109,7 @@ export class CoexComponent implements OnInit {
 
   ) { }
 
+  public hoy: Date = new Date();
   ngOnInit() {
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
@@ -133,6 +134,7 @@ export class CoexComponent implements OnInit {
 
 
   }
+
 
   updateDate() {
     // Convierte los valores de día, mes y año a números enteros
@@ -171,38 +173,38 @@ export class CoexComponent implements OnInit {
   consultasmedicina(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 1).subscribe(data => {
       this.consultasMedi = data;
-       })
+    })
   }
 
   consultaspedia(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 2).subscribe(data => {
       this.consultasPedia = data;
-       })
+    })
   }
   consultasgine(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 3).subscribe(data => {
       this.consultasGine = data;
-       })
+    })
   }
   consultasciru(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 4).subscribe(data => {
       this.consultasCiru = data;
-       })
+    })
   }
   consultastrauma(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 5).subscribe(data => {
       this.consultasTrauma = data;
-       })
+    })
   }
   consultaspsico(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 6).subscribe(data => {
       this.consultasPsico = data;
-       })
+    })
   }
   consultasnutri(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 7).subscribe(data => {
       this.consultasNutri = data;
-       })
+    })
   }
 
   isStatusTrue(status: number): boolean {

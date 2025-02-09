@@ -13,9 +13,9 @@ import { FechaService } from 'src/app/services/fecha.service';
   templateUrl: './personas.component.html',
   styleUrls: ['./personas.component.css']
 })
-export class PersonasComponent{
+export class PersonasComponent {
   public pacientes: Ipaciente[] = []; // Registros a mostrar en la página actual
-  public filteredPacientes: Ipaciente[] = [];
+  public resumen: Ipaciente[] = [];
   public searchText: string = '';
   public totalRegistros: number = 12; // Total de registros en la lista
   public paginaActual: number = 1; // Página actual
@@ -39,12 +39,12 @@ export class PersonasComponent{
     private activateRoute: ActivatedRoute,
     private userService: UsersService,
     private fecha: FechaService,
-    ) { }
+  ) { }
   reset: boolean = false;
 
   ngOnInit() {
     this.getPacientes();
-    this.paginarPacientes();
+    this.paginar();
 
 
   }
@@ -59,20 +59,11 @@ export class PersonasComponent{
 
   getPacientes() {
     this.porcentajeDeProgreso = 0.5;
-
-    // Obten el token de autenticación guardado en las cookies
-    const token = this.userService.getToken();
-
-    // Configura las cabeceras con el token de autenticación
-    const headers = {
-      'Authorization': `Bearer ${token}`
-    };
-
     this.pacientesService.getPersonas().subscribe(data => {
       this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }): number => b.expediente - a.expediente);
       this.porcentajeDeProgreso = 75;
-      this.filteredPacientes = data;
-      this.paginarPacientes();
+      this.resumen = data;
+      this.paginar();
       this.porcentajeDeProgreso = 100;
       setTimeout(() => {
         this.porcentajeDeProgreso = -1;
@@ -80,6 +71,36 @@ export class PersonasComponent{
       //console.table(data)
     });
   }
+
+  onPageChange(pageNumber: number) {
+    this.paginaActual = pageNumber;
+    this.paginar();
+  }
+
+  paginar() {
+    const tamanoPagina = 12;
+    const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
+    const indiceFin = indiceInicio + tamanoPagina;
+    this.resumen = this.pacientes.slice(indiceInicio, indiceFin);
+    this.totalRegistros = this.resumen.length; // Agrega esta línea para actualizar el número total de registros por página
+  }
+
+
+  getPaginas(): number[] {
+    const totalPaginas = Math.ceil(this.resumen.length / this.totalRegistros);
+    // Verificar si totalPaginas es válido antes de crear el array
+    if (totalPaginas <= 0) {
+      return [];
+    }
+    return Array.from({ length: 10 }, (_, index) => index + 1);
+  }
+
+
+  totalPaginas(): number {
+    return Math.ceil(this.pacientes.length / this.totalRegistros);
+
+  }
+
 
 
 
@@ -106,7 +127,7 @@ export class PersonasComponent{
       this.ascendingOrder = true;
     }
 
-    this.filteredPacientes.sort((a, b) => {
+    this.resumen.sort((a, b) => {
       const order = this.ascendingOrder ? 1 : -1;
       if (a[column] < b[column]) {
         return -order;
@@ -123,47 +144,17 @@ export class PersonasComponent{
 
 
 
-  onPageChange(pageNumber: number) {
-    this.paginaActual = pageNumber;
-    this.paginarPacientes();
-  }
-
-  paginarPacientes() {
-    const tamanoPagina = 12;
-    const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
-    const indiceFin = indiceInicio + tamanoPagina;
-    this.filteredPacientes = this.pacientes.slice(indiceInicio, indiceFin);
-    this.totalRegistros = this.filteredPacientes.length; // Agrega esta línea para actualizar el número total de registros por página
-  }
-
-
-  getPaginas(): number[] {
-    const totalPaginas = Math.ceil(this.filteredPacientes.length / this.totalRegistros);
-
-    // Verificar si totalPaginas es válido antes de crear el array
-    if (totalPaginas <= 0) {
-      return [];
-    }
-
-    return Array.from({ length: 10 }, (_, index) => index + 1);
-  }
-
-
-  totalPaginas(): number {
-    return Math.ceil(this.pacientes.length / this.totalRegistros);
-
-  }
 
   buscarPaciente() {
     if (this.expedienteBuscar !== 0) {
       this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
         if (data) {
           this.pacientes = [data]; // Establece el arreglo de pacientes para mostrar solo el resultado de la búsqueda
-          this.paginarPacientes(); // Pagina los resultados
+          this.paginar(); // Pagina los resultados
         } else {
           // No se encontró ningún paciente con el número de expediente proporcionado
           this.pacientes = [];
-          this.filteredPacientes = [];
+          this.resumen = [];
           this.totalRegistros = 0;
         }
       });
@@ -209,14 +200,14 @@ export class PersonasComponent{
   private actualizarPacientes(data: any[]) {
     if (data.length > 0) {
       this.pacientes = data//.sort((a: { expediente: number; }, b: { expediente: number; }) => b.expediente - a.expediente);
-      this.filteredPacientes = data;
-      this.paginarPacientes();
+      this.resumen = data;
+      this.paginar();
       // this.dpiBuscar = '';
       // this.nombreBuscar = '';
       // this.apellidoBuscar = ''
     } else {
       this.pacientes = [];
-      this.filteredPacientes = [];
+      this.resumen = [];
       this.totalRegistros = 0;
     }
   }
@@ -232,56 +223,13 @@ export class PersonasComponent{
       apellido: this.apellidoBuscar,
       dpi: this.dpiBuscar,
     };
-
     this.pacientesService.filterPersona(filters).subscribe((result) => {
       this.pacientes = result;
-      this.filteredPacientes= result;
+      this.resumen = result;
+      this.paginar();
     });
-
-
-
   }
 
-
-  // filtroo() {
-  //   if (this.expedienteBuscar !== "") {
-  //     this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-  //       if (data) {
-  //         this.actualizarPacientes([data]);
-  //         this.filteredPacientes = [data];
-
-  //       } else {
-  //         this.actualizarPacientes([]);
-  //         this.filteredPacientes = [];
-  //       }
-  //     });
-  //   } else if (this.nombreBuscar || this.apellidoBuscar) {
-  //     this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-  //       if (data && data.length > 0) {
-  //         this.actualizarPacientes(data);
-  //         this.filteredPacientes = data;
-  //       } else {
-  //         this.actualizarPacientes([]);
-  //         this.filteredPacientes = [];
-  //       }
-  //     });
-  //   } else if (this.dpiBuscar !="" ) {
-  //     this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
-  //       if (data) {
-  //         this.actualizarPacientes([data]);
-  //         this.filteredPacientes = data;
-  //         console.log(this.filteredPacientes)
-  //       } else {
-  //         this.actualizarPacientes([]);
-  //         this.filteredPacientes = [];
-  //       }
-  //     });
-  //   } else {
-  //     // Limpiar resultados si no se proporciona ningún criterio de búsqueda
-  //     this.actualizarPacientes([]);
-  //     this.filteredPacientes = [];
-  //   }
-  // }
 
 
   abrirModal(paciente: Ipaciente) {

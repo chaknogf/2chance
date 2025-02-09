@@ -53,6 +53,7 @@ export class List_ProceMedicComponent implements OnInit {
   ngOnInit() {
     this.consult()
     this.getCodigos()
+    this.paginar();
   }
 
   consult() {
@@ -69,7 +70,10 @@ export class List_ProceMedicComponent implements OnInit {
 
     });
   }
-
+  onPageChange(pageNumber: number) {
+    this.paginaActual = pageNumber;
+    this.paginar();
+  }
   paginar() {
     const tamanoPagina = 12;
     const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
@@ -100,43 +104,42 @@ export class List_ProceMedicComponent implements OnInit {
       this.resumen = data;
       this.paginar();
     });
-}
+  }
 
-filtro() {
-  // Recopila los valores de entrada del formulario
-  const filters = {
-    id: this.buscarId,
-    fecha: this.buscharFecha,
-    servicio: this.buscarServicio,
-    sexo: this.buscarSexo,
-    especialidad: this.buscarEspecialidad,
-    abreviatura: this.buscarAbreviatura,
-    medico: this.buscarMedico,
-  };
+  filtro() {
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      id: this.buscarId,
+      fecha: this.buscharFecha,
+      servicio: this.buscarServicio,
+      sexo: this.buscarSexo,
+      especialidad: this.buscarEspecialidad,
+      abreviatura: this.buscarAbreviatura,
+      medico: this.buscarMedico,
+    };
 
-  this.prm.filtrarProce(filters).subscribe((result) => {
-    this.resumen = result;
-  });
+    this.prm.filtrarProce(filters).subscribe((result) => {
+      this.resumen = result;
+      this.procedimientos = result;
+      this.paginar();
+    });
 
-}
+  }
 
   limpiarInput() {
-  this.buscarId = '';
-  this.buscharFecha = '';
-  this.buscarServicio = '';
-  this.buscarAbreviatura = '';
-  this.buscarProcedimiento = '';
-  this.buscarEspecialidad = '';
-  this.buscarSexo = '';
-  this.buscarMedico = '';
-  this.consult();
-}
+    this.buscarId = '';
+    this.buscharFecha = '';
+    this.buscarServicio = '';
+    this.buscarAbreviatura = '';
+    this.buscarProcedimiento = '';
+    this.buscarEspecialidad = '';
+    this.buscarSexo = '';
+    this.buscarMedico = '';
+    this.consult();
+  }
 
 
-onPageChange(pageNumber: number) {
-  this.paginaActual = pageNumber;
-  this.paginar();
-}
+
 
 
 }

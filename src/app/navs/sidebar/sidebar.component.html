@@ -1,0 +1,22 @@
+<aside [class.open]="isExpanded" class="sidebar no-imprimir">
+  <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+
+  <ul class="menu">
+    <div class="botones-li">
+      <li *ngFor="let item of items" class="menu-item">
+        <button (click)="toggleItem(item.label)" class="menu-btn">
+          {{ item.label }}
+        </button>
+
+        <ul *ngIf="item.children" [class.show]="openItem === item.label" class="submenu">
+          <li *ngFor="let sub of item.children">
+            <button class="submenu-btn" (click)="navigate(sub.href)">
+              {{ sub.label }}
+            </button>
+          </li>
+        </ul>
+      </li>
+    </div>
+  </ul>
+  <button class="menu-btn-close" (click)="logout()">Cerrar Sesión</button>
+</aside>

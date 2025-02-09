@@ -54,7 +54,7 @@ export class TablaEmergenciaComponent implements OnInit {
 
   emergencias() {
     this.porcentajeDeProgreso = 0.5;
-   // this.ConsultasService.consulTipo(3)
+    // this.ConsultasService.consulTipo(3)
     this.ConsultasService.emergencias()
       .subscribe(data => {
         this.porcentajeDeProgreso = 75;
@@ -103,7 +103,6 @@ export class TablaEmergenciaComponent implements OnInit {
     const filters = {
 
       hoja_emergencia: this.hojaBuscar,
-
       fecha_consulta: this.fechaBuscar,
       nombres: this.nombreBuscar,
       apellidos: this.apellidoBuscar,
@@ -172,7 +171,7 @@ export class TablaEmergenciaComponent implements OnInit {
     this.hojaBuscar = '';
     this.fechaBuscar = '';
     this.emergencias();
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizar(data: any[]) {

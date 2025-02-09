@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from 'src/app/services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum, OtrosEnums } from 'src/app/models/Ienum';
+import { Ienum, OtrosEnums } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios, tipo } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 
@@ -93,7 +93,7 @@ export class ConsultasRMComponent implements OnInit {
     medico: null
   }
 
-   e: Ienum = {
+  e: Ienum = {
     municipio: municipio,
     nation: nation,
     people: etnias,
@@ -113,6 +113,7 @@ export class ConsultasRMComponent implements OnInit {
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
+    this.paginar();
 
   }
 
@@ -132,31 +133,12 @@ export class ConsultasRMComponent implements OnInit {
     });
   }
 
-  sortTable(column: keyof Iconcultas) {
-    if (this.sortColumn === column) {
-      this.ascendingOrder = !this.ascendingOrder;
-    } else {
-      this.sortColumn = column;
-      this.ascendingOrder = true;
-    }
-
-    this.resumen.sort((a, b) => {
-      const order = this.ascendingOrder ? 1 : -1;
-      if (a[column] < b[column]) {
-        return -order;
-      } else if (a[column] > b[column]) {
-        return order;
-      } else {
-        return 0;
-      }
-    });
-  }
-
-
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
     this.paginar();
   }
+
+
 
   paginar() {
     const tamanoPagina = 12;
@@ -168,12 +150,10 @@ export class ConsultasRMComponent implements OnInit {
 
   getPaginas(): number[] {
     const totalPaginas = Math.ceil(this.resumen.length / this.totalRegistros);
-
     // Verificar si totalPaginas es válido antes de crear el array
     if (totalPaginas <= 0) {
       return [];
     }
-
     return Array.from({ length: 10 }, (_, index) => index + 1);
   }
 
@@ -199,11 +179,36 @@ export class ConsultasRMComponent implements OnInit {
 
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {
       this.resumen = result;
+      this.consultas = result;
+      this.paginar();
     });
 
-
-
   }
+
+
+
+
+  sortTable(column: keyof Iconcultas) {
+    if (this.sortColumn === column) {
+      this.ascendingOrder = !this.ascendingOrder;
+    } else {
+      this.sortColumn = column;
+      this.ascendingOrder = true;
+    }
+
+    this.resumen.sort((a, b) => {
+      const order = this.ascendingOrder ? 1 : -1;
+      if (a[column] < b[column]) {
+        return -order;
+      } else if (a[column] > b[column]) {
+        return order;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+
 
 
 
@@ -256,7 +261,7 @@ export class ConsultasRMComponent implements OnInit {
     this.hojaBuscar = '';
     this.fechaBuscar = '';
     this.consultar();
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizar(data: any[]) {
@@ -308,7 +313,7 @@ export class ConsultasRMComponent implements OnInit {
 
   detalle(x: number) {
     this.ConsultasService.Consulta(x).subscribe(data => {
-    //  console.table(data)
+      //  console.table(data)
       this.consult = data;
       this.detalleVisible = true;
     })

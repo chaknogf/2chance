@@ -3947,8 +3947,8 @@ textarea.form-control-lg {
   display: block;
   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
   font-size: var(--bs-nav-link-font-size);
-  font-weight: var(--bs-nav-link-font-weight);
-  color: var(--bs-nav-link-color);
+  font-weight: bolder;
+  color: var(--bs-accordion-active-color);
   text-decoration: none;
   background: none;
   border: 0;
@@ -3960,8 +3960,10 @@ textarea.form-control-lg {
   }
 }
 .nav-link:hover, .nav-link:focus {
-  color: var(--bs-nav-link-hover-color);
+  color: var(--bs-yellow);
+  font-weight: bolder;
 }
+
 .nav-link:focus-visible {
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(232, 50, 131, 0.25);
@@ -5586,20 +5588,20 @@ textarea.form-control-lg {
 }
 
 .modal {
-  --bs-modal-zindex: 1055;
-  --bs-modal-width: auto;
-  --bs-modal-padding: 2rem;
-  --bs-modal-margin: 0.5rem;
+  /* --bs-modal-zindex: 1055; */
+  /* --bs-modal-width: auto; */
+  /* --bs-modal-padding: 2rem; */
+  /* --bs-modal-margin: 0.5rem; */
   --bs-modal-color: ;
   --bs-modal-bg: var(--bs-body-bg);
-  --bs-modal-border-color: var(--bs-border-color-translucent);
+  /* --bs-modal-border-color: var(--bs-border-color-translucent); */
   --bs-modal-border-width: var(--bs-border-width);
   --bs-modal-border-radius: var(--bs-border-radius-lg);
   --bs-modal-box-shadow: var(--bs-box-shadow-sm);
   --bs-modal-inner-border-radius: calc(var(--bs-border-radius-lg) - (var(--bs-border-width)));
-  --bs-modal-header-padding-x: 2rem;
+  /* --bs-modal-header-padding-x: 2rem;
   --bs-modal-header-padding-y: 2rem;
-  --bs-modal-header-padding: 2rem 2rem;
+  --bs-modal-header-padding: 2rem 2rem; */
   --bs-modal-header-border-color: var(--bs-border-color);
   --bs-modal-header-border-width: var(--bs-border-width);
   --bs-modal-title-line-height: 1.5;
@@ -13259,7 +13261,7 @@ input, select {
 }
 
 .custom-table-wrapper {
-
+  background: linear-gradient(202deg, rgba(98,123,193,1) 10%, rgba(65,88,224,1) 14%, rgba(8,53,85,1) 87%);
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
@@ -13267,6 +13269,27 @@ input, select {
   border: #09f7c0 solid 1px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+.custom-table-striped {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  align-items: center;
+}
+
+.custom-table-striped tbody tr:nth-child(even) {
+  background-color: #1a1a1a;
+}
+
+.custom-table-striped tbody tr:nth-child(odd) {
+  background-color: #12121a;
+}
+
 
 .t-w-r {
   background-color: #a4284dbd;
@@ -13277,7 +13300,7 @@ input, select {
 }
 
 .t-w-d {
-  background: rgb(98,123,193);
+
   background: linear-gradient(202deg, rgba(98,123,193,1) 10%, rgba(65,88,224,1) 14%, rgba(8,53,85,1) 87%);
 }
 
@@ -13295,6 +13318,7 @@ input, select {
   border-collapse: separate;
   word-break: keep-all;
   border-spacing: 0;
+
 }
 
 .custom-table td {
@@ -13309,15 +13333,17 @@ input, select {
 }
 
 .custom-table th, .custom-table td {
-  padding: 12px;
+  padding: 4px;
   text-align: left;
   border-bottom: 1px solid #333;
   font-stretch:narrower;
   text-transform: capitalize;
   text-align: center;
-  word-break: break-all;
+  word-break: normal;
   z-index: 1;
+  font-size: 1.19rem;
 }
+
 
 .custom-table tbody tr:hover {
   box-shadow: inset 0 0 0 999px black;
@@ -13352,82 +13378,126 @@ input, select {
 
 }
 
+.custom-card-container {
+  display: none; /* Ocultar tarjetas por defecto */
+  visibility: visible;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Tarjetas responsivas */
+  gap: 20px; /* Espacio entre tarjetas */
+  padding: 20px;
+  display: none;
+}
+
+/* Estilo base de la tarjeta */
+.custom-card {
+  background: linear-gradient(202deg, rgba(98, 123, 193, 1) 10%, rgba(65, 88, 224, 1) 14%, rgba(8, 53, 85, 1) 87%);
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #09f7c0;
+  color: #e0e0e0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: none;
+}
+
+
+
+
+
+/* Estilos para pantallas pequeñas (móviles y tablets) */
 @media (max-width: 768px) {
-  .custom-table-wrapper {
-    padding: 10px;
+
+
+
+
+
+  .custom-card-container {
+    display: none;
+  }
+  .custom-card {
+    display: none;
+  }
+  .custom-table svg {
+    transform: scale(1.5);
+  }
+  .custom-table td {
+    text-align: center !important;
   }
 
-  .custom-table tbody tr:hover {
-    box-shadow: inset 0 0 0 999px #000000c7;
-    border-radius: 10px;
+  .custom-table,
+  .custom-table thead,
+  .custom-table tbody,
+  .custom-table th,
+  .custom-table td,
+  .custom-table tr {
+    display: block;
+    justify-content: flex-start;
+    background-color: #021C32;
+    color: #07d4a8;
+    ;
   }
-  /* Ocultar encabezado */
+
+  /* Ocultar encabezados en móviles */
   .custom-table thead {
     display: none;
   }
 
-  /* Cambiar tabla por tarjetas */
-  .custom-table, .custom-table tbody, .custom-table tr, .custom-table td {
-    display: block;
-    width: 100%;
-  }
-
-  /* Estilo de las tarjetas */
+  /* Cada fila parece una tarjeta */
   .custom-table tr {
-    background-color: #012d55db;
-    margin-bottom: 15px; /* Espaciado entre tarjetas */
-    padding: 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
 
-  /* Contenido dentro de las tarjetas */
+  /* Cada celda se comporta como un bloque con título */
   .custom-table td {
-    text-align: left;
-    padding: 10px 0;
-    position: relative;
+    display: masonry-block;
+    justify-content: space-between;
+    padding: 8px 10px;
     border: none;
   }
+  .custom-table .label-td{
+    font-size: small;
+  }
 
-  /* Etiquetas de datos (headers simulados) */
+  /* Agregar etiquetas antes de los valores */
   .custom-table td::before {
-    content: attr(data-label); /* Extraer el encabezado como etiqueta */
-    position: absolute;
-    left: 0;
+    content: attr(data-label);
     font-weight: bold;
-    color: #000;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    text-transform: capitalize;
-  }
-
-  /* Sombra al pasar el mouse */
-  .custom-table tr:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .custom-table td {
-    font-size: 2rem;
-    font-weight: bolder;
-    line-height: 2.5rem;
-  }
-
-  /* Ajustar botones */
-  .custom-btn {
-    align-items: first baseline;
-    padding: 8px 12px;
-    font-size: 14px;
-    color: #68b5fddb;
-    border-radius: 6px;
-    transition: background 0.3s, transform 0.2s;
-  }
-
-  .custom-btn:hover {
-    background: rgba(9, 247, 192, 0.2);
-    transform: scale(1.6);
+    color: #90caf9;
   }
 }
+
+
+
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+
+
+  .custom-card-container {
+    display: grid; /* Mostrar tarjetas */
+  }
+
+  .custom-card {
+    background: linear-gradient(202deg, rgba(8, 53, 85, 1) 10%, rgba(65, 88, 224, 1) 14%, rgba(98, 123, 193, 1) 87%);
+  }
+
+  .custom-card-header {
+    background-color: #0b1120;
+  }
+
+  .custom-card-btn:hover {
+    color: #09f7c0;
+  }
+}
+
+
+
+
 
 
 /* Estilos base del modal */
@@ -13647,14 +13717,16 @@ input, select {
 
 
 .btn-primary {
-  background-color: #09f7c0; /* Color primario */
+  color: #09f7c0;
+  background-color: #12121a;
   border: none;
 }
 
 
 
 .btn-primary:hover {
-  background-color: #07d4a8; /* Color primario al hacer hover */
+  background-color: #07d4a8;
+  color: #12121a;
 }
 
 .btn-secondary {
@@ -13796,6 +13868,8 @@ input, select {
   border-radius: 8px;
   transition: border-color 0.3s, box-shadow 0.3s;
   font-size: 1.4rem;
+  text-transform: uppercase;
+  width: 100%;
 
 }
 
@@ -13810,7 +13884,12 @@ input, select {
 }
 
 
-
+.label-td {
+  padding: 0.01rem;
+  margin: 0;
+  color: var(--bs-warning-border-subtle);
+  font-weight: bolder;
+}
 
 
 
@@ -13906,7 +13985,7 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 150%;
+  line-height: 110%;
   background-color: var(--primary-color); /* Fondo azul oscuro */
   color: #FFFFFF; /* Texto blanco para contraste */
   margin: 0; /* Eliminar márgenes por defecto */
@@ -13914,8 +13993,21 @@ body {
   box-sizing: border-box; /* Asegurar que el padding no afecte el tamaño total */
 }
 
+.d-flex-desktop {
+  display: flex !important;
+}
+
+@media (max-width: 768px) {
+.d-flex-desktop {
+  display: inline !important;
+}
+}
 
 /* Encabezados */
+.text-yellow {
+  color: yellow;
+}
+
 h1 {
   font-size: 40px;
   font-weight: 600; /* Semibold */
@@ -13963,4 +14055,149 @@ h4 {
   font-size: 8px;
   font-weight: 400;
   line-height: 120%;
+}
+
+.svg-container svg{
+  display: inline-block;
+  padding: 4px;
+  border-radius: 50%;
+  box-shadow: 3px 3px 10px #001019;
+}
+
+.svg-container-square {
+  display: inline-block;
+  padding: 1px 8px 1px 8px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px #001019;
+}
+
+/* Define la animación de pulso */
+@keyframes pulse {
+  0% {
+    transform: scale(1); /* Tamaño original */
+  }
+  10% {
+    transform: scale(1.15); /* Primer latido (rápido y fuerte) */
+  }
+  20% {
+    transform: scale(1); /* Vuelve rápidamente al tamaño original */
+  }
+  30% {
+    transform: scale(1.2); /* Segundo latido (más suave que el primero) */
+  }
+  40% {
+    transform: scale(1); /* Vuelve nuevamente al tamaño original */
+  }
+  100% {
+    transform: scale(
+      1
+    ); /* Mantiene el tamaño original para el resto del tiempo */
+  }
+}
+
+.custom-card:hover .beat{
+  animation: pulse 1s infinite;
+}
+tr:hover .beat{
+  animation: pulse 1s infinite;
+}
+
+/* niebla fantasma */
+
+.opacity-60 {
+  opacity: 0.6;
+}
+
+.ghosteado{
+  color: #fafafa6e; /* Color negro con 50% de opacidad */
+}
+
+.bg-ghost{
+  opacity: none !important;
+  color: white;
+  border-radius: 10px;
+  animation: fog-move 10s linear infinite;
+}
+
+/* Animación de la niebla */
+@keyframes fog-move {
+  0% {
+    transform: translateX(-15%) translateY(-15%) scale(1.1);
+  }
+  50% {
+    transform: translateX(15%) translateY(15%) scale(1.2);
+  }
+  100% {
+    transform: translateX(-15%) translateY(-15%) scale(1.1);
+  }
+}
+
+.fs-9-6 {
+  font-size: 0.96rem;
+}
+
+.fs-mini {
+  font-size: 0.85rem;
+  padding: 0;
+  margin: 0;
+}
+
+.div-btn-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  width: auto;
+}
+
+.div-btn-opt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 4px;
+  padding: 4px;
+  width: auto;
+  transform: scale(0.9);
+}
+
+
+.text-90 {
+  transform: rotate(-90deg);
+  overflow-wrap: anywhere;
+  font-size: x-small;
+  justify-items: start;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilos generales para el modal */
+.modal-body {
+  background-color: #1a1a1a; /* Fondo oscuro */
+  padding: 20px; /* Espacio entre el contenido y el borde */
+  color: #fff; /* Color de texto blanco */
+  font-family: Arial, sans-serif; /* Fuente sans-serif */
+}
+
+/* Estilos para los títulos */
+.modal-body strong {
+  font-size: 18px; /* Tamaño de fuente para los títulos */
+  font-weight: bold; /* Fuente en negrita */
+  color: #03a9f4; /* Color de los títulos */
+}
+
+/* Estilos para el contenido */
+.modal-body span {
+  font-size: 16px; /* Tamaño de fuente para el contenido */
+  color: #ccc; /* Color de texto claro */
+}
+
+/* Estilos para el borde del modal */
+.modal-body {
+  border-radius: 10px; /* Borde redondeado */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra debajo del modal */
 }

@@ -33,7 +33,7 @@ export class EmergenciasComponent implements OnInit {
   ) {
 
 
-     // Calcula la fecha máxima (puedes ajustar esto según tus necesidades)
+    // Calcula la fecha máxima (puedes ajustar esto según tus necesidades)
     const fechaActual = new Date();
     fechaActual.setFullYear(fechaActual.getFullYear() - 1); // Restar un año
     this.maxdate = fechaActual.toISOString().split('T')[0];
@@ -118,29 +118,29 @@ export class EmergenciasComponent implements OnInit {
     this.emergencia.hoja_emergencia = this.tuNumero.toString();
     //console.table(this.emergencia)
 
-// Obtiene la fecha actual en el formato YYYY-MM-DD
+    // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
 
-     // Obtener los parámetros de la ruta
-     const params = this.activateRoute.snapshot.params;
+    // Obtener los parámetros de la ruta
+    const params = this.activateRoute.snapshot.params;
 
-     // Verificar si se proporcionó un ID de paciente
-     if (params['id']) {
-       this.ConsultasService.Consulta(params['id'])
-         .subscribe(
-           data => {
-             this.emergencia = data;
-             this.edit = true;
-           },
-           error => console.log(error)
-         )
-     }
+    // Verificar si se proporcionó un ID de paciente
+    if (params['id']) {
+      this.ConsultasService.Consulta(params['id'])
+        .subscribe(
+          data => {
+            this.emergencia = data;
+            this.edit = true;
+          },
+          error => console.log(error)
+        )
+    }
 
 
   }
 
-  regresar(){
+  regresar() {
     this._location.back();
   }
 
@@ -173,7 +173,7 @@ export class EmergenciasComponent implements OnInit {
   registrarEmergencia(): void {
     this.ConsultasService.registrar(this.emergencia)
       .subscribe((response) => {
-        console.table(this.emergencia,response)
+        console.table(this.emergencia, response)
         // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta registrada con éxito', response);
 
@@ -192,7 +192,7 @@ export class EmergenciasComponent implements OnInit {
         (error) => {
           // Manejar errores aquí
           console.error('Error al crear consulta', error);
-          console.table(this.emergencia,error)
+          console.table(this.emergencia, error)
           // Mostrar una alerta de error con estilo Bootstrap
           const alertDiv = document.createElement('div');
           alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
@@ -237,7 +237,7 @@ export class EmergenciasComponent implements OnInit {
       })
   }
 
-  archivar(){
+  archivar() {
     this.emergencia.archived_by = this.username;
     this.emergencia.fecha_recepcion = this.fechaRecepcion;
     this.emergencia.fecha_egreso = this.fechaEgreso;

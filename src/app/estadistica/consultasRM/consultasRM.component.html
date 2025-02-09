@@ -1,41 +1,30 @@
 
-<div class="justify-content-center">
-  <div>
-    <p class="text-center display-6">Consultas de Pacientes</p>
+<div class="search-container">
+  <div class="rounded p-0">
+    <form class="search-form" autocomplete="off">
+      <input type="number" class="form-control search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
+     <select id="especialidad" class="form-control search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+        <option value="" disabled selected hidden>Tipo Consulta</option>
+        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+      </select>
+      <input type="number" class="form-control search-input" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+      <input type="number" class="form-control search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+      <input type="date" class="form-control search-input" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+      <input type="text" class="form-control search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+      <searchIcon (click)="filtro()" />
+      <deleteInput (click)="limpiarInput()" />
+    </form>
   </div>
-  <hr class="my-0 p-1">
-  <div class="search-container">
-    <div class="rounded p-2 bg-dark">
-      <form class="search-form" autocomplete="off">
-        <input type="number" class="form-control search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
-       <select id="especialidad" class="form-control search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
-          <option value="" disabled selected hidden>Tipo Consulta</option>
-          <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
-        </select>
-        <input type="number" class="form-control search-input" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-        <input type="number" class="form-control search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-        <input type="date" class="form-control search-input" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-        <input type="text" class="form-control search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-        <input type="text" class="form-control search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-        <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
-        <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
-          <searchIcon />
-        </button>
-        <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
-          <deleteInput />
-        </button>
-      </form>
+</div>
 
-    </div>
-  </div>
-
-
-
-<div class="custom-table-wrapper t-w-d mt-3">
+<div class="">
+<div class="custom-table-wrapper t-w-d mt-2">
+  <h3 class="m-0 p-0">Consultas</h3>
   <table class="custom-table table-hover text-center" >
     <thead>
       <tr>
-
         <th class="text-center">Id</th>
         <th class="text-center" >Expediente</th>
         <th class="text-center">Paciente</th>
@@ -45,16 +34,14 @@
         <th class="text-center">Fecha</th>
         <th class="text-center">Servicio</th>
         <th class="text-center">Tipo</th>
-
-
-
+        <th class="text-center">Estatus</th>
       </tr>
     </thead>
 
     <div class="loader-container">
       <div *ngIf="porcentajeDeProgreso >= 0" class="loader"></div>
     </div>
-    <tbody class="justify-content-center  opacity-90">
+    <tbody class="svg-container">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let consulta of resumen">
 
@@ -66,12 +53,12 @@
           <p class="label-td" *ngIf="consulta.expediente">Expediente:</p>{{consulta.expediente}}
           <p class="label-td" *ngIf="consulta.hoja_emergencia">Hoja Emergencia:</p>{{consulta.hoja_emergencia}}
         </td>
-        <td class="text-center">
+        <td class="text-start w-20">
           <span [ngClass]="{'mujer': consulta.sexo == 'F', 'hombre': consulta.sexo != 'F'}">{{ consulta.nombres | anyToText | capitalizeName }}</span><br>
             {{consulta.apellidos |anyToText | capitalizeName}} <br>
 
         </td>
-        <td class="text-center w-10">{{consulta.dpi | anyToText| formatoDPI}}</td>
+        <td class="text-center w-5">{{consulta.dpi | anyToText| formatoDPI}}</td>
         <td class="text-center w-10">{{consulta.nacimiento | anyToText |FechaCorta}}</td>
         <td class="text-center">
           {{consulta.direccion | anyToText | capitalizeName}}
@@ -90,24 +77,46 @@
               {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
               {{ consulta.fecha_consulta | estancia: consulta.fecha_egreso }}
             </div>
-
           </div>
-
-
-
-
         </td>
-
         <td class="text-center">
           <span class="font-title1">{{consulta.especialidad | anyToNumber| enumEspecialidad}}: </span><br>
         {{consulta.servicio | anyToNumber| enumServicios}}
         </td>
-        <td class="text-center" [ngClass]="{'text-success': consulta.tipo_consulta == 1, 'text-warning': consulta.tipo_consulta == 2, 'text-danger': consulta.tipo_consulta == 3 }">{{consulta.tipo_consulta | anyToNumber| enumTipo }}<br>
-        <span class="">{{consulta.status | anyToNumber| enumStatus }}</span>
+        <td class="text-center w-5" >
+          <ng-container *ngIf="consulta.tipo_consulta == 1">
+            <coexIcon  />
+            <br/>
+            <span class="fs-mini">Consulta Externa</span>
+          </ng-container>
+          <ng-container *ngIf="consulta.tipo_consulta == 2">
+            <hospitalizacionIcon  />
+            <br/>
+            <span class="fs-mini">Hospitalización</span>
+          </ng-container>
+          <ng-container *ngIf="consulta.tipo_consulta == 3" >
+            <emergenciaIcon  />
+            <br/>
+            <span class="fs-mini">Emergencia</span>
+          </ng-container>
         </td>
-
-
-
+        <td class="text-center w-5">
+          <ng-container *ngIf="consulta.status == 1">
+          <activoIcon  />
+          <br/>
+          <span class="fs-mini">Activo</span>
+          </ng-container>
+          <ng-container *ngIf="consulta.status == 2">
+          <archiveIcon  />
+          <br/>
+          <span class="fs-mini">Archivado</span>
+          </ng-container>
+          <ng-container *ngIf="consulta.status == 3">
+            <prestamoIcon  />
+            <br/>
+            <span class="fs-mini">Prestamo</span>
+          </ng-container>
+        </td>
       </tr>
     </tbody>
   </table>

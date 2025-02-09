@@ -1,10 +1,10 @@
 
 import { PageReloadService } from '../../../../services/PageReload.service';
-import { Component, Renderer2,EventEmitter, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, Renderer2, EventEmitter, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  Ienum } from 'src/app/models/Ienum';
+import { Ienum } from 'src/app/models/Ienum';
 import { etnias, ecivil, academic, parents, lenguaje, servicio, servicios, nation } from 'src/app/enums/enums';
 import { municipio, departamentos, vecindad } from 'src/app/enums/vencindad';
 import { FechaService } from 'src/app/services/fecha.service';
@@ -89,6 +89,7 @@ export class TabEmerExpComponent implements OnInit {
     medico: null
   }
 
+
   @Output() idPaciente = new EventEmitter<number>();
   @Output() nombre = new EventEmitter<string>();
   @Output() apellido = new EventEmitter<string>();
@@ -120,7 +121,7 @@ export class TabEmerExpComponent implements OnInit {
 
 
     this.fechaActual = this.fechaService.FechaActual();
-    this.horaActual= this.fechaService.HoraActual();
+    this.horaActual = this.fechaService.HoraActual();
 
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
@@ -228,7 +229,7 @@ export class TabEmerExpComponent implements OnInit {
     this.apellidoBuscar = '';
     this.dpiBuscar = '';
     this.filteredPacientes = [];
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizarPacientes(data: any[]) {

@@ -1,66 +1,39 @@
+<div class="search-container">
+  <div class="div-btn-icons">
+    <backIcon [routerLink]="['/cie10']" />
+    <saveIcon (click)="edit ? editar() : crear()" />
+    <eliminarIcon (click)="borrar()" [routerLink]="['/cie10']" />
+    <div class="search-form">
+    </div>
+  </div>
+  <h3 class="text-center">Formulario Cie-10</h3>
+  <form class="custom-form" autocomplete="off">
+    <div class="custom-form-group">
+      <label class="" for="expediente">Codigo Cie-10</label>
+      <input type="text" class="custom-input" id="cod" name="cod"  [(ngModel)]='cie.cod' >
+    </div>
+    <div class="custom-form-group">
+      <label class="" for="expediente">Grupo:</label>
+      <input type="text" class="custom-input" id="grupo" name="grupo"  [(ngModel)]='cie.grupo' >
+    </div>
+    <div class="custom-form-group">
+      <label class="" for="expediente">Abreviatura:</label>
+      <input type="text" class="custom-input" id="abreviatura" name="abreviatura"  [(ngModel)]='cie.abreviatura' >
+    </div>
+    <div class="custom-form-group">
+      <label class="" for="expediente">Diagnostico:</label>
+      <textarea type="text" class="custom-input" id="dx" name="dx"  [(ngModel)]='cie.dx' ></textarea>
+    </div>
 
+    <div class="custom-form-group">
+      <label class="" for="especialidad">Especialidad:</label>
+      <select id="especialidad" class="custom-input" [(ngModel)]="cie.especialidad" name="especialidad" >
+        <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
+      </select>
+    </div>
+  </form>
+</div>
 
-
-<div class="">
-  <div class="row d-flex justify-content-center">
-    <div class="col-md-6">
-
-      <form class=" p-3  bg-opacity-15 card">
-
-
-        <div class="card-header text-light text-center h2">CIE 10</div>
-        <div class="d-flex  justify-content-center align-items-center w-100 p-0 mt-2">
-          <button class="btn btn-warning bg-black w-20" [routerLink]="['/cie10']">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-            </svg>
-            Regresar
-          </button>
-
-          <button type="submit" class="btn btn-success bg-black mx-5 w-20" (click)="edit ? editar() : crear()">Guardar</button>
-
-          <button class="btn btn-danger bg-black mx-2 w-20" (click)="borrar()" [routerLink]="['/cie10']">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-            </svg>
-          </button>
-        </div>
-
-        <hr>
-
-        <div class="card-body">
-
-          <div class="form-group mt-1">
-            <label class="text-light" for="expediente">Codigo Cie-10:</label>
-            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="cod" name="cod"  [(ngModel)]='cie.cod' >
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="expediente">Grupo:</label>
-            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="grupo" name="grupo"  [(ngModel)]='cie.grupo' >
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="expediente">Abreviatura:</label>
-            <input type="text" class="form-control bg-primary bg-opacity-75 text-uppercase" id="abreviatura" name="abreviatura"  [(ngModel)]='cie.abreviatura' >
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="expediente">Diagnostico:</label>
-            <textarea type="text" class="form-control bg-primary bg-opacity-75 text-capitalize" id="dx" name="dx"  [(ngModel)]='cie.dx' ></textarea>
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="especialidad">Especialidad:</label>
-            <select id="especialidad" class="form-control bg-primary bg-opacity-75 text-uppercase text-uppercase" [(ngModel)]="cie.especialidad" name="especialidad" >
-              <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
-            </select>
-          </div>
-
-
-        </div>
-
-        </form>
 
 
 

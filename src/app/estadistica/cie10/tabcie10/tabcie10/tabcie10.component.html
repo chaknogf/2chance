@@ -1,6 +1,5 @@
-<app-estadistica></app-estadistica>
 <div class="search-container">
-  <div class="rounded p-2 bg-dark">
+  <div class="rounded p-0">
     <form class="search-form" autocomplete="off" >
       <input type="text" class="form-control search-input" name="buscarcodigo" placeholder="Código"  [(ngModel)]="buscarcodigo" />
       <input type="text" class="form-control search-input" name="buscargrupo" placeholder="Grupo"  [(ngModel)]="buscargrupo" />
@@ -10,55 +9,41 @@
         <option value="" disabled selected hidden>Especialidad</option>
         <option *ngFor="let option of e.servicio" [value]="option.value">{{ option.label }}</option>
       </select>
-
-        <!-- Botones de acción -->
-        <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
-          <searchIcon />
-        </button>
-        <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
-          <deleteInput />
-        </button>
-      <button class="btn btn-info search-button" data-bs-toggle="modal" [routerLink]="['/formcie10']">
-        <createIcon />
-      </button>
+      <div class="div-btn-icons">
+        <searchIcon (click)="filtro()" />
+        <deleteInput (click)="limpiarInput()" />
+        <createIcon data-bs-toggle="modal" [routerLink]="['/formcie10']" />
+      </div>
     </form>
   </div>
-
-
-  </div>
-
+</div>
   <div class="">
-    <div class="custom-table-wrapper t-w-d mt-3">
-      <table class="custom-table table-hover text-center">
+    <div class="custom-table-wrapper t-w-d mt-2">
+      <h3 class="m-0 p-0">CIE10</h3>
+      <table class="custom-table table-hover text-center ">
         <thead class="text-normal">
           <tr>
-          <th class="text-center "></th>
           <th class="text-center ">Codigo</th>
-          <th class="text-center ">Grupo</th>
-          <th class="text-center " >DX</th>
+          <th class="text-center ">Titulo</th>
+          <th class="text-center " >Diagnostico</th>
           <th class="text-center " >Especialidad</th>
           <th class="text-center " >Abreviatura</th>
           <th class="text-center " >Id</th>
+          <th class="text-center ">opciones</th>
         </tr>
         </thead>
 
-        <tbody class="justify-content-center text-normal  ">
+        <tbody class="svg-container ">
           <tr *ngFor="let cie10 of resumen">
-
-            <td class="text-text">
-              <button class="btn btn-dark btn-sm" [routerLink]="['/cie10edit', cie10.id]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                </svg>
-              </button>
-            </td>
             <td class="text-center text-warning" >{{ cie10.cod }}</td>
             <td class="text-text" > {{ cie10.grupo}} </td>
-            <td class="text-center">{{ cie10.dx}}</td>
+            <td class="text-start">{{ cie10.dx}}</td>
             <td class="text-center">{{ cie10.especialidad | anyToNumber | enumEspecialidad}}</td>
             <td class="text-center tex-uppercase">{{ cie10.abreviatura}}</td>
             <td class="text-center">{{ cie10.id}}</td>
+            <td class="text-center">
+              <editIcon [routerLink]="['/cie10edit', cie10.id]" />
+            </td>
 
 
           </tr>

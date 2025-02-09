@@ -1,0 +1,22 @@
+@keyframes faro {
+  0% {
+    box-shadow: 0 0 5px rgba(173, 216, 230, 0.3);
+    background-color: rgba(173, 216, 230, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(173, 216, 230, 0.8);
+    background-color: rgba(173, 216, 230, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(173, 216, 230, 0.3);
+    background-color: rgba(173, 216, 230, 0.1);
+  }
+}
+
+.faro-efecto {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(173, 216, 230, 0.3);
+  animation: faro 2s infinite ease-in-out;
+}

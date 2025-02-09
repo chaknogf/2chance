@@ -1,11 +1,23 @@
-<body class="bs-dark dark-theme zoomable-content-screen">
+<!-- <div class="home">
 
-  <div class="no-imprimir">
+  <div class="sidebar-div">
     <app-navbar *ngIf="showNavbar"></app-navbar>
   </div>
 
-  <div class="container-fluid">
+  <div class="contenido">
     <router-outlet></router-outlet>
   </div>
-</body>
+</div> -->
 
+
+<div class="home-container">
+  <!-- Sidebar -->
+  <div class="navbar-div no-imprimir">
+    <app-navbar *ngIf="showNavbar"></app-navbar>
+  </div>
+
+  <!-- Contenido Principal -->
+  <div class="contenid">
+    <router-outlet></router-outlet>
+  </div>
+</div>
