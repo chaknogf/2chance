@@ -147,7 +147,7 @@ import { CatalogoIcomComponent } from 'src/assets/svg/catalogoIcom/catalogoIcom.
 import { ArchivarIconComponent } from 'src/assets/svg/archivarIcon/archivarIcon.component';
 import { CheckIconComponent } from 'src/assets/svg/checkIcon/checkIcon.component';
 import { UpdateIconComponent } from 'src/assets/svg/updateIcon/updateIcon.component';
-
+import { CitaIconComponent } from 'src/assets/svg/citaIcon/citaIcon.component';
 
 @NgModule({
   declarations: [
@@ -308,6 +308,7 @@ import { UpdateIconComponent } from 'src/assets/svg/updateIcon/updateIcon.compon
     ArchivarIconComponent,
     CheckIconComponent,
     UpdateIconComponent,
+    CitaIconComponent,
 
 
   ],

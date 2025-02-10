@@ -3,8 +3,15 @@
 
   <div class="search-container col-md-6">
     <h4 class="text-center">Registro de Consulta Externa</h4>
-    <label >Fecha</label>
-    <input type="date" class="search-input" [(ngModel)]="hoy" [max]="maxdate">
+    <div class="search-div">
+      <button [routerLink]="['/citas']" class="btn btn-info search-button">
+        <citaIcon />
+        Citas
+      </button>
+      <label class="justify-content-end" >Fecha</label>
+      <input type="date" class="search-input justify-content-end" [(ngModel)]="hoy" [max]="maxdate">
+    </div>
+
     <nuevaConsulta></nuevaConsulta>
   </div>
   <div class="search-container col-md-6">
@@ -283,6 +290,7 @@
   </div>
 
 </div>
+
 
 
 
