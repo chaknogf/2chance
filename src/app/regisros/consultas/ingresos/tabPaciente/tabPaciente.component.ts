@@ -1,9 +1,9 @@
 import { PageReloadService } from '../../../../services/PageReload.service';
-import { Component, Renderer2,EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, Renderer2, EventEmitter, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { Ipaciente } from 'src/app/models/Ipaciente';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  Ienum } from 'src/app/models/Ienum';
+import { Ienum } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 import { FechaService } from 'src/app/services/fecha.service';
@@ -18,7 +18,7 @@ import { UsersService } from 'src/app/services/user.service';
   templateUrl: './tabPaciente.component.html',
   styleUrls: ['./tabPaciente.component.css']
 })
-export class TabPacienteComponent implements OnInit  {
+export class TabPacienteComponent implements OnInit {
   public pacientes: Ipaciente[] = []; // Registros a mostrar en la página actual
   public filteredPacientes: Ipaciente[] = [];
   public searchText: string = '';
@@ -102,7 +102,8 @@ export class TabPacienteComponent implements OnInit  {
 
   @ViewChild('edadCell', { static: false }) edadCell: ElementRef = new ElementRef(null);
 
-  constructor(private pacientesService: PacientesService,
+  constructor(
+    private pacientesService: PacientesService,
     private router: Router,
     private activateRoute: ActivatedRoute,
     private ConsultasService: ConsultasService,
@@ -121,7 +122,7 @@ export class TabPacienteComponent implements OnInit  {
 
     this.ingreso.created_by = this.username;
     this.fechaActual = this.fechaService.FechaActual();
-    this.horaActual= this.fechaService.HoraActual();
+    this.horaActual = this.fechaService.HoraActual();
 
     // Obtener los parámetros de la ruta
     const params = this.activateRoute.snapshot.params;
@@ -170,16 +171,16 @@ export class TabPacienteComponent implements OnInit  {
     this.pacientesService.getPacientes().subscribe(data => {
       this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }): number => b.expediente - a.expediente);
       this.filteredPacientes = data;
-      this.paginarPacientes();//Llama a la función aquí para paginar automáticamente
+      this.paginar();//Llama a la función aquí para paginar automáticamente
     });
   }
 
   onPageChange(pageNumber: number) {
     this.paginaActual = pageNumber;
-    this.paginarPacientes();
+    this.paginar();
   }
 
-  paginarPacientes() {
+  paginar() {
     const tamanoPagina = 12;
     const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
     const indiceFin = indiceInicio + tamanoPagina;
@@ -205,44 +206,21 @@ export class TabPacienteComponent implements OnInit  {
   }
 
   filtro() {
-    if (this.expedienteBuscar !== "") {
-      this.pacientesService.getPaciente(this.expedienteBuscar).subscribe(data => {
-        if (data) {
-          this.actualizarPacientes([data]);
-          this.filteredPacientes = [data];
-
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else if (this.nombreBuscar || this.apellidoBuscar) {
-      this.pacientesService.getNombre(this.nombreBuscar, this.apellidoBuscar).subscribe(data => {
-        if (data && data.length > 0) {
-          this.actualizarPacientes(data);
-          this.filteredPacientes = data;
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else if (this.dpiBuscar !="" ) {
-      this.pacientesService.getdpi(this.dpiBuscar).subscribe(data => {
-        if (data) {
-          this.actualizarPacientes([data]);
-          this.filteredPacientes = data;
-          console.log(this.filteredPacientes)
-        } else {
-          this.actualizarPacientes([]);
-          this.filteredPacientes = [];
-        }
-      });
-    } else {
-      // Limpiar resultados si no se proporciona ningún criterio de búsqueda
-      this.actualizarPacientes([]);
-      this.filteredPacientes = [];
-    }
+    // Recopila los valores de entrada del formulario
+    const filters = {
+      // id: this.idBuscar,
+      expediente: this.expedienteBuscar,
+      nombre: this.nombreBuscar,
+      apellido: this.apellidoBuscar,
+      dpi: this.dpiBuscar,
+    };
+    this.pacientesService.filterPersona(filters).subscribe((result) => {
+      this.pacientes = result;
+      this.resumen = result;
+      this.paginar();
+    });
   }
+
 
   limpiarInput() {
     this.expedienteBuscar = ''; // Limpia el contenido del input
@@ -253,7 +231,7 @@ export class TabPacienteComponent implements OnInit  {
     this.ingreso.servicio = null;
     this.ingreso.especialidad = null;
 
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizarPacientes(data: any[]) {
@@ -261,7 +239,7 @@ export class TabPacienteComponent implements OnInit  {
       // this.pacientes = data.sort((a: { expediente: number; }, b: { expediente: number; }) => b.expediente - a.expediente);
       this.filteredPacientes = data;
       console.log(this.filteredPacientes)
-      this.paginarPacientes();
+      this.paginar();
       this.dpiBuscar = '';
       this.nombreBuscar = '';
       this.apellidoBuscar = '';

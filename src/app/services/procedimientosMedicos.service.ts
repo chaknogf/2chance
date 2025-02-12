@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { Iabreviaturas, IproceMedico } from '../models/IprocedimientosMedicos';
 
@@ -17,29 +17,29 @@ export class ProcedimientosMedicosService {
     private auth: UsersService
   ) { }
 
-  proceRealizados(): Observable<any>{
-  return this.http.get(this.urlapi + "/promedic?token="+this.token)
+  proceRealizados(): Observable<any> {
+    return this.http.get(this.urlapi + "/promedic?token=" + this.token)
   }
 
-  abreviaturas(): Observable<any>{
-    return this.http.get(this.urlapi + "/abreviaturas" + "?token="+this.token)
-    }
-
-  getproce(id: number): Observable<any>{
-    return this.http.get(this.urlapi + "/procedimiento/?id=" +id + "&token="+this.token)
+  abreviaturas(): Observable<any> {
+    return this.http.get(this.urlapi + "/abreviaturas" + "?token=" + this.token)
   }
 
-  getabreviaturaid(id: number): Observable<any>{
-    return this.http.get(this.urlapi + "/abreviaturaid/?id=" +id + "&token="+this.token)
+  getproce(id: number): Observable<any> {
+    return this.http.get(this.urlapi + "/procedimiento/?id=" + id + "&token=" + this.token)
   }
 
-  getabreviatura(abrev: string): Observable<any>{
-    return this.http.get(this.urlapi + "/abreviatura/?abreviatura=" +abrev + "&token="+this.token)
+  getabreviaturaid(id: number): Observable<any> {
+    return this.http.get(this.urlapi + "/abreviaturaid/?id=" + id + "&token=" + this.token)
+  }
+
+  getabreviatura(abrev: string): Observable<any> {
+    return this.http.get(this.urlapi + "/abreviatura/?abreviatura=" + abrev + "&token=" + this.token)
   }
 
 
 
-  filtrarProce(filtros: any): Observable<any>{
+  filtrarProce(filtros: any): Observable<any> {
     // Inicializa una cadena vacía para la URL
     let url = `${this.urlapi}/filtrar_procedimientos/`;
 
@@ -72,12 +72,12 @@ export class ProcedimientosMedicosService {
     }
 
     if (filtros.procedimiento) {
-        if (url.includes('?')) {
-          url += `&procedimiento=${filtros.procedimiento}`;
-        } else {
-          url += `?procedimiento=${filtros.procedimiento}`;
-        }
+      if (url.includes('?')) {
+        url += `&procedimiento=${filtros.procedimiento}`;
+      } else {
+        url += `?procedimiento=${filtros.procedimiento}`;
       }
+    }
 
     if (filtros.especialidad) {
       if (url.includes('?')) {
@@ -87,12 +87,12 @@ export class ProcedimientosMedicosService {
       }
     }
     if (filtros.sexo) {
-        if (url.includes('?')) {
-          url += `&sexo=${filtros.sexo}`;
-        } else {
-          url += `?sexo=${filtros.sexo}`;
-        }
+      if (url.includes('?')) {
+        url += `&sexo=${filtros.sexo}`;
+      } else {
+        url += `?sexo=${filtros.sexo}`;
       }
+    }
     if (filtros.medico) {
       if (url.includes('?')) {
         url += `&medico=${filtros.medico}`;
@@ -115,7 +115,7 @@ export class ProcedimientosMedicosService {
 
   }
 
-  filtrarAbr(filtros: any): Observable<any>{
+  filtrarAbr(filtros: any): Observable<any> {
     // Inicializa una cadena vacía para la URL
     let url = `${this.urlapi}/filtrar_abreviaturas/`;
 

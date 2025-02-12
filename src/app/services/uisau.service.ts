@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Iconcultas } from '../models/Iconsultas';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { Iuisau } from '../models/Iuisau';
 
@@ -19,7 +19,7 @@ export class UisauService {
     private http: HttpClient,
     private FechaService: FechaService,
     private auth: UsersService
-) { }
+  ) { }
 
   Infos(): Observable<any> {
     return this.http.get(this.urlapi + "/uisau/?token=" + this.token)
@@ -146,15 +146,15 @@ export class UisauService {
   }
 
   crear(info: Iuisau): Observable<any> {
-    return this.http.post(this.urlapi + "/uisausave/?token="+this.token, info);
+    return this.http.post(this.urlapi + "/uisausave/?token=" + this.token, info);
   }
 
   editar(id: number, actualizar: Iuisau): Observable<any> {
-    return this.http.put(this.urlapi + '/uisauedit?id=' + id+"&token="+ this.token, actualizar);
+    return this.http.put(this.urlapi + '/uisauedit?id=' + id + "&token=" + this.token, actualizar);
   }
 
   eliminar(id: number): Observable<any> {
-    return this.http.delete(this.urlapi + '/uisaudelet/' + id+"?token="+this.token);
+    return this.http.delete(this.urlapi + '/uisaudelet/' + id + "?token=" + this.token);
   }
 
 }

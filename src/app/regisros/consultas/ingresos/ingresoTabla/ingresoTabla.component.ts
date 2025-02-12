@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from '../../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
+import { Ienum } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 
@@ -78,7 +78,7 @@ export class IngresoTablaComponent implements OnInit {
     medico: null
   }
 
-   e: Ienum = {
+  e: Ienum = {
     municipio: municipio,
     nation: nation,
     people: etnias,
@@ -107,7 +107,7 @@ export class IngresoTablaComponent implements OnInit {
         this.consultas = data;
         this.paginar()
         // console.log(this.consultas);
-    })
+      })
   }
 
   onPageChange(pageNumber: number) {
@@ -156,6 +156,7 @@ export class IngresoTablaComponent implements OnInit {
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {
       this.resumen = result;
       this.consultas = result;
+      this.paginar();
     });
 
 
@@ -214,7 +215,7 @@ export class IngresoTablaComponent implements OnInit {
     this.hojaBuscar = '';
     this.fechaBuscar = '';
     this.ingresos();
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizar(data: any[]) {

@@ -108,7 +108,8 @@ export class TablaComponent implements OnInit {
   @Output() telefonoPaciente = new EventEmitter<string>();
   @ViewChild('edadCell', { static: false }) edadCell: ElementRef = new ElementRef(null);
 
-  constructor(private pacientesService: PacientesService,
+  constructor(
+    private pacientesService: PacientesService,
     private router: Router,
     private activateRoute: ActivatedRoute,
     private ConsultasService: ConsultasService,

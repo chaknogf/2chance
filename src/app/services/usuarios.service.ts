@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { Iusuarios } from '../models/Iusers';
 
@@ -26,7 +26,7 @@ export class UsuariosService {
   }
 
   actualizar(username: string, user: Iusuarios): Observable<any> {
-    return this.http.put(this.urlapi + '/updateuser/?username=' + username +"&token="+ this.token, user);
+    return this.http.put(this.urlapi + '/updateuser/?username=' + username + "&token=" + this.token, user);
   }
 
 

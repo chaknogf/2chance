@@ -1,74 +1,67 @@
+<div class="search-container">
+  <div class="search-div">
+    <form class="search-form" autocomplete="off">
+      <select id="status" class="form-control search-input" [(ngModel)]="statusBuscar" name="statusBuscar">
+        <option value="1">Activos</option>
+        <option value="2">Archivados</option>
+      </select>
+      <input type="date" class="form-control search-input" name="fechaBuscar" placeholder="fechaBuscar" [(ngModel)]="fechaBuscar" />
+      <input type="number" class="form-control search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+      <input type="number" class="form-control search-input" name="Hoja" id="hojaBuscar" placeholder="Emergencia" [(ngModel)]="hojaBuscar" />
+      <input type="text" class="form-control search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <select id="especialidad" class="form-control search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+        <option value="" disabled selected hidden>Tipo Consulta</option>
+        <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+      </select>
+      <select id="especialidad" class="form-control search-input" [(ngModel)]="statusBuscar" name="statusBuscar">
+        <option value="" disabled selected hidden>Estatus</option>
+        <option *ngFor="let option of enums.status" [value]="option.value">{{ option.label }}</option>
+      </select>
+      <div class="div-btn-icons">
+        <searchIcon (click)="filtro()" />
+        <deleteInput (click)="limpiarInput()" />
+      </div>
+
+    </form>
+  </div>
+
+
+</div>
+
+
 <div class="justify-content-center ">
   <div>
     <p class="text-center display-6" >Control de Expedientes</p>
   </div>
   <hr>
-  <div class="search-container">
-    <div class="rounded p-2 bg-dark">
-      <form class="d-flex justify-content-between align-items-center gap-1" autocomplete="off">
-        <select id="status" class="form-control search-input expande-contenido" [(ngModel)]="statusBuscar" name="statusBuscar">
-          <option value="1">Activos</option>
-          <option value="2">Archivados</option>
-        </select>
-        <input type="date" class="form-control search-input expande-contenido" name="fechaBuscar" placeholder="fechaBuscar" [(ngModel)]="fechaBuscar" />
-        <input type="number" class="form-control search-input expande-contenido" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-        <input type="number" class="form-control search-input expande-contenido" name="Hoja" id="hojaBuscar" placeholder="Emergencia" [(ngModel)]="hojaBuscar" />
-        <input type="text" class="form-control search-input expande-contenido" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-        <input type="text" class="form-control search-input expande-contenido" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-        <select id="especialidad" class="form-control " [(ngModel)]="tipoBuscar" name="tipoBuscar">
-          <option value="" disabled selected hidden>Tipo Consulta</option>
-          <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
-        </select>
-        <button type="submit" class="btn btn-primary search-button"
-         (click)="filtro()">
-          <searchIcon />
-        </button>
-        <button type="button" class="btn btn-secondary search-button"
-         (click)="limpiarInput()">
-          <deleteInput />
-        </button>
-      </form>
-    </div>
 
-
-  </div>
 
 
 <div class="custom-table-wrapper t-w-d mt-1">
+  <h3 class="m-0 p-0">Control de Egresos y Recepción</h3>
   <table class="custom-table table-hover text-center" >
     <thead class="text-normal">
       <tr>
-        <th class="text-center fs-9">Egreso</th>
-        <th class="text-center fs-9">Archivar</th>
-        <th class="text-center fs-9">Expediente</th>
-        <th class="text-center fs-9">Paciente</th>
-        <th class="text-center fs-9">Fecha</th>
-        <th class="text-center fs-9">Estancia</th>
-        <th class="text-center fs-9">Servicio</th>
-        <th class="text-center  fs-9">Tipo Consulta</th>
-        <th class="text-center fs-9">Status</th>
+        <th class="text-center">Historia Clinica</th>
+        <th class="text-center">Paciente</th>
+        <th class="text-center">Fecha</th>
+        <th class="text-center">Estancia</th>
+        <th class="text-center">Servicio</th>
+        <th class="text-center">Tipo Consulta</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Opciones</th>
 
 
 
       </tr>
     </thead>
-    <tbody class="justify-content-center  opacity-90">
+    <tbody class="svg-container">
       <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let consulta of resumen; let i = index">
-
-        <td class="text-center "  (click)="consultaro(consulta.id)" data-bs-toggle="modal" data-bs-target="#out">
-          <goHomeIcon />
-
-      </td>
-
-      <td [routerLink]="['/recept/', consulta.id]" class="text-center">
-        <archiveIcon />
-      </td>
-
-
         <td class="text-center text-warning font-ubuntu" (click)="detalle(consulta.id)" data-bs-toggle="modal" data-bs-target="#verCons">
-          <span class="me-1 font-title1">Expediente: </span>{{consulta.expediente}}<br>
-          <span class="me-1 font-title1">Hoja Emergencia: </span>{{consulta.hoja_emergencia}}
+          <span class="me-1 font-title1" *ngIf="consulta.expediente">Expediente: </span>{{consulta.expediente}}<br>
+          <span class="me-1 font-title1" *ngIf="consulta.hoja_emergencia">Emergencia: </span>{{consulta.hoja_emergencia}}
         </td>
 
         <td class="text-center">
@@ -90,9 +83,51 @@
           <span class="font-title1">{{consulta.especialidad | anyToNumber| enumEspecialidad}}</span><br>
           {{consulta.servicio | anyToNumber| enumServicios}}
         </td>
-        <td class="text-center">{{consulta.tipo_consulta | anyToNumber| enumTipo }}</td>
-        <td class="text-center">{{consulta.status | anyToNumber | enumStatus}}</td>
-
+        <td class="text-center">
+          <ng-container *ngIf="consulta.tipo_consulta == 1">
+            <coexIcon  />
+            <br/>
+            <span class="fs-mini">Consulta Externa</span>
+          </ng-container>
+          <ng-container *ngIf="consulta.tipo_consulta == 2">
+            <hospitalizacionIcon  />
+            <br/>
+            <span class="fs-mini">Hospitalización</span>
+          </ng-container>
+          <ng-container *ngIf="consulta.tipo_consulta == 3" >
+            <emergenciaIcon  />
+            <br/>
+            <span class="fs-mini">Emergencia</span>
+          </ng-container>
+        </td>
+        <td class="text-center">
+          <ng-container *ngIf="consulta.status == 1">
+            <activoIcon  />
+            <br/>
+            <span class="fs-mini">Activo</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.status == 2">
+            <archiveIcon  />
+            <br/>
+            <span class="fs-mini">Archivado</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.status == 3">
+              <prestamoIcon  />
+              <br/>
+              <span class="fs-mini">Prestamo</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.status == 4">
+              <egresoIcon />
+              <br/>
+              <span class="fs-mini">Egreso</span>
+            </ng-container>
+        </td>
+        <td>
+          <div class="div-btn-opt">
+            <egresoIcon (click)="consultaro(consulta.id)" data-bs-toggle="modal" data-bs-target="#out" />
+            <archiveIcon [routerLink]="['/recept/', consulta.id]" />
+          </div>
+        </td>
       </tr>
     </tbody>
       </table>
@@ -110,24 +145,29 @@
     </div>
 
     <div class="modal" id="out">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content w-50 ">
-          <div class=" p-3">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-tittle">Egreso de Pacientes</h5>
+            <closeIcon />
+          </div>
+          <div class="modal-body">
 
             <form class="cutom-form">
-              <div class="subtitle">Egreso de Pacientes<br>
-                <span>exp:{{consulta_.expediente}}</span>
+              <div class="subtitle"><br>
+                <span>Expediente:{{consulta_.expediente}}</span>
               </div>
               <div class="custom-form-group">
-                <select id="encamamiento" class="custom-input" type="text" [(ngModel)]="consulta_.servicio" placeholder="">
-                  <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
+                <select id="encamamiento" class="custom-input"  [(ngModel)]="consulta_.servicio" placeholder=""  >
+                  <option *ngFor="let option of e.encamamiento" [value]="option.value" (click)="darEgreso()">{{ option.label }}</option>
                 </select>
                 <div class="cut"></div>
                 <label for="encamamiento" id="placeholder" class="" >Encamamiento</label>
 
-                <input id="egreso" class="custom-input" type="date" placeholder="" [(ngModel)]="consulta_.fecha_egreso" (click)="egreso()"  [max]="maxdate">
+                <input id="egreso" class="custom-input" type="date" placeholder="" [(ngModel)]="consulta_.fecha_egreso" [max]="maxdate" [defaultValue]="fechaEgreso" >
                 <div class="cut"></div>
                 <label for="lastname" id="placeholder" class="">Fecha de Egreso</label>
+
               </div>
               <div class="subtitle">Egreso de Pacientes<br>
                 <span>exp:{{consulta_.expediente}}</span>
@@ -135,12 +175,10 @@
               <div class="search-container">
                 <div class="rounded p-2 bg-dark">
                   <div class="search-form">
-                    <button type="text" class="btn btn-dark search-button" data-bs-dismiss="modal" (click)="guardarEgreso()">
-                      <saveIcon />
-                    </button>
-                    <button type="text" class="btn btn-dark search-button" data-bs-dismiss="modal">
-                      <closeIcon />
-                    </button>
+                    <div class="div-btn-opt">
+                      <saveIcon data-bs-dismiss="modal" (click)="guardarEgreso()" />
+                    </div>
+
                   </div>
                 </div>
               </div>

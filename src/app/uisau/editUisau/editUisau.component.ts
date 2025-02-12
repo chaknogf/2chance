@@ -57,7 +57,6 @@ export class EditUisauComponent implements OnInit {
   // Modelo para la información de la consulta
   info: Iuisau = {
     id: 0,
-    consulta_id: 0,
     expediente: 0,
     nombres: '',
     apellidos: '',
@@ -88,6 +87,17 @@ export class EditUisauComponent implements OnInit {
     dxC: '',
     dxD: '',
     dxE: '',
+    receta_por: '',
+    shampoo: false,
+    toalla: false,
+    peine: false,
+    jabon: false,
+    cepillo_dientes: false,
+    pasta_dental: false,
+    sandalias: false,
+    agua: false,
+    papel: false,
+    panales: false,
   };
 
   // Modelo para la consulta inicial
@@ -125,6 +135,7 @@ export class EditUisauComponent implements OnInit {
     created_at: null,
     updated_at: null,
     created_by: null,
+
   };
 
   // Opciones enumeradas para formularios

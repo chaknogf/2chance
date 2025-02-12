@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/user.service';
 import { HttpHeaders } from '@angular/common/http';
 import { FechaService } from 'src/app/services/fecha.service';
+import { PageReloadService } from 'src/app/services/PageReload.service';
 
 
 
@@ -39,12 +40,16 @@ export class TablaPacientesComponent {
     private activateRoute: ActivatedRoute,
     private userService: UsersService,
     private fecha: FechaService,
+    private reloadService: PageReloadService
   ) { }
   reset: boolean = false;
 
   ngOnInit() {
     this.getPacientes();
+
     this.paginar();
+
+
   }
 
 
@@ -60,7 +65,7 @@ export class TablaPacientesComponent {
       this.porcentajeDeProgreso = 100;
       setTimeout(() => {
         this.porcentajeDeProgreso = -1;
-      }, 1000);
+      }, 200);
       //console.table(data)
     });
   }

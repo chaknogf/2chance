@@ -1,11 +1,7 @@
-<div class="rounded p-2 bg-dark w-50 no-imprimir">
-  <div class="search-form d-flex justify-content-center gap-2">
-    <button class="btn btn-primary search-button" (click)="regresar()" >
-     <backIcon />
-    </button>
-    <button class="btn btn-primary search-button" (click)="imprimir()">
-      <printIcon />
-    </button>
+<div class="search-container no-imprimir">
+  <div class="search-div bg-dark">
+    <backIcon (click)="regresar()" />
+    <printIcon (click)="imprimir()" />
   </div>
 </div>
 
@@ -181,7 +177,7 @@
     </div>
 
     <div
-      style=" left: 70px; top: 331px;"
+      style=" left: 70px; top: 326px;"
       class="hoja-values-wrap">
       {{patient?.nacimiento | edad}}
     </div>

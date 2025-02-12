@@ -1,7 +1,8 @@
 export interface Iuisau {
 
+
   id: number;
-  consulta_id: number;
+  consulta_id?: number;
   expediente: number | null;
   nombres: string | null;
   apellidos: string | null;
@@ -24,14 +25,28 @@ export interface Iuisau {
   nota: string | null;
   estudios: string | null;
   evolucion: string | null;
+  receta_por?: string | null;
+  shampoo?: boolean | null;
+  toalla?: boolean | null;
+  peine?: boolean | null;
+  jabon?: boolean | null;
+  cepillo_dientes?: boolean | null;
+  pasta_dental?: boolean | null;
+  sandalias?: boolean | null;
+  agua?: boolean | null;
+  papel?: boolean | null;
+  panales?: boolean | null;
   id_consulta: number | null;
-  created_by: string | null;
-  update_by: string | null;
+  created_by?: string | null;
+  created_at?: string | null;
+  update_at?: string | null;
+  update_by?: string | null;
   dxA?: string | null;
   dxB?: string | null;
   dxC?: string | null;
   dxD?: string | null;
   dxE?: string | null;
+
 
 }
 
@@ -70,6 +85,7 @@ export interface Iuisau_v {
   dxC?: string | null;
   dxD?: string | null;
   dxE?: string | null;
+
 
 }
 

@@ -1,242 +1,199 @@
-
-
-
-<div class="container-fluid d-flex my-3">
-
-  <h5 class="mx-auto">Control de Expediente - Recepción de Consulta</h5>
-</div>
-
-
-<div class="container-fluid d-flex">
-
-  <div class="text-white border-quatz btn text-end p-2 col-4">
-    <div class="d-flex justify-content-center gap-2">
-      <button class="btn btn-info search-button" (click)="regresar()">
-        <backIcon />
-        </button>
-      <button class="btn btn-dark search-button" [routerLink]="['/paciente/edit/', patient?.id]">
-        <editIcon />
-      </button>
+<div class="d-flex-desktop">
+  <div class="search-container col-md-6">
+    <div class="search-div">
+      <backIcon (click)="regresar()" />
+      <editIcon [routerLink]="['/paciente/edit/', patient?.id]" />
     </div>
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Id Paciente:</span>{{ patient?.id }}
-      <ng-container *ngIf="patient?.id; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+    <div class="">
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Expediente:</span>{{ patient?.expediente }}
-      <ng-container *ngIf="patient?.expediente; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Id Paciente:</span>{{ patient?.id }}
+        <ng-container *ngIf="patient?.id; else noData">
+          <checkGoodIcon />
+        </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <hr style="margin: 0;">
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Expediente:</span>{{ patient?.expediente }}
+        <ng-container *ngIf="patient?.expediente; else noData">
+        <checkGoodIcon />
+      </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ patient?.nombre | anyToText | capitalizeName }} {{ patient?.apellido | anyToText | capitalizeName }}
-      <ng-container *ngIf="patient?.nombre && patient?.apellido; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <hr style="margin: 0;">
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ patient?.sexo | anyToText |sexo}}
-       <ng-container *ngIf="patient?.sexo; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Paciente:</span>{{ patient?.nombre | anyToText | capitalizeName }} {{ patient?.apellido | anyToText | capitalizeName }}
+        <ng-container *ngIf="patient?.nombre && patient?.apellido; else noData">
+        <checkGoodIcon />
+      </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">DPI:</span>{{ patient?.dpi | anyToText | formatoDPI}}
-      <ng-container *ngIf="patient?.dpi; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Sexo:</span>{{ patient?.sexo | anyToText |sexo}}
+         <ng-container *ngIf="patient?.sexo; else noData">
+       <checkGoodIcon />
+      </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Fecha de nacimiento:</span>{{ patient?.nacimiento | anyToText | formatoFecha}}
-      <ng-container *ngIf="patient?.nacimiento; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">DPI:</span>{{ patient?.dpi | anyToText | formatoDPI}}
+        <ng-container *ngIf="patient?.dpi; else noData">
+       <checkGoodIcon />
+      </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad:</span>{{ patient?.nacimiento | anyToText | edad}}
-      <ng-container *ngIf="patient?.nacimiento; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Fecha de nacimiento:</span>{{ patient?.nacimiento | anyToText | formatoFecha}}
+        <ng-container *ngIf="patient?.nacimiento; else noData">
+        <checkGoodIcon />
+        </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Lugar de Nacimiento:</span>{{ patient?.lugar_nacimiento | anyToNumber | enumMunicipio}}
-      <ng-container *ngIf="patient?.lugar_nacimiento; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Edad:</span>{{ patient?.nacimiento | anyToText | edad}}
+        <ng-container *ngIf="patient?.nacimiento; else noData">
+        <checkGoodIcon />
+        </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <hr style="margin: 0;">
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Lugar de Nacimiento:</span>{{ patient?.lugar_nacimiento | anyToNumber | enumMunicipio}}
+        <ng-container *ngIf="patient?.lugar_nacimiento; else noData">
+          <checkGoodIcon />
+          </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Vecindad:</span>{{ patient?.municipio | anyToNumber | enumMunicipio }}, {{patient?.depto | anyToNumber | enumDepto}}
-      <ng-container *ngIf="patient?.municipio && patient?.depto; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <hr style="margin: 0;">
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Dirección:</span>{{ patient?.direccion | anyToText | capitalizeName}}
-      <ng-container *ngIf="patient?.direccion; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Vecindad:</span>{{ patient?.municipio | anyToNumber | enumMunicipio }}, {{patient?.depto | anyToNumber | enumDepto}}
+        <ng-container *ngIf="patient?.municipio && patient?.depto; else noData">
+          <checkGoodIcon />
+          </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Telefono:</span>{{ patient?.telefono}}
-      <ng-container *ngIf="patient?.telefono; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-  </p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Dirección:</span>{{ patient?.direccion | anyToText | capitalizeName}}
+        <ng-container *ngIf="patient?.direccion; else noData">
+         <checkGoodIcon />
+          </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+      </p>
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Telefono Familiar:</span>{{ patient?.telefono_responsable }}
-      <ng-container *ngIf="patient?.telefono_responsable; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Telefono:</span>{{ patient?.telefono}}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
 
-    <hr style="margin: 0;">
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Telefono Familiar:</span>{{ patient?.telefono_responsable }}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Estado Civil:</span>{{ patient?.estado_civil |anyToNumber | enumCivil }}
-      <ng-container *ngIf="patient?.estado_civil; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <hr style="margin: 0;">
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Ocupación:</span>{{ patient?.ocupacion | anyToText | capitalizeName}}
-      <ng-container *ngIf="patient?.ocupacion; else noData">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-        <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-      </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Estado Civil:</span>{{ patient?.estado_civil |anyToNumber | enumCivil }}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Responsable:</span>{{ patient?.responsable  | anyToText | capitalizeName}}
-      <ng-container *ngIf="patient?.responsable; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Ocupación:</span>{{ patient?.ocupacion | anyToText | capitalizeName}}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
 
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Parentesco:</span>{{ patient?.parentesco |anyToNumber | enumParentesco}}
-      <ng-container *ngIf="patient?.parentesco; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Responsable:</span>{{ patient?.responsable  | anyToText | capitalizeName}}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Padre:</span>{{ patient?.padre | anyToText | capitalizeName}}
-      <ng-container *ngIf="patient?.padre; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Parentesco:</span>{{ patient?.parentesco |anyToNumber | enumParentesco}}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
 
-    <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Madre:</span>{{ patient?.madre | anyToText | capitalizeName}}
-      <ng-container *ngIf="patient?.madre; else noData">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check text-success" viewBox="0 0 16 16">
-          <path d="M5.8 13.2a1 1 0 0 1-1.4 0L1 9.4l1.4-1.4 3.4 3.4 8.6-8.6L14 4.4l-7.2 7.2z"/>
-        </svg></ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
-    </p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Padre:</span>{{ patient?.padre | anyToText | capitalizeName}}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
 
-    <hr style="margin: 0;">
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado Por:</span>{{ consulta.created_by }}</p>
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado:</span>{{ consulta.created_at }}</p>
-    <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Actualizado:</span>{{ consulta.updated_at }}</p>
+      <p class="my-0 mx-0 text-start"><span class="text-warning mx-1">Madre:</span>{{ patient?.madre | anyToText | capitalizeName}}
+        <ng-container *ngIf="patient?.direccion; else noData">
+          <checkGoodIcon />
+           </ng-container><ng-template #noData><span class="text-danger mx-1">x</span></ng-template>
+       </p>
+
+      <hr style="margin: 0;">
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado Por:</span>{{ consulta.created_by }}</p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Creado:</span>{{ consulta.created_at }}</p>
+      <p class="my-0 mx-0 text-start "><span class="text-warning mx-1">Actualizado:</span>{{ consulta.updated_at }}</p>
+    </div>
+
   </div>
 
-  <div class="">
-
-</div>
-<form class="custom-form" autocomplete="off">
-  <h4>Datos de Partograma</h4>
-  <div class="d-flex gap-2">
-    <div class="custom-form-group">
-      <label class="" for="prenatal"># de Controles Prenatal:</label>
-      <input type="number" class="custom-input " name="prenatal" [(ngModel)]="consulta.prenatal">
-    </div>
-    <div class="custom-form-group">
-      <label class="" for="lactancia">Lactancia Materna:</label>
-        <select id="lactancia" class="custom-input w-50" [(ngModel)]="consulta.lactancia" name="lactancia" autofocus>
-          <option value=""></option>
-          <option value="1">Si</option>
-          <option value="0">No</option>
-        </select>
-    </div>
-  </div>
-
-    <hr class="my-1">
-    <p class="text-info bg-dark rounded">Recepción y Archivo</p>
-    <div class="d-flex">
-      <div class="justify-content-center">
+  <div class="search-container col-md-6">
+    <h5>Recepción y actualización de consulta</h5>
+    <form class="custom-form" autocomplete="off">
+      <h4>Datos de Partograma</h4>
+      <div class="">
         <div class="custom-form-group">
-          <label class="text-light" for="folios">Diagnostico:</label>
-          <input type="text" class="custom-input" name="dx" [(ngModel)]="consulta.dx">
+          <label class="" for="prenatal"># de Controles Prenatal:</label>
+          <input type="number" class="custom-input " name="prenatal" [(ngModel)]="consulta.prenatal">
         </div>
+        <div class="custom-form-group">
+          <label class="" for="lactancia">Lactancia Materna:</label>
+            <select id="lactancia" class="custom-input" [(ngModel)]="consulta.lactancia" name="lactancia" autofocus>
+              <option value=""></option>
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+        </div>
+      </div>
 
+        <hr class="my-1">
+        <p class="text-info bg-dark rounded">Recepción y Archivo</p>
+        <div class="custom-form-group">
+          <label class="" for="folios">Diagnostico:</label>
+          <input type="text" class="custom-input form-control" name="dx" [(ngModel)]="consulta.dx">
+        </div>
         <div class="custom-form-group">
           <label class="text-light" for="medico">Medico:</label>
-          <input type="text" class="custom-input" name="medico" [(ngModel)]="consulta.medico">
+          <input type="text" class="custom-input form-control" name="medico" [(ngModel)]="consulta.medico">
+        </div>
+        <div class="custom-form-group">
+          <label class="" for="folios">Folios:</label>
+          <input type="number" class="custom-input form-control" name="folios" [(ngModel)]="consulta.folios">
+        </div>
+        <hr class="my-1">
+
+        <div class="custom-form-group">
+          <label for="fecha_recepcion" class="" *ngIf="consulta.fecha_egreso">Fecha de Recepción</label>
+          <input class="form-control custom-input" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="consulta.fecha_recepcion"  (click)="recepcion()" [max]="maxdate" disabled="">
+          <deleteInput (click)="limpiarRecepcion()" />
         </div>
 
         <div class="custom-form-group">
-          <label class="text-light" for="folios">Folios:</label>
-          <input type="number" class="custom-input " name="folios" [(ngModel)]="consulta.folios">
+          <label for="fecha_recepcion" class="">Fecha Egreso</label>
+          <input class="form-control custom-input" type="date" id="fecha_recepcion" name="fecha_egreso" [(ngModel)]="consulta.fecha_egreso" (click)="statusegreso()" [max]="maxdate" required>
+          <deleteInput (click)="limpiarEgreso()" />
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <p class="mt-2"><span class="font-title1"> {{consulta.especialidad | anyToNumber | enumEspecialidad}}:</span> {{consulta.servicio | anyToNumber | enumServicios}}</p>
+          </div>
+          <div class="custom-form-group">
+            <label class="" for="encamamiento">Actualizar Encamamiento:</label>
+            <select id="encamamiento" class="custom-input form-control" [(ngModel)]="consulta.servicio" name="encamamiento" autofocus>
+              <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+
+        <div class="div-btn-opt">
+          <saveIcon (click)="onSubmit()" />
+
         </div>
-      </div>
-    </div>
 
-
-    <hr class="my-1">
-
-    <div class=" d-flex mt-2 gap-2">
-    <label for="fecha_recepcion" class="form-label" *ngIf="consulta.fecha_egreso">Fecha de Recepción</label>
-      <input class="form-control custom-input" type="text" id="fecha_recepcion" name="fecha_recepcion" [(ngModel)]="consulta.fecha_recepcion"  (click)="recepcion()" [max]="maxdate" disabled="">
-      <button type="submit" class="btn btn-secondary search-button" (click)="limpiarRecepcion()">
-        <deleteInput />
-      </button>
-    </div>
-
-    <div class=" d-flex mt-2 gap-2">
-      <label for="fecha_recepcion" class="form-label">Fecha Egreso</label>
-      <input class="form-control custom-input" type="date" id="fecha_recepcion" name="fecha_egreso" [(ngModel)]="consulta.fecha_egreso" (click)="statusegreso()" [max]="maxdate" required>
-
-        <button type="submit" class="btn btn-secondary search-button" (click)="limpiarEgreso()">
-          <deleteInput />
-      </button>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <p class="mt-2"><span class="font-title1"> {{consulta.especialidad | anyToNumber | enumEspecialidad}}:</span> {{consulta.servicio | anyToNumber | enumServicios}}</p>
-      </div>
-      <div class="custom-form-group gap-2">
-
-        <label class="text-light" for="encamamiento">Actualizar Encamamiento:</label>
-        <select id="encamamiento" class="custom-input form-control" [(ngModel)]="consulta.servicio" name="encamamiento" autofocus>
-          <option *ngFor="let option of e.encamamiento" [value]="option.value">{{ option.label }}</option>
-        </select>
-      </div>
-
-    <div class="mb-3 mt-3 text-center">
-      <button class="btn btn-dark search-button" (click)="onSubmit()">
-        <saveIcon />
-      </button>
-    </div>
-
-</form>
-
+    </form>
+  </div>
 </div>
+
 
 
 

@@ -190,13 +190,7 @@ export class FormularioPacienteComponent implements OnInit {
       }
     });
 
-    // Actualizar el expediente cada 3 segundos
-    // interval(3000).subscribe(() => {
-    //   this.PacientesService.Expediente().subscribe(data => {
-    //     this.nuevoExp = data;
-    //     this.p.expediente = this.nuevoExp;
-    //   });
-    // });
+
   }
 
 

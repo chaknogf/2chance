@@ -46,8 +46,8 @@ export class DetalleUisauComponent implements OnInit {
   public rutaAnterior: string = '../';
   public paciente: Ipaciente | undefined;
   public consulta: Iconcultas | any;
-  public resumen: Iuisau_v[] = [];
-  public infos_: Iuisau_v[] = [];
+  public resumen: Iuisau[] = [];
+  public infos_: Iuisau[] = [];
   private sortColumn: string | undefined;
   private ascendingOrder: boolean = false;
   public paginaActual: number = 1; // Página actual
@@ -58,7 +58,7 @@ export class DetalleUisauComponent implements OnInit {
 
   @Output() idConsulta = new EventEmitter<number>();
 
-  info: Iuisau_v = {
+  info: Iuisau = {
     id: 0,
     expediente: 0,
     nombres: '',
@@ -86,7 +86,18 @@ export class DetalleUisauComponent implements OnInit {
     hora_contacto: '',
     update_by: '',
     created_at: '',
-    update_at: ''
+    update_at: '',
+    receta_por: '',
+    shampoo: false,
+    toalla: false,
+    peine: false,
+    jabon: false,
+    cepillo_dientes: false,
+    pasta_dental: false,
+    sandalias: false,
+    agua: false,
+    papel: false,
+    panales: false,
   }
 
 

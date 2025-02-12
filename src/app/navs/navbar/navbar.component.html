@@ -26,9 +26,9 @@
             </a>
             <ul class="dropdown-menu" [class.show]="openDropdown === item.label">
               <li *ngFor="let sub of item.children">
-                <a class="dropdown-item" [routerLink]="sub.subhref" (click)="handleLinkClick(sub.subhref)">
+                <button class="dropdown-item" [routerLink]="sub.subhref" (click)="handleLinkClick(sub.subhref)">
                   {{ sub.label }}
-                </a>
+                </button>
               </li>
             </ul>
           </div>

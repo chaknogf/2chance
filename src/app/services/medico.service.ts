@@ -2,7 +2,7 @@ import { Imedico } from './../models/Imedico';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { UsersService } from './user.service';
 
 
@@ -19,20 +19,20 @@ export class MedicoService {
     private auth: UsersService
   ) { }
 
-  getMedicos(): Observable<any>{
-  return this.http.get(this.urlapi + "/medicos/" + "?token="+this.token)
+  getMedicos(): Observable<any> {
+    return this.http.get(this.urlapi + "/medicos/" + "?token=" + this.token)
   }
 
-  getMedico(id: number): Observable<any>{
-    return this.http.get(this.urlapi + "/medico/?id=" +id + "&token="+this.token)
+  getMedico(id: number): Observable<any> {
+    return this.http.get(this.urlapi + "/medico/?id=" + id + "&token=" + this.token)
   }
 
-  getMedicoCol(col: any): Observable<any>{
-    return this.http.get(this.urlapi + "/colegiado/?col=" + col + "&token="+this.token)
+  getMedicoCol(col: any): Observable<any> {
+    return this.http.get(this.urlapi + "/colegiado/?col=" + col + "&token=" + this.token)
   }
 
 
-  filtrarmedico(filtros: any): Observable<any>{
+  filtrarmedico(filtros: any): Observable<any> {
     // Inicializa una cadena vacía para la URL
     let url = `${this.urlapi}/filtrarmedico/`;
 

@@ -79,7 +79,18 @@ export class FormUisauComponent implements OnInit {
     dxB: '',
     dxC: '',
     dxD: '',
-    dxE: ''
+    dxE: '',
+    receta_por: 'n',
+    shampoo: null,
+    toalla: null,
+    peine: null,
+    jabon: null,
+    cepillo_dientes: null,
+    pasta_dental: null,
+    sandalias: null,
+    agua: null,
+    papel: null,
+    panales: null,
   };
 
   // Modelo para la consulta inicial
@@ -203,9 +214,9 @@ export class FormUisauComponent implements OnInit {
         this.showAlertWarning = true;
 
         // Recarga la página después de 2 segundos en caso de error
-        setTimeout(() => {
-          this.reloadPage();
-        }, 2000); // 1000 ms = 1 segundo
+        // setTimeout(() => {
+        //   this.reloadPage();
+        // }, 2000); // 1000 ms = 1 segundo
       }
     );
   }

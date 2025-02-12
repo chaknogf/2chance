@@ -1,91 +1,131 @@
-<div class="search-container">
-  <div class="rounded p-2 bg-dark">
-    <form class="search-form" autocomplete="off" >
-      <input type="text" class="form-control search-input" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
-      <input type="sumit" class="form-control search-input" placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control search-input" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
-      <!-- Botones de acción -->
-      <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
-        <searchIcon />
-      </button>
-      <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
-        <deleteInput />
-      </button>
 
-    </form>
+  <div class="search-container">
+    <div class="search-div">
+      <form class="search-form" autocomplete="off">
+
+        <input
+          type="text"
+          class="search-input"
+          name="expediente"
+          placeholder="Expediente"
+          [(ngModel)]="expedienteBuscar"
+        />
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Nombre"
+          name="nombreBuscar"
+          [(ngModel)]="nombreBuscar"
+        />
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Apellido"
+          name="apellidoBuscar"
+          [(ngModel)]="apellidoBuscar"
+        />
+        <input
+          type="text"
+          class="search-input"
+          placeholder="DPI"
+          name="dpiBuscar"
+          [(ngModel)]="dpiBuscar"
+        />
+
+        <div class="div-btn-icons">
+          <searchIcon (click)="filtro()"/>
+          <deleteInput (click)="limpiarInput()" />
+          <!-- <createIcon data-bs-toggle="modal" data-bs-target="#formularioModalP" /> -->
+        </div>
+      </form>
+    </div>
   </div>
 
 
-<div class="custom-table-wrapper t-w-d mt-3">
+<div class="custom-table-wrapper t-w-d mt-1">
+  <h3>Pcientes Ingresados</h3>
   <table class="custom-table table-hover text-center" >
     <thead>
       <tr>
-        <th class="text-center"></th>
-        <th class="text-center"></th>
-        <th class="text-center fs-9">Expediente</th>
-        <th class="text-center fs-9">Fecha y hora</th>
-        <th class="text-center fs-9">Paciente</th>
-        <th class="text-center fs-9">Servicio</th>
-        <th class="text-center fs-9">Estatus</th>
-        <th class="text-center fs-9">Id</th>
+        <th class="text-center">Id</th>
+        <th class="text-center">Expediente</th>
+        <th class="text-center">Paciente</th>
+        <th class="text-center">Estancia</th>
+        <th class="text-center">Servicio</th>
+        <th class="text-center">Estatus</th>
+        <th class="text-center">Opciones</th>
 
 
       </tr>
     </thead>
     <tbody class="fs-9">
-      <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
       <tr *ngFor="let ingreso of resumen">
 
-        <td class="text-center" [routerLink]="['/ingreso/edit', ingreso.id]">
-          <editIcon />
-         </td>
-         <td class="text-center" [routerLink]="['/ingresohoja/view', ingreso.id]" >
-          <printIcon />
+        <td class="text-center">
+          <p class="text-90">{{ingreso.id}}</p>
+        </td>
+         <td class="text-center">{{ingreso.expediente}}</td>
+         <td class="text-start">
+          <span [ngClass]="{'mujer': ingreso.sexo == 'F', 'hombre': ingreso.sexo != 'F'}">{{ ingreso.nombres | anyToText | capitalizeName }}</span><br>
+            {{ingreso.apellidos |anyToText | capitalizeName}}
+        </td>
+          <td class="text-center">
+            {{ ingreso.fecha_consulta | estancia: ingreso.fecha_egreso }}
+          </td>
+        <td class="text-center">{{ingreso.servicio | anyToNumber| enumServicios}}</td>
+        <td>
+          <ng-container *ngIf="ingreso.status == 1">
+            <activoIcon  />
+            <br/>
+            <span class="fs-mini">Activo</span>
+            </ng-container>
+            <ng-container *ngIf="ingreso.status == 2">
+            <archiveIcon  />
+            <br/>
+            <span class="fs-mini">Archivado</span>
+            </ng-container>
+            <ng-container *ngIf="ingreso.status == 3">
+              <prestamoIcon  />
+              <br/>
+              <span class="fs-mini">Prestamo</span>
+            </ng-container>
+            <ng-container *ngIf="ingreso.status == 4">
+              <egresoIcon  />
+              <br/>
+              <span class="fs-mini">Egreso</span>
+            </ng-container>
         </td>
 
-         <td class="text-center">{{ingreso.expediente}}</td>
-          <td class="text-center">
-          <span class="me-1 font-title1">Ingreso: </span>  {{ingreso.fecha_consulta | anyToText | formatoFecha}}<br>
-          <span class="me-1 font-title1">Hora: </span>  {{ingreso.hora }}<br>
-          <span class="me-1 font-title1">Egreso: </span>  {{ingreso.fecha_egreso | anyToText | formatoFecha}}
-          </td>
-         <td class="text-center">
-            <span [ngClass]="{'mujer': ingreso.sexo == 'F', 'hombre': ingreso.sexo != 'F'}">{{ ingreso.nombres | anyToText | capitalizeName }}</span><br>
-              {{ingreso.apellidos |anyToText | capitalizeName}}
-          </td>
-
-        <td class="text-center">{{ingreso.servicio | anyToNumber| enumServicios}}</td>
-        <td>{{ingreso.status| anyToNumber | enumStatus}}</td>
-        <td class="text-center  " > {{ingreso.id}} </td>
+        <td>
+          <div class="div-btn-opt">
+            <editIcon [routerLink]="['/ingreso/edit', ingreso.id]" />
+            <printIcon [routerLink]="['/ingresohoja/view', ingreso.id]" />
+          </div>
+        </td>
       </tr>
     </tbody>
       </table>
+</div>
+
+
+
+<div class="d-flex justify-content-center pagination mt-3">
+  <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
+    <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
+    <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
+    <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
+    <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
   </div>
+</div>
 
-
- <!-- Paginación -->
-    <div class="d-flex justify-content-center pagination mt-3">
-      <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
+<div class="modal" id="opciones">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="row modal-content w-70">
+      <div class="d-flex gap-2 justify-content-center">
+        <button class="col-md-3 btn btn-dark bg-quatz w-20 my-2" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button>
+        <button class="col-md-3 btn btn-info bg-black w-20 my-2" data-bs-dismiss="modal" [routerLink]="['/ingreso/edit/', idCopiado]" >Editar Consulta</button>
+        <button class="col-md-3 btn btn border-quatz w-20 my-2" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
-
-    <div class="modal" id="opciones">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="row modal-content w-70">
-          <div class="d-flex gap-2 justify-content-center">
-
-            <button class="col-md-3 btn btn-dark bg-quatz w-20 my-2" data-bs-dismiss="modal" (click)="eliminar(idCopiado)">Eliminar consulta</button>
-            <button class="col-md-3 btn btn-info bg-black w-20 my-2" data-bs-dismiss="modal" [routerLink]="['/ingreso/edit/', idCopiado]" >Editar Consulta</button>
-            <button class="col-md-3 btn btn border-quatz w-20 my-2" data-bs-dismiss="modal">Cerrar</button>
-
-          </div>
-
-
-        </div>
-      </div>
-    </div>
+  </div>
+</div>

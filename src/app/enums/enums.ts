@@ -280,7 +280,9 @@ export interface Status {
 
 export const status: Status[] = [
   { value: 1, label: 'activo' },
-  { value: 2, label: 'archivado' }
+  { value: 2, label: 'archivado' },
+  { value: 3, label: 'prestamo' },
+  { value: 4, label: 'egresado' }
 
 ]
 

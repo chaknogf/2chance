@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Iconcultas } from '../models/Iconsultas';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, interval } from 'rxjs';
-import { environment } from 'src/enviroments/enviroment';
+import { Observable, interval, BehaviorSubject, switchMap, catchError, throwError } from 'rxjs';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { UsersService } from './user.service';
+import { PageReloadService } from './PageReload.service';
 
 
 @Injectable({
@@ -15,11 +16,12 @@ export class ConsultasService {
   private urlapi = environment.apiUrl;
   constructor(
     private http: HttpClient,
-    private auth: UsersService
+    private auth: UsersService,
+    private reloadService: PageReloadService
   ) { }
 
   Consultas(): Observable<any> {
-    return this.http.get(this.urlapi + "/consultas/?token=" + this.token)
+    return this.http.get(this.urlapi + "/consultas/?token=" + this.token);
   }
 
   Consulta(id: number): Observable<any> {
@@ -27,31 +29,55 @@ export class ConsultasService {
   }
 
   crear(consulta: Iconcultas): Observable<any> {
-    return  this.http.post(this.urlapi + "/coex/?token="+ this.token, consulta);
+    return this.http.post(this.urlapi + "/coex/?token=" + this.token, consulta)
+      .pipe(
+        switchMap(response => {
+          this.reloadService.reloadPage();
+          return [response];
+        })
+      );
   }
 
   registrar(consulta: Iconcultas): Observable<any> {
-    return  this.http.post(this.urlapi + "/emergencia/?token="+this.token, consulta);
+    return this.http.post(this.urlapi + "/emergencia/?token=" + this.token, consulta)
+      .pipe(
+        switchMap(response => {
+          this.reloadService.reloadPage();
+          return [response];
+        })
+      );
   }
 
   tipoConsulta(fecha: string, tipo: number): Observable<any> {
-    return this.http.get(this.urlapi + "/consulta/servicio/?fecha=" + fecha + "&tipo=" + tipo+"&token="+this.token);
+    return this.http.get(this.urlapi + "/consulta/servicio/?fecha=" + fecha + "&tipo=" + tipo + "&token=" + this.token);
   }
 
   editarConsulta(id: number, actualizarConsulta: Iconcultas): Observable<any> {
-    return this.http.put(this.urlapi + '/consultado/' + id+"?token="+ this.token, actualizarConsulta);
+    return this.http.put(this.urlapi + '/consultado/' + id + "?token=" + this.token, actualizarConsulta)
+      .pipe(
+        switchMap(response => {
+          this.reloadService.reloadPage();
+          return [response];
+        })
+      );
   }
 
   eliminar(id: number): Observable<any> {
-    return this.http.delete(this.urlapi + '/consulta/' + id+"?token="+this.token);
+    return this.http.delete(this.urlapi + '/consulta/' + id + "?token=" + this.token)
+      .pipe(
+        switchMap(response => {
+          this.reloadService.reloadPage();
+          return [response];
+        })
+      );
   }
 
   consultando(fecha: string, tipo: number, esp: number): Observable<any> {
-    return this.http.get(this.urlapi + '/consultando/?fecha=' + fecha + '&tipo=' + tipo + '&especialidad=' + esp+ '&token='+this.token);
+    return this.http.get(this.urlapi + '/consultando/?fecha=' + fecha + '&tipo=' + tipo + '&especialidad=' + esp + '&token=' + this.token);
   }
 
   consulTipo(tipo: number): Observable<any> {
-    return this.http.get(this.urlapi + '/consult/?tipo=' + tipo + "&token="+this.token)
+    return this.http.get(this.urlapi + '/consult/?tipo=' + tipo + "&token=" + this.token)
   }
 
   emergencias(): Observable<any> {
@@ -63,23 +89,23 @@ export class ConsultasService {
   }
 
   nombre(nombre: string, apellido: string): Observable<any> {
-    return this.http.get(this.urlapi + '/nombre/?nombre=' + nombre + '&apellido='+ apellido + '&token='+this.token)
+    return this.http.get(this.urlapi + '/nombre/?nombre=' + nombre + '&apellido=' + apellido + '&token=' + this.token)
   }
 
   dpi(dpi: string): Observable<any> {
-    return this.http.get(this.urlapi + '/cui/' + dpi+'&token='+this.token)
+    return this.http.get(this.urlapi + '/cui/' + dpi + '&token=' + this.token)
   }
 
   egresos(inicio: string, final: string): Observable<any> {
-    return this.http.get(this.urlapi + '/egresos/?fecha_inicio=' + inicio + '&fecha_final=' + final+'&token='+this.token)
+    return this.http.get(this.urlapi + '/egresos/?fecha_inicio=' + inicio + '&fecha_final=' + final + '&token=' + this.token)
   }
 
   recepciones(estado: string, fecha: string): Observable<any> {
-    return this.http.get( this.urlapi + '/recepcion/?recepcion=' + estado + 'fecha=' + fecha + '&token='+ this.token)
+    return this.http.get(this.urlapi + '/recepcion/?recepcion=' + estado + 'fecha=' + fecha + '&token=' + this.token)
   }
 
   hoja(hoja: string): Observable<any> {
-    return this.http.get(this.urlapi + '/hoja/' +  hoja + '?token='+this.token)
+    return this.http.get(this.urlapi + '/hoja/' + hoja + '?token=' + this.token)
   }
 
 
@@ -190,7 +216,7 @@ export class ConsultasService {
     }
 
 
-    // console.log(filtros, url)
+    //console.table(filtros);
     // Realiza la solicitud GET con la URL construida dinámicamente
     return this.http.get(url);
 

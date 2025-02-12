@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { UsersService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { PageReloadService } from '../../services/PageReload.service';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -74,6 +75,9 @@ export class NavbarComponent {
 
   toggleDropdown(label: string) {
     this.openDropdown = this.openDropdown === label ? null : label;
+    setTimeout(() => {
+      this.openDropdown = null;
+    }, 1700);
   }
 
   // Cerrar dropdown al hacer clic fuera

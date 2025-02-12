@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval, switchMap } from 'rxjs';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { IconsNac } from '../models/IconsNac';
 
@@ -19,11 +19,11 @@ export class CNacService {
   ) { }
 
   getConstancias(): Observable<any> {
-  return this.http.get(this.urlapi + "/consnac/" + "?token=" + this.token )
-}
+    return this.http.get(this.urlapi + "/consnac/" + "?token=" + this.token)
+  }
 
   getConstancia(id: number): Observable<any> {
-    return this.http.get(this.urlapi + "/constancia_nac_id/?id=" + id + "&token=" + this.token )
+    return this.http.get(this.urlapi + "/constancia_nac_id/?id=" + id + "&token=" + this.token)
   }
 
   crearConstancias(constancia: IconsNac): Observable<any> {
@@ -31,11 +31,11 @@ export class CNacService {
   }
 
   editarConstancia(id: number, constancia: IconsNac): Observable<any> {
-    return this.http.put(this.urlapi + "/cons_nac/"+ id + "?token=" + this.token, constancia)
+    return this.http.put(this.urlapi + "/cons_nac/" + id + "?token=" + this.token, constancia)
   }
 
   borrarConstancia(id: number): Observable<any> {
-    return this.http.delete(this.urlapi + "/cons_nac?id=" +id + "&token=" + this.token )
+    return this.http.delete(this.urlapi + "/cons_nac?id=" + id + "&token=" + this.token)
   }
 
 

@@ -7,9 +7,13 @@
       <input type="number" class="search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar"  />
       <input type="number" class="search-input" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
       <input type="number" class="search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
-     <select id="especialidad" class="search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+      <select id="tipo" class="search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
         <option value="" disabled selected hidden>Tipo Consulta</option>
         <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
+      </select>
+      <select id="status" class="search-input" [(ngModel)]="statusBuscar" name="statusBuscar">
+        <option value="" disabled selected hidden>Estatus</option>
+        <option *ngFor="let option of enums.status" [value]="option.value">{{ option.label }}</option>
       </select>
       <input type="date" class="search-input" name="Fecha" placeholder="Fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
       <input type="text" class="search-input" name="dpiBuscar" placeholder="DPI"  [(ngModel)]="dpiBuscar">
@@ -32,7 +36,7 @@
           <th class="text-center">Fecha de Registros</th>
           <th class="text-center">Servicio</th>
           <th class="text-center">Tipo</th>
-          <th class="text-center">Estatus</th>
+          <th class="text-center" >Estatus</th>
           <th class="text-center" (click)="sortTable('id')" >Id</th>
         </tr>
       </thead>
@@ -128,6 +132,11 @@
                 <prestamoIcon  />
                 <br/>
                 <span class="fs-mini">Prestamo</span>
+              </ng-container>
+              <ng-container *ngIf="consulta.status == 4">
+                <egresoIcon />
+                <br/>
+                <span class="fs-mini">Egreso</span>
               </ng-container>
           </td>
           <td class="text-center font-weight-bold text-warning h5">

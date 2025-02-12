@@ -2,7 +2,7 @@ import { PersonalNavbarComponent } from './personal/personal-navbar/personal-nav
 import { ResumenCitasPipe } from './pipe/resumenCitas.pipe';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from "ngx-cookie-service";
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -148,6 +148,10 @@ import { ArchivarIconComponent } from 'src/assets/svg/archivarIcon/archivarIcon.
 import { CheckIconComponent } from 'src/assets/svg/checkIcon/checkIcon.component';
 import { UpdateIconComponent } from 'src/assets/svg/updateIcon/updateIcon.component';
 import { CitaIconComponent } from 'src/assets/svg/citaIcon/citaIcon.component';
+import { AtenderIconComponent } from 'src/assets/svg/atenderIcon/atenderIcon.component';
+import { CheckGoodIconComponent } from 'src/assets/svg/checkGoodIcon/checkGoodIcon.component';
+import { EliminarIconComponentSolo } from 'src/assets/svg/eliminarIconSolo/eliminarIconSolo.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -309,6 +313,10 @@ import { CitaIconComponent } from 'src/assets/svg/citaIcon/citaIcon.component';
     CheckIconComponent,
     UpdateIconComponent,
     CitaIconComponent,
+    AtenderIconComponent,
+    CheckGoodIconComponent,
+    EliminarIconComponentSolo
+
 
 
   ],
@@ -386,7 +394,10 @@ import { CitaIconComponent } from 'src/assets/svg/citaIcon/citaIcon.component';
     BrowserAnimationsModule,
     NgbModule
   ],
-  providers: [CookieService],
+  providers:
+    [CookieService,
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

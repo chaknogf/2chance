@@ -1,165 +1,115 @@
-
-
-
-<div class="">
-  <div class="row d-flex justify-content-between">
-    <div class="col-md-6">
-
-      <div class="d-flex  justify-content-center align-items-center w-100 p-0 mt-2 gap-2">
-        <button class="btn btn-warning bg-black w-auto" [routerLink]="['/citas']">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-          </svg>
-          Citas
-        </button>
-
-        <button type="button" class="btn btn-success bg-black w-auto"
-        (click)="crearCita()"
-        *ngIf="c.especialidad != 9">Guardar</button>
-
-
-
-
-        <button class="btn btn-danger bg-black mx-2 w-auto" (click)="borrar()" [routerLink]="['/citas']">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-          </svg>
-        </button>
+<div class="d-flex-desktop">
+  <div class="search-container col-md-6">
+    <div class="div-btn-icons">
+      <backIcon [routerLink]="['/citas']" />
+      <saveIcon (click)="crearCita()"
+      *ngIf="c.especialidad != 9"/>
+      <eliminarIcon (click)="borrar()" [routerLink]="['/citas']" />
+    </div>
+    <h3 class="text-center">Formulario de Citas</h3>
+    <form class="custom-form" >
+      <div class=" custom-form-group ">
+        <table class="border text-center table-responsive">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Paciente</th>
+              <th>Sexo</th>
+              <th>Edad</th>
+              <th>Telefono</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="p2">
+              <td>{{c.id}}</td>
+            <td>{{ paciente?.nombre | anyToText | capitalizeName}} {{paciente?.apellido| anyToText | capitalizeName}}</td>
+            <td>
+              <ng-container *ngIf="paciente?.sexo == 'M'" ><maleIcon /></ng-container>
+              <ng-container *ngIf="paciente?.sexo == 'F'"><femIcon /></ng-container>
+            </td>
+            <td>{{ paciente?.nacimiento | anyToText | edad}}</td>
+            <td>{{ paciente?.telefono }} - {{paciente?.telefono_responsable}}</td>
+            </tr>
+          </tbody>
+         </table>
+      </div>
+      <div class="custom-form-gruop">
+        <label class="" for="expediente">Expediente:</label>
+        <input type="text" class="custom-input" id="expediente" name="expediente" (change)="paciente_()"  [(ngModel)]='c.expediente'  >
+      </div>
+      <div class="custom-form-group">
+        <label>Especialidad:</label>
+        <select class="custom-input" name="especialidad" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)=" citasOcupadas($event, c.tipo, c.fecha, $event)">
+          <option *ngFor="let option of e.citas" [value]="option.value">{{ option.label }}</option>
+        </select>
+      </div>
+      <div class="custom-form-group">
+        <label class="" for="tipo">Tipo de cita:</label>
+        <select id="tipo" class="custom-input" [(ngModel)]="c.tipo" name="tipo"  (ngModelChange)="citasOcupadas(c.especialidad, $event, c.fecha, $event)">
+          <option value="1">Consulta</option>
+          <option value="2">Ingreso / operatorio</option>
+          <option *ngIf="c.especialidad == 3" value="3">USG Obstetric.</option>
+          <option *ngIf="c.especialidad == 3" value="4">USG Endo/Pelvic</option>
+          <option *ngIf="c.especialidad == 3" value="5">Colposcopia.</option>
+          <option value="9">Especial</option>
+        </select>
       </div>
 
-      <form class=" p-3 bg-night" autocomplete="off">
+      <div class="custom-form-group">
+        <label class="" for="nota">Nota:</label>
+        <textarea class="custom-input" id="nota" name="nota" rows="4" [(ngModel)]="c.nota" ></textarea>
+      </div>
 
+      <div class="custom-form-group">
+        <label class="text-light" for="lab" >Laboratorio Clinico en Hospital</label>
+        <button class="btn bg-info" (click)="getCitaLab(c.fecha ? c.fecha.toString() : '')">generar</button>
+      </div>
 
-        <div class="card-header text-light text-center h2">Agendar Cita</div>
+      <div class="custom-form-group" *ngIf="c.lab == 1">
+        <label class="text-light" for="lab">Fecha realizarse laboratorios</label>
+        <input  type="date" class="custom-input" id="fecha_lab" name="fecha_lab" [(ngModel)]="c.fecha_lab" >
+      </div>
+      <div class="custom-form-group">
+        <label class="text-light" for="fecha">Fecha:</label>
+        <input type="date" class="custom-input" id="fecha" name="fecha"
+          (change)="citasOcupadas(c.especialidad, c.tipo, c.fecha, $event)" [(ngModel)]="c.fecha" placeholder="hoy">
+      </div>
 
+      <div class="custom-form-group">
+        <p class="text-light mb-0">Día de la semana:</p>
+        <p class="custom-input p-2 text-center">{{ selectedDate | diaDeSemana }}</p>
+      </div>
 
-        <hr>
-
-        <div class="card-body">
-          <div class="my-0 p-0">
-            <p class="text-light text-center">No. de cita: </p>
-            <p class="text-light text-center h4">{{c.id}}</p>
-          </div>
-
-
-          <div class="form-group  my-0 p-0">
-            <label class="text-light" for="expediente">Expediente:</label>
-            <input type="number" class="form-control bg-primary bg-opacity-75 p-1" id="expediente" name="expediente" (change)="paciente_()"  [(ngModel)]='c.expediente'  >
-          </div>
-
-          <div class="container-fluid d-flex mt-1 bg-black bg-opacity-75 rounded">
-            <div class="col-auto" *ngIf="paciente?.nombre && paciente?.apellido else noExiste ">
-              <p class="f-negrita mb-0 ">Nombre de Paciente</p>
-              <p class="text-light">{{ paciente?.nombre | anyToText | capitalizeName}} {{paciente?.apellido| anyToText | capitalizeName}}</p>
-              <p class="text-light">Telefono: {{ paciente?.telefono }} - {{paciente?.telefono_responsable}}</p>
-            </div>
-            <ng-template #noExiste>
-              <div class="col-6">
-                <p class="text-light mb-0">No existe información del paciente</p>
-              </div>
-            </ng-template>
-
-            <div class="col-auto mx-1" *ngIf="paciente?.sexo">
-              <p class="f-negrita mb-0 ">Sexo</p>
-              <p class="text-light">{{ paciente?.sexo | anyToText | sexo}}</p>
-            </div>
-
-            <div class="col-auto mx-1" *ngIf="paciente?.nacimiento">
-              <p class="f-negrita mb-0 ">Edad</p>
-              <p class="text-light">{{ paciente?.nacimiento | anyToText | edad}}</p>
-            </div>
-
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="especialidad">Especialidad:</label>
-            <select id="especialidad" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.especialidad" name="especialidad" (ngModelChange)=" citasOcupadas($event, c.tipo, c.fecha, $event)" >
-              <option *ngFor="let option of e.citas" [value]="option.value">{{ option.label }}</option>
-            </select>
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="tipo">Tipo de cita:</label>
-            <select id="tipo" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" [(ngModel)]="c.tipo" name="tipo"  (ngModelChange)="citasOcupadas(c.especialidad, $event, c.fecha, $event)">
-              <option value="1">Consulta</option>
-              <option value="2">Ingreso / operatorio</option>
-              <option *ngIf="c.especialidad == 3" value="3">USG Obstetric.</option>
-              <option *ngIf="c.especialidad == 3" value="4">USG Endo/Pelvic</option>
-              <option *ngIf="c.especialidad == 3" value="5">Colposcopia.</option>
-              <option value="9">Especial</option>
-            </select>
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="fecha">Fecha:</label>
-            <input type="date" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="fecha" name="fecha"
-              (change)="citasOcupadas(c.especialidad, c.tipo, c.fecha, $event)" [(ngModel)]="c.fecha" placeholder="hoy">
-
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="lab" >Laboratorio Clinico en Hospital</label>
-            <button (click)="getCitaLab(c.fecha ? c.fecha.toString() : '')">generar</button>
-          </div>
-
-          <div class="form-group mt-2" *ngIf="c.lab == 1">
-            <label class="text-light" for="lab">Fecha realizarse laboratorios</label>
-            <input  type="date" class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="fecha_lab" name="fecha_lab" [(ngModel)]="c.fecha_lab" >
-          </div>
-
-          <div class="form-group mt-2">
-            <p class="text-light mb-0">Día de la semana:</p>
-            <p class="form-control bg-primary bg-opacity-75 text-uppercase p-2">{{ selectedDate | diaDeSemana }}</p>
-          </div>
-
-          <div class="form-group mt-2">
-            <label class="text-light" for="nota">Nota:</label>
-            <textarea class="form-control bg-primary bg-opacity-75 text-uppercase p-1" id="nota" name="nota" rows="4" [(ngModel)]="c.nota" ></textarea>
-          </div>
-        </div>
-
-          <!-- <div class="d-flex justify-content-center mt-2">
-            <p>Citas ocupadas: <span class="fw-bold">{{ocupado}}</span></p>
-           </div>
-           <div class="d-flex justify-content-center mt-2" >
-            <p  class="">Citas disponibles: <span class="fw-bold">{{disponible - ocupado}}</span></p>
-          </div> -->
-
-
-
-        </form>
-
-
-
+    </form>
   </div>
-  <div class="col-md-6 mt-3 ">
-    <table class="table table-black bg-opacity-25 font-ubuntu">
-      <thead>
-        <tr>
-          <th class="text-center f-negrita">Especialidad</th>
-          <th class="text-center f-negritat">Fecha</th>
-          <th class="text-center f-negrita">Día</th>
-          <th class="text-center f-negrita">Citas para ese día</th>
-          <th class="text-center f-negrita">Citas Disponibles</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
-        <tr *ngFor="let cita of resumen">
-          <td class="text-center text-light ">{{ cita.especialidad | enumCitas}}</td>
-          <td class="text-center text-light">{{ cita.dia| formatoFecha }}</td>
-          <td class="text-center text-light">{{cita.dia | weekday  }}</td>
-          <td class="text-center text-light">{{cita.total_citas}}</td>
-          <td *ngIf="cita.especialidad != 9" class="text-center text-info">{{10 - cita.total_citas}}</td>
-          <td *ngIf="cita.especialidad == 9" class="text-center text-info">{{4 - cita.total_citas}}</td>
-        </tr>
-      </tbody>
-        </table>
-    </div>
-    </div>
 
-
+  <div class="search-container col-md-6">
+      <table class="custom-table-striped">
+        <thead>
+          <tr>
+            <th class="text-center f-negrita">Especialidad</th>
+            <th class="text-center f-negritat">Fecha</th>
+            <th class="text-center f-negrita">Día</th>
+            <th class="text-center f-negrita">Citas para ese día</th>
+            <th class="text-center f-negrita">Citas Disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí puedes usar *ngFor para iterar sobre los datos de la vista_citas -->
+          <tr *ngFor="let cita of resumen">
+            <td class="text-center text-light ">{{ cita.especialidad | enumCitas}}</td>
+            <td class="text-center text-light">{{ cita.dia| formatoFecha }}</td>
+            <td class="text-center text-light">{{cita.dia | weekday  }}</td>
+            <td class="text-center text-light font-value">{{cita.total_citas}}</td>
+            <td *ngIf="cita.especialidad != 9" class="text-center font-value">{{10 - cita.total_citas}}</td>
+            <td *ngIf="cita.especialidad == 9" class="text-center  font-value">{{4 - cita.total_citas}}</td>
+          </tr>
+        </tbody>
+          </table>
+  </div>
 </div>
+
+
 
 
 

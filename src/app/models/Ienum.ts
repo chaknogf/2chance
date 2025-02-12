@@ -1,5 +1,5 @@
 
-import { Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Estadia, Estado, Referencia, Situacion, Serv, serv, encamamiento, Encamamiento, Tipo_citas, Consult_Coex } from './../enums/enums';
+import { Nacionalidad, Etnias, Ecivil, Academic, Parents, Lenguage, Servicios, Especialidad, Tipos, Estadia, Estado, Referencia, Situacion, Serv, serv, encamamiento, Encamamiento, Tipo_citas, Consult_Coex, status, Status } from './../enums/enums';
 import { Vecindad, Municipio, Departamentos } from '../enums/vencindad';
 import { ClaseParto, TipoParto } from '../enums/parto';
 import { Citas } from './../enums/enums';
@@ -20,6 +20,7 @@ export interface Ienum {
 
 export interface OtrosEnums {
   tipo: Tipos[]
+  status?: Status[]
 }
 
 export interface deptos {

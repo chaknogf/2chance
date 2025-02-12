@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { CookieService } from "ngx-cookie-service";
 
 
@@ -26,7 +26,7 @@ export class UsersService {
     private http: HttpClient,
     private cookies: CookieService
   ) {
-     // Agrega un escuchador para el evento beforeunload al inicializar el servicio
+    // Agrega un escuchador para el evento beforeunload al inicializar el servicio
     //  window.addEventListener('beforeunload', () => {
     //   this.clearLocalStorageOnExit();
     // });

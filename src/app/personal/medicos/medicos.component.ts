@@ -53,6 +53,7 @@ export class MedicosComponent implements OnInit {
 
 
   }
+
   paginar() {
     const tamanoPagina = 12;
     const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
@@ -88,6 +89,8 @@ export class MedicosComponent implements OnInit {
 
     this.medicSer.filtrarmedico(filters).subscribe((result) => {
       this.resumen = result;
+      this.Medicos = result;
+      this.paginar();
     });
 
   }
@@ -166,12 +169,12 @@ export class MedicosComponent implements OnInit {
 
   }
 
-  editar(){
+  editar() {
     this.medicSer.editarMedico(this.medicoM.id, this.medicoM)
       .subscribe(data => {
         this.medicoM = data;
         this.reloadPage();
-    })
+      })
   }
 
   borrar(id: number) {
@@ -179,7 +182,7 @@ export class MedicosComponent implements OnInit {
       .subscribe(data => {
         this.medicoM = data;
         this.reloadPage();
-    })
+      })
   }
 
 
@@ -187,6 +190,15 @@ export class MedicosComponent implements OnInit {
     this.medicSer.getMedico(id).subscribe(data => {
       this.medicoM = data;
     })
+  }
+
+  borrarFormulario() {
+    this.medicoM.id = 0,
+      this.medicoM.colegiado = 0,
+      this.medicoM.name = '',
+      this.medicoM.dpi = '',
+      this.medicoM.especialidad = 0,
+      this.medicoM.sexo = ''
   }
 
 }

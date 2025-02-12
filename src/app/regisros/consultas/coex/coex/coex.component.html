@@ -4,26 +4,23 @@
   <div class="search-container col-md-6">
     <h4 class="text-center">Registro de Consulta Externa</h4>
     <div class="search-div">
-      <button [routerLink]="['/citas']" class="btn btn-info search-button">
-        <citaIcon />
-        Citas
-      </button>
-      <label class="justify-content-end" >Fecha</label>
-      <input type="date" class="search-input justify-content-end" [(ngModel)]="hoy" [max]="maxdate">
+      <citaIcon [routerLink]="['/citas']" />
     </div>
 
     <nuevaConsulta></nuevaConsulta>
   </div>
   <div class="search-container col-md-6">
-    <div class="search-div">
-
+    <div class="d-flex justify-content-center">
+      <div class="bg-dark">
+        <label class="" >Fecha: </label>
+        <input type="date" class="search-input" [(ngModel)]="hoy" [max]="maxdate">
+        <printIcon class="btn btn-info search-button" [routerLink]="['/coexreport']" />
+      </div>
 
     </div>
 
-    <button type="button" class="btn btn-info search-button" [routerLink]="['/coexreport']">
-      <printIcon  />
-      Informe
-    </button>
+
+
 
     <!-- Primer contenedor Medicina -->
     <div class="container-fluid  mt-1">
@@ -31,7 +28,49 @@
       <!-- Tabla de Medicina -->
       <div class="table-responsive">
         <h4 class="text-start">{{ 1 | enumEspecialidad }}</h4>
-        <table class="custom-table-striped" *ngIf="consultasMedi.length > 0">
+        <div class="table-responsive">
+          <table class="custom-table-striped" *ngIf="consultasMedi.length > 0">
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">No.</th>
+                <th class="text-center" scope="col">Expediente</th>
+                <th class="text-center" scope="col">Nombre de Paciente</th>
+                <th class="text-center" scope="col" >Hora</th>
+                <th class="text-center" scope="col" >Estatus</th>
+                <th class="text-center" scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody class="svg-container">
+              <tr *ngFor="let coex of consultasMedi; let i = index">
+                <td class="text-center">{{ contador + i + 1 }}</td>
+                <td class="text-center" >
+                  <h4>{{coex.expediente}}</h4>
+                 </td>
+                <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+                <td class="text-center"> {{ coex.hora}} </td>
+                <td class="text-center">
+                  <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
+                  <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
+                  <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
+                <td class="text-center">
+                  <div class="div-btn-opt">
+                    <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
+                    <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+    <hr class="my-0 p-1">
+     <!-- Segundo contenedor Pediatría -->
+    <div class="table-responsive">
+      <h4 class="text-start">{{ 2 | enumEspecialidad }}</h4>
+      <div class="table-responsive">
+        <table class="custom-table-striped" *ngIf="consultasPedia.length > 0">
           <thead>
             <tr>
               <th class="text-center" scope="col">No.</th>
@@ -43,7 +82,7 @@
             </tr>
           </thead>
           <tbody class="svg-container">
-            <tr *ngFor="let coex of consultasMedi; let i = index">
+            <tr *ngFor="let coex of consultasPedia; let i = index">
               <td class="text-center">{{ contador + i + 1 }}</td>
               <td class="text-center" >
                 <h4>{{coex.expediente}}</h4>
@@ -64,159 +103,133 @@
           </tbody>
         </table>
       </div>
-    </div>
-    <hr class="my-0 p-1">
-     <!-- Segundo contenedor Pediatría -->
-    <div class="table-responsive">
-      <h4 class="text-start">{{ 2 | enumEspecialidad }}</h4>
-      <table class="custom-table-striped" *ngIf="consultasPedia.length > 0">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">No.</th>
-            <th class="text-center" scope="col">Expediente</th>
-            <th class="text-center" scope="col">Nombre de Paciente</th>
-            <th class="text-center" scope="col" >Hora</th>
-            <th class="text-center" scope="col" >Estatus</th>
-            <th class="text-center" scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody class="svg-container">
-          <tr *ngFor="let coex of consultasPedia; let i = index">
-            <td class="text-center">{{ contador + i + 1 }}</td>
-            <td class="text-center" >
-              <h4>{{coex.expediente}}</h4>
-             </td>
-            <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-            <td class="text-center"> {{ coex.hora}} </td>
-            <td class="text-center">
-              <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
-            <td class="text-center">
-              <div class="div-btn-opt">
-                <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
-                <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
     </div>
     <hr class="my-0 p-1">
      <!-- Tercero contenedor Ginecología y Obstetricia -->
      <div class="table-responsive">
       <h4 class="text-start">{{ 3 | enumEspecialidad }}</h4>
-      <table class="custom-table-striped" *ngIf="consultasGine.length > 0">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">No.</th>
-            <th class="text-center" scope="col">Expediente</th>
-            <th class="text-center" scope="col">Nombre de Paciente</th>
-            <th class="text-center" scope="col" >Hora</th>
-            <th class="text-center" scope="col" >Estatus</th>
-            <th class="text-center" scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody class="svg-container">
-          <tr *ngFor="let coex of consultasGine; let i = index">
-            <td class="text-center">{{ contador + i + 1 }}</td>
-            <td class="text-center" >
-              <h4>{{coex.expediente}}</h4>
-             </td>
-            <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-            <td class="text-center"> {{ coex.hora}} </td>
-            <td class="text-center">
-              <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
-            <td class="text-center">
-              <div class="div-btn-opt">
-                <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
-                <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="custom-table-striped" *ngIf="consultasGine.length > 0">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">No.</th>
+              <th class="text-center" scope="col">Expediente</th>
+              <th class="text-center" scope="col">Nombre de Paciente</th>
+              <th class="text-center" scope="col" >Hora</th>
+              <th class="text-center" scope="col" >Estatus</th>
+              <th class="text-center" scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="svg-container">
+            <tr *ngFor="let coex of consultasGine; let i = index">
+              <td class="text-center">{{ contador + i + 1 }}</td>
+              <td class="text-center" >
+                <h4>{{coex.expediente}}</h4>
+               </td>
+              <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+              <td class="text-center"> {{ coex.hora}} </td>
+              <td class="text-center">
+                <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
+              <td class="text-center">
+                <div class="div-btn-opt">
+                  <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
+                  <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
     <hr class="my-0 p-1">
      <!-- Cuarto contenedor Cirugía -->
      <div class="table-responsive">
       <h4 class="text-start">{{ 4 | enumEspecialidad }}</h4>
-      <table class="custom-table-striped" *ngIf="consultasCiru.length > 0">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">No.</th>
-            <th class="text-center" scope="col">Expediente</th>
-            <th class="text-center" scope="col">Nombre de Paciente</th>
-            <th class="text-center" scope="col" >Hora</th>
-            <th class="text-center" scope="col" >Estatus</th>
-            <th class="text-center" scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody class="svg-container">
-          <tr *ngFor="let coex of consultasCiru; let i = index">
-            <td class="text-center">{{ contador + i + 1 }}</td>
-            <td class="text-center" >
-              <h4>{{coex.expediente}}</h4>
-             </td>
-            <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-            <td class="text-center"> {{ coex.hora}} </td>
-            <td class="text-center">
-              <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
-            <td class="text-center">
-              <div class="div-btn-opt">
-                <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
-                <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="custom-table-striped" *ngIf="consultasCiru.length > 0">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">No.</th>
+              <th class="text-center" scope="col">Expediente</th>
+              <th class="text-center" scope="col">Nombre de Paciente</th>
+              <th class="text-center" scope="col" >Hora</th>
+              <th class="text-center" scope="col" >Estatus</th>
+              <th class="text-center" scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="svg-container">
+            <tr *ngFor="let coex of consultasCiru; let i = index">
+              <td class="text-center">{{ contador + i + 1 }}</td>
+              <td class="text-center" >
+                <h4>{{coex.expediente}}</h4>
+               </td>
+              <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+              <td class="text-center"> {{ coex.hora}} </td>
+              <td class="text-center">
+                <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
+              <td class="text-center">
+                <div class="div-btn-opt">
+                  <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
+                  <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
     <hr class="my-0 p-1">
     <!-- Quinto contenedor Traumatología -->
     <div class="table-responsive">
       <h4 class="text-start">{{ 5 | enumEspecialidad }}</h4>
-      <table class="custom-table-striped" *ngIf="consultasTrauma.length > 0">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">No.</th>
-            <th class="text-center" scope="col">Expediente</th>
-            <th class="text-center" scope="col">Nombre de Paciente</th>
-            <th class="text-center" scope="col" >Hora</th>
-            <th class="text-center" scope="col" >Estatus</th>
-            <th class="text-center" scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody class="svg-container">
-          <tr *ngFor="let coex of consultasTrauma; let i = index">
-            <td class="text-center">{{ contador + i + 1 }}</td>
-            <td class="text-center" >
-              <h4>{{coex.expediente}}</h4>
-             </td>
-            <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-            <td class="text-center"> {{ coex.hora}} </td>
-            <td class="text-center">
-              <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
-            <td class="text-center">
-              <div class="div-btn-opt">
-                <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
-                <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="custom-table-striped" *ngIf="consultasTrauma.length > 0">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">No.</th>
+              <th class="text-center" scope="col">Expediente</th>
+              <th class="text-center" scope="col">Nombre de Paciente</th>
+              <th class="text-center" scope="col" >Hora</th>
+              <th class="text-center" scope="col" >Estatus</th>
+              <th class="text-center" scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="svg-container">
+            <tr *ngFor="let coex of consultasTrauma; let i = index">
+              <td class="text-center">{{ contador + i + 1 }}</td>
+              <td class="text-center" >
+                <h4>{{coex.expediente}}</h4>
+               </td>
+              <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+              <td class="text-center"> {{ coex.hora}} </td>
+              <td class="text-center">
+                <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
+              <td class="text-center">
+                <div class="div-btn-opt">
+                  <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
+                  <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
     <hr class="my-0 p-1">
     <!-- Sexto contenedor Psicología -->
     <div class="table-responsive">
       <h4 class="text-start">{{ 6 | enumEspecialidad }}</h4>
+     <div class="table-responsive">
       <table class="custom-table-striped" *ngIf="consultasPsico.length > 0">
         <thead>
           <tr>
@@ -249,43 +262,48 @@
           </tr>
         </tbody>
       </table>
+     </div>
+
     </div>
     <hr class="my-0 p-1">
     <!-- Septimo contenedor Nutrición -->
     <div class="table-responsive">
       <h4 class="text-start">{{ 7 | enumEspecialidad }}</h4>
-      <table class="custom-table-striped" *ngIf="consultasNutri.length > 0">
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">No.</th>
-            <th class="text-center" scope="col">Expediente</th>
-            <th class="text-center" scope="col">Nombre de Paciente</th>
-            <th class="text-center" scope="col" >Hora</th>
-            <th class="text-center" scope="col" >Estatus</th>
-            <th class="text-center" scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody class="svg-container">
-          <tr *ngFor="let coex of consultasNutri; let i = index">
-            <td class="text-center">{{ contador + i + 1 }}</td>
-            <td class="text-center" >
-              <h4>{{coex.expediente}}</h4>
-             </td>
-            <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
-            <td class="text-center"> {{ coex.hora}} </td>
-            <td class="text-center">
-              <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
-              <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
-            <td class="text-center">
-              <div class="div-btn-opt">
-                <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
-                <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="custom-table-striped" *ngIf="consultasNutri.length > 0">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">No.</th>
+              <th class="text-center" scope="col">Expediente</th>
+              <th class="text-center" scope="col">Nombre de Paciente</th>
+              <th class="text-center" scope="col" >Hora</th>
+              <th class="text-center" scope="col" >Estatus</th>
+              <th class="text-center" scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="svg-container">
+            <tr *ngFor="let coex of consultasNutri; let i = index">
+              <td class="text-center">{{ contador + i + 1 }}</td>
+              <td class="text-center" >
+                <h4>{{coex.expediente}}</h4>
+               </td>
+              <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+              <td class="text-center"> {{ coex.hora}} </td>
+              <td class="text-center">
+                <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
+              <td class="text-center">
+                <div class="div-btn-opt">
+                  <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
+                  <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 

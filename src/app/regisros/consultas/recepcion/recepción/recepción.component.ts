@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconcultas } from 'src/app/models/Iconsultas';
 import { PageReloadService } from 'src/app/services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum, OtrosEnums, encamamientos } from 'src/app/models/Ienum';
+import { Ienum, OtrosEnums, encamamientos } from 'src/app/models/Ienum';
 import { nation, etnias, ecivil, academic, parents, lenguaje, servicio, servicios } from 'src/app/enums/enums';
 import { municipio } from 'src/app/enums/vencindad';
 
@@ -92,14 +92,15 @@ export class RecepciónComponent implements OnInit {
     medico: null
   }
 
-   e: encamamientos = {
-     servicio: servicio,
-     serv: servicios,
-     encamamiento: encamamiento
-   }
+  e: encamamientos = {
+    servicio: servicio,
+    serv: servicios,
+    encamamiento: encamamiento
+  }
 
   enums: OtrosEnums = {
-    tipo: tipo
+    tipo: tipo,
+    status: status
   }
 
   ngOnInit() {
@@ -107,7 +108,9 @@ export class RecepciónComponent implements OnInit {
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
-
+    this.PageReloadService.reload$.subscribe(() => {
+      this.consultar();
+    });
 
   }
 
@@ -118,7 +121,7 @@ export class RecepciónComponent implements OnInit {
 
 
       fecha_recepcion: null,
-      status: 1
+      status: 1 || 3 || 4
 
     };
 
@@ -131,7 +134,7 @@ export class RecepciónComponent implements OnInit {
       this.porcentajeDeProgreso = 100;
       setTimeout(() => {
         this.porcentajeDeProgreso = -1; // Puedes establecerlo en -1 o cualquier otro valor para ocultar la barra
-      }, 1000);
+      }, 700);
 
     });
   }
@@ -205,6 +208,7 @@ export class RecepciónComponent implements OnInit {
     this.ConsultasService.filterConsultas(filters).subscribe((result) => {
       this.resumen = result;
       this.consultas = result;
+      this.paginar();
     });
 
 
@@ -222,7 +226,7 @@ export class RecepciónComponent implements OnInit {
     this.tipoBuscar = '';
     this.statusBuscar = '';
     this.consultar();
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
   private actualizar(data: any[]) {
@@ -231,12 +235,6 @@ export class RecepciónComponent implements OnInit {
       this.resumen = data;
       console.log(this.resumen)
       this.paginar();
-      // this.dpiBuscar = '';
-      // this.nombreBuscar = '';
-      // this.apellidoBuscar = '';
-      // this.expedienteBuscar = '';
-      // this.hojaBuscar = '';
-      // this.fechaBuscar = '';
 
     } else {
       this.consultas = [];
@@ -283,14 +281,23 @@ export class RecepciónComponent implements OnInit {
     )
   }
 
+  darEgreso() {
+    this.consulta_.fecha_egreso = this.fechaEgreso;
+    this.consulta_.status = 4;
+  }
+
   guardarEgreso() {
+    this.consulta_.fecha_egreso = this.fechaEgreso;
+    this.consulta_.status = 4;
     this.ConsultasService.editarConsulta(this.consulta_.id, this.consulta_)
       .subscribe(data => {
-        this.consulta_ = data;
+        this.consulta_ = data; // Actualiza la consulta con la respuesta del servidor
 
+        // En lugar de recargar la página, notificamos la actualización
+        this.PageReloadService.reloadPage();
       });
-    this.reloadPage();
   }
+
 
 
 }

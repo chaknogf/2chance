@@ -1,152 +1,107 @@
-<div class="border-quatz">
-  <div class="search-containe">
-    <div class="rounded p-2 bg-dark">
-      <form class="search-form" autocomplete="off">
-        <!-- Campos de búsqueda -->
-        <input
-          type="text"
-          class="form-control search-input"
-          name="expediente"
-          placeholder="Expediente"
-          [(ngModel)]="expedienteBuscar"
-        />
-        <input
-          type="text"
-          class="form-control search-input"
-          placeholder="Nombre"
-          name="nombreBuscar"
-          [(ngModel)]="nombreBuscar"
-        />
-        <input
-          type="text"
-          class="form-control search-input"
-          placeholder="Apellido"
-          name="apellidoBuscar"
-          [(ngModel)]="apellidoBuscar"
-        />
-        <input
-          type="text"
-          class="form-control search-input"
-          placeholder="DPI"
-          name="dpiBuscar"
-          [(ngModel)]="dpiBuscar"
-        />
+<div class="search-container">
+  <div class="search-div">
+    <form class="search-form" autocomplete="off">
 
-        <!-- Botones de acción -->
-        <button type="submit" class="btn btn-primary search-button"
-         (click)="filtro()">
-          <searchIcon />
-        </button>
-        <button type="button" class="btn btn-secondary search-button"
-         (click)="limpiarInput()">
-          <deleteInput />
-        </button>
-        <button
-          class="btn btn-info search-button"
-          data-bs-toggle="modal"
-          data-bs-target="#formularioModalP"
-        >
-          <createIcon />
-        </button>
-      </form>
-    </div>
-  </div>
+      <input
+        type="text"
+        class="search-input"
+        name="expediente"
+        placeholder="Expediente"
+        [(ngModel)]="expedienteBuscar"
+      />
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Nombre"
+        name="nombreBuscar"
+        [(ngModel)]="nombreBuscar"
+      />
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Apellido"
+        name="apellidoBuscar"
+        [(ngModel)]="apellidoBuscar"
+      />
+      <input
+        type="text"
+        class="search-input"
+        placeholder="DPI"
+        name="dpiBuscar"
+        [(ngModel)]="dpiBuscar"
+      />
 
-  <div class="custom-table-wrapper t-w-d mt-3">
-    <table class="custom-table table-hover text-center">
-        <thead class="text-normal">
-          <tr>
-
-
-
-            <th class="text-center fs-9">°</th>
-            <th class="text-center fs-9 ">°</th>
-            <th class="text-center fs-9 " >Exp</th>
-            <th class="text-center fs-9" >Paciente</th>
-            <th class="text-center fs-9" >Sexo</th>
-            <th class="text-center fs-9" >Edad</th>
-            <th class="text-center fs-9" >Estado</th>
-
-          </tr>
-        </thead>
-
-        <tbody class="justify-content-center  opacity-90">
-          <tr *ngFor="let paciente of filteredPacientes">
-
-            <td>
-                <button *ngIf="paciente.sexo === 'F' && calcularEdad(paciente.nacimiento) > 10" class="btn btn-dark btn-sm" [routerLink]="['/rn/', paciente.expediente]">
-                  <babyIcon />
-                </button>
-            </td>
-
-            <td>
-              <button class="btn btn-dark btn-sm" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.direccion, paciente.telefono)" data-bs-toggle="modal" data-bs-target="#formularioCrear" >
-                <addIcon />
-              </button>
-
-            </td>
-
-            <td class="h3 text-center text-success" [routerLink]="['/buscar/view/', paciente.id]">{{ paciente.expediente }}</td>
-
-            <td class="text-center text-justify " appHighlightWords >
-              <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
-              {{ paciente.apellido | capitalizeName }}
-              <span *ngIf="paciente.gemelo == 'si'" class="f-negrita bg-black p-1 rounded">
-                <gemeloIcon />
-              </span>
-            </td>
-            <td class="text-center">
-              <ng-container *ngIf="paciente.sexo == 'F'; else man">
-
-               <femIcon/>
-              </ng-container>
-
-              <ng-template #man>
-                <ng-container *ngIf="paciente.sexo == 'M'; else NoneBl">
-                  <maleIcon/>
-                </ng-container>
-              </ng-template>
-
-              <ng-template #NoneBl>
-                <span class="text-warning">SIn Registrar !!!</span>
-                <atentionIcon />
-              </ng-template>
-
-
-            </td>
-
-            <td class="text-center word-break" #edadCell>{{ paciente.nacimiento | edad }}</td>
-
-            <td class="text-center">
-              <ng-container *ngIf="paciente.estado === 'v'; else dead">
-
-               <beatIcon/>
-              </ng-container>
-
-              <ng-template #dead>
-
-                <deadIcon/>
-              </ng-template>
-            </td>
-
-          </tr>
-        </tbody>
-    </table>
-
-
-
-
-  <!-- Paginación -->
-    <div class="d-flex justify-content-center pagination mt-3">
-      <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
-        <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
+      <div class="div-btn-icons">
+        <searchIcon (click)="filtro()"/>
+        <deleteInput (click)="limpiarInput()" />
+        <createIcon data-bs-toggle="modal" data-bs-target="#formularioModalP" />
       </div>
+    </form>
+  </div>
+</div>
+<div class="">
+  <div class="custom-table-wrapper t-w-d mt-2">
+    <!-- <table class="table table-hover table-black table-borderless fs-5 " aria-labelledby="tableLabel" *ngIf="pacientes.length > 0"> -->
+    <table class="custom-table table-hover text-center">
+      <thead class="">
+        <tr>
+          <th class="text-center " >Expediente </th>
+          <th class="text-center " >Nombre</th>
+          <th class="text-center " >DPI</th>
+          <th class="text-center " >Sexo</th>
+          <th class="text-center " >Edad</th>
+          <th class="text-center ">Opciones</th>
+      </tr>
+      </thead>
+
+      <tbody class="svg-container  ">
+        <tr *ngFor="let paciente of filteredPacientes">
+          <td>
+            {{ paciente.expediente }}
+          </td>
+        <td class="text-center text-justify " appHighlightWords >
+          <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
+          {{ paciente.apellido | capitalizeName }}
+            <gemeloIcon *ngIf="paciente.gemelo == 'si'" />
+        </td>
+        <td class="text-center">{{ paciente.dpi | anyToText | formatoDPI }}</td>
+        <td class="text-center">
+          <ng-container *ngIf="paciente.sexo == 'F'; else man">
+          <femIcon/>
+          </ng-container>
+          <ng-template #man>
+            <ng-container *ngIf="paciente.sexo == 'M'; else NoneBl">
+             <maleIcon/>
+            </ng-container>
+          </ng-template>
+          <ng-template #NoneBl>
+            <span class="text-warning">SIn Registrar !!!</span>
+            <atentionIcon />
+          </ng-template>
+        </td>
+        <td class="text-center" #edadCell>{{ paciente.nacimiento | edad }}</td>
+        <td class="text-center">
+          <div class="div-btn-opt">
+
+            <addIcon (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.direccion, paciente.telefono)" data-bs-toggle="modal" data-bs-target="#formularioCrear"  />
+          </div>
+
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!-- Paginación -->
+  <div class="d-flex justify-content-center pagination mt-3">
+    <div class="btn-group" [class.disabled]="paginaActual === 1" *ngIf="totalPaginas()">
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(1)" aria-label="Primera">Primera</button>
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual - 1)" aria-label="Anterior">Anterior</button>
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(paginaActual + 1)" aria-label="Siguiente">Siguiente</button>
+      <button type="button" class="btn btn-secondary" (click)="onPageChange(totalPaginas())" aria-label="Última">Última</button>
     </div>
   </div>
-  </div>
+</div>
 
   <div class="modal" id="formularioModalP">
     <div class="modal-dialog modal-lg" role="document">
@@ -263,6 +218,5 @@
       </div>
     </div>
   </div>
-
 
 

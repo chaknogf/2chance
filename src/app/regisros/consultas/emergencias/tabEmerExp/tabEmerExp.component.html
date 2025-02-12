@@ -1,4 +1,5 @@
 <div class="search-container">
+<<<<<<< HEAD
   <div class="rounded p-0">
     <form class="search-form" autocomplete="off">
       <input type="text" class="search-input" name="nombreBuscar" placeholder="Nombre"  [(ngModel)]="nombreBuscar">
@@ -14,6 +15,27 @@
   <div class="">
     <div class="custom-table-wrapper t-w-d mt-2">
       <h3 class="m-0 p-0">Pacientes</h3>
+=======
+  <div class="rounded p-2 bg-dark">
+    <form class="search-form" autocomplete="off" >
+      <input type="text" class="form-control search-input" name="expediente" placeholder="Expediente"  [(ngModel)]="expedienteBuscar" />
+      <input type="sumit" class="form-control search-input" placeholder="nombre" name="nombreBuscar"  [(ngModel)]="nombreBuscar">
+      <input type="text" class="form-control search-input" placeholder="apellido" name="apellidoBuscar"  [(ngModel)]="apellidoBuscar">
+      <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar"  [(ngModel)]="dpiBuscar">
+      <!-- Botones de acción -->
+      <button type="submit" class="btn btn-primary search-button" (click)="filtro()">
+        <searchIcon />
+      </button>
+      <button type="button" class="btn btn-secondary search-button" (click)="limpiarInput()">
+        <deleteInput />
+      </button>
+
+    </form>
+  </div>
+
+  <div class="mt-3">
+    <div class="custom-table-wrapper t-w-d mt-3">
+>>>>>>> 2f6c880 (style: azul ultramarino)
       <table class="custom-table table-hover text-center ">
         <thead class="text-normal">
           <tr>
@@ -42,8 +64,18 @@
               paciente.direccion
               )" />
             </td>
+<<<<<<< HEAD
             <td class="h3 text-center text-success" >
               {{ paciente.expediente }}</td>
+=======
+            <td>
+              <button class="btn btn-secundary search-button" (click)="copiarId(paciente.expediente, paciente.nombre, paciente.apellido, paciente.nacimiento, paciente.sexo, paciente.dpi, paciente.municipio, paciente.direccion)" >
+                <copyAddIcon />
+              </button>
+
+            </td>
+            <td class="h3 text-center text-success" #exp >{{ paciente.expediente }}</td>
+>>>>>>> 2f6c880 (style: azul ultramarino)
             <td class="text-text text-justify" appHighlightWords >
               {{ paciente.nombre | capitalizeName }}
               <br>

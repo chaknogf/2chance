@@ -1,41 +1,27 @@
+<div class="d-flex-desktop">
+
+  <div class="search-container col-md-6">
+    <nuevoIngreso></nuevoIngreso>
+  </div>
+  <div class="search-container col-md-6">
+    <h4 class="text-center">Registros de Ingresos Hospitalarios</h4>
+    <ingresoTabla></ingresoTabla>
+  </div>
+</div>
+
 
 <div class="mt-3 ">
 
 
-    <p class="text-center text-light display-6">Registro Hospitalario</p>
 
-
-
-
-  <div class="container-fluid ">
-    <div class="row">
-      <div class="col-md-6 mx-0">
-          <nuevoIngreso></nuevoIngreso>
-        </div>
-        <div class="col-md-6 mx-0">
-          <!-- Tabla de emergencias -->
-          <ingresoTabla></ingresoTabla>
-        </div>
-
-      </div>
-    </div>
-
-
-
-  </div>
 
 
 
 <div class="modal" id="opciones">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-
-
-      <button class="btn btn-info" data-bs-dismiss="modal" [routerLink]="['/ingreso/edit', idCopiado]"  >Editar Consulta</button>
-
-      <button class="btn btn-black" data-bs-dismiss="modal">Cerrar</button>
-
-
+      <editIcon data-bs-dismiss="modal" [routerLink]="['/ingreso/edit', idCopiado]" />
+      <closeIcon data-bs-dismiss="modal" />
     </div>
   </div>
 </div>

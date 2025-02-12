@@ -1,3 +1,5 @@
+import { EnumStatusPipe } from './../../../../pipe/enum.pipe';
+import { status } from './../../../../enums/enums';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -105,8 +107,12 @@ export class TodasComponent implements OnInit {
     servicio: servicio
   }
 
+
+
   enums: OtrosEnums = {
-    tipo: tipo
+    tipo: tipo,
+    status: status
+
   }
   ngOnInit() {
     this.consultar()
@@ -123,7 +129,7 @@ export class TodasComponent implements OnInit {
   consultar() {
     this.porcentajeDeProgreso = 0.5;
     this.ConsultasService.Consultas().subscribe(data => {
-      this.consultas = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+      this.consultas = data;
       this.porcentajeDeProgreso = 75;
       this.resumen = data;
       this.paginar();
@@ -261,7 +267,7 @@ export class TodasComponent implements OnInit {
     this.apellidoBuscar = '';
     this.dpiBuscar = '';
     this.hojaBuscar = '';
-    this.fechaBuscar = this.hoy;
+    this.fechaBuscar = '';
     this.consultar();
     // Obtén todos los pacientes nuevamente
   }

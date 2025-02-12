@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, interval } from 'rxjs';
+import { Observable, interval, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { Ipaciente } from '../models/Ipaciente';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/assets/enviroments/enviroment';
 import { UsersService } from './user.service';
+import { PageReloadService } from './PageReload.service';
 
-interface nuevoExpResponse{
+interface nuevoExpResponse {
   nuevo_exp: number;
 }
 
@@ -20,22 +21,23 @@ export class PacientesService {
 
   constructor(
     private http: HttpClient,
-    private auth: UsersService
+    private auth: UsersService,
+    private reloadService: PageReloadService
   ) { }
 
   getPacientes(): Observable<any> {
 
-    return this.http.get(this.urlapi + "/pacientes?token="+ this.token);
+    return this.http.get(this.urlapi + "/pacientes?token=" + this.token);
   }
 
   getPacientesAsc(): Observable<any> {
 
-    return this.http.get(this.urlapi + "/pacientes_asc?token="+ this.token);
+    return this.http.get(this.urlapi + "/pacientes_asc?token=" + this.token);
   }
 
   getPersonas(): Observable<any> {
 
-    return this.http.get(this.urlapi + "/personas?token="+ this.token);
+    return this.http.get(this.urlapi + "/personas?token=" + this.token);
   }
 
 
@@ -46,7 +48,7 @@ export class PacientesService {
   }
 
   getExpe(exp: number): Observable<any> {
-    return this.http.get(this.urlapi + "/paciente/" + exp );
+    return this.http.get(this.urlapi + "/paciente/" + exp);
   }
 
 
@@ -57,7 +59,7 @@ export class PacientesService {
 
   getIdPaciente(id: number): Observable<any> {
 
-    return this.http.get(this.urlapi + "/pacienteId/?id=" + id + "&token="+this.token);
+    return this.http.get(this.urlapi + "/pacienteId/?id=" + id + "&token=" + this.token);
   }
 
   getdpi(cui: number): Observable<any> {
@@ -65,25 +67,43 @@ export class PacientesService {
     return this.http.get(`${this.urlapi}/dpi/${queryParams}`);
   }
 
-  crearPaciente(paciente: Ipaciente): Observable<any>{
-    return this.http.post(this.urlapi + "/paciente/?token="+this.token, paciente);
+  crearPaciente(paciente: Ipaciente): Observable<any> {
+    return this.http.post(this.urlapi + "/paciente/?token=" + this.token, paciente)
+      .pipe(
+        switchMap(response => {
+          this.reloadService.reloadPage();
+          return [response];
+        })
+      );
   }
 
-  editPaciente(exp: number, updateP: Ipaciente): Observable<any>{
-    return this.http.put(this.urlapi + "/paciente/" + exp + "?token=" + this.token, updateP);
+  editPaciente(exp: number, updateP: Ipaciente): Observable<any> {
+    return this.http.put(this.urlapi + "/paciente/" + exp + "?token=" + this.token, updateP)
+      .pipe(
+        switchMap(response => {
+          this.reloadService.reloadPage();
+          return [response];
+        })
+      );
   }
 
-  trasladar(id: number, updateP: Ipaciente): Observable<any>{
+  trasladar(id: number, updateP: Ipaciente): Observable<any> {
     return this.http.put(this.urlapi + '/trasladar/' + id + '?token=' + this.token, updateP)
   }
 
-  deletePaciente(id: number): Observable<any>{
-    return this.http.delete(this.urlapi + "/borrarpaciente/" + id + "?token=" + this.token);
+  deletePaciente(id: number): Observable<any> {
+    return this.http.delete(this.urlapi + "/borrarpaciente/" + id + "?token=" + this.token)
+      .pipe(
+        switchMap(response => {
+          this.reloadService.reloadPage();
+          return [response];
+        })
+      );
   }
 
   Expediente(): Observable<any> {
     return interval(900).pipe(
-      switchMap(() => this.http.get(this.urlapi + '/expediente' +"?token=" + this.token))
+      switchMap(() => this.http.get(this.urlapi + '/expediente' + "?token=" + this.token))
     );
   }
 
