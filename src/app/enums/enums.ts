@@ -91,6 +91,8 @@ export const servicios: Servicios[] = [
   { value: 17, label: 'area roja emergencia' },
   { value: 18, label: 'Medicina' },
   { value: 19, label: 'UCIN' },
+  { value: 20, label: 'COEX' },
+  { value: 21, label: 'Emergencia' },
 
 ]
 
@@ -121,6 +123,7 @@ export const todoservicios: TodoServicios[] = [
   { value: 18, label: 'Medicina' },
   { value: 19, label: 'UCIN' },
   { value: 20, label: 'COEX' },
+  { value: 21, label: 'Emergencia' },
 
 ]
 

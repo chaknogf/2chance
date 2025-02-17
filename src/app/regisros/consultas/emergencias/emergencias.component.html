@@ -3,6 +3,7 @@
     <div class="div-btn-icons">
       <backIcon (click)="regresar()" />
       <archivarIcon  (click)="archivar()" />
+      <printIcon [routerLink]="['/printEmergencia/', emergencia.id]" />
       <saveIcon (click)="edit ? editar() :registrarEmergencia()" />
       <eliminarIcon  />
     </div>

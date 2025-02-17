@@ -20,28 +20,20 @@
 
           <!-- Elemento con submenú -->
           <div *ngIf="item.children" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"  role="button" (click)="toggleDropdown(item.label)"
+            <button class="nav-link dropdown-toggle"  role="button" (click)="toggleDropdown(item.label)"
                [attr.aria-expanded]="openDropdown === item.label">
                  {{ item.label }}
-            </a>
+            </button>
             <ul class="dropdown-menu" [class.show]="openDropdown === item.label">
-              <li *ngFor="let sub of item.children">
-                <button class="dropdown-item" [routerLink]="sub.subhref" (click)="handleLinkClick(sub.subhref)">
+              <li class="btn" *ngFor="let sub of item.children" (click)="handleLinkClick(sub.subhref)">
+                <a class="dropdown-item btn" [routerLink]="sub.subhref" (click)="handleLinkClick(sub.subhref)">
                   {{ sub.label }}
-                </button>
+                </a>
               </li>
             </ul>
           </div>
         </li>
       </ul>
-
-      <!-- Input de búsqueda -->
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Buscar">
-        <button class="btn btn-secondary" type="submit">Buscar</button>
-      </form> -->
-
-      <!-- Botón de cierre de sesión -->
       <button class="btn btn-danger ms-3" (click)="logout()">Cerrar Sesión</button>
     </div>
   </div>

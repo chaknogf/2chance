@@ -54,6 +54,8 @@ export class DetalleUisauComponent implements OnInit {
   private totalRegistros: number = 5;
   mostrarInfo: boolean = false;
   isDesktop: boolean = false;
+  listGroup: boolean = false;
+  expandedItemId: number | null = null;
 
 
   @Output() idConsulta = new EventEmitter<number>();
@@ -194,6 +196,9 @@ export class DetalleUisauComponent implements OnInit {
     }
   }
 
+  handleMostrarData(itemId: number) {
+    this.expandedItemId = this.expandedItemId === itemId ? null : itemId;
+  }
 
 
 

@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageReloadService } from './../../../services/PageReload.service';
 import { FechaService } from 'src/app/services/fecha.service';
-import {  Ienum } from 'src/app/models/Ienum';
+import { Ienum } from 'src/app/models/Ienum';
 import { IconsNac } from 'src/app/models/IconsNac';
 
 @Component({
@@ -34,7 +34,7 @@ export class TablaDocsComponent implements OnInit {
   public fechaBuscar: any = '';
   public maxdate: string = '';
   public idCopiado: number = 0;
-  public idBuscar: number = 0;
+  public idBuscar: any = '';
   public documentoBuscar: any = '';
   mostrarModal = false;
 
@@ -81,8 +81,11 @@ export class TablaDocsComponent implements OnInit {
     // Obtiene la fecha actual en el formato YYYY-MM-DD
     const currentDate = new Date().toISOString().split('T')[0];
     this.maxdate = currentDate;
+    this.paginar();
 
   }
+
+
 
 
   constanciasEmitidas() {
@@ -90,7 +93,8 @@ export class TablaDocsComponent implements OnInit {
       .subscribe(data => {
         this.resumen = data;
         this.constancias = data;
-    })
+        this.paginar();
+      })
   }
 
   onPageChange(pageNumber: number) {
@@ -130,13 +134,12 @@ export class TablaDocsComponent implements OnInit {
       expediente: this.expedienteBuscar,
       madre: this.nombreBuscar,
       ao: this.aoBuscar,
-
-      tipo_consulta: 2,
     };
 
     this.nacServ.filterDocs(filters).subscribe((result) => {
       this.resumen = result;
       this.constancias = result;
+      this.paginar();
     });
 
 
@@ -151,6 +154,8 @@ export class TablaDocsComponent implements OnInit {
     this.nombreBuscar = '';
     this.aoBuscar = '';
     this.documentoBuscar = '';
+    this.resumen = [];
+    this.constanciasEmitidas();
 
 
   }

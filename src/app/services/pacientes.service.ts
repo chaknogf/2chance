@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, interval, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { Ipaciente } from '../models/Ipaciente';
-import { environment } from 'src/assets/enviroments/enviroment';
+import { environment } from 'src/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { PageReloadService } from './PageReload.service';
 

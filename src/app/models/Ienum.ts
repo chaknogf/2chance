@@ -55,6 +55,7 @@ export interface vecindades {
   departamentos: Departamentos[];
   municipio: Municipio[];
   vecindad: Vecindad[];
+  nation?: Nacionalidad[]
 }
 
 export interface serv_espc {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval, switchMap } from 'rxjs';
-import { environment } from 'src/assets/enviroments/enviroment';
+import { environment } from 'src/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { IconsNac } from '../models/IconsNac';
 
@@ -131,6 +131,14 @@ export class CNacService {
         url += `&onz=${filtros.onz}`;
       } else {
         url += `?onz=${filtros.onz}`
+      }
+    }
+
+    if (filtros) {
+      if (url.includes('?')) {
+        url += `&token=${this.token}`;
+      } else {
+        url += `?token=${this.token}`;
       }
     }
 

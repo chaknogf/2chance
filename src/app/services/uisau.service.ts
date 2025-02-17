@@ -1,10 +1,10 @@
-import { tipo } from './../enums/enums';
+import { tipo, serv, servicio } from './../enums/enums';
 import { FechaService } from 'src/app/services/fecha.service';
 import { Injectable } from '@angular/core';
 import { Iconcultas } from '../models/Iconsultas';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { environment } from 'src/assets/enviroments/enviroment';
+import { environment } from 'src/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { Iuisau } from '../models/Iuisau';
 
@@ -130,6 +130,14 @@ export class UisauService {
       }
     }
 
+    if (filtros.servicio) {
+      if (url.includes('?')) {
+        url += `&servicio=${filtros.servicio}`;
+      } else {
+        url += `?servicio=${filtros.servicio}`;
+      }
+    }
+
     if (filtros) {
       if (url.includes('?')) {
         url += `&token=${this.token}`;
@@ -139,7 +147,7 @@ export class UisauService {
     }
 
 
-    console.log(filtros, url)
+    // console.log(filtros, url)
     // Realiza la solicitud GET con la URL construida dinámicamente
     return this.http.get(url);
 

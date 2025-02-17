@@ -15,7 +15,7 @@ import { CapitalizeNamePipe } from './pipe/sentenceCase.pipe';
 import { AppComponent } from './app.component';
 import { DiaDeSemana } from './pipe/diaDeSemana.pipe';
 import { WeekdayPipe } from './pipe/weekDay.pipe';
-import { FechaCartaPipe, FechaCortaPipe, FormatoFechaPipe } from './pipe/formatoFecha.pipe';
+import { FechaCartaPipe, FechaCortaPipe, FormatoFechaPipe, FormatoFechaCompletaPipe } from './pipe/formatoFecha.pipe';
 import { ColorizePipe } from './pipe/colorize.pipe';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { GenderPipe } from './pipe/genero.pipe';
@@ -152,6 +152,19 @@ import { AtenderIconComponent } from 'src/assets/svg/atenderIcon/atenderIcon.com
 import { CheckGoodIconComponent } from 'src/assets/svg/checkGoodIcon/checkGoodIcon.component';
 import { EliminarIconComponentSolo } from 'src/assets/svg/eliminarIconSolo/eliminarIconSolo.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { FilterIconComponent } from 'src/assets/svg/filterIcon/filterIcon.component';
+import { CallIconComponent } from 'src/assets/svg/callIcon/callIcon.component';
+import { GestionIconComponent } from 'src/assets/svg/gestionIcon/gestionIcon.component';
+import { HappyUserIconComponent } from 'src/assets/svg/happyIcon/happyIcon.component';
+import { TimeIconComponent } from 'src/assets/svg/timeIcon/timeIcon.component';
+import { CalendarIconComponent } from 'src/assets/svg/calendarIcon/calendarIcon.component';
+import { UserFluentIconComponent } from 'src/assets/svg/userFluentIcon/userFluentIcon.component';
+import { ContactarIconComponent } from 'src/assets/svg/contactarIcon/contactarIcon.component';
+import { PrintEmergenciaComponent } from './regisros/consultas/emergencias/printEmergencia/printEmergencia.component';
+import { CuadroBlancoIconComponent } from 'src/assets/svg/cuadroBlancoIcon/cuadroBlancoIcon.component';
+import { CuadroLlenoIconComponent } from 'src/assets/svg/cuadroLleno/cuadroLleno.component';
+
+
 
 @NgModule({
   declarations: [
@@ -171,6 +184,7 @@ import { AuthInterceptor } from './auth.interceptor';
     FormCitaComponent,
     DiaDeSemana,
     FormatoFechaPipe,
+    FormatoFechaCompletaPipe,
     EnumEspecialidadPipe,
     EnumNacionalidadPipe,
     EnumParentescoPipe,
@@ -315,7 +329,19 @@ import { AuthInterceptor } from './auth.interceptor';
     CitaIconComponent,
     AtenderIconComponent,
     CheckGoodIconComponent,
-    EliminarIconComponentSolo
+    EliminarIconComponentSolo,
+    FilterIconComponent,
+    CallIconComponent,
+    GestionIconComponent,
+    HappyUserIconComponent,
+    TimeIconComponent,
+    CalendarIconComponent,
+    UserFluentIconComponent,
+    ContactarIconComponent,
+    PrintEmergenciaComponent,
+    CuadroBlancoIconComponent,
+    CuadroLlenoIconComponent,
+
 
 
 
@@ -348,6 +374,7 @@ import { AuthInterceptor } from './auth.interceptor';
       { path: 'edit/coex/:id', component: FormCoexComponent, canActivate: [AuthGuard] },
       { path: 'tablaEmergencia', component: TablaEmergenciaComponent, canActivate: [AuthGuard] },
       { path: 'hClinica/view/:id', component: HClinicaComponent, canActivate: [AuthGuard] },
+      { path: 'printEmergencia/:id', component: PrintEmergenciaComponent, canActivate: [AuthGuard] },
       { path: 'ingresos', component: IngresosComponent, canActivate: [AuthGuard] },
       { path: 'ingreso', component: FormIngresoComponent, canActivate: [AuthGuard] },
       { path: 'ingreso/edit/:id', component: FormIngresoComponent, canActivate: [AuthGuard] },
@@ -360,6 +387,7 @@ import { AuthInterceptor } from './auth.interceptor';
       { path: 'formUisau', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'contacto/:id', component: EditUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau/new/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
+      { path: 'formUisau/edit/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'detalleUisau/:id', component: DetalleUisauComponent, canActivate: [AuthGuard] },
       { path: 'cie10', component: Tabcie10Component, canActivate: [AuthGuard] },
       { path: 'registros', component: RegistrosComponent, canActivate: [AuthGuard] },

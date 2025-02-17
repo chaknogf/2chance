@@ -23,7 +23,7 @@ export class HClinicaComponent implements OnInit {
   public rutaAnterior: string = '../';
   public contador: number = 0;
   public e: any = '';
-  public  logoPath: string = '/assets/logo.jpg';
+  public logoPath: string = '/assets/logo.jpg';
 
   constructor(
     private pacientesService: PacientesService,
@@ -70,7 +70,7 @@ export class HClinicaComponent implements OnInit {
     window.print();
   }
 
-  regresar(){
+  regresar() {
     this._location.back();
   }
 

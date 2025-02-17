@@ -2,7 +2,7 @@ import { Icitas } from './../models/Icitas';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { environment } from 'src/assets/enviroments/enviroment';
+import { environment } from 'src/enviroments/enviroment';
 import { UsersService } from './user.service';
 
 @Injectable({

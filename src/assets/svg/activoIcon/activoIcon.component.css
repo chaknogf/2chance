@@ -1,15 +1,23 @@
+:root {
+  --urgente: rgba(255, 0, 0, 1); /* Rojo */
+  --moderado: rgba(255, 255, 0, 1); /* Amarillo */
+  --estable: rgba(0, 128, 0, 1); /* Verde */
+  --muerto: rgba(0, 0, 0, 1); /* Negro */
+  --standar: rgba(173, 216, 230, 1); /* Celeste */
+}
+
 @keyframes faro {
   0% {
-    box-shadow: 0 0 5px rgba(173, 216, 230, 0.3);
-    background-color: rgba(173, 216, 230, 0.1);
+    box-shadow: 0 0 5px rgba(var(--color-activo), 0.3);
+    background-color: rgba(var(--color-activo), 0.1);
   }
   50% {
-    box-shadow: 0 0 20px rgba(173, 216, 230, 0.8);
-    background-color: rgba(173, 216, 230, 0.5);
+    box-shadow: 0 0 20px rgba(var(--color-activo), 1);
+    background-color: rgba(var(--color-activo), 0.8);
   }
   100% {
-    box-shadow: 0 0 5px rgba(173, 216, 230, 0.3);
-    background-color: rgba(173, 216, 230, 0.1);
+    box-shadow: 0 0 5px rgba(var(--color-activo), 0.3);
+    background-color: rgba(var(--color-activo), 0.1);
   }
 }
 
@@ -17,6 +25,26 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: rgba(173, 216, 230, 0.3);
   animation: faro 2s infinite ease-in-out;
+}
+
+/* Colores dinámicos según estado */
+.urgente {
+  --color-activo: 255, 0, 0; /* Rojo */
+}
+
+.moderado {
+  --color-activo: 255, 255, 0; /* Amarillo */
+}
+
+.estable {
+  --color-activo: 0, 128, 0; /* Verde */
+}
+
+.muerto {
+  --color-activo: 0, 0, 0; /* Negro */
+}
+
+.standar {
+  --color-activo: 173, 216, 230; /* Celeste */
 }

@@ -59,7 +59,7 @@
             <td>
               {{ paciente.expediente }}
             </td>
-          <td class="text-center text-justify " appHighlightWords >
+          <td class="text-center" appHighlightWords >
             <span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
             {{ paciente.apellido | capitalizeName }}
               <gemeloIcon *ngIf="paciente.gemelo == 'si'" />

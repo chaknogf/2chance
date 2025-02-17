@@ -1,27 +1,134 @@
-<!-- Título -->
-<h2 class="text-center">Unidad de Información en Salud al Usuario</h2>
+<div class="search-container">
+  <h2 class="text-center">Unidad de Información en Salud al Usuario</h2>
+  <div class="search-div">
+    <form class="search-form" autocomplete="off" >
+      <input type="number" class="search-input" name="expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+      <input type="text" class="search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <div class="div-btn-icons justify-content-end">
+        <searchIcon (click)="filtro()" />
+        <deleteInput (click)="limpiarInput()" />
+        <filterIcon data-bs-toggle="modal" data-bs-target="#formModal" />
+        <excelIcon class="btn-search btn btn-dark p-1" data-bs-toggle="modal" data-bs-target="#reporte" />
+        <tablillaIcon class="btn-search btn btn-dark p-1" (click)="tablillaNavigate()" />
 
-<!-- Botones de acción -->
-<div class="d-flex justify-content-end gap-1">
-  <button type="button" class="btn btn-info search-button" data-bs-toggle="modal" data-bs-target="#formModal">
-   <searchIcon />
-  </button>
-  <button type="button" class="btn btn-dark search-button" data-bs-toggle="modal" data-bs-target="#reporte">
-    <excelIcon />
-  </button>
-  <button type="button" class="btn btn-dark search-button" (click)="tablillaNavigate()">
-    <tablillaIcon />
-  </button>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- Tabla de resultados -->
+<div class="custom-table-wrapper t-w-d mt-2">
+  <h5 class="m-0 p-0">Pacientes Atendidos</h5>
+  <table class="custom-table table-hover text-center">
+    <thead>
+      <tr>
+        <th class="text-center">Consulta</th>
+        <th class="text-center">Historia Clinica</th>
+        <th class="text-center">Fecha</th>
+        <th class="text-center">Paciente</th>
+        <th class="text-center">Servicio</th>
+        <th class="text-center">Tipo</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Opciones</th>
+      </tr>
+    </thead>
+    <tbody class="svg-container">
+      <tr *ngFor="let consulta of resumen">
+        <td class="text-center" >
+          <p class="text-yellow fs-mini">{{consulta.id}}</p>
+        </td>
+        <td>
+          <ng-container *ngIf="consulta.expediente">
+            <p class="label-td fs-mini">Expediente:</p>
+            {{ consulta.expediente }}
+          </ng-container>
+          <ng-container *ngIf="consulta.hoja_emergencia">
+            <p class="label-td fs-mini">Emergencia:</p>
+            {{ consulta.hoja_emergencia }}
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngIf="consulta.fecha_consulta">
+            <p class="label-td fs-mini">Ingreso:</p>
+            {{ consulta.fecha_consulta | anyToText | formatoFecha }}
+          </ng-container>
+          <ng-container *ngIf="consulta.fecha_egreso">
+            <p class="label-td fs-mini">Egreso:</p>
+            {{ consulta.fecha_egreso | anyToText | formatoFecha }}
+          </ng-container>
+        </td>
+        <td appHighlightWords class="text-start text-compact">
+          <span [ngClass]="{'mujer': consulta.sexo == 'F', 'hombre': consulta.sexo != 'F'}">{{ consulta.nombres | anyToText | capitalizeName }}</span> {{ consulta.apellidos | anyToText | capitalizeName }}</td>
+        <td>{{ consulta.servicio | anyToNumber | enumServicios }}</td>
+        <td class="text-center">
+            <ng-container *ngIf="consulta.tipo_consulta == 1">
+              <coexIcon  />
+              <br/>
+              <span class="fs-mini">Consulta Externa</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.tipo_consulta == 2">
+              <hospitalizacionIcon  />
+              <br/>
+              <span class="fs-mini">Hospitalización</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.tipo_consulta == 3" >
+              <emergenciaIcon  />
+              <br/>
+              <span class="fs-mini">Emergencia</span>
+            </ng-container>
+        </td>
+        <td class="text-center">
+          <ng-container *ngIf="consulta.status == 1">
+            <activoIcon class="urgente" />
+            <br/>
+            <span class="fs-mini">Activo</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.status == 2">
+            <archiveIcon  />
+            <br/>
+            <span class="fs-mini">Archivado</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.status == 3">
+              <prestamoIcon  />
+              <br/>
+              <span class="fs-mini">Prestamo</span>
+            </ng-container>
+            <ng-container *ngIf="consulta.status == 4">
+              <egresoIcon />
+              <br/>
+              <span class="fs-mini">Egreso</span>
+            </ng-container>
+        </td>
+        <td class="text-center">
+          <div class="div-btn-opt">
+            <editIcon [routerLink]="['/detalleUisau/', consulta.id]" (click)="copiarId(consulta.id)" />
+          </div>
+        </td>
+
+
+
+
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
 
 </div>
 
+
+
 <!-- Modal de búsqueda -->
-<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal" id="formModal">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Buscar Paciente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <closeIcon />
       </div>
       <div class="modal-body">
         <form class="custom-form" (ngSubmit)="filtro()">
@@ -42,56 +149,16 @@
             <input type="text" class="custom-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
             <input type="text" class="custom-input" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
           </div>
-
-          <div class="search-form">
-            <button type="submit" class="btn btn-primary search-button">
-              <searchIcon />
-            </button>
-            <button type="reset" class="btn btn-secondary search-button text-dark" (click)="limpiarInput()">
-              <deleteInput />
-            </button>
-          </div>
         </form>
+      </div>
+      <div class="modal-footer">
+        <searchIcon />
+        <deleteInput (click)="limpiarInput()" />
       </div>
     </div>
   </div>
 </div>
 
-<!-- Tabla de resultados -->
-<div class="custom-table-wrapper t-w-d mt-3">
-  <table class="custom-table table-hover text-center">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Consulta</th>
-        <th>Expediente (Emergencia)</th>
-        <th>Ingreso/Egreso</th>
-        <th>Nombre</th>
-        <th>Servicio</th>
-        <th>Especialidad</th>
-        <th>Tipo</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let consulta of resumen">
-        <td>
-          <button type="button" class="custom-btn fs-9 w-80 p-1 m-0" [routerLink]="['/detalleUisau/', consulta.id]" (click)="copiarId(consulta.id)">
-            <editIcon></editIcon>
-          </button>
-        </td>
-        <td class="text-warning">{{ consulta.id }}</td>
-        <td>{{ consulta.expediente }} ({{ consulta.hoja_emergencia }})</td>
-        <td>{{ consulta.fecha_consulta | anyToText | formatoFecha }} - {{ consulta.fecha_egreso | anyToText | formatoFecha }}</td>
-        <td>{{ consulta.nombres | anyToText | capitalizeName }} {{ consulta.apellidos | anyToText | capitalizeName }}</td>
-        <td>{{ consulta.servicio | anyToNumber | enumServicios }}</td>
-        <td>{{ consulta.especialidad | anyToNumber | enumEspecialidad }}</td>
-        <td>{{ consulta.tipo_consulta | anyToNumber | enumTipo }}</td>
-        <td>{{ consulta.status | anyToNumber | enumStatus }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
 
 <!-- Modal de Reporte -->

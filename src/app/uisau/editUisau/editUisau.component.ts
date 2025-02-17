@@ -214,7 +214,7 @@ export class EditUisauComponent implements OnInit {
         // Recarga la página después de 2 segundos en caso de error
         setTimeout(() => {
           this.reloadPage();
-        }, 2000); // 1000 ms = 1 segundo
+        }, 1000); // 1000 ms = 1 segundo
       }
     );
   }

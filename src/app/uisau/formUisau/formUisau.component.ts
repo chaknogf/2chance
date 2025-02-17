@@ -41,6 +41,7 @@ export class FormUisauComponent implements OnInit {
   public registro: string = this.Fecha.registroTiempo();
   public idCopiado: number = 0;
   private new: boolean = false;
+  public edit: boolean = false;
   private consu: Iconcultas | any;
   public message: string = '';
   showAlertSuccess = false;
@@ -147,25 +148,11 @@ export class FormUisauComponent implements OnInit {
     this.info.created_by = this.username;
     this.info.fecha = this.fechaActual;
     this.info.hora = this.horaActual;
-
-
-
-
-    // Obtiene los parámetros de la ruta
-
     const params = this.activateRoute.snapshot.params;
-
-
-
-
-    // Obtiene los parámetros de la ruta
-
-
     // Verifica si es una nueva consulta o una consulta existente
     if (params['id']) {
       this.info.id_consulta = params['id'];
       this.new = true;
-
       // Obtiene los detalles de la consulta existente
       this.consultas.Consulta(params['id']).subscribe(
         data => {
@@ -182,7 +169,25 @@ export class FormUisauComponent implements OnInit {
           this.info.servicio = this.c.servicio;
         });
     }
+
+    // if (params['id']) {
+    //   this.info.id = params['id'];
+    //   this.edit = true;
+    //   this.au.InfoId(params['id']).subscribe((data) => {
+    //     this.info = data;
+    //     this.resumen = data;
+    //     this.info.update_by = this.username;
+    //     this.info.fecha_contacto = this.fechaActual;
+    //     this.info.hora_contacto = this.horaActual;
+
+    //   });
+    // }
+
   }
+
+
+
+
 
   // Método para regresar a la página anterior
   regresar() {
@@ -239,4 +244,31 @@ export class FormUisauComponent implements OnInit {
       this.refFiltrados = [];
     }
   }
+
+  editar(): void {
+    this.au.editar(this.info.id, this.info).subscribe(
+      (response) => {
+        console.table(response);
+        console.log('Consulta registrada con éxito', response);
+        this.message = 'Consulta registrada con éxito';
+        this.showAlertSuccess = true;
+
+        // Redirecciona después de 2 segundos
+        setTimeout(() => {
+          this.regresar();
+        }, 1000); // 1000 ms = 1 segundo
+      },
+      (error) => {
+        console.error('Error al crear consulta', error);
+        this.message = 'Error al crear consulta';
+        this.showAlertWarning = true;
+
+        // Recarga la página después de 2 segundos en caso de error
+        setTimeout(() => {
+          this.reloadPage();
+        }, 1000); // 1000 ms = 1 segundo
+      }
+    );
+  }
+
 }

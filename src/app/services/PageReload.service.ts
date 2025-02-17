@@ -14,4 +14,6 @@ export class PageReloadService {
   get reload$() {
     return this.reloadSubject.asObservable(); // Expone el observable
   }
+
+
 }

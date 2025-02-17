@@ -17,7 +17,8 @@ import { Imedico } from 'src/app/models/Imedico';
 import { lugares, deptos, vecindades, partos } from './../../../models/Ienum';
 import { TextoService } from 'src/app/services/texto.service';
 import { claseParto, tipoParto } from 'src/app/enums/parto';
-import { UsuariosService } from 'src/app/services/usuarios.service';import { Iusuarios } from 'src/app/models/Iusers';
+import { UsuariosService } from 'src/app/services/usuarios.service'; import { Iusuarios } from 'src/app/models/Iusers';
+import { nation } from 'src/app/enums/enums';
 
 
 
@@ -80,15 +81,16 @@ export class FormNacComponent implements OnInit {
   public _medico: Imedico | undefined;
   public cui_medic: any = '';
 
-   //variables para usuario
-   public usuarioActual: Iusuarios[] = [];
+  //variables para usuario
+  public usuarioActual: Iusuarios[] = [];
 
 
-//objeto constancias
+  //objeto constancias
   d: vecindades = {
     departamentos: departamentos,
     municipio: municipio,
     vecindad: vecindad,
+    nation: nation,
   }
   parto: partos = {
     claseparto: claseParto,
@@ -140,20 +142,20 @@ export class FormNacComponent implements OnInit {
 
 
 
-     // Obtener los parámetros de la ruta
-     const params = this.activateRoute.snapshot.params;
+    // Obtener los parámetros de la ruta
+    const params = this.activateRoute.snapshot.params;
     // Verificar si se proporcionó un ID de paciente
-     if (params['id']) {
-       this.cnacSer.getConstancia(params['id'])
-         .subscribe(
-           data => {
-             this.constancia = data;
-             this.edit = true;
-             this.actualizar(data.expediente);
-           },
-           error => console.log(error)
-         )
-     }
+    if (params['id']) {
+      this.cnacSer.getConstancia(params['id'])
+        .subscribe(
+          data => {
+            this.constancia = data;
+            this.edit = true;
+            this.actualizar(data.expediente);
+          },
+          error => console.log(error)
+        )
+    }
 
     this.mserv.getMedicos().subscribe(
       data => {
@@ -161,12 +163,12 @@ export class FormNacComponent implements OnInit {
         this.constancia.medico = data.name;
       });
 
-      this.usuario.obteneruser(this.username).subscribe(
-        result => {
-          this.usuarioActual = result;
-          this.constancia.certifica = result.name;
-        }
-      )
+    this.usuario.obteneruser(this.username).subscribe(
+      result => {
+        this.usuarioActual = result;
+        this.constancia.certifica = result.name;
+      }
+    )
 
 
   }
@@ -246,7 +248,7 @@ export class FormNacComponent implements OnInit {
     this.filteredPacientes = [];
 
 
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
 
@@ -261,75 +263,72 @@ export class FormNacComponent implements OnInit {
 
 
 
+  }
+
+  actualizar(exp: number) {
+
+    this.pacientesService.getPaciente(exp).subscribe(data => {
+      this.madre = data;
+      console.table(this.madre, data);
+      // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
+      this.detalleVisible = true;
+      this.constancia.madre = this.texto.capitalizar(`${data.nombre} ${data.apellido}`);
+      this.constancia.edad = this.Edad.años(data.nacimiento);
+      this.constancia.dpi = data.dpi;
+      this.constancia.passport = data.pasaporte;
+      this.constancia.vecindad = data.municipio;
+      this.constancia.muni = data.lugar_nacimiento;
+      this.constancia.depto = data.depto_nac;
+      // this.constancia.nacionalidad = data.nacionalidad.toString();
+
+
+
+    });
+    this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
+  }
+
+  NuevoCor() {
+    this.cnacSer.correlativo().subscribe(data => {
+      if (this.edit == false) {
+        // Actualiza el correlativo y año en tu objeto cNac
+        this.constancia.cor = data.cor;
+        this.constancia.ao = data.año;
+      }
+      this.constancia.doc = `${this.constancia.cor}-${this.constancia.ao}`
+      // console.table(data)
+    });
+  }
+
+  medico(col: number) {
+    this.mserv.getMedicoCol(col).subscribe(data => {
+      this.constancia.medico = data.name;
+      this.constancia.colegiado = data.colegiado;
+      this.constancia.dpi_medico = data.dpi;
+
+      //console.table(this.medicos)
     }
-
-  actualizar(exp:number) {
-
-      this.pacientesService.getPaciente(exp).subscribe(data => {
-        this.madre = data;
-        console.table(this.madre, data);
-        // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
-        this.detalleVisible = true;
-        this.constancia.madre = this.texto.capitalizar(`${data.nombre} ${data.apellido}`);
-        this.constancia.edad = this.Edad.años(data.nacimiento);
-        this.constancia.dpi = data.dpi;
-        this.constancia.passport = data.pasaporte;
-        this.constancia.vecindad = data.municipio;
-        this.constancia.muni = data.lugar_nacimiento;
-        this.constancia.depto = data.depto_nac;
-       // this.constancia.nacionalidad = data.nacionalidad.toString();
+    )
+  }
 
 
+  filtrarVecindades() {
+    // Filtrar la lista de municipios basándote en el departamento seleccionado
+    this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
+  }
 
-      });
-      this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
-    }
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
+  }
 
-    NuevoCor() {
-      this.cnacSer.correlativo().subscribe(data => {
-        if (this.edit == false) {
-          // Actualiza el correlativo y año en tu objeto cNac
-          this.constancia.cor = data.cor;
-          this.constancia.ao = data.año;
-        }
-        this.constancia.doc = `${this.constancia.cor}-${this.constancia.ao}`
-        // console.table(data)
-      });
-    }
+  guardar(): void {
+    this.cnacSer.editarConstancia(this.constancia.id, this.constancia).subscribe(
+      (response) => {
 
-    medico(col: number) {
-      this.mserv.getMedicoCol(col).subscribe(data => {
-          this.constancia.medico = data.name;
-          this.constancia.colegiado = data.colegiado;
-          this.constancia.dpi_medico = data.dpi;
-
-          //console.table(this.medicos)
-        }
-      )
-    }
-
-
-
-
-
-    filtrarVecindades() {
-      // Filtrar la lista de municipios basándote en el departamento seleccionado
-      this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
-    }
-
-    reloadPage() {
-      // Llama al servicio para recargar la página
-      this.PageReloadService.reloadPage();
-    }
-
-    guardar(): void {
-      this.cnacSer.editarConstancia(this.constancia.id, this.constancia).subscribe(
-        (response) => {
-
-          //manejar la respuesta exitosa
-          console.log('Exito al crear', response);
-          //mostrar alert
-          // Mostrar una alerta de éxito con estilo Bootstrap
+        //manejar la respuesta exitosa
+        console.log('Exito al crear', response);
+        //mostrar alert
+        // Mostrar una alerta de éxito con estilo Bootstrap
         const alertDiv = document.createElement("div");
         alertDiv.classList.add(
           "alert",
@@ -405,12 +404,6 @@ export class FormNacComponent implements OnInit {
       },
     );
   }
-
-
-  //formato hora
-
-
-
 
 }
 

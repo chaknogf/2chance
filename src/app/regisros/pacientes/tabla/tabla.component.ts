@@ -285,6 +285,7 @@ export class TablaComponent implements OnInit {
       (response) => {
         // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta creada con éxito', response);
+        this.reloadComponent();
 
         // Mostrar una alerta de éxito con estilo Bootstrap
         const alertDiv = document.createElement('div');
@@ -294,8 +295,8 @@ export class TablaComponent implements OnInit {
 
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
-          this.reloadPage();
-        }, 1400); // 1000 ms = 1 segundo
+          window.location.reload();
+        }, 100); // 1000 ms = 1 segundo
       },
       (error) => {
         // Manejar errores aquí
@@ -361,6 +362,15 @@ export class TablaComponent implements OnInit {
     this.validar = true;
   }
 
+  closeModal() {
+    this.detalleVisible = false;
+  }
+
+  reloadComponent() {
+    this.router.navigateByUrl('/dummy-route', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(this.router.url); // Vuelve a la página original
+    });
+  }
 
 }
 

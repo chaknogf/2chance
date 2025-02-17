@@ -1,6 +1,7 @@
 import { UisauService } from './../../services/uisau.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { servicio } from 'src/app/enums/enums';
 import { Iuisau } from 'src/app/models/Iuisau';
 import { FechaService } from 'src/app/services/fecha.service';
 
@@ -12,7 +13,24 @@ import { FechaService } from 'src/app/services/fecha.service';
 export class ReportUisauComponent implements OnInit {
 
   public listado: Iuisau[] = []; // Lista paginada
-  public listadoCompleto: Iuisau[] = []; // Copia completa de datos
+
+  public listadoCompleto: Iuisau[] = [];
+  public Sop: Iuisau[] = [];
+  public Mater: Iuisau[] = [];
+  public Gine: Iuisau[] = [];
+  public Ciru: Iuisau[] = [];
+  public Cirupedia: Iuisau[] = [];
+  public Trauma: Iuisau[] = [];
+  public Traumapedia: Iuisau[] = [];
+  public CRN: Iuisau[] = [];
+  public Pedia: Iuisau[] = [];
+  public Rn: Iuisau[] = [];
+  public Neonatos: Iuisau[] = [];
+  public areaRoja: Iuisau[] = [];
+  public Medi: Iuisau[] = [];
+  public ucin: Iuisau[] = [];
+  public Emergencia: Iuisau[] = [];
+  public Coex: Iuisau[] = [];
   public totalRegistros: number = 12; // Total de registros por página
   public paginaActual: number = 1; // Página actual
   private sortColumn: keyof Iuisau | null = null;
@@ -23,6 +41,7 @@ export class ReportUisauComponent implements OnInit {
   public anio: string = '';
   public fecha: string = '';
   public today: string = '';
+  private x: string = this.today;
   FechaService: any;
 
   constructor(
@@ -34,69 +53,180 @@ export class ReportUisauComponent implements OnInit {
   ngOnInit(): void {
     this.today = new Date().toISOString().split('T')[0];  // Establece la fecha actual
     this.fecha = this.today;  // Establece la fecha por defecto al día de hoy
-    this.obtener();  // Llama al método obtener al inicializar
+    this.Sop = [];
+    this.Mater = [];
+    this.Gine = [];
+    this.Ciru = [];
+    this.Cirupedia = [];
+    this.Trauma = [];
+    this.Traumapedia = [];
+    this.CRN = [];
+    this.Pedia = [];
+    this.Rn = [];
+    this.Neonatos = [];
+    this.areaRoja = [];
+    this.Medi = [];
+    this.ucin = [];
+    this.Emergencia = [];
+    this.Coex = [];
+    this.x = this.fecha;
+    this.getSop();
+    this.getMater();
+    this.getGine();
+    this.getCiru();
+    this.getCirupedia();
+    this.getTrauma();
+    this.getTraumaPedia();
+    this.getCRN();
+    this.getPedia();
+    this.getRn();
+    this.getNeonatos();
+    this.getAreaRoja();
+    this.getMedi();
+    this.getUcin();
+    this.getEmergencia();
+    this.getCoex();
   }
 
-  obtener(): void {
-    const value = this.fecha;  // Obtiene la fecha seleccionada
-    console.log(value);
-
-    const filters = { fecha: value };  // Filtros para la API
-
-    this.porcentajeDeProgreso = 0.5;  // Indica que se está cargando
-    this.listado = [];  // Limpia la lista antes de cargar nuevos datos
-
-    // Llama al servicio para obtener los datos
-    this.ui.filterInfos(filters).subscribe(data => {
-      this.porcentajeDeProgreso = 75;  // Carga en progreso
-      this.listadoCompleto = data;  // Guarda la respuesta completa
-      this.paginar();  // Aplica la paginación (asegúrate de que este método esté implementado)
-      this.porcentajeDeProgreso = 100;  // Carga completada
-
-      setTimeout(() => {
-        this.porcentajeDeProgreso = -1;  // Resetea el progreso después de 1 segundo
-      }, 1000);
-    });
+  getSop() {
+    this.ui.filterInfos({ servicio: 1, fecha: this.x }).subscribe(data => {
+      this.Sop = data;
+    })
+  }
+  getMater() {
+    this.ui.filterInfos({ servicio: 2, fecha: this.x }).subscribe(data => {
+      this.Mater = data;
+    })
+  }
+  getGine() {
+    this.ui.filterInfos({ servicio: 3, fecha: this.x }).subscribe(data => {
+      this.Gine = data;
+    })
   }
 
-  sortTable(column: keyof Iuisau) {
-    if (this.sortColumn === column) {
-      this.ascendingOrder = !this.ascendingOrder;
-    } else {
-      this.sortColumn = column;
-      this.ascendingOrder = true;
-    }
-
-
-
-    this.listado = [...this.listadoCompleto]; // Forzar actualización en Angular
-    this.paginar();
+  getCiru() {
+    this.ui.filterInfos({ servicio: 4, fecha: this.x }).subscribe(data => {
+      this.Ciru = data;
+    })
   }
 
-  // Método para manejar la paginación
-  onPageChange(pageNumber: number) {
-    this.paginaActual = pageNumber;
-    this.paginar();
+  getCirupedia() {
+    this.ui.filterInfos({ servicio: 5, fecha: this.x }).subscribe(data => {
+      this.Sop = data;
+    })
   }
 
-  paginar() {
-    const tamanoPagina = this.totalRegistros;
-    const indiceInicio = (this.paginaActual - 1) * tamanoPagina;
-    const indiceFin = indiceInicio + tamanoPagina;
-    this.listado = this.listadoCompleto.slice(indiceInicio, indiceFin);
+  getTrauma() {
+    this.ui.filterInfos({ servicio: 6, fecha: this.x }).subscribe(data => {
+      this.Trauma = data;
+    })
   }
 
-  getPaginas(): number[] {
-    const totalPaginas = this.totalPaginas();
-    return Array.from({ length: totalPaginas }, (_, index) => index + 1);
+  getTraumaPedia() {
+    this.ui.filterInfos({ servicio: 7, fecha: this.x }).subscribe(data => {
+      this.Traumapedia = data;
+    })
   }
 
-  totalPaginas(): number {
-    return Math.ceil(this.listadoCompleto.length / this.totalRegistros);
+  getCRN() {
+    this.ui.filterInfos({ servicio: 8, fecha: this.x }).subscribe(data => {
+      this.CRN = data;
+    })
   }
+
+  getPedia() {
+    this.ui.filterInfos({ servicio: 9, fecha: this.x }).subscribe(data => {
+      this.Pedia = data;
+    })
+  }
+
+  getRn() {
+    this.ui.filterInfos({ servicio: 10, fecha: this.x }).subscribe(data => {
+      this.Rn = data;
+    })
+  }
+
+  getNeonatos() {
+    this.ui.filterInfos({ servicio: 11, fecha: this.x }).subscribe(data => {
+      this.Neonatos = data;
+    })
+  }
+
+  getAreaRoja() {
+    this.ui.filterInfos({ servicio: 17, fecha: this.x }).subscribe(data => {
+      this.areaRoja = data;
+    })
+  }
+
+  getMedi() {
+    this.ui.filterInfos({ servicio: 18, fecha: this.x }).subscribe(data => {
+      this.Medi = data;
+    })
+  }
+
+  getUcin() {
+    this.ui.filterInfos({ servicio: 19, fecha: this.x }).subscribe(data => {
+      this.ucin = data;
+    })
+  }
+
+  getEmergencia() {
+    this.ui.filterInfos({ servicio: 20, fecha: this.x }).subscribe(data => {
+      this.Emergencia = data;
+    })
+  }
+
+  getCoex() {
+    this.ui.filterInfos({ servicio: 21, fecha: this.x }).subscribe(data => {
+      this.Coex = data;
+    })
+  }
+
 
   regresar() {
     this.router.navigate(['/uisau']);
+  }
+
+  establecerFecha(): void {
+    if (!this.fecha) {
+      console.warn("No se ha seleccionado una fecha.");
+      return;
+    }
+
+    console.log("Fecha seleccionada:", this.fecha);
+    this.Sop = [];
+    this.Mater = [];
+    this.Gine = [];
+    this.Ciru = [];
+    this.Cirupedia = [];
+    this.Trauma = [];
+    this.Traumapedia = [];
+    this.CRN = [];
+    this.Pedia = [];
+    this.Rn = [];
+    this.Neonatos = [];
+    this.areaRoja = [];
+    this.Medi = [];
+    this.ucin = [];
+    this.Emergencia = [];
+    this.Coex = [];
+    this.x = this.fecha;
+    this.getSop();
+    this.getMater();
+    this.getGine();
+    this.getCiru();
+    this.getCirupedia();
+    this.getTrauma();
+    this.getTraumaPedia();
+    this.getCRN();
+    this.getPedia();
+    this.getRn();
+    this.getNeonatos();
+    this.getAreaRoja();
+    this.getMedi();
+    this.getUcin();
+    this.getEmergencia();
+    this.getCoex();
   }
 
 

@@ -13262,16 +13262,22 @@ input, select {
 
 .custom-table-wrapper {
   background: linear-gradient(202deg, rgba(98,123,193,1) 10%, rgba(65,88,224,1) 14%, rgba(8,53,85,1) 87%);
-  padding: 20px;
+  padding: 0.5rem;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   overflow-x: auto; /* Para hacerla responsiva */
   border: #09f7c0 solid 1px;
   font-family: 'Poppins', sans-serif;
+  margin: 0.5rem;
+  font-size: smaller;
+  overflow: hidden;
+  z-index: 100;
+
+
 }
 
 .custom-table-striped {
-  background: linear-gradient(202deg, rgba(98,123,193,1) 10%, rgba(65,88,224,1) 14%, rgba(8,53,85,1) 87%);
+  /* background: linear-gradient(202deg, rgba(98,123,193,1) 10%, rgba(65,88,224,1) 14%, rgba(8,53,85,1) 87%); */
   padding: 25px;
   border-radius: 12px;
   font-size: smaller;
@@ -13320,10 +13326,12 @@ input, select {
   border-collapse: separate;
   word-break: keep-all;
   border-spacing: 0;
+
 }
 
 .custom-table td {
-  font-size: 1.4rem;
+
+  padding: 0.1rem;
 }
 
 .custom-table thead {
@@ -13669,8 +13677,15 @@ input, select {
   flex: 0 0 auto; /* No crece ni se encoge */
   padding: 0.5rem 1rem;
   border-radius: 8px;
+  width: 100%;
   transition: background-color 0.3s, transform 0.3s;
 }
+
+.search-button:active {
+  transform: translateY(2px); /* Efecto de elevación */
+}
+
+
 
 .search-button:hover {
   transform: translateY(-2px); /* Efecto de elevación */
@@ -13910,6 +13925,8 @@ input, select {
   color: var(--bs-warning-border-subtle);
   font-weight: bolder;
 }
+
+
 
 
 
@@ -14174,7 +14191,7 @@ tr:hover .beat{
   padding: 4px;
   background-color: #1a1a1a;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  width: auto;
+  width: 100%;
 }
 
 .div-btn-opt {
@@ -14192,6 +14209,8 @@ tr:hover .beat{
 .text-90 {
   transform: rotate(-90deg);
   font-size: x-small;
+  font-weight: bolder;
+  font-stretch: expanded;
   justify-items: start;
   padding: 0;
   margin: 0;

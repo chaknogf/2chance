@@ -65,7 +65,7 @@ export class NavbarComponent {
   }
 
   handleLinkClick(href: string) {
-    this.activeLink = href;
+    // this.activeLink = href;
     this.isExpanded = false; // Cierra el menú en móviles
   }
 
@@ -77,7 +77,7 @@ export class NavbarComponent {
     this.openDropdown = this.openDropdown === label ? null : label;
     setTimeout(() => {
       this.openDropdown = null;
-    }, 1700);
+    }, 8700);
   }
 
   // Cerrar dropdown al hacer clic fuera

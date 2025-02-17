@@ -1,4 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { pipe } from 'rxjs';
+import { DiaDeSemana } from './diaDeSemana.pipe';
 
 @Pipe({
   name: 'formatoFecha'
@@ -58,5 +60,27 @@ export class FechaCortaPipe implements PipeTransform {
 
     // Formatea la fecha en el formato 'dd de nombreMes de aaaa'
     return `${dia} ${nombreMes} ${anio}`;
+  }
+}
+
+@Pipe({
+  name: 'FormatoFechaCompleta'
+})
+export class FormatoFechaCompletaPipe implements PipeTransform {
+  transform(fecha: string): string {
+    if (!fecha) return '';
+
+    const partes = fecha.split('-');
+    if (partes.length !== 3) return fecha;
+
+    const [anio, mes, dia] = partes;
+
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    // Días de la semana en un arreglo
+    const daysOfWeek = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo',];
+    const nombreMes = meses[parseInt(mes) - 1];
+    const DiaDeSemana = daysOfWeek[new Date(fecha).getDay()];
+
+    return `${DiaDeSemana} ${dia} de ${nombreMes} de ${anio}`;
   }
 }

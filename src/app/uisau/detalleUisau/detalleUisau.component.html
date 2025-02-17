@@ -1,222 +1,303 @@
+<div class="d-flex-desktop">
+  <section class="search-container rounded col-md-3 svg-container" [ngClass]="{'femenino': consulta?.sexo === 'F', 'masculino': consulta?.sexo !== 'F'}">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <backIcon (click)="regresar()" />
+      <button class="btn btn-outline-light btn-sm p-1">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+      <p class="mb-0 fw-bold">{{ consulta?.id }}</p>
+      <newIcon class="btn search-btn" [routerLink]="['/formUisau/new/', consulta?.id]" />
 
+    </div>
 
-<!-- Barra superior con botones y título -->
-<div class="container-fluid d-flex align-items-center my-3">
-  <button class="btn btn-outline-light rounded-pill me-2 p-2" (click)="regresar()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-    </svg>
-    Regresar
-  </button>
-  <h5 class="mx-auto mb-0">Control consulta y seguimiento de pacientes</h5>
-</div>
-
-<!-- Contenedor principal -->
-<div class="container-fluid d-flex flex-column flex-md-row p-0 gap-1">
- <!-- Sección izquierda: Información del paciente -->
-<section class="container-fluid bg-dark rounded p-2 col-md-4 m-1" [ngClass]="{'femenino': consulta?.sexo === 'F', 'masculino': consulta?.sexo !== 'F'}">
-  <div class="d-flex justify-content-between align-items-center mb-2">
-    <button class="btn btn-outline-light btn-sm p-1">
-      <i class="bi bi-pencil-square"></i>
+    <!-- Información del paciente -->
+    <button class="btn btn-primary d-md-none mb-2" (click)="mostrarInfo = !mostrarInfo">
+      {{ mostrarInfo ? 'Ocultar Información' : 'Mostrar Información' }}
     </button>
-    <p class="mb-0 fw-bold">{{ consulta?.id }}</p>
-    <button class="btn btn-outline-success btn-sm p-1" [routerLink]="['/formUisau/new/', consulta?.id]">
-      <i class="bi bi-plus-circle"></i>
-      <label for="">Nuevo</label>
-    </button>
-  </div>
 
-  <!-- Información del paciente -->
-  <button class="btn btn-primary d-md-none mb-2" (click)="mostrarInfo = !mostrarInfo">
-    {{ mostrarInfo ? 'Ocultar Información' : 'Mostrar Información' }}
-  </button>
-
-  <div class="row row-cols-2 g-1" *ngIf="mostrarInfo || isDesktop">
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Expediente</p>
-      <p class="mb-0 text-muted">{{ consulta?.expediente }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Hoja Emergencia</p>
-      <p class="mb-0 text-muted">{{ consulta?.hoja_emergencia }}</p>
-    </div>
-    <div class="col-12 border-bottom pb-1">
-      <p class="fw-bold mb-1">Nombre del paciente</p>
-      <p class="mb-0 text-muted">{{ consulta?.nombres | capitalizeName }} {{ consulta?.apellidos | capitalizeName }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Sexo</p>
-      <p class="mb-0 text-muted">{{ consulta?.sexo | sexo }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Nacimiento</p>
-      <p class="mb-0 text-muted">{{ consulta?.nacimiento | formatoFecha }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Edad</p>
-      <p class="mb-0 text-muted">{{ consulta?.nacimiento | edad }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Ocupación</p>
-      <p class="mb-0 text-muted">{{ paciente?.ocupacion }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Nivel Académico</p>
-      <p class="mb-0 text-muted">{{ paciente?.educacion | enumEducacion }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Estado Civil</p>
-      <p class="mb-0 text-muted">{{ paciente?.estado_civil | enumCivil }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Nacionalidad</p>
-      <p class="mb-0 text-muted">{{ paciente?.nacionalidad | anyToNumber | enumNacion }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Teléfono</p>
-      <p class="mb-0 text-muted">{{ paciente?.telefono }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Teléfono Familiar</p>
-      <p class="mb-0 text-muted">{{ paciente?.telefono_responsable }}</p>
-    </div>
-    <div class="col-12 text-center fw-bold border-bottom pb-1">- Datos de Contacto -</div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Padre</p>
-      <p class="mb-0 text-muted">{{ paciente?.padre | anyToText | capitalizeName }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Madre</p>
-      <p class="mb-0 text-muted">{{ paciente?.madre | anyToText | capitalizeName }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Responsable</p>
-      <p class="mb-0 text-muted">{{ paciente?.responsable | anyToText | capitalizeName }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Parentesco</p>
-      <p class="mb-0 text-muted">{{ paciente?.parentesco | enumParentesco }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Fecha Consulta</p>
-      <p class="mb-0 text-muted">{{ consulta?.fecha_consulta | formatoFecha }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Tipo Consulta</p>
-      <p class="mb-0 text-muted">{{ consulta?.tipo_consulta | enumTipo }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Especialidad</p>
-      <p class="mb-0 text-muted">{{ consulta?.especialidad | enumEspecialidad }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Servicio</p>
-      <p class="mb-0 text-muted">{{ consulta?.servicio | enumEspecialidad }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Creado por</p>
-      <p class="mb-0 text-muted">{{ consulta?.created_by }}</p>
-    </div>
-    <div class="col border-bottom pb-1">
-      <p class="fw-bold mb-1">Creado</p>
-      <p class="mb-0 text-muted">{{ consulta?.created_at }}</p>
-    </div>
-
-
-
-
-  </div>
-
-</section>
-
-
-  <!-- Sección derecha: Resumen de consultas -->
-  <section class="container-fluid bg-dark text-light rounded p-3 col-md-8 m-1">
-    <div *ngFor="let item of resumen" class="mb-3 border-bottom pb-3">
-      <div class="row align-items-center">
-        <div class="col-auto">
-          <button class="btn btn-outline-light btn-sm" [routerLink]="['/contacto/', item.id]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z"/>
-            </svg>
-            {{ item.id }}
-          </button>
-        </div>
-
-        <div class="row">
-          <!-- Primera columna -->
-          <div class="col-md-4" *ngIf="item.hora_contacto">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Información de Contacto</h5>
-                <p class="mb-2"><strong>Fecha de Contacto:</strong> {{ item.fecha_contacto }}</p>
-                <p class="mb-2"><strong>Hora de Contacto:</strong> {{ item.hora_contacto }}</p>
-                <p class="mb-2"><strong>Teléfono:</strong> {{ item.telefono }}</p>
-                <p class="mb-0"><strong>Usuario:</strong> {{ item.update_at }}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Segunda columna -->
-          <div class="col-md-4">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Estado y Situación</h5>
-                <p class="mb-2"><strong>Estado:</strong> {{ item.estado | anyToNumber | enumEstado }}</p>
-                <p class="mb-2"><strong>Situación:</strong> {{ item.situacion | anyToNumber | enumSituacion }}</p>
-                <p class="mb-2"><strong>Cama:</strong> {{ item.cama }}</p>
-                <p class="mb-0"><strong>Servicio:</strong> {{ item.especialidad | anyToNumber | enumEspecialidad }} {{ item.servicio | anyToNumber | enumServicios }}</p>
-              </div>
-            </div>
-          </div>
-
-
-
-          <!-- Tercera columna -->
-          <div class="col-md-4">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Información Adicional</h5>
-                <div *ngIf="item.receta_por" class="col-auto p-0 my-0 border-end rounded p-1">
-                  <p  class="f-negrita p-0 my-0 text-wrap text-center">Receta Por</p>
-                  <p class="p-0 my-0 text-center">{{item.receta_por }}</p>
-                </div>
-
-                <div
-                *ngIf="item.shampoo
-                || item.toalla
-                || item.peine
-                || item.jabon
-                || item.cepillo_dientes
-                || item.pasta_dental
-                || item.sandalias
-                || item.agua
-                || item.papel
-                || item.panales" class="col-auto p-0 my-0 border-end rounded p-1">
-                  <p  class="f-negrita p-0 my-0 text-wrap text-center">Articulos</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.shampoo">Shampoo</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.toalla">Toalla</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.peine">Peine</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.jabon">Jabon</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.cepillo_dientes">Cepillo de dientes</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.pasta_dental">Pasta de dientes</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.sandalias">Sandalias</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.agua">Agua</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.papel">Pepel Higienico</p>
-                  <p class="p-0 my-0 text-center" *ngIf="item.panales">Pañales</p>
-                </div>
-
-                <p class="mb-2"><strong>Usuario:</strong> {{ item.created_by }}</p>
-                <p class="mb-2"><strong>Fecha:</strong> {{ item.fecha | anyToText | formatoFecha }} {{ item.hora }}</p>
-                <p class="mb-2"><strong>Evolución:</strong> {{ item.evolucion }}</p>
-                <p class="mb-2"><strong>Estudios:</strong> {{ item.estudios }}</p>
-                <p class="mb-2"><strong>Nota:</strong> {{ item.nota }}</p>
-                <p class="mb-0"><strong>Diagnósticos:</strong> {{item.dxA}} {{item.dxB}} {{item.dxC}} {{item.dxD}} {{item.dxE}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="row row-cols-2 g-1" *ngIf="mostrarInfo || isDesktop">
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Expediente</p>
+        <p class="mb-0 text-muted">{{ consulta?.expediente }}</p>
       </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Hoja Emergencia</p>
+        <p class="mb-0 text-muted">{{ consulta?.hoja_emergencia }}</p>
+      </div>
+      <div class="col-12 border-bottom pb-1">
+        <p class="fw-bold mb-1">Nombre del paciente</p>
+        <p class="mb-0 text-muted">{{ consulta?.nombres | capitalizeName }} {{ consulta?.apellidos | capitalizeName }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Sexo</p>
+        <p class="mb-0 text-muted">{{ consulta?.sexo | sexo }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Nacimiento</p>
+        <p class="mb-0 text-muted">{{ consulta?.nacimiento | formatoFecha }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Edad</p>
+        <p class="mb-0 text-muted">{{ consulta?.nacimiento | edad }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Ocupación</p>
+        <p class="mb-0 text-muted">{{ paciente?.ocupacion }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Nivel Académico</p>
+        <p class="mb-0 text-muted">{{ paciente?.educacion | enumEducacion }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Estado Civil</p>
+        <p class="mb-0 text-muted">{{ paciente?.estado_civil | enumCivil }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Nacionalidad</p>
+        <p class="mb-0 text-muted">{{ paciente?.nacionalidad | anyToNumber | enumNacion }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Teléfono</p>
+        <p class="mb-0 text-muted">{{ paciente?.telefono }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Teléfono Familiar</p>
+        <p class="mb-0 text-muted">{{ paciente?.telefono_responsable }}</p>
+      </div>
+      <div class="col-12 text-center fw-bold border-bottom pb-1">- Datos de Contacto -</div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Padre</p>
+        <p class="mb-0 text-muted">{{ paciente?.padre | anyToText | capitalizeName }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Madre</p>
+        <p class="mb-0 text-muted">{{ paciente?.madre | anyToText | capitalizeName }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Responsable</p>
+        <p class="mb-0 text-muted">{{ paciente?.responsable | anyToText | capitalizeName }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Parentesco</p>
+        <p class="mb-0 text-muted">{{ paciente?.parentesco | enumParentesco }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Fecha Consulta</p>
+        <p class="mb-0 text-muted">{{ consulta?.fecha_consulta | formatoFecha }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Tipo Consulta</p>
+        <p class="mb-0 text-muted">{{ consulta?.tipo_consulta | enumTipo }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Especialidad</p>
+        <p class="mb-0 text-muted">{{ consulta?.especialidad | enumEspecialidad }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Servicio</p>
+        <p class="mb-0 text-muted">{{ consulta?.servicio | enumEspecialidad }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Creado por</p>
+        <p class="mb-0 text-muted">{{ consulta?.created_by }}</p>
+      </div>
+      <div class="col border-bottom pb-1">
+        <p class="fw-bold mb-1">Creado</p>
+        <p class="mb-0 text-muted">{{ consulta?.created_at }}</p>
+      </div>
+
+
+
+
+    </div>
+
+  </section>
+  <section class="search-container rounded-b-full col-md-9 svg-container" >
+    <div *ngFor="let item of resumen" class="mb-3 border-bottom pb-3">
+      <div class="div-search w-100">
+        <div class="div-btn-icons justify-content-between" (click)="handleMostrarData(item.id)">
+          <ng-container class="text-start" >
+            <div *ngIf="!item.fecha_contacto"><contactarIcon [routerLink]="['/contacto/', item.id]" /> Informar</div>
+            <div *ngIf="item.fecha_contacto"><gestionIcon  />  {{ item.id }}</div>
+            <div> <calendarIcon /> {{item.fecha | anyToText | FormatoFechaCompleta}}</div>
+            <div> <timeIcon class="text-info" /> {{item.hora}}</div>
+            <div> <userFluentIcon  />  {{item.created_by}}</div>
+          </ng-container>
+        </div>
+
+        <ul class="list-group" *ngIf="expandedItemId === item.id">
+          <li class="list-group-item t-w-d d-flex justify-content-end align-items-center" *ngIf="item.fecha_contacto">
+            <div *ngIf="item.informacion">
+              Se informo:
+              <span class="badge bg-light rounded-pill"  >
+                {{item.informacion}}
+              </span>
+            </div>
+            <div *ngIf="item.contacto">
+              Contacto:
+              <span class="badge bg-light rounded-pill" >
+                {{item.contacto}}
+              </span>
+            </div>
+            <div *ngIf="item.parentesco">
+              Parentesco:
+            <span class="badge bg-light rounded-pill" >
+              {{item.parentesco |anyToNumber | enumParentesco}}
+            </span>
+            </div>
+            <div *ngIf="item.telefono">
+              Telefono:
+            <span class="badge bg-light rounded-pill">
+              {{item.telefono}}
+            </span>
+            </div>
+            <div>
+              Fecha y Hora de la Información:
+            <span class="badge bg-light rounded-pill">
+              {{item.fecha_contacto | anyToText | FormatoFechaCompleta}} {{item.hora_contacto}}
+            </span>
+            </div>
+            <div>
+               Quien informo:
+            <span class="badge bg-light rounded-pill">
+              {{item.update_by}}
+            </span>
+            </div>
+          </li>
+          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.estado || item.situacion || item.estadia || item.cama">
+            <div *ngIf="item.estado">
+              Estado:
+              <span class="badge bg-light rounded-pill"  >
+                {{item.estado |anyToNumber | enumEstado}}
+              </span>
+            </div>
+            <div *ngIf="item.situacion">
+              Situación:
+              <span class="badge bg-light rounded-pill" >
+                {{item.situacion |anyToNumber | enumSituacion}}
+              </span>
+            </div>
+            <div *ngIf="item.estadia">
+              Estadia:
+            <span class="badge bg-light rounded-pill" >
+              {{item.estadia |anyToNumber | enumEstadia}}
+            </span>
+            </div>
+            <div *ngIf="item.cama">
+              Cama:
+            <span class="badge bg-light rounded-pill">
+              {{item.cama}}
+            </span>
+            </div>
+          </li>
+          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.lugar_referencia || item.fecha_referencia">
+            <div *ngIf="item.lugar_referencia" >
+              Lugar de Referencia:
+              <span class="badge bg-light rounded-pill">
+                {{item.lugar_referencia |anyToNumber | enumReferencia}}
+              </span>
+            </div>
+            <div *ngIf="item.fecha_referencia">
+              Fecha de Referencia:
+              <span class="badge bg-light rounded-pill">
+                {{item.fecha_referencia | anyToText | formatoFecha}}
+              </span>
+            </div>
+          </li>
+          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.servicio || item.especialidad">
+            <div *ngIf="item.servicio" >
+              Servicio:
+              <span class="badge bg-light rounded-pill">
+                {{item.servicio |anyToNumber | enumServicios}}
+              </span>
+            </div>
+            <div *ngIf="item.especialidad">
+              Especialidad:
+              <span class="badge bg-light rounded-pill">
+                {{item.especialidad |anyToNumber | enumEspecialidad}}
+              </span>
+            </div>
+          </li>
+          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.evolucion || item.estudios || item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
+            <div *ngIf="item.evolucion" >
+              Evolución:
+              <span class="badge bg-light rounded-pill">
+                {{item.evolucion}}
+              </span>
+            </div>
+            <div *ngIf="item.estudios">
+              Estudios:
+              <span class="badge bg-light rounded-pill">
+                {{item.estudios}}
+              </span>
+            </div>
+            <div *ngIf="item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
+              Diagnóstico:
+              <span class="badge bg-light rounded-pill" *ngIf="item.dxA">
+                {{item.dxA}}
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.dxB">
+                {{item.dxB}}
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.dxC">
+                {{item.dxC}}
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.dxD">
+                {{item.dxD}}
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.dxE">
+                {{item.dxE}}
+              </span>
+            </div>
+          </li>
+          <li class="list-group-item t-w-d d-flex justify-content-start align-items-center" *ngIf="item.nota">
+            Nota:
+            <span class="badge bg-light rounded-pill">
+              {{item.nota}}
+            </span>
+          </li>
+          <li class="list-group-item t-w-d d-flex justify-content-start align-items-center" *ngIf="item.shampoo || item.toalla || item.peine || item.jabon || item.cepillo_dientes || item.pasta_dental || item.sandalias">
+            <div>
+              Articulos:
+              <span class="badge bg-light rounded-pill" *ngIf="item.shampoo">
+                Shampoo
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.toalla" >
+                Toalla
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.peine">
+                Peine
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.jabon">
+                Jabón
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.cepillo_dientes">
+               Cepillo de dientes
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.pasta_dental">
+                Pasta dental
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.sandalias">
+                Sandalias
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.agua">
+                Agua
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.papel">
+                Papel
+              </span>
+              <span class="badge bg-light rounded-pill" *ngIf="item.panales">
+                Pañales
+              </span>
+            </div>
+          </li>
+        </ul>
+
+
+      </div>
+
+
+
     </div>
 
     <!-- Paginación -->
@@ -229,4 +310,12 @@
       </div>
     </div>
   </section>
+
+
+
 </div>
+
+
+
+<!-- Contenedor principal -->
+

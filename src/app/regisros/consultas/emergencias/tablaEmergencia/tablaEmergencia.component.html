@@ -25,7 +25,8 @@
         <th class="text-center">id</th>
         <th class="text-center">Hoja Emergencia </th>
         <th class="text-center">Paciente</th>
-        <th class="text-center">Fecha</th>
+        <th class="text-center">Fecha Ingreso</th>
+        <th class="text-center">Fecha Egreso</th>
         <th class="text-center">Expediente</th>
         <th class="text-center">Status</th>
         <th class="text-center">Opciones</th>
@@ -38,24 +39,28 @@
         </td>
         <td class="text-center font-weight-bold text-warning font-monospace h5" > {{emer.hoja_emergencia}}
         </td>
-        <td class="text-start">
+        <td class="text-justify">
           <span [ngClass]="{'mujer': emer.sexo == 'F', 'hombre': emer.sexo != 'F'}">{{ emer.nombres | anyToText | capitalizeName }}</span><br>
             {{emer.apellidos |anyToText | capitalizeName}}
         </td>
         <td class="text-start">
-          <div class="row text-center" *ngIf="emer.tipo_consulta==3 && emer.fecha_egreso">
+          <div class="row text-center" *ngIf="emer.tipo_consulta==3">
             <p class="label-td">Ingreso</p>
               <div>
                 {{emer.fecha_consulta | anyToText | formatoFecha}}<br/>
                 {{emer.hora}}
               </div>
-
+          </div>
+        </td>
+        <td class="text-center">
+          <div class="row text-center" *ngIf="emer.tipo_consulta==3 && emer.fecha_egreso">
             <p class="label-td">Egreso</p>
             <div>
               {{emer.fecha_egreso | anyToText | formatoFecha}}<br>
               {{ emer.fecha_consulta | estancia: emer.fecha_egreso }}
             </div>
           </div>
+
         </td>
         <td class="text-center"> {{emer.expediente}} </td>
         <td class="text-center">
@@ -80,7 +85,7 @@
           <div class="div-btn-opt">
             <editIcon [routerLink]="['/emergencias/edit', emer.id]" />
             <dataViewIcon (click)="detalle(emer.id)" data-bs-toggle="modal" data-bs-target="#verConsulta" />
-            <printIcon  />
+            <printIcon  [routerLink]="['/printEmergencia/', emer.id]" />
           </div>
         </td>
       </tr>

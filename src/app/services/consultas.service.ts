@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Iconcultas } from '../models/Iconsultas';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, interval, BehaviorSubject, switchMap, catchError, throwError } from 'rxjs';
-import { environment } from 'src/assets/enviroments/enviroment';
+import { environment } from 'src/enviroments/enviroment';
 import { UsersService } from './user.service';
 import { PageReloadService } from './PageReload.service';
 
