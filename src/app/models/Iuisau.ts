@@ -36,6 +36,13 @@ export interface Iuisau {
   agua?: boolean | null;
   papel?: boolean | null;
   panales?: boolean | null;
+  toalla_humeda?: boolean | null;
+  ropa_bebe?: boolean | null;
+  ropa_interior?: boolean | null;
+  panal_bebe?: boolean | null;
+  panal_adulto?: boolean | null;
+  babero?: boolean | null;
+  otros?: boolean | null;
   id_consulta: number | null;
   created_by?: string | null;
   created_at?: string | null;
@@ -46,6 +53,7 @@ export interface Iuisau {
   dxC?: string | null;
   dxD?: string | null;
   dxE?: string | null;
+
 
 
 }

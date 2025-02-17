@@ -117,6 +117,82 @@
       <div *ngIf="emergencia.status == 2">
         <input type="text" name="status" id="status" class="f-negrita rounded" value="Archivado" disabled="">
       </div>
+      <!-- chekbox -->
+      <div class="d-flex justify-content-between">
+        <div class="custom-form-group text-center">
+          <label class="form-check-label" for="bomberos">Traido por Bomberos</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="bomberos"
+            id="bomberos"
+            [(ngModel)]="emergencia.bomberos"
+          />
+        </div>
+        <div class="custom-form-group text-center">
+          <label class="form-check-label" for="transito">Accidente de Transito</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="transito"
+            id="transito"
+            [(ngModel)]="emergencia.transito"
+          />
+        </div>
+        <div class="custom-form-group text-center">
+          <label class="form-check-label" for="arma_blanca">Arma Blanca</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="arma_blanca"
+            id="arma_blanca"
+            [(ngModel)]="emergencia.arma_blanca"
+          />
+        </div>
+        <div class="custom-form-group text-center">
+          <label class="form-check-label" for="arma_fuego">Arma de Fuego</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="arma_fuego"
+            id="arma_fuego"
+            [(ngModel)]="emergencia.arma_fuego"
+          />
+        </div>
+        <div class="custom-form-group text-center">
+          <label class="form-check-label" for="estudiante_publica">Estudiante Escuela Publica</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="estudiante_publica"
+            id="estudiante_publica"
+            [(ngModel)]="emergencia.estudiante_publica"
+          />
+        </div>
+        <div class="custom-form-group text-center">
+          <label class="form-check-label" for="accidente_laboral">Accidente Laboral</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="accidente_laboral"
+            id="accidente_laboral"
+            [(ngModel)]="emergencia.accidente_laboral"
+          />
+        </div>
+        <div class="custom-form-group text-center">
+          <label class="form-check-label" for="personal_hospital">Personal del Hospital Tratado</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="personal_hospital"
+            id="personal_hospital"
+            [(ngModel)]="emergencia.personal_hospital"
+          />
+        </div>
+
+      </div>
+
+
     <div >
     </div>
     </form>

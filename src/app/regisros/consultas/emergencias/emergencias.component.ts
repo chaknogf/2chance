@@ -94,7 +94,16 @@ export class EmergenciasComponent implements OnInit {
     created_at: null,
     updated_at: null,
     created_by: null,
-    medico: null
+    medico: null,
+    bomberos: false,
+    transito: false,
+    arma_blanca: false,
+    arma_fuego: false,
+    estudiante_publica: false,
+    accidente_laboral: false,
+    personal_hospital: false
+
+
   }
   e: Ienum = {
     municipio: municipio,

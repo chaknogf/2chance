@@ -92,6 +92,12 @@ export class FormUisauComponent implements OnInit {
     agua: null,
     papel: null,
     panales: null,
+    panal_bebe: null,
+    panal_adulto: null,
+    toalla_humeda: null,
+    ropa_interior: null,
+    babero: null,
+    otros: null,
   };
 
   // Modelo para la consulta inicial

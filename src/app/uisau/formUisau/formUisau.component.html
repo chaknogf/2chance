@@ -143,7 +143,7 @@
       </div>
       <h4 class="text-center">Articulos</h4>
       <div class="d-flex justify-content-between">
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
           <label class="form-check-label" for="shampooSi">Shampoo</label>
           <input
             class="form-check"
@@ -154,7 +154,7 @@
             [(ngModel)]="info.shampoo"
           />
         </div>
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
           <label class="form-check-label" for="toallaSi">Toalla</label>
           <input
             class="form-check"
@@ -165,7 +165,7 @@
             [(ngModel)]="info.toalla"
           />
         </div>
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
             <label class="form-check-label" for="peineSi">Peine</label>
             <input
               class="form-check"
@@ -177,7 +177,7 @@
          </div>
       </div>
       <div class="d-flex justify-content-between">
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
           <label class="form-check-label" for="jabonSi">Jabón</label>
           <input
             class="form-check"
@@ -187,7 +187,7 @@
             [(ngModel)]="info.jabon"
           />
         </div>
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
           <label class="form-check-label" for="cepilloDientesSi">Cepillo de Dientes</label>
           <input
               class="form-check"
@@ -197,7 +197,7 @@
               [(ngModel)]="info.cepillo_dientes"
             />
         </div>
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
           <label class="form-check-label" for="pastadentalSi">Pasta de Dientes</label>
           <input
               class="form-check"
@@ -209,7 +209,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-between">
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
           <label class="form-check-label" for="sandaliasSi">Sandalias</label>
           <input
             class="form-check"
@@ -219,7 +219,7 @@
             [(ngModel)]="info.sandalias"
           />
         </div>
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
           <label class="form-check-label" for="aguaSi">Agua</label>
           <input
             class="form-check"
@@ -229,7 +229,7 @@
             [(ngModel)]="info.agua"
           />
         </div>
-        <div class="custom-form-group text-center">
+        <div class="custom-form-group text-center label-checkbox">
             <label class="form-check-label" for="papelSi">Papel Higienico</label>
             <input
               class="form-check"
@@ -241,26 +241,79 @@
         </div>
       </div>
       <div class="d-flex justify-content-between">
-        <div class="custom-form-group text-center">
-          <label class="form-check-label" for="panalSi">Pañales</label>
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="panalBebe">Pañales de bebe</label>
           <input
             class="form-check"
             type="checkbox"
-            name="panal"
+            name="panalBebe"
             id="panalSi"
-            [(ngModel)]="info.panales"
+            [(ngModel)]="info.panal_bebe"
           />
           </div>
-          <div class="custom-form-group text-center">
-            <label class="form-check-label" for="panalSi">Pañales</label>
+          <div class="custom-form-group text-center label-checkbox">
+            <label class="form-check-label" for="panalSi">Pañales de Adulto</label>
             <input
               class="form-check"
               type="checkbox"
-              name="panal"
-              id="panalSi"
-              [(ngModel)]="info.panales"
+              name="panalAdulto"
+              id="panalAdulto"
+              [(ngModel)]="info.panal_adulto"
             />
             </div>
+            <div class="custom-form-group text-center label-checkbox">
+              <label class="form-check-label" for="toallasHumedas">Toallas Humedas</label>
+              <input
+                class="form-check"
+                type="checkbox"
+                name="toallasHumedas"
+                id="toallasHumedas"
+                [(ngModel)]="info.toalla_humeda"
+              />
+              </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="ropa interior">Ropa Interior</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="ropaInterior"
+            id="ropaInterior"
+
+            [(ngModel)]="info.ropa_interior"
+          />
+          </div>
+          <div class="custom-form-group text-center label-checkbox">
+            <label class="form-check-label" for="ropaBebe">Ropa para Bebe</label>
+            <input
+              class="form-check"
+              type="checkbox"
+              name="ropaBebe"
+              id="ropaBebe"
+              [(ngModel)]="info.ropa_bebe"
+            />
+            </div>
+            <div class="custom-form-group text-center label-checkbox">
+              <label class="form-check-label" for="Babero">Babero</label>
+              <input
+                class="form-check"
+                type="checkbox"
+                name="babero"
+                id="babero"
+                [(ngModel)]="info.babero"
+              />
+              </div>
+              <div class="custom-form-group text-center label-checkbox">
+                <label class="form-check-label" for="otros">Otros</label>
+                <input
+                  class="form-check"
+                  type="checkbox"
+                  name="otros"
+                  id="otros"
+                  [(ngModel)]="info.otros"
+                />
+                </div>
       </div>
     </form>
 

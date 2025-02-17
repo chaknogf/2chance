@@ -14242,3 +14242,30 @@ tr:hover .beat{
   border-radius: 10px; /* Borde redondeado */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra debajo del modal */
 }
+
+.label-checkbox {
+  border: solid 1.5px #e4e6e7;
+  border-radius: 4px;
+  padding: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5); /* Ajusta el tamaño según necesites */
+}
+
+.centered-container {
+  display: flex;
+  flex-direction: column; /* Poner el label arriba */
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+  text-align: center;
+
+}
+
+.centered-container label {
+  font-size: 12px !important;
+}

@@ -35,6 +35,14 @@ export interface Iconcultas {
   created_at: string | null;
   updated_at: string | null;
   created_by: string | null;
+  bomberos?: boolean | null;
+  transito?: boolean | null;
+  arma_blanca?: boolean | null;
+  arma_fuego?: boolean | null;
+  estudiante_publica?: boolean | null;
+  accidente_laboral?: boolean | null;
+  personal_hospital?: boolean | null;
+  reserva?: boolean | null;
 
 }
 

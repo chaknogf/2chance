@@ -100,6 +100,12 @@ export class DetalleUisauComponent implements OnInit {
     agua: false,
     papel: false,
     panales: false,
+    panal_adulto: false,
+    panal_bebe: false,
+    toalla_humeda: false,
+    ropa_interior: false,
+    babero: false,
+    otros: false
   }
 
 
@@ -125,7 +131,7 @@ export class DetalleUisauComponent implements OnInit {
               .subscribe(
                 data => {
                   this.infos_ = data;
-                  this.resumen = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
+                  this.resumen = data;
                   // console.table(this.resumen)
                 })
             this.pt.getPaciente(this.consulta?.expediente)

@@ -183,6 +183,15 @@
               <span class="fs-mini">Prestamo</span>
             </ng-container>
             <br/>
+            <strong>Detalles:</strong>
+            <p *ngIf="consult?.bomberos" class="m-0">Traido por Bomberos,</p>
+            <p *ngIf="consult?.transito" class="m-0">Accidentes de Transito,</p>
+            <p *ngIf="consult?.arma_blanca" class="m-0">Lesion por Arma Blanca</p>
+            <p *ngIf="consult?.arma_fuego" class="m-0">Lesion por Arma de Fuego</p>
+            <p *ngIf="consult?.estudiante_publica" class="m-0">Estudiante de Escuelas Públicas</p>
+            <p *ngIf="consult?.accidente_laboral" class="m-0">Accidente laboral</p>
+            <p *ngIf="consult?.personal_hospital" class="m-0">Personal del hospital</p>
+            <br/>
             <strong>Controles Prenatales:</strong> {{ consult?.prenatal }}
             <br/>
             <strong>Creado por:</strong> {{ consult?.created_by }}

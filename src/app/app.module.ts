@@ -123,7 +123,6 @@ import { SaveIconComponent } from 'src/assets/svg/saveIcon/saveIcon.component';
 import { BackIconComponent } from 'src/assets/svg/backIcon/backIcon.component';
 import { HansterProgressComponent } from 'src/assets/svg/hansterProgress/hansterProgress.component';
 import { NewIconComponent } from 'src/assets/svg/newIcon/newIcon.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { CopyAddIconComponent } from 'src/assets/svg/copyAddIcon/copyAddIcon.component';
 import { PrintIconComponent } from 'src/assets/svg/printIcon/printIcon.component';
 import { CloseIconComponent } from 'src/assets/svg/closeIcon/closeIcon.component';
@@ -163,7 +162,7 @@ import { ContactarIconComponent } from 'src/assets/svg/contactarIcon/contactarIc
 import { PrintEmergenciaComponent } from './regisros/consultas/emergencias/printEmergencia/printEmergencia.component';
 import { CuadroBlancoIconComponent } from 'src/assets/svg/cuadroBlancoIcon/cuadroBlancoIcon.component';
 import { CuadroLlenoIconComponent } from 'src/assets/svg/cuadroLleno/cuadroLleno.component';
-
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 @NgModule({
@@ -302,7 +301,6 @@ import { CuadroLlenoIconComponent } from 'src/assets/svg/cuadroLleno/cuadroLleno
     BackIconComponent,
     HansterProgressComponent,
     NewIconComponent,
-    NotFoundComponent,
     CopyAddIconComponent,
     PrintIconComponent,
     CloseIconComponent,
@@ -341,6 +339,7 @@ import { CuadroLlenoIconComponent } from 'src/assets/svg/cuadroLleno/cuadroLleno
     PrintEmergenciaComponent,
     CuadroBlancoIconComponent,
     CuadroLlenoIconComponent,
+    NotFoundComponent,
 
 
 

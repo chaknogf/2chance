@@ -105,8 +105,9 @@ body {
 }
 
 .line {
-  padding: 0.4rem;
+  padding: 0.9rem;
   border-top: solid 1.5px black;
+  margin-bottom: 0;
 }
 
 .container-impresion {
