@@ -163,6 +163,8 @@ import { PrintEmergenciaComponent } from './regisros/consultas/emergencias/print
 import { CuadroBlancoIconComponent } from 'src/assets/svg/cuadroBlancoIcon/cuadroBlancoIcon.component';
 import { CuadroLlenoIconComponent } from 'src/assets/svg/cuadroLleno/cuadroLleno.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { CambioIconComponent } from 'src/assets/svg/cambioIcon/cambioIcon.component';
+import { CopyToClipboardDirective } from './Directive/CopyToClipboard.directive';
 
 
 @NgModule({
@@ -340,6 +342,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     CuadroBlancoIconComponent,
     CuadroLlenoIconComponent,
     NotFoundComponent,
+    CambioIconComponent,
+    CopyToClipboardDirective,
 
 
 

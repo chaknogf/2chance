@@ -31,7 +31,6 @@
         <th class="text-center">DPI</th>
         <th class="text-center">Nacimiento</th>
         <th class="text-center">Direccion</th>
-        <th class="text-center">Fecha</th>
         <th class="text-center">Servicio</th>
         <th class="text-center">Tipo</th>
         <th class="text-center">Estatus</th>
@@ -58,27 +57,12 @@
             {{consulta.apellidos |anyToText | capitalizeName}} <br>
 
         </td>
-        <td class="text-center w-5">{{consulta.dpi | anyToText| formatoDPI}}</td>
+        <td class="text-center w-5" appCopyToClipboard>{{consulta.dpi | anyToText| formatoDPI}}</td>
         <td class="text-center w-10">{{consulta.nacimiento | anyToText |FechaCorta}}</td>
-        <td class="text-center">
+        <td class="text-center" appCopyToClipboard>
           {{consulta.direccion | anyToText | capitalizeName}}
         </td>
-        <td class="text-center">
-          <div class="row text-center">
-            <p class="label-td">Ingreso</p>
-            <div>
-              {{consulta.fecha_consulta | anyToText | formatoFecha}}<br>
-              {{consulta.hora}}
-            </div>
-          </div>
-          <div *ngIf="consulta.fecha_egreso" class="row text-center">
-            <p class="label-td">Egreso</p>
-            <div>
-              {{consulta.fecha_egreso | anyToText | formatoFecha}}<br>
-              {{ consulta.fecha_consulta | estancia: consulta.fecha_egreso }}
-            </div>
-          </div>
-        </td>
+
         <td class="text-center">
           <span class="font-title1">{{consulta.especialidad | anyToNumber| enumEspecialidad}}: </span><br>
         {{consulta.servicio | anyToNumber| enumServicios}}

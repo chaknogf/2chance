@@ -79,15 +79,15 @@
               <atentionIcon />
             </ng-template>
           </td>
-          <td class="text-start text-justify " appHighlightWords >
+          <td class="text-justify " appHighlightWords appCopyToClipboard>
             <gemeloIcon *ngIf="paciente.gemelo == 'si'" /><span [ngClass]="{'mujer': paciente.sexo == 'F', 'hombre': paciente.sexo != 'F'}">{{ paciente.nombre | capitalizeName }}</span> <br>
             {{ paciente.apellido | capitalizeName }}
 
           </td>
-          <td class="text-center w-15">{{ paciente.dpi | anyToText | formatoDPI }}</td>
+          <td class="text-center w-15" appCopyToClipboard>{{ paciente.dpi | anyToText | formatoDPI }}</td>
 
           <td class="text-center">{{ paciente.nacimiento | anyToText | formatoFecha}}</td>
-          <td class="text-start">{{ paciente.direccion | anyToText | capitalizeName}}, {{paciente.municipio | anyToNumber | enumMunicipio}}, {{paciente.depto |anyToNumber | enumDepto}}</td>
+          <td class="text-start" appCopyToClipboard>{{ paciente.direccion | anyToText | capitalizeName}}, {{paciente.municipio | anyToNumber | enumMunicipio}}, {{paciente.depto |anyToNumber | enumDepto}}</td>
           <td class="text-center">
             <dataViewIcon (click)="abrirModal(paciente)" data-bs-toggle="modal" data-bs-target="#ver" />
           </td>

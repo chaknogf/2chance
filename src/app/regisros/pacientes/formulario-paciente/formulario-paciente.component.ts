@@ -139,14 +139,15 @@ export class FormularioPacienteComponent implements OnInit {
     // Crear un nuevo paciente
     this.PacientesService.crearPaciente(this.p).subscribe(data => {
       this.p = data;
-      console.log(data)
+      console.log(data);
       this.regresar()
     })
   }
 
   traslado_exp() {
+    const idPacienteViejo = this.p.id;
     this.crearPaciente();
-    this.delete()
+    this.depurado(idPacienteViejo);
   }
 
   editar() {
@@ -162,13 +163,21 @@ export class FormularioPacienteComponent implements OnInit {
     this.router.navigate(['/pacientes']);
   }
 
+  depurado(id: number) {
+    this.PacientesService.deletePaciente(id).subscribe(data => {
+      this.pacientes = data;
+      this.back();
+
+    })
+  }
+
   delete() {
     const confirmacion = confirm('¿Estás seguro de Eliminar al Paciente?');
     if (confirmacion) {
       this.PacientesService.deletePaciente(this.p.id)
         .subscribe(data => {
           this.pacientes = data;
-          this.router.navigateByUrl("pacientes")
+          this.back();
         },
           error => {
             console.error('Error al eliminar paciente:', error);
@@ -253,6 +262,7 @@ export class FormularioPacienteComponent implements OnInit {
       if (this.traslado == true) {
         this.nuevoExp = data;
         this.p.expediente = this.nuevoExp;
+        console.log(this.p.expediente);
 
       }
     });

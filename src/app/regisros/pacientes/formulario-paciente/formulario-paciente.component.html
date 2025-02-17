@@ -1,7 +1,8 @@
 <div class="search-container">
   <div class="div-btn-icons">
     <eliminarIcon (click)="confirmarBorrar()" />
-    <saveIcon (click)="edit ? editar() : crearPaciente()" />
+    <cambioIcon  *ngIf="traslado== true" (click)="traslado_exp()" />
+    <saveIcon *ngIf="traslado== false" (click)="edit ? editar() : crearPaciente()" />
     <backIcon (click)="modal ? closeModal() : regresar()" />
     <div class="search-form">
     </div>
@@ -12,7 +13,7 @@
     <div class="custom-form-group">
 
       <label class="switch-wrapper">
-        <input type="checkbox" id="estadoCheckbox" [checked]="p.estado === 'v'" (change)="cambiarEstado()">
+        <input type="checkbox" id="estadoCheckbox"  name="estado" [checked]="p.estado === 'v'" (change)="cambiarEstado()">
         <div class="switch-toggle"></div>
         <p>{{ p.estado === 'm' ? 'Fallecido' : 'Vivo' }}</p>
       </label>
@@ -36,7 +37,7 @@
     <div class="custom-form-group" *ngIf="edit == true">
       <label>Expediente de Referencia</label>
       <input type="number" id="exp_ref" class="custom-input" [(ngModel)]="p.exp_ref" name="exp_ref">
-      <button class="custom-btn" (click)="confirmarCambio()">Cambiar Expediente</button>
+      <button class="custom-btn bg-warning w-50 " (click)="confirmarCambio()">Cambiar Expediente</button>
     </div>
 
     <hr class="custom-divider">
@@ -54,11 +55,11 @@
     <!-- DPI y Pasaporte -->
     <div class="custom-form-group">
       <label>DPI</label>
-      <input type="number" id="dpi" class="custom-input" [(ngModel)]="p.dpi" placeholder="DPI" autofocus>
+      <input type="number" id="dpi" class="custom-input" name="dpi" [(ngModel)]="p.dpi" placeholder="DPI" autofocus>
     </div>
     <div class="custom-form-group">
       <label>Pasaporte</label>
-      <input type="text" id="pasaporte" class="custom-input" [(ngModel)]="p.pasaporte" placeholder="Pasaporte" autofocus>
+      <input type="text" id="pasaporte" class="custom-input" name="pasaporte" [(ngModel)]="p.pasaporte" placeholder="Pasaporte" autofocus>
     </div>
 
     <!-- Sexo y Fecha de Nacimiento -->
@@ -128,7 +129,7 @@
     </div>
     <div class="custom-form-group">
       <label>Ocupación</label>
-      <input type="text" id="ocupacion" class="custom-input" [(ngModel)]="p.ocupacion" placeholder="Ocupación" autofocus>
+      <input type="text" id="ocupacion" class="custom-input" name="ocupacion" [(ngModel)]="p.ocupacion" placeholder="Ocupación" autofocus>
     </div>
 
     <hr class="custom-divider">
@@ -136,41 +137,41 @@
     <!-- Dirección y Teléfono -->
     <div class="custom-form-group">
       <label>Dirección de Domicilio</label>
-      <input type="text" id="direccion" class="custom-input" [(ngModel)]="p.direccion" placeholder="Dirección" autofocus>
+      <input type="text" id="direccion" class="custom-input" name="direccion" [(ngModel)]="p.direccion" placeholder="Dirección" autofocus>
     </div>
     <div class="custom-form-group">
       <label>Teléfono</label>
-      <input type="text" id="telefono" class="custom-input" [ngModel]="p.telefono" (ngModelChange)="formatPhoneNumber($event)" placeholder="Teléfono" autofocus>
+      <input type="text" id="telefono" class="custom-input" name="telefono" [ngModel]="p.telefono" (ngModelChange)="formatPhoneNumber($event)" placeholder="Teléfono" autofocus>
     </div>
 
     <!-- Email y Responsable -->
     <div class="custom-form-group">
       <label>Email</label>
-      <input type="email" id="email" class="custom-input" [(ngModel)]="p.email" placeholder="Email" autofocus>
+      <input type="email" id="email" class="custom-input" name="email" [(ngModel)]="p.email" placeholder="Email" autofocus>
     </div>
     <div class="custom-form-group">
       <label>Responsable</label>
-      <input type="text" id="responsable" class="custom-input" [(ngModel)]="p.responsable" placeholder="Responsable" autofocus>
+      <input type="text" id="responsable" class="custom-input" name="responsable" [(ngModel)]="p.responsable" placeholder="Responsable" autofocus>
     </div>
 
     <!-- Padre y Madre -->
     <div class="custom-form-group">
       <label>Padre</label>
-      <input type="text" id="padre" class="custom-input" [(ngModel)]="p.padre" placeholder="Padre" autofocus>
+      <input type="text" id="padre" class="custom-input" name="padre" [(ngModel)]="p.padre" placeholder="Padre" autofocus>
     </div>
     <div class="custom-form-group">
       <label>Madre</label>
-      <input type="text" id="madre" class="custom-input" [(ngModel)]="p.madre" placeholder="Madre" autofocus>
+      <input type="text" id="madre" class="custom-input" name="madre" [(ngModel)]="p.madre" placeholder="Madre" autofocus>
     </div>
 
     <!-- Conyugue y Parentesco -->
     <div class="custom-form-group">
       <label>Conyugue</label>
-      <input type="text" id="conyugue" class="custom-input" [(ngModel)]="p.conyugue" placeholder="Conyugue" autofocus>
+      <input type="text" id="conyugue" class="custom-input" name="conyugue" [(ngModel)]="p.conyugue" placeholder="Conyugue" autofocus>
     </div>
     <div class="custom-form-group">
       <label>Parentesco</label>
-      <select id="parentesco" class="custom-input" [(ngModel)]="p.parentesco" name="parentesco_p">
+      <select id="parentesco" class="custom-input" name="parentesco" [(ngModel)]="p.parentesco" name="parentesco_p">
         <option *ngFor="let option of e.parents" [value]="option.value" name="parentesco_v">{{option.label}}</option>
       </select>
     </div>
@@ -178,17 +179,17 @@
     <!-- DPI Responsable y Teléfono Responsable -->
     <div class="custom-form-group">
       <label>DPI Responsable</label>
-      <input type="number" id="dpiResponsable" class="custom-input" [(ngModel)]="p.dpi_responsable" placeholder="DPI Responsable" autofocus>
+      <input type="number" id="dpiResponsable" name="dpi_responsable" class="custom-input" [(ngModel)]="p.dpi_responsable" placeholder="DPI Responsable" autofocus>
     </div>
     <div class="custom-form-group">
       <label>Teléfono Responsable</label>
-      <input type="number" id="telResponsable" class="custom-input" [(ngModel)]="p.telefono_responsable" placeholder="Teléfono Responsable" autofocus>
+      <input type="number" id="telResponsable" name="telefono_responsable" class="custom-input" [(ngModel)]="p.telefono_responsable" placeholder="Teléfono Responsable" autofocus>
     </div>
 
     <!-- Gemelo -->
     <div class="custom-form-group">
       <label>Gemelo?</label>
-      <select id="gemelo" class="custom-input" [(ngModel)]="p.gemelo" name="gemelo">
+      <select id="gemelo" class="custom-input" name="gemelo" [(ngModel)]="p.gemelo" name="gemelo">
         <option value="no">No</option>
         <option value="si">Si</option>
       </select>
