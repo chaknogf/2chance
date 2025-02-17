@@ -40,7 +40,7 @@ Thumbs.db
 /coverage/
 /dist/
 /tmp/
-/enviroments/
+# /enviroments/
 
 # Inclusión de otros archivos específicos para tu proyecto
 # (por ejemplo, archivos de configuración personalizados)
@@ -49,4 +49,4 @@ Thumbs.db
 .pack
 .pack.old
 
-enviroment.ts
+# enviroment.ts
