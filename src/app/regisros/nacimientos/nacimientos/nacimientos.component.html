@@ -1,138 +1,108 @@
-<div class="d-flex justify-content-center bg-white">
-  <button class="btn btn-dark no-imprimir mx-2 my-3 w-30" (click)="regresar()" >
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
-    </svg>Regresar
-  </button>
-  <button class="btn btn-info no-imprimir mx-2 my-3 w-30" (click)="imprimir(); pronombres(documetos?.colegiado)">Imprimir</button>
+<div class="div-btn-opt no-imprimir">
+  <backIcon (click)="regresar()" />
+  <printIcon (click)="imprimir()" />
 
 </div>
-<hr class="mt-2">
-<body id="pdf-content" class="imprimir-esto text-black bg-light p-0 w-100" >
 
-<div id="pdfs-content." class="container-fluid  h-5 blanco">
+<div class="container-impresion imprimir-esto blanco">
+  <img class="" src="assets/cabecera.png" height="218">
 
-  <div class="d-flex justify-content-start align-items-center ">
-    <div class="item mt-0 p-0">
-      <img class="" src="assets/cabecera.png" height="218">
+  <div>
+    <p class="text-end">Tecpán Guatemala, {{documetos?.fecha | anyToText | FormatoFechaCompleta}}</p>
+    <div class="d-flex justify-content-end m-0 p-0">
+      <p class="text-end p-0 m-0">No.</p> <p class="h4 m-0 p-0">{{documetos?.doc}}</p>
     </div>
+
+    <p my-5></p>
+   <ng-container >
+
+
+
+
+   </ng-container>
+    <p class="text-start text-wrap "> Señores del RENAP</p>
+    <p></p>
+    <p class="text-start text-wrap "> Para los efectos legales de la inscripción correspondiente, informó que en la fcha {{documetos?.fecha_parto | anyToText | FormatoFechaCompleta}} en  este Hospital General Tipo I de Tecpán Guatemala, Barrio San Antonio Sector Pachulalí de Tecpán Guatemala, dio a luz la paciente:</p>
+  </div>
+  <div>
+    <h3 class="text-center"> {{documetos?.madre | anyToText | capitalizeName}} </h3>
   </div>
 
-<div class="p-2">
+  <div>
+    <p></p>
+    <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad >= 18"> Se identifica con Documento Personal de Identificación con Código Único de Identificación {{documetos?.dpi | anyToText | formatoDPI}} extendido por el Registro Nacional de las Personas de la Republica de Guatemala. De {{documetos?.edad}} años de edad. Originaria de {{documetos?.muni | anyToNumber | enumMunicipio}} y vecina de de {{documetos?.vecindad |anyToNumber | enumVecindad}}.</p>
 
-</div>
 
-<div class="mx-2 fs-7 mt-4">
-<div class="d-flex justify-content-end">
-  <p class="mt-2 mx-4">Tecpán Guatemala, {{documetos?.fecha | FechaCarta}}</p>
-</div>
-<div class="d-flex justify-content-end mb-4">
-  <p class="mx-4">No. {{documetos?.doc}}</p>
-</div>
-<div class="d-flex justify-content-start mt-3">
-  <p class="mt-2">Señores del RENAP  </p>
-</div>
-<div class="d-flex justify-content-between">
-  <p class="mt-2">Para los efectos legales de la inscripción correspondiente,
-     informó que en la fecha {{documetos?.fecha_parto | anyToText|FechaCarta}} en este Hospital General Tipo I de Tecpán Guatemala, Barrio San Antonio Sector Pachulalí de Tecpán Guatemala, dio a luz la paciente: </p>
-</div>
-
-<div class="d-flex justify-content-center align-items-center">
-  <p class="my-3 h1">{{documetos?.madre | anyToText |capitalizeName}} </p>
-</div>
-
-<div class="d-flex justify-content-center mt-2">
-  <p class="align-content-center" *ngIf="documetos?.dpi && documetos?.edad >= 18">
-    Se identifica con Documento Personal de Identificación con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}
-extendido por el Registro Nacional de las Personas de la Republica de Guatemala. De {{documetos?.edad}} años de edad. Originaria de
-{{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
-{{documetos?.vecindad | anyToNumber | enumVecindad}}.
-</p>
-  <p class="text-justify" *ngIf="documetos?.folio && documetos?.dpi">
-    Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
-    del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
-    {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi}}. De {{documetos?.edad}} años de edad. Originaria de
-    {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
-     {{documetos?.vecindad | anyToNumber | enumVecindad}}.
-
-  </p>
-  <p class="text-justify" *ngIf="documetos?.folio && !documetos?.dpi">
-    Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
-    del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
-    {{documetos?.depto | anyToNumber | enumDepto}}. De {{documetos?.edad}} años de edad. Originaria de
-    {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
-     {{documetos?.vecindad | anyToNumber | enumVecindad}}.
-
-  </p>
-  <p class="text-justify" *ngIf="documetos?.dpi && documetos?.edad < 18 && !documetos?.folio">
-    Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
-     {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}.
-     De {{documetos?.edad}} años de edad. Originaria de
-    {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
-     {{documetos?.vecindad | anyToNumber | enumVecindad}}.
+    <p class="text-start text-wrap" *ngIf="documetos?.folio && documetos?.dpi">
+      Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
+      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
+      {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi}}. De {{documetos?.edad}} años de edad. Originaria de
+      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
+       {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
     </p>
-    <p class="text-justify" *ngIf="documetos?.passport && !documetos?.dpi">
-      Se identifica con No. de pasaporte {{documetos?.passport}} Tipo P  codigo de pasaporte NIC de nacionalidad {{documetos?.nacionalidad}}.
-       De {{documetos?.edad}} años de edad. Originaria de {{documetos?.pais}}.
+    <p class="text-start text-wrap" *ngIf="documetos?.folio && !documetos?.dpi">
+      Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
+      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
+      {{documetos?.depto | anyToNumber | enumDepto}}. De {{documetos?.edad}} años de edad. Originaria de
+      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
+       {{documetos?.vecindad | anyToNumber | enumVecindad}}.
+
+    </p>
+    <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad < 18 && !documetos?.folio">
+      Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
+       {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}.
+       De {{documetos?.edad}} años de edad. Originaria de
+      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
+       {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
       </p>
+      <p class="text-start text-wrap" *ngIf="documetos?.passport && !documetos?.dpi">
+        Se identifica con No. de pasaporte {{documetos?.passport}} Tipo P  codigo de pasaporte NIC de nacionalidad {{documetos?.nacionalidad}}.
+         De {{documetos?.edad}} años de edad. Originaria de {{documetos?.pais}}.
+
+        </p>
+
+
+
+
+
 
   </div>
-
-  <div class="d-flex justify-content-justify align-items-center">
-    <p>
-      Un producto de sexo: {{documetos?.sexo_rn | anyToText | sexo}}
-      que pesó {{documetos?.lb}} libras {{documetos?.onz}} onzas, a las {{documetos?.hora | anyToText | formatoHora}}.
-      Parto que fue atendido por {{pronombre}}:  {{documetos?.medico}}  Colegiado Activo {{documetos?.colegiado}} Con Código único De Identificación
-       {{documetos?.dpi_medico | anyToText | formatoDPI}}.
-    </p>
+  <div>
+    <p></p>
+    <p class="text-start text-wrap"> Un producto de sexo: {{documetos?.sexo_rn | anyToText | sexo}} que pesó {{documetos?.lb}} libras {{documetos?.onz}} onzas, a las {{documetos?.hora | anyToText | formatoHora}} horas. Parto que fue atendido por {{pronombre}} {{documetos?.medico | anyToText | capitalizeName}}  Colegiado Activo {{documetos?.colegiado}} Con Código único De Identificación
+      {{documetos?.dpi_medico | anyToText | formatoDPI}}.</p>
+  </div>
+  <div>
+    <p></p>
+    <p class="text-start text-wrap"> Número de hijos que ha tenido la madre entre nacidos vivos y muertos incluyendo al que ahora se registra: {{documetos?.hijos}} entre ellos cuantos nacieron muertos {{documetos?.muertos}} y cuantos viven {{documetos?.vivos}}.</p>
+    <p></p>
+  </div>
+  <div>
+    <p></p>
+    <p class="text-start">Tipo de Parto: <strong>{{documetos?.tipo_parto | anyToNumber | enumTipoParto}}</strong> </p>
+    <p class="text-start">Clase de Parto: <strong>{{documetos?.clase_parto | anyToNumber | enumClaseParto}}</strong> </p>
   </div>
 
-  <div class="d-flex justify-content-justify align-items-center">
-    <p class="my-1 ">
-      Número de hijos que ha tenido la madre entre nacidos vivos y nacidos muertos incluyendo al que ahora se registra: {{documetos?.hijos}} de ellos cuantos nacieron muertos {{documetos?.muertos}} y cuantos viven {{documetos?.vivos}}.
+  <div class="container espacioBlanco"></div>
+  <div class="container espacioBlanco"></div>
+  <div class="container espacioBlanco"></div>
+  <div>
+    <p></p>
+    <p class="text-center text-capitalize">{{documetos?.certifica}}
+      <br/>
+      Auxiliar de Registros Médicos
+      <br/>
+      Hospital General Tipo I de Tecpán Guatemala
     </p>
+    <p class="text-center"></p>
+    <p class="text-center"></p>
   </div>
 
-  <div class="d-flex justify-content-justify align-items-center mt-3">
-    <p class="my-1 ">
-      Tipo de parto: <span class="h3"> {{documetos?.tipo_parto | anyToNumber | enumTipoParto}} </span>
-    </p>
-  </div>
-
-  <div class="d-flex justify-content-justify align-items-center mb-4">
-    <p class="my-1 ">
-    Clase de parto: <span class="h3" > {{documetos?.clase_parto | anyToNumber | enumClaseParto}}</span>
-    </p>
-  </div>
-  <div class="p-3"></div>
-
-  <div class="d-flex justify-content-center align-items-center ">
-    <p class="p-0 mb-0">
-    {{ documetos?.certifica}}
-    </p>
-  </div>
-
-  <div class="d-flex justify-content-center align-items-center mt-0 p-0">
-    <p class="my-0 ">
-    Auxiliar de Registros Médicos
-    </p>
-  </div>
-  <div class="d-flex justify-content-center align-items-center mt-0 p-0">
-    <p class="my-0 ">
-    Hospital General Tipo I de Tecpán Guatemala
-    </p>
-  </div>
 
 </div>
 
+<div>
+  <img class="" src="assets/pie.jpg" height="125.8">
 </div>
-
-
-</body>
-<footer class="footer fixed-bottom d-flex justify-content-center align-items-center mt-2">
-  <div class="item mt-0 p-0">
-    <img class="" src="assets/pie.jpg" height="140.8">
-  </div>
-</footer>

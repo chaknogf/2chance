@@ -130,7 +130,7 @@ export class DetalleUisauComponent implements OnInit {
             this.au.InfoConsulta(this.consulta?.id)
               .subscribe(
                 data => {
-                  this.infos_ = data;
+                  this.infos_ = data.sort((a: { id: number; }, b: { id: number; }): number => b.id - a.id);
                   this.resumen = data;
                   // console.table(this.resumen)
                 })

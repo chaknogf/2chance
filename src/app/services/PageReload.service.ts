@@ -15,5 +15,9 @@ export class PageReloadService {
     return this.reloadSubject.asObservable(); // Expone el observable
   }
 
+  recargarPagina() {
+    window.location.reload();
+  }
+
 
 }

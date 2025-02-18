@@ -136,9 +136,22 @@
 
     <!-- Dirección y Teléfono -->
     <div class="custom-form-group">
+      <label>Departamento</label>
+      <select id="depto" class="custom-input" [(ngModel)]="p.depto" name="depto" (change)="filtrarMunicipios()">
+        <option *ngFor="let option of d.departamentos" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+    <div class="custom-form-group">
+      <label>Vecindad</label>
+      <select id="vecindad" class="custom-input" [(ngModel)]="p.municipio" name="municipio">
+        <option *ngFor="let option of municipiosFiltrados" [value]="option.value">{{option.label}}</option>
+      </select>
+    </div>
+    <div class="custom-form-group">
       <label>Dirección de Domicilio</label>
       <input type="text" id="direccion" class="custom-input" name="direccion" [(ngModel)]="p.direccion" placeholder="Dirección" autofocus>
     </div>
+
     <div class="custom-form-group">
       <label>Teléfono</label>
       <input type="text" id="telefono" class="custom-input" name="telefono" [ngModel]="p.telefono" (ngModelChange)="formatPhoneNumber($event)" placeholder="Teléfono" autofocus>

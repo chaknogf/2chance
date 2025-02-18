@@ -64,7 +64,7 @@ export class RegistroProceComponent implements OnInit {
             this.edit = true;
           },
           error => console.log(error)
-      )
+        )
     }
     this.resumen;
     this.procedimiento();
@@ -72,7 +72,7 @@ export class RegistroProceComponent implements OnInit {
 
   reloadPage() {
     // Llama al servicio para recargar la página
-    this.PageReloadService.reloadPage();
+    this.PageReloadService.recargarPagina();
   }
 
   crear(): void {
@@ -117,12 +117,12 @@ export class RegistroProceComponent implements OnInit {
 
   }
 
-  editar(){
+  editar() {
     this.prm.editProceMedic(this.proce.id, this.proce)
       .subscribe(data => {
         this.proce = data;
         this.router.navigate(['/listProce'])
-    })
+      })
   }
 
   borrar() {
@@ -130,7 +130,7 @@ export class RegistroProceComponent implements OnInit {
       .subscribe(data => {
         this.proce = data;
         this.router.navigate(['/listProce'])
-    })
+      })
   }
 
   procedimiento() {
@@ -138,7 +138,7 @@ export class RegistroProceComponent implements OnInit {
       .subscribe(data => {
         this.proce.procedimiento = data.procedimiento;
         console.log(this.proce.procedimiento)
-    })
+      })
   }
 
   ngOnchages() {

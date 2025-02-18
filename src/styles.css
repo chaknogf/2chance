@@ -12894,11 +12894,17 @@ body {
 .hombre {
   color: #c2ecfe;
   font-weight: bold;
+  text-shadow: 0.8px 0.8px 0.8px #1d1b1b; /* Contorno negro alrededor del texto */
+    background: transparent; /* Hace que el fondo no afecte la visibilidad */
+
 }
 
 .mujer {
   color: #df7ca8;
   font-weight: bold;
+  text-shadow: 0.8px 0.8px 0.8px #1d1b1b; /* Contorno negro alrededor del texto */
+    background: transparent; /* Hace que el fondo no afecte la visibilidad */
+
 }
 
 .rosado {
@@ -13309,7 +13315,7 @@ input, select {
 }
 
 .t-w-d {
-  background: linear-gradient(202deg, rgba(98,123,193,1) 10%, rgba(65,88,224,1) 14%, rgba(8,53,85,1) 87%);
+  background: radial-gradient(circle, rgba(63,97,240,0.9318321078431373) 11%, rgba(9,64,205,0.9990589985994398) 100%);
 }
 
 .column.block {
@@ -14270,7 +14276,3 @@ input[type="checkbox"] {
   font-size: 12px !important;
 }
 
-input, textarea {
-  direction: rtl; /* Cambia la dirección de escritura de derecha a izquierda */
-  text-align: right; /* Alinea el texto a la derecha */
-}
