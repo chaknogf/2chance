@@ -259,7 +259,7 @@ export class TabMadresComponent implements OnInit {
       console.table(this.madre, data);
       // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
       this.detalleVisible = true;
-      this.constancia.madre = this.texto.capitalizar(`${data.nombre} ${data.apellido}`);
+      this.constancia.madre = data.nombre + ' ' + data.apellido;
       this.constancia.edad = this.Edad.años(data.nacimiento);
       this.constancia.dpi = data.dpi;
       this.constancia.passport = data.pasaporte;

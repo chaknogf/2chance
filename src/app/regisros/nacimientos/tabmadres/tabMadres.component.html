@@ -94,423 +94,128 @@
         </div>
         <div class="modal-body bg-night">
           <div>
-            <form class="form-group">
-              <div class="wave-group d-flex justify-content-center">
-                <div class="wave-group">
-                  <input type="text" name="doc" id="doc" class="input text-light  text-center bg-night" [(ngModel)]="constancia.doc" autocomplete="off">
-                  <span class="bar"></span>
-                  <label class="label">
-                    <span class="label-char" style="--index: 0">D</span>
-                    <span class="label-char" style="--index: 1">o</span>
-                    <span class="label-char" style="--index: 2">c</span>
-                    <span class="label-char" style="--index: 3">u</span>
-                    <span class="label-char" style="--index: 4">m</span>
-                    <span class="label-char" style="--index: 5">e</span>
-                    <span class="label-char" style="--index: 6">n</span>
-                    <span class="label-char" style="--index: 7">t</span>
-                    <span class="label-char" style="--index: 8">o</span>
-                  </label>
+            <form class="custom-form">
+              <div class="custom-form-group">
+                <label>Nombre</label>
+                <input type="text" id="nombre" name="amdre" class="custom-input" [(ngModel)]="constancia.madre" placeholder="Nombre" autofocus autocomplete="off">
+              </div>
+              <div class="custom-form-group">
+                <label>CUI</label>
+                <input  type="number" class="custom-input" name="dpi" id="dpi" [(ngModel)]="constancia.dpi" autocomplete="off">
+              </div>
+              <div class="custom-form-group">
+                <label>Pasaporte</label>
+                <input  type="text" class="custom-input" name="passport" id="passport" [(ngModel)]="constancia.passport" autocomplete="off">
+              </div>
+              <div class="custom-form-group" *ngIf="!constancia.dpi">
+                <label>Certificado de Nacimiento</label>
+                <div class="d-flex justify-content-between gap-1">
+                  <input  type="text" class="custom-input" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio" autocomplete="off">
+                  <input  type="text" class="custom-input" name="partida" id="partida" [(ngModel)]="constancia.partida" placeholder="partida" autocomplete="off">
+                  <input  type="text" class="custom-input" name="libro" id="libro" [(ngModel)]="constancia.libro" placeholder="libro" autocomplete="off">
                 </div>
               </div>
-                <div class="row mt-2">
-                  <div class="col-8">
-                    <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="madre" id="madre" [(ngModel)]="constancia.madre" autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">N</span>
-                        <span class="label-char" style="--index: 1">o</span>
-                        <span class="label-char" style="--index: 2">m</span>
-                        <span class="label-char" style="--index: 3">b</span>
-                        <span class="label-char" style="--index: 4">r</span>
-                        <span class="label-char" style="--index: 5">e</span>
-                      </label>
-                    </div>
+              <div class="custom-form-group" *ngIf="constancia.passport">
+                <label>Pais</label>
+                <input  type="text" class="custom-input" name="pais" id="pais" [(ngModel)]="constancia.pais" autocomplete="off">
+              </div>
+              <div class="custom-form-group">
+                <label>Nacionalidad</label>
+                <select class="custom-input " name="nacionalidad" id="nacionalidad" [(ngModel)]="constancia.nacionalidad" autofocus>
+                  <option  *ngFor="let option of d.nation" [value]="option.value">{{option.label}}</option>
+                </select>
+              </div>
+              <div class="custom-form-group">
+                <label>Vecindad</label>
+                <select class="custom-input " name="vecindad" id="vecindad" [(ngModel)]="constancia.vecindad" autofocus>
+                  <option  *ngFor="let option of d.vecindad" [value]="option.value">{{option.label}}</option>
+                </select>
+              </div>
+              <div class="custom-form-group">
+                <label>Sexo del Recien Nacido</label>
+                <select class="custom-input" name="sexo" id="sexo" [(ngModel)]="constancia.sexo_rn" autofocus>
+                  <option class="bg-info" value="M">Masculino</option>
+                  <option class="rosado" value="F">Femenino</option>
+                  <option class="bg-light" value="I">Indefinido</option>
+                </select>
+              </div>
+              <div class="custom-form-group">
+                <label>Peso del Recien Nacido</label>
+                <div class="d-flex gap-1 justify-content-center">
+                  <div class="custom-form-group w-100">
+                    <label>Libras</label>
+                    <input class="custom-input text-center" type="number" id="lb" name="lb" min="0" placeholder="Libras" [(ngModel)]="constancia.lb" autocomplete="off">
                   </div>
-
-                  <div class="col-3">
-                    <div class="wave-group d-flex">
-                      <input type="text" class="input text-light w-100 text-center" name="edad" id="edad" [(ngModel)]="constancia.edad"  autocomplete="off"><span class="p-1 text-start">años</span>
-                       <span class="bar"></span>
-                       <label class="label">
-                         <span class="label-char" style="--index: 0">E</span>
-                         <span class="label-char" style="--index: 1">d</span>
-                         <span class="label-char" style="--index: 2">a</span>
-                         <span class="label-char" style="--index: 3">d</span>
-                       </label>
-                    </div>
+                  <div class="custom-form-group w-100">
+                    <label>Onzas</label>
+                    <input class="custom-input text-center" type="number" id="onz" name="onz" min="0" placeholder="Onzas" [(ngModel)]="constancia.onz" autocomplete="off">
                   </div>
-                </div>
-
-                <div class="row mt-2 gap-1">
-                  <div class="col-6" *ngIf="constancia.dpi" >
-                    <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="dpi" id="dpi" [(ngModel)]="constancia.dpi" autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">C</span>
-                        <span class="label-char" style="--index: 1">U</span>
-                        <span class="label-char" style="--index: 2">I</span>
-                      </label>
-                    </div>
                   </div>
+              </div>
 
-                  <div class="col-6" *ngIf="constancia.passport">
-                    <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="passport" id="passport" [(ngModel)]="constancia.passport" autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">P</span>
-                        <span class="label-char" style="--index: 1">a</span>
-                        <span class="label-char" style="--index: 2">s</span>
-                        <span class="label-char" style="--index: 3">p</span>
-                        <span class="label-char" style="--index: 4">o</span>
-                        <span class="label-char" style="--index: 5">r</span>
-                        <span class="label-char" style="--index: 6">t</span>
-                        <span class="label-char" style="--index: 7">e</span>
-                      </label>
-                    </div>
+              <div class="custom-form-group">
+                <label>Datos del Parto</label>
+                <div class="d-flex gap-1 justify-content-center">
+                  <div class="custom-form-group w-100">
+                    <label>Tipo de Parto</label>
+                    <select  type="text" class="custom-input" name="tipo_parto" id="tipo_parto" [(ngModel)]="constancia.tipo_parto">
+                      <option  *ngFor="let option of parto.tipoparto" [value]="option.value">{{option.label}}</option>
+                    </select>
                   </div>
-
-
-                <div class="col-6" *ngIf="constancia.edad < 18">
-                  <div class="wave-group">
-                    <div class="d-flex">
-                      <input  type="text" class="input  text-light w-100" name="folio" id="folio" [(ngModel)]="constancia.folio" placeholder="folio" autocomplete="off">
-                      <input  type="text" class="input  text-light w-100" name="folio" id="partida" [(ngModel)]="constancia.partida" placeholder="partida" autocomplete="off">
-                      <input  type="text" class="input  text-light w-100" name="folio" id="libro" [(ngModel)]="constancia.libro" placeholder="libro" autocomplete="off">
-                    <span class="bar"></span>
-                    <label class="label">
-                      <span class="label-char" style="--index: 0">C</span>
-                      <span class="label-char" style="--index: 1">e</span>
-                      <span class="label-char" style="--index: 2">r</span>
-                      <span class="label-char" style="--index: 3">t</span>
-                      <span class="label-char" style="--index: 4">i</span>
-                      <span class="label-char" style="--index: 5">f</span>
-                      <span class="label-char" style="--index: 6">i</span>
-                      <span class="label-char" style="--index: 7">c</span>
-                      <span class="label-char" style="--index: 5">a</span>
-                      <span class="label-char" style="--index: 6">d</span>
-                      <span class="label-char" style="--index: 7">o</span>
-                    </label>
-                    </div>
-
+                  <div class="custom-form-group w-100">
+                    <label>Clase de Parto</label>
+                    <select  type="text" class="custom-input" name="clase_parto" id="clase_parto" [(ngModel)]="constancia.clase_parto">
+                      <option  *ngFor="let option of parto.claseparto" [value]="option.value">{{option.label}}</option>
+                    </select>
                   </div>
                 </div>
               </div>
-              <div class="row mt-2 gap-1" *ngIf="constancia.passport">
-                <div class="col-8 justify-content-center">
-                  <div class="wave-group">
 
-                    <input class="input  text-light w-100" name="pais" id="pais" [(ngModel)]="constancia.pais" autofocus autocomplete="off">
-
-                    <span class="bar"></span>
-                    <label class="label">
-                      <span class="label-char" style="--index: 0">P</span>
-                      <span class="label-char" style="--index: 1">a</span>
-                      <span class="label-char" style="--index: 2">i</span>
-                      <span class="label-char" style="--index: 3">s</span>
-                    </label>
+              <div class="custom-form-group">
+                <label>Hijos Nacidos</label>
+                <div class="d-flex gap-1 justify-content-center">
+                  <div class="custom-form-group w-100">
+                    <label>Vivos</label>
+                    <input  type="number" class="custom-input text-center" name="vivos" id="vivos" [(ngModel)]="constancia.vivos" min="0" (ngModelChange)="actualizarHijos()" autofocus autocomplete="off">
+                  </div>
+                  <div class="custom-form-group w-100">
+                    <label>Muertos</label>
+                    <input  type="number" class="custom-input text-center" name="muertos" id="muertos" [(ngModel)]="constancia.muertos" min="0" (ngModelChange)="actualizarHijos()" autofocus autocomplete="off">
+                  </div>
+                  <div class="custom-form-group w-100">
+                    <label>Total</label>
+                    <input  type="number" class="custom-input text-center" min="0" name="hijos" id="hijos"  [(ngModel)]="hijosNacidos" autocomplete="off">
                   </div>
                 </div>
-
-                <div class="col-8 justify-content-center">
-                  <div class="wave-group">
-
-                    <input class="input  text-light w-100" name="nacionalidad" id="nacionalidad" [(ngModel)]="constancia.nacionalidad" autofocus autocomplete="off">
-
-                    <span class="bar"></span>
-                    <label class="label">
-                      <span class="label-char" style="--index: 0">N</span>
-                      <span class="label-char" style="--index: 1">a</span>
-                      <span class="label-char" style="--index: 2">c</span>
-                      <span class="label-char" style="--index: 3">i</span>
-                      <span class="label-char" style="--index: 4">o</span>
-                      <span class="label-char" style="--index: 5">n</span>
-                      <span class="label-char" style="--index: 6">a</span>
-                      <span class="label-char" style="--index: 7">l</span>
-                      <span class="label-char" style="--index: 8">i</span>
-                      <span class="label-char" style="--index: 9">d</span>
-                      <span class="label-char" style="--index: 10">a</span>
-                      <span class="label-char" style="--index: 11">d</span>
-                    </label>
-                  </div>
+              </div>
+              <div class="custom-form-group">
+                <label>Medico que atendio</label>
+                <div class="custom-form-group w-100">
+                  <label>Nombre del Medico</label>
+                  <select  type="text" class="custom-input" name="medico" id="medico" [(ngModel)]="constancia.medico" (ngModelChange)="medico(constancia.medico)">
+                    <option class="fs-mini"  *ngFor="let m of medicos" [ngValue]="m.name">{{ m.name }} {{m.colegiado}}</option>
+                  </select>
                 </div>
+                <div class="d-flex gap-1 justify-content-center">
+                  <div class="custom-form-group w-100">
+                    <label>Colegiado</label>
+                    <input  type="text" class="custom-input" name="colegiado" id="colegiado" [(ngModel)]="constancia.colegiado" (ngModelChange)="medico(constancia.colegiado)" autocomplete="off">
+                  </div>
+                  <div class="custom-form-group w-100">
+                    <label>DPI Medico</label>
+                    <input  type="text" class="custom-input" name="dpi_medico" id="dpi_medico" [(ngModel)]="constancia.dpi_medico"  autocomplete="off">
+                  </div>
 
+                </div>
 
               </div>
-
-              <div class="row mt-2 gap-1" *ngIf="!constancia.passport">
-                  <div class="col-8 justify-content-center">
-                    <div class="wave-group">
-
-                      <select class="input  text-light w-100" name="vecindad" id="vecindad" [(ngModel)]="constancia.vecindad" autofocus>
-                        <option class="bg-primary" *ngFor="let option of d.vecindad" [value]="option.value">{{option.label}}</option>
-                      </select>
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">V</span>
-                        <span class="label-char" style="--index: 1">e</span>
-                        <span class="label-char" style="--index: 2">c</span>
-                        <span class="label-char" style="--index: 3">i</span>
-                        <span class="label-char" style="--index: 4">n</span>
-                        <span class="label-char" style="--index: 5">d</span>
-                        <span class="label-char" style="--index: 6">a</span>
-                        <span class="label-char" style="--index: 7">d</span>
-                      </label>
-                    </div>
-                  </div>
-
-
-                </div>
-                <hr>
-                <div class="row mt-2 gap-1">
-                  <div class="col-4">
-                    <div class="wave-group">
-                      <select class="input text-light w-100" name="sexo" id="sexo" [(ngModel)]="constancia.sexo_rn" autofocus>
-                        <option class="bg-info" value="M">Masculino</option>
-                        <option class="rosado" value="F">Femenino</option>
-                      </select>
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">S</span>
-                        <span class="label-char" style="--index: 1">e</span>
-                        <span class="label-char" style="--index: 2">x</span>
-                        <span class="label-char" style="--index: 3">o</span>
-                        <span class="label-char text-black" style="--index: 4">_</span>
-                        <span class="label-char" style="--index: 5">R</span>
-                        <span class="label-char" style="--index: 6">N</span>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div class="wave-group">
-                      <div class="d-flex ">
-                        <input class="input text-light w-auto" type="number" id="lb" name="lb" min="0" placeholder="Libras" [(ngModel)]="constancia.lb" autocomplete="off">
-                        <input class="input text-light w-auto" type="number" id="onz" name="onz" min="0" placeholder="Onzas" [(ngModel)]="constancia.onz" autocomplete="off">
-                        <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">P</span>
-                        <span class="label-char" style="--index: 1">e</span>
-                        <span class="label-char" style="--index: 2">s</span>
-                        <span class="label-char" style="--index: 3">o</span>
-                        <span class="label-char text-black" style="--index: 4">_</span>
-                        <span class="label-char" style="--index: 5">R</span>
-                        <span class="label-char" style="--index: 6">N</span>
-                      </label>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                <div class="row mt-2 gap-1">
-                  <div class="col-5">
-                    <div class="wave-group">
-                      <input  type="date" class="input  text-light w-100" name="fecha_parto" id="fecha_parto" [(ngModel)]="constancia.fecha_parto" autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">F</span>
-                        <span class="label-char" style="--index: 1">e</span>
-                        <span class="label-char" style="--index: 2">c</span>
-                        <span class="label-char" style="--index: 3">h</span>
-                        <span class="label-char" style="--index: 4">a</span>
-                        <span class="label-char text-balck" style="--index: 5">_</span>
-                        <span class="label-char" style="--index: 6">P</span>
-                        <span class="label-char" style="--index: 7">a</span>
-                        <span class="label-char" style="--index: 8">r</span>
-                        <span class="label-char" style="--index: 9">t</span>
-                        <span class="label-char" style="--index: 10">o</span>
-                      </label>
-                    </div>
-
-
-                  </div>
-                  <div class="col-5">
-
-                    <div class="wave-group">
-                      <input type="time" class="input text-light w-100 " name="hora" id="hora" placeholder="hh:mm" [(ngModel)]="constancia.hora" autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">H</span>
-                        <span class="label-char" style="--index: 1">o</span>
-                        <span class="label-char" style="--index: 2">r</span>
-                        <span class="label-char" style="--index: 3">a</span>
-                        <span class="label-char text-balck" style="--index: 4">_</span>
-                        <span class="label-char" style="--index: 5">P</span>
-                        <span class="label-char" style="--index: 6">a</span>
-                        <span class="label-char" style="--index: 7">r</span>
-                        <span class="label-char" style="--index: 8">t</span>
-                        <span class="label-char" style="--index: 9">o</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row mt-2 gap-1">
-                  <div class="col-5">
-                    <div class="wave-group">
-                      <select  type="text" class="input  text-light w-100" name="tipo_parto" id="tipo_parto" [(ngModel)]="constancia.tipo_parto">
-                        <option class="bg-primary" *ngFor="let option of parto.tipoparto" [value]="option.value">{{option.label}}</option>
-                      </select>
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">T</span>
-                        <span class="label-char" style="--index: 1">i</span>
-                        <span class="label-char" style="--index: 2">p</span>
-                        <span class="label-char" style="--index: 3">o</span>
-                        <span class="label-char" style="--index: 4">De</span>
-                        <span class="label-char" style="--index: 5">P</span>
-                        <span class="label-char" style="--index: 6">a</span>
-                        <span class="label-char" style="--index: 7">r</span>
-                        <span class="label-char" style="--index: 8">t</span>
-                        <span class="label-char" style="--index: 9">o</span>
-                      </label>
-                    </div>
-
-
-                  </div>
-                  <div class="col-5">
-                    <div class="wave-group">
-                      <select  type="text" class="input  text-light w-100" name="clase_parto" id="clase_parto" [(ngModel)]="constancia.clase_parto">
-                        <option class="bg-primary" *ngFor="let option of parto.claseparto" [value]="option.value">{{option.label}}</option>
-                      </select>
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">C</span>
-                        <span class="label-char" style="--index: 1">l</span>
-                        <span class="label-char" style="--index: 2">a</span>
-                        <span class="label-char" style="--index: 3">s</span>
-                        <span class="label-char" style="--index: 4">e</span>
-                        <span class="label-char text-balck" style="--index: 5">De</span>
-                        <span class="label-char" style="--index: 6">P</span>
-                        <span class="label-char" style="--index: 7">a</span>
-                        <span class="label-char" style="--index: 8">r</span>
-                        <span class="label-char" style="--index: 9">t</span>
-                        <span class="label-char" style="--index: 10">o</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <hr>
-                <div class="row mt-2 gap-1">
-                  <div class="col-3">
-                    <div class="wave-group">
-                      <input  type="number" class="input text-light w-100" name="vivos" id="vivos" [(ngModel)]="constancia.vivos" min="0" (ngModelChange)="actualizarHijos()" autofocus autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">V</span>
-                        <span class="label-char" style="--index: 1">i</span>
-                        <span class="label-char" style="--index: 2">v</span>
-                        <span class="label-char" style="--index: 3">o</span>
-                        <span class="label-char" style="--index: 4">s</span>
-                      </label>
-                    </div>
-                  </div>
-                    <div class="col-3">
-                      <div class="wave-group">
-                        <input  type="number" class="input text-light w-100" name="muertos" id="muertos" [(ngModel)]="constancia.muertos" min="0" (ngModelChange)="actualizarHijos()" autofocus autocomplete="off">
-                        <span class="bar"></span>
-                        <label class="label">
-                          <span class="label-char" style="--index: 0">M</span>
-                          <span class="label-char" style="--index: 1">u</span>
-                          <span class="label-char" style="--index: 2">e</span>
-                          <span class="label-char" style="--index: 3">r</span>
-                          <span class="label-char" style="--index: 4">t</span>
-                          <span class="label-char" style="--index: 5">o</span>
-                          <span class="label-char" style="--index: 6">s</span>
-                        </label>
-                      </div>
-
-
-
-                    </div>
-
-                    <div class="col-3">
-                      <div class="wave-group">
-                        <input  type="number" class="input text-light w-100" name="hijos" id="hijos"  [(ngModel)]="hijosNacidos" autocomplete="off">
-                        <span class="bar"></span>
-                        <label class="label">
-                          <span class="label-char" style="--index: 0">H</span>
-                          <span class="label-char" style="--index: 1">i</span>
-                          <span class="label-char" style="--index: 2">j</span>
-                          <span class="label-char" style="--index: 3">o</span>
-                          <span class="label-char" style="--index: 4">s</span>
-                        </label>
-                      </div>
-
-
-
-                    </div>
-                </div>
-                <hr>
-                <div class="row mt-2 gap-1">
-                  <div class="col-3">
-                    <div class="wave-group">
-                      <input  type="text" class="input text-light w-100" name="colegiado" id="colegiado" [(ngModel)]="constancia.colegiado" (ngModelChange)="medico(constancia.colegiado)" autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">C</span>
-                        <span class="label-char" style="--index: 1">o</span>
-                        <span class="label-char" style="--index: 2">l</span>
-                        <span class="label-char" style="--index: 3">e</span>
-                        <span class="label-char" style="--index: 4">g</span>
-                        <span class="label-char" style="--index: 5">i</span>
-                        <span class="label-char" style="--index: 3">a</span>
-                        <span class="label-char" style="--index: 4">d</span>
-                        <span class="label-char" style="--index: 5">o</span>
-                      </label>
-                    </div>
-
-
-                  </div>
-
-                  <div class="col-7">
-                    <div class="wave-group">
-                      <select  type="text" class="input text-light w-100 bg-night" name="medico" id="medico" [(ngModel)]="constancia.medico" (ngModelChange)="medico(constancia.colegiado)">
-                        <option class="bg-primary" *ngFor="let m of medicos" [ngValue]="m.name">{{ m.name }} {{m.colegiado}}</option>
-                      </select>
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">M</span>
-                        <span class="label-char" style="--index: 1">e</span>
-                        <span class="label-char" style="--index: 2">d</span>
-                        <span class="label-char" style="--index: 3">i</span>
-                        <span class="label-char" style="--index: 4">c</span>
-                        <span class="label-char" style="--index: 5">o</span>
-
-                      </label>
-                    </div>
-
-
-                  </div>
-
-                  <div class="col-5">
-                    <div class="wave-group">
-                      <input  type="text" class="input  text-light w-100" name="dpi_medico" id="dpi_medico" [(ngModel)]="constancia.dpi_medico"  autocomplete="off">
-                      <span class="bar"></span>
-                      <label class="label">
-                        <span class="label-char" style="--index: 0">D</span>
-                        <span class="label-char" style="--index: 1">P</span>
-                        <span class="label-char" style="--index: 2">I</span>
-                        <span class="label-char text-balck" style="--index: 3">_</span>
-                        <span class="label-char" style="--index: 4">M</span>
-                        <span class="label-char" style="--index: 5">e</span>
-                        <span class="label-char" style="--index: 6">d</span>
-                        <span class="label-char" style="--index: 7">i</span>
-                        <span class="label-char" style="--index: 8">c</span>
-                        <span class="label-char" style="--index: 9">o</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-
-
             </form>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="crear()">Crear Constancia</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarInput()">Close</button>
+          <saveIcon (click)="crear()" />
+          <closeIcon data-bs-dismiss="modal" (click)="limpiarInput()" />
+
         </div>
       </div>
     </div>
