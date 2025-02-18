@@ -69,7 +69,7 @@
           <span [ngClass]="{'mujer': ingreso.sexo == 'F', 'hombre': ingreso.sexo != 'F'}">{{ ingreso.nombres | anyToText | capitalizeName }}</span><br>
             {{ingreso.apellidos |anyToText | capitalizeName}}
         </td>
-          <td class="text-center">
+          <td class="text-center" *ngIf="ingreso.fecha_egreso">
             {{ ingreso.fecha_consulta | estancia: ingreso.fecha_egreso }}
           </td>
         <td class="text-center">{{ingreso.servicio | anyToNumber| enumServicios}}</td>

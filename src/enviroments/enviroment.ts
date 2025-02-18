@@ -2,9 +2,11 @@ import { HostListener } from '@angular/core';
 
 const hostname = window.location.hostname.split(':')[0];
 const ip0 = 'http://' + hostname + ':8000';
-//const ip = 'http://192.168.0.200:8000';
+// const ip0 = 'https://hgtecpan.duckdns.org/api';
 
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: ip0
 };
+
+

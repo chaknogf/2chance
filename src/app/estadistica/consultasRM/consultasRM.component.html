@@ -1,18 +1,18 @@
 
 <div class="search-container">
-  <div class="rounded p-0">
+  <div class="search-div">
     <form class="search-form" autocomplete="off">
-      <input type="number" class="form-control search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
-     <select id="especialidad" class="form-control search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
+      <input type="number" class="search-input" name="id" id="idBuscar" placeholder="Id" [(ngModel)]="idBuscar" />
+     <select id="especialidad" class="search-input" [(ngModel)]="tipoBuscar" name="tipoBuscar">
         <option value="" disabled selected hidden>Tipo Consulta</option>
         <option *ngFor="let option of enums.tipo" [value]="option.value">{{ option.label }}</option>
       </select>
-      <input type="number" class="form-control search-input" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
-      <input type="number" class="form-control search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
-      <input type="date" class="form-control search-input" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
-      <input type="text" class="form-control search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
-      <input type="text" class="form-control search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
-      <input type="text" class="form-control search-input" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
+      <input type="number" class="search-input" name="Hoja" id="hojaBuscar" placeholder="hoja" [(ngModel)]="hojaBuscar" />
+      <input type="number" class="search-input" name="Expediente" placeholder="Expediente" [(ngModel)]="expedienteBuscar" />
+      <input type="date" class="search-input" name="Fecha" placeholder="fecha" [(ngModel)]="fechaBuscar" [max]="maxdate" />
+      <input type="text" class="search-input" placeholder="Nombre" name="nombreBuscar" [(ngModel)]="nombreBuscar">
+      <input type="text" class="search-input" placeholder="Apellido" name="apellidoBuscar" [(ngModel)]="apellidoBuscar">
+      <input type="text" class="search-input" placeholder="DPI" name="dpiBuscar" [(ngModel)]="dpiBuscar">
       <searchIcon (click)="filtro()" />
       <deleteInput (click)="limpiarInput()" />
     </form>

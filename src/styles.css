@@ -14269,3 +14269,8 @@ input[type="checkbox"] {
 .centered-container label {
   font-size: 12px !important;
 }
+
+input, textarea {
+  direction: rtl; /* Cambia la dirección de escritura de derecha a izquierda */
+  text-align: right; /* Alinea el texto a la derecha */
+}

@@ -28,7 +28,7 @@ import { Iusuarios } from 'src/app/models/Iusers';
   templateUrl: './tabMadres.component.html',
   styleUrls: ['./tabMadres.component.css']
 })
-export class TabMadresComponent implements OnInit  {
+export class TabMadresComponent implements OnInit {
 
   constructor(
     private pacientesService: PacientesService,
@@ -62,6 +62,7 @@ export class TabMadresComponent implements OnInit  {
   public patient: Ipaciente | undefined;
   public idCopiado: number = 0;
   public mostrarModal = false;
+  public validar: boolean = false;
 
   //variable para constancias
   public username = this.user.getUsernameLocally();
@@ -86,7 +87,7 @@ export class TabMadresComponent implements OnInit  {
   public usuarioActual: Iusuarios[] = [];
 
 
-//objeto constancias
+  //objeto constancias
   d: vecindades = {
     departamentos: departamentos,
     municipio: municipio,
@@ -201,6 +202,10 @@ export class TabMadresComponent implements OnInit  {
 
   }
 
+  validador() {
+    this.validar = true;
+  }
+
   filtro() {
     // Recopila los valores de entrada del formulario
     const filters = {
@@ -230,7 +235,7 @@ export class TabMadresComponent implements OnInit  {
     this.filteredPacientes = [];
 
 
-     // Obtén todos los pacientes nuevamente
+    // Obtén todos los pacientes nuevamente
   }
 
 
@@ -245,75 +250,75 @@ export class TabMadresComponent implements OnInit  {
 
 
 
-    }
+  }
 
   abrirModal(paciente: Ipaciente) {
 
-      this.pacientesService.getIdPaciente(paciente.id).subscribe(data => {
-        this.madre = data;
-        console.table(this.madre, data);
-        // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
-        this.detalleVisible = true;
-        this.constancia.madre = this.texto.capitalizar(`${data.nombre} ${data.apellido}`);
-        this.constancia.edad = this.Edad.años(data.nacimiento);
-        this.constancia.dpi = data.dpi;
-        this.constancia.passport = data.pasaporte;
-        this.constancia.vecindad = data.municipio;
-        this.constancia.expediente = data.expediente;
-        this.constancia.muni = data.ugar_nacimiento;
-        this.constancia.depto = data.depto_nac;
-        this.constancia.nacionalidad = data.nacionalidad.toString();
+    this.pacientesService.getIdPaciente(paciente.id).subscribe(data => {
+      this.madre = data;
+      console.table(this.madre, data);
+      // Abre el modal aquí, puedes establecer una propiedad para controlar la visibilidad del modal.
+      this.detalleVisible = true;
+      this.constancia.madre = this.texto.capitalizar(`${data.nombre} ${data.apellido}`);
+      this.constancia.edad = this.Edad.años(data.nacimiento);
+      this.constancia.dpi = data.dpi;
+      this.constancia.passport = data.pasaporte;
+      this.constancia.vecindad = data.municipio;
+      this.constancia.expediente = data.expediente;
+      this.constancia.muni = data.ugar_nacimiento;
+      this.constancia.depto = data.depto_nac;
+      this.constancia.nacionalidad = data.nacionalidad.toString();
 
 
-      });
-      this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
+    });
+    this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
+  }
+
+  NuevoCor() {
+    this.cnacSer.correlativo().subscribe(data => {
+      if (this.edit == false) {
+        // Actualiza el correlativo y año en tu objeto cNac
+        this.constancia.cor = data.cor;
+        this.constancia.ao = data.año;
+      }
+      this.constancia.doc = `${this.constancia.cor}-${this.constancia.ao}`
+      // console.table(data)
+    });
+  }
+
+  medico(col: number) {
+    this.mserv.getMedicoCol(col).subscribe(data => {
+      this.constancia.medico = data.name;
+      this.constancia.colegiado = data.colegiado;
+      this.constancia.dpi_medico = data.dpi;
+
+      //console.table(this.medicos)
     }
-
-    NuevoCor() {
-      this.cnacSer.correlativo().subscribe(data => {
-        if (this.edit == false) {
-          // Actualiza el correlativo y año en tu objeto cNac
-          this.constancia.cor = data.cor;
-          this.constancia.ao = data.año;
-        }
-        this.constancia.doc = `${this.constancia.cor}-${this.constancia.ao}`
-        // console.table(data)
-      });
-    }
-
-    medico(col: number) {
-      this.mserv.getMedicoCol(col).subscribe(data => {
-          this.constancia.medico = data.name;
-          this.constancia.colegiado = data.colegiado;
-          this.constancia.dpi_medico = data.dpi;
-
-          //console.table(this.medicos)
-        }
-      )
-    }
+    )
+  }
 
 
 
 
 
-    filtrarVecindades() {
-      // Filtrar la lista de municipios basándote en el departamento seleccionado
-      this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
-    }
+  filtrarVecindades() {
+    // Filtrar la lista de municipios basándote en el departamento seleccionado
+    this.vecindadFiltrados = this.d.vecindad.filter(vecin => vecin.value == this.constancia.vecindad);
+  }
 
-    reloadPage() {
-      // Llama al servicio para recargar la página
-      this.PageReloadService.reloadPage();
-    }
+  reloadPage() {
+    // Llama al servicio para recargar la página
+    this.PageReloadService.reloadPage();
+  }
 
-    crear(): void {
-      this.cnacSer.crearConstancias(this.constancia).subscribe(
-        (response) => {
+  crear(): void {
+    this.cnacSer.crearConstancias(this.constancia).subscribe(
+      (response) => {
 
-          //manejar la respuesta exitosa
-          console.log('Exito al crear', response);
-          //mostrar alert
-          const alertDiv = document.createElement("div");
+        //manejar la respuesta exitosa
+        console.log('Exito al crear', response);
+        //mostrar alert
+        const alertDiv = document.createElement("div");
         alertDiv.classList.add(
           "alert",
           "alert-sucess",
@@ -338,7 +343,7 @@ export class TabMadresComponent implements OnInit  {
         alertDiv.appendChild(messageDiv);
 
         document.body.appendChild(alertDiv);
-       // this.router.navigate(["/constancia/",this.constancia.id]);
+        // this.router.navigate(["/constancia/",this.constancia.id]);
         // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
           document.body.removeChild(alertDiv);
