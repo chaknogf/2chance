@@ -22,7 +22,7 @@
    </ng-container>
     <p class="text-start text-wrap "> Señores del RENAP</p>
     <p></p>
-    <p class="text-start text-wrap "> Para los efectos legales de la inscripción correspondiente, informó que en la fcha {{documetos?.fecha_parto | anyToText | FormatoFechaCompleta}} en  este Hospital General Tipo I de Tecpán Guatemala, Barrio San Antonio Sector Pachulalí de Tecpán Guatemala, dio a luz la paciente:</p>
+    <p class="text-start text-wrap "> Para los efectos legales de la inscripción correspondiente, informó que en la fecha {{documetos?.fecha_parto | anyToText | FormatoFechaCompleta}} en  este Hospital General Tipo I de Tecpán Guatemala, Barrio San Antonio Sector Pachulalí de Tecpán Guatemala, dio a luz la paciente:</p>
   </div>
   <div>
     <h3 class="text-center"> {{documetos?.madre | anyToText | capitalizeName}} </h3>
@@ -30,31 +30,28 @@
 
   <div>
     <p></p>
-    <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad >= 18"> Se identifica con Documento Personal de Identificación con Código Único de Identificación {{documetos?.dpi | anyToText | formatoDPI}} extendido por el Registro Nacional de las Personas de la Republica de Guatemala. De {{documetos?.edad}} años de edad. Originaria de {{documetos?.muni | anyToNumber | enumMunicipio}} y vecina de de {{documetos?.vecindad |anyToNumber | enumVecindad}}.</p>
+    <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad >= 18"> Se identifica con Documento Personal de Identificación con Código Único de Identificación {{documetos?.dpi | anyToText | formatoDPI}} extendido por el Registro Nacional de las Personas de la Republica de Guatemala. De {{documetos?.edad}} años de edad. Originaria de {{documetos?.muni | anyToNumber | enumMunicipio}} y vecina de {{documetos?.vecindad |anyToNumber | enumVecindad}}.</p>
 
 
     <p class="text-start text-wrap" *ngIf="documetos?.folio && documetos?.dpi">
       Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
       del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
       {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi}}. De {{documetos?.edad}} años de edad. Originaria de
-      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
-       {{documetos?.vecindad | anyToNumber | enumVecindad}}.
+      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de {{documetos?.vecindad | anyToNumber | enumMunicipio}}.
 
     </p>
     <p class="text-start text-wrap" *ngIf="documetos?.folio && !documetos?.dpi">
       Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
       del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
       {{documetos?.depto | anyToNumber | enumDepto}}. De {{documetos?.edad}} años de edad. Originaria de
-      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
-       {{documetos?.vecindad | anyToNumber | enumVecindad}}.
+      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de {{documetos?.vecindad | anyToNumber | enumMunicipio}}.
 
     </p>
     <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad < 18 && !documetos?.folio">
       Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
        {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}.
        De {{documetos?.edad}} años de edad. Originaria de
-      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de
-       {{documetos?.vecindad | anyToNumber | enumVecindad}}.
+      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de {{documetos?.vecindad | anyToNumber | enumMunicipio}}.
 
       </p>
       <p class="text-start text-wrap" *ngIf="documetos?.passport && !documetos?.dpi">
@@ -71,7 +68,7 @@
   </div>
   <div>
     <p></p>
-    <p class="text-start text-wrap"> Un producto de sexo: {{documetos?.sexo_rn | anyToText | sexo}} que pesó {{documetos?.lb}} libras {{documetos?.onz}} onzas, a las {{documetos?.hora | anyToText | formatoHora}} horas. Parto que fue atendido por {{pronombre}} {{documetos?.medico | anyToText | capitalizeName}}  Colegiado Activo {{documetos?.colegiado}} Con Código único De Identificación
+    <p class="text-start text-wrap"> Un producto de sexo: {{documetos?.sexo_rn | anyToText | sexo}} que pesó {{documetos?.lb}} libras {{documetos?.onz}} onzas, a las {{documetos?.hora | anyToText | formatoHora}} en la fecha {{documetos?.fecha_parto | anyToText | FormatoFechaCompleta}}. Parto que fue atendido por {{pronombre}} {{documetos?.medico | anyToText | capitalizeName}}  Colegiado Activo {{documetos?.colegiado}} Con Código único De Identificación
       {{documetos?.dpi_medico | anyToText | formatoDPI}}.</p>
   </div>
   <div>

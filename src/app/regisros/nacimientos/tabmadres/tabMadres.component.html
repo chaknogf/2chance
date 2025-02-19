@@ -153,8 +153,12 @@
                   </div>
               </div>
               <div class="custom-form-group">
-                <label>Hora del Parto</label>
+                <label>Fecha y Hora del Parto</label>
                 <div class="d-flex gap-1 justify-content-center">
+                  <div class="custom-form-group w-100">
+                    <label>Fecha</label>
+                    <input class="custom-input text-center" type="date" id="fecha_parto" name="fecha_parto" max="fechaActual" placeholder="Hora" [(ngModel)]="constancia.hora" autocomplete="off">
+                  </div>
                   <div class="custom-form-group w-100">
                     <label>Hora</label>
                     <input class="custom-input text-center" type="time" id="hora" name="hora" min="0" placeholder="Hora" [(ngModel)]="constancia.hora" autocomplete="off">
