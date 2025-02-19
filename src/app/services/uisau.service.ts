@@ -74,6 +74,14 @@ export class UisauService {
       }
     }
 
+    if (filtros.fecha_contacto) {
+      if (url.includes('?')) {
+        url += `&fecha=${filtros.fecha_contacto}`;
+      } else {
+        url += `?fecha=${filtros.fecha_contacto}`;
+      }
+    }
+
     if (filtros.apellidos) {
       if (url.includes('?')) {
         url += `&apellidos=${filtros.apellidos}`;

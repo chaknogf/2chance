@@ -1,6 +1,12 @@
 
 
 
+export interface ItelPaciente {
+  id: number;
+  expediente: number;
+  telefono?: string;
+}
+
 
 export interface Ipaciente {
   // [key: string]: string | number | boolean | Date | Nacionalidad[]| Municipio[]  ;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, interval, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, interval, BehaviorSubject, catchError, throwError } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { Ipaciente } from '../models/Ipaciente';
 import { environment } from 'src/enviroments/enviroment';
@@ -89,6 +89,22 @@ export class PacientesService {
 
   trasladar(id: number, updateP: Ipaciente): Observable<any> {
     return this.http.put(this.urlapi + '/trasladar/' + id + '?token=' + this.token, updateP)
+  }
+
+  telefono(exp: number, updateP: Ipaciente): Observable<any> {
+    const token = this.token ? encodeURIComponent(this.token) : '';
+    const url = `${this.urlapi}/telefono/${encodeURIComponent(exp)}?token=${token}`;
+    return this.http.patch(url, updateP, {
+      headers: { 'Content-Type': 'application/json' }
+    }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  // Método para manejar errores (puedes personalizarlo)
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('Error en la API:', error);
+    return throwError(() => new Error('Error en la actualización del teléfono. Inténtalo nuevamente.'));
   }
 
   deletePaciente(id: number): Observable<any> {

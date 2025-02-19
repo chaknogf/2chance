@@ -14109,6 +14109,17 @@ h4 {
   z-index: 1000;
   /* box-shadow: 0 3px 0 0 #535e6594; */
 }
+.svg-container-mini svg{
+  display: inline-block;
+  padding: 4px;
+  border: #03a9f4 solid 0.5px;
+  border-radius: 20%;
+  /* background-color: #001019c4; */
+  z-index: 1000;
+  width: 28px;
+  height: 28px;
+  /* box-shadow: 0 3px 0 0 #535e6594; */
+}
 
 .svg-container-square {
   display: inline-block;

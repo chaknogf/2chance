@@ -6,7 +6,7 @@
         <i class="bi bi-pencil-square"></i>
       </button>
       <p class="mb-0 fw-bold">{{ consulta?.id }}</p>
-      <newIcon class="btn search-btn" [routerLink]="['/formUisau/new/', consulta?.id]" />
+      <newIcon class="btn search-btn" [routerLink]="['/informa/new/', consulta?.id]" />
 
     </div>
 
@@ -58,8 +58,12 @@
       </div>
       <div class="col border-bottom pb-1">
         <p class="fw-bold mb-1">Teléfono</p>
-        <p class="mb-0 text-muted">{{ paciente?.telefono }}</p>
-        <editIcon />
+        <p class="mb-0 text-muted" *ngIf="editContact == false">{{ paciente?.telefono }}</p>
+        <!-- <div class="input-group" *ngIf="editContact == true">
+          <input  type="text" class="custom-input" id="telefono" name="telefono" [(ngModel)]="p.telefono" placeholder="telefono" autofocus>
+          <button class="btn btn-primary" (click)="editarTelefono()">Guardar</button>
+        </div>
+        <editIcon (click)="updateTel()" /> -->
       </div>
       <div class="col border-bottom pb-1">
         <p class="fw-bold mb-1">Teléfono Familiar</p>
@@ -113,196 +117,211 @@
     </div>
 
   </section>
-  <section class="search-container rounded-b-full col-md-9 svg-container" >
+  <section class="search-container rounded-b-full col-md-9 svg-container-mini" >
     <div *ngFor="let item of resumen" class="mb-3 border-bottom pb-3">
       <div class="div-search w-100">
         <div class="div-btn-icons justify-content-between" (click)="handleMostrarData(item.id)">
           <ng-container class="text-start" >
-            <div *ngIf="!item.fecha_contacto"><contactarIcon [routerLink]="['/contacto/', item.id]" /> Informar</div>
-            <div *ngIf="item.fecha_contacto"><gestionIcon  />  {{ item.id }}</div>
+            <div ><contactarIcon [routerLink]="['/informa/edit/', item.id]" /> Informar</div>
+            <div *ngIf="item.informacion == 'SI'"><gestionIcon  />  {{ item.id }}</div>
             <div> <calendarIcon /> {{item.fecha | anyToText | FormatoFechaCompleta}}</div>
             <div> <timeIcon class="text-info" /> {{item.hora}}</div>
             <div> <userFluentIcon  />  {{item.created_by}}</div>
           </ng-container>
         </div>
 
-        <ul class="list-group" >
-          <li class="list-group-item t-w-d d-flex justify-content-end align-items-center" *ngIf="item.fecha_contacto">
+        <ul class="list-group t-d-w" >
+          <li class="list-group-item   justify-content-end align-items-center" *ngIf="item.fecha_contacto">
             <div *ngIf="item.informacion">
               Se informo:
-              <span class="badge bg-light rounded-pill"  >
+              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NO'" >
                 {{item.informacion}}
+              </span>
+              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NR'" >
+                No Responde
+              </span>
+              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NE'" >
+                No Esta
+              </span>
+              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'TI'" >
+                Telefono Incorrecto
+              </span>
+              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'SP'" >
+                Si Presencial <personTalkIcon />
+              </span>
+              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'ST'" >
+                Si Telefonico <telefonoColorIcon />
               </span>
             </div>
             <div *ngIf="item.contacto">
               Contacto:
-              <span class="badge bg-light rounded-pill" >
+              <span class="badge bg-light rrounded" >
                 {{item.contacto}}
               </span>
             </div>
             <div *ngIf="item.parentesco">
               Parentesco:
-            <span class="badge bg-light rounded-pill" >
+            <span class="badge bg-light rrounded" >
               {{item.parentesco |anyToNumber | enumParentesco}}
             </span>
             </div>
             <div *ngIf="item.telefono">
               Telefono:
-            <span class="badge bg-light rounded-pill">
+            <span class="badge bg-light rrounded">
               {{item.telefono}}
             </span>
             </div>
             <div>
               Fecha y Hora de la Información:
-            <span class="badge bg-light rounded-pill">
+            <span class="badge bg-light rrounded">
               {{item.fecha_contacto | anyToText | FormatoFechaCompleta}} {{item.hora_contacto}}
             </span>
             </div>
             <div>
                Quien informo:
-            <span class="badge bg-light rounded-pill">
+            <span class="badge bg-light rrounded">
               {{item.update_by}}
             </span>
             </div>
           </li>
-          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.estado || item.situacion || item.estadia || item.cama">
+          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.estado || item.situacion || item.estadia || item.cama">
             <div *ngIf="item.estado">
               Estado:
-              <span class="badge bg-light rounded-pill"  >
+              <span class="badge bg-light rrounded"  >
                 {{item.estado |anyToNumber | enumEstado}}
               </span>
             </div>
             <div *ngIf="item.situacion">
               Situación:
-              <span class="badge bg-light rounded-pill" >
+              <span class="badge bg-light rrounded" >
                 {{item.situacion |anyToNumber | enumSituacion}}
               </span>
             </div>
             <div *ngIf="item.estadia">
               Estadia:
-            <span class="badge bg-light rounded-pill" >
+            <span class="badge bg-light rrounded" >
               {{item.estadia |anyToNumber | enumEstadia}}
             </span>
             </div>
             <div *ngIf="item.cama">
               Cama:
-            <span class="badge bg-light rounded-pill">
+            <span class="badge bg-light rrounded">
               {{item.cama}}
             </span>
             </div>
           </li>
-          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.lugar_referencia || item.fecha_referencia">
+          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.lugar_referencia || item.fecha_referencia">
             <div *ngIf="item.lugar_referencia" >
               Lugar de Referencia:
-              <span class="badge bg-light rounded-pill">
+              <span class="badge bg-light rrounded">
                 {{item.lugar_referencia |anyToNumber | enumReferencia}}
               </span>
             </div>
             <div *ngIf="item.fecha_referencia">
               Fecha de Referencia:
-              <span class="badge bg-light rounded-pill">
+              <span class="badge bg-light rrounded">
                 {{item.fecha_referencia | anyToText | formatoFecha}}
               </span>
             </div>
           </li>
-          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.servicio || item.especialidad">
+          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.servicio || item.especialidad">
             <div *ngIf="item.servicio" >
               Servicio:
-              <span class="badge bg-light rounded-pill">
+              <span class="badge bg-light rrounded">
                 {{item.servicio |anyToNumber | enumServicios}}
               </span>
             </div>
             <div *ngIf="item.especialidad">
               Especialidad:
-              <span class="badge bg-light rounded-pill">
+              <span class="badge bg-light rrounded">
                 {{item.especialidad |anyToNumber | enumEspecialidad}}
               </span>
             </div>
           </li>
-          <li class="list-group-item t-w-d d-flex justify-content-between align-items-center" *ngIf="item.evolucion || item.estudios || item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
+          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.evolucion || item.estudios || item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
             <div *ngIf="item.evolucion" >
               Evolución:
-              <span class="badge bg-light rounded-pill">
+              <span class="badge bg-light rrounded">
                 {{item.evolucion}}
               </span>
             </div>
             <div *ngIf="item.estudios">
               Estudios:
-              <span class="badge bg-light rounded-pill">
+              <span class="badge bg-light rrounded">
                 {{item.estudios}}
               </span>
             </div>
             <div *ngIf="item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
               Diagnóstico:
-              <span class="badge bg-light rounded-pill" *ngIf="item.dxA">
+              <span class="badge bg-light rrounded" *ngIf="item.dxA">
                 {{item.dxA}}
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.dxB">
+              <span class="badge bg-light rrounded" *ngIf="item.dxB">
                 {{item.dxB}}
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.dxC">
+              <span class="badge bg-light rrounded" *ngIf="item.dxC">
                 {{item.dxC}}
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.dxD">
+              <span class="badge bg-light rrounded" *ngIf="item.dxD">
                 {{item.dxD}}
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.dxE">
+              <span class="badge bg-light rrounded" *ngIf="item.dxE">
                 {{item.dxE}}
               </span>
             </div>
           </li>
-          <li class="list-group-item t-w-d d-flex justify-content-start align-items-center" *ngIf="item.nota">
+          <li class="list-group-item  d-flex justify-content-start align-items-center" *ngIf="item.nota">
             Nota:
-            <span class="badge bg-light rounded-pill">
+            <span class="badge bg-light rrounded">
               {{item.nota}}
             </span>
           </li>
-          <li class="list-group-item t-w-d d-flex justify-content-start align-items-center" *ngIf="item.shampoo || item.toalla || item.peine || item.jabon || item.cepillo_dientes || item.pasta_dental || item.sandalias">
+          <li class="list-group-item  d-flex justify-content-start align-items-center" *ngIf="item.shampoo || item.toalla || item.peine || item.jabon || item.cepillo_dientes || item.pasta_dental || item.sandalias">
             <div>
               Articulos:
-              <span class="badge bg-light rounded-pill" *ngIf="item.shampoo">
+              <span class="badge bg-light rrounded" *ngIf="item.shampoo">
                 Shampoo
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.toalla" >
+              <span class="badge bg-light rrounded" *ngIf="item.toalla" >
                 Toalla
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.peine">
+              <span class="badge bg-light rrounded" *ngIf="item.peine">
                 Peine
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.jabon">
+              <span class="badge bg-light rrounded" *ngIf="item.jabon">
                 Jabón
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.cepillo_dientes">
+              <span class="badge bg-light rrounded" *ngIf="item.cepillo_dientes">
                Cepillo de dientes
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.pasta_dental">
+              <span class="badge bg-light rrounded" *ngIf="item.pasta_dental">
                 Pasta dental
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.sandalias">
+              <span class="badge bg-light rrounded" *ngIf="item.sandalias">
                 Sandalias
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.agua">
+              <span class="badge bg-light rrounded" *ngIf="item.agua">
                 Agua
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.papel">
+              <span class="badge bg-light rrounded" *ngIf="item.papel">
                 Papel
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.panal_bebe">
+              <span class="badge bg-light rrounded" *ngIf="item.panal_bebe">
                 Pañales de bebe
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.panal_adulto">
+              <span class="badge bg-light rrounded" *ngIf="item.panal_adulto">
                 Pañales de adulto
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.toalla_humeda">
+              <span class="badge bg-light rrounded" *ngIf="item.toalla_humeda">
                 Toalla humeda
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.ropa_interior">
+              <span class="badge bg-light rrounded" *ngIf="item.ropa_interior">
                 Ropa interior
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.babero">
+              <span class="badge bg-light rrounded" *ngIf="item.babero">
                 Babero
               </span>
-              <span class="badge bg-light rounded-pill" *ngIf="item.otros">
+              <span class="badge bg-light rrounded" *ngIf="item.otros">
                 Otros especificados en notas
               </span>
             </div>

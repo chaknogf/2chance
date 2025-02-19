@@ -165,6 +165,10 @@ import { CuadroLlenoIconComponent } from 'src/assets/svg/cuadroLleno/cuadroLleno
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CambioIconComponent } from 'src/assets/svg/cambioIcon/cambioIcon.component';
 import { CopyToClipboardDirective } from './Directive/CopyToClipboard.directive';
+import { DocumentacionComponent } from './uisau/documentacion/documentacion.component';
+import { TelefonoColorIconComponent } from 'src/assets/svg/telefonoColorIcon/telefonoColorIcon.component';
+import { PersonTalkIconComponent } from 'src/assets/svg/personTalkIcon/personTalkIcon.component';
+
 
 
 @NgModule({
@@ -344,6 +348,10 @@ import { CopyToClipboardDirective } from './Directive/CopyToClipboard.directive'
     NotFoundComponent,
     CambioIconComponent,
     CopyToClipboardDirective,
+    DocumentacionComponent,
+    TelefonoColorIconComponent,
+    PersonTalkIconComponent,
+
 
 
 
@@ -388,6 +396,9 @@ import { CopyToClipboardDirective } from './Directive/CopyToClipboard.directive'
       { path: 'consulta/view/:id', component: ReporteComponent, canActivate: [AuthGuard] },
       { path: 'uisau', component: TablaUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau', component: FormUisauComponent, canActivate: [AuthGuard] },
+      { path: 'informa', component: DocumentacionComponent, canActivate: [AuthGuard] },
+      { path: 'informa/new/:id', component: DocumentacionComponent, canActivate: [AuthGuard] },
+      { path: 'informa/edit/:id', component: DocumentacionComponent, canActivate: [AuthGuard] },
       { path: 'contacto/:id', component: EditUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau/new/:id', component: FormUisauComponent, canActivate: [AuthGuard] },
       { path: 'formUisau/edit/:id', component: FormUisauComponent, canActivate: [AuthGuard] },

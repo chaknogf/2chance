@@ -1,0 +1,339 @@
+<div class="d-flex justify-content-between mx-3 gap-px">
+  <div>
+    <dataViewIcon />
+    <p class="fs-mini">{{info.id_consulta}}</p>
+  </div>
+  <div>
+    <strong class="text-center f-negrita">Expediente</strong>
+    <p class="text-center">{{ info.expediente }}</p>
+  </div>
+  <div class="text-center">
+    <strong class="text-center f-negrita">Paciente</strong>
+    <p class="">{{ info.nombres | anyToText | capitalizeName }} {{ info.apellidos | anyToText | capitalizeName }}</p>
+  </div>
+
+</div>
+<div class="d-flex-desktop">
+
+  <div class="search-container col-md-8">
+    <form class="custom-form ">
+      <div class="div-btn-icons">
+        <backIcon (click)="regresar()" />
+        <saveIcon (click)="edit ? editar() : registrar()" data-bs-dismiss="modal" aria-label="Close" />
+      </div>
+      <div class="custom-form-group">
+        <label >Nota</label>
+        <textarea class="custom-input" name="nota" id="nota" rows="3" [(ngModel)]="info.nota"></textarea>
+      </div>
+      <section>
+        <div class="custom-form-group">
+          <label for="estado" >Estado del Paciente</label>
+          <select id="estado" class="custom-input" [(ngModel)]="info.estado" name="estado" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.estado" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group">
+          <label for="situacion" >Situación</label>
+          <select id="situacion" class="custom-input" [(ngModel)]="info.situacion" (change)="mostrarRef()" name="situacion" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.situacion" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 1">
+          <label for="cama" >Cama</label>
+          <input id="cama" class="custom-input" type="number" name="cama" [(ngModel)]="info.cama">
+        </div>
+        <div class="custom-form-group">
+          <label for="estadia" >Estadia</label>
+          <select id="estadia" class="custom-input" [(ngModel)]="info.estadia" name="estadia" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.estadia" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 5">
+          <label for="especialidad" >Especialidad</label>
+          <select id="especialidad" class="custom-input" [(ngModel)]="info.especialidad" name="especialidad" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.especialidad" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 5">
+          <label for="servicios" >Servicio</label>
+          <select id="servicios" class="custom-input" [(ngModel)]="info.servicio" name="servicio" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.servicios" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+
+        <div class="custom-form-group" *ngIf="info.situacion == 4">
+          <label for="referencia" >Lugar de Referencia</label>
+          <select id="referencia" class="custom-input" [(ngModel)]="info.lugar_referencia" name="referencia" autofocus>
+            <option></option>
+            <option *ngFor="let option of refFiltrados" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 4">
+          <label >Fecha de Referencia</label>
+          <input class="custom-input" type="date" [max]="fechaActual" [min]="mindate" name="fecha_ref" [(ngModel)]="info.fecha_referencia">
+        </div>
+        <div class="custom-form-group">
+          <label >Diagnóstico A</label>
+          <input class="custom-input" type="text" name="dxA" [(ngModel)]="info.dxA">
+        </div>
+        <div *ngIf="info.dxA" class="custom-form-group">
+          <label >Diagnóstico B</label>
+          <input class="custom-input" type="text" name="dxB" [(ngModel)]="info.dxB">
+        </div>
+
+        <div *ngIf="info.dxB" class="custom-form-group">
+          <label >Diagnóstico C</label>
+          <input class="custom-input" type="text" name="dxC" [(ngModel)]="info.dxC">
+        </div>
+
+        <div *ngIf="info.dxC" class="custom-form-group">
+          <label >Diagnóstico D</label>
+          <input class="custom-input" type="text" name="dxD" [(ngModel)]="info.dxD">
+        </div>
+
+        <div *ngIf="info.dxD" class="custom-form-group">
+          <label >Diagnóstico E</label>
+          <input class="custom-input" type="text" name="dxE" [(ngModel)]="info.dxE">
+        </div>
+        <div class="custom-form-group">
+          <label for="evolucion" >Evolución</label>
+          <textarea class="custom-input" name="evolucion" id="evolucion" rows="3" [(ngModel)]="info.evolucion"></textarea>
+        </div>
+        <div class="custom-form-group">
+          <label >Estudios</label>
+          <textarea class="custom-input" name="estudios" id="estudios" rows="3" [(ngModel)]="info.estudios"></textarea>
+        </div>
+
+      </section>
+      <section>
+        <div class="custom-form-group">
+          <label for="contacto" class="">Contacto</label>
+          <input class="custom-input" type="text" name="contacto" id="contacto" [(ngModel)]="info.contacto" autocomplete="off">
+        </div>
+        <div class="custom-form-group">
+          <label class="">Parentesco</label>
+          <select id="parentesco" class="custom-input" [(ngModel)]="info.parentesco" name="parentesco" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.parentesco" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group">
+          <label class="">Teléfono</label>
+          <input type="number" name="telefono" id="telefono" class="custom-input" [(ngModel)]="info.telefono" autocomplete="off">
+        </div>
+        <div class="custom-form-group">
+          <label class="">¿Se informó?</label>
+          <select id="informacion" class="custom-input" [(ngModel)]="info.informacion" name="informacion" autofocus>
+            <option value="SP">SI Presencial</option>
+            <option value="ST">SI Telefonico</option>
+            <option value="NO">NO</option>
+            <option value="NR">No Responde</option>
+            <option value="NE">No Está</option>
+            <option value="TI">Teléfono Incorrecto</option>
+            <!-- <option value="SI">SI</option> -->
+          </select>
+        </div>
+      </section>
+
+
+
+
+
+    </form>
+  </div>
+
+  <div class="search-container col-md-4">
+    <form class="custom-form">
+      <div class="row">
+        <div class="custom-form-group text-center">
+          <label >Recetado por</label>
+          <input class="form-check" type="checkbox" name="recetaPor" id="recetaPorSi" [(ngModel)]="info.receta_por"  />
+        </div>
+      </div>
+      <h4 class="text-center">Articulos</h4>
+      <div class="d-flex justify-content-between">
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="shampooSi">Shampoo</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="shampoo"
+            id="shampooSi"
+            checked=""
+            [(ngModel)]="info.shampoo"
+          />
+        </div>
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="toallaSi">Toalla</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="toalla"
+            id="toallaSi"
+            value="true"
+            [(ngModel)]="info.toalla"
+          />
+        </div>
+        <div class="custom-form-group text-center label-checkbox">
+            <label class="form-check-label" for="peineSi">Peine</label>
+            <input
+              class="form-check"
+              type="checkbox"
+              name="peine"
+              id="peineSi"
+              [(ngModel)]="info.peine"
+            />
+         </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="jabonSi">Jabón</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="jabon"
+            id="jabonSi"
+            [(ngModel)]="info.jabon"
+          />
+        </div>
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="cepilloDientesSi">Cepillo de Dientes</label>
+          <input
+              class="form-check"
+              type="checkbox"
+              name="cepilloDientes"
+              id="cepilloDientesSi"
+              [(ngModel)]="info.cepillo_dientes"
+            />
+        </div>
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="pastadentalSi">Pasta de Dientes</label>
+          <input
+              class="form-check"
+              type="checkbox"
+              name="pastaDental"
+              id="pastaDentalSi"
+              [(ngModel)]="info.pasta_dental"
+            />
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="sandaliasSi">Sandalias</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="sandalias"
+            id="sandaliasSi"
+            [(ngModel)]="info.sandalias"
+          />
+        </div>
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="aguaSi">Agua</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="agua"
+            id="aguaSi"
+            [(ngModel)]="info.agua"
+          />
+        </div>
+        <div class="custom-form-group text-center label-checkbox">
+            <label class="form-check-label" for="papelSi">Papel Higienico</label>
+            <input
+              class="form-check"
+              type="checkbox"
+              name="papel"
+              id="papelSi"
+              [(ngModel)]="info.papel"
+            />
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="panalBebe">Pañales de bebe</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="panalBebe"
+            id="panalSi"
+            [(ngModel)]="info.panal_bebe"
+          />
+          </div>
+          <div class="custom-form-group text-center label-checkbox">
+            <label class="form-check-label" for="panalSi">Pañales de Adulto</label>
+            <input
+              class="form-check"
+              type="checkbox"
+              name="panalAdulto"
+              id="panalAdulto"
+              [(ngModel)]="info.panal_adulto"
+            />
+            </div>
+            <div class="custom-form-group text-center label-checkbox">
+              <label class="form-check-label" for="toallasHumedas">Toallas Humedas</label>
+              <input
+                class="form-check"
+                type="checkbox"
+                name="toallasHumedas"
+                id="toallasHumedas"
+                [(ngModel)]="info.toalla_humeda"
+              />
+              </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="custom-form-group text-center label-checkbox">
+          <label class="form-check-label" for="ropa interior">Ropa Interior</label>
+          <input
+            class="form-check"
+            type="checkbox"
+            name="ropaInterior"
+            id="ropaInterior"
+
+            [(ngModel)]="info.ropa_interior"
+          />
+          </div>
+          <div class="custom-form-group text-center label-checkbox">
+            <label class="form-check-label" for="ropaBebe">Ropa para Bebe</label>
+            <input
+              class="form-check"
+              type="checkbox"
+              name="ropaBebe"
+              id="ropaBebe"
+              [(ngModel)]="info.ropa_bebe"
+            />
+            </div>
+            <div class="custom-form-group text-center label-checkbox">
+              <label class="form-check-label" for="Babero">Babero</label>
+              <input
+                class="form-check"
+                type="checkbox"
+                name="babero"
+                id="babero"
+                [(ngModel)]="info.babero"
+              />
+              </div>
+              <div class="custom-form-group text-center label-checkbox">
+                <label class="form-check-label" for="otros">Otros</label>
+                <input
+                  class="form-check"
+                  type="checkbox"
+                  name="otros"
+                  id="otros"
+                  [(ngModel)]="info.otros"
+                />
+                </div>
+      </div>
+    </form>
+  </div>
+
+
+
+</div>
+
+
