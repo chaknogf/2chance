@@ -30,31 +30,30 @@
 
   <div>
     <p></p>
-    <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad >= 18"> Se identifica con Documento Personal de Identificación con Código Único de Identificación {{documetos?.dpi | anyToText | formatoDPI}} extendido por el Registro Nacional de las Personas de la Republica de Guatemala. De {{documetos?.edad}} años de edad. Originaria de {{documetos?.muni | anyToNumber | enumMunicipio}} y vecina de {{documetos?.vecindad |anyToNumber | enumVecindad}}.</p>
+    <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad >= 18"> Se identifica con Documento Personal de Identificación con Código Único de Identificación {{documetos?.dpi | anyToText | formatoDPI}} extendido por el Registro Nacional de las Personas de la Republica de Guatemala. De {{documetos?.edad}} años de edad. Originaria de {{documetos?.muni | anyToNumber | enumVecindad}} y vecina de {{documetos?.vecindad |anyToNumber | enumVecindad}}.</p>
 
 
     <p class="text-start text-wrap" *ngIf="documetos?.folio && documetos?.dpi">
       Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
-      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
+      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumVecindad}}, del Departamento de
       {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi}}. De {{documetos?.edad}} años de edad. Originaria de
-      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de {{documetos?.vecindad | anyToNumber | enumMunicipio}}.
+      {{documetos?.muni | anyToNumber | enumVecindad}} y vecina de {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
     </p>
     <p class="text-start text-wrap" *ngIf="documetos?.folio && !documetos?.dpi">
       Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
-      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
+      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumVecindad}}, del Departamento de
       {{documetos?.depto | anyToNumber | enumDepto}}. De {{documetos?.edad}} años de edad. Originaria de
-      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de {{documetos?.vecindad | anyToNumber | enumMunicipio}}.
+      {{documetos?.muni | anyToNumber | enumVecindad}} y vecina de {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
     </p>
     <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad < 18 && !documetos?.folio">
-      Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
+      Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumVecindad}}, del Departamento de
        {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}.
        De {{documetos?.edad}} años de edad. Originaria de
-      {{documetos?.muni | anyToNumber | enumMunicipio}}, {{documetos?.depto | anyToNumber | enumDepto}} y vecina de {{documetos?.vecindad | anyToNumber | enumMunicipio}}.
+      {{documetos?.muni | anyToNumber | enumVecindad}} y vecina de {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
-      </p>
-      <p class="text-start text-wrap" *ngIf="documetos?.passport && !documetos?.dpi">
+       <p class="text-start text-wrap" *ngIf="documetos?.passport && !documetos?.dpi">
         Se identifica con No. de pasaporte {{documetos?.passport}} Tipo P  codigo de pasaporte NIC de nacionalidad {{documetos?.nacionalidad}}.
          De {{documetos?.edad}} años de edad. Originaria de {{documetos?.pais}}.
 
