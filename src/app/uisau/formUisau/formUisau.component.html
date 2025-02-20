@@ -1,146 +1,130 @@
+<div class="d-flex justify-content-between mx-3 gap-px">
+  <div>
+    <dataViewIcon />
+    <p class="fs-mini">{{info.id_consulta}}</p>
+  </div>
+  <div>
+    <strong class="text-center f-negrita">Expediente</strong>
+    <p class="text-center">{{ info.expediente }}</p>
+  </div>
+  <div class="text-center">
+    <strong class="text-center f-negrita">Paciente</strong>
+    <p class="">{{ info.nombres | anyToText | capitalizeName }} {{ info.apellidos | anyToText | capitalizeName }}</p>
+  </div>
+
+</div>
 <div class="d-flex-desktop">
-  <div *ngIf="showAlertSuccess" class="alert alert-dismissible alert-success">
-    <closeIcon  (click)="closeAlert()" />
-    <strong>{{ message }}</strong>
-  </div>
 
-  <div *ngIf="showAlertWarning" class="alert alert-dismissible alert-warning">
-    <closeIcon data-bs-dismiss="alert"/>
-    <h4 class="alert-heading">Warning!</h4>
-    <p class="mb-0">{{message}}</p>
-  </div>
-
-  <div class="search-container col-md-4">
-    <div class="border rounded p-3">
-      <div class="row">
-        <div class="col-md-3 text-center">
-          <strong class="text-center f-negrita">Id de Consulta</strong>
-          <p class="p-0 my-0">{{ info.id_consulta }}</p>
-        </div>
-
-        <div class="col-md-3 text-center">
-          <strong class="text-center f-negrita">Expediente</strong>
-          <p class="p-0 my-0">{{ info.expediente }}</p>
-        </div>
-
-        <div class="col-md-6 text-center">
-          <strong class="text-center f-negrita">Paciente</strong>
-          <p class="p-0 my-0">{{ info.nombres | anyToText | capitalizeName }} {{ info.apellidos | anyToText | capitalizeName }}</p>
-        </div>
-      </div>
-    </div>
-    <form class="custom-form">
-      <div class="custom-form-group">
-        <label for="estado" >Estado del Paciente</label>
-        <select id="estado" class="custom-input" [(ngModel)]="info.estado" name="estado" autofocus>
-          <option></option>
-          <option *ngFor="let option of op.estado" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-      <div class="custom-form-group">
-        <label for="situacion" >Situación</label>
-        <select id="situacion" class="custom-input" [(ngModel)]="info.situacion" (change)="mostrarRef()" name="situacion" autofocus>
-          <option></option>
-          <option *ngFor="let option of op.situacion" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-      <div class="custom-form-group" *ngIf="info.situacion == 1">
-        <label for="cama" >Cama</label>
-        <input id="cama" class="custom-input" type="number" name="cama" [(ngModel)]="info.cama">
-      </div>
-      <div class="custom-form-group">
-        <label for="estadia" >Estadia</label>
-        <select id="estadia" class="custom-input" [(ngModel)]="info.estadia" name="estadia" autofocus>
-          <option></option>
-          <option *ngFor="let option of op.estadia" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-      <div class="custom-form-group" *ngIf="info.situacion == 5">
-        <label for="especialidad" >Especialidad</label>
-        <select id="especialidad" class="custom-input" [(ngModel)]="info.especialidad" name="especialidad" autofocus>
-          <option></option>
-          <option *ngFor="let option of op.especialidad" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-      <div class="custom-form-group" *ngIf="info.situacion == 5">
-        <label for="servicios" >Servicio</label>
-        <select id="servicios" class="custom-input" [(ngModel)]="info.servicio" name="servicio" autofocus>
-          <option></option>
-          <option *ngFor="let option of op.servicios" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-
-      <div class="custom-form-group" *ngIf="info.situacion == 4">
-        <label for="referencia" >Lugar de Referencia</label>
-        <select id="referencia" class="custom-input" [(ngModel)]="info.lugar_referencia" name="referencia" autofocus>
-          <option></option>
-          <option *ngFor="let option of refFiltrados" [value]="option.value">{{option.label}}</option>
-        </select>
-      </div>
-      <div class="custom-form-group" *ngIf="info.situacion == 4">
-        <label >Fecha de Referencia</label>
-        <input class="custom-input" type="date" [max]="fechaActual" [min]="mindate" name="fecha_ref" [(ngModel)]="info.fecha_referencia">
-      </div>
-    </form>
-
-
-
-  </div>
-
-  <div class="search-container col-md-4">
-    <form class="custom-form">
-      <div class="custom-form-group">
-        <label >Diagnóstico A</label>
-        <input class="custom-input" type="text" name="dxA" [(ngModel)]="info.dxA">
-      </div>
-      <div *ngIf="info.dxA" class="custom-form-group">
-        <label >Diagnóstico B</label>
-        <input class="custom-input" type="text" name="dxB" [(ngModel)]="info.dxB">
-      </div>
-
-      <div *ngIf="info.dxB" class="custom-form-group">
-        <label >Diagnóstico C</label>
-        <input class="custom-input" type="text" name="dxC" [(ngModel)]="info.dxC">
-      </div>
-
-      <div *ngIf="info.dxC" class="custom-form-group">
-        <label >Diagnóstico D</label>
-        <input class="custom-input" type="text" name="dxD" [(ngModel)]="info.dxD">
-      </div>
-
-      <div *ngIf="info.dxD" class="custom-form-group">
-        <label >Diagnóstico E</label>
-        <input class="custom-input" type="text" name="dxE" [(ngModel)]="info.dxE">
-      </div>
-      <div class="custom-form-group">
-        <label for="evolucion" >Evolución</label>
-        <textarea class="custom-input" name="evolucion" id="evolucion" rows="3" [(ngModel)]="info.evolucion"></textarea>
-      </div>
-      <div class="custom-form-group">
-        <label >Estudios</label>
-        <textarea class="custom-input" name="estudios" id="estudios" rows="3" [(ngModel)]="info.estudios"></textarea>
+  <div class="search-container col-md-8">
+    <form class="custom-form ">
+      <div class="div-btn-icons">
+        <backIcon (click)="regresar()" />
+        <saveIcon (click)="edit ? editar() : registrar()" data-bs-dismiss="modal" aria-label="Close" />
       </div>
       <div class="custom-form-group">
         <label >Nota</label>
         <textarea class="custom-input" name="nota" id="nota" rows="3" [(ngModel)]="info.nota"></textarea>
       </div>
+      <section>
+        <div class="custom-form-group">
+          <label for="estado" >Estado del Paciente</label>
+          <select id="estado" class="custom-input" [(ngModel)]="info.estado" name="estado" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.estado" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group">
+          <label for="situacion" >Situación</label>
+          <select id="situacion" class="custom-input" [(ngModel)]="info.situacion" (change)="mostrarRef()" name="situacion" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.situacion" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 1">
+          <label for="cama" >Cama</label>
+          <input id="cama" class="custom-input" type="number" name="cama" [(ngModel)]="info.cama">
+        </div>
+        <div class="custom-form-group">
+          <label for="estadia" >Estadia</label>
+          <select id="estadia" class="custom-input" [(ngModel)]="info.estadia" name="estadia" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.estadia" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 5">
+          <label for="especialidad" >Especialidad</label>
+          <select id="especialidad" class="custom-input" [(ngModel)]="info.especialidad" name="especialidad" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.especialidad" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 5">
+          <label for="servicios" >Servicio</label>
+          <select id="servicios" class="custom-input" [(ngModel)]="info.servicio" name="servicio" autofocus>
+            <option></option>
+            <option *ngFor="let option of op.servicios" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+
+        <div class="custom-form-group" *ngIf="info.situacion == 4">
+          <label for="referencia" >Lugar de Referencia</label>
+          <select id="referencia" class="custom-input" [(ngModel)]="info.lugar_referencia" name="referencia" autofocus>
+            <option></option>
+            <option *ngFor="let option of refFiltrados" [value]="option.value">{{option.label}}</option>
+          </select>
+        </div>
+        <div class="custom-form-group" *ngIf="info.situacion == 4">
+          <label >Fecha de Referencia</label>
+          <input class="custom-input" type="date" [max]="fechaActual" [min]="mindate" name="fecha_ref" [(ngModel)]="info.fecha_referencia">
+        </div>
+        <div class="custom-form-group">
+          <label >Diagnóstico A</label>
+          <input class="custom-input" type="text" name="dxA" [(ngModel)]="info.dxA">
+        </div>
+        <div *ngIf="info.dxA" class="custom-form-group">
+          <label >Diagnóstico B</label>
+          <input class="custom-input" type="text" name="dxB" [(ngModel)]="info.dxB">
+        </div>
+
+        <div *ngIf="info.dxB" class="custom-form-group">
+          <label >Diagnóstico C</label>
+          <input class="custom-input" type="text" name="dxC" [(ngModel)]="info.dxC">
+        </div>
+
+        <div *ngIf="info.dxC" class="custom-form-group">
+          <label >Diagnóstico D</label>
+          <input class="custom-input" type="text" name="dxD" [(ngModel)]="info.dxD">
+        </div>
+
+        <div *ngIf="info.dxD" class="custom-form-group">
+          <label >Diagnóstico E</label>
+          <input class="custom-input" type="text" name="dxE" [(ngModel)]="info.dxE">
+        </div>
+        <div class="custom-form-group">
+          <label for="evolucion" >Evolución</label>
+          <textarea class="custom-input" name="evolucion" id="evolucion" rows="3" [(ngModel)]="info.evolucion"></textarea>
+        </div>
+        <div class="custom-form-group">
+          <label >Estudios</label>
+          <textarea class="custom-input" name="estudios" id="estudios" rows="3" [(ngModel)]="info.estudios"></textarea>
+        </div>
+        <div class="custom-form-group">
+          <label >Recetado por</label>
+          <input  class="custom-input border-light" type="text" name="receta" id="receta" [(ngModel)]="info.receta"  />
+        </div>
+
+      </section>
+
+
+
+
 
 
     </form>
   </div>
 
   <div class="search-container col-md-4">
-    <div class="div-btn-icons">
-      <backIcon (click)="regresar()" />
-      <saveIcon (click)=" registrar()" data-bs-dismiss="modal" aria-label="Close" />
-    </div>
     <form class="custom-form">
-      <div class="row">
-        <div class="custom-form-group text-center">
-          <label >Recetado por</label>
-          <input class="form-check" type="checkbox" name="recetaPor" id="recetaPorSi" [(ngModel)]="info.receta_por"  />
-        </div>
-      </div>
       <h4 class="text-center">Articulos</h4>
       <div class="d-flex justify-content-between">
         <div class="custom-form-group text-center label-checkbox">
@@ -316,12 +300,10 @@
                 </div>
       </div>
     </form>
-
   </div>
+
+
+
 </div>
-
-
-
-
 
 

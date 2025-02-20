@@ -108,27 +108,31 @@
           <label >Estudios</label>
           <textarea class="custom-input" name="estudios" id="estudios" rows="3" [(ngModel)]="info.estudios"></textarea>
         </div>
+        <div class="custom-form-group">
+          <label >Recetado por</label>
+          <input  class="custom-input border-light" type="text" name="receta" id="receta" [(ngModel)]="info.receta"  />
+        </div>
 
       </section>
-      <section>
+      <section class="">
         <div class="custom-form-group">
           <label for="contacto" class="">Contacto</label>
-          <input class="custom-input" type="text" name="contacto" id="contacto" [(ngModel)]="info.contacto" autocomplete="off">
+          <input class="custom-input bg-info" type="text" name="contacto" id="contacto" [(ngModel)]="info.contacto" autocomplete="off">
         </div>
         <div class="custom-form-group">
           <label class="">Parentesco</label>
-          <select id="parentesco" class="custom-input" [(ngModel)]="info.parentesco" name="parentesco" autofocus>
+          <select id="parentesco" class="custom-input bg-info" [(ngModel)]="info.parentesco" name="parentesco" autofocus>
             <option></option>
             <option *ngFor="let option of op.parentesco" [value]="option.value">{{option.label}}</option>
           </select>
         </div>
         <div class="custom-form-group">
           <label class="">Teléfono</label>
-          <input type="number" name="telefono" id="telefono" class="custom-input" [(ngModel)]="info.telefono" autocomplete="off">
+          <input type="number" name="telefono" id="telefono" class="custom-input bg-info" [(ngModel)]="info.telefono" autocomplete="off">
         </div>
         <div class="custom-form-group">
           <label class="">¿Se informó?</label>
-          <select id="informacion" class="custom-input" [(ngModel)]="info.informacion" name="informacion" autofocus>
+          <select id="informacion" class="custom-input bg-info" [(ngModel)]="info.informacion" name="informacion" autofocus>
             <option value="SP">SI Presencial</option>
             <option value="ST">SI Telefonico</option>
             <option value="NO">NO</option>
@@ -150,10 +154,7 @@
   <div class="search-container col-md-4">
     <form class="custom-form">
       <div class="row">
-        <div class="custom-form-group text-center">
-          <label >Recetado por</label>
-          <input class="form-check" type="checkbox" name="recetaPor" id="recetaPorSi" [(ngModel)]="info.receta_por"  />
-        </div>
+
       </div>
       <h4 class="text-center">Articulos</h4>
       <div class="d-flex justify-content-between">

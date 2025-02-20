@@ -2488,8 +2488,8 @@ textarea.form-control-lg {
 .form-check {
   display: block;
   min-height: 1.5rem;
-  padding-left: 1.5em;
-  margin-bottom: 0.125rem;
+  padding: 1.5em;
+  margin: 0.125rem;
 }
 .form-check .form-check-input {
   float: left;
@@ -13307,11 +13307,12 @@ input, select {
 
 
 .t-w-r {
-  background-color: #a4284dbd;
+  background-color: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
 .t-w-b {
-  background-color: #287da4bd;
+  background: rgb(63,195,251);
+background: radial-gradient(circle, rgba(63,195,251,1) 0%, rgba(70,252,242,1) 100%);
 }
 
 .t-w-d {
@@ -13916,7 +13917,7 @@ input, select {
 .custom-input:focus {
   border-color: #09f7c0;
   box-shadow: 0 0 8px rgba(9, 247, 192, 0.3);
-  outline: none;
+  outline: cyan solid 2px;
 }
 
 

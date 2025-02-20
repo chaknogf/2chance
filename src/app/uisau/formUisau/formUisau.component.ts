@@ -1,4 +1,4 @@
-// Importa los módulos y servicios necesarios
+
 import { FechaService } from './../../services/fecha.service';
 import { PageReloadService } from './../../services/PageReload.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,13 +12,13 @@ import { UisauService } from 'src/app/services/uisau.service';
 import { uisauEnum } from 'src/app/models/Ienum';
 import { ConsultasService } from 'src/app/services/consultas.service';
 import { Iconcultas } from 'src/app/models/Iconsultas';
-
 @Component({
   selector: 'app-formUisau',
   templateUrl: './formUisau.component.html',
   styleUrls: ['./formUisau.component.css']
 })
 export class FormUisauComponent implements OnInit {
+
 
   // Inyección de servicios en el constructor
   constructor(
@@ -98,6 +98,7 @@ export class FormUisauComponent implements OnInit {
     ropa_interior: null,
     babero: null,
     otros: null,
+    receta: null
   };
 
   // Modelo para la consulta inicial
@@ -155,11 +156,10 @@ export class FormUisauComponent implements OnInit {
     this.info.fecha = this.fechaActual;
     this.info.hora = this.horaActual;
     const params = this.activateRoute.snapshot.params;
-    // Verifica si es una nueva consulta o una consulta existente
+
     if (params['id']) {
       this.info.id_consulta = params['id'];
       this.new = true;
-      // Obtiene los detalles de la consulta existente
       this.consultas.Consulta(params['id']).subscribe(
         data => {
           this.consu = data;

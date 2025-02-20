@@ -17,6 +17,7 @@ import { Iconcultas } from 'src/app/models/Iconsultas';
   styleUrls: ['./documentacion.component.css']
 })
 export class DocumentacionComponent implements OnInit {
+  receta_por: any;
 
 
   // Inyección de servicios en el constructor
@@ -97,6 +98,7 @@ export class DocumentacionComponent implements OnInit {
     ropa_interior: null,
     babero: null,
     otros: null,
+    receta: null
   };
 
   // Modelo para la consulta inicial
@@ -154,11 +156,10 @@ export class DocumentacionComponent implements OnInit {
     this.info.fecha = this.fechaActual;
     this.info.hora = this.horaActual;
     const params = this.activateRoute.snapshot.params;
-    // Verifica si es una nueva consulta o una consulta existente
+
     if (params['id']) {
       this.info.id_consulta = params['id'];
       this.new = true;
-      // Obtiene los detalles de la consulta existente
       this.consultas.Consulta(params['id']).subscribe(
         data => {
           this.consu = data;

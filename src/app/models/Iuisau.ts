@@ -26,6 +26,7 @@ export interface Iuisau {
   estudios: string | null;
   evolucion: string | null;
   receta_por?: string | null;
+  receta?: string | null;
   shampoo?: boolean | null;
   toalla?: boolean | null;
   peine?: boolean | null;
