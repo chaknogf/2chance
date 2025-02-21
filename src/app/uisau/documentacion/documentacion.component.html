@@ -115,6 +115,7 @@
 
       </section>
       <section class="">
+
         <div class="custom-form-group">
           <label for="contacto" class="">Contacto</label>
           <input class="custom-input bg-info" type="text" name="contacto" id="contacto" [(ngModel)]="info.contacto" autocomplete="off">
@@ -141,6 +142,25 @@
             <option value="TI">Teléfono Incorrecto</option>
             <!-- <option value="SI">SI</option> -->
           </select>
+        </div>
+
+        <div class="display-none">
+          <input
+          *ngIf="info.informacion"
+          type="date"
+          class="custom-input"
+          name="fecha_contacto"
+          placeholder="Fecha contacto"
+          [value]="info.fecha_contacto"
+        />
+        <input
+        *ngIf="info.informacion"
+        type="time"
+        class="custom-input"
+        name="hora_contacto"
+        placeholder="Hora contacto"
+        [value]="info.hora_contacto"
+      />
         </div>
       </section>
 

@@ -5,7 +5,7 @@ import { parents, servicio, servicios, estado, estadia, referencia, situacion } 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UsersService } from 'src/app/services/user.service';
-
+import { ChangeDetectorRef } from '@angular/core';
 import { Iuisau } from 'src/app/models/Iuisau';
 import { UisauService } from 'src/app/services/uisau.service';
 import { uisauEnum } from 'src/app/models/Ienum';
@@ -22,6 +22,7 @@ export class DocumentacionComponent implements OnInit {
 
   // Inyección de servicios en el constructor
   constructor(
+    private cdr: ChangeDetectorRef,
     private activateRoute: ActivatedRoute,
     private Fecha: FechaService,
     private PageReloadService: PageReloadService,
@@ -153,8 +154,8 @@ export class DocumentacionComponent implements OnInit {
     // Configuración de fechas
     this.maxdate = this.Fecha.FechaActual();
     this.info.created_by = this.username;
-    this.info.fecha = this.fechaActual;
-    this.info.hora = this.horaActual;
+    //this.info.fecha_contacto = this.fechaActual;
+    //this.info.hora = this.horaActual;
     const params = this.activateRoute.snapshot.params;
 
     if (params['id']) {
@@ -275,6 +276,17 @@ export class DocumentacionComponent implements OnInit {
         }, 1000); // 1000 ms = 1 segundo
       }
     );
+  }
+
+  tiempoDeContacto() {
+    if (this.info.informacion) {
+      this.info.fecha_contacto = this.fechaActual;
+      this.info.hora_contacto = this.horaActual;
+    } else {
+      this.info.fecha_contacto = null;
+      this.info.hora_contacto = null;
+    }
+    this.cdr.detectChanges(); // Forzar la actualización de la vista
   }
 
 }

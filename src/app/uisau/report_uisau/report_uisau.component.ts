@@ -70,122 +70,86 @@ export class ReportUisauComponent implements OnInit {
     this.Emergencia = [];
     this.Coex = [];
     this.x = this.fecha;
-    this.getSop();
-    this.getMater();
-    this.getGine();
-    this.getCiru();
-    this.getCirupedia();
-    this.getTrauma();
-    this.getTraumaPedia();
-    this.getCRN();
-    this.getPedia();
-    this.getRn();
-    this.getNeonatos();
-    this.getAreaRoja();
-    this.getMedi();
-    this.getUcin();
-    this.getEmergencia();
-    this.getCoex();
+    this.filtrarData(this.x);
+
   }
 
-  getSop() {
-    this.ui.filterInfos({ servicio: 1, fecha: this.x }).subscribe(data => {
-      this.Sop = data;
-    })
-  }
-  getMater() {
-    this.ui.filterInfos({ servicio: 2, fecha: this.x }).subscribe(data => {
-      this.Mater = data;
-    })
-  }
-  getGine() {
-    this.ui.filterInfos({ servicio: 3, fecha: this.x }).subscribe(data => {
-      this.Gine = data;
-    })
-  }
-
-  getCiru() {
-    this.ui.filterInfos({ servicio: 4, fecha: this.x }).subscribe(data => {
-      this.Ciru = data;
-    })
-  }
-
-  getCirupedia() {
-    this.ui.filterInfos({ servicio: 5, fecha: this.x }).subscribe(data => {
-      this.Sop = data;
-    })
-  }
-
-  getTrauma() {
-    this.ui.filterInfos({ servicio: 6, fecha: this.x }).subscribe(data => {
-      this.Trauma = data;
-    })
-  }
-
-  getTraumaPedia() {
-    this.ui.filterInfos({ servicio: 7, fecha: this.x }).subscribe(data => {
-      this.Traumapedia = data;
-    })
-  }
-
-  getCRN() {
-    this.ui.filterInfos({ servicio: 8, fecha: this.x }).subscribe(data => {
-      this.CRN = data;
-    })
-  }
-
-  getPedia() {
-    this.ui.filterInfos({ servicio: 9, fecha: this.x }).subscribe(data => {
-      this.Pedia = data;
-    })
-  }
-
-  getRn() {
-    this.ui.filterInfos({ servicio: 10, fecha: this.x }).subscribe(data => {
-      this.Rn = data;
-    })
-  }
-
-  getNeonatos() {
-    this.ui.filterInfos({ servicio: 11, fecha: this.x }).subscribe(data => {
-      this.Neonatos = data;
-    })
-  }
-
-  getAreaRoja() {
-    this.ui.filterInfos({ servicio: 17, fecha: this.x }).subscribe(data => {
-      this.areaRoja = data;
-    })
-  }
-
-  getMedi() {
-    this.ui.filterInfos({ servicio: 18, fecha: this.x }).subscribe(data => {
-      this.Medi = data;
-    })
-  }
-
-  getUcin() {
-    this.ui.filterInfos({ servicio: 19, fecha: this.x }).subscribe(data => {
-      this.ucin = data;
-    })
-  }
-
-  getEmergencia() {
-    this.ui.filterInfos({ servicio: 20, fecha: this.x }).subscribe(data => {
-      this.Emergencia = data;
-    })
-  }
-
-  getCoex() {
-    this.ui.filterInfos({ servicio: 21, fecha: this.x }).subscribe(data => {
-      this.Coex = data;
-    })
-  }
 
 
   regresar() {
     this.router.navigate(['/uisau']);
   }
+
+  filtrarData(fecha: string) {
+    this.ui.resumen(fecha, 1).subscribe((data: any) => {
+      this.Sop = data;
+    });
+    this.ui.resumen(fecha, 2).subscribe((data: any) => {
+      this.Mater = data;
+    });
+    this.ui.resumen(fecha, 2).subscribe((data: any) => {
+      this.Gine = data;
+    });
+    this.ui.resumen(fecha, 3).subscribe((data: any) => {
+      this.Ciru = data;
+    });
+    this.ui.resumen(fecha, 4).subscribe((data: any) => {
+      this.Cirupedia = data;
+    });
+    this.ui.resumen(fecha, 5).subscribe((data: any) => {
+      this.Trauma = data;
+    }
+    );
+    this.ui.resumen(fecha, 6).subscribe((data: any) => {
+      this.Traumapedia = data;
+    }
+    );
+    this.ui.resumen(fecha, 7).subscribe((data: any) => {
+      this.CRN = data;
+    }
+    );
+    this.ui.resumen(fecha, 8).subscribe((data: any) => {
+      this.Pedia = data;
+    }
+    );
+    this.ui.resumen(fecha, 9).subscribe((data: any) => {
+      this.Rn = data;
+    }
+    );
+    this.ui.resumen(fecha, 10).subscribe((data: any) => {
+      this.Neonatos = data;
+    }
+    );
+    this.ui.resumen(fecha, 17).subscribe((data: any) => {
+      this.areaRoja = data;
+    }
+    );
+    this.ui.resumen(fecha, 18).subscribe((data: any) => {
+      this.Medi = data;
+    });
+    this.ui.resumen(fecha, 19).subscribe((data: any) => {
+      this.ucin = data;
+    });
+    this.ui.resumen(fecha, 20).subscribe((data: any) => {
+      this.Emergencia = data;
+    }
+    );
+    this.ui.resumen(fecha, 21).subscribe((data: any) => { this.Coex = data; }
+    );
+
+
+  }
+
+  obtenerResultados(date: string) {
+
+
+  }
+
+
+
+
+
+
 
   establecerFecha(): void {
     if (!this.fecha) {
@@ -211,22 +175,8 @@ export class ReportUisauComponent implements OnInit {
     this.Emergencia = [];
     this.Coex = [];
     this.x = this.fecha;
-    this.getSop();
-    this.getMater();
-    this.getGine();
-    this.getCiru();
-    this.getCirupedia();
-    this.getTrauma();
-    this.getTraumaPedia();
-    this.getCRN();
-    this.getPedia();
-    this.getRn();
-    this.getNeonatos();
-    this.getAreaRoja();
-    this.getMedi();
-    this.getUcin();
-    this.getEmergencia();
-    this.getCoex();
+    this.obtenerResultados(this.x);
+
   }
 
 

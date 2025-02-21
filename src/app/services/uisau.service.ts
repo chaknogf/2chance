@@ -33,6 +33,11 @@ export class UisauService {
     return this.http.get(this.urlapi + "/infos/?consulta=" + consulta + '&token=' + this.token)
   }
 
+  resumen(fecha: string, servicio: number): Observable<any> {
+    // Modificando la URL para incluir tanto la fecha como el servicio
+    return this.http.get(this.urlapi + "/resumen_uisau/?fecha=" + fecha + '&servicio=' + servicio + '&token=' + this.token);
+  }
+
   filterInfos(filtros: any): Observable<any> {
     // Inicializa una cadena vacía para la URL
     let url = `${this.urlapi}/filter/`;
@@ -155,7 +160,7 @@ export class UisauService {
     }
 
 
-    // console.log(filtros, url)
+    console.log(filtros, url)
     // Realiza la solicitud GET con la URL construida dinámicamente
     return this.http.get(url);
 

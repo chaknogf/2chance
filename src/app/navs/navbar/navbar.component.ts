@@ -2,7 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { UsersService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { PageReloadService } from '../../services/PageReload.service';
-import { timeout } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -16,17 +16,16 @@ export class NavbarComponent {
   openDropdown: string | null = null;
 
   items = [
-
     {
-      label: 'Estadística', children: [
+      label: 'Estadística', href: '/consultarE', children: [
         { subhref: '/cie10', label: 'Cie-10' },
-        { subhref: '/consultarE', label: 'Pacientes', icon: 'pacienteIcon' },
+        { subhref: '/consultarE', label: 'Pacientes' },
         { subhref: '/listProce', label: 'Procedimientos' },
         { subhref: '/rn', label: 'RN' },
       ]
     },
     {
-      label: 'Registros', children: [
+      label: 'Registros', href: '/pacientes', children: [
         { subhref: '/pacientes', label: 'Pacientes' },
         { subhref: '/consultas', label: 'Consultas' },
         { subhref: '/tablaEmergencia', label: 'Emergencias' },
@@ -37,36 +36,38 @@ export class NavbarComponent {
       ]
     },
     {
-      label: 'UISAU', children: [
+      label: 'UISAU', href: '/uisau', children: [
         { subhref: '/uisau', label: 'Pacientes Activos' },
       ]
     },
     {
-      label: 'Reportes', children: [
+      label: 'Reportes', href: '/reportstd', children: [
         { subhref: '/reportstd', label: 'Reportes' },
       ]
     },
     {
-      label: 'Personal', children: [
+      label: 'Personal', href: '/usuario', children: [
         { subhref: '/medicos', label: 'Médicos' },
         { subhref: '/usuario', label: 'Usuarios' },
       ]
-    },
+    }
   ];
 
   constructor(
     private user: UsersService,
     private router: Router,
-    private reload: PageReloadService
+    private reload: PageReloadService,
+    private cdRef: ChangeDetectorRef
   ) { }
 
   get User() {
     return `Hola! ${this.username}`;
   }
 
-  handleLinkClick(href: string) {
-    // this.activeLink = href;
-    this.isExpanded = false; // Cierra el menú en móviles
+  // Cerrar navbar y dropdown al hacer clic en un enlace principal
+  handleLinkClick(): void {
+    this.isExpanded = false;
+    this.openDropdown = null;
   }
 
   toggleNavbar() {
@@ -75,9 +76,21 @@ export class NavbarComponent {
 
   toggleDropdown(label: string) {
     this.openDropdown = this.openDropdown === label ? null : label;
-    setTimeout(() => {
-      this.openDropdown = null;
-    }, 8700);
+  }
+
+  /**
+   * Maneja el clic en un subitem:
+   * 1. Espera a que Angular termine la navegación.
+   * 2. Cierra el menú solo después de la transición.
+   */
+  handleSubItemClick(route: string, event: Event) {
+    event.preventDefault(); // Evita que el navegador cambie la ruta antes de tiempo
+
+    this.router.navigateByUrl(route).then(() => {
+      this.isExpanded = false; // Cierra el navbar en móviles
+      this.openDropdown = null; // Cierra el dropdown
+      this.cdRef.detectChanges(); // Forzar detección de cambios en Angular
+    });
   }
 
   // Cerrar dropdown al hacer clic fuera

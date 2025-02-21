@@ -130,203 +130,159 @@
           </ng-container>
         </div>
 
-        <ul class="list-group t-d-w" >
-          <li class="list-group-item   justify-content-end align-items-center" *ngIf="item.fecha_contacto">
-            <div *ngIf="item.informacion">
-              Se informo:
-              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NO'" >
-                {{item.informacion}}
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NR'" >
-                No Responde
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NE'" >
-                No Esta
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'TI'" >
-                Telefono Incorrecto
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'SP'" >
-                Si Presencial <personTalkIcon />
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.informacion == 'ST'" >
-                Si Telefonico <telefonoColorIcon />
-              </span>
+        <div class="d-flex flex-wrap gap-3">
+          <!-- Primera tarjeta -->
+          <div class="col-md-4 mb-3" *ngIf="item.informacion">
+            <div class="card">
+              <div class="card-header">
+                Información
+              </div>
+              <div class="card-body">
+                <div >
+                  <p>Se informo:
+                    <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NO'">{{item.informacion}}</span>
+                    <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NR'">No Responde</span>
+                    <span class="badge bg-light rrounded" *ngIf="item.informacion == 'NE'">No Esta</span>
+                    <span class="badge bg-light rrounded" *ngIf="item.informacion == 'TI'">Telefono Incorrecto</span>
+                    <span class="badge bg-light rrounded" *ngIf="item.informacion == 'SP'">Si Presencial <personTalkIcon /></span>
+                    <span class="badge bg-light rrounded" *ngIf="item.informacion == 'ST'">Si Telefonico <telefonoColorIcon /></span>
+                  </p>
+                </div>
+                <p *ngIf="item.contacto">Contacto: <span class="badge bg-light rrounded">{{item.contacto}}</span></p>
+                <p *ngIf="item.parentesco">Parentesco: <span class="badge bg-light rrounded">{{item.parentesco | anyToNumber | enumParentesco}}</span></p>
+              </div>
             </div>
-            <div *ngIf="item.contacto">
-              Contacto:
-              <span class="badge bg-light rrounded" >
-                {{item.contacto}}
-              </span>
+          </div>
+
+          <!-- Segunda tarjeta -->
+          <div class="col-md-4 mb-3" *gfif="item.fecha_contacto">
+            <div class="card">
+              <div class="card-header">
+                Detalles
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.telefono">Telefono: <span class="badge bg-light rrounded">{{item.telefono}}</span></p>
+                <p *ngIf="item.fecha_contacto">
+                  Fecha y Hora de la Información:
+                  <span class="badge bg-light rrounded text-break line-break">
+                    {{item.fecha_contacto | anyToText | FormatoFechaCompleta}} {{item.hora_contacto}}
+                  </span>
+                </p>
+                <p *ngIf="item.update_by">Quien informo: <span class="badge bg-light rrounded">{{item.update_by}}</span></p>
+              </div>
             </div>
-            <div *ngIf="item.parentesco">
-              Parentesco:
-            <span class="badge bg-light rrounded" >
-              {{item.parentesco |anyToNumber | enumParentesco}}
-            </span>
+          </div>
+
+          <!-- Tercera tarjeta -->
+          <div class="col-md-4 mb-3" *ngIf="item.estado || item.situacion || item.estadia || item.cama">
+            <div class="card">
+              <div class="card-header">
+                Estado y Situación
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.estado">Estado: <span class="badge bg-light rrounded">{{item.estado | anyToNumber | enumEstado}}</span></p>
+                <p *ngIf="item.situacion">Situación: <span class="badge bg-light rrounded">{{item.situacion | anyToNumber | enumSituacion}}</span></p>
+                <p *ngIf="item.estadia">Estadia: <span class="badge bg-light rrounded">{{item.estadia | anyToNumber | enumEstadia}}</span></p>
+                <p *ngIf="item.cama">Cama: <span class="badge bg-light rrounded">{{item.cama}}</span></p>
+              </div>
             </div>
-            <div *ngIf="item.telefono">
-              Telefono:
-            <span class="badge bg-light rrounded">
-              {{item.telefono}}
-            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Cuarta tarjeta -->
+          <div class="col-md-4 mb-3" *ngIf="item.lugar_referencia || item.fecha_referencia">
+            <div class="card">
+              <div class="card-header">
+                Referencia
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.lugar_referencia">Lugar de Referencia: <span class="badge bg-light rrounded">{{item.lugar_referencia | anyToNumber | enumReferencia}}</span></p>
+                <p *ngIf="item.fecha_referencia">Fecha de Referencia: <span class="badge bg-light rrounded">{{item.fecha_referencia | anyToText | formatoFecha}}</span></p>
+              </div>
             </div>
-            <div>
-              Fecha y Hora de la Información:
-            <span class="badge bg-light rrounded">
-              {{item.fecha_contacto | anyToText | FormatoFechaCompleta}} {{item.hora_contacto}}
-            </span>
+          </div>
+
+          <!-- Quinta tarjeta -->
+          <div class="col-md-4 mb-3" *ngIf="item.servicio || item.especialidad ">
+            <div class="card">
+              <div class="card-header">
+                Servicios y Especialidades
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.servicio">Servicio: <span class="badge bg-light rrounded">{{item.servicio | anyToNumber | enumServicios}}</span></p>
+                <p *ngIf="item.especialidad">Especialidad: <span class="badge bg-light rrounded">{{item.especialidad | anyToNumber | enumEspecialidad}}</span></p>
+              </div>
             </div>
-            <div>
-               Quien informo:
-            <span class="badge bg-light rrounded">
-              {{item.update_by}}
-            </span>
+          </div>
+
+          <!-- Sexta tarjeta -->
+          <div class="col-md-4 mb-3" *ngIf="item.evolucion || item.estudios || item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
+            <div class="card">
+              <div class="card-header">
+                Diagnósticos
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.evolucion">Evolución: <span class="badge bg-light rrounded">{{item.evolucion}}</span></p>
+                <p *ngIf="item.estudios">Estudios: <span class="badge bg-light rrounded">{{item.estudios}}</span></p>
+                <div *ngIf="item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
+                  Diagnóstico:
+                  <span class="badge bg-light rrounded" *ngIf="item.dxA">{{item.dxA}}</span>
+                  <span class="badge bg-light rrounded" *ngIf="item.dxB">{{item.dxB}}</span>
+                  <span class="badge bg-light rrounded" *ngIf="item.dxC">{{item.dxC}}</span>
+                  <span class="badge bg-light rrounded" *ngIf="item.dxD">{{item.dxD}}</span>
+                  <span class="badge bg-light rrounded" *ngIf="item.dxE">{{item.dxE}}</span>
+                </div>
+              </div>
             </div>
-          </li>
-          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.estado || item.situacion || item.estadia || item.cama">
-            <div *ngIf="item.estado">
-              Estado:
-              <span class="badge bg-light rrounded"  >
-                {{item.estado |anyToNumber | enumEstado}}
-              </span>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3">
+          <!-- Séptima tarjeta -->
+          <div class="col-md-4 mb-3" *ngIf="item.nota || item.receta">
+            <div class="card">
+              <div class="card-header">
+                Receta
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.nota">Receta: <span class="badge bg-light rrounded">{{item.receta}}</span></p>
+              </div>
+              <div class="card-header">
+                Nota
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.nota">Nota: <span class="badge bg-light rrounded">{{item.nota}}</span></p>
+              </div>
             </div>
-            <div *ngIf="item.situacion">
-              Situación:
-              <span class="badge bg-light rrounded" >
-                {{item.situacion |anyToNumber | enumSituacion}}
-              </span>
+          </div>
+
+          <!-- Octava tarjeta -->
+          <div class="col-md-4 mb-3" *ngIf="item.shampoo || item.toalla || item.peine || item.jabon || item.cepillo_dientes || item.pasta_dental || item.sandalias || item.agua || item.papel || item.panal_bebe || item.panal_adulto || item.toalla_humeda || item.ropa_interior || item.babero || item.otros">
+            <div class="card">
+              <div class="card-header">
+                Artículos
+              </div>
+              <div class="card-body">
+                <p *ngIf="item.shampoo">Shampoo</p>
+                <p *ngIf="item.toalla">Toalla</p>
+                <p *ngIf="item.peine">Peine</p>
+                <p *ngIf="item.jabon">Jabón</p>
+                <p *ngIf="item.cepillo_dientes">Cepillo de dientes</p>
+                <p *ngIf="item.pasta_dental">Pasta dental</p>
+                <p *ngIf="item.sandalias">Sandalias</p>
+                <p *ngIf="item.agua">Agua</p>
+                <p *ngIf="item.papel">Papel</p>
+                <p *ngIf="item.panal_bebe">Pañales de bebe</p>
+                <p *ngIf="item.panal_adulto">Pañales de adulto</p>
+                <p *ngIf="item.toalla_humeda">Toalla humeda</p>
+                <p *ngIf="item.ropa_interior">Ropa interior</p>
+                <p *ngIf="item.babero">Babero</p>
+                <p *ngIf="item.otros">Otros especificados en notas</p>
+              </div>
             </div>
-            <div *ngIf="item.estadia">
-              Estadia:
-            <span class="badge bg-light rrounded" >
-              {{item.estadia |anyToNumber | enumEstadia}}
-            </span>
-            </div>
-            <div *ngIf="item.cama">
-              Cama:
-            <span class="badge bg-light rrounded">
-              {{item.cama}}
-            </span>
-            </div>
-          </li>
-          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.lugar_referencia || item.fecha_referencia">
-            <div *ngIf="item.lugar_referencia" >
-              Lugar de Referencia:
-              <span class="badge bg-light rrounded">
-                {{item.lugar_referencia |anyToNumber | enumReferencia}}
-              </span>
-            </div>
-            <div *ngIf="item.fecha_referencia">
-              Fecha de Referencia:
-              <span class="badge bg-light rrounded">
-                {{item.fecha_referencia | anyToText | formatoFecha}}
-              </span>
-            </div>
-          </li>
-          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.servicio || item.especialidad">
-            <div *ngIf="item.servicio" >
-              Servicio:
-              <span class="badge bg-light rrounded">
-                {{item.servicio |anyToNumber | enumServicios}}
-              </span>
-            </div>
-            <div *ngIf="item.especialidad">
-              Especialidad:
-              <span class="badge bg-light rrounded">
-                {{item.especialidad |anyToNumber | enumEspecialidad}}
-              </span>
-            </div>
-          </li>
-          <li class="list-group-item  d-flex justify-content-between align-items-center" *ngIf="item.evolucion || item.estudios || item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
-            <div *ngIf="item.evolucion" >
-              Evolución:
-              <span class="badge bg-light rrounded">
-                {{item.evolucion}}
-              </span>
-            </div>
-            <div *ngIf="item.estudios">
-              Estudios:
-              <span class="badge bg-light rrounded">
-                {{item.estudios}}
-              </span>
-            </div>
-            <div *ngIf="item.dxA || item.dxB || item.dxC || item.dxD || item.dxE">
-              Diagnóstico:
-              <span class="badge bg-light rrounded" *ngIf="item.dxA">
-                {{item.dxA}}
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.dxB">
-                {{item.dxB}}
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.dxC">
-                {{item.dxC}}
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.dxD">
-                {{item.dxD}}
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.dxE">
-                {{item.dxE}}
-              </span>
-            </div>
-          </li>
-          <li class="list-group-item  d-flex justify-content-start align-items-center" *ngIf="item.nota">
-            Nota:
-            <span class="badge bg-light rrounded">
-              {{item.nota}}
-            </span>
-          </li>
-          <li class="list-group-item  d-flex justify-content-start align-items-center" *ngIf="item.shampoo || item.toalla || item.peine || item.jabon || item.cepillo_dientes || item.pasta_dental || item.sandalias">
-            <div>
-              Articulos:
-              <span class="badge bg-light rrounded" *ngIf="item.shampoo">
-                Shampoo
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.toalla" >
-                Toalla
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.peine">
-                Peine
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.jabon">
-                Jabón
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.cepillo_dientes">
-               Cepillo de dientes
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.pasta_dental">
-                Pasta dental
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.sandalias">
-                Sandalias
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.agua">
-                Agua
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.papel">
-                Papel
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.panal_bebe">
-                Pañales de bebe
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.panal_adulto">
-                Pañales de adulto
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.toalla_humeda">
-                Toalla humeda
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.ropa_interior">
-                Ropa interior
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.babero">
-                Babero
-              </span>
-              <span class="badge bg-light rrounded" *ngIf="item.otros">
-                Otros especificados en notas
-              </span>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
 
 
       </div>

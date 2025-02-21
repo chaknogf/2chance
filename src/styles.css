@@ -623,6 +623,10 @@ progress {
   font-weight: 300;
 }
 
+.display-none {
+  display: none;
+}
+
 .display-1 {
   font-size: calc(1.625rem + 4.5vw);
   font-weight: 300;
@@ -14030,7 +14034,7 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 110%;
-  background-color: var(--primary-color); /* Fondo azul oscuro */
+  background-color: radial-gradient(circle, rgba(11,39,156,0.9822522759103641) 11%, rgba(3,43,148,0.9990589985994398) 100%);
   color: #FFFFFF; /* Texto blanco para contraste */
   margin: 0; /* Eliminar márgenes por defecto */
   padding: 0; /* Eliminar rellenos por defecto */
@@ -14288,3 +14292,8 @@ input[type="checkbox"] {
   font-size: 12px !important;
 }
 
+.card span {
+  display: block; /* Fuerza el salto de línea */
+  word-wrap: break-word; /* Asegura que el contenido largo se ajuste */
+  white-space: normal; /* Permite que el texto se ajuste dentro del contenedor */
+}

@@ -95,7 +95,14 @@ export class TablaComponent implements OnInit {
     created_at: null,
     updated_at: null,
     created_by: '',
-    medico: null
+    medico: null,
+    bomberos: false,
+    transito: false,
+    arma_blanca: false,
+    arma_fuego: false,
+    estudiante_publica: false,
+    accidente_laboral: false,
+    personal_hospital: false
   }
 
   @Output() idPaciente = new EventEmitter<number>();
@@ -281,42 +288,43 @@ export class TablaComponent implements OnInit {
   }
 
   registrarCoex(): void {
+    if (!this.coex.especialidad) {
+      console.log('Especialidad no seleccionada');
+      return;
+    }
+
     this.ConsultasService.crear(this.coex).subscribe(
       (response) => {
-        // Manejar la respuesta exitosa aquí, si es necesario
         console.log('Consulta creada con éxito', response);
-        this.reloadComponent();
+        this.mostrarAlerta('Consulta creada con éxito', 'success');
 
-        // Mostrar una alerta de éxito con estilo Bootstrap
-        const alertDiv = document.createElement('div');
-        alertDiv.classList.add('alert', 'alert-success', 'fixed-top');
-        alertDiv.textContent = 'Consulta creada con éxito';
-        document.body.appendChild(alertDiv);
-
-        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
           window.location.reload();
-        }, 100); // 1000 ms = 1 segundo
+        }, 1000); // 1 segundo antes de recargar
       },
       (error) => {
-        // Manejar errores aquí
         console.error('Error al crear consulta', error);
+        this.mostrarAlerta('Error al crear consulta', 'danger');
 
-        // Mostrar una alerta de error con estilo Bootstrap
-        const alertDiv = document.createElement('div');
-        alertDiv.classList.add('alert', 'alert-danger', 'fixed-top');
-        alertDiv.textContent = 'Error al crear consulta';
-        document.body.appendChild(alertDiv);
-
-        // Retrasar la recarga de la página por, por ejemplo, 1 segundo
         setTimeout(() => {
-          this.reloadPage();
-        }, 2000); // 1000 ms = 1 segundo
-
-
+          window.location.reload();
+        }, 2000); // 2 segundos antes de recargar
       }
     );
+  }
 
+  private mostrarAlerta(mensaje: string, tipo: 'success' | 'danger') {
+    // Elimina cualquier alerta previa para evitar duplicados
+    document.querySelectorAll('.alert').forEach(alert => alert.remove());
+
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('alert', `alert-${tipo}`, 'fixed-top', 'text-center', 'fw-bold');
+    alertDiv.textContent = mensaje;
+    document.body.appendChild(alertDiv);
+
+    setTimeout(() => {
+      alertDiv.remove(); // Elimina la alerta después de unos segundos
+    }, 3000);
   }
 
   reloadPage() {
