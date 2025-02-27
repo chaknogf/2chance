@@ -36,6 +36,7 @@ export class CoexComponent implements OnInit {
   public consultasNutri: Iconcultas[] = [];
   public consultasHoy: Iconcultas[] = [];
   public consultasMedi: Iconcultas[] = [];
+  public consultasOdonto: Iconcultas[] = [];
   public contador: number = 0;
   public especialidad: number = 0;
   public expedienteBuscar: any = '';
@@ -123,6 +124,7 @@ export class CoexComponent implements OnInit {
     this.consultastrauma;
     this.consultaspsico;
     this.consultasnutri;
+    this.consultasodonto;
     this.x = `${this.year}-${this.month}-${this.day}`;
     this.consultasmedicina(this.x);
     this.consultaspedia(this.x);
@@ -131,6 +133,7 @@ export class CoexComponent implements OnInit {
     this.consultastrauma(this.x);
     this.consultaspsico(this.x);
     this.consultasnutri(this.x);
+    this.consultasodonto(this.x);
 
 
   }
@@ -155,6 +158,7 @@ export class CoexComponent implements OnInit {
       this.consultasGine = [];
       this.consultasPsico = [];
       this.consultasNutri = [];
+      this.consultasOdonto = [];
 
 
     } else {
@@ -166,6 +170,7 @@ export class CoexComponent implements OnInit {
       this.consultastrauma(this.x);
       this.consultaspsico(this.x);
       this.consultasnutri(this.x);
+      this.consultasodonto(this.x);
 
     }
   }
@@ -204,6 +209,12 @@ export class CoexComponent implements OnInit {
   consultasnutri(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 7).subscribe(data => {
       this.consultasNutri = data;
+    })
+  }
+
+  consultasodonto(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 8).subscribe(data => {
+      this.consultasOdonto = data;
     })
   }
 

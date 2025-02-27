@@ -48,9 +48,10 @@
         <select id="tipo" class="custom-input" [(ngModel)]="c.tipo" name="tipo"  (ngModelChange)="citasOcupadas(c.especialidad, $event, c.fecha, $event)">
           <option value="1">Consulta</option>
           <option value="2">Ingreso / operatorio</option>
-          <option *ngIf="c.especialidad == 3" value="3">USG Obstetric.</option>
-          <option *ngIf="c.especialidad == 3" value="4">USG Endo/Pelvic</option>
+          <option *ngIf="c.especialidad == 3" value="3">USG Obstetrico</option>
+          <option *ngIf="c.especialidad == 3" value="4">USG Pelvico</option>
           <option *ngIf="c.especialidad == 3" value="5">Colposcopia.</option>
+          <option *ngIf="c.especialidad == 3" value="6">USG Endovaginal</option>
           <option value="9">Especial</option>
         </select>
       </div>

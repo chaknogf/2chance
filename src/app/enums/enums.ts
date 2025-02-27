@@ -13,6 +13,7 @@ export const servicio: Especialidad[] = [
   { value: 5, label: 'Traumatologia' },
   { value: 6, label: 'Psicologia' },
   { value: 7, label: 'Nutrición' },
+  { value: 8, label: 'Odontología' },
 
 
 
@@ -407,6 +408,7 @@ export const tipo_citas: Tipo_citas[] = [
   { value: 3, label: 'USG Obstetrico' },
   { value: 4, label: 'USG Pelvico' },
   { value: 5, label: 'Colposcopia' },
+  { value: 6, label: 'USG Endovaginal' },
   { value: 9, label: 'Especial' },
   { value: 10, label: 'prestamo' }
 ]

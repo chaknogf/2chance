@@ -35,6 +35,7 @@ export class ReporteCoexComponent implements OnInit {
   public consultasNutri: Iconcultas[] = [];
   public consultasHoy: Iconcultas[] = [];
   public consultasMedi: Iconcultas[] = [];
+  public consultasOdonto: Iconcultas[] = [];
   public contador: number = 0;
   public today = this.fechaService.FechaActual();
 
@@ -98,6 +99,7 @@ export class ReporteCoexComponent implements OnInit {
     this.consultastrauma(this.today);
     this.consultaspsico(this.today);
     this.consultasnutri(this.today);
+    this.consultasodonto(this.today);
   }
 
   consultasmedicina(fecha: string) {
@@ -142,6 +144,12 @@ export class ReporteCoexComponent implements OnInit {
     })
   }
 
+  consultasodonto(fecha: string) {
+    this.ConsultasService.consultando(fecha, 1, 8).subscribe(data => {
+      this.consultasOdonto = data;
+    })
+  }
+
   regresar() {
     this._location.back();
   }
@@ -160,6 +168,7 @@ export class ReporteCoexComponent implements OnInit {
       this.consultastrauma(this.today);
       this.consultaspsico(this.today);
       this.consultasnutri(this.today);
+      this.consultasodonto(this.today);
     });
   }
 

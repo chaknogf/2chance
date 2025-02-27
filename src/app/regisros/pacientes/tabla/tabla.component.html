@@ -148,6 +148,11 @@
                 </div>
               </div>
 
+              <div class="custom-form-group">
+                <label for="consulta_por">Nota:</label>
+                <input type="text" class="custom-input" id="nota" name="nota" [(ngModel)]="coex.nota">
+              </div>
+
               <div class="custom-form-group" *ngIf="coex.especialidad == 3">
                 <label for="consulta_por">Consulta por:</label>
                 <select id="consulta_por" class="custom-input" [(ngModel)]="coex.consulta_por" name="consulta_por">

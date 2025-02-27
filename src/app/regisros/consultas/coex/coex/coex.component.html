@@ -305,6 +305,46 @@
       </div>
 
     </div>
+    <hr class="my-0 p-1">
+    <!-- Septimo contenedor Odonto -->
+    <div class="table-responsive">
+      <h4 class="text-start">{{ 8 | enumEspecialidad }}</h4>
+      <div class="table-responsive">
+        <table class="custom-table-striped" *ngIf="consultasNutri.length > 0">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">No.</th>
+              <th class="text-center" scope="col">Expediente</th>
+              <th class="text-center" scope="col">Nombre de Paciente</th>
+              <th class="text-center" scope="col" >Hora</th>
+              <th class="text-center" scope="col" >Estatus</th>
+              <th class="text-center" scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="svg-container">
+            <tr *ngFor="let coex of consultasOdonto; let i = index">
+              <td class="text-center">{{ contador + i + 1 }}</td>
+              <td class="text-center" >
+                <h4>{{coex.expediente}}</h4>
+               </td>
+              <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{coex.apellidos | anyToText | capitalizeName}}</td>
+              <td class="text-center"> {{ coex.hora}} </td>
+              <td class="text-center">
+                <ng-container *ngIf="coex.status == 1"><activoIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 2"><archiveIcon  /></ng-container>
+                <ng-container *ngIf="coex.status == 3"><prestamoIcon  /></ng-container>
+              <td class="text-center">
+                <div class="div-btn-opt">
+                  <editIcon (click)="copiarId(coex.id)" data-bs-toggle="modal" data-bs-target="#opciones" />
+                  <printIcon [routerLink]="['/hClinica/view/',coex.expediente]" (click)="copiarValor(i, coex.especialidad)" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 
 </div>

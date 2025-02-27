@@ -192,5 +192,31 @@
     </table>
   </div>
 
+  <div class="">
+    <p class="text-center  font-monospace">Especialidad: {{ 8 | enumEspecialidad }} Fecha: {{fechaActual | anyToText | formatoFecha}}</p>
+    <table class="table table-white table-bordered table-sm" >
+      <thead>
+        <tr>
+          <th  class="text-center">No.</th>
+          <th class="text-center w-15 ">Expediente</th>
+          <th class="text-center w-30">Paciente</th>
+          <th class="text-center w-15">Especialidad</th>
+          <th class="text-center w-15">Hora</th>
+          <th class="text-center w-40">Recibido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coex of consultasOdonto; let i = index">
+          <td class="text-center">{{contador + i + 1 }}</td>
+          <td class="text-center">{{coex.expediente}}</td>
+          <td class="text-center">{{ coex.nombres | anyToText | capitalizeName }} {{ coex.apellidos | anyToText | capitalizeName }}</td>
+          <td class="text-center">{{coex.especialidad | anyToNumber | enumEspecialidad}}</td>
+          <td class="text-center">{{coex.hora}}</td>
+          <td>    </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
