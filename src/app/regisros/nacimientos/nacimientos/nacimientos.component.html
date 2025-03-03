@@ -35,20 +35,20 @@
 
     <p class="text-start text-wrap" *ngIf="documetos?.folio && documetos?.dpi">
       Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
-      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumVecindad}}, del Departamento de
+      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}} del Departamento de
       {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi}}. De {{documetos?.edad}} años de edad. Originaria de
       {{documetos?.muni | anyToNumber | enumVecindad}} y vecina de {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
     </p>
     <p class="text-start text-wrap" *ngIf="documetos?.folio && !documetos?.dpi">
       Se identifica con Certificado de Nacimiento Con Partida {{documetos?.partida }}, Folio {{documetos?.folio}}
-      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumVecindad}}, del Departamento de
+      del libro {{documetos?.libro}}, del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}} del Departamento de
       {{documetos?.depto | anyToNumber | enumDepto}}. De {{documetos?.edad}} años de edad. Originaria de
       {{documetos?.muni | anyToNumber | enumVecindad}} y vecina de {{documetos?.vecindad | anyToNumber | enumVecindad}}.
 
     </p>
     <p class="text-start text-wrap" *ngIf="documetos?.dpi && documetos?.edad < 18 && !documetos?.folio">
-      Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}}, del Departamento de
+      Se identifica con Certificado de Nacimiento del Registro Civil del Municipio de {{documetos?.muni | anyToNumber | enumMunicipio}} del Departamento de
        {{documetos?.depto | anyToNumber | enumDepto}} con Código Único de Identificación {{documetos?.dpi |anyToText | formatoDPI}}.
        De {{documetos?.edad}} años de edad. Originaria de
       {{documetos?.muni | anyToNumber | enumVecindad}} y vecina de {{documetos?.vecindad | anyToNumber | enumVecindad}}.
