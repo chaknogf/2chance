@@ -29,6 +29,7 @@ export class CitasComponent implements OnInit {
   public citas_trauma_consulta: Icitas[] = [];
   public citas_nutricion_consulta: Icitas[] = [];
   public citas_psicologia_consulta: Icitas[] = [];
+  public citas_odontologia_consulta: Icitas[] = [];
 
 
 
@@ -44,7 +45,7 @@ export class CitasComponent implements OnInit {
   public rutaAnterior: string = '../';
   // const currentDate = new Date().getDate();
   day: string = new Date().getDate().toString().padStart(2, '0');
-  month: string = (new Date().getMonth()+1).toString().padStart(2, '0');
+  month: string = (new Date().getMonth() + 1).toString().padStart(2, '0');
   year: string = new Date().getFullYear().toString();
   slectDay: string = '';
   slectMonth: string = '';
@@ -60,9 +61,58 @@ export class CitasComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.citas;
+    this.citas;
 
+    this.x = `${this.year}-${this.month}-${this.day}`;
+    this.medicina_consulta(this.x);
+    this.medicina_preop(this.x);
+    this.medicina_especial(this.x);
+    this.pedia_consulta(this.x);
+    this.gine_consulta(this.x);
+    this.gine_preop(this.x);
+    this.gine_usgObs(this.x);
+    this.gine_usgPel(this.x);
+    this.gine_colpo(this.x);
+    this.gine_especial(this.x);
+    this.ciru_consulta(this.x);
+    this.trauma_consulta(this.x);
+    this.nutri_consulta(this.x);
+    this.psico_consulta(this.x);
+    this.odonto_consulta(this.x);
+
+
+
+  }
+
+  updateDate() {
+    // Convierte los valores de día, mes y año a números enteros
+    const dayInt = parseInt(this.day, 10);
+    const monthInt = parseInt(this.month, 10);
+    const yearInt = parseInt(this.year, 10);
+
+    // Verifica que los valores sean válidos (por ejemplo, día entre 1 y 31, mes entre 1 y 12, etc.)
+    if (dayInt >= 1 && dayInt <= 31 && monthInt >= 1 && monthInt <= 12 && yearInt >= 1900) {
+      // Actualiza la fecha si los valores son válidos
       this.x = `${this.year}-${this.month}-${this.day}`;
+
+      //vaciar los arrays
+      this.citas_medicina_consulta = [];
+      this.citas_medicina_preop = [];
+      this.citas_medicina_especial = [];
+      this.citas_pedia_consulta = [];
+      this.citas_gine_consulta = [];
+      this.citas_gine_preop = [];
+      this.citas_gine_usg_obs = [];
+      this.citas_gine_usg_pel = [];
+      this.citas_gine_colpo = [];
+      this.citas_gine_especial = [];
+      this.citas_ciru_consulta = [];
+      this.citas_trauma_consulta = [];
+      this.citas_nutricion_consulta = [];
+      this.citas_psicologia_consulta = [];
+      this.citas_odontologia_consulta = [];
+
+      // Llama a las funciones para actualizar los datos de las citas
       this.medicina_consulta(this.x);
       this.medicina_preop(this.x);
       this.medicina_especial(this.x);
@@ -77,74 +127,29 @@ export class CitasComponent implements OnInit {
       this.trauma_consulta(this.x);
       this.nutri_consulta(this.x);
       this.psico_consulta(this.x);
+      this.odonto_consulta(this.x);
 
-
+      console.log(this.citas)
+    } else {
+      // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
+      this.citas_medicina_consulta = [];
+      this.citas_medicina_preop = [];
+      this.citas_medicina_especial = [];
+      this.citas_pedia_consulta = [];
+      this.citas_gine_consulta = [];
+      this.citas_gine_preop = [];
+      this.citas_gine_usg_obs = [];
+      this.citas_gine_usg_pel = [];
+      this.citas_gine_colpo = [];
+      this.citas_gine_especial = [];
+      this.citas_ciru_consulta = [];
+      this.citas_trauma_consulta = [];
+      this.citas_nutricion_consulta = [];
+      this.citas_psicologia_consulta = [];
+      this.citas_odontologia_consulta = [];
 
     }
-
-    updateDate() {
-      // Convierte los valores de día, mes y año a números enteros
-      const dayInt = parseInt(this.day, 10);
-      const monthInt = parseInt(this.month, 10);
-      const yearInt = parseInt(this.year, 10);
-
-      // Verifica que los valores sean válidos (por ejemplo, día entre 1 y 31, mes entre 1 y 12, etc.)
-      if (dayInt >= 1 && dayInt <= 31 && monthInt >= 1 && monthInt <= 12 && yearInt >= 1900) {
-        // Actualiza la fecha si los valores son válidos
-        this.x = `${this.year}-${this.month}-${this.day}`;
-
-        //vaciar los arrays
-        this.citas_medicina_consulta =[];
-        this.citas_medicina_preop = [];
-        this.citas_medicina_especial = [];
-        this.citas_pedia_consulta = [];
-        this.citas_gine_consulta = [];
-        this.citas_gine_preop = [];
-        this.citas_gine_usg_obs = [];
-        this.citas_gine_usg_pel = [];
-        this.citas_gine_colpo = [];
-        this.citas_gine_especial = [];
-        this.citas_ciru_consulta = [];
-        this.citas_trauma_consulta = [];
-        this.citas_nutricion_consulta = [];
-        this.citas_psicologia_consulta = [];
-
-        // Llama a las funciones para actualizar los datos de las citas
-        this.medicina_consulta(this.x);
-        this.medicina_preop(this.x);
-        this.medicina_especial(this.x);
-        this.pedia_consulta(this.x);
-        this.gine_consulta(this.x);
-        this.gine_preop(this.x);
-        this.gine_usgObs(this.x);
-        this.gine_usgPel(this.x);
-        this.gine_colpo(this.x);
-        this.gine_especial(this.x);
-        this.ciru_consulta(this.x);
-        this.trauma_consulta(this.x);
-        this.nutri_consulta(this.x);
-        this.psico_consulta(this.x);
-
-        console.log(this.citas)
-      } else {
-        // Los valores ingresados no son válidos, puedes manejar esto de acuerdo a tus necesidades
-        this.citas_medicina_consulta =[];
-        this.citas_medicina_preop = [];
-        this.citas_medicina_especial = [];
-        this.citas_pedia_consulta = [];
-        this.citas_gine_consulta = [];
-        this.citas_gine_preop = [];
-        this.citas_gine_usg_obs = [];
-        this.citas_gine_usg_pel = [];
-        this.citas_gine_colpo = [];
-        this.citas_gine_especial = [];
-        this.citas_ciru_consulta = [];
-        this.citas_trauma_consulta = [];
-        this.citas_nutricion_consulta = [];
-        this.citas_psicologia_consulta = [];
-
-      }
-    }
+  }
 
 
   citasTabla(fecha: string, tipo: number, especialidad: number) {
@@ -250,10 +255,17 @@ export class CitasComponent implements OnInit {
     })
   }
 
+  odonto_consulta(fecha: string) {
+    this.CitasService.getCitaTabla(fecha, 8, 1).subscribe(data => {
+      this.citas_odontologia_consulta = data;
+      this.citas = data;
+    })
+  }
 
 
 
-  regresar(){
+
+  regresar() {
     this.router.navigate(['/coex']);
   }
 

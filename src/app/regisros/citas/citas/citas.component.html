@@ -444,6 +444,52 @@
       </table>
     </div>
 
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="mt-3" *ngIf="citas_odontologia_consulta.length >=1">
+    <span class="text-center h3">Reconsultas odontologia</span>
+    <div class="custom-table-striped">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th class="text-center">No.</th>
+            <th class="text-center">Tipo</th>
+            <th class="text-center">Expediente</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Nota</th>
+            <th class="text-center">Editar</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let cita of citas_odontologia_consulta; let i = index">
+          <tr>
+            <td class="text-center">{{ contador + i + 1 }}</td>
+            <td class="text-center">{{cita.tipo | anyToNumber | enumTipoCita}}</td>
+            <td class="text-center">{{ cita.expediente }}</td>
+            <td class="text-center">{{ cita.name | anyToText | capitalizeName}}</td>
+            <td class="text-center">{{ cita.nota}}</td>
+            <td class="text-center  " [routerLink]="['/agenda/edit', cita.id]">
+              <editIcon />
+             </td>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+
   </div>
 
 </section>
