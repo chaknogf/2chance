@@ -136,6 +136,7 @@ export class CoexComponent implements OnInit {
     this.consultasodonto(this.x);
 
 
+
   }
 
 
@@ -215,6 +216,7 @@ export class CoexComponent implements OnInit {
   consultasodonto(fecha: string) {
     this.ConsultasService.consultando(fecha, 1, 8).subscribe(data => {
       this.consultasOdonto = data;
+      console.table(this.consultasOdonto);
     })
   }
 

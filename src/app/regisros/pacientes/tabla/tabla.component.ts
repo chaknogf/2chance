@@ -296,10 +296,11 @@ export class TablaComponent implements OnInit {
     this.ConsultasService.crear(this.coex).subscribe(
       (response) => {
         console.log('Consulta creada con éxito', response);
+        console.table(response);
         this.mostrarAlerta('Consulta creada con éxito', 'success');
 
         setTimeout(() => {
-          window.location.reload();
+          // window.location.reload();
         }, 1000); // 1 segundo antes de recargar
       },
       (error) => {

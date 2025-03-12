@@ -15,6 +15,7 @@ export interface Ienum {
   servicio: Especialidad[];
   servicios: Servicios[];
 
+
 }
 
 
