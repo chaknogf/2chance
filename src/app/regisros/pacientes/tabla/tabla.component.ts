@@ -300,7 +300,7 @@ export class TablaComponent implements OnInit {
         this.mostrarAlerta('Consulta creada con éxito', 'success');
 
         setTimeout(() => {
-          // window.location.reload();
+          window.location.reload();
         }, 1000); // 1 segundo antes de recargar
       },
       (error) => {
