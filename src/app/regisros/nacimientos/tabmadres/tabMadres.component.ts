@@ -19,6 +19,7 @@ import { TextoService } from 'src/app/services/texto.service';
 import { claseParto, tipoParto } from 'src/app/enums/parto';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Iusuarios } from 'src/app/models/Iusers';
+import { nation } from 'src/app/enums/enums';
 
 
 
@@ -92,6 +93,7 @@ export class TabMadresComponent implements OnInit {
     departamentos: departamentos,
     municipio: municipio,
     vecindad: vecindad,
+    nation: nation
   }
   parto: partos = {
     claseparto: claseParto,
@@ -267,7 +269,7 @@ export class TabMadresComponent implements OnInit {
       this.constancia.expediente = data.expediente;
       this.constancia.muni = data.ugar_nacimiento;
       this.constancia.depto = data.depto_nac;
-      this.constancia.nacionalidad = data.nacionalidad.toString();
+      this.constancia.nacionalidad = String(data.nacionalidad);
 
 
     });
